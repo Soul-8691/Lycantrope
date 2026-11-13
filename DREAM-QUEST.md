@@ -45,6 +45,7 @@
 11. [Ideas from the Call of Cthulhu RPG](#11-ideas-from-the-call-of-cthulhu-rpg)
 12. [First-Person Combat: Skyrim × Bloodborne](#12-first-person-combat-skyrim--bloodborne)
 13. [Smart Procedural Environments](#13-smart-procedural-environments)
+14. [Beyond the Dreamlands: Waking-World Horrors](#14-beyond-the-dreamlands-waking-world-horrors)
 
 ---
 
@@ -1503,7 +1504,7 @@ Chaosium's *Call of Cthulhu* (1981–today, now in its 7th edition) is the table
 | **Mythos knowledge lowers max Sanity** (max SAN = 99 − Mythos) | **Forbidden Lore:** your **Insight** (§3.2) *also* lowers your maximum Sanity: **max Sanity = 100 − 5 × Insight**. Knowledge makes you stronger and more fragile at once, which combines Bloodborne and CoC neatly. | Insight system |
 | **Characteristics** (STR, CON, DEX, INT, POW...) | **Dreamer attributes:** *Vigor, Grace, Intellect, Will, Presence*. Will sets Composure checks, Intellect sets Fracture checks and Tome reading, Presence affects Bazaar prices. | Dreamer cards |
 | **Occupations and skill points** | **Waking Lives:** each Dreamer has an occupation (Antiquarian, Professor, Painter, Sailor, Dilettante, Occultist) that sets their starting deck, skill bonuses, and one unique card. | Character select |
-| **Backstory** (ideology, significant people, treasured possessions...) | **Anchors:** each Dreamer has 3 Anchors (*"My cat, Black Tom"*, *"The old house on Benefit Street"*, *"Faith in reason"*). An Anchor can be **sacrificed once** to fully pass a Composure check. Madness can **corrupt** an Anchor, turning it into a liability (inspired by CoC changing a character's backstory after insanity). | Dreamer cards, run events |
+| **Backstory** (ideology, significant people, treasured possessions...) | **Anchors:** each Dreamer has 3 Anchors (*"My grey cat from Ulthar"*, *"The old house on Benefit Street"*, *"Faith in reason"*). An Anchor can be **sacrificed once** to fully pass a Composure check. Madness can **corrupt** an Anchor, turning it into a liability (inspired by CoC changing a character's backstory after insanity). | Dreamer cards, run events |
 | **Skill improvement checks** (successful skills get a mark, then you roll to improve) | **Marks of Experience:** a card that rolls a Success or better in battle gets a mark. At a Hearth, every marked card rolls d100. If the roll is **above** its skill, it improves (+1d10%). Weak cards improve faster, which makes a nice comeback mechanic. | Hearth rest nodes |
 | **Mythos tomes** (weeks of reading, Sanity loss, spells learned) | **Tomes:** Talisman-like items found during runs. Reading a Tome takes **3 map nodes**. When finished: gain Insight, lose Sanity, and add a spell (Rite) card to your deck. Some Tomes have hidden **"Translation"** stages. | Map, Talismans |
 | **Casting spells** costs magic points and Sanity | **Rites of the Old Ones:** powerful Rites cost Lucidity **and** Sanity. A failed casting roll still costs the Sanity. | Forbidden cards |
@@ -2486,6 +2487,307 @@ def test_rotational_symmetry_for_duels(recipes, assets, sample_spec):
 - **§6 Project layout:** add `content/arenas/` (accepted seeds and specs), `content/arenas/recipes/` (Lua), and `content/models/manifest.json` (asset tags).
 - **§7.10 Modding:** modders can write **arena recipes** in Lua and add tagged assets to the manifest, and a "Generate & Preview" button in Card Forge runs the validators.
 - **§8 Assets:** prefer **modular** CC0 kits (walls, floors, pillars, stairs that snap to a grid) because WFC needs them. Tag every asset in the manifest when you import it.
+
+---
+
+## 14. Beyond the Dreamlands: Waking-World Horrors
+
+The Dreamlands are only part of Lovecraft. His best-known horrors live in the **Waking World**: Innsmouth, Dunwich, Arkham, Antarctica, the hills of Vermont, and sunken R'lyeh. In Dream-Quest they come through **Thin Places**, spots where the Wall of Sleep is weak (from *Beyond the Wall of Sleep*), and the nightmares of the waking world leak into the dream.
+
+### 14.1 Story frame: the Wall of Sleep is breaking
+
+- Something is pushing through from the waking side. Carter's quest for Kadath turns out to be connected: **Nyarlathotep is weakening the Wall** so that the Great Old Ones of the waking world can enter the Dreamlands, and from there the minds of every sleeper on Earth.
+- **Thin Place** map nodes (🌀) appear on every layer. Entering one turns the next fight into a Waking-World battle with that horror's faction, arena biome, and rules.
+- **Alternate layers** make each run different. Each layer of §3.6 can be swapped for a Waking-World variant:
+
+| Layer | Dreamlands route | Waking-World alternative |
+|---|---|---|
+| 2 | Enchanted Wood → Ulthar | **Dunwich Hills** (Whateleys, whippoorwills) or **Arkham & Miskatonic University** (Herbert West, the Witch House) |
+| 3 | The Moon → Celephaïs | **Innsmouth & Devil Reef** (Deep Ones) |
+| 4 | The Underworld | **The Mountains of Madness** (Elder Things, shoggoths) or **Exham Priory's depths** (*The Rats in the Walls*) |
+| 5 | Plateau of Leng | **Yuggoth & the Vermont hills** (Mi-Go) or **Pnakotus** (the Great Race, flying polyps) |
+| 6 (boss) | Kadath: Nyarlathotep | **R'lyeh Rising: Cthulhu** or **The Dunwich Gate: Yog-Sothoth's Spawn** (unlocked after a first win) |
+
+### 14.2 Copyright notes for these works
+
+| Status | Works |
+|---|---|
+| **Public domain by date** (published 1930 or earlier) | *Dagon* (1919), *Herbert West: Reanimator* (1922), *The Rats in the Walls* (1924), *The Hound* (1924), *The Festival* (1925), *The Colour Out of Space* (1927), *The Call of Cthulhu* (1928), *The Dunwich Horror* (1929), *The Lurking Fear* (1923), *The Music of Erich Zann* (1922), *Beyond the Wall of Sleep* (1919) |
+| **Widely treated as public domain** (the general view is that copyright renewals were never validly filed, and many commercial games use these freely, but the date alone doesn't settle it) | *The Whisperer in Darkness* (1931), *The Dreams in the Witch House* (1933), *From Beyond* (1934, written 1920), *At the Mountains of Madness* (1936), *The Shadow over Innsmouth* (1936), *The Shadow out of Time* (1936), *The Haunter of the Dark* (1936), *The Thing on the Doorstep* (1937), *The Case of Charles Dexter Ward* (1941) |
+| **⚠ Not Lovecraft. Avoid unless you've checked the specific case** | **Revisions and collaborations** (*The Mound*, *The Curse of Yig*, *Medusa's Coil*, *Out of the Aeons*, *The Horror in the Museum*), whose rights may involve the co-author's estate. **Other authors' creatures:** Hounds of Tindalos (F.B. Long), Tsathoggua (C.A. Smith), Byakhee, Cthugha, and the Derleth "Elder Gods" (August Derleth), Dark Young (later RPG material), Shudde M'ell (Brian Lumley). |
+
+> **Rule of thumb:** use the creature *as Lovecraft described it in his own story*, not later RPG or fan versions. For example, Shub-Niggurath appears in Lovecraft only as an invoked name ("the Black Goat of the Woods with a Thousand Young"), so build her from that phrase, not from later stat blocks.
+
+> **Content note:** several of these stories contain Lovecraft's racism, including the xenophobia of *Innsmouth* and the way *The Call of Cthulhu* describes its cultists. Adapt the *cosmic* horror, not the prejudice: cults are cults of every background, Innsmouth's horror is the sea and inheritance, and leave out *The Horror at Red Hook* and *Arthur Jermyn* entirely.
+
+### 14.3 Waking-World factions
+
+| Faction | Source | Playstyle | Example cards | Signature mechanic |
+|---|---|---|---|---|
+| **Deep Ones & the Esoteric Order of Dagon** | *Dagon*, *The Shadow over Innsmouth* | Tide control, healing in water, slow corruption | *Deep One Raider*, *Innsmouth Hybrid*, *Father Dagon*, *Mother Hydra*, *Obed Marsh's Pact*, *Devil Reef* (Locale) | **The Innsmouth Look:** hits apply *Change* stacks. At 3 stacks, a unit (or Dreamer) **turns**: it gets amphibious abilities and loses Sanity cap. **Rising Tide:** the arena water level rises over the match. |
+| **Cult of Cthulhu & the Spawn** | *The Call of Cthulhu* | Rituals, sacrifice, global Sanity pressure | *Cthulhu Cultist*, *Spawn of Cthulhu*, *Stone Idol of R'lyeh*, *The Sleeper Dreams* (Rite), **Cthulhu** (boss) | **Dreaming Pressure:** Sanity drains slowly for *both* players while Cthulhu's cards are in play. Artists and dreamers (high-Insight units) suffer most. |
+| **Elder Things & Shoggoths** | *At the Mountains of Madness* | Builders and engineers vs. rebellious slaves | *Elder Thing Engineer*, *Shoggoth*, *Blind Albino Penguin*, *Cyclopean City* (Locale), *Hibernation Vault* | **Construction:** Elder Things **build cover and walls mid-battle** (runtime use of §13's generators). **Shoggoth Mimicry:** shoggoths copy the last move used on them. |
+| **Mi-Go (Fungi from Yuggoth)** | *The Whisperer in Darkness* | Surgery, capture, flight | *Mi-Go Surgeon*, *Mi-Go Swarm*, *Brain Cylinder*, *Voice Machine*, *Henry Akeley's Letters* | **Brain Cylinders:** a Mi-Go can **seal a fallen enemy card in a cylinder** and use its abilities. **Unphotographable:** Mi-Go are **invisible in Altar View** and only seen in first person. |
+| **The Great Race of Yith** | *The Shadow out of Time* | Time and mind control | *Yithian Archivist*, *Cone-bodied Scholar*, *Lightning Projector*, *Library of Pnakotus*, *Flying Polyp* | **Mind-Exchange:** swaps the mind of *your* possessed unit: you're thrown into a slow Yithian body for 8 s while the enemy controls yours. (A counter to Soul Leap.) |
+| **Flying Polyps** | *The Shadow out of Time* | Invisible wind attacks; fought alone or with Yith | *Flying Polyp*, *Basalt Trapdoor* | **Partly invisible:** only seen at Insight ≥ 4 (via shader). At lower Insight you only hear whistling and see dust. |
+| **The Dunwich Whateleys** | *The Dunwich Horror* | Hybrids, invisible giants, summoning | *Wilbur Whateley*, *Old Whateley*, *Lavinia Whateley*, *The Unseen Brother*, *Whippoorwill Flock*, *Sentinel Hill* (Locale) | **The Unseen Brother:** a huge invisible unit that leaves **footprints and crushed terrain**. The *Powder of Ibn Ghazi* (a Rite) reveals it. **Whippoorwills:** when a unit dies near them, they **catch its soul**: no Death Throes window (§12.2). |
+| **Reanimators** | *Herbert West: Reanimator* | Graveyard abuse, unstable undead | *Herbert West*, *Reanimated Subject*, *West's Reagent*, *The Headless Thing* | **Reanimation:** bring units back from the Abyss as **uncontrollable frenzied** copies that attack the nearest unit of *either* side. |
+| **Witches & Familiars** | *The Dreams in the Witch House* | Hand disruption, impossible angles | *Keziah Mason*, *Brown Jenkin*, *Master of the Witch-Cult* (an avatar of Nyarlathotep), *Witch House Attic* (Locale) | **Brown Jenkin** steals cards from your hand. **Witch House** arenas use non-Euclidean portal seams (§13.3) everywhere. |
+| **Necromancers** | *The Case of Charles Dexter Ward* | Raise and dismiss the dead | *Joseph Curwen*, *Essential Saltes*, *Things in the Pits*, *Formula of Dismissal* | **Saltes:** dead cards become **saltes**. Curwen raises the enemy's dead for his own side; the *Formula of Dismissal* instantly destroys any raised unit. |
+| **Body-Thieves** | *The Thing on the Doorstep* | Possession duels | *Ephraim Waite*, *Asenath Waite*, *The Thing on the Doorstep* | **Body Theft:** Ephraim steals your **Dreamer's body** (boss mechanic). You must Soul Leap back in by landing a Severance on your own body. |
+| **The Rats and the Priory** | *The Rats in the Walls* | Endless swarms; deeper is worse | *Rat Swarm*, *Exham Priory*, *The Twilit Grotto* | **Descent:** the arena has floors. Each time enemies are cleared, the floor collapses into a worse lower level, as in the story. |
+| **The Colour Out of Space** | *The Colour Out of Space* | Not a creature: a spreading Locale enemy | *The Colour*, *Blasted Heath*, *The Well* | **Blight:** a spreading tile corruption that **drains** units standing in it and **desaturates** the world (shader). It can't be killed, only **contained**: build cover, burn tiles, or seal the Well. |
+| **Things Glimpsed Beyond** | *From Beyond* | Insight punishment | *Tillinghast's Resonator* (Talisman), *Jellyfish Things*, *Crawford Tillinghast* | **Always There:** floating jelly beings exist in *every* arena but stay harmless until your **Insight is high enough to see them**. Then they attack. |
+| **Lurkers** | *The Lurking Fear* | Tunnel ambushes in storms | *Martense Degenerate*, *Thunderstorm* (Locale) | **Lightning Reveal:** lurkers come up through the ground and are only visible in **lightning flashes**. |
+| **The Hound's Curse** | *The Hound* | A run-long stalker | *Jade Amulet* (Talisman), *The Winged Hound* | **Nemesis:** taking the Jade Amulet makes you stronger, but **the Hound hunts you for the rest of the run** and appears in random fights, getting stronger each time until you return the amulet. |
+
+### 14.4 Playing as Waking-World monsters
+
+Following §12.5, each body needs its own senses and movement:
+
+| Creature | Camera / body | Movement and dodge | Senses (screen shader) | Signature move |
+|---|---|---|---|---|
+| **Deep One** | 1.8 m, hunched | Slow on land, **fast swimming** (full 3D underwater); *submerge* dodge | Underwater clarity; on land, the view **blurs as you dry out** | Grapple-drown: drag a unit under water |
+| **Shoggoth** | 4 m, no fixed "face"; the camera floats inside it | Rolls like a wave; *reform* dodge (splits apart and comes back together) | **Eyes all over:** a wide view with eye-bubbles drifting across the screen | **Engulf:** absorb a small unit and gain its move set. Utterance: *"Tekeli-li!"* |
+| **Elder Thing** | 2.4 m, barrel-shaped, 5-fold symmetry | Walk, **glide on membrane wings**; *fold* dodge | Sees in every direction (a ring-shaped panorama shader) | Build: place cover or a ramp from the hand |
+| **Mi-Go** | 1.5 m, buzzing | **Flying through the ether** (strafing flight); *phase* dodge | **Colour-shifting head** tints the screen; enemies' brains glow | Surgical extraction: on kill, put the card in a Brain Cylinder |
+| **Yithian (cone)** | 3 m, slow, rocking | Gliding on its base; no dodge, **time-skip** instead (rewind your own last 1.5 s) | Library calm: crisp, cold, slow-motion view | Lightning Projector beam; Mind-Exchange |
+| **Wilbur Whateley** | 2.7 m, human from the waist up | Long stride; *shamble* dodge | Normal view, but **invisible things show up** as outlines | Reading from the Necronomicon (channel to summon) |
+| **The Unseen Brother** | 12 m, giant | Crushing walk; terrain deforms where you step | You're **invisible**; your own body shows only as footprints and broken trees | Stomp: area knockdown, flattens cover |
+| **Brown Jenkin** | 0.2 m, rat-sized | Scurry through walls (portal seams); *nip* dodge | Fish-eye view, gnawing sounds | Steal a card from the enemy hand |
+
+### 14.5 New Waking-World Dreamers (playable humans, all Lovecraft characters)
+
+| Dreamer | Source | Occupation (§11.2) | Unique card |
+|---|---|---|---|
+| **Dr. Henry Armitage** | *The Dunwich Horror* | Librarian | *Powder of Ibn Ghazi*: reveals invisible units |
+| **Francis Wayland Thurston** | *The Call of Cthulhu* | Antiquarian | *Collected Clippings*: gives +2 Clues at the start |
+| **Inspector John Raymond Legrasse** | *The Call of Cthulhu* | Police detective | *Swamp Raid*: units deal +50% damage to Cultists |
+| **Professor William Dyer** | *At the Mountains of Madness* | Geologist | *Expedition Supplies*: start with an extra Talisman |
+| **Albert N. Wilmarth** | *The Whisperer in Darkness* | Folklorist | *Phonograph Record*: reveals the Mi-Go in Altar View |
+| **Nathaniel Wingate Peaslee** | *The Shadow out of Time* | Economics professor | *Fragmented Memory*: immune to the first Mind-Exchange |
+| **Walter Gilman** | *The Dreams in the Witch House* | Mathematics student | *Hyperspace Calculation*: can use enemy portal seams |
+| **Dr. Marinus Bicknell Willett** | *The Case of Charles Dexter Ward* | Physician | *Formula of Dismissal*: destroys a raised unit |
+| **Daniel Upton** | *The Thing on the Doorstep* | Architect | *Doorstep Revolver*: Severance against body-thieves always succeeds |
+
+### 14.6 Waking-World Talismans and Rites (Lovecraft items)
+
+- **The Necronomicon** *(Talisman, Tome, §11.2)*: by far the most powerful Tome. Reading it takes **5 map nodes** and gives **+4 Insight, −30 Sanity**, and a Rite from each Outer God.
+- **Powder of Ibn Ghazi** *(Rite)*: reveals invisible units for 15 s.
+- **The Voorish Sign** *(Rite)*: lets *you* see invisible things; your units ignore stealth.
+- **West's Reagent** *(Rite)*: reanimate a fallen unit (frenzied, §14.3).
+- **Brain Cylinder** *(Talisman)*: store one fallen card from a fight and summon it in the next fight.
+- **Lightning Projector** *(Rite)*: Yithian beam weapon; hits invisible units.
+- **The Jade Amulet** *(Talisman)*: big stat bonus, plus the Hound's Curse (§14.3).
+- **Tillinghast's Resonator** *(Talisman)*: +2 Insight; the Jellyfish Things become visible (and hostile).
+- **Obed Marsh's Gold** *(Talisman)*: extra gold at every Bazaar, but each fight starts with one *Change* stack.
+- **The Shining Trapezohedron** *(Talisman, §3.5)*: in darkness, calls the Haunter of the Dark. If the arena is fully lit, the Haunter can't appear.
+
+### 14.7 Bosses
+
+| Boss | Arena (worldgen recipe, §13) | Mechanics |
+|---|---|---|
+| **Cthulhu: R'lyeh Rising** | `core.rlyeh`: geometry where **"the angles are wrong"**: some surfaces count as concave and convex at once (you walk up a slope that is also a wall). Portal seams everywhere. | **Phase 1:** the cult performs the ritual (kill the cultists before the chant finishes). **Phase 2:** Cthulhu rises; Dreaming Pressure drains all Sanity. **Phase 3:** Cthulhu **comes back together** after being "destroyed," as when the ship rammed him in the story. You have 20 s to **scatter his fragments** (a Chorus Chain on each fragment) before he reforms. |
+| **The Dunwich Gate: Yog-Sothoth's Spawn** | `core.sentinel_hill`: a hilltop stone ring with whippoorwills around it | The **Unseen Brother** charges up the hill. Throw the *Powder of Ibn Ghazi*, then chant the **counter-formula** (a Ritual combo, §4 idea 13) while defending the chanters. **Yog-Sothoth** sometimes opens **gates**: portals that swap the positions of every unit. |
+| **Ephraim Waite** (elite) | `core.crowninshield_house`: a cramped old house | Steals your Dreamer's body (Body Theft). You fight him *in* your own body; landing a Severance on it brings you back. |
+| **The Colour** (elite, can't be killed) | `core.blasted_heath`: a farm going grey | **Survive 3 minutes** while containing the Blight. The score is how much of the heath you save. |
+
+### 14.8 Arena recipes to add (§13)
+
+| Recipe | Biome | Generator focus |
+|---|---|---|
+| `core.innsmouth_harbor` | Decaying fishing town, wharves, Devil Reef offshore | Water-level hazard that **rises over time**; WFC with crumbling wharf tiles |
+| `core.antarctic_city` | Cyclopean ruins under ice, tunnels | Heightmap glaciers, WFC with Elder Thing architecture, dark tunnels for shoggoths |
+| `core.yuggoth_mines` | Fungal caverns, black rivers, alien towers | Cavern terrain, glowing fungal light sources, vertical shafts for flight |
+| `core.dunwich_hills` | Round hills, stone circles, a decaying farmhouse | Hills + stone rings + **footprint trails** (Unseen Brother) |
+| `core.arkham_campus` | Gambrel roofs, the Miskatonic library, graveyards | Street grid WFC, graveyard tiles for reanimation |
+| `core.witch_house` | A slanted attic room that keeps repeating | **Portal-heavy:** every wall can be a seam |
+| `core.exham_depths` | Priory → cellars → grotto | **Stacked floors** that collapse (the Descent mechanic) |
+| `core.rlyeh` | Sunken city rising from the sea | Non-Euclidean seams, wet green stone, rising water |
+| `core.blasted_heath` | Farmland turning grey | Blight spread over the tile grid; a well at the center |
+
+### 14.9 Code template
+
+**Shoggoth: mimicry and engulf** (`content/cards/waking/shoggoth.lua`)
+```lua
+return {
+  id = "waking.shoggoth", name = "Shoggoth", type = "entity",
+  faction = "elder_things", cost = 7, rarity = "rare",
+  source = "At the Mountains of Madness",
+  horror = "1d6 / 1d20",                     -- seeing one is a serious shock
+  creature_kind = "shoggoth",
+  keywords = { "Mimic", "Engulf", "Rebellious" },
+  stats = { hp = 70, atk = 6, speed = 3.0, stamina = 140, poise = 80 },
+
+  body = { eye_height = 4.0, fov = 120, senses = "many_eyes",
+           dodge = { kind = "reform", iframes = 18, recovery = 14, stamina = 30 } },
+
+  utterance = { name = "Tekeli-li!", cooldown = 20,
+                on_use = function(uid) game.fear_cone(uid, 12.0, 120, 2.5) end },
+
+  -- Mimic: whatever move last hit this shoggoth becomes available to it.
+  on_damaged = function(uid, source_uid, move_id)
+    if move_id then game.grant_move(uid, game.unit(source_uid).card_id, move_id, 15.0) end
+  end,
+
+  -- Engulf: absorb a small unit (stats.size < 2) and keep its moveset.
+  abilities = {
+    { key = "engulf", name = "Engulf", skill = 40, cooldown = 12,
+      on_resolve = function(uid, target_uid, res)
+        local t = game.unit(target_uid)
+        if t.size < 2 and res.tier ~= "fail" and res.tier ~= "fumble" then
+          game.absorb(uid, target_uid)        -- target removed, moveset inherited
+        end
+      end },
+  },
+
+  -- Rebellious: if its owner has no Elder Things on the board, it may turn.
+  on_tick = function(uid, dt)
+    local owner = game.unit(uid).owner
+    if not game.has_faction_unit(owner, "elder_things") and game.rand(1, 600) == 1 then
+      game.change_owner(uid)
+    end
+  end,
+}
+```
+
+**Yithian Mind-Exchange: hooking into Soul Leap** (`content/cards/waking/yithian_archivist.lua`)
+```lua
+return {
+  id = "waking.yithian_archivist", name = "Yithian Archivist", type = "entity",
+  faction = "yith", cost = 6, rarity = "rare", source = "The Shadow out of Time",
+  horror = "0 / 1d6", creature_kind = "yithian",
+  stats = { hp = 40, atk = 3, speed = 1.8, poise = 60 },
+
+  abilities = {
+    { key = "mind_exchange", name = "Mind-Exchange", skill = 55, cooldown = 30,
+      on_resolve = function(uid, target_uid, res)
+        local victim_owner = game.unit(target_uid).owner
+        if not game.is_possessed(target_uid) or res.tier == "fail" then return end
+        local secs = (res.tier == "sublime") and 12 or 8
+        -- The enemy pilots your unit; you're forced into this slow cone body.
+        game.swap_minds(uid, target_uid, secs)
+        game.sanity(victim_owner, -3)
+      end },
+  },
+
+  -- Time-skip dodge: rewind this unit's own position/HP by 1.5 s (uses snapshot ring buffer).
+  on_dodge = function(uid) game.rewind_unit(uid, 1.5) end,
+}
+```
+
+**The Colour Out of Space as a Locale** (`content/cards/waking/the_colour.lua`)
+```lua
+return {
+  id = "waking.the_colour", name = "The Colour Out of Space", type = "locale",
+  faction = "colour", cost = 0, rarity = "mythic", source = "The Colour Out of Space",
+  boss_only = true,
+
+  on_play = function(pid)
+    game.set_shader_param("desaturate", 0.0)
+    game.blight_seed(game.arena_center(), 3)      -- radius-3 tile blight at the Well
+  end,
+
+  -- Every second: spread to neighbouring tiles, drain whatever stands in it.
+  on_locale_tick = function(dt)
+    game.blight_spread{ chance = 0.08, blocked_by = "cover" }   -- cover contains it
+    for _, uid in ipairs(game.units_on_blight()) do
+      game.damage(uid, 1, -1)
+      game.add_insight(game.unit(uid).owner, 0.02)   -- it is fascinating, too
+    end
+    game.set_shader_param("desaturate", game.blight_fraction())
+  end,
+}
+```
+
+**Innsmouth "Change" stacks** (`src/dreamquest/engine/statuses.py`)
+```python
+CHANGE_TURN_THRESHOLD = 3
+
+def apply_change(world, uid: int, stacks: int = 1):
+    """Deep One hits add Change. At the threshold the unit (or Dreamer) turns."""
+    u = world.units[uid]
+    u.tags["change"] = u.tags.get("change", 0) + stacks
+    world.events.emit("ChangeStack", uid=uid, total=u.tags["change"])
+    if u.tags["change"] >= CHANGE_TURN_THRESHOLD and not u.tags.get("turned"):
+        u.tags["turned"] = True
+        world.script.call_global("on_unit_turned", uid)   # Lua grants swim moves, gills, etc.
+        if u.tags.get("dreamer"):
+            # The story's ending as a mechanic: you gain the sea's gifts
+            # and permanently lose a slice of your Sanity cap for the run.
+            p = world.players[u.owner]
+            p.max_sanity_penalty += 15
+```
+
+**Run structure with Waking-World alternate layers** (`content/runs/layers.lua`)
+```lua
+return {
+  { layer = 2, routes = {
+      { id = "enchanted_wood", weight = 2 },
+      { id = "dunwich_hills",  weight = 1, recipe = "core.dunwich_hills",  faction = "whateley" },
+      { id = "arkham_campus",  weight = 1, recipe = "core.arkham_campus",  faction = "reanimators" } } },
+  { layer = 3, routes = {
+      { id = "the_moon",       weight = 2 },
+      { id = "innsmouth",      weight = 1, recipe = "core.innsmouth_harbor", faction = "deep_ones" } } },
+  { layer = 4, routes = {
+      { id = "underworld",     weight = 2 },
+      { id = "antarctica",     weight = 1, recipe = "core.antarctic_city", faction = "elder_things" },
+      { id = "exham_depths",   weight = 1, recipe = "core.exham_depths",   faction = "rats" } } },
+  { layer = 5, routes = {
+      { id = "leng",           weight = 2 },
+      { id = "yuggoth",        weight = 1, recipe = "core.yuggoth_mines",  faction = "mi_go" },
+      { id = "pnakotus",       weight = 1, recipe = "core.pnakotus",       faction = "yith" } } },
+  { layer = 6, routes = {
+      { id = "kadath",         weight = 1, boss = "core.nyarlathotep" },
+      { id = "rlyeh",          weight = 1, boss = "waking.cthulhu",  unlock = "first_win" },
+      { id = "sentinel_hill",  weight = 1, boss = "waking.yog_spawn", unlock = "first_win" } } },
+  thin_place_chance = 0.15,     -- per map node, any layer
+}
+```
+
+**Tests** (`tests/test_waking_world.py`)
+```python
+def test_change_stacks_turn_unit(world, spawn):
+    u = spawn("core.cat_of_ulthar", owner=0)
+    for _ in range(3):
+        apply_change(world, u.uid)
+    assert u.tags["turned"] is True
+
+def test_unseen_brother_hidden_until_powder(world, spawn, cast):
+    b = spawn("waking.unseen_brother", owner=1)
+    assert not world.is_visible_to(0, b.uid)
+    cast("waking.powder_of_ibn_ghazi", pid=0)
+    assert world.is_visible_to(0, b.uid)
+
+def test_mind_exchange_returns_control(world, spawn, leap, advance):
+    mine = spawn("core.ghoul", owner=0); leap(0, mine.uid)
+    yith = spawn("waking.yithian_archivist", owner=1)
+    world.force_resolve(yith.uid, "mind_exchange", target=mine.uid, tier="success")
+    assert world.controller_of(mine.uid) == 1
+    advance(seconds=8.1)
+    assert world.controller_of(mine.uid) == 0
+
+def test_cover_contains_the_colour(world, arena_with_wall_ring, advance):
+    world.play_locale("waking.the_colour")
+    advance(seconds=120)
+    assert world.blight_fraction() < 0.25            # the wall ring holds it
+
+def test_every_waking_card_cites_a_lovecraft_source(host):
+    for cid, card in host.cards.items():
+        if cid.startswith("waking."):
+            assert card["source"], f"{cid} must cite its Lovecraft story"
+```
+
+> The last test enforces the copyright rule: every Waking-World card must cite the Lovecraft story it comes from. Keep a list of allowed source titles in `content/sources.json` so revisions and other authors' material can't slip in.
+
+### 14.10 Updates to the earlier plan
+
+- **§3.5 Factions:** the faction list is now **Dreamlands (§3.5) + Waking World (§14.3)**. Keep the starter set to Dreamlands factions; Waking-World factions **unlock** by visiting Thin Places.
+- **§3.6 Run structure:** add **🌀 Thin Place** nodes and the **alternate layers** in 14.1.
+- **§4 Creative ideas:** the **Necronomicon collection book** (idea 4) gets a "Waking World" section with lore drawn from the stories in 14.2.
+- **§7.7 Story pipeline:** tag corpus passages by **source story** so retrieval for Waking-World cards only uses the matching story.
+- **§13 Worldgen:** add the arena recipes in 14.8. The water-level and Blight hazards need new `gen.*` functions.
+- **Mod idea now in the core game:** the *Innsmouth* and *Mountains of Madness* "Mythos Packs" from §4 idea 12 are now core content. Suggest other Lovecraft stories for modders instead.
 
 ---
 
