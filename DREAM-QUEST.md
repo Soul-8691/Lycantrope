@@ -42,6 +42,7 @@
 8. [Assets and Licensing](#8-assets-and-licensing)
 9. [Releasing on itch.io](#9-releasing-on-itchio)
 10. [Risks and How to Handle Them](#10-risks-and-how-to-handle-them)
+11. [Ideas from the Call of Cthulhu RPG](#11-ideas-from-the-call-of-cthulhu-rpg)
 
 ---
 
@@ -1465,6 +1466,244 @@ coll = COLLECT(exe, a.binaries, a.datas, name="DreamQuest")
 | AI-text quality | Human curation is mandatory. Use the LM as a co-writer, score with embeddings, and link lore back to real Lovecraft passages. |
 | Name collision with *Dream Quest* (2014) | Consider a subtitle or variant before launch (§1.1). |
 | Asset licenses | CC0-first, `CREDITS.md` from day one, re-check before release. |
+
+---
+
+---
+
+## 11. Ideas from the Call of Cthulhu RPG
+
+Chaosium's *Call of Cthulhu* (1981–today, now in its 7th edition) is the tabletop RPG that defined how Lovecraftian *games* feel: fragile investigators, sanity as a resource you spend, and knowledge that destroys you. Many of its ideas carry over well to a real-time card game.
+
+### 11.1 What you can and can't take
+
+| ✅ Safe to borrow (game mechanics and general ideas) | ❌ Avoid (Chaosium's protected expression and trademarks) |
+|---|---|
+| Roll-under percentile checks with success tiers | The name **"Call of Cthulhu"** on your store page, title, or marketing in a way that implies affiliation |
+| Sanity that drops when you witness horrors and comes back slowly | Copying rulebook text, tables, Sanity-loss values, or monster stat blocks word for word |
+| Knowledge of the Mythos lowering maximum sanity | Chaosium's art, logos, trade dress, or character sheet layout |
+| Pushing a failed roll at a risk | Chaosium's published scenarios (*Masks of Nyarlathotep*, *The Haunting*, etc.) and the NPCs they invented |
+| Skills that improve when used | Their exact term lists ("Cthulhu Mythos skill", "Keeper", "Bout of Madness"). Rename them in your own words, as below. |
+
+> **Note:** Game mechanics are not copyrightable in the US, but their *written expression* is. Chaosium has also released its underlying **Basic Roleplaying (BRP)** system under the **ORC License**. If you ever want to use BRP terms or structures directly, read the current ORC terms and Chaosium's notice first. Following those terms is safer than guessing. Everything below is renamed and adapted so you don't need it.
+
+### 11.2 Mechanics to adapt
+
+| CoC RPG idea | Dream-Quest version | Where it fits |
+|---|---|---|
+| **Percentile (d100) skill checks** with Regular / Hard / Extreme success | **Omens:** every ability on a card has a **Skill %**. When it fires, a small bone die tumbles above the creature: **Fumble** (96–100), **Fail**, **Success** (≤ skill), **Strong** (≤ ½ skill), **Sublime** (≤ ⅕ skill). Higher tiers add bonus effects in Lua. | Every Entity and Rite |
+| **Bonus / penalty dice** | **Favor / Dread dice:** roll two tens digits and keep the better (Favor) or worse (Dread). Created by Locales, flanking, darkness, and Afflictions. | Combat, Locales |
+| **Pushing a roll** | **Press On:** after a failed ability, you have 1.5 s to press it again for a reroll. If the reroll *also* fails, a **Dire Consequence** fires (drawn from a Lua table, e.g. the creature turns on you, loses its card, or you lose Sanity). This adds real-time risk and reward. | Possession controls |
+| **Luck points** (spend to adjust a roll) | **Fortune:** a per-run pool. Spend Fortune points one-for-one to drop a die result just under a success threshold. Fortune doesn't refill in battle, only at Hearths. | Run-level resource |
+| **Sanity loss on witnessing horror** (smaller on a passed check, larger on a failed one) | **Horror rating** on Entity cards, written `1 / 1d6`. When an enemy Horror is **revealed** (summoned or turned face-up), you make a **Composure check** against your Sanity. Pass: lose the small number. Fail: lose the rolled number. | All Mythos Entities |
+| **Becoming used to horrors** | **Familiarity:** the Sanity you can lose from one *kind* of creature in a single battle is capped, so the third night-gaunt is less shocking than the first. | Composure checks |
+| **Temporary and indefinite insanity** (big losses at once, or a lot in one day) | **Fractures:** losing **5+ Sanity in one hit** (with a failed Intellect check) causes a **Fracture**, a short real-time madness effect (see 11.3). Losing **⅕ of your current Sanity in one battle** gives a lasting **Affliction** for the rest of the run, like Darkest Dungeon. | Ties into §3.2 Sanity thresholds |
+| **Mythos knowledge lowers max Sanity** (max SAN = 99 − Mythos) | **Forbidden Lore:** your **Insight** (§3.2) *also* lowers your maximum Sanity: **max Sanity = 100 − 5 × Insight**. Knowledge makes you stronger and more fragile at once, which combines Bloodborne and CoC neatly. | Insight system |
+| **Characteristics** (STR, CON, DEX, INT, POW...) | **Dreamer attributes:** *Vigor, Grace, Intellect, Will, Presence*. Will sets Composure checks, Intellect sets Fracture checks and Tome reading, Presence affects Bazaar prices. | Dreamer cards |
+| **Occupations and skill points** | **Waking Lives:** each Dreamer has an occupation (Antiquarian, Professor, Painter, Sailor, Dilettante, Occultist) that sets their starting deck, skill bonuses, and one unique card. | Character select |
+| **Backstory** (ideology, significant people, treasured possessions...) | **Anchors:** each Dreamer has 3 Anchors (*"My cat, Black Tom"*, *"The old house on Benefit Street"*, *"Faith in reason"*). An Anchor can be **sacrificed once** to fully pass a Composure check. Madness can **corrupt** an Anchor, turning it into a liability (inspired by CoC changing a character's backstory after insanity). | Dreamer cards, run events |
+| **Skill improvement checks** (successful skills get a mark, then you roll to improve) | **Marks of Experience:** a card that rolls a Success or better in battle gets a mark. At a Hearth, every marked card rolls d100. If the roll is **above** its skill, it improves (+1d10%). Weak cards improve faster, which makes a nice comeback mechanic. | Hearth rest nodes |
+| **Mythos tomes** (weeks of reading, Sanity loss, spells learned) | **Tomes:** Talisman-like items found during runs. Reading a Tome takes **3 map nodes**. When finished: gain Insight, lose Sanity, and add a spell (Rite) card to your deck. Some Tomes have hidden **"Translation"** stages. | Map, Talismans |
+| **Casting spells** costs magic points and Sanity | **Rites of the Old Ones:** powerful Rites cost Lucidity **and** Sanity. A failed casting roll still costs the Sanity. | Forbidden cards |
+| **Dodge or Fight Back** when attacked | **Reaction window:** when a possessed creature is attacked, you have ~0.3 s to press **Dodge** (dodge roll) or **Riposte** (counter-attack roll), a Bloodborne-style parry window. Unpossessed creatures pick a reaction automatically through their Lua script. | Real-time combat |
+| **Chases** | **Pursuit nodes:** a short real-time map event where your Dreamer card runs across a scrolling board of hazard cards while something follows. Speed checks, obstacles, and Fortune all matter. | Map event type |
+| **Clues and investigation** | **Clues:** some map nodes give Clues. Clues **weaken the final boss** or **reveal which form Nyarlathotep will take** (§4 idea 5), so investigation pays off strategically, not just as flavor. | Run structure |
+| **The Game Master runs the world** | **The Dreamwarden:** a hidden **AI director** that watches tension (your Sanity, Doom, recent losses) and adjusts pacing: when to start an ambush, when to allow a quiet Hearth, and which events to show. It narrates in a Lovecraftian voice using pre-generated text (§7.7). | Run/event system |
+| **Handouts** (newspaper clippings, letters, diaries) | **Found Documents:** physical-looking papers that show up during runs: letters, telegrams, diary pages, and clippings, rendered on an aged-paper shader. AI-assisted, curated text. Each document may contain a Clue. | Collection book, map events |
+| **Credit Rating** | **Standing:** your Dreamer's wealth and status in the Waking World. It sets the starting gold and Bazaar discounts, and some Waking-World events check it. | Dreamer attributes |
+| **Settings in different eras** (1890s, 1920s, modern) | **Dream Eras:** unlockable run modifiers that change card pools and visuals: *Gaslight Dreams* (Victorian), *The Jazz-Age Sleep* (default), *Modern Nightmares*. | Late-game replayability |
+| **Investigators die often** | Your roguelike already fits this. On death, a Dreamer can become a **"Lost Dreamer"** enemy in a later run (§3.6). Their final **Found Document** can be found later. | Meta-progression |
+
+### 11.3 Fractures (short-lived real-time madness)
+
+When a **Fracture** happens, roll on this table, which is stored as editable Lua data so it can be modded:
+
+| d10 | Fracture | Real-time effect (8–12 s) |
+|---|---|---|
+| 1 | **Amnesia** | Your hand is face-down; you play cards from memory. |
+| 2 | **Flight** | Your possessed creature runs away from the nearest enemy. You can't steer it. |
+| 3 | **Hysteria** | Screen shake; the cursor jitters; Lucidity regenerates 50% faster (manic energy). |
+| 4 | **Paranoia** | Fake enemy cards appear on empty Rifts. They're harmless, but the CPU's real cards hide among them. |
+| 5 | **Catatonia** | You can't possess anything; creatures run on their scripts only. |
+| 6 | **Violent Outburst** | Your possessed creature deals double damage to *everything* near it, including allies. |
+| 7 | **Phobia** (permanent this run) | You pick up a **Phobia** of the creature type that caused it. Seeing that type always costs +1 Sanity. |
+| 8 | **Mania** (permanent this run) | You pick up a **Mania**: a compulsion, such as "must play a card every 6 s or lose 2 Sanity". |
+| 9 | **Whispers** | Card text rewrites itself with madness text (§4 idea 2), and one card's *real* text changes for the rest of the battle. |
+| 10 | **Revelation** | *Good:* gain 2 Insight and see the CPU's hand for the rest of the battle (with the max-Sanity cost from Forbidden Lore). |
+
+### 11.4 Code template: checks, Composure, Fractures
+
+**`src/dreamquest/engine/checks.py`** (Cythonize later if profiling shows it's a hot path)
+```python
+"""
+Percentile check system inspired by classic horror RPG mechanics (renamed / adapted).
+All randomness goes through world.rand_int -> deterministic, replay-safe.
+"""
+from dataclasses import dataclass
+from enum import IntEnum
+
+class Tier(IntEnum):
+    FUMBLE = -1
+    FAIL = 0
+    SUCCESS = 1
+    STRONG = 2      # <= half skill
+    SUBLIME = 3     # <= fifth skill
+
+@dataclass(frozen=True)
+class CheckResult:
+    roll: int
+    skill: int
+    tier: Tier
+    pushed: bool = False
+
+def roll_d100(world, favor: int = 0, dread: int = 0) -> int:
+    """Favor/Dread dice: extra tens digits; keep best (Favor) or worst (Dread)."""
+    net = favor - dread
+    units = world.rand_int(0, 9)
+    tens = [world.rand_int(0, 9) for _ in range(1 + abs(net))]
+    candidates = [(t * 10 + units) or 100 for t in tens]   # 00 + 0 counts as 100
+    return min(candidates) if net > 0 else max(candidates)
+
+def check(world, skill: int, favor: int = 0, dread: int = 0) -> CheckResult:
+    r = roll_d100(world, favor, dread)
+    fumble_floor = 100 if skill >= 50 else 96
+    if r >= fumble_floor:
+        tier = Tier.FUMBLE
+    elif r <= max(1, skill // 5):
+        tier = Tier.SUBLIME
+    elif r <= skill // 2:
+        tier = Tier.STRONG
+    elif r <= skill:
+        tier = Tier.SUCCESS
+    else:
+        tier = Tier.FAIL
+    world.events.emit("CheckRolled", roll=r, skill=skill, tier=int(tier))  # renderer shows bone die
+    return CheckResult(r, skill, tier)
+
+def spend_fortune(player, result: CheckResult) -> CheckResult:
+    """Spend Fortune 1:1 to lower a failed roll to exactly the skill value."""
+    need = result.roll - result.skill
+    if result.tier == Tier.FAIL and 0 < need <= player.fortune:
+        player.fortune -= need
+        return CheckResult(result.skill, result.skill, Tier.SUCCESS, result.pushed)
+    return result
+
+def parse_dice(expr: str, world) -> int:
+    """'3' -> 3, '1d6' -> 1..6, '2d4+1' -> 3..9"""
+    ...
+
+def composure_check(world, pid: int, horror: str, creature_kind: str) -> int:
+    """
+    horror is written 'small / big', e.g. '1 / 1d6'.
+    Pass -> lose small; fail -> lose big. Familiarity caps per-kind loss per battle.
+    Returns Sanity actually lost.
+    """
+    p = world.players[pid]
+    small, big = (s.strip() for s in horror.split("/"))
+    res = check(world, skill=int(p.sanity))                 # roll under current Sanity
+    loss = parse_dice(small if res.tier >= Tier.SUCCESS else big, world)
+
+    cap = familiarity_cap(world, pid, creature_kind)        # e.g. max die value of `big`
+    already = p.familiarity.get(creature_kind, 0)
+    loss = max(0, min(loss, cap - already))
+    p.familiarity[creature_kind] = already + loss
+
+    world.change_sanity(pid, -loss)
+    p.battle_sanity_lost += loss
+    if loss >= 5 and check(world, p.attrs["intellect"]).tier >= Tier.SUCCESS:
+        # Like the classic rule: understanding what you saw is what breaks you.
+        world.script.call_global("on_fracture", pid, world.rand_int(1, 10))
+    if p.battle_sanity_lost >= p.sanity_at_battle_start / 5:
+        world.script.call_global("on_affliction", pid)
+    return loss
+
+def max_sanity(player) -> int:
+    """Forbidden Lore: knowledge erodes the mind's ceiling."""
+    return max(10, 100 - 5 * int(player.insight))
+```
+
+**Lua: an ability that uses success tiers and Press On** (`content/cards/core/night_gaunt.lua`)
+```lua
+return {
+  id = "core.night_gaunt", name = "Night-gaunt", type = "entity",
+  faction = "gaunts", cost = 4, rarity = "uncommon",
+  horror = "0 / 1d4",                 -- Composure check when the opponent first sees it
+  creature_kind = "night_gaunt",
+  stats = { hp = 14, atk = 3, speed = 5.0, range = 1.2, cooldown = 1.2 },
+
+  abilities = {
+    {
+      key = "abduct", name = "Silent Abduction", skill = 45, cooldown = 8.0,
+      -- `res.tier` is one of: "fumble", "fail", "success", "strong", "sublime"
+      on_resolve = function(uid, target_uid, res)
+        if res.tier == "sublime" then
+          game.remove_from_battle(target_uid)            -- carried off to Ngranek
+        elseif res.tier == "strong" then
+          game.stun(target_uid, 3.0); game.damage(target_uid, 6, uid)
+        elseif res.tier == "success" then
+          game.stun(target_uid, 1.5)
+        elseif res.tier == "fumble" then
+          game.stun(uid, 2.0)                            -- tangled in its own wings
+        end
+      end,
+      -- Called only if the player Presses On and the reroll fails again.
+      dire_consequence = function(uid)
+        game.change_owner(uid)                           -- the gaunt serves Nodens, not you
+      end,
+    },
+  },
+}
+```
+
+**Lua: Fracture table as moddable data** (`content/cards/core/fractures.lua`)
+```lua
+return {
+  [1]  = { id = "amnesia",   duration = 10, apply = function(pid) game.hide_hand(pid, true) end,
+                                             expire = function(pid) game.hide_hand(pid, false) end },
+  [2]  = { id = "flight",    duration = 8,  apply = function(pid) game.force_flee(pid) end },
+  [7]  = { id = "phobia",    permanent = true,
+           apply = function(pid, cause_kind) game.add_phobia(pid, cause_kind) end },
+  [10] = { id = "revelation", duration = 0,
+           apply = function(pid) game.add_insight(pid, 2); game.reveal_enemy_hand(pid) end },
+  -- ... 3–6, 8, 9
+}
+```
+
+**Tests** (`tests/test_checks.py`)
+```python
+from dreamquest.engine.checks import check, Tier, max_sanity, composure_check
+
+import pytest
+
+@pytest.mark.parametrize("roll,expected", [
+    (10, Tier.SUBLIME), (25, Tier.STRONG), (50, Tier.SUCCESS), (51, Tier.FAIL), (100, Tier.FUMBLE),
+])
+def test_tiers_follow_skill_fractions(world, monkeypatch, roll, expected):
+    monkeypatch.setattr("dreamquest.engine.checks.roll_d100", lambda *a, **k: roll)
+    assert check(world, skill=50).tier == expected
+
+def test_forbidden_lore_lowers_max_sanity(world):
+    p = world.players[0]
+    p.insight = 6
+    assert max_sanity(p) == 70
+
+def test_familiarity_caps_repeated_horror(world):
+    total = sum(composure_check(world, 0, "1 / 1d6", "night_gaunt") for _ in range(10))
+    assert total <= 6                                       # can't lose more than the cap per kind
+
+def test_checks_are_deterministic(world_factory):
+    a, b = world_factory(seed=7), world_factory(seed=7)
+    assert [check(a, 50).roll for _ in range(100)] == [check(b, 50).roll for _ in range(100)]
+```
+
+### 11.5 Updates to the earlier plan
+
+- **§3.2 Resources:** add **Fortune** (per run) and the **max-Sanity cap from Insight**.
+- **§3.3 Card types:** add **Tome** (a Talisman read over several map nodes) and **Found Document** (a collectible that holds a Clue).
+- **§3.6 Run map:** add **🔍 Investigation** (Clues and Found Documents), **🏃 Pursuit** (chase), and **📖 Study** (keep reading a Tome) node types.
+- **§7.8 RL observation:** add the Fortune, Familiarity, active Fracture, and Anchors state so the CPU learns to play around madness. Use the same `check()` code path for the CPU, so it gets no hidden advantages.
+- **§7.10 Card Forge:** add a **Skill %** field per ability, a **Horror** field (`small / big`), and a **tier preview** that rolls 1,000 simulated checks and shows the outcome distribution.
+- **§9 Store page:** describe the game as *"inspired by classic tabletop horror RPGs and Lovecraft's Dreamlands."* Don't use the *Call of Cthulhu* name in the title, tags, or capsule art.
 
 ---
 
