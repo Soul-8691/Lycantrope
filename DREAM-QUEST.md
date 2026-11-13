@@ -43,6 +43,7 @@
 9. [Releasing on itch.io](#9-releasing-on-itchio)
 10. [Risks and How to Handle Them](#10-risks-and-how-to-handle-them)
 11. [Ideas from the Call of Cthulhu RPG](#11-ideas-from-the-call-of-cthulhu-rpg)
+12. [First-Person Combat: Skyrim × Bloodborne](#12-first-person-combat-skyrim--bloodborne)
 
 ---
 
@@ -1704,6 +1705,322 @@ def test_checks_are_deterministic(world_factory):
 - **§7.8 RL observation:** add the Fortune, Familiarity, active Fracture, and Anchors state so the CPU learns to play around madness. Use the same `check()` code path for the CPU, so it gets no hidden advantages.
 - **§7.10 Card Forge:** add a **Skill %** field per ability, a **Horror** field (`small / big`), and a **tier preview** that rolls 1,000 simulated checks and shows the outcome distribution.
 - **§9 Store page:** describe the game as *"inspired by classic tabletop horror RPGs and Lovecraft's Dreamlands."* Don't use the *Call of Cthulhu* name in the title, tags, or capsule art.
+
+---
+
+## 12. First-Person Combat: Skyrim × Bloodborne
+
+**The pitch:** you fight from *inside* the cards. From **Skyrim** comes first-person immersion: a separate action for each hand, power attacks, stealth, and getting better at what you use. From **Bloodborne** comes aggression: no shields, dodging instead of blocking, winning back lost health by hitting back, and parry-into-critical. On top of that, **you can switch between your units at any moment**, and most of them are monsters.
+
+> **Naming note:** as with Chaosium, borrow the *mechanics* and invent your own terms. Avoid "Rally," "Visceral Attack," "Blood Echoes," "Trick Weapon," "Hunter," "Shout," "Thu'um," "Dragonborn," and so on. This section uses original names throughout.
+
+### 12.1 Two scales: the Altar and the Dream
+
+| Layer | View | What you do |
+|---|---|---|
+| **Altar View** | Third-person, overhead, tilt-shift "miniature" look | Play cards onto Rifts, see the whole board, plan. Time runs at **35% speed** while you're here (*Dream-Slow*), so planning doesn't become a pause exploit. |
+| **Dream View** | **First-person, inside a creature** | Fight up close. Card play is limited to a quick radial wheel. |
+
+- **The Descent:** the camera drops from the table into the card's portal, through swirling art, and opens behind the creature's eyes in about 0.6 s. The tabletop *is* the arena: at full scale, candles are towers, the tablecloth folds are hills, and spilled ink is a black lake.
+- **Ascend** (hold `Tab`): pull back up to the Altar. Your former host keeps fighting on its Lua script.
+
+### 12.2 Soul Leap: switch freely between units
+
+Switching is **instant and free** (no Lucidity cost, no cooldown), so the skill is in *when* and *where* you switch.
+
+| Input | Leap |
+|---|---|
+| `1`–`5` | Leap to the unit on that Rift |
+| `Q` / `E` | Cycle to the previous or next ally |
+| **Look at a unit + `F`** | **Sight Leap:** jump into whatever you're looking at, if it's in line of sight |
+| `Tab` (hold) | Ascend to the Altar |
+
+**What makes switching deep, not just convenient:**
+- **Chorus Chains (cross-unit combos):** land a hit with one unit, leap, and land a hit with another within **1.5 s**. Each link in the chain raises a **Chorus multiplier** (×1.1, ×1.25, ×1.5, up to ×2.0). For example: Gug knocks an enemy up → leap to a Night-gaunt to catch it mid-air → leap to a Ghoul to finish it on landing. This is the game's signature skill.
+- **Echo Orders:** the unit you leave repeats your **last action** for 2 s (keeps attacking, keeps running, keeps casting). That lets you set up two things at once.
+- **Death Throes:** if your host dies while you're inside it, time slows to 20% for 1.5 s. Leap to a new host before it ends, or get thrown back to the Altar and take **Sanity damage** for "dying in a dream."
+- **Dominate (late game, Moon-beast/Leng faction or high Insight):** Sight Leap into a **staggered enemy** to control it for 6 s. When it ends, the enemy takes the damage its own allies dealt it.
+- **Possession cost revised:** possessing **human** Dreamers is free. Possessing a **monster** slowly drains Sanity based on its **Horror rating** (§11.2). Alien minds wear you down, so how long you stay inside the big monsters is a decision.
+
+### 12.3 Bloodborne-style aggression
+
+| Mechanic (original name) | How it works | Why it matters |
+|---|---|---|
+| **Reclaim** | When you take damage, part of the lost HP stays as a **fading orange segment** for 3 s. Hitting enemies during that time wins it back. | Getting hit makes you want to attack, not retreat. |
+| **Resolve Reclaim** | The same thing for **Sanity**: Sanity lost to a Horror reveal can be reclaimed by **killing** that Horror within 5 s. | Face your fears, literally. |
+| **No shields; Quickstep instead** | Every creature has a fast, low-stamina dodge with invincibility frames, and each one is **different** (see 12.5). | Movement *is* defense. |
+| **Severance** (parry → critical) | Hit an enemy with your off-hand (a Rite, a gunshot, an Elder Sign flash) **during its attack wind-up** to stagger it, then press attack for a **Severance** critical: a short close-up finisher with heavy hitstop. | High risk, high reward, and very satisfying. |
+| **Frenzy meter** | Builds with each hit and drains when you're passive. At full: +30% damage and faster stamina, but you take +30% damage and slowly lose Sanity. | Keeps you pushing forward. |
+| **Shifting Forms** | Many monsters have **two stances** you can switch between mid-combo (Ghoul upright ↔ ghoul on all fours; Nyarlathotep between his forms). A transform attack moves smoothly between moveset A and B. | Gives you a deeper moveset to master without needing more weapons. |
+| **Generous stamina, tight windows** | Stamina regenerates quickly, and enemies have readable but short attack wind-ups. | Fast, readable duels. |
+
+### 12.4 Skyrim-style first-person features
+
+- **One hand for weapons, one for cards.** Right hand (`LMB`) is the creature's natural weapon (claws, maw, talons). Left hand (`RMB`) holds a **card**: Rites are *cast from the hand* in first person, like spells. For monsters, "hands" are whatever limbs they have: a Gug's forearm, a Moon-beast's snout-tentacles.
+- **Power attacks:** hold attack for a slower, heavier strike that stuns. Direction plus a power attack gives different moves (forward = lunge, backward = sweep).
+- **Utterances:** each Dreamer and monster type knows short **eldritch words** (original phrases in Lovecraftian style, written in an "Aklo-like" invented script). Press `Z` for a cone effect with a long cooldown: cats yowl (fear), Gugs give a sub-bass roar (knockdown), and a Dreamer speaks a word that dispels Wards.
+- **Stealth and sneak attacks:** crouch to sneak. A half-open **eye indicator** shows how detected you are. Darkness matters: **candles on the table are light sources**, and Locales like *The Underworld* make stealth builds shine. Sneak attacks do ×3 damage (×6 for Cats and Night-gaunts).
+- **Learn by doing:** each creature's *moves* get better with use (a Cat's pounce gets faster after many successful pounces). This ties into **Marks of Experience** (§11.2).
+- **Quick wheel:** hold `G` for a radial menu of your hand. Time slows (*Dream-Slow*) and you can play a card onto a Rift without Ascending.
+- **Finisher close-ups:** killing blows sometimes switch to a 0.8 s close-up of the kill. Keep them short and make them skippable in settings.
+- **Optional third person** (`V`), mainly for large creatures (Gugs) and to help with motion sickness.
+
+### 12.5 Playing as monsters: every body feels different
+
+Each creature changes **camera height, FOV, movement, senses, and dodge**. The *senses* in particular should make each monster feel inhuman. Each one gets its own post-processing shader.
+
+| Creature | Camera / body | Movement and dodge | Senses (screen shader) | Signature move |
+|---|---|---|---|---|
+| **Dreamer (human)** | Eye height 1.7 m, FOV 80 | Run, sprint; *sidestep* dodge | Normal vision. The **lantern** is a cone of light. | Revolver parry (Severance), Elder Sign flash |
+| **Cat of Ulthar** | 0.3 m, FOV 100, fast head-bob | Wall-jump, pounce; *twist-flip* dodge | **Darkvision:** dark areas lift to a blue-gray. Enemies' heartbeats pulse. | Pounce-and-pin (stuns, rides the target) |
+| **Zoog (Swarm)** | 0.15 m, FOV 110; everything looks huge | Skitter; *scatter* dodge | Sharp but **fish-eye** view | **Swarm hopping:** your Swarm copies are leap targets on a 0.1 s cycle, letting you blink around like a swarm |
+| **Ghoul** | 1.4 m, hunched; switches to all fours | Climb walls and the table legs; *burrow* dodge (goes under the tablecloth) | **Scent trails:** wounded enemies leave glowing red trails | Eat a fallen unit's card to heal (graveyard recursion, §3.5) |
+| **Night-gaunt** | 2.0 m, **flight** model (pitch/roll), FOV 95 | Fly, glide, dive; *wing-fold* dodge | **Faceless:** no eyes, so you see by **echo-outlines**. Edges pulse with sound, there are no textures, and anything silent is invisible. | Silent Abduction (§11.4): grab, carry, drop |
+| **Gug** | 6 m, slow camera, heavy screen shake | Lumbering; no dodge, **brace** instead (armor frames) | Low angle, wide view; small units look like vermin | Vertical-mouth bite that grabs and swallows a small unit |
+| **Moon-beast** | 2.5 m, slightly tilted, slippery | Slithering glide; *melt* dodge | **Vibration sense:** footsteps show as ripples on the ground, even through walls | Tentacle snout lash; **Dominate** (12.2) |
+| **Nyarlathotep** (boss, rarely playable) | Changes with form | Each form has a different moveset | Reality-warp shader; the HUD **lies** | Form shift mid-combo (Shifting Forms) |
+
+**Instinct Prompts:** monsters have urges. Sometimes a prompt flashes on screen (*"FEED"*, *"FLEE THE LIGHT"*, *"HUNT THE SMALL ONE"*). **Follow it** within 2 s for a temporary buff, or **resist it** to keep a little Sanity. This keeps reminding you that you're playing as something that isn't you.
+
+### 12.6 The CPU in a first-person action game
+
+Training one RL policy for both strategy *and* frame-precise melee isn't practical. Split it into layers:
+
+| Layer | Decides | Tech |
+|---|---|---|
+| **Commander** (macro, 5 Hz) | Which card to play, which unit to possess, which target to focus, when to Ascend | MaskablePPO → ONNX (§7.8) |
+| **Duelist** (micro, 60 Hz) | The possessed unit's attacks, dodges, parry attempts | Behavior tree + utility scoring in Lua per creature. Optionally a small PPO policy trained only on 1v1 duels |
+| **Echo / unpossessed units** | Basic aggression and positioning | Each card's `on_tick` Lua script |
+
+Difficulty should mostly come from **Duelist reaction time** and **parry accuracy** (e.g. *Dreamer* 400 ms / 10%, *Elder* 180 ms / 45%). Don't just add more HP, because Bloodborne-style fights feel fair only when enemies follow the same rules you do.
+
+### 12.7 Technical changes this requires
+
+- **Simulation rate:** raise the fixed tick from **20 Hz to 60 Hz** (`TICK_DT = 1/60`). Melee wind-ups, dodges, and parry windows need about 16 ms precision. RL decisions stay at about 5 Hz by stepping 12 ticks per decision.
+- **Frame data:** describe every attack in **Lua as frame data** (wind-up, active, recovery, hitbox shape, damage, poise damage, parry window). This is how fighting games do it, it's very moddable, and it can be tested.
+- **Hit detection:** capsule-vs-capsule and swept-arc tests in Cython. A spatial hash grid keeps it cheap with dozens of units.
+- **Input buffering:** buffer attack and dodge presses for about 150 ms so combos feel responsive.
+- **Hitstop and feel:** freeze both units for 50–90 ms on heavy hits, plus camera shake, a short FOV punch, and a loud sound. This matters more for "aggressive" than anything else.
+- **First-person rendering:** draw the world, then **clear depth and draw the viewmodel** (the creature's limbs) with its own FOV and near plane so claws never clip into walls.
+- **Mouse:** use `pygame.mouse.set_relative_mode(True)` (pygame-ce) for raw mouse look. Support controllers through `pygame.joystick`.
+- **Animation:** placeholder models from itch.io often come with *rigged* animations (glTF skins). Use GPU skinning in a vertex shader (joint matrices in a uniform buffer). If a model has no rig, procedural bobbing and lunging is a fine stand-in.
+- **Determinism is still required:** mouse look is converted to a quantized yaw/pitch **inside the Action**, so replays and Silver-Key rewinds (§4 idea 8) still work.
+- **Comfort settings:** FOV slider, head-bob toggle, reduced camera shake, a third-person option for every creature, and an "Echolocation shader intensity" slider.
+
+### 12.8 Code template
+
+**Attack frame data in Lua** (`content/cards/core/ghoul.lua`, excerpt)
+```lua
+return {
+  id = "core.ghoul", name = "Ghoul", type = "entity", faction = "ghouls", cost = 3,
+  horror = "0 / 1d4", creature_kind = "ghoul",
+  stats = { hp = 22, atk = 4, speed = 4.0, stamina = 100, poise = 30 },
+
+  body = {
+    eye_height = 1.4, fov = 85, head_bob = 0.6,
+    senses = "scent_trails",           -- selects post-process shader
+    forms = { "upright", "quadruped" },
+    dodge = { kind = "burrow", iframes = 14, recovery = 10, stamina = 18, distance = 3.5 },
+  },
+
+  -- Frame data at 60 Hz. Hitbox in local space: arc(radius, angle_deg) or capsule.
+  moves = {
+    upright = {
+      light = { startup = 9,  active = 4, recovery = 12, dmg = 5,  poise = 8,
+                hitbox = { arc = { r = 1.6, deg = 100 } }, chain = "light2" },
+      light2 = { startup = 7, active = 4, recovery = 16, dmg = 6, poise = 10,
+                hitbox = { arc = { r = 1.6, deg = 120 } } },
+      power = { startup = 24, active = 6, recovery = 26, dmg = 14, poise = 30,
+                hitbox = { capsule = { len = 2.4, r = 0.5 } }, knockdown = true },
+      transform = { startup = 6, active = 6, recovery = 8, dmg = 7, poise = 15,
+                    to_form = "quadruped", hitbox = { arc = { r = 2.0, deg = 180 } } },
+    },
+    quadruped = {
+      light = { startup = 6, active = 3, recovery = 9, dmg = 4, poise = 5,
+                hitbox = { arc = { r = 1.3, deg = 70 } }, lunge = 1.5 },
+      -- ...
+    },
+  },
+
+  -- Ghouls feed: devour a fallen card to heal and pull it from the opponent's Abyss.
+  utterance = { name = "Meeping Call", cooldown = 25,
+                on_use = function(uid) game.fear_cone(uid, 8.0, 60, 2.0) end },
+
+  instincts = {
+    { prompt = "FEED", when = "corpse_within_5m", follow_buff = "frenzy_fill_50",
+      resist_reward = { sanity = 2 } },
+  },
+}
+```
+
+**Soul Leap and Chorus Chains** (`src/dreamquest/game/soul_leap.py`)
+```python
+from dataclasses import dataclass, field
+
+CHORUS_WINDOW = 1.5                      # seconds between hits from different hosts
+CHORUS_STEPS = [1.0, 1.1, 1.25, 1.5, 1.75, 2.0]
+DEATH_THROES = 1.5                       # slow-mo seconds to find a new host
+
+@dataclass
+class Chorus:
+    links: int = 0
+    last_hit_time: float = -99.0
+    last_host: int = -1
+
+    def register_hit(self, now: float, host_uid: int) -> float:
+        """Return the damage multiplier for this hit."""
+        if now - self.last_hit_time > CHORUS_WINDOW:
+            self.links = 0
+        elif host_uid != self.last_host:          # chain only grows across *different* hosts
+            self.links = min(self.links + 1, len(CHORUS_STEPS) - 1)
+        self.last_hit_time, self.last_host = now, host_uid
+        return CHORUS_STEPS[self.links]
+
+class SoulLeap:
+    def __init__(self, world, pid):
+        self.world, self.pid = world, pid
+        self.chorus = Chorus()
+        self.throes_until = None
+
+    def leap(self, target_uid: int):
+        w, p = self.world, self.world.players[self.pid]
+        target = w.units.get(target_uid)
+        if target is None or not target.alive:
+            return False
+        if target.owner != self.pid and not w.can_dominate(self.pid, target):
+            return False
+        if p.possessed_uid != -1:
+            w.units[p.possessed_uid].echo_order(duration=2.0)   # keep doing last action
+            w.units[p.possessed_uid].possessed = False
+        target.possessed = True
+        p.possessed_uid = target_uid
+        w.events.emit("SoulLeap", pid=self.pid, to=target_uid)  # renderer plays leap smear
+        self.throes_until = None
+        return True
+
+    def on_host_died(self, now: float):
+        self.throes_until = now + DEATH_THROES
+        self.world.set_time_scale(0.2)
+
+    def update(self, now: float):
+        if self.throes_until is not None and now >= self.throes_until:
+            self.world.set_time_scale(1.0)
+            self.world.change_sanity(self.pid, -8)              # dying in a dream
+            self.world.players[self.pid].possessed_uid = -1     # thrown back to the Altar
+            self.throes_until = None
+```
+
+**Reclaim and Severance** (in `engine/core.pyx` or `engine/combat.pyx`)
+```cython
+DEF RECLAIM_WINDOW = 3.0
+DEF RECLAIM_RATIO = 0.6       # fraction of each hit's damage that's reclaimable
+
+cdef class CombatState:
+    cdef public double reclaimable, reclaim_timer, frenzy, stamina, poise
+    cdef public int attack_frame, parry_open_until
+    cdef public str current_move, form
+
+cpdef void on_damaged(World w, Unit u, int amount):
+    u.combat.reclaimable += amount * RECLAIM_RATIO
+    u.combat.reclaim_timer = RECLAIM_WINDOW
+
+cpdef void on_hit_landed(World w, Unit attacker, Unit victim, int dmg):
+    cdef double back
+    # Hitting back during the window wins back health.
+    if attacker.combat.reclaim_timer > 0 and attacker.combat.reclaimable > 0:
+        back = min(attacker.combat.reclaimable, dmg * 0.5)
+        attacker.hp = min(attacker.max_hp, attacker.hp + <int>back)
+        attacker.combat.reclaimable -= back
+    attacker.combat.frenzy = min(100.0, attacker.combat.frenzy + 8.0)
+
+cpdef bint try_severance_parry(World w, Unit parrier, Unit target):
+    """Off-hand hit during the target's wind-up -> stagger -> critical available."""
+    if target.combat.current_move is None:
+        return False
+    move = w.script.move_data(target, target.combat.current_move)
+    if target.combat.attack_frame < move["startup"] - move.get("parry_window", 6):
+        return False                              # too early
+    if target.combat.attack_frame >= move["startup"]:
+        return False                              # too late, the attack is active
+    w.stagger(target.uid, seconds=1.2, severable=True)
+    w.events.emit("SeveranceReady", by=parrier.uid, target=target.uid)
+    return True
+
+cpdef void tick_combat(World w, Unit u, double dt):
+    u.combat.reclaim_timer -= dt
+    if u.combat.reclaim_timer <= 0:
+        u.combat.reclaimable = 0                  # orange bar fades away
+    u.combat.frenzy = max(0.0, u.combat.frenzy - 6.0 * dt)
+    u.combat.stamina = min(u.max_stamina, u.combat.stamina + 45.0 * dt)
+```
+
+**First-person render pass with a separate viewmodel and per-creature senses** (`render/renderer.py`, excerpt)
+```python
+SENSE_SHADERS = {
+    "normal": "post_normal", "darkvision": "post_darkvision",
+    "scent_trails": "post_scent", "echolocation": "post_echo",
+    "vibration": "post_vibration", "reality_warp": "post_warp",
+}
+
+def draw_first_person(self, host, world_snapshot, alpha, t):
+    body = host["body"]
+    eye = glm.vec3(host["x"], body["eye_height"] + self.head_bob(host, t), host["z"])
+    view = glm.lookAt(eye, eye + self.look_dir(host["yaw"], host["pitch"]), glm.vec3(0, 1, 0))
+    proj = glm.perspective(glm.radians(self.fov_with_punch(body["fov"])),
+                           self.aspect, 0.05, 500.0)
+
+    # 1) World pass (the giant tabletop + every other unit)
+    self.scene_fbo.use(); self.ctx.clear(0.01, 0.0, 0.02)
+    self.draw_world(proj * view, world_snapshot, alpha, t, skip_uid=host["uid"])
+
+    # 2) Viewmodel pass: clear depth only, draw own limbs with own FOV / near plane
+    self.scene_fbo.color_mask = (False, False, False, False)   # clear depth only
+    self.scene_fbo.clear(depth=1.0)
+    self.scene_fbo.color_mask = (True, True, True, True)
+    vm_proj = glm.perspective(glm.radians(70.0), self.aspect, 0.01, 10.0)
+    self.draw_viewmodel(vm_proj, host, t)          # claws, lantern, held card in off-hand
+
+    # 3) Senses post-process for this creature, then sanity/madness on top
+    self.run_post(SENSE_SHADERS[body["senses"]], t, host)
+    self.run_post("post_madness", t, world_snapshot["local_player"])
+```
+
+**Tests** (`tests/test_combat.py`)
+```python
+from dreamquest.game.soul_leap import Chorus
+
+def test_chorus_requires_different_hosts():
+    c = Chorus()
+    assert c.register_hit(0.0, host_uid=1) == 1.0
+    assert c.register_hit(0.5, host_uid=1) == 1.0          # same host: no chain
+    assert c.register_hit(1.0, host_uid=2) == 1.1          # new host: chain grows
+    assert c.register_hit(1.4, host_uid=3) == 1.25
+
+def test_chorus_breaks_after_window():
+    c = Chorus()
+    c.register_hit(0.0, 1); c.register_hit(1.0, 2)
+    assert c.register_hit(5.0, 3) == 1.0
+
+def test_reclaim_restores_health(world, spawn):
+    a, b = spawn("core.ghoul", owner=0), spawn("core.ghoul", owner=1)
+    world.deal_damage(a.uid, 10, b.uid)
+    hp_after_hit = a.hp
+    world.resolve_hit(attacker=a, victim=b, move="light")  # hit back within 3 s
+    assert a.hp > hp_after_hit
+
+def test_parry_window_is_frame_exact(world, spawn): ...
+def test_every_move_has_valid_frame_data(host): ...      # startup/active/recovery > 0, hitbox present
+```
+
+### 12.9 Updates to the earlier plan
+
+- **§1.3 Vertical slice:** the slice must now prove **combat feel**: one Dreamer, Ghoul, Cat, and Gug fighting with gray-box capsules in first person, with Soul Leap, Reclaim, and Severance working. If that isn't fun, nothing else will save the game. Build this **before** the card table.
+- **§3.1 Living cards:** "Possession" becomes **Soul Leap** (free switching). The Sanity drain applies only to monsters, scaled by their Horror rating.
+- **§5 Architecture / §7.2 Engine:** fixed tick goes to **60 Hz**. Add `combat.pyx` (frame data, hit detection, Reclaim, poise, stagger) and a **time-scale** feature for Dream-Slow and Death Throes. Keep it deterministic.
+- **§7.8 RL:** split into **Commander (PPO)** and **Duelist (behavior trees, optionally a duel-only PPO)**.
+- **§7.10 Card Forge:** add a **Moveset tab** with a frame-data timeline editor (wind-up/active/recovery bars) and a hitbox preview.
+- **§8 Assets:** prefer **rigged and animated** placeholder models (idle, walk, attack, hit, death clips). Check that the license covers the animations too.
+- **§10 Risks:** add *"First-person melee feel is the hardest part of the project"*. Prototype it first, playtest often, and tune hitstop and wind-ups before adding content.
 
 ---
 
