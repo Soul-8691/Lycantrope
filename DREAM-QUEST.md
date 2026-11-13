@@ -44,6 +44,7 @@
 10. [Risks and How to Handle Them](#10-risks-and-how-to-handle-them)
 11. [Ideas from the Call of Cthulhu RPG](#11-ideas-from-the-call-of-cthulhu-rpg)
 12. [First-Person Combat: Skyrim × Bloodborne](#12-first-person-combat-skyrim--bloodborne)
+13. [Smart Procedural Environments](#13-smart-procedural-environments)
 
 ---
 
@@ -2021,6 +2022,470 @@ def test_every_move_has_valid_frame_data(host): ...      # startup/active/recove
 - **§7.10 Card Forge:** add a **Moveset tab** with a frame-data timeline editor (wind-up/active/recovery bars) and a hitbox preview.
 - **§8 Assets:** prefer **rigged and animated** placeholder models (idle, walk, attack, hit, death clips). Check that the license covers the animations too.
 - **§10 Risks:** add *"First-person melee feel is the hardest part of the project"*. Prototype it first, playtest often, and tune hitstop and wind-ups before adding content.
+
+---
+
+## 13. Smart Procedural Environments
+
+**Goal:** generate the 3D arenas (and the Dreamlands map) without an environment artist laying out each one, but with enough judgment that they feel designed. The libraries already in the stack can do this. The *generation* itself uses standard procedural algorithms. The **"smart"** part is ML used to **guide** and **judge** the output: transformers, sentence-transformers, CLIP, scikit-learn, and the RL bots.
+
+Dream-Quest helps here: arenas are **bounded tabletops seen at full scale** (§12.1), not open worlds. Table clutter becomes terrain: candles are towers, books are cliffs, tablecloth folds are hills, and ink spills are lakes.
+
+### 13.1 The pipeline
+
+```
+ OFFLINE (dev machine, ML allowed)                                     RUNTIME (shipped exe)
+ ┌────────────────┐   ┌────────────────┐   ┌──────────────┐   ┌───────────────────────┐
+ │ 1. TEXT → SPEC │ → │ 2. SPEC →      │ → │ 3. RENDER    │ → │ 4. SCORE & CURATE     │
+ │ Lovecraft      │   │    LAYOUT      │   │ moderngl     │   │ validators (pytest)   │
+ │ passage →      │   │ WFC, noise,    │   │ offscreen    │   │ AI playtests (SB3)    │
+ │ JSON spec      │   │ Poisson scatter│   │ thumbnails   │   │ CLIP theme score      │
+ │ (transformers) │   │ Lua recipes    │   │              │   │ taste model (sklearn) │
+ └────────────────┘   └────────────────┘   └──────────────┘   │ human review (NiceGUI)│
+                              ▲                               └──────────┬────────────┘
+                              │ same deterministic code                  │ accepted seeds/specs
+                              └──────────────────────────────────────────▼──────────────
+                                                  content/arenas/*.json → stage 2 runs at load time
+```
+
+**Main rule:** stage 2 (the layout generator) is **deterministic, ML-free, and shipped**. NumPy, Cython, and Lua only. Everything with ML runs offline and outputs **seeds and specs**, which are tiny JSON files. The exe stays small, layouts stay replay-safe, and modders can write new recipes.
+
+### 13.2 What each library does here
+
+| Library | Role in world generation |
+|---|---|
+| **transformers** (language model) | Reads Lovecraft's description of a place and writes a structured **arena spec** (landmarks, palette, lighting, hazards, how open it is, which props). It describes *what* is there, not the geometry. |
+| **transformers** (CLIP) | Scores rendered thumbnails against a text prompt (*"the cold, desolate Plateau of Leng"*) to rank how well the result matches the theme. |
+| **sentence-transformers** | **Matches props to the theme:** embed each asset's tags and pick the closest to the spec's mood. Also finds the source passage for every Locale. |
+| **NumPy + Cython** | The generators: Wave Function Collapse, heightmap noise, Poisson-disk scattering, flood-fill checks. Cython for the inner loops. |
+| **Lupa / Lua** | **Arena recipes:** rules that turn a spec into a layout, moddable like cards. |
+| **moderngl** | Instanced rendering of hundreds of props; offscreen rendering (`create_standalone_context`) for thumbnails; optional compute shaders (GL 4.3) for terrain. |
+| **stable-baselines3 bots** | **AI playtesters:** the Commander and Duelist (§12.6) fight on each candidate. Arenas where one side wins far more often, or matches stall, are rejected. |
+| **scikit-learn** | A **taste model** trained on your ratings of about 100 arenas to filter new candidates automatically. Also clustering, so accepted arenas aren't all alike. |
+| **pytest** | Hard checks: Rifts reachable, no units spawning inside geometry, enough cover. |
+| **NiceGUI / PyWebView** | A **curator** to browse candidates, rate them, accept or reject, and re-roll. |
+| **SB3 (optional, research)** | **PCGRL:** an RL agent edits a level tile by tile to improve a quality score. Interesting to try, but not needed. |
+
+### 13.3 Design guidelines
+
+- **One hand-made landmark per Locale, generated surroundings.** Fully generated levels look the same. Hand-place one landmark (Kadath's onyx castle, the Tower of Koth, Ulthar's temple) and let the generator fill the rest of the arena around it.
+- **Generate for combat, not just looks.** Every arena needs readable **paths between Rifts**, cover for stealth builds (§12.4), **light sources** (candles) that make dark zones, and vertical spaces for Night-gaunts and Cats.
+- **Symmetry decides fairness.** Use **rotational symmetry** for PvP-like duels and allow **asymmetric** layouts in boss and elite fights.
+- **Non-Euclidean is a feature.** Lovecraft gives you an excuse for impossible spaces: **portal seams** joining far edges, rooms larger inside than outside, and stairs that loop. These are rendering and teleport tricks layered on a normal generated layout, so the validators still work on the underlying grid.
+- **The Dreamlands map is generated too.** The run map (§3.6) is a layered graph built Slay the Spire style. Its node types are weighted by the layer's spec (more Pursuit nodes in the Enchanted Wood, more Study nodes in Celephaïs).
+- **Generating 3D models themselves (experimental):** Hugging Face hosts image-to-3D models (e.g. TripoSR, among others). They can rough out **static props**, but quality and licenses vary, and they won't produce rigged, animated creatures. Keep using modular CC0 kits for architecture, and check every model's license before shipping its output.
+
+### 13.4 Code template
+
+**Asset manifest with tags** (`content/models/manifest.json`, excerpt): what the generator and sentence-transformers choose from
+```json
+[
+  { "id": "candle_tall",   "file": "candle_tall.glb",   "tags": "light source, wax, flame, ritual, tall",
+    "footprint": [0.3, 0.3], "role": "light",  "license": "CC0", "author": "..." },
+  { "id": "book_stack",    "file": "book_stack.glb",    "tags": "ancient tomes, scholarship, cover, cliff",
+    "footprint": [2.0, 1.4], "role": "cover",  "license": "CC0", "author": "..." },
+  { "id": "onyx_pillar",   "file": "onyx_pillar.glb",   "tags": "black stone, cyclopean, ruin, cold",
+    "footprint": [1.0, 1.0], "role": "cover",  "license": "CC0", "author": "..." },
+  { "id": "bone_pile",     "file": "bone_pile.glb",     "tags": "ghoul, charnel, underworld, decay",
+    "footprint": [1.2, 1.2], "role": "decor",  "license": "CC0", "author": "..." }
+]
+```
+
+**Stage 1: text to spec** (`tools/worldgen/spec_from_text.py`, offline)
+```python
+"""
+Turn a Lovecraft passage into a validated arena spec.
+Use a small *instruct* model for structured output (the Lovecraft-style model from
+§7.7 is for prose, not JSON). Generate several specs per passage; invalid JSON is discarded.
+"""
+import json
+from transformers import pipeline
+
+SPEC_SCHEMA_HINT = """Return ONLY JSON with keys:
+ name (str), mood (list[str]), palette (list of 3 hex colors), light_level (0-1),
+ openness (0-1), verticality (0-1), terrain ("flat"|"hills"|"terraced"|"cavern"),
+ landmark (str), prop_themes (list[str]), hazards (list[str]), fog (0-1)"""
+
+ALLOWED_TERRAIN = {"flat", "hills", "terraced", "cavern"}
+
+def validate(spec: dict) -> dict:
+    assert isinstance(spec["name"], str) and spec["name"]
+    assert spec["terrain"] in ALLOWED_TERRAIN
+    for key in ("light_level", "openness", "verticality", "fog"):
+        spec[key] = float(min(1.0, max(0.0, spec[key])))          # clamp, don't trust
+    assert len(spec["palette"]) == 3
+    return spec
+
+def specs_for(passage: str, n: int = 8) -> list[dict]:
+    gen = pipeline("text-generation", model="<small-instruct-model>")
+    prompt = f"{SPEC_SCHEMA_HINT}\n\nPlace description:\n{passage}\n\nJSON:"
+    outs = gen(prompt, num_return_sequences=n, max_new_tokens=300,
+               do_sample=True, temperature=0.8, return_full_text=False)
+    specs = []
+    for o in outs:
+        try:
+            text = o["generated_text"]
+            specs.append(validate(json.loads(text[text.index("{"): text.rindex("}") + 1])))
+        except (ValueError, KeyError, AssertionError, TypeError):
+            continue                                              # discard malformed output
+    return specs
+
+# Example output for the Plateau of Leng:
+# {"name": "Plateau of Leng", "mood": ["cold", "desolate", "ancient"],
+#  "palette": ["#2b2f3a", "#6d7a8c", "#c9a227"], "light_level": 0.25, "openness": 0.85,
+#  "verticality": 0.2, "terrain": "terraced", "landmark": "stone_monastery",
+#  "prop_themes": ["black stone", "bones", "bonfires"], "hazards": ["cold_wind"], "fog": 0.6}
+```
+
+**Prop selection by meaning** (`tools/worldgen/prop_match.py`, offline; results baked into the spec)
+```python
+import json
+import numpy as np
+from sentence_transformers import SentenceTransformer
+
+model = SentenceTransformer("all-MiniLM-L6-v2")
+assets = json.load(open("content/models/manifest.json"))
+asset_emb = model.encode([a["tags"] for a in assets], normalize_embeddings=True)
+
+def choose_props(spec: dict, k_per_role: int = 4) -> dict[str, list[str]]:
+    """Rank every asset by similarity to the spec's mood + prop themes, keep top-k per role."""
+    query = ", ".join(spec["mood"] + spec["prop_themes"])
+    q = model.encode(query, normalize_embeddings=True)
+    scores = asset_emb @ q
+    by_role: dict[str, list[tuple[float, str]]] = {}
+    for a, s in zip(assets, scores):
+        by_role.setdefault(a["role"], []).append((float(s), a["id"]))
+    return {role: [aid for _, aid in sorted(lst, reverse=True)[:k_per_role]]
+            for role, lst in by_role.items()}
+
+# spec["props"] = choose_props(spec)  ->  {"light": [...], "cover": [...], "decor": [...]}
+```
+
+**Stage 2: arena recipe in Lua** (`content/arenas/recipes/terraced_ruins.lua`): moddable rules
+```lua
+-- A recipe receives a spec and a deterministic generator API (`gen`).
+-- It returns nothing; it writes into the layout through gen.* calls.
+return {
+  id = "core.terraced_ruins",
+  terrain = { "terraced", "hills" },          -- which spec terrains this recipe handles
+
+  build = function(spec, gen)
+    local size = 64                            -- grid cells; 1 cell = 0.5 m at Dream scale
+    gen.heightmap{ size = size, octaves = 5, roughness = 0.45 + spec.verticality * 0.3,
+                   terrace_steps = 4 }
+
+    -- Rifts: place first so everything else can be validated against them.
+    gen.place_rifts{ count = 5, symmetry = spec.boss and "none" or "rotational_2" }
+
+    -- Hand-made landmark goes in the middle, a generated clearing around it.
+    gen.place_landmark{ id = spec.landmark, at = "center", clear_radius = 6 }
+
+    -- Modular ruins via Wave Function Collapse in the outer ring.
+    gen.wfc{ tileset = "ruins_kit", region = "ring", density = 1.0 - spec.openness }
+
+    -- Scatter: cover, lights, decor. Poisson-disk spacing keeps it natural.
+    gen.scatter{ role = "cover", min_dist = 4.0, count = math.floor(30 * (1 - spec.openness)) }
+    gen.scatter{ role = "light", min_dist = 7.0, count = math.floor(12 * spec.light_level) + 3 }
+    gen.scatter{ role = "decor", min_dist = 1.5, count = 60 }
+
+    -- Lovecraftian twist: occasionally a portal seam that links two far edges.
+    if gen.rand() < 0.25 then gen.portal_seam{ from = "west_edge", to = "east_edge" } end
+
+    for _, h in ipairs(spec.hazards) do gen.add_hazard(h) end   -- e.g. "cold_wind"
+  end,
+}
+```
+
+**Stage 2: generators** (`src/dreamquest/worldgen/generators.py`, shipped; Cythonize the hot loops)
+```python
+"""
+Deterministic, ML-free generators exposed to Lua recipes as `gen.*`.
+All randomness comes from one seeded numpy Generator -> same seed, same arena.
+"""
+import numpy as np
+
+class Layout:
+    def __init__(self, size: int):
+        self.size = size
+        self.height = np.zeros((size, size), np.float32)
+        self.blocked = np.zeros((size, size), bool)       # walkability grid
+        self.light = np.zeros((size, size), np.float32)
+        self.instances: list[dict] = []                   # {"asset", "x", "z", "rot", "scale"}
+        self.rifts: list[tuple[int, int]] = []
+        self.portals: list[tuple[tuple[int, int], tuple[int, int]]] = []
+
+def fbm_heightmap(rng, size, octaves=5, roughness=0.5, terrace_steps=0):
+    """Fractal value noise: sum of upsampled random grids at doubling frequencies."""
+    h = np.zeros((size, size), np.float32)
+    amp, total = 1.0, 0.0
+    for o in range(octaves):
+        cells = 2 ** (o + 2)
+        grid = rng.random((cells + 1, cells + 1)).astype(np.float32)
+        # bilinear upsample grid -> size x size
+        xs = np.linspace(0, cells, size)
+        x0 = np.floor(xs).astype(int).clip(0, cells - 1); t = xs - x0
+        top = grid[x0][:, x0] * (1 - t) + grid[x0][:, x0 + 1] * t
+        bot = grid[x0 + 1][:, x0] * (1 - t) + grid[x0 + 1][:, x0 + 1] * t
+        h += amp * (top * (1 - t[:, None]) + bot * t[:, None])
+        total += amp
+        amp *= roughness
+    h /= total
+    if terrace_steps:
+        h = np.round(h * terrace_steps) / terrace_steps   # stepped ruins / plateaus
+    return h
+
+def poisson_disk(rng, size, min_dist, count, free_mask, k=30):
+    """Bridson's algorithm restricted to free cells; returns up to `count` points."""
+    points, active = [], []
+    def ok(p):
+        x, z = int(p[0]), int(p[1])
+        if not (0 <= x < size and 0 <= z < size) or not free_mask[x, z]:
+            return False
+        return all((p[0] - q[0]) ** 2 + (p[1] - q[1]) ** 2 >= min_dist ** 2 for q in points)
+    # seed with a random free cell
+    free = np.argwhere(free_mask)
+    if len(free) == 0:
+        return points
+    first = free[rng.integers(len(free))].astype(float)
+    points.append(tuple(first)); active.append(tuple(first))
+    while active and len(points) < count:
+        i = rng.integers(len(active)); base = active[i]
+        for _ in range(k):
+            ang, rad = rng.random() * 2 * np.pi, min_dist * (1 + rng.random())
+            cand = (base[0] + np.cos(ang) * rad, base[1] + np.sin(ang) * rad)
+            if ok(cand):
+                points.append(cand); active.append(cand); break
+        else:
+            active.pop(i)
+    return points
+
+def wave_function_collapse(rng, region_cells, tileset):
+    """
+    Classic WFC over a grid region:
+      1. every cell starts with all tiles possible
+      2. collapse the lowest-entropy cell (weighted random tile)
+      3. propagate adjacency constraints (tileset["allowed"][tile][direction])
+      4. repeat; on contradiction, restart with rng-derived sub-seed (bounded retries)
+    Tilesets are defined in Lua/JSON next to the modular kit pieces.
+    """
+    ...
+
+class GenAPI:
+    """The `gen` table handed to Lua recipes. Mirrors the calls used in the recipe above."""
+    def __init__(self, seed: int, spec: dict, assets: dict):
+        self.rng = np.random.default_rng(seed)
+        self.spec, self.assets = spec, assets
+        self.layout: Layout | None = None
+
+    def rand(self) -> float:
+        return float(self.rng.random())
+
+    def heightmap(self, opts): ...
+    def place_rifts(self, opts): ...
+    def place_landmark(self, opts): ...
+    def wfc(self, opts): ...
+    def scatter(self, opts):
+        role = opts["role"]
+        candidates = self.spec["props"][role]
+        pts = poisson_disk(self.rng, self.layout.size, opts["min_dist"], opts["count"],
+                           free_mask=~self.layout.blocked)
+        for x, z in pts:
+            aid = candidates[self.rng.integers(len(candidates))]
+            self.layout.instances.append({"asset": aid, "x": x, "z": z,
+                                          "rot": float(self.rng.random() * 360),
+                                          "scale": float(0.85 + self.rng.random() * 0.3)})
+            if role == "cover":
+                self.layout.blocked[int(x), int(z)] = True
+    def portal_seam(self, opts): ...
+    def add_hazard(self, name): ...
+
+def generate(seed: int, spec: dict, recipe, assets) -> Layout:
+    gen = GenAPI(seed, spec, assets)
+    recipe.build(spec, gen)          # Lua recipe via ScriptHost (sandboxed, §7.3)
+    return gen.layout
+```
+
+**Stage 4a: hard checks** (`src/dreamquest/worldgen/validate.py`, used by the generator *and* by pytest)
+```python
+from collections import deque
+import numpy as np
+
+def reachable(layout, start) -> np.ndarray:
+    """Flood fill over walkable cells (portal seams count as edges)."""
+    seen = np.zeros_like(layout.blocked)
+    q = deque([start]); seen[start] = True
+    portal_map = {a: b for a, b in layout.portals} | {b: a for a, b in layout.portals}
+    while q:
+        x, z = q.popleft()
+        nbrs = [(x + 1, z), (x - 1, z), (x, z + 1), (x, z - 1)]
+        if (x, z) in portal_map:
+            nbrs.append(portal_map[(x, z)])
+        for nx, nz in nbrs:
+            if 0 <= nx < layout.size and 0 <= nz < layout.size \
+               and not layout.blocked[nx, nz] and not seen[nx, nz]:
+                seen[nx, nz] = True; q.append((nx, nz))
+    return seen
+
+def check(layout) -> list[str]:
+    """Return a list of problems; empty list = valid arena."""
+    problems = []
+    region = reachable(layout, layout.rifts[0])
+    if not all(region[r] for r in layout.rifts):
+        problems.append("rift_unreachable")
+    if layout.blocked.mean() > 0.45:
+        problems.append("too_cramped")
+    if layout.blocked.mean() < 0.05:
+        problems.append("no_cover")
+    if any(layout.blocked[r] for r in layout.rifts):
+        problems.append("rift_blocked")
+    if (layout.light > 0.3).mean() < 0.15:
+        problems.append("too_dark_to_play")
+    return problems
+```
+
+**Stage 4b: AI playtests** (`tools/worldgen/playtest.py`, offline)
+```python
+def playtest(seed, spec, n_games=200) -> dict:
+    """Commander + Duelist bots (§12.6) fight mirrored decks on this arena."""
+    results = [run_headless_match(arena=(seed, spec), decks=MIRROR_DECKS, swap_sides=i % 2)
+               for i in range(n_games)]
+    side_a = sum(r.winner_side == 0 for r in results) / n_games
+    return {
+        "side_balance": abs(side_a - 0.5),                       # want < 0.05
+        "median_length_s": float(np.median([r.duration for r in results])),
+        "stall_rate": sum(r.timed_out for r in results) / n_games,
+        "leaps_per_min": float(np.mean([r.soul_leaps_per_min for r in results])),  # fun proxy
+    }
+```
+
+**Stage 4c: CLIP theme score** (`tools/worldgen/clip_score.py`, offline)
+```python
+import torch
+from PIL import Image
+from transformers import CLIPModel, CLIPProcessor
+
+clip = CLIPModel.from_pretrained("openai/clip-vit-base-patch32").eval()
+proc = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+
+@torch.no_grad()
+def theme_score(thumbnails: list[Image.Image], prompt: str) -> list[float]:
+    """Higher = the rendered arena looks more like the prompt."""
+    inputs = proc(text=[prompt], images=thumbnails, return_tensors="pt", padding=True)
+    return clip(**inputs).logits_per_image[:, 0].tolist()
+
+# Thumbnails come from moderngl.create_standalone_context(): render 3 fixed camera
+# angles (Altar view + two first-person spots) per candidate, read the framebuffer to PIL.
+```
+
+**Stage 4d: taste model** (`tools/worldgen/taste.py`, offline)
+```python
+import numpy as np
+from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.cluster import KMeans
+
+def features(layout, playtest_stats, clip_score) -> np.ndarray:
+    return np.array([
+        layout.blocked.mean(),                      # cover density
+        layout.height.std(),                        # verticality
+        (layout.light > 0.3).mean(),                # lit fraction
+        mean_rift_path_length(layout),
+        len(layout.portals),
+        playtest_stats["side_balance"],
+        playtest_stats["median_length_s"],
+        playtest_stats["leaps_per_min"],
+        clip_score,
+    ], dtype=np.float32)
+
+# 1) You rate ~100 arenas 1–5 in the Curator (below). Train:
+taste = GradientBoostingRegressor().fit(X_rated, y_ratings)
+
+# 2) Filter thousands of new candidates, keep the best predicted ones...
+keep = candidates[taste.predict(X_new) >= 3.8]
+
+# 3) ...then keep variety: cluster the survivors and take the best few from each cluster.
+labels = KMeans(n_clusters=12, n_init="auto", random_state=0).fit_predict(X_new[keep_idx])
+```
+
+**Curator** (`tools/worldgen/curator.py`, NiceGUI with `native=True` for PyWebView)
+```python
+from nicegui import ui
+
+state = {"queue": load_candidates(), "i": 0}
+
+def show():
+    c = state["queue"][state["i"]]
+    img.set_source(c["thumbnail_path"])
+    info.set_text(f'{c["spec"]["name"]} · seed {c["seed"]} · '
+                  f'taste {c["pred"]:.2f} · CLIP {c["clip"]:.1f} · balance {c["balance"]:.3f}')
+
+def rate(stars: int):
+    save_rating(state["queue"][state["i"]], stars)        # feeds the taste model
+    if stars >= 4:
+        accept(state["queue"][state["i"]])                # -> content/arenas/<id>.json
+    state["i"] += 1; show()
+
+ui.dark_mode().enable()
+img = ui.image().classes("w-[900px]")
+info = ui.label()
+with ui.row():
+    for s in range(1, 6):
+        ui.button("★" * s, on_click=lambda s=s: rate(s))
+    ui.button("Re-roll seed", on_click=lambda: reroll(state)).props("flat")
+    ui.button("Play it", on_click=lambda: launch_game_on(state["queue"][state["i"]]))
+show()
+ui.run(native=True, title="Arena Curator", window_size=(1000, 800))
+```
+
+**What ships** (`content/arenas/leng_terraces_0412.json`): a tiny file, rebuilt at load time
+```json
+{
+  "id": "leng_terraces_0412",
+  "recipe": "core.terraced_ruins",
+  "seed": 918273645,
+  "spec": { "name": "Plateau of Leng", "terrain": "terraced", "landmark": "stone_monastery",
+            "openness": 0.85, "verticality": 0.2, "light_level": 0.25, "fog": 0.6,
+            "palette": ["#2b2f3a", "#6d7a8c", "#c9a227"], "hazards": ["cold_wind"],
+            "props": { "light": ["bonfire_small", "candle_tall"],
+                       "cover": ["onyx_pillar", "book_stack"],
+                       "decor": ["bone_pile", "prayer_flags"] } },
+  "generator_version": 3,
+  "source_passage": "dream-quest_of_unknown_kadath ¶412"
+}
+```
+
+**Tests** (`tests/test_worldgen.py`)
+```python
+import pytest, json
+from pathlib import Path
+from dreamquest.worldgen import generate, validate
+
+ARENAS = sorted(Path("content/arenas").glob("*.json"))
+
+@pytest.mark.parametrize("path", ARENAS, ids=lambda p: p.stem)
+def test_shipped_arenas_are_valid(path, recipes, assets):
+    a = json.loads(path.read_text())
+    layout = generate(a["seed"], a["spec"], recipes[a["recipe"]], assets)
+    assert validate.check(layout) == []
+
+def test_generation_is_deterministic(recipes, assets, sample_spec):
+    a = generate(123, sample_spec, recipes["core.terraced_ruins"], assets)
+    b = generate(123, sample_spec, recipes["core.terraced_ruins"], assets)
+    assert (a.height == b.height).all() and a.instances == b.instances
+
+def test_rotational_symmetry_for_duels(recipes, assets, sample_spec):
+    layout = generate(7, sample_spec, recipes["core.terraced_ruins"], assets)
+    assert (layout.blocked == layout.blocked[::-1, ::-1]).all()
+```
+
+> **Versioning note:** shipped arenas are *seed + spec + recipe*. If you change a generator, every shipped seed produces a different arena. Bump `generator_version`, keep the old generator code path, and have `test_shipped_arenas_are_valid` catch regressions.
+
+### 13.5 Updates to the earlier plan
+
+- **§2 Plan by phase:** add **Phase 5b: World generation** after the roguelike layer: generators and validators first, then the offline ML scoring loop, then the Curator.
+- **§5 Architecture:** add a `worldgen/` module (shipped, deterministic) next to `engine/`, and `tools/worldgen/` (offline ML) next to `tools/story/`.
+- **§6 Project layout:** add `content/arenas/` (accepted seeds and specs), `content/arenas/recipes/` (Lua), and `content/models/manifest.json` (asset tags).
+- **§7.10 Modding:** modders can write **arena recipes** in Lua and add tagged assets to the manifest, and a "Generate & Preview" button in Card Forge runs the validators.
+- **§8 Assets:** prefer **modular** CC0 kits (walls, floors, pillars, stairs that snap to a grid) because WFC needs them. Tag every asset in the manifest when you import it.
 
 ---
 
