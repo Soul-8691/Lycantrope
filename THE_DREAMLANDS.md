@@ -180,6 +180,8 @@ Enemy-only factions: **Zoogs** (tricksters; can become allies), **Moon-beasts & 
 | Deep Ones | **Dreugh** and **Argonian** bodies |
 | Zoogs | **Scamps**, scaled down, with fur |
 
+The full creature-by-creature mapping, with match ratings, 4thUnknown's remodels and effort estimates, is in [CREATURES.md](CREATURES.md).
+
 ---
 
 ## 5. Mod Architecture
