@@ -36,7 +36,7 @@
 13. [Procedural Help for Dungeons](#13-procedural-help-for-dungeons)
 14. [Beyond the Dreamlands: Waking-World Horrors](#14-beyond-the-dreamlands-waking-world-horrors)
 15. [Storyline, Part I: The Demo](#15-storyline-part-i-the-demo)
-16. [Making 3D Models with Claude](#16-making-3d-models-with-claude)
+16. [Making 3D Models (Claude and Meshy)](#16-making-3d-models-claude-and-meshy)
 
 > **Note:** [CODE_TEMPLATES.md](CODE_TEMPLATES.md) was written for the old Python card game and no longer applies. It can be deleted or replaced with MWSE-Lua templates.
 
@@ -79,10 +79,10 @@ Add regions only once the slice is fun to play.
 | **0. Foundations** | Repo, tooling | `tes3conv` JSON in git, a build script that turns JSON back into an ESP, MWSE installed | tes3conv, git |
 | **1. Corpus** | Clean Lovecraft text | Stories split into files with metadata, for reference and the optional writing aid | PyMuPDF |
 | **2. Core systems** | Sanity, Insight, Composure checks, Fractures | MWSE-Lua modules with a HUD bar and a debug console | MWSE-Lua |
-| **3. Vertical slice** | Playable opening | Arkham shop prologue, the Archsage, first lessons, first incursion (§15.3); first voiced lines | CS, Blender, ElevenLabs |
+| **3. Vertical slice** | Playable opening | Arkham shop prologue, the Archsage, first lessons, first incursion (§15.3); first voiced lines | CS, Blender, Meshy, ElevenLabs |
 | **4. Combat feel** | Bloodborne-style fights | Dodge, Reclaim, Severance (§12), portal sealing (§15.4) | MWSE-Lua |
-| **5. The demo (Part I)** | The Miskatonic Valley | Arkham, Kingsport, Dunwich, Aylesbury; three incursions; sidequests; the demo boss (§15) | CS, Blender |
-| **6. Part II** | After the demo | The portal into the Dreamlands, the sky cities, Carter's Dreamlands (§3.5), more waking-world regions (§14) | CS, Blender |
+| **5. The demo (Part I)** | The Miskatonic Valley | Arkham, Kingsport, Dunwich, Aylesbury; three incursions; sidequests; the demo boss (§15) | CS, Blender, Meshy |
+| **6. Part II** | After the demo | The portal into the Dreamlands, the sky cities, Carter's Dreamlands (§3.5), more waking-world regions (§14); new creatures Morrowind lacks ([CREATURES.md](CREATURES.md)) | CS, Blender, Meshy |
 | **7. Voice pass** | Full VO | All planned lines generated, mastered and hooked in (§7) | ElevenLabs, ffmpeg |
 | **8. Polish** | Feel | Shaders (MGE XE / OpenMW post-processing), music, ambient sound, MCM settings menu | MGE XE, MWSE MCM |
 | **9. Release** | Ship it | Nexus Mods + ModDB pages, installation guide, OpenMW notes | — |
@@ -323,7 +323,8 @@ Morrowind voices only greetings, combat barks and a few key lines; everything el
 - **Other modders' assets:** many Morrowind modders allow re-use with credit, but **check each readme**. Some require permission, and some forbid use in total conversions.
 - **New assets:** CC0 or CC-BY sources, converted to NIF in Blender. Check that each license allows redistribution inside a mod.
 - **ElevenLabs:** keep your subscription active while generating (your plan's terms cover the output you generate under it). Record which plan and date each batch was made under in `CREDITS.md`.
-- **AI disclosure:** Nexus Mods requires tagging content that uses AI-generated assets. Say plainly that the voices are AI-generated with designed (not cloned) voices, and which text was AI-assisted.
+- **Meshy.ai (Pro):** approved for 3D models and textures (§16.4). Under a paid plan the models are private and yours to use. Keep them out of the public Meshy Community, and upload only images and models you have the rights to. Record the plan, date and prompt for each model in `CREDITS.md`.
+- **AI disclosure:** Nexus Mods requires tagging content that uses AI-generated assets. Say plainly that the voices are AI-generated with designed (not cloned) voices, which 3D models and textures were generated with Meshy, and which text was AI-assisted.
 - **Call of Cthulhu books:** use them as **reading for inspiration only**. Don't copy their text, stat blocks, art or invented names into the mod (§11.1).
 - **`CREDITS.md`:** every asset, author, URL, license, and date, kept from day one.
 - **Your own license:** consider releasing the **Lua code** under MIT so other modders can learn from it, while the mod's content stays "free to download, ask before re-using."
@@ -352,6 +353,7 @@ Morrowind voices only greetings, combat barks and a few key lines; everything el
 | Voice consistency over months | A voice registry, fixed model/settings, and keep every generated take. |
 | AI voice policy changes | Designed voices only, consent for anything else, keep records of when and how each line was made. |
 | Asset licenses | `CREDITS.md` from day one; re-check before release. |
+| AI-generated models look out of place (too detailed, mixed styles, broken topology) | Remesh to Morrowind budgets, downscale and paint over textures, one shared prompt style, and test every model next to vanilla assets in game (§16.4). |
 | Copyrighted RPG material creeping in | Write from Lovecraft's text; check names against §14.2 before using them. |
 
 ---
@@ -736,57 +738,130 @@ Voice these first (§7.5 pipeline): the **Archsage** (arrival scene, every Minds
 
 ---
 
-## 16. Making 3D Models with Claude
+## 16. Making 3D Models (Claude and Meshy)
 
 ### 16.1 Short answer
 
-Claude can help a lot, but **not by producing finished models on its own**.
+The project uses two tools that do different jobs:
 
-- **What Claude can't do:** output a mesh the way an image model outputs a picture; sculpt detailed organic creatures well; paint textures (it can't generate images); or see the model unless you show it a render.
-- **What Claude does well:**
-  - Writes **Blender Python (`bpy`) scripts** that **build models from code**: architecture, props, modular kit pieces, anything with rules and repetition.
-  - **Changes existing Morrowind meshes** with scripts (scale, bend, add parts, merge pieces).
-  - **Automates the pipeline:** batch NIF export, naming, collision meshes, texture paths, and checks.
-  - **Reviews screenshots** you share and suggests fixes.
-  - Builds **procedural material node setups** in Blender for stone, slime and rot, which you then bake into textures.
-- **Recommendation:** use Claude for **architecture, props, kit pieces and tooling**. For creatures, **kitbash and re-texture Morrowind's own creatures** and keep their skeletons and animations. Get a human artist for the few hero creatures that need it.
+- **Meshy.ai (Pro subscription)** generates models and textures from a text prompt or an image. Use it for **organic, sculpted and one-off assets**: new creatures, idols, statues, rocks, fungi, trees, landmarks.
+- **Claude writes Blender Python (`bpy`) scripts.** Use it for **anything with rules and repetition**: modular kits that snap to the grid, buildings, portals, collision. It also automates the pipeline that turns Meshy's output into Morrowind-ready NIFs.
 
-### 16.2 Assets that suit this approach
+Neither produces finished Morrowind assets. Everything still goes through Blender: reduce the polygons, fix the scale, bake the textures, set up collision, rig, and export to NIF.
 
-| Asset | Approach |
-|---|---|
-| **Portal frames, sealing circles** | Procedural script: a ring of rune-stones, an emissive sigil plane, a swirling-texture disc |
-| **Cyclopean blocks, R'lyeh's wrong angles** | Script that makes huge blocks with skewed, non-square faces and random weathering |
-| **Fallen Serannian modules** | A parametric marble kit: columns, arches and cloud-platform tiles that snap to the Construction Set grid |
-| **Medieval Arkham houses** | A parametric house generator (width, storeys, gambrel or gabled roof, overhangs) sized to Morrowind's grid |
-| **The black galley** | Kitbash vanilla ship meshes with a script: longer hull, a ram, black sails, oar banks |
-| **Tentacles and growths** | A curve-based generator (taper, twist, random variation), added to existing meshes and props |
-| **Altars, idols, cult props, market goods** | Simple procedural or hand-guided scripts |
-| **Creature variants** | Scripts that scale and deform vanilla creatures: an Ogrim into a Gug with a vertical mouth, a scamp into a zoog, a winged twilight into a faceless night-gaunt |
+**What Claude does well:**
+- Builds models from code: architecture, props and kit pieces.
+- Changes existing Morrowind meshes with scripts (scale, bend, add parts, merge pieces).
+- Automates the pipeline: batch import of Meshy exports, decimation, texture baking, batch NIF export, naming, collision meshes, texture paths and checks.
+- Reviews screenshots you share and suggests fixes.
+- Builds procedural material node setups in Blender for stone, slime and rot.
 
-### 16.3 Workflow
+**What Claude can't do:** sculpt organic creatures, paint textures, or see a model unless you show it a render. Meshy now covers the first two.
 
-1. **Describe the asset and its limits:** size in game units, polygon budget, which texture set to use.
-2. **Claude writes a `bpy` script.** You run it in Blender's Text Editor, or headless with `blender --background --python script.py`.
-3. **Render previews** from a few angles (the script can do this too), **show them to Claude**, and iterate.
-4. **Export with the Morrowind NIF plugin**, check in NifSkope, and test in the game.
-5. **Optional:** community-made **Blender MCP servers** let Claude drive Blender directly. Read the code before installing one, and try it on a test project first.
+**Recommendation:**
+- Meshy for **creatures Morrowind lacks** (cats, shoggoths, Elder Things, the Great Race, the Spider of Leng; see [CREATURES.md](CREATURES.md)), **replacement heads and parts** (a ghast's face, a Gug's vertical mouth, the Shantak's horse head), and **unique statics**.
+- Claude's scripts for **architecture, kits and tooling**.
+- For creatures Morrowind *can* cover, still **kitbash vanilla** first: it's faster and matches the game's look.
 
-### 16.4 Limits to give Claude every time
+### 16.2 Which tool for which asset
+
+| Asset | Tool | Approach |
+|---|---|---|
+| **New creatures** (cat of Ulthar, shoggoth, Elder Thing, Yithian, Spider of Leng, Mi-Go) | **Meshy** | Generate, remesh, and rig onto the closest vanilla skeleton (§16.4) |
+| **Replacement creature parts** (noseless ghast head, Gug head with a vertical mouth, horse-headed Shantak, Moon-beast snout) | **Meshy** + kitbash | Generate the part only, then attach it to a vanilla body in Blender |
+| **NPC heads and hair** (Men of Leng, Deep Ones, Innsmouth hybrids) | **Meshy** | Generate a head, fit it to the vanilla head bone and neck seam |
+| **Idols, statues, altars, relics** (the Dagon idol, Bokrug, Kadath carvings, the jade amulet) | **Meshy** | The best use of Meshy: detailed, organic and one-off |
+| **Rocks, cliffs, monoliths, standing stones** | **Meshy** | Landscape-dressing statics; generate a few variants of each and reuse them rotated |
+| **Fungi, strange trees, growths** (the Enchanted Wood, Yuggoth's fungi, tentacles) | **Meshy** or a Claude curve script | Meshy for hero pieces, scripts for many variations |
+| **Huge landmarks** (Ngranek's carved face, Kadath's peak, the sky cities seen from afar) | **Meshy** for the shape, then hand work | Split into pieces, keep a low-detail distant version |
+| **Weapons, armour pieces, clutter, market goods** | **Meshy** | Small, low-poly; must fit vanilla grips and armour bones |
+| **Portal frames, sealing circles** | Claude script | A ring of rune-stones, an emissive sigil plane, a swirling disc |
+| **Cyclopean blocks, R'lyeh's wrong angles** | Claude script, Meshy for surface detail | Skewed, non-square blocks; Meshy texturing for weathering |
+| **Fallen Serannian modules, Arkham houses** | Claude script | Parametric kits that snap to the Construction Set grid. Meshy shells don't snap. |
+| **The black galley** | Kitbash + Meshy details | Vanilla ship hull lengthened by script; Meshy figurehead, ram and fittings |
+| **Creature variants of vanilla** (Ogrim → Gug, scamp → zoog, twilight → night-gaunt) | Claude script | Scale and deform the vanilla mesh |
+
+### 16.3 Worldspaces: what Meshy can and can't do
+
+**Meshy makes objects, not worlds.** In Morrowind, a worldspace is three things:
+
+1. **Terrain:** the landscape heightmap and its texture painting. **Meshy can't help here.** Sculpt it in the Construction Set or OpenMW-CS, or draw heightmaps in an image editor and import them with a heightmap tool (e.g. TESAnnwyn). Claude can script heightmap generation from a sketch.
+2. **Statics placed on the terrain:** rocks, trees, ruins, buildings, landmarks. **This is where Meshy helps most.** A region's look comes mostly from a small set of reused statics. About 10–20 good Meshy rocks, cliffs and trees per region (Leng's black stone, Dunwich's domed hills, the Enchanted Wood) go a long way.
+3. **Buildings and interiors:**
+   - Morrowind's exterior buildings are **closed shells with a load door**; the interior is a separate cell. A Meshy model can serve as a **one-off shell** (the Strange High House, Kadath's gate, a temple in Ulthar), with the door added as a separate object.
+   - Interiors and repeated town buildings must **snap to the grid** and join cleanly, so build those with modular kits (vanilla or Claude-scripted), not Meshy.
+
+**Collision is never the Meshy mesh.** Every walkable or solid static gets a simple, hand-made or script-made `RootCollisionNode` (boxes or a convex hull). Generated meshes are too dense and irregular for collision.
+
+### 16.4 Meshy → Morrowind pipeline
+
+```
+prompt or image → Meshy (generate, Remesh, texture) → export FBX/GLB → Blender: scale, clean, bake,
+collision, rig → io_scene_mw NIF export → NifSkope check → test in game next to vanilla assets
+```
+
+1. **Generate.** Text-to-3D, or image-to-3D from concept art you have the rights to: your own drawings, or images from a tool whose terms allow it. Multi-view images give more consistent results. Keep a **shared style suffix** in every prompt (for example *"low-poly, hand-painted texture, muted earthy palette, late-1990s RPG style"*) so assets match each other and Morrowind.
+2. **Remesh in Meshy:** **triangle** topology with a **fixed target** close to the budgets in §16.5. Generated models start with far too many polygons and irregular topology.
+3. **Texture:** use Meshy's AI texturing, then in Blender:
+   - **Bake the base colour** to a single diffuse texture.
+   - **Downscale** to 256–1024 px, depending on size.
+   - **Paint out baked-in lighting** and push the colours toward Morrowind's palette.
+   - Save as DDS (DXT1, or DXT5 with alpha).
+   - Optional: keep the normal map as an `_n.dds` for OpenMW's normal mapping. The original engine ignores it.
+4. **Clean in Blender:**
+   - Scale against a vanilla reference mesh (§16.5).
+   - Set the forward axis and put the pivot at the base.
+   - Recalculate normals, remove floating fragments, and check the UVs.
+   - A Claude-written `bpy` script can batch all of this.
+5. **Rig (creatures and parts):**
+   - **Don't use Meshy's auto-rig skeleton for creatures.** Morrowind creatures need the vanilla bone names and hierarchy to reuse the vanilla `.kf` animations.
+   - Fit the Meshy mesh to the closest vanilla skeleton instead and weight-paint it, with at most 4 bones per vertex:
+     - Guar for ghasts
+     - Ogrim for gugs
+     - Cliff racer for the Shantak
+     - Nix-hound for cats and the Hound
+     - Kwama forager for dholes
+   - Creatures with no matching skeleton (shoggoth, Elder Thing) need new animations. Keep these to idle, move, attack, hit and death, and treat them as the most expensive assets.
+6. **Collision:** a simple `RootCollisionNode` (§16.3).
+7. **Export** with `io_scene_mw`, check in NifSkope, and test in game **next to vanilla assets**. If it looks out of place, simplify the texture before adding polygons.
+
+**Tooling:** the Pro plan includes API access, so this can be scripted like the voice pipeline (§7):
+- A `tools/meshy/` folder with a prompt list, a generation script, and a headless Blender script that does steps 2–7 in batch.
+- Keep the API key in an environment variable, **never in git**.
+- Download every model you keep into the repo's source-art folder; don't rely on Meshy storing it.
+
+### 16.5 Limits to give Claude and Meshy every time
 
 - **Scale:** about 70 Morrowind units per metre (64 per yard). An exterior cell is 8192 units across. Check the scale and forward axis against a vanilla mesh before batch work.
-- **Polygon budgets** (rough guidelines for the old engine): small props up to a few hundred triangles, large props and kit pieces 1–3k, buildings a few thousand, creatures 1–4k.
+- **Polygon budgets** (rough guidelines for the old engine; OpenMW handles more):
+  - Small props: up to a few hundred triangles.
+  - Large props and kit pieces: 1–3k.
+  - Buildings and landmarks: a few thousand, with a low-detail distant version for huge ones.
+  - Creatures: 1–4k (up to ~6k for bosses).
+  - Use these as Meshy's Remesh targets.
 - **Textures:** DDS, power-of-two sizes, under `Textures/tdl/`.
 - **Collision:** a simplified `RootCollisionNode` mesh for anything the player can walk on or bump into.
 - **Creatures:** reuse vanilla skeletons and `.kf` animations. Keep to 4 bone weights per vertex.
 - **Naming and pivots:** `tdl_` prefix; pivot at the base for anything placed on the ground.
 
-### 16.5 Licensing
+### 16.6 Licensing
 
-- Anthropic's terms let you use what Claude produces, including scripts and the models they generate.
-- Meshes **derived from Bethesda's** stay under Bethesda's mod rules (§1.1): Morrowind mods only.
-- If you also try image-to-3D generators, check each one's licence; some restrict use or require credit.
-- Disclose AI-assisted modelling on the Nexus page alongside the voice disclosure (§8).
+- **Claude:** Anthropic's terms let you use what Claude produces, including scripts and the models they generate.
+- **Meshy (Pro):**
+  - According to Meshy's pricing and help pages, models made on a paid plan are **private, owned by you, and usable commercially**. This mod isn't commercial, so it is well within that.
+  - Conditions:
+    - Don't publish the models to the **public Meshy Community**.
+    - Upload only material you have the rights to.
+    - Models made after a downgrade to the free plan fall under **CC BY 4.0**, which needs credit to Meshy.
+  - Re-check Meshy's terms before release.
+- **What not to upload to Meshy:**
+  - **Bethesda's meshes or textures.** Bethesda's mod rules (§1.1) cover use inside Morrowind mods, not uploading to third-party AI services. Generate new parts and combine them with vanilla assets locally in Blender.
+  - **Other modders' assets**, including 4thUnknown's (see [CREATURES.md](CREATURES.md)), without their permission.
+  - **Call of Cthulhu RPG art** or any other copyrighted art used as an image prompt (§11.1).
+  - **Images of real people** for NPC heads.
+- **Meshes derived from Bethesda's** (vanilla kitbashes, including Meshy parts attached to vanilla bodies) stay under Bethesda's mod rules: Morrowind mods only.
+- **Records:** log every Meshy model in `CREDITS.md` with its prompt or source image, the plan and the date.
+- **Disclosure:** tag Meshy-generated models and textures as AI-generated on the Nexus page, alongside the voice disclosure (§8).
 
 ---
 

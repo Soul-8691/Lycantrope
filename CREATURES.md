@@ -12,7 +12,7 @@ This file maps each Lovecraft creature in The Dreamlands to the vanilla Morrowin
 | ★★★★☆ | Right shape, wrong surface | Retexture and rescale |
 | ★★★☆☆ | Right body plan, key features missing | Retexture plus small mesh edits (remove or add a part) |
 | ★★☆☆☆ | Only the silhouette or the role fits | Kitbash parts from several meshes |
-| ★☆☆☆☆ | Placeholder only | Needs a new mesh (see THE_DREAMLANDS.md §16) |
+| ★☆☆☆☆ | Placeholder only | Needs a new mesh: generate with **Meshy**, rig onto the nearest vanilla skeleton (THE_DREAMLANDS.md §16.4) |
 
 **4U** means 4thUnknown has a remodel of that base creature. The conversion is by Bahamut, from 4thUnknown's Skyrim creatures. It covers 10 bases:
 - Daedroth
@@ -116,6 +116,13 @@ These need little or no change, which suits a dark-ages Miskatonic Valley:
   - Ghasts, zoogs, Moon-beasts, Shantaks, gugs and ghouls are three stars: one or two mesh edits each.
   - **All of the demo creatures can be built from vanilla parts.**
 - **It is weakest on Lovecraft's alien races.** Shoggoths, Elder Things, Yithians and the Spider of Leng need new meshes. So do the **cats**, which should be built first because they are allies, a faction and a Dream-Shape. All of these are Part II.
+- **Meshy fills those gaps** (THE_DREAMLANDS.md §16):
+  - It generates the missing creatures. Rig each one onto the nearest vanilla skeleton so it reuses vanilla animations:
+    - cats on the Nix-Hound
+    - the Spider of Leng on the Shalk
+    - the Mi-Go on the Dreugh
+  - It generates the **replacement parts** that the three-star entries need: the ghast's face, the Gug's vertical mouth, the Shantak's horse head, the Moon-beast's snout. That is faster and safer than editing 4thUnknown's meshes.
+  - Shoggoths and Elder Things have no usable skeleton, so they still need new animations. They are the most expensive creatures.
 - **4thUnknown gives the most to these creatures:**
   - the Ascended Sleeper: Moon-beasts, Star-spawn, Cthulhu, Wilbur;
   - the Guar: ghasts;
