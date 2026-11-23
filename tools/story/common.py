@@ -40,6 +40,24 @@ def weight_for(title: str, weights: dict) -> int:
     return 1
 
 
+def dtype_kwarg(dtype) -> dict:
+    """transformers renamed `torch_dtype` to `dtype` in 4.56; support both."""
+    import transformers
+    from packaging.version import Version
+    new = Version(transformers.__version__) >= Version("4.56")
+    return {"dtype": dtype} if new else {"torch_dtype": dtype}
+
+
+def find_adapter(adapter_dir: Path) -> Path | None:
+    """The final adapter, or else the newest training checkpoint that holds one."""
+    if (adapter_dir / "adapter_config.json").exists():
+        return adapter_dir
+    ckpts = sorted((adapter_dir / "checkpoints").glob("checkpoint-*"),
+                   key=lambda p: int(p.name.split("-")[-1]) if p.name.split("-")[-1].isdigit() else -1)
+    ckpts = [c for c in ckpts if (c / "adapter_config.json").exists()]
+    return ckpts[-1] if ckpts else None
+
+
 def compile_blocklist(cfg: dict) -> re.Pattern:
     """Slurs + ethnic/racial descriptors (config.yaml). Used for training and output."""
     patterns = list(cfg["blocklist"]) + list(cfg.get("descriptor_filter", []))

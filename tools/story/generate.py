@@ -25,7 +25,7 @@ import re
 import sys
 from pathlib import Path
 
-from common import load_config, repo_path
+from common import dtype_kwarg, find_adapter, load_config, repo_path
 from score import plain
 
 BEAT = re.compile(r"<!--\s*beat\s+(.*?)-->", re.S)
@@ -55,16 +55,29 @@ def load_model(cfg, adapter: str | None, no_adapter: bool):
 
     base = cfg["train"]["base_model"]
     adapter_dir = Path(adapter) if adapter else repo_path(cfg["train"]["adapter_dir"])
+    found = None
+    if not no_adapter:
+        # Check before loading the 3 GB base model, so a missing adapter fails fast.
+        found = find_adapter(adapter_dir)
+        if found is None:
+            sys.exit(
+                f"No trained adapter at {adapter_dir} (and no checkpoints inside it).\n"
+                "  - Did the full training cell finish? The adapter is written at the very end;\n"
+                "    checkpoints are written every 50 steps under <out-dir>/checkpoints/.\n"
+                "  - On Colab: was Google Drive mounted *before* training? Without it, the\n"
+                "    output went to a temporary folder that vanished with the session.\n"
+                "  - To try generation without training, pass --no-adapter.")
+        if found != adapter_dir:
+            print(f"Final adapter not found; using the latest checkpoint: {found}")
     if (adapter_dir / "base_model.txt").exists():
         base = (adapter_dir / "base_model.txt").read_text().strip()
     cuda = torch.cuda.is_available()
     tok = AutoTokenizer.from_pretrained(base)
-    model = AutoModelForCausalLM.from_pretrained(base, torch_dtype=torch.float16 if cuda else torch.float32)
-    if not no_adapter:
+    model = AutoModelForCausalLM.from_pretrained(
+        base, **dtype_kwarg(torch.float16 if cuda else torch.float32))
+    if found is not None:
         from peft import PeftModel
-        if not adapter_dir.exists():
-            sys.exit(f"No adapter at {adapter_dir}. Train one first (train_lora.py) or pass --no-adapter.")
-        model = PeftModel.from_pretrained(model, str(adapter_dir))
+        model = PeftModel.from_pretrained(model, str(found))
     model.to("cuda" if cuda else "cpu").eval()
     return tok, model
 

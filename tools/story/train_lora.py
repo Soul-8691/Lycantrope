@@ -18,7 +18,7 @@ import json
 import math
 from pathlib import Path
 
-from common import load_config, repo_path
+from common import dtype_kwarg, load_config, repo_path
 
 
 def main():
@@ -69,7 +69,7 @@ def main():
     print(f"train blocks: {len(ds['train'])}, val blocks: {len(ds['validation'])} ({block} tokens each)")
 
     dtype = torch.bfloat16 if bf16 else (torch.float16 if fp16 else torch.float32)
-    model = AutoModelForCausalLM.from_pretrained(t["base_model"], torch_dtype=dtype)
+    model = AutoModelForCausalLM.from_pretrained(t["base_model"], **dtype_kwarg(dtype))
     model.config.use_cache = False
     model.gradient_checkpointing_enable()
     model.enable_input_require_grads()
