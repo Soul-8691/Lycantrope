@@ -1,0 +1,9 @@
+# GPU steps (Colab): train_lora.py, generate.py, score.py
+# Colab already ships torch; locally, install the CPU or CUDA build of torch first.
+-r requirements.txt
+transformers>=4.46
+peft>=0.13
+datasets>=3.0
+accelerate>=1.0
+sentence-transformers>=3.0
+numpy

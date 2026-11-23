@@ -1,0 +1,4 @@
+# Local, CPU-only steps: extract_corpus.py, build_dataset.py, style_profile.py, check_annotations.py
+pymupdf>=1.24
+pyyaml>=6.0
+wordfreq>=3.0

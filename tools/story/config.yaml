@@ -1,0 +1,141 @@
+# Story-tooling configuration. Paths are relative to the repo root.
+
+pdf: Lovecraft-Complete-Fiction-Print.pdf
+pdf_page_offset: 11          # PDF page index = printed page number + 11
+contents_pages: [4, 10]      # PDF page indexes holding the table of contents (inclusive)
+
+corpus_dir: tools/story/data/corpus
+dataset_dir: tools/story/data
+out_dir: tools/story/out
+story_file: STORY.md
+annotations_file: ANNOTATIONS.md
+
+# ---- What goes into training -------------------------------------------------
+# Collaborations and revisions (ALL CAPS in the PDF's contents, with "with"/"for")
+# are excluded automatically: their rights may involve the co-author (see §14.2).
+exclude_before_year: 1917    # juvenilia
+exclude_titles:              # matched case-insensitively against the start of the title
+  - The Thing in the Moonlight          # spurious
+  - Discarded Draft of The Shadow over  # duplicate draft
+  - History of the Necronomicon         # notes, not fiction
+  - Fungi from Yuggoth                  # sonnet cycle; verse skews prose style
+  # Content note (THE_DREAMLANDS.md §14.2): leave out the stories whose premise
+  # or major passages are built on racism. The *game* may still use their settings;
+  # the *style model* should not learn from them.
+  - The Horror at Red Hook
+  - Facts concerning the Late Arthur Jermyn
+  - The Street
+  - He
+  - Herbert West                        # racist depiction in part III
+  - The Shadow over Innsmouth           # racial-"purity" allegory is the premise
+
+# ---- Racism filters ------------------------------------------------------------
+# Two lists of case-insensitive regexes. A training paragraph matching EITHER list
+# is dropped (see data/filtered_out.md for an audit of everything removed), and a
+# generated candidate matching either list is rejected by score.py.
+#
+# 1. Slurs.
+blocklist:
+  - '\bnegro'
+  - '\bn[i1]gg'
+  - '\bmongrel'
+  - '\bhalf-?castes?\b'
+  - '\bhalf-?breeds?\b'
+  - '\bmulatto'
+  - '\bcoolie'
+  - '\bkanaka'
+  - '\bdagos?\b'
+  - '\bchinam[ae]n\b'
+  - '\bsquaws?\b'
+  - '\bredskins?\b'
+# 2. Ethnic and racial descriptors. Deliberately broad: Lovecraft's prejudice runs
+#    through these words, so paragraphs using them are dropped even when a given
+#    use is harmless. Losing a few percent of the corpus is an acceptable price.
+descriptor_filter:
+  - '\bswarthy\b'
+  - '\bmixed[- ]blood'
+  - '\bdegenera'
+  - '\binferior (race|stock|blood)'
+  - '\bracial'
+  - '\brace-'
+  - '\b(alien|foreign) (hordes|blood|stock)'
+  - '\bforeigners\b'
+  - '\bsavages\b'
+  - '\baborigin'
+  - '\bprimitive (races|tribes|peoples)'
+  - '\besquimau'
+  - '\basiatic'
+  - '\boriental'
+  - '\blevantine'
+  - '\bpolynesian'
+  - '\bmalays?\b'
+  - '\bmestizo'
+  - '\bsemit'
+  - '\bjews?\b|\bjewish'
+  - '\bportuguese'
+  - '\bitalians?\b'
+  - '\bsyrians?\b'
+  - '\bkurds?\b'
+  - '\byezidi'
+  - '\bgyps(y|ies)'
+  - '\bwest indian'
+  - '\bnatives\b'
+  - '\bblacks\b'
+
+# The game is heroic, so oversample Lovecraft's most adventurous and triumphant tales.
+upweight:
+  The Dream-Quest of Unknown Kadath: 3
+  The Dunwich Horror: 3
+  The Case of Charles Dexter Ward: 2
+  The Silver Key: 2
+  The Strange High House in the Mist: 2
+  The White Ship: 2
+  The Quest of Iranon: 2
+  Celepha: 2                 # Celephaïs (prefix match avoids encoding trouble)
+  The Cats of Ulthar: 2
+  The Other Gods: 2
+  Polaris: 2
+
+# Reference sets for the scorer (prefix match on titles).
+heroic_refs:
+  - The Dream-Quest of Unknown Kadath
+  - The Dunwich Horror
+  - The Case of Charles Dexter Ward
+  - The Silver Key
+  - The Cats of Ulthar
+  - Polaris
+bleak_refs:
+  - Dagon
+  - The Outsider
+  - The Colour out of Space
+  - The Music of Erich Zann
+  - The Shadow over Innsmouth
+  - The Haunter of the Dark
+
+# ---- Training ----------------------------------------------------------------
+train:
+  base_model: Qwen/Qwen2.5-1.5B   # Apache-2.0 base (not instruct) model; fits a free Colab T4
+  block_size: 512
+  chunk_chars: 1800
+  val_fraction: 0.05
+  epochs: 2
+  learning_rate: 2.0e-4
+  batch_size: 4
+  grad_accum: 4
+  lora_r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  adapter_dir: tools/story/out/lovecraft-lora
+
+# ---- Generation --------------------------------------------------------------
+generate:
+  candidates: 6
+  max_new_tokens: 320
+  temperature: 0.85
+  top_p: 0.92
+  repetition_penalty: 1.12
+  context_chars: 1500
+
+score:
+  embed_model: sentence-transformers/all-MiniLM-L6-v2
+  copy_ngram: 8               # flag verbatim runs of this many words copied from the corpus

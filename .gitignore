@@ -218,3 +218,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Story tooling outputs (rebuilt from the PDF by tools/story)
+tools/story/data/
+tools/story/out/

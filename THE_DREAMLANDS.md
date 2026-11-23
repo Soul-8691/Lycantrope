@@ -139,7 +139,7 @@ Enemy-only factions: **Zoogs** (tricksters; can become allies), **Moon-beasts & 
  Act 2  The Enchanted Wood → Ulthar → Dylath-Leen
  Act 3  Celephaïs → Mount Ngranek (learn the sky-city spell)
  Act 4  The Underworld (Vaults of Zin, the Gugs, the Ghouls)
- Act 5  The Plateau of Leng → Inquanok
+ Act 5  The Plateau of Leng → Inganok
  Act 6  The sky cities: the Moon-beasts' towers and fallen Serannian (§15.1)
  Act 7  Unknown Kadath: Nyarlathotep
 ```
@@ -168,7 +168,7 @@ Enemy-only factions: **Zoogs** (tricksters; can become allies), **Moon-beasts & 
 | Lovecraft place or creature | Morrowind / Tribunal / Bloodmoon starting point |
 |---|---|
 | Elder Thing cities (*Mountains of Madness*) | **Dwemer ruins** under Bloodmoon's snow and ice |
-| Kadath's onyx castle, Inquanok | **Daedric ruins** and **Mournhold** architecture, re-textured in black onyx |
+| Kadath's onyx castle, Inganok | **Daedric ruins** and **Mournhold** architecture, re-textured in black onyx |
 | Celephaïs, Ulthar, Dylath-Leen | **Mournhold** and **Imperial** towns, re-textured |
 | Arkham, Innsmouth, Dunwich | **Imperial** and **Bloodmoon (Raven Rock / Skaal)** buildings with new New England textures (gambrel roofs) |
 | The Plateau of Leng | **Ash wastes** and **ash storms**, with colder fog |
@@ -306,7 +306,7 @@ Morrowind voices only greetings, combat barks and a few key lines; everything el
 
 - **Design voices, don't clone them.** Use ElevenLabs **Voice Design** (a voice from a text description) or the voice library. **Never clone a real person** without written consent. That includes Morrowind's original voice actors and well-known audiobook narrators. Nexus Mods removes AI voice work that copies real actors without consent.
 - **Keep a voice registry** (`voices.json`: character → voice ID, model, settings) so re-generated lines match.
-- **Pronunciation:** add alias rules or phonetic respellings for Mythos names (Nyarlathotep, Kadath, Ulthar, Celephaïs, Yog-Sothoth, Ngranek, Inquanok) and fix them once, centrally.
+- **Pronunciation:** add alias rules or phonetic respellings for Mythos names (Nyarlathotep, Kadath, Ulthar, Celephaïs, Yog-Sothoth, Ngranek, Inganok) and fix them once, centrally.
 - **Expressive tags:** the expressive model supports audio tags like `[whispers]`, `[laughs]`, `[coughs]`. Use them for Zadok, the whispers and Nyarlathotep's amusement.
 - **Generate several takes** of every important line and pick the best by ear. Store the takes outside `Data Files/`.
 - **Mastering:** normalise loudness consistently across all lines, trim silence, export **mono MP3** at 44.1 kHz. Morrowind moves NPC mouths from the volume of the audio, so clean starts and ends matter.
@@ -588,6 +588,8 @@ The Dreamlands are only part of Lovecraft. His best-known horrors live in the **
 ## 15. Storyline, Part I: The Demo
 
 An ordinary shop helper in a dark-ages Arkham is told by the valley's greatest wizard that they must train to stop an invasion from the Dreamlands. The training keeps getting cut short by attacks. Between attacks you train, travel, take sidequests and grow stronger. The demo ends with a boss fight at Kingsport. The portal into the Dreamlands and the spell to reach the sky cities come later.
+
+> **The full plot** (Part I and Part II) is written up in [STORY.md](STORY.md), with game-design notes in [ANNOTATIONS.md](ANNOTATIONS.md). It follows the recommended options below, with one change: **the ancient warrior is the player**, through a time loop at the end of Part II (ANNOTATIONS.md ^6, ^53–55), instead of option (C) "the bloodline." The tooling that drafts prose in Lovecraft's voice is in [tools/story/](tools/story/README.md).
 
 ### 15.1 Lore changes (bending Lovecraft)
 
