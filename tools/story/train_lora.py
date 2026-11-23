@@ -18,7 +18,7 @@ import json
 import math
 from pathlib import Path
 
-from common import dtype_kwarg, load_config, repo_path
+from common import check_torchao, dtype_kwarg, load_config, repo_path
 
 
 def main():
@@ -28,7 +28,9 @@ def main():
     ap.add_argument("--max-steps", type=int, default=-1)
     ap.add_argument("--resume", action="store_true", help="resume from the last checkpoint in out-dir")
     ap.add_argument("--push-to-hub", metavar="USER/REPO", help="also upload the adapter (private) to Hugging Face")
+    ap.add_argument("--base-model", help="override config train.base_model (e.g. a tiny model for testing)")
     args = ap.parse_args()
+    check_torchao()  # fail in a second, not after downloading the model
 
     import torch
     from datasets import load_dataset
@@ -39,6 +41,8 @@ def main():
 
     cfg = load_config()
     t = cfg["train"]
+    if args.base_model:
+        t["base_model"] = args.base_model
     out_dir = Path(args.out_dir) if args.out_dir else repo_path(t["adapter_dir"])
     data_dir = repo_path(cfg["dataset_dir"])
 
@@ -75,23 +79,31 @@ def main():
     model.enable_input_require_grads()
     model = get_peft_model(model, LoraConfig(
         r=t["lora_r"], lora_alpha=t["lora_alpha"], lora_dropout=t["lora_dropout"],
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"],
+        target_modules="all-linear",  # every linear layer except the output head; works for any architecture
         task_type="CAUSAL_LM"))
     for p in model.parameters():          # keep trainable LoRA weights in fp32 for stable fp16 AMP
         if p.requires_grad:
             p.data = p.data.float()
     model.print_trainable_parameters()
 
+    # Warm up for 3% of training. Given as a whole number of steps because
+    # transformers 5 removed `warmup_ratio` (and int steps work in 4.x too).
+    epochs = args.epochs or t["epochs"]
+    per_epoch = math.ceil(len(ds["train"]) / (t["batch_size"] * t["grad_accum"]))
+    total_steps = args.max_steps if args.max_steps > 0 else math.ceil(per_epoch * epochs)
+    warmup = max(1, round(0.03 * total_steps))
+    print(f"optimizer steps: {total_steps} ({per_epoch} per epoch), warmup: {warmup}")
+
     targs = TrainingArguments(
         output_dir=str(out_dir / "checkpoints"),
         per_device_train_batch_size=t["batch_size"],
         per_device_eval_batch_size=t["batch_size"],
         gradient_accumulation_steps=t["grad_accum"],
-        num_train_epochs=args.epochs or t["epochs"],
+        num_train_epochs=epochs,
         max_steps=args.max_steps,
         learning_rate=t["learning_rate"],
         lr_scheduler_type="cosine",
-        warmup_ratio=0.03,
+        warmup_steps=warmup,
         logging_steps=10,
         eval_strategy="epoch",
         save_strategy="steps",

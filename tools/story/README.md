@@ -27,6 +27,13 @@ pip install -r tools/story/requirements-ml.txt       # steps 4-6 (install torch 
 python tools/story/score.py STORY.md --paragraphs
 ```
 
+To test the whole training and generation pipeline on a CPU in about a minute (the output is gibberish, because the model is random):
+
+```bash
+python tools/story/train_lora.py --base-model trl-internal-testing/tiny-Qwen2ForCausalLM-2.5 --max-steps 3 --out-dir /tmp/tiny
+python tools/story/generate.py --beat p1-galley --n 2 --adapter /tmp/tiny
+```
+
 Generated data goes to `tools/story/data/` and `tools/story/out/`, which are git-ignored. Everything is rebuilt from the PDF.
 
 ## Racism safeguards

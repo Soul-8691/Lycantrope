@@ -8,6 +8,7 @@ Used by generate.py to rank candidates. Scores:
   heroic     similarity to heroic tales minus similarity to bleak ones
   density    how close the signature-word rate is to Lovecraft's own (1 = same)
   copied     share of 8-word runs found verbatim in the corpus (want ~0)
+  english    share of real words; gibberish (<60%) scores 0 overall
   blocked    matched the slur / ethnic-descriptor lists in config.yaml -> rejected
 """
 from __future__ import annotations
@@ -66,9 +67,11 @@ class Scorer:
             np.savez(cache, all=self.c_all, hero=self.c_hero, bleak=self.c_bleak)
 
         self.ngrams = set()
+        self.vocab = set()  # every word Lovecraft used, so Kadath or Ngranek count as "known"
         for e in load_index(self.cfg):
             if not e["collaboration"]:
                 w = WORD.findall(read_story(self.cfg, e).lower())
+                self.vocab.update(w)
                 self.ngrams.update(hash(tuple(w[i:i + self.n])) for i in range(len(w) - self.n + 1))
 
     def _centroid(self, texts):
@@ -96,11 +99,27 @@ class Scorer:
         lovecraft = float(v @ self.c_all)
         heroic = float(v @ self.c_hero - v @ self.c_bleak)
         heroic_n = min(1.0, max(0.0, 0.5 + 5 * heroic))
+        english = self._english_ratio(text)
         total = 0.0 if hit else (0.4 * lovecraft + 0.4 * heroic_n + 0.2 * density
                                  - 2 * max(0.0, copied - 0.02))
+        # Gibberish (an undertrained or broken model) must not rank: scale the total
+        # down to zero as the share of real English words falls from 90% to 60%.
+        total *= min(1.0, max(0.0, (english - 0.6) / 0.3))
         return {"total": round(total, 3), "lovecraft": round(lovecraft, 3),
                 "heroic": round(heroic, 3), "density": round(density, 2),
-                "copied": round(copied, 3), "blocked": hit.group(0) if hit else None}
+                "copied": round(copied, 3), "english": round(english, 2),
+                "blocked": hit.group(0) if hit else None}
+
+    def _english_ratio(self, text: str) -> float:
+        """Share of tokens that are English words, Lovecraft's own vocabulary, or names."""
+        from wordfreq import word_frequency
+        toks = [t.strip(".,;:!?\"'“”‘’()—–-").lower() for t in text.split()]
+        toks = [t for t in toks if t]
+        if not toks:
+            return 0.0
+        known = lambda w: (w.isascii() and w.replace("-", "").replace("'", "").isalpha()
+                           and (word_frequency(w, "en") > 0 or w in self.vocab))
+        return sum(map(known, toks)) / len(toks)
 
 
 def main():

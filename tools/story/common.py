@@ -48,6 +48,22 @@ def dtype_kwarg(dtype) -> dict:
     return {"dtype": dtype} if new else {"torch_dtype": dtype}
 
 
+def check_torchao() -> None:
+    """Recent peft refuses to build LoRA layers if an *old* torchao is installed
+    (Colab ships one). We never use torchao, so the fix is to remove it."""
+    import sys
+    from importlib.metadata import PackageNotFoundError, version
+    try:
+        v = version("torchao")
+    except PackageNotFoundError:
+        return
+    from packaging.version import Version
+    if Version(v) < Version("0.16.0"):
+        sys.exit(f"torchao {v} is installed and recent peft rejects versions below 0.16.\n"
+                 "This project doesn't use torchao. Remove it and re-run:\n"
+                 "    pip uninstall -y torchao")
+
+
 def find_adapter(adapter_dir: Path) -> Path | None:
     """The final adapter, or else the newest training checkpoint that holds one."""
     if (adapter_dir / "adapter_config.json").exists():
