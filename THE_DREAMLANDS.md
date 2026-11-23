@@ -228,8 +228,10 @@ The Dreamlands/
 │   ├── Sound/Vo/tdl/                ← voiced lines (§7)
 │   ├── Music/tdl/
 │   └── MWSE/mods/TheDreamlands/     ← Lua (§5)
+├── dialogue/                        ← dialogue as YAML, bible, character sheets (tools/dialogue)
 ├── tools/
 │   ├── build.py                     ← JSON → ESM, clean, package
+│   ├── dialogue/                    ← validate + compile dialogue YAML → plugin, generation briefs
 │   ├── voice/                       ← script CSV, ElevenLabs batch script, mastering
 │   └── corpus/                      ← Lovecraft text extraction (public domain only)
 ├── art_src/                         ← .blend files, texture sources

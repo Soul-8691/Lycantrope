@@ -1,0 +1,182 @@
+# Arkham's rumours across its three states (tdl_ws_arkham: 0 calm, 1 afflicted, 2 mending).
+# Order: Pell, then the Watch, the Collegium and innkeepers, then everyone else
+# (four variants per state, picked by tdl_roll), then a last fallback.
+topic: latest rumors
+type: topic
+order: 10
+defaults:
+  when: { cell: Arkham }
+  status: draft
+
+lines:
+  # ---------------------------------------------------------------- Abner Pell
+  - key: pell_calm
+    when: { speaker: tdl_pell, global: { tdl_ws_arkham: "== 0" } }
+    text: >
+      Rumours? I sell candles, not gossip. Though the Widow Marsh swears she saw lights moving
+      in the clouds over the river last night, slow as barges. She'd had a good deal of cider, mind.
+  - key: pell_afflicted_v1
+    story: v1
+    when: { speaker: tdl_pell, global: { tdl_ws_arkham: "== 1" } }
+    text: >
+      What's new? My windows are new. My arm is new, in that it's no use to anyone. And the whole town
+      sleeps with its shutters barred, as if wood stops what came out of that sky.
+  - key: pell_afflicted_v2
+    story: v2
+    when: { speaker: tdl_pell, global: { tdl_ws_arkham: "== 1" } }
+    text: >
+      The sickness took Hobb the cooper last week. Walked out of his house asleep, eyes open,
+      talking to someone who wasn't there. They found him at the river at dawn, still talking.
+      I'm keeping the lamps lit all night. Somebody has to.
+  - key: pell_mending
+    when: { speaker: tdl_pell, global: { tdl_ws_arkham: "== 2" } }
+    text: >
+      New windows, new stock, and the same old customers trying to pay me in turnips.
+      I'd call that a good year. Don't tell anyone I said so.
+
+  # ---------------------------------------------------------------- the Watch
+  - key: watch_calm
+    when: { faction: tdl_watch, global: { tdl_ws_arkham: "== 0" } }
+    text: >
+      Quiet season. Cutpurses at the market, a drunk in the river most nights. The Captain has us
+      walking the walls anyway. She says quiet is when you count your arrows.
+  - key: watch_afflicted_v1
+    story: v1
+    when: { faction: tdl_watch, global: { tdl_ws_arkham: "== 1" } }
+    text: >
+      We lost six on the hill that night. The Captain has every able body on the walls, and it
+      still isn't enough walls. Nobody can tell us when the sky will open next.
+  - key: watch_afflicted_v2
+    story: v2
+    when: { faction: tdl_watch, global: { tdl_ws_arkham: "== 1" } }
+    text: >
+      Half the night watch are sleepwalkers now. You turn your back and your partner is walking
+      off the wall with his eyes shut. The Captain has us roped together like mountain goats.
+  - key: watch_mending
+    when: { faction: tdl_watch, global: { tdl_ws_arkham: "== 2" } }
+    text: The walls are quiet again. The Captain says to enjoy it, and not to believe it.
+
+  # ---------------------------------------------------------------- the Collegium
+  - key: collegium_calm
+    when: { faction: tdl_collegium, global: { tdl_ws_arkham: "== 0" } }
+    text: >
+      Master Armitage has had the chained books moved to the upper library again. Damp, he says.
+      I say he doesn't want novices reading the ones that came up out of the Kingsport wreck.
+  - key: collegium_afflicted
+    when: { faction: tdl_collegium, global: { tdl_ws_arkham: "== 1" } }
+    text: >
+      We copy every book on sleep and dreaming in the library, day and night. Most of it is
+      nonsense. Some of it is not, and Master Armitage will not tell us which.
+  - key: collegium_mending
+    when: { faction: tdl_collegium, global: { tdl_ws_arkham: "== 2" } }
+    text: >
+      Master Armitage has begun a chronicle of everything that happened, so the next age will know.
+      He asks every visitor what they saw. Mind your answers; he writes them all down.
+
+  # ---------------------------------------------------------------- innkeepers
+  - key: publican_calm
+    when: { class: Publican, global: { tdl_ws_arkham: "== 0" } }
+    text: >
+      Bargemen say the fishing's poor this year. Nets come up empty, or come up with things
+      nobody will name. They drink twice as much either way, so I can't complain.
+  - key: publican_afflicted_v1
+    story: v1
+    when: { class: Publican, global: { tdl_ws_arkham: "== 1" } }
+    text: >
+      Everybody drinks to forget what they saw at the burying-ground. Nobody forgets.
+      I've never sold so much and been so sorry to.
+  - key: publican_afflicted_v2
+    story: v2
+    when: { class: Publican, global: { tdl_ws_arkham: "== 1" } }
+    text: >
+      Nobody wants to sleep, so everybody drinks. I've not barred my door in a fortnight.
+      I'd rather they bought barley-ale than nightmares, but there it is.
+  - key: publican_mending
+    when: { class: Publican, global: { tdl_ws_arkham: "== 2" } }
+    text: >
+      There's a song about you now, %PCName. It's terrible. They sing it every night,
+      louder each time, and I've given up asking them to stop.
+
+  # ---------------------------------------------------------------- anyone: calm
+  - key: calm_a
+    when: { global: { tdl_ws_arkham: "== 0", tdl_roll: "== 0" } }
+    text: >
+      A scholar from the Collegium has been buying every almanac in town. Says he's counting
+      the nights the stars go wrong. I didn't know they could.
+  - key: calm_b
+    when: { global: { tdl_ws_arkham: "== 0", tdl_roll: "== 1" } }
+    text: >
+      Shepherds out past the Aylesbury Pike are losing sheep. A wolf, the Reeve says.
+      No wolf I ever heard of leaves the fleece folded, I say.
+  - key: calm_c
+    when: { global: { tdl_ws_arkham: "== 0", tdl_roll: "== 2" } }
+    text: >
+      My sister's boy dreams of a city in the clouds. Same dream every night, he says: golden
+      roofs, and a sunset that never ends. The priest says it's a sin to dream so pretty.
+  - key: calm_d
+    when: { global: { tdl_ws_arkham: "== 0", tdl_roll: "== 3" } }
+    text: >
+      There's a house on the cliffs at Kingsport that no road goes to. Some nights, they say,
+      its windows look out on something other than the sea. Fishermen won't row under it after dark.
+
+  # ---------------------------------------------------------------- anyone: afflicted
+  - key: afflicted_a
+    when: { global: { tdl_ws_arkham: "== 1", tdl_roll: "== 0" } }
+    text: >
+      The abbey bells toll every hour of the night now. The abbot says it keeps the nightmares
+      off. It keeps the sweet dreams off too.
+  - key: afflicted_b
+    when: { global: { tdl_ws_arkham: "== 1", tdl_roll: "== 1" } }
+    text: >
+      Folk are leaving for Kingsport, or for anywhere. The Reeve shuts the north gate after dark
+      now. As if what's coming uses gates.
+  - key: afflicted_c_v1
+    story: v1
+    when: { global: { tdl_ws_arkham: "== 1", tdl_roll: "== 2" } }
+    text: >
+      They say some of those horned raiders are still in the hills, the ones that didn't get back
+      through the hole in the sky. Shepherds keep finding curved swords in the bracken.
+  - key: afflicted_c_v2
+    story: v2
+    when: { global: { tdl_ws_arkham: "== 1", tdl_roll: "== 2" } }
+    text: >
+      Everyone who's had the sickness dreams the same place: black ships sailing on the clouds,
+      and something aboard with no eyes. Ask one of them. Ask, and watch their face.
+  - key: afflicted_d
+    when: { global: { tdl_ws_arkham: "== 1", tdl_roll: "== 3" } }
+    text: >
+      A cartload of farmers came in from the Dunwich hills, white as milk, and wouldn't say what
+      drove them off their land. The Watch turned them out by morning. I'd have let them stay.
+
+  # ---------------------------------------------------------------- anyone: mending
+  - key: mending_a
+    when: { global: { tdl_ws_arkham: "== 2", tdl_roll: "== 0" } }
+    text: >
+      The market's full again. The prices are a scandal, mind, but a scandal is a comfort
+      after the year we've had.
+  - key: mending_b
+    when: { global: { tdl_ws_arkham: "== 2", tdl_roll: "== 1" } }
+    text: >
+      The children play at being you in the square now, all wooden swords and shouting.
+      The little ones always want to be the monster.
+  - key: mending_c_v1
+    story: v1
+    when: { global: { tdl_ws_arkham: "== 2", tdl_roll: "== 2" } }
+    text: >
+      The sky's been whole since spring. My uncle still watches it every evening, though.
+      Says he's waiting for it to blink.
+  - key: mending_c_v2
+    story: v2
+    when: { global: { tdl_ws_arkham: "== 2", tdl_roll: "== 2" } }
+    text: >
+      The sickness has gone, they say, or nearly. My uncle still talks in his sleep, but now it's
+      about pigs, same as before. That's a good sign, I think.
+  - key: mending_d
+    when: { global: { tdl_ws_arkham: "== 2", tdl_roll: "== 3" } }
+    text: >
+      Some evenings, just at sunset, the whole town looks as if it's made of gold. It never used to.
+      Or I never used to notice.
+
+  # ---------------------------------------------------------------- fallback
+  - key: fallback
+    text: Nothing I'd care to repeat.

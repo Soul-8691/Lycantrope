@@ -1,0 +1,13 @@
+# Answer format for generated dialogue (files starting with _ are not compiled).
+topic: latest rumors
+type: topic
+defaults:
+  when: { cell: Arkham }
+  status: draft
+lines:
+  - key: short_stable_key
+    text: "One to four sentences, in the speaker's voice."
+    when:
+      faction: tdl_watch
+      global: { tdl_ws_arkham: "== 1" }
+    story: both

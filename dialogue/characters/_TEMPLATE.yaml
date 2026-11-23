@@ -1,0 +1,18 @@
+# Copy to <npc id>.yaml. One sheet per named NPC. brief.py includes these in generation briefs.
+id: tdl_example              # the NPC record id in the plugin
+name: Full Name
+role: what they do, where they're found
+story: both                  # v1 | v2 | both
+voice: >
+  How they talk: rhythm, vocabulary, habits, what they never say.
+sample_lines:
+  - "A line that sounds exactly like them."
+  - "Another, in a different mood."
+wants: what they want, from the player and from life
+knows:                       # what they know at each story state (see bible.md)
+  calm: ...
+  afflicted: ...
+  mending: ...
+attitude: how they treat the player, by disposition if it matters
+never: things this character would never say or know
+voice_id: ""                 # ElevenLabs voice registry key, if voiced

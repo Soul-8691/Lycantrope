@@ -1,0 +1,30 @@
+# Dialogue tools configuration. Paths are relative to the repo root.
+
+source_dir: dialogue                 # YAML sources, bible, character sheets
+out_dir: tools/dialogue/out          # git-ignored build output
+story: v2                            # which story to compile by default: v1 or v2 (lines tagged `both` always go in)
+
+# tes3conv converts the compiled JSON into an .esp. Set the path here, or the
+# TES3CONV environment variable, or put tes3conv on PATH. Without it you still get the JSON.
+tes3conv: ""
+
+plugin:
+  name: tdl_dialogue                 # -> out/tdl_dialogue.json / .esp
+  author: The Dreamlands team
+  description: "The Dreamlands: dialogue (generated from dialogue/*.yaml; do not edit in the CS)"
+  masters: [Morrowind.esm]
+  # Optional: your Morrowind "Data Files" folder. Used to fill in master file sizes
+  # and to read the vanilla topic list for the link check (validate.py --vanilla).
+  data_files: "C:/Program Files (x86)/Steam/steamapps/common/Morrowind/Data Files"
+  emit_globals: true                 # define the globals from states.yaml in this plugin
+
+checks:
+  max_chars: 512                     # the Construction Set truncates longer responses
+  warn_chars: 400                    # Morrowind replies are short; longer ones are usually two replies
+  # Tamriel names that must not appear in the Dreamlands' text.
+  forbidden_words: [Tamriel, Tamrielic, Vvardenfell, Morrowind, Dunmer, Altmer, Bosmer, Septim,
+                    septims, Daedra, Daedric, Nerevar, Nerevarine, Almsivi, Tribunal Temple,
+                    Hlaalu, Redoran, Telvanni, Cyrodiil, Skyrim, Akatosh, Nine Divines]
+  # Modern phrasing that breaks the dark-ages register.
+  modern_words: [okay, OK, guys, cool, awesome, kid, kids, yeah, gonna, wanna, stuff, weird,
+                 boss, mom, dad, deal with it, no problem, check out, figure out]

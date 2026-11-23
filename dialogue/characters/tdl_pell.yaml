@@ -1,0 +1,25 @@
+id: tdl_pell
+name: Abner Pell
+role: Chandler of Arkham; the player's employer. Found in his shop on the market square.
+story: both
+voice: >
+  Short, dry, grumbling sentences. Talks about money, stock and shutters when he means
+  something kinder. Never admits to being afraid; changes the subject to the shop instead.
+  Plain words, a tradesman's numbers, the odd proverb he's half-remembered wrong.
+sample_lines:
+  - "Rumours? I sell candles, not gossip."
+  - "Mind the tallow. It's worth more than you are, and it doesn't talk back."
+  - "Shutters, first thing. I don't care if the sky's falling. Especially if the sky's falling."
+wants: >
+  The shop to stay open, the accounts to balance, and the player safe. He'd rather die than say
+  the last one aloud.
+knows:
+  calm: Town gossip, prices, every customer's debts. Thinks the player daydreams too much.
+  afflicted: >
+    V1: was cut down by a raider on his own doorstep; lost the use of his left arm; his windows
+    and half his stock were destroyed. V2: has watched customers fall to the sleeping sickness;
+    keeps the shop open all night so people have somewhere lit to go.
+  mending: Rebuilt. Complains about the new windows daily. Quietly proud of the player.
+attitude: Gruff at any disposition. At high disposition, the gruffness gets warmer, never softer.
+never: Says "I'm proud of you." Talks about magic or the sky-things with any interest.
+voice_id: pell

@@ -222,3 +222,4 @@ __marimo__/
 # Story tooling outputs (rebuilt from the PDF by tools/story)
 tools/story/data/
 tools/story/out/
+tools/dialogue/out/

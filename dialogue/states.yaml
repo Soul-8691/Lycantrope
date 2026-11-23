@@ -1,0 +1,33 @@
+# Story states the dialogue can react to. compile.py turns `globals` into GlobalVariable
+# records; validate.py checks that every tdl_ global and faction used in dialogue is listed here.
+
+globals:
+  tdl_ws_arkham:
+    type: short
+    value: 0
+    doc: Arkham's state. Set by the main quest scripts.
+    values:
+      0: calm        # before anything happens: the prologue
+      1: afflicted   # V1: after the first incursion. V2: once the nightmare sickness reaches Arkham (Act 1)
+      2: mending     # V1: after the demo's finale. V2: after the war in the sky is won (Act 8)
+  tdl_roll:
+    type: short
+    value: 0
+    doc: >
+      A random number 0-3, re-rolled by MWSE every time a dialogue window opens
+      (see tools/dialogue/README.md). Lets one NPC say different rumours on different visits.
+    values: {0: a, 1: b, 2: c, 3: d}
+
+# Factions the main plugin will define (id: name).
+factions:
+  tdl_watch: The Arkham Watch
+  tdl_collegium: The Miskatonic Collegium
+
+# Topics the player knows from the start (added by the start script with AddTopic).
+known_at_start:
+  - latest rumors
+
+# Cell names. Morrowind's cell condition matches the start of the cell name, so
+# `cell: Arkham` covers the exterior cells named "Arkham" and every "Arkham, ..." interior.
+cells:
+  Arkham: the walled town on the Miskatonic (exterior cells and "Arkham, <place>" interiors)
