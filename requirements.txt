@@ -1,0 +1,7 @@
+# Game runtime (what ships in the PyInstaller build)
+pygame-ce>=2.5      # window, input, audio (TEC-01) — do NOT also install plain "pygame"
+moderngl>=5.10      # OpenGL 3.3 core rendering (TEC-02)
+PyGLM>=2.7          # vector/matrix/quaternion math (TEC-03)
+numpy>=1.26         # bulk math: terrain, skinning, particles
+pygltflib>=1.16     # GLB meshes, skins, animations (TEC-08)
+Pillow>=10.0        # textures, biome mask, icons

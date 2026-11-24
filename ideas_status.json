@@ -1,6 +1,6 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md. status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-24T10:10:27",
+  "updated": "2026-11-24T10:31:22",
   "counts": {
     "awaiting": 57,
     "approved": 162,
@@ -9,17 +9,17 @@
   },
   "ui": {
     "selected": [
-      "REL-08"
+      "REL-05"
     ],
     "selected_titles": {
-      "REL-08": "SmartScreen note"
+      "REL-05": "Git LFS for binaries"
     },
     "filter": "all",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-24T10:10:27"
+    "at": "2026-11-24T10:31:22"
   },
   "ideas": {
     "PIL-01": {
