@@ -305,7 +305,7 @@ def render_file(path: Path, r: Renderer, frames: int, gif: bool) -> list[Path]:
 def main() -> None:
     ap = argparse.ArgumentParser(description="Render animation preview strips")
     ap.add_argument("targets", nargs="+", help="GLB files, or character IDs such as HER-09")
-    ap.add_argument("--variant", type=int, default=1)
+    ap.add_argument("--variant", type=int, help="which preview (default: the newest one with a rig)")
     ap.add_argument("--frames", type=int, default=6)
     ap.add_argument("--size", type=int, default=220)
     ap.add_argument("--gif", action="store_true", help="also write animated GIFs")
@@ -317,13 +317,24 @@ def main() -> None:
         if p.suffix.lower() == ".glb":
             files.append(p.resolve())
         else:
-            files += sorted((PREVIEWS / t / f"v{args.variant}" / "rig").glob("*.glb"))
+            if args.variant:
+                v = args.variant
+            else:
+                rigged = sorted((int(d.parent.name[1:]) for d in (PREVIEWS / t).glob("v*/rig")
+                                 if d.parent.name[1:].isdigit()), reverse=True)
+                if not rigged:
+                    sys.exit(f"{t} has no rigged preview yet.")
+                v = rigged[0]
+                print(f"  {t}: using v{v} (newest rigged version; --variant picks another)")
+            files += sorted((PREVIEWS / t / f"v{v}" / "rig").glob("*.glb"))
     if not files:
         sys.exit("No rigged GLBs found.")
     r = Renderer(args.size)
     sheets: list[Path] = []
     for f in files:
         sheets += render_file(f, r, args.frames, args.gif)
+    if not sheets:
+        sys.exit("Those files have no animation clips to draw (a rig on its own has only the bind pose).")
     for folder in sorted({s.parent for s in sheets}):
         # every strip in the folder, not just this run's, so the overview stays complete
         strips = sorted((p for p in folder.glob("*.png") if p.name != "overview.png"),

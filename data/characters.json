@@ -66,17 +66,17 @@
     },
     "bear": {
       "name": "Brown Bear",
-      "rig": "MON-15/v1/rig/rigged.glb",
+      "rig": "MON-15/v2/rig/rigged.glb",
       "static": "MON-15/v1/textured/model.glb",
       "height_m": 1.35,
       "clips": {
-        "idle":    {"file": "MON-15/v1/rig/animations_1.glb", "clip": 0, "loop": true},
-        "alert":   {"file": "MON-15/v1/rig/animations_1.glb", "clip": 1, "loop": true},
-        "attack1": {"file": "MON-15/v1/rig/animations_1.glb", "clip": 2, "speed": 1.0},
-        "attack2": {"file": "MON-15/v1/rig/animations_1.glb", "clip": 3, "speed": 1.0},
-        "death":   {"file": "MON-15/v1/rig/animations_1.glb", "clip": 4},
-        "walk":    {"file": "MON-15/v1/rig/walking.glb", "clip": 0, "loop": true, "move_speed": 1.1},
-        "run":     {"file": "MON-15/v1/rig/running.glb", "clip": 0, "loop": true, "move_speed": 5.0}
+        "idle":    {"file": "MON-15/v2/rig/animations_1.glb", "clip": 0, "loop": true},
+        "alert":   {"file": "MON-15/v2/rig/animations_1.glb", "clip": 1, "loop": true},
+        "attack1": {"file": "MON-15/v2/rig/animations_1.glb", "clip": 2, "speed": 1.0},
+        "attack2": {"file": "MON-15/v2/rig/animations_1.glb", "clip": 3, "speed": 1.0},
+        "death":   {"file": "MON-15/v2/rig/animations_1.glb", "clip": 4},
+        "walk":    {"file": "MON-15/v2/rig/walking.glb", "clip": 0, "loop": true, "move_speed": 1.1},
+        "run":     {"file": "MON-15/v2/rig/running.glb", "clip": 0, "loop": true, "move_speed": 5.0}
       },
       "speeds": {"walk": 1.1, "run": 6.0},
       "ai": {"aggro_m": 14, "leash_m": 35, "reach_m": 2.6, "attack_every_s": [1.6, 2.8], "wander_m": 12}

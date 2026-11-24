@@ -250,6 +250,19 @@ class Skeleton:
     def bake(self, source: Path, clip_ref: str | int, loop: bool, retarget: bool = False,
              speed: float = 1.0, name: str = "") -> Clip:
         """Sample a clip from `source` onto this skeleton at BAKE_FPS."""
+        if not retarget and Path(source) != Path(self.path):
+            # Same character, different file: Meshy's animation files can order the joints
+            # differently and rotate the armature, so bake on the file's own skeleton and
+            # carry the skinning matrices over by joint name (the mesh space is the same).
+            src = load_skeleton(Path(source))
+            raw = src.bake(source, clip_ref, loop, retarget=False, speed=speed, name=name)
+            pal_src = np.einsum("fjab,jbc->fjac", raw.world.astype(float), src.ibm)
+            bind_pal = np.einsum("jab,jbc->jac", self.bind_world(), self.ibm)
+            pal = np.empty((len(raw.world), len(self.names), 4, 4))
+            for j, n in enumerate(self.names):
+                pal[:, j] = pal_src[:, src.names.index(n)] if n in src.names else bind_pal[j]
+            world = np.einsum("fjab,jbc->fjac", pal, np.linalg.inv(self.ibm))
+            return Clip(raw.name, world.astype(np.float32), raw.duration, loop, raw.native_speed, speed)
         f = open_gltf(source)
         g = f.g
         if isinstance(clip_ref, int):
@@ -257,7 +270,7 @@ class Skeleton:
         else:
             anim = next(a for a in g.animations if a.name == clip_ref)
         src_names = [n.name or "" for n in g.nodes]
-        hips = "Hips"
+        hips = next((n for n in self.node_names if n.lower() == "hips"), "Hips")
         scale_hips = 1.0
         if retarget and hips in src_names and hips in self.node_names:
             src_h = np.array(g.nodes[src_names.index(hips)].translation or [0, 0, 0], float)

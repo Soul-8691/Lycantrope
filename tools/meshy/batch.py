@@ -476,11 +476,15 @@ def cmd_animate(args) -> None:
                    else list((e.actions or {}).keys()))
         todo = [a for a in actions if a not in done_anim]
 
+    rerig = bool(args.rerig and rigs.get(key, {}).get("status") == "SUCCEEDED")
+    if rerig and not args.motion:
+        todo = list(actions)                    # a new skeleton needs every clip again
+    need_rig = rerig or rigs.get(key, {}).get("status") != "SUCCEEDED"
     steps = []
     if refines.get(key, {}).get("status") != "SUCCEEDED":
         steps.append(("texture (refine, 2K)", REFINE_CREDITS))
-    if rigs.get(key, {}).get("status") != "SUCCEEDED":
-        steps.append((f"rig ({e.rig}{f', {e.height} m' if e.height else ''}; includes walk + run clips)", RIG_CREDITS))
+    if need_rig:
+        steps.append((f"{'re-rig' if rerig else 'rig'} ({e.rig}{f', {e.height} m' if e.height else ''}; includes walk + run clips)", RIG_CREDITS))
     for i in range(0, len(todo), 10):
         chunk = todo[i:i + 10]
         steps.append((f"{len(chunk)} animations", ACTION_CREDITS * len(chunk)))
@@ -515,6 +519,14 @@ def cmd_animate(args) -> None:
     if refines.get(key, {}).get("status") != "SUCCEEDED":
         do_refine(tasks, key, prev, headers)
 
+    if rerig:                                   # keep the old records so their credits still count
+        tasks.setdefault("replaced", []).append({"key": key + " (rig)", **rigs.pop(key)})
+        for k in [k for k in anims if k == key or k.startswith(key + "#")]:
+            tasks["replaced"].append({"key": k + " (animations)", **anims.pop(k)})
+        for old in (folder / "rig").glob("animations_*.glb"):
+            old.unlink()                        # clips for the old skeleton won't fit the new one
+        save_tasks(tasks)
+
     if rigs.get(key, {}).get("status") != "SUCCEEDED":
         if rigs.get(key, {}).get("status") in ("PENDING", "IN_PROGRESS"):
             tid = rigs[key]["task_id"]           # interrupted earlier: pick the same task back up
@@ -534,10 +546,17 @@ def cmd_animate(args) -> None:
         res = t.get("result") or {}
         if res.get("rigged_character_glb_url"):
             save_url(res["rigged_character_glb_url"], folder / "rig" / "rigged.glb", key)
-        for clip, url in ((res.get("basic_animations") or {}).items()):
-            if url and clip.endswith("_glb_url") and "armature" not in clip:
+        basic = {c: u for c, u in (res.get("basic_animations") or {}).items() if u}
+        for clip, url in basic.items():
+            if clip.endswith("_glb_url") and "armature" not in clip:
                 save_url(url, folder / "rig" / (clip.replace("_glb_url", "") + ".glb"), key)
         print("  rigged")
+        if not basic and todo:
+            # Meshy gives no walk/run when it doesn't recognise the skeleton, and then
+            # refuses animations, so stop here instead of sending a doomed request.
+            sys.exit("  ! Meshy rigged it but returned no walk/run clips, which means it didn't recognise "
+                     "the skeleton; it would refuse animations. Try --rerig again, or a new preview "
+                     "in a plainer standing pose.")
 
     def new_anim_key() -> str:
         n = 0
@@ -644,6 +663,8 @@ def main() -> None:
     a.add_argument("id", help="character ID from characters.json, such as HER-09")
     a.add_argument("--variant", type=int, default=1, help="which preview to use (v1, v2, ...)")
     a.add_argument("--actions", help="comma-separated animation library IDs (default: from characters.json)")
+    a.add_argument("--rerig", action="store_true",
+                   help="rig again even though a rig exists (new skeleton; clips are redone too)")
     a.add_argument("--motion", help="describe a custom move for Text to Motion instead of library actions")
     a.add_argument("--name", help="short name for the motion clip's file (default: from the prompt)")
     a.add_argument("--duration", type=float, default=3.0, help="motion length, 2-10 s in 0.5 steps")

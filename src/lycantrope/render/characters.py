@@ -162,7 +162,9 @@ class CharType:
     attachments: list[Attachment] = field(default_factory=list)
     armor: GpuMesh | None = None
     armor_slots: tuple[str, ...] = ()
-    height: float = 1.0
+    height: float = 1.0           # in the world, after scale
+    scale: float = 1.0            # rigs Meshy left at their own size (quadrupeds) -> height_m
+    lift: float = 0.0             # raise the rig so its bind-pose feet sit on y = 0 (rig units)
 
 
 def _fit_cached(body: MeshData, skel: Skeleton, outfit_path: Path, rig_path: Path) -> MeshData:
@@ -182,7 +184,11 @@ def _fit_cached(body: MeshData, skel: Skeleton, outfit_path: Path, rig_path: Pat
 def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> CharType:
     rig = MODELS / spec["rig"] if spec.get("rig") else None
     ai = AiParams(**{k: tuple(v) if isinstance(v, list) else v for k, v in spec["ai"].items()}) if "ai" in spec else None
-    if rig is not None and rig.exists():
+    idle = spec.get("clips", {}).get("idle")
+    animated = rig is not None and rig.exists() and idle is not None and (MODELS / idle["file"]).exists()
+    if rig is not None and rig.exists() and not animated and "static" in spec:
+        print(f"characters: {key} is rigged but has no idle clip yet; drawing the static model")
+    if animated or (rig is not None and rig.exists() and "static" not in spec):
         skel = load_skeleton(rig)
         body = load_mesh(rig)
         clips, info = {}, {}
@@ -195,8 +201,13 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
             clips[name] = clip
             info[name] = ClipInfo(clip.duration, clip.loop, clip.speed, c.get("move_speed", 0.0))
         bind = skel.bind_world()
-        height = float(np.ptp((body.pos @ (bind[0] @ skel.ibm[0])[:3, :3].T)[:, 1]))
-        t = CharType(key, skel, None, clips, info, spec["speeds"], ai, height=height)
+        m2w = bind[0] @ skel.ibm[0]
+        bind_y = body.pos @ m2w[:3, 1] + m2w[1, 3]
+        height = float(np.ptp(bind_y))
+        scale = spec["height_m"] / height if "height_m" in spec else 1.0
+        # Meshy's quadruped rigs put the origin mid-body, so lift them onto the ground
+        t = CharType(key, skel, None, clips, info, spec["speeds"], ai, height=height * scale, scale=scale,
+                     lift=-float(bind_y.min()))
         # armor first: it decides which body parts are drawn
         slots = None
         eq = spec.get("equipment", {})
@@ -409,6 +420,12 @@ class CharacterSystem:
             model = np.eye(4)
             model[:3, 3] = (x, y, z)
             model = model @ rot_y(h)
+            if t.scale != 1.0:
+                model = model @ np.diag([t.scale, t.scale, t.scale, 1.0])
+            if abs(t.lift) > 1e-4:
+                up = np.eye(4)
+                up[1, 3] = t.lift
+                model = model @ up
             drawn += 1
             if t.skel is None:
                 self._draw_static(prog, c, model)

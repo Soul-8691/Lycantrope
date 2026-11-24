@@ -1,0 +1,44 @@
+{
+  "id": "01a20fcb-4cd1-71b2-b5cd-16b43a44b9c8",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 3420986461,
+  "prompt": "large brown bear, heavy muscular body, shaggy brown fur, big shoulder hump, mouth closed, full body, standing still on all four legs, legs straight and spread apart, all four paws flat on the ground, head level and looking straight ahead, symmetrical neutral stance, not walking, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795561313606,
+  "progress": 100,
+  "started_at": 1795561313616,
+  "finished_at": 1795561373019,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20fcb-4cd1-71b2-b5cd-16b43a44b9c8/output/model.glb?Expires=4949078400&Signature=ajuBYCdGg0njiMHZxf2S4M-rQEq8RLQyl7TOwGt6Wr60bnu5EC6RlorcdPFU817GtOXeThmwAAKilkg-8ER4UYpL94hKf8-i0TtApg5mmJuIxo3SgTMKpL5TQ66ge6qx-cTHK0VH76PMBh~VlweIjh9ocCo987187Glo2YI4vX3A4GkVgqX2rvdbaxA35r4LnhCb52Ju-7pcWhRkL8yVQqWtSLrOAXJnIPQdEPKCeJ~qSTe2Gcr4ZI~g0TOmB9DjdIemDhyDGEfduNfyqJHtoXnLzf2OCxdpyh9sc00hAdQecRZCY5bwpIUFcN6nUDPt2FipVgtxJmykkuKe-J~ZVw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20fcb-4cd1-71b2-b5cd-16b43a44b9c8/output/preview.png?Expires=4949078400&Signature=OQJ-mmC37jWcWESkYwBAMhS~l-5ww4fdgOzTvfX2uPLtsTvcfRPPxHbeFanaONPeDdAlt6YUIEUwBinZqLfS0FvNNMvSqOMvQ5k2ABR9kEhbN~vQ0tov-OzwLcUlWZV3jpkOk81rz8Bq226dfOhaZnUDcYLnJWlpAryFcVYCCQq92RK~gQcS37ulHeEVqm~sV9SLmMuwN9pQzpgnNTP9QIi9knj9ZXM~gNjhYo-RaiIuSgVcSKbNSBQcqqurHHTd3K9FWTEk33ajUky~EI7uStI3bE5OD7~Do3of~rzXZ5AHkvwBFqMcKIkinB10VeIPDWxDd6~aZH5xLVbyu9T56g__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "large brown bear, heavy muscular body, shaggy brown fur, big shoulder hump, mouth closed, full body, standing still on all four legs, legs straight and spread apart, all four paws flat on the ground, head level and looking straight ahead, symmetrical neutral stance, not walking, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 8000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 3420986461,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20fcb-4cd1-71b2-b5cd-16b43a44b9c8/output/model.glb?Expires=4949078400&Signature=ajuBYCdGg0njiMHZxf2S4M-rQEq8RLQyl7TOwGt6Wr60bnu5EC6RlorcdPFU817GtOXeThmwAAKilkg-8ER4UYpL94hKf8-i0TtApg5mmJuIxo3SgTMKpL5TQ66ge6qx-cTHK0VH76PMBh~VlweIjh9ocCo987187Glo2YI4vX3A4GkVgqX2rvdbaxA35r4LnhCb52Ju-7pcWhRkL8yVQqWtSLrOAXJnIPQdEPKCeJ~qSTe2Gcr4ZI~g0TOmB9DjdIemDhyDGEfduNfyqJHtoXnLzf2OCxdpyh9sc00hAdQecRZCY5bwpIUFcN6nUDPt2FipVgtxJmykkuKe-J~ZVw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20fcb-4cd1-71b2-b5cd-16b43a44b9c8/output/preview.png?Expires=4949078400&Signature=OQJ-mmC37jWcWESkYwBAMhS~l-5ww4fdgOzTvfX2uPLtsTvcfRPPxHbeFanaONPeDdAlt6YUIEUwBinZqLfS0FvNNMvSqOMvQ5k2ABR9kEhbN~vQ0tov-OzwLcUlWZV3jpkOk81rz8Bq226dfOhaZnUDcYLnJWlpAryFcVYCCQq92RK~gQcS37ulHeEVqm~sV9SLmMuwN9pQzpgnNTP9QIi9knj9ZXM~gNjhYo-RaiIuSgVcSKbNSBQcqqurHHTd3K9FWTEk33ajUky~EI7uStI3bE5OD7~Do3of~rzXZ5AHkvwBFqMcKIkinB10VeIPDWxDd6~aZH5xLVbyu9T56g__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}
