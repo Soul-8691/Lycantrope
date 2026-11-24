@@ -223,6 +223,46 @@
       "prompt": "large brown bear, heavy muscular body, shaggy brown fur, big shoulder hump, mouth closed, full body, standing on all four legs in a neutral pose, facing forward, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795554944.1478207,
       "credits": 20
+    },
+    "TRS-05/v1": {
+      "task_id": "01a20f8e-37e2-766b-a1d8-46e5b308db6b",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "full set of chainmail armor worn by a plain smooth featureless grey mannequin with the slim build of an 18-year-old young man, standing in A-pose: chainmail coif hood with a simple round steel cap, knee-length chainmail hauberk with a plain belted cloth surcoat, chainmail mittens over leather gloves, chainmail leggings with tall leather boots, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795557310.3783224,
+      "credits": 20
+    },
+    "ITM-01/v1": {
+      "task_id": "01a20f8f-888c-717d-b76f-b2a54c51f17b",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "old rusty longsword, plain crossguard, leather-wrapped grip, chipped blade, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795557396.7889118,
+      "credits": 5
+    },
+    "ITM-02/v1": {
+      "task_id": "01a20f8f-9257-738f-898c-b4641c243aa3",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "elegant longsword with polished steel blade, gold inlay along the fuller, ornate crossguard, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795557398.8317614,
+      "credits": 5
+    },
+    "ITM-03/v1": {
+      "task_id": "01a20f8f-9a4e-76ce-857a-e6ec17ae6511",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "legendary holy longsword, sun-shaped crossguard, glowing gem in the pommel, engraved blade, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795557401.1267753,
+      "credits": 5
+    },
+    "ONE-04/v1": {
+      "task_id": "01a20f8f-a345-75c5-86fe-63098c276919",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "crude jagged goblin knife, rusty serrated blade, rag-wrapped handle, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795557403.287399,
+      "credits": 5
     }
   },
   "replaced": [
@@ -248,6 +288,12 @@
       "task_id": "01a20f6c-fdea-71ea-a82a-ad639113ed7b",
       "status": "SUCCEEDED",
       "created": 1795555130.9602103,
+      "credits": 10
+    },
+    "TRS-05/v1": {
+      "task_id": "01a20f90-bf5d-70e3-b6cc-4f1648e06bc8",
+      "status": "SUCCEEDED",
+      "created": 1795557474.2365334,
       "credits": 10
     }
   },

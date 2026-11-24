@@ -6,5 +6,6 @@
     "CLT-01", "CLT-02", "CLT-03", "CLT-10",
     "TRE-01", "PLT-01"
   ],
-  "characters-1": ["HER-09", "ENM-02", "ENM-03", "MON-15"]
+  "characters-1": ["HER-09", "ENM-02", "ENM-03", "MON-15"],
+  "weapons-1": ["ITM-01", "ITM-02", "ITM-03", "ONE-04"]
 }

@@ -34,6 +34,12 @@
       "prompt": "small wiry goblin, green skin, long pointed ears, large yellow eyes, sly sharp-toothed grin, ragged leather hood and vest, cloth wraps on bare feet, empty hands, full body, standing in A-pose",
       "tris": 6000, "rig": "biped", "pose": "a-pose", "height_m": 1.1
     },
+    "TRS-05": {
+      "name": "Chainmail set 05, whole outfit (Mail Coif, Mail Gloves, Hauberk, Mail Chausses)",
+      "_note": "ARS-05: one generation for all four pieces, on a mannequin with Rowan's build and pose; split by bone and given Rowan's skin weights later. Keyed by the torso piece.",
+      "prompt": "full set of chainmail armor worn by a plain smooth featureless grey mannequin with the slim build of an 18-year-old young man, standing in A-pose: chainmail coif hood with a simple round steel cap, knee-length chainmail hauberk with a plain belted cloth surcoat, chainmail mittens over leather gloves, chainmail leggings with tall leather boots, empty hands, full body",
+      "tris": 15000, "pose": "a-pose"
+    },
     "MON-15": {
       "name": "Brown Bear",
       "prompt": "large brown bear, heavy muscular body, shaggy brown fur, big shoulder hump, mouth closed, full body, standing on all four legs in a neutral pose, facing forward",

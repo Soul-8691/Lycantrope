@@ -389,6 +389,55 @@ def wait(url: str, task_id: str, headers: dict, label: str) -> dict:
             print(f"    {label}: {t['status'].lower()} {last}%")
 
 
+def do_refine(tasks: dict, key: str, prev: dict, headers: dict, texture_prompt: str | None = None) -> None:
+    """Texture a finished preview (text-to-3D refine) and download it to <key>/textured/."""
+    refines = tasks.setdefault("refines", {})
+    body = {"mode": "refine", "preview_task_id": prev["task_id"], "enable_pbr": False}
+    if texture_prompt:
+        body["texture_prompt"] = texture_prompt
+    tid = submit(API, body, headers)
+    refines[key] = {"task_id": tid, "status": "PENDING", "created": time.time()}
+    save_tasks(tasks)
+    t = wait(API, tid, headers, "texture")
+    refines[key].update(status=t["status"], credits=t.get("consumed_credits"))
+    save_tasks(tasks)
+    if t["status"] != "SUCCEEDED":
+        sys.exit(f"  ! texture {t['status']}: {(t.get('task_error') or {}).get('message')}")
+    folder = OUT_DIR / key.replace("/", os.sep) / "textured"
+    if t.get("model_urls", {}).get("glb"):
+        save_url(t["model_urls"]["glb"], folder / "model.glb", key)
+    if t.get("thumbnail_url"):
+        save_url(t["thumbnail_url"], folder / "thumb.png", key)
+    print(f"  textured -> {folder.relative_to(ROOT)}")
+
+
+def cmd_texture(args) -> None:
+    if statuses().get(args.id) != "approved":
+        sys.exit(f"{args.id} isn't approved in the tracker.")
+    key = f"{args.id}/v{args.variant}"
+    tasks = load_tasks()
+    prev = tasks["previews"].get(key)
+    if not prev or prev.get("status") != "SUCCEEDED":
+        sys.exit(f"No finished preview {key}. Make the preview first (batch.py preview {args.id}).")
+    if tasks.get("refines", {}).get(key, {}).get("status") == "SUCCEEDED" and not args.redo:
+        print(f"{key} is already textured (add --redo to texture it again).")
+        return
+    print(f"\nMeshy texture (refine, 2K) for {key}: {REFINE_CREDITS} credits")
+    if args.texture_prompt:
+        print(f"  Texture prompt: {args.texture_prompt}")
+    if not args.send:
+        print("\n  Dry run: nothing was sent. Add --send to run it.")
+        return
+    typed = input(f"\nThis spends {REFINE_CREDITS} Meshy credits. Type {REFINE_CREDITS} to go on: ").strip()
+    if typed != str(REFINE_CREDITS):
+        sys.exit("Cancelled. Nothing was sent.")
+    old = tasks.get("refines", {}).get(key)
+    if old:
+        tasks.setdefault("replaced", []).append({"key": key + " (texture)", **old})
+    do_refine(tasks, key, prev, {"Authorization": f"Bearer {api_key()}"}, args.texture_prompt)
+    print(f"\nCredits recorded so far: {credits_spent(tasks)}")
+
+
 def cmd_animate(args) -> None:
     entries = parse_entries()
     e = entries.get(args.id)
@@ -454,19 +503,7 @@ def cmd_animate(args) -> None:
     folder = OUT_DIR / key.replace("/", os.sep)
 
     if refines.get(key, {}).get("status") != "SUCCEEDED":
-        tid = submit(API, {"mode": "refine", "preview_task_id": prev["task_id"], "enable_pbr": False}, headers)
-        refines[key] = {"task_id": tid, "status": "PENDING", "created": time.time()}
-        save_tasks(tasks)
-        t = wait(API, tid, headers, "texture")
-        refines[key].update(status=t["status"], credits=t.get("consumed_credits"))
-        save_tasks(tasks)
-        if t["status"] != "SUCCEEDED":
-            sys.exit(f"  ! texture {t['status']}: {(t.get('task_error') or {}).get('message')}")
-        if t.get("model_urls", {}).get("glb"):
-            save_url(t["model_urls"]["glb"], folder / "textured" / "model.glb", key)
-        if t.get("thumbnail_url"):
-            save_url(t["thumbnail_url"], folder / "textured" / "thumb.png", key)
-        print("  textured")
+        do_refine(tasks, key, prev, headers)
 
     if rigs.get(key, {}).get("status") != "SUCCEEDED":
         body = {"input_task_id": refines[key]["task_id"], "animation_type": e.rig}
@@ -583,6 +620,12 @@ def main() -> None:
     p.add_argument("--show-prompts", action="store_true")
     p.add_argument("--send", action="store_true", help="actually call Meshy (spends credits)")
     sub.add_parser("status", help="list recorded preview tasks")
+    tx = sub.add_parser("texture", help="texture (refine) one chosen preview")
+    tx.add_argument("id", help="ID such as TRS-05")
+    tx.add_argument("--variant", type=int, default=1)
+    tx.add_argument("--texture-prompt", help="optional extra guidance for the texture")
+    tx.add_argument("--redo", action="store_true", help="texture again even if already textured")
+    tx.add_argument("--send", action="store_true", help="actually call Meshy (spends credits)")
     a = sub.add_parser("animate", help="texture, rig and animate a character's chosen preview")
     a.add_argument("id", help="character ID from characters.json, such as HER-09")
     a.add_argument("--variant", type=int, default=1, help="which preview to use (v1, v2, ...)")
@@ -599,6 +642,9 @@ def main() -> None:
         return
     if args.cmd == "animate":
         cmd_animate(args)
+        return
+    if args.cmd == "texture":
+        cmd_texture(args)
         return
     jobs = plan(args)
     if not jobs:
