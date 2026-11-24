@@ -12,7 +12,7 @@ Armor Rowan can find and wear (HER-07: visible armor swaps). There are **14 sets
 - **Poise** adds to stagger resistance (CMB-10).
 - **Wt** is weight. Total weight against equip load (`40 + 1.5 × Endurance`) decides the roll type (CMB-26): under 30% fast, under 70% medium, above that slow.
 - **Res** is a resistance change for the damage types in CMB-18 (fire, frost, radiant) and the status buildups in CMB-19 (bleed, poison, frost, stone). `+` means it takes less, `−` means it takes more.
-- **Req** is the attribute requirement (STA-04: Might, Finesse, Vigor, Endurance, Spirit, Fortune; every attribute starts at 10). What happens when you don't meet it is set by ARS-01 below.
+- **Req** is the attribute requirement (STA-04: Might, Dexterity, Vigor, Endurance, Faith, Fortune; every attribute starts at 10). What happens when you don't meet it is set by ARS-01 below.
 - **Prompt** is the Meshy prompt. The batch script adds the shared style line (ART-02).
 - ⭐ = needed for the First Playable.
 
@@ -20,7 +20,7 @@ Armor Rowan can find and wear (HER-07: visible armor swaps). There are **14 sets
 
 | Class | Total Def | Total Poise | Total Wt | Typical requirements |
 |---|---|---|---|---|
-| Light | 15–30 | 0–6 | 4–9 | Finesse, Spirit or Fortune |
+| Light | 15–30 | 0–6 | 4–9 | Dexterity, Faith or Fortune |
 | Medium | 32–55 | 8–20 | 10–20 | Endurance, Vigor |
 | Heavy | 60–90 | 24–45 | 22–34 | Might + Endurance |
 
@@ -56,12 +56,12 @@ Quilted gear from the burned watchtower's stores. **Req:** Endurance 11. **Set b
 
 ## 3. Ranger's Leathers (set 03)
 
-Supple leathers of the Wolfwood's old wardens. **Req:** Finesse 14. **Set bonus:** the crossbow reloads 20% faster. *(Light; total Def 24, Poise 2, Wt 6.)*
+Supple leathers of the Wolfwood's old wardens. **Req:** Dexterity 14. **Set bonus:** the crossbow reloads 20% faster. *(Light; total Def 24, Poise 2, Wt 6.)*
 
-- [HED-03] **Ranger's Hood** — Deep green hood with a leather half-mask. · Light · Def 5 · Poise 0 · Wt 0.8 · Res: poison +5% · Req: Finesse 12. Prompt: "deep green ranger hood with a leather half face mask" *(Hunter's Lodge)*
-- [ARM-03] **Archer's Bracers** — Laced leather bracers and a shooting glove. · Light · Def 4 · Poise 0 · Wt 0.8 · Res: — · Req: Finesse 14. Prompt: "laced leather archer bracers and a shooting glove" *(Hunter's Lodge)*
-- [TRS-03] **Ranger's Jerkin** — Fitted leather jerkin with a green cloak. · Light · Def 9 · Poise 1 · Wt 2.6 · Res: poison +5% · Req: Finesse 14. Prompt: "fitted leather ranger jerkin with a short green hooded cloak and belts" *(Hunter's Lodge)*
-- [LEG-03] **Ranger's Breeches** — Soft breeches and quiet, high boots. · Light · Def 6 · Poise 1 · Wt 1.8 · Res: — · Req: Finesse 12. Prompt: "soft leather breeches and tall quiet ranger boots" *(Hunter's Lodge)*
+- [HED-03] **Ranger's Hood** — Deep green hood with a leather half-mask. · Light · Def 5 · Poise 0 · Wt 0.8 · Res: poison +5% · Req: Dexterity 12. Prompt: "deep green ranger hood with a leather half face mask" *(Hunter's Lodge)*
+- [ARM-03] **Archer's Bracers** — Laced leather bracers and a shooting glove. · Light · Def 4 · Poise 0 · Wt 0.8 · Res: — · Req: Dexterity 14. Prompt: "laced leather archer bracers and a shooting glove" *(Hunter's Lodge)*
+- [TRS-03] **Ranger's Jerkin** — Fitted leather jerkin with a green cloak. · Light · Def 9 · Poise 1 · Wt 2.6 · Res: poison +5% · Req: Dexterity 14. Prompt: "fitted leather ranger jerkin with a short green hooded cloak and belts" *(Hunter's Lodge)*
+- [LEG-03] **Ranger's Breeches** — Soft breeches and quiet, high boots. · Light · Def 6 · Poise 1 · Wt 1.8 · Res: — · Req: Dexterity 12. Prompt: "soft leather breeches and tall quiet ranger boots" *(Hunter's Lodge)*
 
 ## 4. Bandit's Spoils (set 04)
 
@@ -110,12 +110,12 @@ Mountain gear lined with Frost Yeti fur. **Req:** Vigor 18, Endurance 14. **Set 
 
 ## 9. Sage's Vestments (set 09)
 
-Robes in the style of Aldric Greymantle, the mentor. **Req:** Spirit 18. **Set bonus:** Rites (CMB-29) cast 20% faster. *(Light; total Def 18, Poise 0, Wt 5.)*
+Robes in the style of Aldric Greymantle, the mentor. **Req:** Faith 18. **Set bonus:** Rite cooldowns (CMB-34) are 20% shorter. *(Light; total Def 18, Poise 0, Wt 5.)*
 
-- [HED-09] **Sage's Hood** — Deep grey hood stitched with faint silver runes. · Light · Def 3 · Poise 0 · Wt 0.6 · Res: radiant +5% · Req: Spirit 16. Prompt: "deep grey wizard hood stitched with faint silver runes" *(Aldric's camp)*
-- [ARM-09] **Wrapped Sleeves** — Rune-inked cloth wraps around the forearms. · Light · Def 3 · Poise 0 · Wt 0.6 · Res: — · Req: Spirit 16. Prompt: "wide wizard robe sleeves with rune inked cloth wraps around the forearms" *(Aldric's camp)*
-- [TRS-09] **Greymantle Robe** — Layered grey robes with a satchel and a silver clasp. · Light · Def 7 · Poise 0 · Wt 2.4 · Res: radiant +10%, fire +5% · Req: Spirit 18. Prompt: "layered grey wizard robes with a leather satchel and a silver clasp" *(Aldric's camp)*
-- [LEG-09] **Traveller's Sandals** — Robe skirts over wrapped trousers and sturdy sandals. · Light · Def 5 · Poise 0 · Wt 1.4 · Res: — · Req: Spirit 16. Prompt: "long robe skirts over wrapped cloth trousers and sturdy leather sandals" *(Aldric's camp)*
+- [HED-09] **Sage's Hood** — Deep grey hood stitched with faint silver runes. · Light · Def 3 · Poise 0 · Wt 0.6 · Res: radiant +5% · Req: Faith 16. Prompt: "deep grey wizard hood stitched with faint silver runes" *(Aldric's camp)*
+- [ARM-09] **Wrapped Sleeves** — Rune-inked cloth wraps around the forearms. · Light · Def 3 · Poise 0 · Wt 0.6 · Res: — · Req: Faith 16. Prompt: "wide wizard robe sleeves with rune inked cloth wraps around the forearms" *(Aldric's camp)*
+- [TRS-09] **Greymantle Robe** — Layered grey robes with a satchel and a silver clasp. · Light · Def 7 · Poise 0 · Wt 2.4 · Res: radiant +10%, fire +5% · Req: Faith 18. Prompt: "layered grey wizard robes with a leather satchel and a silver clasp" *(Aldric's camp)*
+- [LEG-09] **Traveller's Sandals** — Robe skirts over wrapped trousers and sturdy sandals. · Light · Def 5 · Poise 0 · Wt 1.4 · Res: — · Req: Faith 16. Prompt: "long robe skirts over wrapped cloth trousers and sturdy leather sandals" *(Aldric's camp)*
 
 ## 10. Watch Plate (set 10)
 
@@ -137,11 +137,11 @@ Hide and bone armor of the Ashen warband. **Req:** Might 22. **Set bonus:** +20%
 
 ## 12. Emberforged (set 12)
 
-Dark iron plate reforged in the Cinder Forge; the seams still glow. **Req:** Might 24, Endurance 22, Spirit 14. **Set bonus:** immune to burn buildup, and your heavy attacks leave a short fire trail. *(Heavy; total Def 72, Poise 34, Wt 28.)*
+Dark iron plate reforged in the Cinder Forge; the seams still glow. **Req:** Might 24, Endurance 22, Faith 14. **Set bonus:** immune to burn buildup, and your heavy attacks leave a short fire trail. *(Heavy; total Def 72, Poise 34, Wt 28.)*
 
-- [HED-12] **Emberforged Helm** — Dark iron helm with glowing seams and a grilled visor. · Heavy · Def 14 · Poise 7 · Wt 4.6 · Res: fire +15% · Req: Might 22, Spirit 14. Prompt: "dark iron helmet with glowing orange cracks along the seams, grilled visor" *(Cinder Forge)*
+- [HED-12] **Emberforged Helm** — Dark iron helm with glowing seams and a grilled visor. · Heavy · Def 14 · Poise 7 · Wt 4.6 · Res: fire +15% · Req: Might 22, Faith 14. Prompt: "dark iron helmet with glowing orange cracks along the seams, grilled visor" *(Cinder Forge)*
 - [ARM-12] **Emberforged Gauntlets** — Heavy gauntlets with ember-glowing knuckles. · Heavy · Def 13 · Poise 6 · Wt 4.2 · Res: fire +15% · Req: Might 22. Prompt: "heavy dark iron gauntlets with glowing orange cracks at the knuckles" *(Cinder Forge)*
-- [TRS-12] **Emberforged Cuirass** — Layered dark iron plate with a molten core glow. · Heavy · Def 29 · Poise 14 · Wt 12.6 · Res: fire +25%, frost −10% · Req: Might 24, Endurance 22, Spirit 14. Prompt: "layered dark iron plate chest armor with a glowing molten core and glowing seams" *(Cinder Colossus, BOS-05)*
+- [TRS-12] **Emberforged Cuirass** — Layered dark iron plate with a molten core glow. · Heavy · Def 29 · Poise 14 · Wt 12.6 · Res: fire +25%, frost −10% · Req: Might 24, Endurance 22, Faith 14. Prompt: "layered dark iron plate chest armor with a glowing molten core and glowing seams" *(Cinder Colossus, BOS-05)*
 - [LEG-12] **Emberforged Greaves** — Dark iron greaves with glowing knee plates. · Heavy · Def 16 · Poise 7 · Wt 6.6 · Res: fire +15% · Req: Might 22, Endurance 20. Prompt: "dark iron leg armor with glowing orange cracks at the knee plates" *(Cinder Forge)*
 
 ## 13. Dread Plate (set 13)
@@ -155,9 +155,9 @@ The black plate of the Dark Lord's Dread Knights (ENM-19). **Req:** Might 28, En
 
 ## 14. Mantle of the First Hero (set 14)
 
-The ancient hero's own armor, the Dawnblade's first owner. One piece lies in each Crown Shard dungeon (STY-03). **Req:** a balanced build (Vigor 25, Finesse 20, Might 20, Spirit 20). **Set bonus:** the Dawnblade deals 15% more damage and radiant resistance rises by 20%. *(Medium; total Def 56, Poise 20, Wt 18.)*
+The ancient hero's own armor, the Dawnblade's first owner. One piece lies in each Crown Shard dungeon (STY-03). **Req:** a balanced build (Vigor 25, Dexterity 20, Might 20, Faith 20). **Set bonus:** the Dawnblade deals 15% more damage and radiant resistance rises by 20%. *(Medium; total Def 56, Poise 20, Wt 18.)*
 
-- [HED-14] **Circlet of the First Hero** — Simple gold circlet with a sun-stone, and an open-faced mail hood. · Medium · Def 11 · Poise 4 · Wt 2.4 · Res: radiant +10% · Req: Spirit 20. Prompt: "simple gold circlet with a sun stone over an open faced chainmail hood, ancient hero" *(Wolfwood dungeon)*
-- [ARM-14] **Vambraces of the First Hero** — Engraved bronze vambraces with sun motifs. · Medium · Def 11 · Poise 4 · Wt 2.8 · Res: radiant +5% · Req: Finesse 20. Prompt: "engraved bronze vambraces with sun motifs and leather gloves, ancient hero" *(Blackmire dungeon)*
+- [HED-14] **Circlet of the First Hero** — Simple gold circlet with a sun-stone, and an open-faced mail hood. · Medium · Def 11 · Poise 4 · Wt 2.4 · Res: radiant +10% · Req: Faith 20. Prompt: "simple gold circlet with a sun stone over an open faced chainmail hood, ancient hero" *(Wolfwood dungeon)*
+- [ARM-14] **Vambraces of the First Hero** — Engraved bronze vambraces with sun motifs. · Medium · Def 11 · Poise 4 · Wt 2.8 · Res: radiant +5% · Req: Dexterity 20. Prompt: "engraved bronze vambraces with sun motifs and leather gloves, ancient hero" *(Blackmire dungeon)*
 - [TRS-14] **Breastplate of the First Hero** — Bronze-and-steel breastplate under a weathered white tabard with a sun emblem. · Medium · Def 21 · Poise 8 · Wt 8.4 · Res: radiant +15%, frost +5%, fire +5% · Req: Vigor 25, Might 20. Prompt: "bronze and steel breastplate under a weathered white tabard with a sun emblem, ancient hero" *(Frostfang dungeon)*
 - [LEG-14] **Greaves of the First Hero** — Bronze greaves and tall boots with engraved knee plates. · Medium · Def 13 · Poise 4 · Wt 4.4 · Res: radiant +5% · Req: Vigor 20. Prompt: "bronze greaves with engraved sun knee plates and tall leather boots, ancient hero" *(Ashen dungeon)*

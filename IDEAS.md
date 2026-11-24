@@ -71,7 +71,7 @@
 - [CMB-11] **Charged spin attack** — Hold light to charge a 360° spin that hits every enemy around you. Costs a lot of stamina. *(OoT, TP)*
 - [CMB-12] **Hidden techniques** — Moves found on technique scrolls in the world: shield bash, back-slice, helm-splitter, finishing stab on a downed enemy, jump strike. *(TP)*
 - [CMB-13] **Jump strike and plunge attack** — A leaping overhead strike while locked on, and a plunge when you drop onto an enemy from a ledge. *(OoT, DS)*
-- [CMB-14] **Hit feel** — Hitstop (50–90 ms), camera shake, a small FOV punch, sparks and impact sounds that vary by material. This matters more than anything else in this file. ⭐ *(DOC)*
+- [CMB-14] **Hit feel** — Hitstop (50–90 ms), camera shake, a small FOV punch and impact sounds that vary by material. No sparks (decided 2026-11-24). This matters more than anything else in this file. ⭐ *(DOC)*
 - [CMB-15] **Input buffering** — Attack, dodge and parry presses are buffered for about 150 ms so combos feel responsive. ⭐ *(DOC)*
 - [CMB-16] **Frame data as JSON** — Every attack lists its wind-up, active and recovery frames, the hitbox shape and path, damage, poise damage, stamina cost, cancel windows and the parryable flag. Easy to tune and to test. ⭐ *(DOC)*
 - [CMB-17] **Swept-capsule hitboxes** — The weapon's hitbox is swept between frames so fast swings don't pass through enemies. Each actor has capsule hurtboxes. ⭐ *(DOC)*
@@ -91,6 +91,13 @@
 - [CMB-31] **Kicks and environment kills** — Kick to break a guard or knock an enemy off a ledge. Explosive barrels, spike traps and falling rocks hurt enemies too. *(DS, OoT)*
 - [CMB-32] **Mounted combat on horseback** — A later stretch goal: ride a horse across the open world and fight from the saddle. *(TP, OoT)*
 
+*A casting system for Rites to replace Focus (per the note on CMB-29). Pick **one** of CMB-33 to CMB-36.*
+
+- [CMB-33] **Rite charges** — Each Rite has a few casts (for example, 3) that refill only when you rest at a Waystone. The Spirit replacement adds extra charges. Simple and readable, and it makes resting matter. **Recommended.** *(DS1)*
+- [CMB-34] **Rite cooldowns** — Each Rite recharges over time (8–30 s), like the relic powers (VAL-03), and Faith shortens cooldowns. No resource to manage, so casting is part of the rhythm of every fight. *(SK, NEW)*
+- [CMB-35] **Stamina casting** — Rites cost stamina, the same pool as attacks and dodges. One resource for everything; casting competes with defending, which keeps it tense. *(DS, NEW)*
+- [CMB-36] **Lifeblood casting** — Rites cost a slice of HP, which slowly returns out of combat. Strong spells at a real price; pairs well with high Vigor builds. *(MW, NEW)*
+
 ## 5. Valor & the Dawnblade (VAL)
 
 - [VAL-01] **Valor meter** — Fills from clean hits, parries, ripostes and close dodges. Drains slowly when you back off, and drops when you're hit. It rewards brave, skilful play. ⭐ *(NEW)*
@@ -108,17 +115,29 @@
 - [STA-01] **XP from kills** — XP depends on enemy level and the level difference between you (0.25× to 2×). The curve: `xp_to_next(L) = 100 · L^1.5`. ⭐ *(SK, DS)*
 - [STA-02] **Level up anywhere** — Once you have enough XP, open the level-up screen any time you're out of combat. No NPC. Choose this **or** STA-03. ⭐ *(SK, NEW)*
 - [STA-03] **Level up only at Waystones** — Spend XP while resting at a Waystone. It's riskier and more like Dark Souls. Choose this **or** STA-02. *(DS)*
-- [STA-04] **Six attributes** — **Might** (heavy weapons, poise damage), **Finesse** (swords, crossbow, crits), **Vigor** (HP), **Endurance** (stamina, equip load), **Spirit** (Valor gain, Awakening time, Rites), **Fortune** (crit chance, loot). Each level gives +1 point. ⭐ *(DS, MW, OB)*
+- [STA-04] **Six attributes** — **Might** (heavy weapons, poise damage), **Dexterity** (light and precise weapons, crossbow, attack recovery; STA-16), **Vigor** (HP), **Endurance** (stamina, equip load), **Faith** (radiant damage, Rites and their cooldowns, Lifewater healing; STA-20), **Fortune** (crit chance, loot). *(Finesse and Spirit were replaced on 2026-11-24.)* Each level gives +1 point. ⭐ *(DS, MW, OB)*
 - [STA-05] **Derived stats with soft caps** — HP, stamina, equip load, poise and crit chance come from the attributes through curves that slow down past 20 and again past 40. ⭐ *(DS)*
 - [STA-06] **Skills improve by use** — Blade, Blunt, Polearm, Marksman, Guard, Evasion, Athletics and Rites, each from 1 to 100. Landing hits, blocking, dodging well, sprinting and casting all raise them. ⭐ *(MW, OB, SK)*
 - [STA-07] **Hybrid progression** — Your character level (from XP) gives attribute points. Skill levels (from use) give percentage bonuses and perks. Both matter. ⭐ *(SK, DS)*
 - [STA-08] **Perks every 10 skill levels** — Choose one of two perks at each milestone. For example, Evasion 30: *longer i-frames* or *roll costs 25% less stamina*. *(SK)*
-- [STA-09] **Weapon scaling grades** — Weapons show S/A/B/C/D/E scaling with Might and Finesse, and an upgraded weapon's grades rise. *(DS)*
+- [STA-09] **Weapon scaling grades** — Weapons show S/A/B/C/D/E scaling with Might, Dexterity and Faith, and an upgraded weapon's grades rise. *(DS)*
 - [STA-10] **Fixed-level regions** — Each region has a fixed level range (the Vale is 1–5, the Peaks 12–18). The world does **not** scale to the player, so going back to an early area makes you feel powerful. ⭐ *(DS, MW)*
 - [STA-11] **Heart shards** — Hidden collectibles. Every 4 shards give +10% max HP permanently, and stamina shards work the same way. They reward exploration outside the leveling system. ⭐ *(OoT, TP)*
 - [STA-12] **Respec item** — The rare *Tear of Renewal* lets you redistribute all attribute points once. *(DS)*
 - [STA-13] **Optional damage numbers** — Floating damage numbers, off by default, with a setting to turn them on. *(NEW)*
 - [STA-14] **Stat gates** — A few heavy doors and gaps need Might or Finesse 15+ (or a relic power), which gives builds a role in exploration. *(MW, DS)*
+
+*Replacing Finesse and Spirit (2026-11-24). Pick **one** of STA-15/16/17 for Finesse and **one** of STA-18 to STA-22 for Spirit. Recommended: **Agility + Resolve**.*
+
+- [STA-15] **Agility (replaces Finesse)** — The movement stat, which suits a dodge-first game now that parries and backstabs are denied. It scales swords, spears and the crossbow, and also improves roll speed and recovery, i-frames (up to +3 frames), sprint speed and crossbow reload. Crit chance moves entirely to Fortune, so the two no longer overlap. **Recommended.** *(DS, OB, SK)*
+- [STA-16] **Dexterity (replaces Finesse)** — The classic weapon-handling stat: scaling for light and precise weapons (sword, spear, crossbow) plus faster attack recovery, so combos flow. It doesn't affect movement. *(DS, MW)*
+- [STA-17] **Precision (replaces Finesse)** — A damage-focused stat: bonus damage to weak points (armored-weakpoint enemies, a scorpion's tail, golem cores), to staggered enemies, and with crossbow bolts. Fortune keeps crit chance; Precision raises crit damage. *(DS, NEW)*
+- [STA-18] **Resolve (replaces Spirit)** — Inner grit, which fits a farmhand hero. It powers Rites and shortens relic power cooldowns (VAL-03), and resists status buildup (poison, bleed, frost, stone), fear screams and grabs. It gives a magic build and a tank build a reason to share a stat. **Recommended.** *(SK, MW, NEW)*
+- [STA-19] **Arcana (replaces Spirit)** — A pure magic stat: Rite damage and effect, the number of Rites you can equip, relic power strength, and magic resistance. The clearest choice if you want a dedicated caster build. *(OB, SK, DS)*
+- [STA-20] **Faith (replaces Spirit)** — Holy power, tying into the Dawnblade and the ancient hero: radiant damage (the Dawnblade's light, holy water, blessed bolts), Rites as prayers, and stronger Lifewater healing. *(DS, OoT)*
+- [STA-21] **Willpower (replaces Spirit)** — Mental toughness: keeps your guard and casts from being interrupted, adds Rite charges or shortens cooldowns (whichever casting system wins), and resists status buildup. Less magical than Arcana, broader than Faith. *(MW, OB)*
+- [STA-22] **Five attributes (drop Spirit, no replacement)** — Remove the stat entirely: Rites scale with Vigor and relic powers with Fortune. A simpler level-up screen, but magic stops being a build of its own. *(NEW)*
+- [STA-23] **Attunement slots** — However Spirit is replaced, its successor also sets how many Rites and relic powers you can equip at once (1 slot at start, +1 at 15, 25 and 40), so investing changes your toolkit, not just your numbers. *(DS1)*
 
 ## 7. Enemies (ENM)
 
@@ -229,7 +248,7 @@
 - [ART-06] **Polygon and texture budgets** — Props 300–2k triangles, enemies 5–15k, Rowan and bosses up to 25k. Textures 512–2048 px. Meshy's remesh enforces the targets. ⭐ *(DOC)*
 - [ART-07] **Python normalizer (no Blender needed)** — A `trimesh`/`pygltflib` script that fixes scale (1 unit = 1 m), forward axis, pivot at the feet, makes LODs by decimation and builds collision capsules and boxes. ⭐ *(DOC)*
 - [ART-08] **Procedural terrain textures** — Grass, dirt, rock, snow, mud and ash made with numpy noise (albedo and normal), blended by slope, height and the biome mask with triplanar projection. ⭐ *(NEW)*
-- [ART-09] **Procedural sky** — A shader gradient, sun, moon, stars, Duskhold's storm cloud, and a red tint on Shadow Moon nights. No texture assets needed. ⭐ *(NEW)*
+- [ART-09] **Procedural sky** — A shader gradient and sun (built), with a moon, stars and Duskhold's storm cloud to come. Colors and sun position live in `data/world/sky.json`. No texture assets needed. ⭐ *(NEW)*
 - [ART-10] **Instanced grass with wind** — Grass blades generated by GPU instancing and moved by wind in the shader, with density from the biome mask. ⭐ *(NEW)*
 - [ART-11] **Scripted modular dungeon kit** — Python builds wall, floor, arch, stair and pillar meshes from parameters, then Meshy's AI texturing gives them surfaces. *(DOC)*
 - [ART-12] **Post-processing stack** — Height fog, bloom, ACES tone mapping, vignette, and color grading for each biome from LUTs generated by script. ⭐ *(DOC)*
@@ -238,6 +257,8 @@
 - [ART-15] **Unifying shading** — Soft toon ramp, rim light and shared fog so that AI models in slightly different styles still look like they belong together. ⭐ *(DOC)*
 - [ART-16] **Asset previewer** — A small tool that shows each Meshy result on a turntable next to Rowan for scale, with Accept, Reject and Re-roll buttons (same approach as the idea tracker). *(DOC)*
 - [ART-17] **Dawnblade stages** — Four versions of the sword model (rusty → restored → glowing → Awakened), plus an emissive glow driven by a shader uniform. ⭐ *(NEW)*
+- [ART-18] **Painted skybox** — A hand-painted-looking sky panorama, painted by `tools/worldgen/skybox.py` from `data/world/sky.json`: soft color bands, brushy two-tone clouds, and the sun exactly where the game's light comes from. Distant fog and water reflections take their colors from the painting. *(Tried and removed on 2026-11-24; the procedural sky, ART-09, looked better.)* ⭐ *(NEW)*
+- [ART-19] **Rite effects as Meshy meshes** — Instead of particles (ART-13 was denied), each visual effect is a small Meshy mesh, such as a burst, a dome or a floating sigil. The game animates it in code (scale, spin, fade) and draws it with a glowing, see-through shader. The same approach covers fire on torches, campfires and braziers. The meshes are listed in OBJECTS.md under Effects (VFX). ⭐ *(NEW)*
 
 ## 13. Engine & Tech (TEC)
 

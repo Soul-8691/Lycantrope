@@ -1,4 +1,4 @@
-// Shared lighting, sky and fog. Pulled into other shaders by an include line (see shaders.py).
+// Shared lighting, procedural sky (ART-09) and fog. Pulled into other shaders by an include line (see shaders.py).
 uniform vec3 u_sun_dir;        // normalized, points toward the sun
 uniform vec3 u_sun_color;      // linear HDR
 uniform vec3 u_zenith_color;

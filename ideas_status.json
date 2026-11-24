@@ -1,11 +1,11 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md and ARMOR.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-24T12:21:08",
+  "updated": "2026-11-24T12:42:25",
   "counts": {
-    "awaiting": 255,
-    "approved": 178,
-    "denied": 43,
-    "total": 476
+    "awaiting": 271,
+    "approved": 183,
+    "denied": 52,
+    "total": 506
   },
   "ui": {
     "selected": [
@@ -693,6 +693,50 @@
       "in_ideas_md": true,
       "file": "IDEAS.md"
     },
+    "CMB-33": {
+      "status": "denied",
+      "note": "Alternative not chosen (user picked Dexterity, Faith, Rite cooldowns)",
+      "changed": "2026-11-24T12:30:43",
+      "title": "Rite charges",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "CMB-34": {
+      "status": "approved",
+      "note": "Chosen 2026-11-24 (replaces Finesse / Spirit / Focus)",
+      "changed": "2026-11-24T12:30:42",
+      "title": "Rite cooldowns",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "CMB-35": {
+      "status": "denied",
+      "note": "Alternative not chosen (user picked Dexterity, Faith, Rite cooldowns)",
+      "changed": "2026-11-24T12:30:43",
+      "title": "Stamina casting",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "CMB-36": {
+      "status": "denied",
+      "note": "Alternative not chosen (user picked Dexterity, Faith, Rite cooldowns)",
+      "changed": "2026-11-24T12:30:43",
+      "title": "Lifeblood casting",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
     "VAL-01": {
       "status": "denied",
       "note": "",
@@ -945,6 +989,105 @@
       "starred": false,
       "in_ideas_md": true,
       "file": "IDEAS.md"
+    },
+    "STA-15": {
+      "status": "denied",
+      "note": "Alternative not chosen (user picked Dexterity, Faith, Rite cooldowns)",
+      "changed": "2026-11-24T12:30:43",
+      "title": "Agility (replaces Finesse)",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STA-16": {
+      "status": "approved",
+      "note": "Chosen 2026-11-24 (replaces Finesse / Spirit / Focus)",
+      "changed": "2026-11-24T12:30:42",
+      "title": "Dexterity (replaces Finesse)",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STA-17": {
+      "status": "denied",
+      "note": "Alternative not chosen (user picked Dexterity, Faith, Rite cooldowns)",
+      "changed": "2026-11-24T12:30:43",
+      "title": "Precision (replaces Finesse)",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STA-18": {
+      "status": "denied",
+      "note": "Alternative not chosen (user picked Dexterity, Faith, Rite cooldowns)",
+      "changed": "2026-11-24T12:30:43",
+      "title": "Resolve (replaces Spirit)",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STA-19": {
+      "status": "denied",
+      "note": "Alternative not chosen (user picked Dexterity, Faith, Rite cooldowns)",
+      "changed": "2026-11-24T12:30:43",
+      "title": "Arcana (replaces Spirit)",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STA-20": {
+      "status": "approved",
+      "note": "Chosen 2026-11-24 (replaces Finesse / Spirit / Focus)",
+      "changed": "2026-11-24T12:30:42",
+      "title": "Faith (replaces Spirit)",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STA-21": {
+      "status": "denied",
+      "note": "Alternative not chosen (user picked Dexterity, Faith, Rite cooldowns)",
+      "changed": "2026-11-24T12:30:43",
+      "title": "Willpower (replaces Spirit)",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STA-22": {
+      "status": "denied",
+      "note": "Alternative not chosen (user picked Dexterity, Faith, Rite cooldowns)",
+      "changed": "2026-11-24T12:30:43",
+      "title": "Five attributes (drop Spirit, no replacement)",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STA-23": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Attunement slots",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
     },
     "ENM-01": {
       "status": "approved",
@@ -1937,9 +2080,9 @@
       "file": "IDEAS.md"
     },
     "ART-09": {
-      "status": "denied",
-      "note": "",
-      "changed": "2026-11-24T10:57:46",
+      "status": "approved",
+      "note": "Chosen over the painted skybox (2026-11-24)",
+      "changed": "2026-11-24T12:42:25",
       "title": "Procedural sky",
       "category": "Art Pipeline (ART)",
       "section": "",
@@ -2034,6 +2177,28 @@
       "starred": true,
       "in_ideas_md": true,
       "file": "IDEAS.md"
+    },
+    "ART-18": {
+      "status": "denied",
+      "note": "Tried 2026-11-24; procedural sky looked better",
+      "changed": "2026-11-24T12:42:25",
+      "title": "Painted skybox",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": true,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "ART-19": {
+      "status": "approved",
+      "note": "Approved by user 2026-11-24 (painted skybox; Rite effects via Meshy meshes)",
+      "changed": "2026-11-24T12:38:07",
+      "title": "Rite effects as Meshy meshes",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": true,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
     },
     "TEC-01": {
       "status": "approved",
@@ -4065,6 +4230,171 @@
       "changed": null,
       "title": "Essence Remnant",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VFX-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Flash Burst",
+      "category": "Objects · Effects (VFX)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VFX-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Ward Dome",
+      "category": "Objects · Effects (VFX)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VFX-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Mark Sigil",
+      "category": "Objects · Effects (VFX)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VFX-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Cast Circle",
+      "category": "Objects · Effects (VFX)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VFX-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Radiant Slash Arc",
+      "category": "Objects · Effects (VFX)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VFX-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Campfire Flame",
+      "category": "Objects · Effects (VFX)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VFX-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Torch Flame",
+      "category": "Objects · Effects (VFX)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VFX-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Dark Flame",
+      "category": "Objects · Effects (VFX)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VFX-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Candle Flames",
+      "category": "Objects · Effects (VFX)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VFX-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Firebomb Blast",
+      "category": "Objects · Effects (VFX)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VFX-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Holy Water Splash",
+      "category": "Objects · Effects (VFX)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VFX-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Smoke Puff",
+      "category": "Objects · Effects (VFX)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VFX-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Relic Power Shapes",
+      "category": "Objects · Effects (VFX)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VFX-14": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Waystone Glow Wisp",
+      "category": "Objects · Effects (VFX)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VFX-15": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Level-Up Pillar",
+      "category": "Objects · Effects (VFX)",
       "section": "",
       "starred": false,
       "file": "OBJECTS.md",
@@ -6861,6 +7191,102 @@
       "id": "TEC-10",
       "from": "awaiting",
       "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:30:42",
+      "id": "STA-16",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:30:42",
+      "id": "STA-20",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:30:42",
+      "id": "CMB-34",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:30:43",
+      "id": "STA-15",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T12:30:43",
+      "id": "STA-17",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T12:30:43",
+      "id": "STA-18",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T12:30:43",
+      "id": "STA-19",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T12:30:43",
+      "id": "STA-21",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T12:30:43",
+      "id": "STA-22",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T12:30:43",
+      "id": "CMB-33",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T12:30:43",
+      "id": "CMB-35",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T12:30:43",
+      "id": "CMB-36",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T12:38:07",
+      "id": "ART-18",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:38:07",
+      "id": "ART-19",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:42:25",
+      "id": "ART-09",
+      "from": "denied",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:42:25",
+      "id": "ART-18",
+      "from": "approved",
+      "to": "denied"
     }
   ]
 }

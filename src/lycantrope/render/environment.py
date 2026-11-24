@@ -1,28 +1,37 @@
-"""Sky (ART-09, first pass), water surface, and the shared lighting settings."""
+"""Procedural sky (ART-09), water surface, and the shared lighting settings."""
 from __future__ import annotations
 
+import json
 import math
+from functools import lru_cache
 
 from pyglm import glm
 import moderngl
 import numpy as np
 
+from lycantrope.core.paths import DATA
 from lycantrope.render.shaders import ShaderLibrary, set_uniform
 from lycantrope.world.heightfield import Heightfield
 
 
+@lru_cache(maxsize=1)
+def sky_config() -> dict:
+    return json.loads((DATA / "world" / "sky.json").read_text(encoding="utf-8"))
+
+
 def default_environment(fog: bool = True) -> dict:
-    """Lighting/fog uniforms shared by sky, terrain and water (late-morning sun)."""
-    elevation, azimuth = math.radians(38.0), math.radians(215.0)   # azimuth from north, clockwise
+    """Lighting/fog uniforms shared by sky, terrain and water (from data/world/sky.json)."""
+    cfg = sky_config()
+    elevation, azimuth = math.radians(cfg["sun"]["elevation_deg"]), math.radians(cfg["sun"]["azimuth_deg"])
     sun = glm.normalize(glm.vec3(math.sin(azimuth) * math.cos(elevation), math.sin(elevation),
                                  -math.cos(azimuth) * math.cos(elevation)))
     return {
         "u_sun_dir": sun,
-        "u_sun_color": glm.vec3(2.7, 2.5, 2.2),
-        "u_zenith_color": glm.vec3(0.20, 0.36, 0.72),
-        "u_horizon_color": glm.vec3(0.66, 0.74, 0.84),
-        "u_ambient_sky": glm.vec3(0.36, 0.44, 0.58),
-        "u_ambient_ground": glm.vec3(0.16, 0.14, 0.11),
+        "u_sun_color": glm.vec3(*cfg["sun"]["color"]),
+        "u_zenith_color": glm.vec3(*cfg["zenith_color"]),
+        "u_horizon_color": glm.vec3(*cfg["horizon_color"]),
+        "u_ambient_sky": glm.vec3(*cfg["ambient_sky"]),
+        "u_ambient_ground": glm.vec3(*cfg["ambient_ground"]),
         "u_fog_density": 0.00055,
         "u_fog_falloff": 0.006,
         "u_fog_enabled": 1 if fog else 0,

@@ -26,7 +26,7 @@ Every prop, building and item in the world that **Meshy** should make. The idea 
 - **Text and symbols:** avoid writing, logos and readable symbols. Use "carved runes" or "abstract sigils" instead.
 - **Previews:** generate the cheap preview first, refine only the ones you keep, and re-roll anything that clashes with the rest (ART-16 previewer).
 
-**Not made with Meshy** (code makes these, so they're not in this list): terrain, water surfaces, grass, sky, roads, fog, particles (sparks, snow, embers, fireflies), the dungeon wall/floor kit (ART-11, scripted geometry that Meshy can retexture), and the glow on the Dawnblade (a shader).
+**Not made with Meshy** (code makes these, so they're not in this list): terrain, water surfaces, the procedural sky (ART-09), roads and fog. There's no grass and there are no particles (ART-10 and ART-13 were denied); fire and spell effects are Meshy meshes instead (section 13, VFX). Also not Meshy: the dungeon wall/floor kit (ART-11, scripted geometry that Meshy can retexture), and the glow on the Dawnblade (a shader).
 
 ---
 
@@ -144,7 +144,7 @@ Every prop, building and item in the world that **Meshy** should make. The idea 
 - [DSK-02] **Citadel Wall Segment** — Black crenellated wall pieces (combined with the scripted kit). Prompt: "black stone fortress wall segment with crenellations and spikes" · 2 variants (straight, corner) · 2k tris · kit · collider: box. *(Duskhold)*
 - [DSK-03] **Citadel Tower** — Tall spiked tower. Prompt: "tall dark fantasy fortress tower, black stone, spiked roof, narrow glowing windows" · 2 variants · 6k tris · placed · collider: cylinder. *(Duskhold)*
 - [DSK-04] **Dark Lord Statue** — Menacing statue of Malgrath. Prompt: "tall menacing statue of a crowned dark sorcerer-king in robes, black stone, glowing eyes" · 1 variant · 6k tris · placed · collider: box. *(Duskhold)*
-- [DSK-05] **Chained Brazier** — Iron braziers with purple-black fire (fire is particles). Prompt: "iron brazier on a tripod with chains and spikes, dark fantasy" · 1 variant · 800 tris · placed · collider: cylinder. *(Duskhold)*
+- [DSK-05] **Chained Brazier** — Iron braziers with purple-black fire (the flame is VFX-08). Prompt: "iron brazier on a tripod with chains and spikes, dark fantasy" · 1 variant · 800 tris · placed · collider: cylinder. *(Duskhold)*
 - [DSK-06] **Duskhold Banner** — Tattered war banner on a pole. Prompt: "tattered black and purple war banner on a spiked pole, abstract crown sigil" · 2 variants · 600 tris · placed · collider: capsule. ⭐ *(Duskhold, warcamps)*
 - [DSK-07] **Spiked Barricade** — Wooden stake barricades along the approach. Prompt: "wooden spiked barricade, crossed sharpened stakes" · 2 variants · 600 tris · scatter · collider: box. *(Duskhold approach)*
 
@@ -171,14 +171,14 @@ Every prop, building and item in the world that **Meshy** should make. The idea 
 - [CLT-01] **Barrel** — Plain wooden barrels. Prompt: "wooden barrel" · 2 variants · 300 tris · scatter · collider: cylinder. ⭐ *(everywhere)*
 - [CLT-02] **Crate** — Wooden crates and stacks. Prompt: "stack of wooden supply crates" · 2 variants · 300 tris · scatter · collider: box. ⭐ *(everywhere)*
 - [CLT-03] **Grain Sacks** — Burlap sacks. Prompt: "pile of burlap grain sacks" · 1 variant · 400 tris · scatter · collider: box. *(village, camps)*
-- [CLT-04] **Campfire** — Stone ring with logs (fire is particles). Prompt: "campfire stone ring with stacked logs and ash, unlit" · 1 variant · 500 tris · placed · collider: cylinder. ⭐ *(camps)*
+- [CLT-04] **Campfire** — Stone ring with logs (the fire is VFX-06). Prompt: "campfire stone ring with stacked logs and ash, unlit" · 1 variant · 500 tris · placed · collider: cylinder. ⭐ *(camps)*
 - [CLT-05] **Bandit Tent** — Patched canvas tent. Prompt: "patched canvas bandit tent, wooden poles, ropes" · 2 variants · 1.5k tris · placed · collider: box. ⭐ *(bandit camps)*
 - [CLT-06] **Orc War Tent** — Hide tent with bone decorations. Prompt: "large orc war tent made of animal hides, bone and tusk decorations" · 2 variants · 2k tris · placed · collider: box. *(Ashen warcamp)*
 - [CLT-07] **Weapon Rack** — Rack with spears and swords. Prompt: "wooden weapon rack holding spears, swords and an axe" · 1 variant · 1k tris · placed · collider: box. *(camps)*
 - [CLT-08] **Goblin Junk Pile** — Heap of stolen junk and shiny things. Prompt: "messy pile of stolen junk, broken pots, rusty pans, coins and trinkets" · 2 variants · 800 tris · placed · collider: hull. *(goblin camps)*
 - [CLT-09] **Cooking Spit** — Spit over a fire with a roasting animal. Prompt: "campfire cooking spit with a roasting boar, wooden supports" · 1 variant · 800 tris · placed · collider: box. *(camps)*
 - [CLT-10] **Lantern Post** — Hanging lantern on a post (light is code). Prompt: "wooden post with a hanging iron lantern" · 1 variant · 400 tris · placed · collider: capsule. *(roads, village)*
-- [CLT-11] **Wall Torch** — Iron sconce with a torch (flame is particles). Prompt: "iron wall torch sconce holding a wooden torch" · 1 variant · 200 tris · placed · collider: none. *(dungeons)*
+- [CLT-11] **Wall Torch** — Iron sconce with a torch (the flame is VFX-07). Prompt: "iron wall torch sconce holding a wooden torch" · 1 variant · 200 tris · placed · collider: none. *(dungeons)*
 - [CLT-12] **War Drum** — Big orc drum. Prompt: "large orc war drum, stretched hide, bone drumsticks" · 1 variant · 800 tris · placed · collider: cylinder. *(Ashen warcamp)*
 - [CLT-13] **Cage** — Hanging and floor cages. Prompt: "rusty iron cage, hanging from a chain" · 2 variants · 600 tris · placed · collider: box. *(camps, Duskhold)*
 - [CLT-14] **Bones & Skulls** — Scattered remains for monster lairs. Prompt: "scattered pile of old bones and skulls" · 3 variants · 400 tris · scatter · collider: none. ⭐ *(lairs, Crypts)*
@@ -189,7 +189,7 @@ Every prop, building and item in the world that **Meshy** should make. The idea 
 - [DNG-01] **Tombstones** — Old gravestones, leaning and broken. Prompt: "set of old leaning tombstones, cracked, moss" · 3 variants · 300 tris · scatter · collider: box. *(Crypts, graveyards)*
 - [DNG-02] **Sarcophagus** — Stone coffin with a carved lid. Prompt: "stone sarcophagus with a carved knight on the lid" · 2 variants (closed, open) · 1.5k tris · placed · collider: box. *(Crypts)*
 - [DNG-03] **Bone Pile Alcove** — Wall niche stacked with skulls. Prompt: "stone wall alcove filled with stacked skulls and bones, catacomb" · 1 variant · 1.5k tris · kit · collider: box. *(Crypts)*
-- [DNG-04] **Candle Cluster** — Melted candles (flames are particles). Prompt: "cluster of melted wax candles of different heights" · 2 variants · 300 tris · placed · collider: none. *(Crypts, shrines)*
+- [DNG-04] **Candle Cluster** — Melted candles (the flames are VFX-09). Prompt: "cluster of melted wax candles of different heights" · 2 variants · 300 tris · placed · collider: none. *(Crypts, shrines)*
 - [DNG-05] **Necromancer's Altar** — Altar with a ritual circle (ENM-22). Prompt: "dark stone ritual altar with skulls, black candles and a carved circle" · 1 variant · 2k tris · placed · collider: box. *(Crypts)*
 - [DNG-06] **Cobweb Corner** — Webs for ceilings and corners. Prompt: "thick dusty cobweb, flat, spanning a corner" · 2 variants · 200 tris · placed · collider: none. *(Crypts)*
 
@@ -210,3 +210,24 @@ Every prop, building and item in the world that **Meshy** should make. The idea 
 - [ITM-13] **Boss Masks** — Trophy masks (VAL-07). Prompt: "tribal-style trophy mask made from a monster's skull" · 1 per boss · 800 tris · pickup/worn · collider: none. *(VAL-07)*
 - [ITM-14] **Weapon Set** — Axe, mace, spear and greatsword (CMB-23). Prompt: "medieval weapon: [battle axe | flanged mace | long spear | greatsword], worn steel" · 1 per weapon · 1.5k tris · held · collider: none. *(CMB-23)*
 - [ITM-15] **Essence Remnant** — The spot where your dropped XP waits after death (CMB-30). Prompt: "small glowing wisp-shaped crystal on the ground" · 1 variant · 200 tris · pickup · collider: sphere. *(CMB-30)*
+
+## 13. Effects (VFX)
+
+*Rite and fire effects made as Meshy meshes (ART-19), since there are no particles. Each mesh is drawn with a glowing, see-through shader and animated in code: scale up, spin, pulse, fade out. Prompts ask for a **simple solid shape**; the glow, color and transparency come from the shader, not the texture. Budgets are small because several can be on screen at once.*
+
+- [VFX-01] **Flash Burst** — The *Flash* Rite (CMB-29): a starburst of radiant light that expands from Rowan's hand and fades in 0.3 s. Prompt: "stylized starburst shape with long sharp rays, flat, simple solid form, light effect" · 2 variants · 300 tris · effect · collider: none. ⭐ *(CMB-29)*
+- [VFX-02] **Ward Dome** — The *Ward* Rite: a hexagon-patterned half-dome around Rowan that ripples when hit and shatters when it breaks (a second, cracked variant for the break). Prompt: "half dome shield made of hexagonal panels, simple geometric, energy barrier" · 2 variants (whole, shattered) · 800 tris · effect · collider: sphere (the ward itself). ⭐ *(CMB-29)*
+- [VFX-03] **Mark Sigil** — The *Mark* Rite: a rotating rune circle floating over the marked enemy. Prompt: "flat circular magic sigil ring with abstract carved runes, thin, simple" · 1 variant · 400 tris · effect · collider: none. ⭐ *(CMB-29)*
+- [VFX-04] **Cast Circle** — A small rune circle that appears at Rowan's off hand while any Rite is cast; tinted per Rite. Prompt: "small flat magic circle with concentric rings and abstract runes" · 1 variant · 300 tris · effect · collider: none. ⭐ *(CMB-29, CMB-34)*
+- [VFX-05] **Radiant Slash Arc** — A crescent of light that trails Faith-scaled radiant hits (STA-20), so you can see when holy damage lands. Prompt: "thin crescent moon arc shape, smooth, tapered ends, light trail" · 2 variants · 200 tris · effect · collider: none. *(STA-20)*
+- [VFX-06] **Campfire Flame** — Stylized flame tongues for campfires (CLT-04); the shader scrolls a gradient up through it so it flickers. Prompt: "stylized cartoon campfire flames, several tall flame tongues, simple solid shape" · 2 variants · 400 tris · effect · collider: none. ⭐ *(CLT-04)*
+- [VFX-07] **Torch Flame** — A single small flame for wall torches and lantern posts (CLT-10, CLT-11). Prompt: "single stylized torch flame, teardrop shape with a curling tip, simple solid" · 2 variants · 150 tris · effect · collider: none. *(CLT-10, CLT-11)*
+- [VFX-08] **Dark Flame** — Twisting purple-black flame for Duskhold braziers (DSK-05). Prompt: "twisting stylized flame with sharp jagged tongues, simple solid shape" · 1 variant · 400 tris · effect · collider: none. *(DSK-05)*
+- [VFX-09] **Candle Flames** — Tiny flame set for candle clusters (DNG-04). Prompt: "set of tiny teardrop candle flames, simple" · 1 variant · 60 tris · effect · collider: none. *(DNG-04)*
+- [VFX-10] **Firebomb Blast** — The burst when a firebomb (CMB-21) lands: a fiery ring and a puff that expand and fade. Prompt: "stylized explosion burst, rounded billowing fire puffs, cartoon, simple solid shape" · 2 variants · 600 tris · effect · collider: sphere (blast radius). *(CMB-21)*
+- [VFX-11] **Holy Water Splash** — A crown-shaped splash for holy water (CMB-21). Prompt: "stylized water splash crown shape, droplets rising, simple solid" · 1 variant · 400 tris · effect · collider: sphere. *(CMB-21)*
+- [VFX-12] **Smoke Puff** — A cluster of rounded smoke clouds for smoke bombs (CMB-21) and the enemy-death dissolve. Prompt: "cluster of rounded cartoon smoke clouds, simple puffy solid shape" · 2 variants · 500 tris · effect · collider: none. *(CMB-21)*
+- [VFX-13] **Relic Power Shapes** — One mesh per relic power (VAL-03): a spiral gust for *Gale*, ice spikes for *Frostward*, a cracked ground ring for *Earthshaker*, a flame ring for *Flame Ring*. Prompt: "[spiral wind gust | ring of ice spikes | cracked rock shockwave ring | ring of flames], stylized, simple solid shape" · 1 each · 600 tris · effect · collider: per power. *(VAL-03)*
+- [VFX-14] **Waystone Glow Wisp** — A soft floating orb with two orbiting motes over a lit Waystone (INT-01). Prompt: "small smooth glowing orb with two tiny orbiting spheres, simple" · 1 variant · 200 tris · effect · collider: none. *(WLD-09, INT-01)*
+- [VFX-15] **Level-Up Pillar** — A brief column of light around Rowan when leveling up (STA-02). Prompt: "tall hollow cylinder of light with flared top and soft vertical stripes, simple" · 1 variant · 300 tris · effect · collider: none. *(STA-01, STA-02)*
+
