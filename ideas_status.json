@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-24T14:14:04",
+  "updated": "2026-11-24T14:16:25",
   "counts": {
-    "awaiting": 275,
-    "approved": 232,
+    "awaiting": 253,
+    "approved": 254,
     "denied": 52,
     "total": 559
   },
   "ui": {
     "selected": [
-      "BLD-01"
+      "DSK-01"
     ],
     "selected_titles": {
-      "BLD-01": "Ruined Watchtower"
+      "DSK-01": "Citadel Gatehouse"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-24T14:14:04"
+    "at": "2026-11-24T14:16:25"
   },
   "ideas": {
     "PIL-01": {
@@ -3257,9 +3257,9 @@
       "in_ideas_md": true
     },
     "BLD-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:14:45",
       "title": "Ruined Watchtower",
       "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
       "section": "",
@@ -3268,9 +3268,9 @@
       "in_ideas_md": true
     },
     "BLD-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:14:47",
       "title": "Ruined Wall Section",
       "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
       "section": "",
@@ -3301,9 +3301,9 @@
       "in_ideas_md": true
     },
     "BLD-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:14:53",
       "title": "Hunter's Lodge",
       "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
       "section": "",
@@ -3312,9 +3312,9 @@
       "in_ideas_md": true
     },
     "BLD-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:14:57",
       "title": "Stilt Hut",
       "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
       "section": "",
@@ -3323,9 +3323,9 @@
       "in_ideas_md": true
     },
     "BLD-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:15:01",
       "title": "Witch's Hut",
       "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
       "section": "",
@@ -3345,9 +3345,9 @@
       "in_ideas_md": true
     },
     "BLD-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:15:08",
       "title": "Summit Shelter",
       "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
       "section": "",
@@ -3356,9 +3356,9 @@
       "in_ideas_md": true
     },
     "BLD-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:15:10",
       "title": "Ice Cave Mouth",
       "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
       "section": "",
@@ -3389,9 +3389,9 @@
       "in_ideas_md": true
     },
     "BLD-13": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:15:26",
       "title": "Sunken Crypts Entrance",
       "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
       "section": "",
@@ -3400,9 +3400,9 @@
       "in_ideas_md": true
     },
     "STR-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:15:31",
       "title": "Wooden Fence",
       "category": "Objects · Walls, Fences, Bridges & Water (STR)",
       "section": "",
@@ -3411,9 +3411,9 @@
       "in_ideas_md": true
     },
     "STR-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:15:34",
       "title": "Dry Stone Wall",
       "category": "Objects · Walls, Fences, Bridges & Water (STR)",
       "section": "",
@@ -3422,9 +3422,9 @@
       "in_ideas_md": true
     },
     "STR-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:15:35",
       "title": "Stone Bridge",
       "category": "Objects · Walls, Fences, Bridges & Water (STR)",
       "section": "",
@@ -3444,9 +3444,9 @@
       "in_ideas_md": true
     },
     "STR-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:15:41",
       "title": "Rope Bridge",
       "category": "Objects · Walls, Fences, Bridges & Water (STR)",
       "section": "",
@@ -3455,9 +3455,9 @@
       "in_ideas_md": true
     },
     "STR-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:15:46",
       "title": "Boardwalk",
       "category": "Objects · Walls, Fences, Bridges & Water (STR)",
       "section": "",
@@ -3466,9 +3466,9 @@
       "in_ideas_md": true
     },
     "STR-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:15:47",
       "title": "Wooden Dock",
       "category": "Objects · Walls, Fences, Bridges & Water (STR)",
       "section": "",
@@ -3477,9 +3477,9 @@
       "in_ideas_md": true
     },
     "STR-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:15:49",
       "title": "Rowboat",
       "category": "Objects · Walls, Fences, Bridges & Water (STR)",
       "section": "",
@@ -3488,9 +3488,9 @@
       "in_ideas_md": true
     },
     "STR-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:15:49",
       "title": "Fishing Hut",
       "category": "Objects · Walls, Fences, Bridges & Water (STR)",
       "section": "",
@@ -3499,9 +3499,9 @@
       "in_ideas_md": true
     },
     "STR-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:15:53",
       "title": "Waterfall Rocks",
       "category": "Objects · Walls, Fences, Bridges & Water (STR)",
       "section": "",
@@ -3510,9 +3510,9 @@
       "in_ideas_md": true
     },
     "STR-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:15:56",
       "title": "Palisade Wall",
       "category": "Objects · Walls, Fences, Bridges & Water (STR)",
       "section": "",
@@ -3521,9 +3521,9 @@
       "in_ideas_md": true
     },
     "STR-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:15:58",
       "title": "Wooden Gate",
       "category": "Objects · Walls, Fences, Bridges & Water (STR)",
       "section": "",
@@ -3543,9 +3543,9 @@
       "in_ideas_md": true
     },
     "LMK-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:16:11",
       "title": "Wyvern Roost",
       "category": "Objects · Landmarks (LMK)",
       "section": "",
@@ -3554,9 +3554,9 @@
       "in_ideas_md": true
     },
     "LMK-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:16:13",
       "title": "Orc Warcamp Centerpiece",
       "category": "Objects · Landmarks (LMK)",
       "section": "",
@@ -3565,9 +3565,9 @@
       "in_ideas_md": true
     },
     "LMK-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:16:17",
       "title": "Grimtooth's Clearing Altar",
       "category": "Objects · Landmarks (LMK)",
       "section": "",
@@ -8162,6 +8162,138 @@
     {
       "time": "2026-11-24T14:13:51",
       "id": "VIL-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:14:45",
+      "id": "BLD-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:14:47",
+      "id": "BLD-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:14:53",
+      "id": "BLD-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:14:57",
+      "id": "BLD-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:15:01",
+      "id": "BLD-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:15:08",
+      "id": "BLD-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:15:10",
+      "id": "BLD-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:15:26",
+      "id": "BLD-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:15:31",
+      "id": "STR-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:15:34",
+      "id": "STR-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:15:35",
+      "id": "STR-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:15:41",
+      "id": "STR-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:15:46",
+      "id": "STR-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:15:47",
+      "id": "STR-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:15:49",
+      "id": "STR-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:15:49",
+      "id": "STR-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:15:53",
+      "id": "STR-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:15:56",
+      "id": "STR-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:15:58",
+      "id": "STR-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:16:11",
+      "id": "LMK-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:16:13",
+      "id": "LMK-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:16:17",
+      "id": "LMK-04",
       "from": "awaiting",
       "to": "approved"
     }
