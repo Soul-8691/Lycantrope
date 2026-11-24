@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lycantrope"
+version = "0.0.1"
+description = "A 3D action-adventure fantasy RPG full of trope monsters."
+license = { text = "MIT" }
+requires-python = ">=3.11"
+
+[project.scripts]
+lycantrope = "lycantrope.main:run"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+lycantrope = ["render/shaders/*.glsl"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

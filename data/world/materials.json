@@ -1,0 +1,27 @@
+{
+  "_about": "Ground materials for the terrain shader (ART-08). Textures come from tools/worldgen/textures.py. tile_m = meters per texture repeat.",
+  "layers": [
+    { "name": "grass",     "file": "textures/ground/grass.png",     "tile_m": 3.0 },
+    { "name": "forest",    "file": "textures/ground/forest.png",    "tile_m": 4.0 },
+    { "name": "mud",       "file": "textures/ground/mud.png",       "tile_m": 4.0 },
+    { "name": "snow",      "file": "textures/ground/snow.png",      "tile_m": 6.0 },
+    { "name": "ash",       "file": "textures/ground/ash.png",       "tile_m": 4.0 },
+    { "name": "darkstone", "file": "textures/ground/darkstone.png", "tile_m": 3.0 },
+    { "name": "rock",      "file": "textures/ground/rock.png",      "tile_m": 9.0 },
+    { "name": "dirt",      "file": "textures/ground/dirt.png",      "tile_m": 3.0 }
+  ],
+  "biome_layers": {
+    "brackenvale": "grass",
+    "wolfwood": "forest",
+    "blackmire": "mud",
+    "frostfang": "snow",
+    "ashen": "ash",
+    "duskhold": "darkstone",
+    "boundary": "rock"
+  },
+  "steep_layer": "rock",
+  "road_layer": "dirt",
+  "snow_layer": "snow",
+  "underwater_layer": "mud",
+  "snowline_m": 215
+}

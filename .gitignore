@@ -223,3 +223,7 @@ __marimo__/
 tools/story/data/
 tools/story/out/
 tools/dialogue/out/
+
+# Lycantrope local files
+settings.json
+screenshots/

@@ -134,7 +134,7 @@ Each day has a **code track** and an **asset kitchen** track (batch jobs that ru
 - [ ] venv + `pip install pygame-ce moderngl PyGLM numpy pygltflib Pillow pytest`. *(TEC-01 to TEC-03)*
 - [ ] `main.py`: pygame window with an OpenGL 3.3 core context, a moderngl context, a fixed 60 Hz loop with an accumulator and interpolation alpha, and a debug text overlay. *(TEC-04, TEC-17)*
 - [x] `tools/worldgen/terrain.py` + `data/world/layout.json`: 2048² (1 m/px) world with no concept art, built from a layout file. It covers six biomes plus the World's Edge, per-biome noise recipes, the Duskhold crag, erosion, five graded roads, and flat pads for 6 Waystones and 8 landmarks. Outputs `assets/world/height.png` (16-bit), `biome.png`, `road.png`, `meta.json`, `preview.png`. Tested in `tests/test_worldgen.py`. *(WLD-01, WLD-13)*
-- [ ] `render/terrain.py`: 64 m chunk meshes, slope/height/mask splatting with procedural textures from `tools/worldgen/textures.py`, and a free-fly camera. *(TEC-10, ART-08)*
+- [x] `render/terrain.py`: 64 m chunks drawn as 4 instanced LOD levels with skirts and frustum culling. Splat, slope, snowline, road and shoreline blending of 8 procedural ground textures (`tools/worldgen/textures.py`), plus sky, height fog and water. Free-fly and walk camera, debug overlay, shader hot-reload, `--screenshot`/`--bench`. About 5 ms per frame at 1600×900 on Iris Xe. *(TEC-10, ART-08, TEC-02, TEC-04, TEC-17)*
 
 **Asset kitchen**
 - [ ] `tools/meshy/batch.py` + `manifest.json`: text-to-3D preview → refine → remesh → download. Cache key = hash(prompt + settings). Resumable from a `jobs.json`. *(ART-01, ART-02, ART-06)*

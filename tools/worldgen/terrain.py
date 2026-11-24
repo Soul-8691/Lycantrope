@@ -341,7 +341,7 @@ def generate(layout: dict, size_px: int, seed: int | None = None, log=print) -> 
 
     slope = slope_deg(H, mpp)
     step("done")
-    return {"grid": grid, "H": H, "W": W, "names": names, "biome": biome, "road": road_w,
+    return {"grid": grid, "H": H, "W": W, "names": names, "biome": biome, "road": road_w, "border": border_w,
             "slope": slope, "pads": pads, "road_curves": road_curves, "seed": seed}
 
 
@@ -486,6 +486,16 @@ def write_outputs(layout: dict, res: dict, out: Path, preview_size: int) -> dict
     Image.fromarray(h16).save(out / "height.png", optimize=True)
     Image.fromarray(res["biome"]).save(out / "biome.png", optimize=True)
     Image.fromarray((res["road"] * 255).astype(np.uint8)).save(out / "road.png", optimize=True)
+    # soft per-biome weights for texture blending: 2 RGBA maps, channel order in meta["splat"]
+    edge = smoothstep(0.3, 0.6, res["border"])
+    chans = [res["W"][i] * (1 - edge) for i in range(len(res["names"]))] + [edge]
+    channel_names = list(res["names"]) + ["boundary"]
+    while len(chans) < 8:
+        chans.append(np.zeros_like(edge))
+        channel_names.append(None)
+    for k, fname in enumerate(("splat_a.png", "splat_b.png")):
+        rgba = np.dstack(chans[4 * k:4 * k + 4])
+        Image.fromarray((np.clip(rgba, 0, 1) * 255 + 0.5).astype(np.uint8), "RGBA").save(out / fname, optimize=True)
     render_preview(layout, res, preview_size).save(out / "preview.png", optimize=True)
 
     stats, warnings = compute_stats(layout, res)
@@ -503,6 +513,8 @@ def write_outputs(layout: dict, res: dict, out: Path, preview_size: int) -> dict
         "water_level_m": layout["water_level_m"],
         "biome_map": {"file": "biome.png", "encoding": "uint8 biome id"},
         "road_map": {"file": "road.png", "encoding": "uint8 weight, 255 = road center"},
+        "splat": {"files": ["splat_a.png", "splat_b.png"], "channels": channel_names,
+                  "encoding": "RGBA uint8 biome blend weights (sum ≈ 1)"},
         "biomes": biomes,
         "roads": [{"name": r["name"], "width_m": r["width_m"],
                    "curve": [[round(float(x), 1), round(float(y), 1)] for x, y in resample(pts, 5.0)]}

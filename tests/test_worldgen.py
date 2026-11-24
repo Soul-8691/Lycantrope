@@ -52,3 +52,15 @@ def test_outputs_round_trip(world, tmp_path):
     assert np.abs(decoded - world["H"]).max() < 0.01
     assert (tmp_path / "preview.png").exists()
     assert len(meta["waystones"]) == len(LAYOUT["waystones"])
+    a = np.asarray(Image.open(tmp_path / "splat_a.png"), np.float32)
+    b = np.asarray(Image.open(tmp_path / "splat_b.png"), np.float32)
+    total = (a.sum(-1) + b.sum(-1)) / 255
+    assert np.abs(total - 1).max() < 0.03          # weights sum to ~1 everywhere
+
+
+def test_noise_tiles():
+    from noise import fbm
+    x = np.linspace(0, 1, 50, dtype=np.float32)
+    left = fbm(np.zeros_like(x) + 0.0, x * 4, 4, 7, period=4)
+    right = fbm(np.zeros_like(x) + 4.0, x * 4, 4, 7, period=4)
+    assert np.allclose(left, right, atol=1e-4)
