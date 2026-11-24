@@ -166,7 +166,7 @@ Each day has a **code track** and an **asset kitchen** track (batch jobs that ru
 - [ ] `data/attacks/*.json` frame data and `combat/attacks.py` running light and heavy strings with cancel windows. *(CMB-04, CMB-16)*
 - [ ] Swept-capsule hitboxes against hurtboxes, and damage resolution. *(CMB-17, CMB-18)*
 - [ ] Hit feel: hitstop, camera shake, FOV punch and impact SFX hooks on the event bus (no sparks). *(CMB-14, TEC-06)*
-- [ ] Block, guard break, poise and stagger. *(CMB-07, CMB-10)*
+- [ ] Block, guard break, poise and stagger. *(CMB-07, CMB-10)* Rowan's block uses `motion_shield_guard.glb` (custom Meshy motion), with a code-side pose override that raises the left upper arm and forearm so the buckler sits level in front of the face. Meshy's library has no shield guard, and the generated one holds the arm at waist height. Keep the raise angle in data so it can be tuned against the block hit check.
 - [ ] The first real enemy: **Bandit Brigand** running the `melee-basic` FSM (idle → alert → approach → strafe → attack → recover, plus stagger and dead). *(ENM-04, TEC-13)*
 
 **If skinning takes more than half a day:** park it and keep going with a rigid "bind pose plus procedural lean and bob" placeholder so combat work isn't blocked. Come back to skinning on Day 5.

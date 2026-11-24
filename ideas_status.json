@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-24T16:03:27",
+  "updated": "2026-11-24T16:45:19",
   "counts": {
-    "awaiting": 141,
-    "approved": 345,
-    "denied": 73,
+    "awaiting": 31,
+    "approved": 433,
+    "denied": 95,
     "total": 559
   },
   "ui": {
     "selected": [
-      "ARS-01"
+      "PIL-01"
     ],
     "selected_titles": {
-      "ARS-01": "Under-requirement penalty"
+      "PIL-01": "Combat first"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-24T16:03:27"
+    "at": "2026-11-24T16:45:19"
   },
   "ideas": {
     "PIL-01": {
@@ -4918,9 +4918,9 @@
       "in_ideas_md": true
     },
     "ARS-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:25:46",
       "title": "Under-requirement penalty",
       "category": "Armor · Rules (ARS)",
       "section": "",
@@ -4929,9 +4929,9 @@
       "in_ideas_md": true
     },
     "ARS-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:25:48",
       "title": "Set bonuses",
       "category": "Armor · Rules (ARS)",
       "section": "",
@@ -4940,9 +4940,9 @@
       "in_ideas_md": true
     },
     "ARS-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:25:50",
       "title": "Armor upgrades at the smith",
       "category": "Armor · Rules (ARS)",
       "section": "",
@@ -4951,9 +4951,9 @@
       "in_ideas_md": true
     },
     "ARS-04": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:25:54",
       "title": "One rune socket on torso pieces",
       "category": "Armor · Rules (ARS)",
       "section": "",
@@ -4962,9 +4962,9 @@
       "in_ideas_md": true
     },
     "ARS-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:26:06",
       "title": "Generate sets whole, split by bone",
       "category": "Armor · Rules (ARS)",
       "section": "",
@@ -4973,9 +4973,9 @@
       "in_ideas_md": true
     },
     "HED-01": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:26:09",
       "title": "Wool Cap",
       "category": "Armor · Farmhand's Garb (set 01)",
       "section": "",
@@ -4984,9 +4984,9 @@
       "in_ideas_md": true
     },
     "ARM-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:26:13",
       "title": "Work Gloves",
       "category": "Armor · Farmhand's Garb (set 01)",
       "section": "",
@@ -4995,9 +4995,9 @@
       "in_ideas_md": true
     },
     "TRS-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:26:14",
       "title": "Patched Travelling Coat",
       "category": "Armor · Farmhand's Garb (set 01)",
       "section": "",
@@ -5006,9 +5006,9 @@
       "in_ideas_md": true
     },
     "LEG-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:26:17",
       "title": "Work Trousers & Boots",
       "category": "Armor · Farmhand's Garb (set 01)",
       "section": "",
@@ -5017,9 +5017,9 @@
       "in_ideas_md": true
     },
     "HED-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:26:22",
       "title": "Kettle Hat",
       "category": "Armor · Militia Padding (set 02)",
       "section": "",
@@ -5028,9 +5028,9 @@
       "in_ideas_md": true
     },
     "ARM-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:26:31",
       "title": "Padded Mittens",
       "category": "Armor · Militia Padding (set 02)",
       "section": "",
@@ -5061,9 +5061,9 @@
       "in_ideas_md": true
     },
     "HED-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:28",
       "title": "Ranger's Hood",
       "category": "Armor · Ranger's Leathers (set 03)",
       "section": "",
@@ -5072,9 +5072,9 @@
       "in_ideas_md": true
     },
     "ARM-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:29",
       "title": "Archer's Bracers",
       "category": "Armor · Ranger's Leathers (set 03)",
       "section": "",
@@ -5083,9 +5083,9 @@
       "in_ideas_md": true
     },
     "TRS-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:29",
       "title": "Ranger's Jerkin",
       "category": "Armor · Ranger's Leathers (set 03)",
       "section": "",
@@ -5094,9 +5094,9 @@
       "in_ideas_md": true
     },
     "LEG-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:30",
       "title": "Ranger's Breeches",
       "category": "Armor · Ranger's Leathers (set 03)",
       "section": "",
@@ -5105,9 +5105,9 @@
       "in_ideas_md": true
     },
     "HED-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:32",
       "title": "Bandit's Mask & Hood",
       "category": "Armor · Bandit's Spoils (set 04)",
       "section": "",
@@ -5116,9 +5116,9 @@
       "in_ideas_md": true
     },
     "ARM-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:32",
       "title": "Studded Bracers",
       "category": "Armor · Bandit's Spoils (set 04)",
       "section": "",
@@ -5127,9 +5127,9 @@
       "in_ideas_md": true
     },
     "TRS-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:36",
       "title": "Stolen Brigandine",
       "category": "Armor · Bandit's Spoils (set 04)",
       "section": "",
@@ -5138,9 +5138,9 @@
       "in_ideas_md": true
     },
     "LEG-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:37",
       "title": "Bandit's Breeches",
       "category": "Armor · Bandit's Spoils (set 04)",
       "section": "",
@@ -5149,9 +5149,9 @@
       "in_ideas_md": true
     },
     "HED-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:38",
       "title": "Mail Coif",
       "category": "Armor · Chainmail (set 05)",
       "section": "",
@@ -5160,9 +5160,9 @@
       "in_ideas_md": true
     },
     "ARM-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:38",
       "title": "Mail Gloves",
       "category": "Armor · Chainmail (set 05)",
       "section": "",
@@ -5171,9 +5171,9 @@
       "in_ideas_md": true
     },
     "TRS-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:39",
       "title": "Hauberk",
       "category": "Armor · Chainmail (set 05)",
       "section": "",
@@ -5182,9 +5182,9 @@
       "in_ideas_md": true
     },
     "LEG-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:39",
       "title": "Mail Chausses",
       "category": "Armor · Chainmail (set 05)",
       "section": "",
@@ -5193,9 +5193,9 @@
       "in_ideas_md": true
     },
     "HED-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:46",
       "title": "Wolf-Skull Helm",
       "category": "Armor · Wolfhide (set 06)",
       "section": "",
@@ -5204,9 +5204,9 @@
       "in_ideas_md": true
     },
     "ARM-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:46",
       "title": "Fur Bracers",
       "category": "Armor · Wolfhide (set 06)",
       "section": "",
@@ -5215,9 +5215,9 @@
       "in_ideas_md": true
     },
     "TRS-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:46",
       "title": "Wolfpelt Mantle",
       "category": "Armor · Wolfhide (set 06)",
       "section": "",
@@ -5226,9 +5226,9 @@
       "in_ideas_md": true
     },
     "LEG-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:47",
       "title": "Fur-Lined Leggings",
       "category": "Armor · Wolfhide (set 06)",
       "section": "",
@@ -5237,9 +5237,9 @@
       "in_ideas_md": true
     },
     "HED-07": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:57",
       "title": "Veiled Swamp Hat",
       "category": "Armor · Mirewalker (set 07)",
       "section": "",
@@ -5248,9 +5248,9 @@
       "in_ideas_md": true
     },
     "ARM-07": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:58",
       "title": "Oilcloth Gauntlets",
       "category": "Armor · Mirewalker (set 07)",
       "section": "",
@@ -5259,9 +5259,9 @@
       "in_ideas_md": true
     },
     "TRS-07": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:58",
       "title": "Waxed Longcoat",
       "category": "Armor · Mirewalker (set 07)",
       "section": "",
@@ -5270,9 +5270,9 @@
       "in_ideas_md": true
     },
     "LEG-07": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:27:58",
       "title": "Bog Waders",
       "category": "Armor · Mirewalker (set 07)",
       "section": "",
@@ -5281,9 +5281,9 @@
       "in_ideas_md": true
     },
     "HED-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:02",
       "title": "Fur Hood & Goggles",
       "category": "Armor · Frostfang Furs (set 08)",
       "section": "",
@@ -5292,9 +5292,9 @@
       "in_ideas_md": true
     },
     "ARM-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:02",
       "title": "Yeti-Fur Gauntlets",
       "category": "Armor · Frostfang Furs (set 08)",
       "section": "",
@@ -5303,9 +5303,9 @@
       "in_ideas_md": true
     },
     "TRS-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:02",
       "title": "Yeti-Fur Coat",
       "category": "Armor · Frostfang Furs (set 08)",
       "section": "",
@@ -5314,9 +5314,9 @@
       "in_ideas_md": true
     },
     "LEG-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:02",
       "title": "Snow Boots & Leggings",
       "category": "Armor · Frostfang Furs (set 08)",
       "section": "",
@@ -5325,9 +5325,9 @@
       "in_ideas_md": true
     },
     "HED-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:03",
       "title": "Sage's Hood",
       "category": "Armor · Sage's Vestments (set 09)",
       "section": "",
@@ -5336,9 +5336,9 @@
       "in_ideas_md": true
     },
     "ARM-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:04",
       "title": "Wrapped Sleeves",
       "category": "Armor · Sage's Vestments (set 09)",
       "section": "",
@@ -5347,9 +5347,9 @@
       "in_ideas_md": true
     },
     "TRS-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:04",
       "title": "Greymantle Robe",
       "category": "Armor · Sage's Vestments (set 09)",
       "section": "",
@@ -5358,9 +5358,9 @@
       "in_ideas_md": true
     },
     "LEG-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:04",
       "title": "Traveller's Sandals",
       "category": "Armor · Sage's Vestments (set 09)",
       "section": "",
@@ -5369,9 +5369,9 @@
       "in_ideas_md": true
     },
     "HED-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:09",
       "title": "Great Helm",
       "category": "Armor · Watch Plate (set 10)",
       "section": "",
@@ -5380,9 +5380,9 @@
       "in_ideas_md": true
     },
     "ARM-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:09",
       "title": "Plate Gauntlets",
       "category": "Armor · Watch Plate (set 10)",
       "section": "",
@@ -5391,9 +5391,9 @@
       "in_ideas_md": true
     },
     "TRS-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:10",
       "title": "Steel Cuirass",
       "category": "Armor · Watch Plate (set 10)",
       "section": "",
@@ -5402,9 +5402,9 @@
       "in_ideas_md": true
     },
     "LEG-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:10",
       "title": "Plate Greaves",
       "category": "Armor · Watch Plate (set 10)",
       "section": "",
@@ -5413,9 +5413,9 @@
       "in_ideas_md": true
     },
     "HED-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:12",
       "title": "Horned Bone Helm",
       "category": "Armor · Orcish Bonemail (set 11)",
       "section": "",
@@ -5424,9 +5424,9 @@
       "in_ideas_md": true
     },
     "ARM-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:12",
       "title": "Tusk Bracers",
       "category": "Armor · Orcish Bonemail (set 11)",
       "section": "",
@@ -5435,9 +5435,9 @@
       "in_ideas_md": true
     },
     "TRS-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:12",
       "title": "Bonemail Hauberk",
       "category": "Armor · Orcish Bonemail (set 11)",
       "section": "",
@@ -5446,9 +5446,9 @@
       "in_ideas_md": true
     },
     "LEG-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:12",
       "title": "Bone Greaves",
       "category": "Armor · Orcish Bonemail (set 11)",
       "section": "",
@@ -5457,9 +5457,9 @@
       "in_ideas_md": true
     },
     "HED-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:19",
       "title": "Emberforged Helm",
       "category": "Armor · Emberforged (set 12)",
       "section": "",
@@ -5468,9 +5468,9 @@
       "in_ideas_md": true
     },
     "ARM-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:20",
       "title": "Emberforged Gauntlets",
       "category": "Armor · Emberforged (set 12)",
       "section": "",
@@ -5479,9 +5479,9 @@
       "in_ideas_md": true
     },
     "TRS-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:20",
       "title": "Emberforged Cuirass",
       "category": "Armor · Emberforged (set 12)",
       "section": "",
@@ -5490,9 +5490,9 @@
       "in_ideas_md": true
     },
     "LEG-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:20",
       "title": "Emberforged Greaves",
       "category": "Armor · Emberforged (set 12)",
       "section": "",
@@ -5501,9 +5501,9 @@
       "in_ideas_md": true
     },
     "HED-13": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:24",
       "title": "Dread Helm",
       "category": "Armor · Dread Plate (set 13)",
       "section": "",
@@ -5512,9 +5512,9 @@
       "in_ideas_md": true
     },
     "ARM-13": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:24",
       "title": "Dread Gauntlets",
       "category": "Armor · Dread Plate (set 13)",
       "section": "",
@@ -5523,9 +5523,9 @@
       "in_ideas_md": true
     },
     "TRS-13": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:24",
       "title": "Dread Cuirass",
       "category": "Armor · Dread Plate (set 13)",
       "section": "",
@@ -5534,9 +5534,9 @@
       "in_ideas_md": true
     },
     "LEG-13": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:24",
       "title": "Dread Greaves",
       "category": "Armor · Dread Plate (set 13)",
       "section": "",
@@ -5545,9 +5545,9 @@
       "in_ideas_md": true
     },
     "HED-14": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:35",
       "title": "Circlet of the First Hero",
       "category": "Armor · Mantle of the First Hero (set 14)",
       "section": "",
@@ -5556,9 +5556,9 @@
       "in_ideas_md": true
     },
     "ARM-14": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:35",
       "title": "Vambraces of the First Hero",
       "category": "Armor · Mantle of the First Hero (set 14)",
       "section": "",
@@ -5567,9 +5567,9 @@
       "in_ideas_md": true
     },
     "TRS-14": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:36",
       "title": "Breastplate of the First Hero",
       "category": "Armor · Mantle of the First Hero (set 14)",
       "section": "",
@@ -5578,9 +5578,9 @@
       "in_ideas_md": true
     },
     "LEG-14": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:28:36",
       "title": "Greaves of the First Hero",
       "category": "Armor · Mantle of the First Hero (set 14)",
       "section": "",
@@ -5589,9 +5589,9 @@
       "in_ideas_md": true
     },
     "WPR-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:40:54",
       "title": "Main hand, off hand, sidearm",
       "category": "Weapons · Rules (WPR)",
       "section": "",
@@ -5600,9 +5600,9 @@
       "in_ideas_md": true
     },
     "WPR-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:40:56",
       "title": "Two-handing",
       "category": "Weapons · Rules (WPR)",
       "section": "",
@@ -5622,9 +5622,9 @@
       "in_ideas_md": true
     },
     "WPR-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:41:09",
       "title": "Smith upgrades",
       "category": "Weapons · Rules (WPR)",
       "section": "",
@@ -5633,9 +5633,9 @@
       "in_ideas_md": true
     },
     "WPR-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:41:14",
       "title": "Rune socket",
       "category": "Weapons · Rules (WPR)",
       "section": "",
@@ -5644,9 +5644,9 @@
       "in_ideas_md": true
     },
     "WPR-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:41:17",
       "title": "Meshy pipeline for weapons",
       "category": "Weapons · Rules (WPR)",
       "section": "",
@@ -5655,9 +5655,9 @@
       "in_ideas_md": true
     },
     "ONE-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:41:20",
       "title": "The Dawnblade",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5666,9 +5666,9 @@
       "in_ideas_md": true
     },
     "ONE-02": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:41:26",
       "title": "Woodcutter's Hatchet",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5677,9 +5677,9 @@
       "in_ideas_md": true
     },
     "ONE-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:41:27",
       "title": "Iron Shortsword",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5688,9 +5688,9 @@
       "in_ideas_md": true
     },
     "ONE-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:41:28",
       "title": "Goblin Shiv",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5699,9 +5699,9 @@
       "in_ideas_md": true
     },
     "ONE-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:41:29",
       "title": "Bandit's Cutlass",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5710,9 +5710,9 @@
       "in_ideas_md": true
     },
     "ONE-06": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:41:37",
       "title": "Militia Spear",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5721,9 +5721,9 @@
       "in_ideas_md": true
     },
     "ONE-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:41:38",
       "title": "Flanged Mace",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5732,9 +5732,9 @@
       "in_ideas_md": true
     },
     "ONE-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:41:38",
       "title": "Orcish Cleaver",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5743,9 +5743,9 @@
       "in_ideas_md": true
     },
     "ONE-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:41:43",
       "title": "Barbed Lizardfolk Spear",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5754,9 +5754,9 @@
       "in_ideas_md": true
     },
     "ONE-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:41:43",
       "title": "Holy Morningstar",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5765,9 +5765,9 @@
       "in_ideas_md": true
     },
     "ONE-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:41:44",
       "title": "Frostbite Hand-axe",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5776,9 +5776,9 @@
       "in_ideas_md": true
     },
     "ONE-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:41:46",
       "title": "Wraithbane Sabre",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5798,9 +5798,9 @@
       "in_ideas_md": true
     },
     "ONE-14": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:43:05",
       "title": "Dread Longsword",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5809,9 +5809,9 @@
       "in_ideas_md": true
     },
     "ONE-15": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:43:13",
       "title": "Ember Pick",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5820,9 +5820,9 @@
       "in_ideas_md": true
     },
     "ONE-16": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:43:17",
       "title": "Brood Fang Estoc",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5831,9 +5831,9 @@
       "in_ideas_md": true
     },
     "ONE-17": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:43:23",
       "title": "Mire Hag's Sickle",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -5842,9 +5842,9 @@
       "in_ideas_md": true
     },
     "TWO-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:43:29",
       "title": "Iron Greatsword",
       "category": "Weapons · Two-handed Weapons (TWO)",
       "section": "",
@@ -5853,9 +5853,9 @@
       "in_ideas_md": true
     },
     "TWO-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:43:30",
       "title": "Ogre's Club",
       "category": "Weapons · Two-handed Weapons (TWO)",
       "section": "",
@@ -5864,9 +5864,9 @@
       "in_ideas_md": true
     },
     "TWO-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:43:31",
       "title": "Troll-Bone Greataxe",
       "category": "Weapons · Two-handed Weapons (TWO)",
       "section": "",
@@ -5875,9 +5875,9 @@
       "in_ideas_md": true
     },
     "TWO-04": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:43:37",
       "title": "Halberd of the Old Watch",
       "category": "Weapons · Two-handed Weapons (TWO)",
       "section": "",
@@ -5886,9 +5886,9 @@
       "in_ideas_md": true
     },
     "TWO-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:43:40",
       "title": "Yeti-Ivory Maul",
       "category": "Weapons · Two-handed Weapons (TWO)",
       "section": "",
@@ -5897,9 +5897,9 @@
       "in_ideas_md": true
     },
     "TWO-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:43:45",
       "title": "Grimtooth's Fang Cleaver",
       "category": "Weapons · Two-handed Weapons (TWO)",
       "section": "",
@@ -5908,9 +5908,9 @@
       "in_ideas_md": true
     },
     "TWO-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:43:46",
       "title": "Wyvernspine Glaive",
       "category": "Weapons · Two-handed Weapons (TWO)",
       "section": "",
@@ -5919,9 +5919,9 @@
       "in_ideas_md": true
     },
     "SHD-01": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:43:51",
       "title": "Rowan's Buckler",
       "category": "Weapons · Shields (SHD)",
       "section": "",
@@ -5930,9 +5930,9 @@
       "in_ideas_md": true
     },
     "SHD-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:43:52",
       "title": "Wooden Round Shield",
       "category": "Weapons · Shields (SHD)",
       "section": "",
@@ -5941,9 +5941,9 @@
       "in_ideas_md": true
     },
     "SHD-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:43:53",
       "title": "Militia Kite Shield",
       "category": "Weapons · Shields (SHD)",
       "section": "",
@@ -5952,9 +5952,9 @@
       "in_ideas_md": true
     },
     "SHD-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:03",
       "title": "Spiked Bandit Targe",
       "category": "Weapons · Shields (SHD)",
       "section": "",
@@ -5963,9 +5963,9 @@
       "in_ideas_md": true
     },
     "SHD-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:04",
       "title": "Dread Tower Shield",
       "category": "Weapons · Shields (SHD)",
       "section": "",
@@ -5974,9 +5974,9 @@
       "in_ideas_md": true
     },
     "SHD-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:05",
       "title": "Emberforged Shield",
       "category": "Weapons · Shields (SHD)",
       "section": "",
@@ -5985,9 +5985,9 @@
       "in_ideas_md": true
     },
     "SHD-07": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:06",
       "title": "Mirror Shield of the First Hero",
       "category": "Weapons · Shields (SHD)",
       "section": "",
@@ -5996,9 +5996,9 @@
       "in_ideas_md": true
     },
     "MAG-01": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:11",
       "title": "Hedge Wand",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6007,9 +6007,9 @@
       "in_ideas_md": true
     },
     "MAG-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:14",
       "title": "Aldric's Oak Staff",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6018,9 +6018,9 @@
       "in_ideas_md": true
     },
     "MAG-03": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:17",
       "title": "Prayer Beads",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6029,9 +6029,9 @@
       "in_ideas_md": true
     },
     "MAG-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:18",
       "title": "Sun Talisman",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6040,9 +6040,9 @@
       "in_ideas_md": true
     },
     "MAG-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:21",
       "title": "Censer of Embers",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6051,9 +6051,9 @@
       "in_ideas_md": true
     },
     "MAG-06": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
+      "status": "approved",
+      "note": "Call it something besides a fetish",
+      "changed": "2026-11-24T16:44:37",
       "title": "Goblin Hexer's Fetish",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6062,9 +6062,9 @@
       "in_ideas_md": true
     },
     "MAG-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:39",
       "title": "Necromancer's Skull Staff",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6073,9 +6073,9 @@
       "in_ideas_md": true
     },
     "MAG-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:40",
       "title": "Mire Hag's Gnarled Staff",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6084,9 +6084,9 @@
       "in_ideas_md": true
     },
     "MAG-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:41",
       "title": "Frost Rod",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6095,9 +6095,9 @@
       "in_ideas_md": true
     },
     "MAG-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:44",
       "title": "Seer's Orb",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6106,9 +6106,9 @@
       "in_ideas_md": true
     },
     "MAG-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:45",
       "title": "Tome of Wards",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6117,9 +6117,9 @@
       "in_ideas_md": true
     },
     "MAG-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:46",
       "title": "Wraith Lantern",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6128,9 +6128,9 @@
       "in_ideas_md": true
     },
     "MAG-13": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:44:56",
       "title": "Cinder Heart",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6139,9 +6139,9 @@
       "in_ideas_md": true
     },
     "MAG-14": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:45:00",
       "title": "Wyvern-Scale Talisman",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6150,9 +6150,9 @@
       "in_ideas_md": true
     },
     "MAG-15": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:45:03",
       "title": "Scepter of the Undying",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6161,9 +6161,9 @@
       "in_ideas_md": true
     },
     "MAG-16": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:45:18",
       "title": "Rune Ring",
       "category": "Weapons · Magic Weapons (MAG)",
       "section": "",
@@ -6443,204 +6443,6 @@
     }
   },
   "history": [
-    {
-      "time": "2026-11-23T22:34:04",
-      "id": "PIL-02",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:34:09",
-      "id": "PIL-04",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:34:19",
-      "id": "PIL-05",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:34:28",
-      "id": "PIL-06",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:35:34",
-      "id": "PIL-09",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:35:41",
-      "id": "PIL-10",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:35:50",
-      "id": "STY-02",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:36:00",
-      "id": "STY-03",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:36:06",
-      "id": "STY-09",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:36:16",
-      "id": "STY-10",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:36:32",
-      "id": "STY-13",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:36:47",
-      "id": "STY-14",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:36:56",
-      "id": "STY-15",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:37:24",
-      "id": "STY-18",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:37:30",
-      "id": "STY-19",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:37:35",
-      "id": "HER-02",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:37:46",
-      "id": "HER-02",
-      "from": "approved",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-23T22:37:53",
-      "id": "HER-03",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:38:06",
-      "id": "HER-05",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:38:14",
-      "id": "HER-07",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:38:21",
-      "id": "HER-08",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:38:36",
-      "id": "HER-10",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:38:50",
-      "id": "CMB-01",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:38:54",
-      "id": "CMB-02",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:38:58",
-      "id": "CMB-03",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:39:09",
-      "id": "CMB-05",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:39:13",
-      "id": "CMB-06",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:39:19",
-      "id": "CMB-07",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:39:35",
-      "id": "CMB-10",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:39:52",
-      "id": "CMB-12",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:40:47",
-      "id": "CMB-14",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:40:54",
-      "id": "CMB-15",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:40:59",
-      "id": "CMB-16",
-      "from": "awaiting",
-      "to": "approved"
-    },
     {
       "time": "2026-11-23T22:42:01",
       "id": "CMB-17",
@@ -8980,6 +8782,666 @@
       "id": "MON-47",
       "from": "awaiting",
       "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:25:46",
+      "id": "ARS-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:25:48",
+      "id": "ARS-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:25:50",
+      "id": "ARS-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:25:54",
+      "id": "ARS-04",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:26:06",
+      "id": "ARS-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:26:09",
+      "id": "HED-01",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:26:13",
+      "id": "ARM-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:26:14",
+      "id": "TRS-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:26:17",
+      "id": "LEG-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:26:22",
+      "id": "HED-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:26:31",
+      "id": "ARM-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:28",
+      "id": "HED-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:29",
+      "id": "ARM-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:29",
+      "id": "TRS-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:30",
+      "id": "LEG-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:32",
+      "id": "HED-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:32",
+      "id": "ARM-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:36",
+      "id": "TRS-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:37",
+      "id": "LEG-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:38",
+      "id": "HED-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:38",
+      "id": "ARM-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:39",
+      "id": "TRS-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:39",
+      "id": "LEG-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:46",
+      "id": "HED-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:46",
+      "id": "ARM-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:46",
+      "id": "TRS-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:47",
+      "id": "LEG-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:27:57",
+      "id": "HED-07",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:27:58",
+      "id": "ARM-07",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:27:58",
+      "id": "TRS-07",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:27:58",
+      "id": "LEG-07",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:28:02",
+      "id": "HED-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:02",
+      "id": "ARM-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:02",
+      "id": "TRS-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:02",
+      "id": "LEG-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:03",
+      "id": "HED-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:04",
+      "id": "ARM-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:04",
+      "id": "TRS-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:04",
+      "id": "LEG-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:09",
+      "id": "HED-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:09",
+      "id": "ARM-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:10",
+      "id": "TRS-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:10",
+      "id": "LEG-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:12",
+      "id": "HED-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:12",
+      "id": "ARM-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:12",
+      "id": "TRS-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:12",
+      "id": "LEG-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:19",
+      "id": "HED-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:20",
+      "id": "ARM-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:20",
+      "id": "TRS-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:20",
+      "id": "LEG-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:24",
+      "id": "HED-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:24",
+      "id": "ARM-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:24",
+      "id": "TRS-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:24",
+      "id": "LEG-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:28:35",
+      "id": "HED-14",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:28:35",
+      "id": "ARM-14",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:28:36",
+      "id": "TRS-14",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:28:36",
+      "id": "LEG-14",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:40:54",
+      "id": "WPR-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:40:56",
+      "id": "WPR-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:41:09",
+      "id": "WPR-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:41:14",
+      "id": "WPR-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:41:17",
+      "id": "WPR-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:41:20",
+      "id": "ONE-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:41:26",
+      "id": "ONE-02",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:41:27",
+      "id": "ONE-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:41:28",
+      "id": "ONE-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:41:29",
+      "id": "ONE-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:41:37",
+      "id": "ONE-06",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:41:38",
+      "id": "ONE-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:41:38",
+      "id": "ONE-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:41:43",
+      "id": "ONE-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:41:43",
+      "id": "ONE-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:41:44",
+      "id": "ONE-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:41:46",
+      "id": "ONE-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:43:05",
+      "id": "ONE-14",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:43:13",
+      "id": "ONE-15",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:43:17",
+      "id": "ONE-16",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:43:23",
+      "id": "ONE-17",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:43:29",
+      "id": "TWO-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:43:30",
+      "id": "TWO-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:43:31",
+      "id": "TWO-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:43:37",
+      "id": "TWO-04",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:43:40",
+      "id": "TWO-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:43:45",
+      "id": "TWO-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:43:46",
+      "id": "TWO-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:43:51",
+      "id": "SHD-01",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:43:52",
+      "id": "SHD-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:43:53",
+      "id": "SHD-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:44:03",
+      "id": "SHD-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:44:04",
+      "id": "SHD-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:44:05",
+      "id": "SHD-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:44:06",
+      "id": "SHD-07",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:44:11",
+      "id": "MAG-01",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:44:14",
+      "id": "MAG-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:44:17",
+      "id": "MAG-03",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:44:18",
+      "id": "MAG-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:44:21",
+      "id": "MAG-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:44:37",
+      "id": "MAG-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:44:39",
+      "id": "MAG-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:44:40",
+      "id": "MAG-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:44:41",
+      "id": "MAG-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:44:44",
+      "id": "MAG-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:44:45",
+      "id": "MAG-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:44:46",
+      "id": "MAG-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:44:56",
+      "id": "MAG-13",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:45:00",
+      "id": "MAG-14",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:45:03",
+      "id": "MAG-15",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:45:18",
+      "id": "MAG-16",
+      "from": "awaiting",
+      "to": "denied"
     }
   ]
 }

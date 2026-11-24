@@ -242,5 +242,57 @@
       "model": "latest",
       "note": "blob from Meshy reduction; re-rolled with --full-detail"
     }
-  ]
+  ],
+  "refines": {
+    "HER-09/v1": {
+      "task_id": "01a20f6c-fdea-71ea-a82a-ad639113ed7b",
+      "status": "SUCCEEDED",
+      "created": 1795555130.9602103,
+      "credits": 10
+    }
+  },
+  "rigs": {
+    "HER-09/v1": {
+      "task_id": "01a20f6e-2654-77c1-bdaa-a502315aaa5b",
+      "status": "SUCCEEDED",
+      "created": 1795555209.8507266,
+      "credits": 5
+    }
+  },
+  "animations": {
+    "HER-09/v1": {
+      "task_id": "01a20f6e-b0f2-726f-be65-e48cea743f26",
+      "status": "SUCCEEDED",
+      "actions": [
+        0,
+        509,
+        97,
+        219,
+        240,
+        242,
+        138,
+        129,
+        178,
+        189
+      ],
+      "created": 1795555242.5784118,
+      "credits": 30
+    },
+    "HER-09/v1#1": {
+      "task_id": "01a20f82-f47a-709d-917d-da0d48636173",
+      "status": "SUCCEEDED",
+      "motion": "HER-09/v1:shield_guard",
+      "created": 1795556570.833396,
+      "credits": 3
+    }
+  },
+  "motions": {
+    "HER-09/v1:shield_guard": {
+      "task_id": "01a20f82-c2fb-74b0-859a-2b82f9059499",
+      "status": "SUCCEEDED",
+      "prompt": "a sword and shield fighter raises a small round shield on the left forearm in front of the chest and face, braced guard stance with knees bent and left foot forward, sword hand held low and ready at the right hip, holds the guard steady",
+      "created": 1795556559.1979227,
+      "credits": 10
+    }
+  }
 }

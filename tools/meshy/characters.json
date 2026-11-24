@@ -18,7 +18,7 @@
         "219": "light attack 2 (Right-hand Sword Slash)",
         "240": "light attack 3 (Thrust Slash)",
         "242": "heavy attack (Charged Slash)",
-        "138": "block (Block1)",
+        "138": "block (Block1, superseded: the game uses rig/motion_shield_guard.glb plus a code-side left-arm raise)",
         "129": "cast, off hand (Mage Spell Cast)",
         "178": "hit (Hit Reaction)",
         "189": "death (Dying Backwards)"

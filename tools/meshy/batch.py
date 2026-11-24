@@ -228,17 +228,7 @@ def send(jobs, model: str, total: int, full_detail: bool = False) -> None:
     pending: dict[str, str] = {}
     for e, part, v in jobs:
         key = job_key(e, part, v)
-        for attempt in range(6):
-            r = requests.post(API, json=request_body(e, part, model, full_detail), headers=headers,
-                              timeout=60)
-            if r.status_code == 429:
-                time.sleep(5 * (attempt + 1))
-                continue
-            break
-        if r.status_code >= 300:
-            print(f"  ! {key}: HTTP {r.status_code} {r.text[:200]}")
-            continue
-        task_id = r.json()["result"]
+        task_id = submit(API, request_body(e, part, model, full_detail), headers)
         pending[key] = task_id
         if key in tasks["previews"]:     # a re-roll: keep the old task so its credits still count
             tasks.setdefault("replaced", []).append({"key": key, **tasks["previews"][key]})
@@ -275,8 +265,9 @@ def send(jobs, model: str, total: int, full_detail: bool = False) -> None:
 
 def credits_spent(tasks: dict) -> int:
     records = list(tasks["previews"].values()) + tasks.get("replaced", [])
-    for kind in ("refines", "rigs", "animations"):
+    for kind in ("refines", "rigs", "animations", "motions"):
         records += list(tasks.get(kind, {}).values())
+    records += tasks.get("replaced_motions", [])
     return sum(r.get("credits") or 0 for r in records)
 
 
@@ -285,19 +276,27 @@ def save_url(url: str, path: Path, label: str = "") -> None:
     import requests
 
     path.parent.mkdir(parents=True, exist_ok=True)
-    with requests.get(url, stream=True, timeout=120) as r:
-        r.raise_for_status()
-        size = int(r.headers.get("content-length", 0))
-        got, last = 0, 0
-        tmp = path.with_name(path.name + ".part")
-        with open(tmp, "wb") as f:
-            for chunk in r.iter_content(1 << 20):
-                f.write(chunk)
-                got += len(chunk)
-                if size > 20_000_000 and got - last >= 20_000_000:
-                    print(f"    {label} {path.name}: {got // 1_000_000}/{size // 1_000_000} MB")
-                    last = got
-        tmp.replace(path)
+    for attempt in range(5):
+        try:
+            with requests.get(url, stream=True, timeout=120) as r:
+                r.raise_for_status()
+                size = int(r.headers.get("content-length", 0))
+                got, last = 0, 0
+                tmp = path.with_name(path.name + ".part")
+                with open(tmp, "wb") as f:
+                    for chunk in r.iter_content(1 << 20):
+                        f.write(chunk)
+                        got += len(chunk)
+                        if size > 20_000_000 and got - last >= 20_000_000:
+                            print(f"    {label} {path.name}: {got // 1_000_000}/{size // 1_000_000} MB")
+                            last = got
+                tmp.replace(path)
+                return
+        except requests.RequestException as exc:
+            print(f"    download of {path.name} failed ({type(exc).__name__}), retrying ({attempt + 1}/5)")
+            time.sleep(5 * (attempt + 1))
+    print(f"  ! couldn't download {path.name}. The task itself succeeded and its ID is in "
+          f"assets/meshy/tasks.json, so the file can still be fetched from Meshy.")
 
 
 def download(key: str, task: dict) -> None:
@@ -314,17 +313,56 @@ def download(key: str, task: dict) -> None:
 
 RIG_API = "https://api.meshy.ai/openapi/v1/rigging"
 ANIM_API = "https://api.meshy.ai/openapi/v1/animations"
+MOTION_API = "https://api.meshy.ai/openapi/v1/text-to-motion"
 REFINE_CREDITS, RIG_CREDITS, ACTION_CREDITS = 10, 5, 3
+MOTION_CREDITS = {"prime": 10, "swift": 3}
+
+
+def safe_name(text: str) -> str:
+    words = re.sub(r"[^a-z0-9]+", " ", text.lower()).split()
+    return "_".join(words[:5]) or "motion"
+
+
+def find_recent_task(url: str, headers: dict, since_ms: float, body: dict) -> str | None:
+    """After a dropped connection: did Meshy create the task anyway? (Its list endpoints are free.)"""
+    import requests
+
+    try:
+        r = requests.get(url, headers=headers, params={"page_size": 10, "sort_by": "-created_at"}, timeout=30)
+        items = r.json() if r.ok else []
+    except requests.RequestException:
+        return None
+    for t in items if isinstance(items, list) else []:
+        if t.get("created_at", 0) < since_ms:
+            continue
+        if "prompt" in body and t.get("prompt") not in (None, body["prompt"]):
+            continue
+        return t.get("id")
+    return None
 
 
 def submit(url: str, body: dict, headers: dict) -> str:
+    """POST a task, retrying on rate limits and dropped connections without creating duplicates."""
     import requests
 
-    for attempt in range(6):
-        r = requests.post(url, json=body, headers=headers, timeout=60)
-        if r.status_code != 429:
-            break
-        time.sleep(5 * (attempt + 1))
+    sent_at = time.time() * 1000 - 15_000          # allow for clock skew
+    for attempt in range(8):
+        try:
+            r = requests.post(url, json=body, headers=headers, timeout=60)
+        except requests.ConnectionError as exc:
+            time.sleep(5 * (attempt + 1))
+            existing = find_recent_task(url, headers, sent_at, body)
+            if existing:
+                print(f"    connection dropped, but Meshy created the task ({existing}); continuing")
+                return existing
+            print(f"    connection problem ({type(exc).__name__}), retrying ({attempt + 1}/8)")
+            continue
+        if r.status_code == 429:
+            time.sleep(5 * (attempt + 1))
+            continue
+        break
+    else:
+        sys.exit(f"  ! couldn't reach {url} after 8 tries. Nothing more was sent; run the command again later.")
     if r.status_code >= 300:
         sys.exit(f"  ! HTTP {r.status_code} from {url}: {r.text[:300]}")
     return r.json()["result"]
@@ -336,7 +374,11 @@ def wait(url: str, task_id: str, headers: dict, label: str) -> dict:
     last = -1
     while True:
         time.sleep(10)
-        r = requests.get(f"{url}/{task_id}", headers=headers, timeout=60)
+        try:
+            r = requests.get(f"{url}/{task_id}", headers=headers, timeout=60)
+        except requests.RequestException:
+            print(f"    {label}: connection problem while checking, will retry")
+            continue
         if r.status_code >= 300:
             continue
         t = r.json()
@@ -359,11 +401,21 @@ def cmd_animate(args) -> None:
     prev = tasks["previews"].get(key)
     if not prev or prev.get("status") != "SUCCEEDED":
         sys.exit(f"No finished preview {key}. Make the preview first (batch.py preview {args.id}).")
-    actions = ([int(a) for a in args.actions.split(",")] if args.actions
-               else list((e.actions or {}).keys()))
     refines, rigs, anims = (tasks.setdefault(k, {}) for k in ("refines", "rigs", "animations"))
-    done_anim = set(anims.get(key, {}).get("actions", [])) if anims.get(key, {}).get("status") == "SUCCEEDED" else set()
-    todo = [a for a in actions if a not in done_anim]
+    mine = {k: v for k, v in anims.items() if k == key or k.startswith(key + "#")}
+    done_anim = {a for v in mine.values() if v.get("status") == "SUCCEEDED" for a in v.get("actions", [])}
+    if args.motion:
+        if e.rig != "biped":
+            sys.exit("Text to Motion only works on biped rigs.")
+        if len(args.motion) > 400:
+            sys.exit(f"Motion prompt is {len(args.motion)} characters; Meshy allows 400.")
+        if not (2 <= args.duration <= 10 and (args.duration * 2) == int(args.duration * 2)):
+            sys.exit("--duration must be 2 to 10 seconds in steps of 0.5.")
+        todo = []
+    else:
+        actions = ([int(a) for a in args.actions.split(",")] if args.actions
+                   else list((e.actions or {}).keys()))
+        todo = [a for a in actions if a not in done_anim]
 
     steps = []
     if refines.get(key, {}).get("status") != "SUCCEEDED":
@@ -373,11 +425,16 @@ def cmd_animate(args) -> None:
     for i in range(0, len(todo), 10):
         chunk = todo[i:i + 10]
         steps.append((f"{len(chunk)} animations", ACTION_CREDITS * len(chunk)))
+    if args.motion:
+        steps.append((f"text to motion ({args.motion_mode}, {args.duration:g} s)", MOTION_CREDITS[args.motion_mode]))
+        steps.append(("apply the motion to the rig (price not listed; assumed 3)", ACTION_CREDITS))
     total = sum(c for _, c in steps)
 
     print(f"\nMeshy character pipeline for {e.name} ({key})\n")
     for name, c in steps:
         print(f"  {name:<58}{c:>4} credits")
+    if args.motion:
+        print(f"\n  Motion prompt: {args.motion}\n  Saved as: rig/motion_{safe_name(args.name or args.motion)}.glb")
     if todo:
         print("\n  Animations:")
         for a in todo:
@@ -431,10 +488,22 @@ def cmd_animate(args) -> None:
                 save_url(url, folder / "rig" / (clip.replace("_glb_url", "") + ".glb"), key)
         print("  rigged")
 
+    def new_anim_key() -> str:
+        n = 0
+        while (key if n == 0 else f"{key}#{n}") in anims:
+            n += 1
+        return key if n == 0 else f"{key}#{n}"
+
+    def next_file(stem: str) -> Path:
+        n = 1
+        while (folder / "rig" / f"{stem}_{n}.glb").exists():
+            n += 1
+        return folder / "rig" / f"{stem}_{n}.glb"
+
     for i in range(0, len(todo), 10):
         chunk = todo[i:i + 10]
         tid = submit(ANIM_API, {"rig_task_id": rigs[key]["task_id"], "action_ids": chunk}, headers)
-        akey = key if i == 0 else f"{key}#{i // 10}"
+        akey = new_anim_key()
         anims[akey] = {"task_id": tid, "status": "PENDING", "actions": chunk, "created": time.time()}
         save_tasks(tasks)
         t = wait(ANIM_API, tid, headers, "animations")
@@ -444,8 +513,43 @@ def cmd_animate(args) -> None:
             sys.exit(f"  ! animations {t['status']}: {(t.get('task_error') or {}).get('message')}")
         url = (t.get("result") or {}).get("animation_glb_url")
         if url:
-            save_url(url, folder / "rig" / f"animations_{i // 10 + 1}.glb", key)
+            save_url(url, next_file("animations"), key)
         print(f"  animated ({len(chunk)} clips)")
+
+    if args.motion:
+        motions = tasks.setdefault("motions", {})
+        mkey = f"{key}:{safe_name(args.name or args.motion)}"
+        prior = motions.get(mkey)
+        fresh = prior and prior.get("status") == "SUCCEEDED" and prior.get("prompt") == args.motion \
+            and time.time() - prior.get("created", 0) < 2.5 * 86400       # Meshy keeps clips 3 days
+        if fresh:
+            tid = prior["task_id"]
+            print("  reusing the motion generated last time (not charged again)")
+        else:
+            tid = submit(MOTION_API, {"prompt": args.motion, "mode": args.motion_mode,
+                                      "duration": args.duration}, headers)
+            if prior:
+                tasks.setdefault("replaced_motions", []).append(prior)
+            motions[mkey] = {"task_id": tid, "status": "PENDING", "prompt": args.motion, "created": time.time()}
+            save_tasks(tasks)
+            t = wait(MOTION_API, tid, headers, "motion")
+            motions[mkey].update(status=t["status"], credits=t.get("consumed_credits"))
+            save_tasks(tasks)
+            if t["status"] != "SUCCEEDED":
+                sys.exit(f"  ! motion {t['status']}: {(t.get('task_error') or {}).get('message')}")
+        tid = submit(ANIM_API, {"rig_task_id": rigs[key]["task_id"], "motion_task_id": tid}, headers)
+        akey = new_anim_key()
+        anims[akey] = {"task_id": tid, "status": "PENDING", "motion": mkey, "created": time.time()}
+        save_tasks(tasks)
+        t = wait(ANIM_API, tid, headers, "apply motion")
+        anims[akey].update(status=t["status"], credits=t.get("consumed_credits"))
+        save_tasks(tasks)
+        if t["status"] != "SUCCEEDED":
+            sys.exit(f"  ! apply motion {t['status']}: {(t.get('task_error') or {}).get('message')}")
+        url = (t.get("result") or {}).get("animation_glb_url")
+        if url:
+            save_url(url, folder / "rig" / f"motion_{safe_name(args.name or args.motion)}.glb", key)
+        print(f"  motion applied (cost recorded: {t.get('consumed_credits')} credits)")
     print(f"\nFinished. Files are in {folder.relative_to(ROOT)}. Credits recorded so far: {credits_spent(tasks)}")
 
 
@@ -483,6 +587,10 @@ def main() -> None:
     a.add_argument("id", help="character ID from characters.json, such as HER-09")
     a.add_argument("--variant", type=int, default=1, help="which preview to use (v1, v2, ...)")
     a.add_argument("--actions", help="comma-separated animation library IDs (default: from characters.json)")
+    a.add_argument("--motion", help="describe a custom move for Text to Motion instead of library actions")
+    a.add_argument("--name", help="short name for the motion clip's file (default: from the prompt)")
+    a.add_argument("--duration", type=float, default=3.0, help="motion length, 2-10 s in 0.5 steps")
+    a.add_argument("--motion-mode", default="prime", choices=sorted(MOTION_CREDITS))
     a.add_argument("--send", action="store_true", help="actually call Meshy (spends credits)")
     args = ap.parse_args()
 
