@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-24T14:16:25",
+  "updated": "2026-11-24T14:32:59",
   "counts": {
-    "awaiting": 253,
-    "approved": 254,
-    "denied": 52,
+    "awaiting": 211,
+    "approved": 289,
+    "denied": 59,
     "total": 559
   },
   "ui": {
     "selected": [
-      "DSK-01"
+      "ITM-01"
     ],
     "selected_titles": {
-      "DSK-01": "Citadel Gatehouse"
+      "ITM-01": "Dawnblade, Rusty"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-24T14:16:25"
+    "at": "2026-11-24T14:32:59"
   },
   "ideas": {
     "PIL-01": {
@@ -3598,9 +3598,9 @@
       "in_ideas_md": true
     },
     "DSK-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:30:30",
       "title": "Citadel Gatehouse",
       "category": "Objects · Duskhold Citadel (DSK)",
       "section": "",
@@ -3609,9 +3609,9 @@
       "in_ideas_md": true
     },
     "DSK-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:30:31",
       "title": "Citadel Wall Segment",
       "category": "Objects · Duskhold Citadel (DSK)",
       "section": "",
@@ -3620,9 +3620,9 @@
       "in_ideas_md": true
     },
     "DSK-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:30:32",
       "title": "Citadel Tower",
       "category": "Objects · Duskhold Citadel (DSK)",
       "section": "",
@@ -3631,9 +3631,9 @@
       "in_ideas_md": true
     },
     "DSK-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:30:39",
       "title": "Dark Lord Statue",
       "category": "Objects · Duskhold Citadel (DSK)",
       "section": "",
@@ -3653,9 +3653,9 @@
       "in_ideas_md": true
     },
     "DSK-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:30:44",
       "title": "Duskhold Banner",
       "category": "Objects · Duskhold Citadel (DSK)",
       "section": "",
@@ -3664,9 +3664,9 @@
       "in_ideas_md": true
     },
     "DSK-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:30:47",
       "title": "Spiked Barricade",
       "category": "Objects · Duskhold Citadel (DSK)",
       "section": "",
@@ -3675,9 +3675,9 @@
       "in_ideas_md": true
     },
     "INT-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:30:50",
       "title": "Waystone",
       "category": "Objects · Gameplay Objects (INT)",
       "section": "",
@@ -3686,9 +3686,9 @@
       "in_ideas_md": true
     },
     "INT-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:30:52",
       "title": "Wooden Chest",
       "category": "Objects · Gameplay Objects (INT)",
       "section": "",
@@ -3697,9 +3697,9 @@
       "in_ideas_md": true
     },
     "INT-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:30:54",
       "title": "Iron Chest",
       "category": "Objects · Gameplay Objects (INT)",
       "section": "",
@@ -3708,9 +3708,9 @@
       "in_ideas_md": true
     },
     "INT-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:30:57",
       "title": "Ornate Chest",
       "category": "Objects · Gameplay Objects (INT)",
       "section": "",
@@ -3719,9 +3719,9 @@
       "in_ideas_md": true
     },
     "INT-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:30:58",
       "title": "Mimic Chest Body",
       "category": "Objects · Gameplay Objects (INT)",
       "section": "",
@@ -3730,9 +3730,9 @@
       "in_ideas_md": true
     },
     "INT-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:31:05",
       "title": "Shortcut Lever",
       "category": "Objects · Gameplay Objects (INT)",
       "section": "",
@@ -3741,9 +3741,9 @@
       "in_ideas_md": true
     },
     "INT-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:31:06",
       "title": "Ladder",
       "category": "Objects · Gameplay Objects (INT)",
       "section": "",
@@ -3752,9 +3752,9 @@
       "in_ideas_md": true
     },
     "INT-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:31:08",
       "title": "Iron Portcullis",
       "category": "Objects · Gameplay Objects (INT)",
       "section": "",
@@ -3763,9 +3763,9 @@
       "in_ideas_md": true
     },
     "INT-09": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:31:31",
       "title": "Mist Gate Arch",
       "category": "Objects · Gameplay Objects (INT)",
       "section": "",
@@ -3774,9 +3774,9 @@
       "in_ideas_md": true
     },
     "INT-10": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:31:51",
       "title": "Training Dummy",
       "category": "Objects · Gameplay Objects (INT)",
       "section": "",
@@ -3785,9 +3785,9 @@
       "in_ideas_md": true
     },
     "INT-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:31:54",
       "title": "Signpost",
       "category": "Objects · Gameplay Objects (INT)",
       "section": "",
@@ -3796,9 +3796,9 @@
       "in_ideas_md": true
     },
     "INT-12": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:01",
       "title": "Breakable Pot",
       "category": "Objects · Gameplay Objects (INT)",
       "section": "",
@@ -3807,9 +3807,9 @@
       "in_ideas_md": true
     },
     "INT-13": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:04",
       "title": "Explosive Barrel",
       "category": "Objects · Gameplay Objects (INT)",
       "section": "",
@@ -3818,9 +3818,9 @@
       "in_ideas_md": true
     },
     "INT-14": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:15",
       "title": "Cracked Wall",
       "category": "Objects · Gameplay Objects (INT)",
       "section": "",
@@ -3829,9 +3829,9 @@
       "in_ideas_md": true
     },
     "INT-15": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:19",
       "title": "Spike Trap",
       "category": "Objects · Gameplay Objects (INT)",
       "section": "",
@@ -3840,9 +3840,9 @@
       "in_ideas_md": true
     },
     "CLT-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:21",
       "title": "Barrel",
       "category": "Objects · Camps & Clutter (CLT)",
       "section": "",
@@ -3851,9 +3851,9 @@
       "in_ideas_md": true
     },
     "CLT-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:22",
       "title": "Crate",
       "category": "Objects · Camps & Clutter (CLT)",
       "section": "",
@@ -3862,9 +3862,9 @@
       "in_ideas_md": true
     },
     "CLT-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:23",
       "title": "Grain Sacks",
       "category": "Objects · Camps & Clutter (CLT)",
       "section": "",
@@ -3873,9 +3873,9 @@
       "in_ideas_md": true
     },
     "CLT-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:24",
       "title": "Campfire",
       "category": "Objects · Camps & Clutter (CLT)",
       "section": "",
@@ -3884,9 +3884,9 @@
       "in_ideas_md": true
     },
     "CLT-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:25",
       "title": "Bandit Tent",
       "category": "Objects · Camps & Clutter (CLT)",
       "section": "",
@@ -3895,9 +3895,9 @@
       "in_ideas_md": true
     },
     "CLT-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:26",
       "title": "Orc War Tent",
       "category": "Objects · Camps & Clutter (CLT)",
       "section": "",
@@ -3906,9 +3906,9 @@
       "in_ideas_md": true
     },
     "CLT-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:29",
       "title": "Weapon Rack",
       "category": "Objects · Camps & Clutter (CLT)",
       "section": "",
@@ -3917,9 +3917,9 @@
       "in_ideas_md": true
     },
     "CLT-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:30",
       "title": "Goblin Junk Pile",
       "category": "Objects · Camps & Clutter (CLT)",
       "section": "",
@@ -3928,9 +3928,9 @@
       "in_ideas_md": true
     },
     "CLT-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:31",
       "title": "Cooking Spit",
       "category": "Objects · Camps & Clutter (CLT)",
       "section": "",
@@ -3939,9 +3939,9 @@
       "in_ideas_md": true
     },
     "CLT-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:32",
       "title": "Lantern Post",
       "category": "Objects · Camps & Clutter (CLT)",
       "section": "",
@@ -3950,9 +3950,9 @@
       "in_ideas_md": true
     },
     "CLT-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:33",
       "title": "Wall Torch",
       "category": "Objects · Camps & Clutter (CLT)",
       "section": "",
@@ -3961,9 +3961,9 @@
       "in_ideas_md": true
     },
     "CLT-12": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:38",
       "title": "War Drum",
       "category": "Objects · Camps & Clutter (CLT)",
       "section": "",
@@ -3972,9 +3972,9 @@
       "in_ideas_md": true
     },
     "CLT-13": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:44",
       "title": "Cage",
       "category": "Objects · Camps & Clutter (CLT)",
       "section": "",
@@ -3983,9 +3983,9 @@
       "in_ideas_md": true
     },
     "CLT-14": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:44",
       "title": "Bones & Skulls",
       "category": "Objects · Camps & Clutter (CLT)",
       "section": "",
@@ -3994,9 +3994,9 @@
       "in_ideas_md": true
     },
     "CLT-15": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:48",
       "title": "Spider Egg Sacs",
       "category": "Objects · Camps & Clutter (CLT)",
       "section": "",
@@ -4005,9 +4005,9 @@
       "in_ideas_md": true
     },
     "DNG-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:50",
       "title": "Tombstones",
       "category": "Objects · Crypt Dressing (DNG)",
       "section": "",
@@ -4016,9 +4016,9 @@
       "in_ideas_md": true
     },
     "DNG-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:51",
       "title": "Sarcophagus",
       "category": "Objects · Crypt Dressing (DNG)",
       "section": "",
@@ -4027,9 +4027,9 @@
       "in_ideas_md": true
     },
     "DNG-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:51",
       "title": "Bone Pile Alcove",
       "category": "Objects · Crypt Dressing (DNG)",
       "section": "",
@@ -4038,9 +4038,9 @@
       "in_ideas_md": true
     },
     "DNG-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:57",
       "title": "Candle Cluster",
       "category": "Objects · Crypt Dressing (DNG)",
       "section": "",
@@ -4049,9 +4049,9 @@
       "in_ideas_md": true
     },
     "DNG-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:57",
       "title": "Necromancer's Altar",
       "category": "Objects · Crypt Dressing (DNG)",
       "section": "",
@@ -4060,9 +4060,9 @@
       "in_ideas_md": true
     },
     "DNG-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:32:58",
       "title": "Cobweb Corner",
       "category": "Objects · Crypt Dressing (DNG)",
       "section": "",
@@ -8294,6 +8294,258 @@
     {
       "time": "2026-11-24T14:16:17",
       "id": "LMK-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:30:30",
+      "id": "DSK-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:30:31",
+      "id": "DSK-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:30:32",
+      "id": "DSK-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:30:39",
+      "id": "DSK-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:30:44",
+      "id": "DSK-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:30:47",
+      "id": "DSK-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:30:50",
+      "id": "INT-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:30:52",
+      "id": "INT-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:30:54",
+      "id": "INT-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:30:57",
+      "id": "INT-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:30:58",
+      "id": "INT-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:31:05",
+      "id": "INT-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:31:06",
+      "id": "INT-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:31:08",
+      "id": "INT-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:31:31",
+      "id": "INT-09",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T14:31:51",
+      "id": "INT-10",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T14:31:54",
+      "id": "INT-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:01",
+      "id": "INT-12",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T14:32:04",
+      "id": "INT-13",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T14:32:15",
+      "id": "INT-14",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T14:32:19",
+      "id": "INT-15",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T14:32:21",
+      "id": "CLT-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:22",
+      "id": "CLT-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:23",
+      "id": "CLT-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:24",
+      "id": "CLT-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:25",
+      "id": "CLT-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:26",
+      "id": "CLT-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:29",
+      "id": "CLT-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:30",
+      "id": "CLT-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:31",
+      "id": "CLT-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:32",
+      "id": "CLT-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:33",
+      "id": "CLT-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:38",
+      "id": "CLT-12",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T14:32:44",
+      "id": "CLT-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:44",
+      "id": "CLT-14",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:48",
+      "id": "CLT-15",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:50",
+      "id": "DNG-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:51",
+      "id": "DNG-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:51",
+      "id": "DNG-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:57",
+      "id": "DNG-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:57",
+      "id": "DNG-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:32:58",
+      "id": "DNG-06",
       "from": "awaiting",
       "to": "approved"
     }
