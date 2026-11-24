@@ -329,6 +329,12 @@
       "status": "SUCCEEDED",
       "created": 1795555209.8507266,
       "credits": 5
+    },
+    "ENM-03/v1": {
+      "task_id": "01a20fa2-8ca6-763b-b1c3-6f882dcf4950",
+      "status": "SUCCEEDED",
+      "created": 1795558645.2891433,
+      "credits": 5
     }
   },
   "animations": {
@@ -355,6 +361,15 @@
       "status": "SUCCEEDED",
       "motion": "HER-09/v1:shield_guard",
       "created": 1795556570.833396,
+      "credits": 3
+    },
+    "ENM-03/v1": {
+      "task_id": "01a20fa2-e618-7175-a6aa-104e5e94f5cf",
+      "status": "SUCCEEDED",
+      "actions": [
+        0
+      ],
+      "created": 1795558663.9278648,
       "credits": 3
     }
   },
