@@ -164,7 +164,7 @@
 
 ## 9. World & Biomes (WLD)
 
-- [WLD-01] **One seamless heightmap world** — A map of about 2 × 2 km, generated in Python (layered noise plus a biome mask PNG that can be painted by hand). It's streamed in chunks with LOD. ⭐ *(DOC)*
+- [WLD-01] **One seamless heightmap world** — A map of about 4 × 4 km (16 km²), generated in Python (layered noise plus a biome mask PNG that can be painted by hand). It's streamed in chunks with LOD. ⭐ *(DOC)*
 - [WLD-02] **Brackenvale (start)** — Rolling meadows, Rowan's burned home village, a ruined watchtower, standing stones and gentle slopes. Levels 1–5. ⭐ *(OoT, SK)*
 - [WLD-03] **The Wolfwood** — Dense dark pine, fog, fallen giant trees, wolf dens, spider groves. Levels 4–10. ⭐ *(TP, SK)*
 - [WLD-04] **The Blackmire** — Swamp: shallow water that slows you, stilt-huts, sunken ruins, drifting mist, lantern-flies. Levels 6–12. ⭐ *(OoT, MW, OB)*

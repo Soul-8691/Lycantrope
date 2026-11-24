@@ -1,25 +1,25 @@
 {
-  "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md. status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-24T11:38:05",
+  "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md and OBJECTS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
+  "updated": "2026-11-24T12:00:47",
   "counts": {
-    "awaiting": 2,
+    "awaiting": 147,
     "approved": 178,
     "denied": 43,
-    "total": 223
+    "total": 368
   },
   "ui": {
     "selected": [
-      "WLD-19"
+      "PIL-01"
     ],
     "selected_titles": {
-      "WLD-19": "Simple traversal"
+      "PIL-01": "Combat first"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
-    "window_open": true,
-    "at": "2026-11-24T11:38:05"
+    "window_open": false,
+    "at": "2026-11-24T11:41:48"
   },
   "ideas": {
     "PIL-01": {
@@ -30,7 +30,8 @@
       "category": "Pillars (PIL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "PIL-02": {
       "status": "approved",
@@ -40,7 +41,8 @@
       "category": "Pillars (PIL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "PIL-04": {
       "status": "approved",
@@ -50,7 +52,8 @@
       "category": "Pillars (PIL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "PIL-05": {
       "status": "approved",
@@ -60,7 +63,8 @@
       "category": "Pillars (PIL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "PIL-06": {
       "status": "approved",
@@ -70,7 +74,8 @@
       "category": "Pillars (PIL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "PIL-07": {
       "status": "denied",
@@ -80,7 +85,8 @@
       "category": "Pillars (PIL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "PIL-08": {
       "status": "denied",
@@ -90,7 +96,8 @@
       "category": "Pillars (PIL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "PIL-09": {
       "status": "approved",
@@ -100,7 +107,8 @@
       "category": "Pillars (PIL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "PIL-10": {
       "status": "approved",
@@ -110,7 +118,8 @@
       "category": "Pillars (PIL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STY-02": {
       "status": "approved",
@@ -120,7 +129,8 @@
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STY-03": {
       "status": "approved",
@@ -130,7 +140,8 @@
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STY-09": {
       "status": "approved",
@@ -140,7 +151,8 @@
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STY-10": {
       "status": "approved",
@@ -150,7 +162,8 @@
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STY-11": {
       "status": "denied",
@@ -160,7 +173,8 @@
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STY-12": {
       "status": "denied",
@@ -170,7 +184,8 @@
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STY-13": {
       "status": "approved",
@@ -180,7 +195,8 @@
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STY-14": {
       "status": "approved",
@@ -190,7 +206,8 @@
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STY-15": {
       "status": "approved",
@@ -200,7 +217,8 @@
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STY-16": {
       "status": "denied",
@@ -210,7 +228,8 @@
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STY-17": {
       "status": "denied",
@@ -220,7 +239,8 @@
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STY-18": {
       "status": "approved",
@@ -230,7 +250,8 @@
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STY-19": {
       "status": "approved",
@@ -240,7 +261,8 @@
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "HER-02": {
       "status": "denied",
@@ -250,7 +272,8 @@
       "category": "The Hero (HER)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "HER-03": {
       "status": "approved",
@@ -260,7 +283,8 @@
       "category": "The Hero (HER)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "HER-05": {
       "status": "approved",
@@ -270,7 +294,8 @@
       "category": "The Hero (HER)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "HER-07": {
       "status": "approved",
@@ -280,7 +305,8 @@
       "category": "The Hero (HER)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "HER-08": {
       "status": "approved",
@@ -290,7 +316,8 @@
       "category": "The Hero (HER)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "HER-09": {
       "status": "approved",
@@ -300,7 +327,8 @@
       "category": "The Hero (HER)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "HER-10": {
       "status": "approved",
@@ -310,7 +338,8 @@
       "category": "The Hero (HER)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-01": {
       "status": "approved",
@@ -320,7 +349,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-02": {
       "status": "approved",
@@ -330,7 +360,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-03": {
       "status": "approved",
@@ -340,7 +371,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-04": {
       "status": "approved",
@@ -350,7 +382,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-05": {
       "status": "approved",
@@ -360,7 +393,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-06": {
       "status": "approved",
@@ -370,7 +404,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-07": {
       "status": "approved",
@@ -380,7 +415,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-08": {
       "status": "denied",
@@ -390,7 +426,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-09": {
       "status": "denied",
@@ -400,7 +437,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-10": {
       "status": "approved",
@@ -410,7 +448,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-11": {
       "status": "denied",
@@ -420,7 +459,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-12": {
       "status": "approved",
@@ -430,7 +470,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-13": {
       "status": "approved",
@@ -440,7 +481,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-14": {
       "status": "approved",
@@ -450,7 +492,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-15": {
       "status": "approved",
@@ -460,7 +503,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-16": {
       "status": "approved",
@@ -470,7 +514,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-17": {
       "status": "approved",
@@ -480,7 +525,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-18": {
       "status": "approved",
@@ -490,7 +536,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-19": {
       "status": "approved",
@@ -500,7 +547,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-20": {
       "status": "approved",
@@ -510,7 +558,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-21": {
       "status": "approved",
@@ -520,7 +569,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-22": {
       "status": "approved",
@@ -530,7 +580,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-23": {
       "status": "approved",
@@ -540,7 +591,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-24": {
       "status": "approved",
@@ -550,7 +602,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-25": {
       "status": "approved",
@@ -560,7 +613,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-26": {
       "status": "approved",
@@ -570,7 +624,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-27": {
       "status": "approved",
@@ -580,7 +635,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-28": {
       "status": "approved",
@@ -590,7 +646,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-29": {
       "status": "approved",
@@ -600,7 +657,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-30": {
       "status": "approved",
@@ -610,7 +668,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-31": {
       "status": "approved",
@@ -620,7 +679,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "CMB-32": {
       "status": "approved",
@@ -630,7 +690,8 @@
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "VAL-01": {
       "status": "denied",
@@ -640,7 +701,8 @@
       "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "VAL-02": {
       "status": "denied",
@@ -650,7 +712,8 @@
       "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "VAL-03": {
       "status": "approved",
@@ -660,7 +723,8 @@
       "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "VAL-04": {
       "status": "denied",
@@ -670,7 +734,8 @@
       "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "VAL-05": {
       "status": "approved",
@@ -680,7 +745,8 @@
       "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "VAL-06": {
       "status": "approved",
@@ -690,7 +756,8 @@
       "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "VAL-07": {
       "status": "approved",
@@ -700,7 +767,8 @@
       "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "VAL-08": {
       "status": "denied",
@@ -710,7 +778,8 @@
       "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "VAL-09": {
       "status": "denied",
@@ -720,7 +789,8 @@
       "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STA-01": {
       "status": "approved",
@@ -730,7 +800,8 @@
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STA-02": {
       "status": "approved",
@@ -740,7 +811,8 @@
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STA-03": {
       "status": "denied",
@@ -750,7 +822,8 @@
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STA-04": {
       "status": "approved",
@@ -760,7 +833,8 @@
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STA-05": {
       "status": "approved",
@@ -770,7 +844,8 @@
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STA-06": {
       "status": "approved",
@@ -780,7 +855,8 @@
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STA-07": {
       "status": "approved",
@@ -790,7 +866,8 @@
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STA-08": {
       "status": "approved",
@@ -800,7 +877,8 @@
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STA-09": {
       "status": "approved",
@@ -810,7 +888,8 @@
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STA-10": {
       "status": "approved",
@@ -820,7 +899,8 @@
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STA-11": {
       "status": "denied",
@@ -830,7 +910,8 @@
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STA-12": {
       "status": "denied",
@@ -840,7 +921,8 @@
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STA-13": {
       "status": "denied",
@@ -850,7 +932,8 @@
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "STA-14": {
       "status": "denied",
@@ -860,7 +943,8 @@
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-01": {
       "status": "approved",
@@ -870,7 +954,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-02": {
       "status": "approved",
@@ -880,7 +965,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-03": {
       "status": "approved",
@@ -890,7 +976,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-04": {
       "status": "approved",
@@ -900,7 +987,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-05": {
       "status": "approved",
@@ -910,7 +998,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-06": {
       "status": "approved",
@@ -920,7 +1009,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-07": {
       "status": "approved",
@@ -930,7 +1020,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-08": {
       "status": "approved",
@@ -940,7 +1031,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-09": {
       "status": "approved",
@@ -950,7 +1042,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-10": {
       "status": "approved",
@@ -960,7 +1053,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-11": {
       "status": "denied",
@@ -970,7 +1064,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-12": {
       "status": "approved",
@@ -980,7 +1075,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-13": {
       "status": "approved",
@@ -990,7 +1086,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-14": {
       "status": "approved",
@@ -1000,7 +1097,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-15": {
       "status": "approved",
@@ -1010,7 +1108,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-16": {
       "status": "approved",
@@ -1020,7 +1119,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-17": {
       "status": "approved",
@@ -1030,7 +1130,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-18": {
       "status": "approved",
@@ -1040,7 +1141,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-19": {
       "status": "approved",
@@ -1050,7 +1152,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-20": {
       "status": "denied",
@@ -1060,7 +1163,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-21": {
       "status": "approved",
@@ -1070,7 +1174,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-22": {
       "status": "approved",
@@ -1080,7 +1185,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-23": {
       "status": "denied",
@@ -1090,7 +1196,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-24": {
       "status": "approved",
@@ -1100,7 +1207,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ENM-25": {
       "status": "denied",
@@ -1110,7 +1218,8 @@
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "BOS-01": {
       "status": "approved",
@@ -1120,7 +1229,8 @@
       "category": "Bosses (BOS)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "BOS-02": {
       "status": "approved",
@@ -1130,7 +1240,8 @@
       "category": "Bosses (BOS)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "BOS-03": {
       "status": "approved",
@@ -1140,7 +1251,8 @@
       "category": "Bosses (BOS)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "BOS-04": {
       "status": "approved",
@@ -1150,7 +1262,8 @@
       "category": "Bosses (BOS)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "BOS-05": {
       "status": "approved",
@@ -1160,7 +1273,8 @@
       "category": "Bosses (BOS)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "BOS-08": {
       "status": "denied",
@@ -1170,7 +1284,8 @@
       "category": "Bosses (BOS)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "BOS-09": {
       "status": "denied",
@@ -1180,7 +1295,8 @@
       "category": "Bosses (BOS)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "BOS-10": {
       "status": "denied",
@@ -1190,7 +1306,8 @@
       "category": "Bosses (BOS)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "BOS-11": {
       "status": "approved",
@@ -1200,7 +1317,8 @@
       "category": "Bosses (BOS)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-01": {
       "status": "approved",
@@ -1210,7 +1328,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-02": {
       "status": "approved",
@@ -1220,7 +1339,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-03": {
       "status": "approved",
@@ -1230,7 +1350,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-04": {
       "status": "approved",
@@ -1240,7 +1361,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-05": {
       "status": "approved",
@@ -1250,7 +1372,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-06": {
       "status": "approved",
@@ -1260,7 +1383,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-07": {
       "status": "approved",
@@ -1270,7 +1394,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-08": {
       "status": "approved",
@@ -1280,7 +1405,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-09": {
       "status": "approved",
@@ -1290,7 +1416,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-10": {
       "status": "approved",
@@ -1300,7 +1427,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-11": {
       "status": "approved",
@@ -1310,7 +1438,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-12": {
       "status": "approved",
@@ -1320,7 +1449,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-13": {
       "status": "approved",
@@ -1330,7 +1460,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-14": {
       "status": "approved",
@@ -1340,7 +1471,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-15": {
       "status": "approved",
@@ -1350,7 +1482,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-16": {
       "status": "approved",
@@ -1360,7 +1493,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-17": {
       "status": "approved",
@@ -1370,7 +1504,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-18": {
       "status": "denied",
@@ -1380,7 +1515,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-19": {
       "status": "awaiting",
@@ -1390,7 +1526,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-20": {
       "status": "denied",
@@ -1400,7 +1537,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-21": {
       "status": "denied",
@@ -1410,7 +1548,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "WLD-22": {
       "status": "denied",
@@ -1420,7 +1559,8 @@
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "UIX-01": {
       "status": "approved",
@@ -1430,7 +1570,8 @@
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "UIX-02": {
       "status": "approved",
@@ -1440,7 +1581,8 @@
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "UIX-03": {
       "status": "approved",
@@ -1450,7 +1592,8 @@
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "UIX-04": {
       "status": "approved",
@@ -1460,7 +1603,8 @@
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "UIX-05": {
       "status": "approved",
@@ -1470,7 +1614,8 @@
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "UIX-06": {
       "status": "approved",
@@ -1480,7 +1625,8 @@
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "UIX-07": {
       "status": "approved",
@@ -1490,7 +1636,8 @@
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "UIX-08": {
       "status": "approved",
@@ -1500,7 +1647,8 @@
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "UIX-09": {
       "status": "approved",
@@ -1510,7 +1658,8 @@
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "UIX-10": {
       "status": "approved",
@@ -1520,7 +1669,8 @@
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "UIX-11": {
       "status": "approved",
@@ -1530,7 +1680,8 @@
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "UIX-12": {
       "status": "approved",
@@ -1540,7 +1691,8 @@
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "UIX-13": {
       "status": "approved",
@@ -1550,7 +1702,8 @@
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "UIX-14": {
       "status": "denied",
@@ -1560,7 +1713,8 @@
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "AUD-01": {
       "status": "approved",
@@ -1570,7 +1724,8 @@
       "category": "Audio & Voice (AUD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "AUD-02": {
       "status": "approved",
@@ -1580,7 +1735,8 @@
       "category": "Audio & Voice (AUD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "AUD-03": {
       "status": "approved",
@@ -1590,7 +1746,8 @@
       "category": "Audio & Voice (AUD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "AUD-04": {
       "status": "approved",
@@ -1600,7 +1757,8 @@
       "category": "Audio & Voice (AUD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "AUD-05": {
       "status": "approved",
@@ -1610,7 +1768,8 @@
       "category": "Audio & Voice (AUD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "AUD-06": {
       "status": "approved",
@@ -1620,7 +1779,8 @@
       "category": "Audio & Voice (AUD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "AUD-07": {
       "status": "approved",
@@ -1630,7 +1790,8 @@
       "category": "Audio & Voice (AUD)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "AUD-08": {
       "status": "approved",
@@ -1640,7 +1801,8 @@
       "category": "Audio & Voice (AUD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "AUD-09": {
       "status": "approved",
@@ -1650,7 +1812,8 @@
       "category": "Audio & Voice (AUD)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "AUD-10": {
       "status": "approved",
@@ -1660,7 +1823,8 @@
       "category": "Audio & Voice (AUD)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "AUD-11": {
       "status": "approved",
@@ -1670,7 +1834,8 @@
       "category": "Audio & Voice (AUD)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "AUD-13": {
       "status": "denied",
@@ -1680,7 +1845,8 @@
       "category": "Audio & Voice (AUD)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-01": {
       "status": "approved",
@@ -1690,7 +1856,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-02": {
       "status": "approved",
@@ -1700,7 +1867,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-03": {
       "status": "approved",
@@ -1710,7 +1878,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-04": {
       "status": "approved",
@@ -1720,7 +1889,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-05": {
       "status": "approved",
@@ -1730,7 +1900,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-06": {
       "status": "approved",
@@ -1740,7 +1911,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-07": {
       "status": "approved",
@@ -1750,7 +1922,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-08": {
       "status": "approved",
@@ -1760,7 +1933,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-09": {
       "status": "denied",
@@ -1770,7 +1944,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-10": {
       "status": "denied",
@@ -1780,7 +1955,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-11": {
       "status": "approved",
@@ -1790,7 +1966,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-12": {
       "status": "approved",
@@ -1800,7 +1977,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-13": {
       "status": "denied",
@@ -1810,7 +1988,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-14": {
       "status": "approved",
@@ -1820,7 +1999,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-15": {
       "status": "denied",
@@ -1830,7 +2010,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-16": {
       "status": "denied",
@@ -1840,7 +2021,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "ART-17": {
       "status": "approved",
@@ -1850,7 +2032,8 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-01": {
       "status": "approved",
@@ -1860,7 +2043,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-02": {
       "status": "approved",
@@ -1870,7 +2054,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-03": {
       "status": "approved",
@@ -1880,7 +2065,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-04": {
       "status": "approved",
@@ -1890,7 +2076,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-05": {
       "status": "approved",
@@ -1900,7 +2087,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-06": {
       "status": "approved",
@@ -1910,7 +2098,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-07": {
       "status": "approved",
@@ -1920,7 +2109,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-08": {
       "status": "approved",
@@ -1930,7 +2120,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-09": {
       "status": "approved",
@@ -1940,7 +2131,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-10": {
       "status": "approved",
@@ -1950,7 +2142,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-11": {
       "status": "approved",
@@ -1960,7 +2153,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-12": {
       "status": "approved",
@@ -1970,7 +2164,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-13": {
       "status": "approved",
@@ -1980,7 +2175,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-14": {
       "status": "approved",
@@ -1990,7 +2186,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-15": {
       "status": "approved",
@@ -2000,7 +2197,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-16": {
       "status": "approved",
@@ -2010,7 +2208,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-17": {
       "status": "approved",
@@ -2020,7 +2219,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-18": {
       "status": "approved",
@@ -2030,7 +2230,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-19": {
       "status": "approved",
@@ -2040,7 +2241,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-20": {
       "status": "approved",
@@ -2050,7 +2252,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-21": {
       "status": "approved",
@@ -2060,7 +2263,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-22": {
       "status": "approved",
@@ -2070,7 +2274,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-23": {
       "status": "approved",
@@ -2080,7 +2285,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TEC-24": {
       "status": "approved",
@@ -2090,7 +2296,8 @@
       "category": "Engine & Tech (TEC)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TOL-01": {
       "status": "approved",
@@ -2100,7 +2307,8 @@
       "category": "Tools (TOL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TOL-02": {
       "status": "denied",
@@ -2110,7 +2318,8 @@
       "category": "Tools (TOL)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TOL-03": {
       "status": "approved",
@@ -2120,7 +2329,8 @@
       "category": "Tools (TOL)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TOL-04": {
       "status": "denied",
@@ -2130,7 +2340,8 @@
       "category": "Tools (TOL)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TOL-05": {
       "status": "denied",
@@ -2140,7 +2351,8 @@
       "category": "Tools (TOL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TOL-06": {
       "status": "approved",
@@ -2150,7 +2362,8 @@
       "category": "Tools (TOL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "TOL-07": {
       "status": "denied",
@@ -2160,7 +2373,8 @@
       "category": "Tools (TOL)",
       "section": "",
       "starred": false,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "REL-01": {
       "status": "approved",
@@ -2170,7 +2384,8 @@
       "category": "Release & Licensing (REL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "REL-02": {
       "status": "approved",
@@ -2180,7 +2395,8 @@
       "category": "Release & Licensing (REL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "REL-03": {
       "status": "approved",
@@ -2190,7 +2406,8 @@
       "category": "Release & Licensing (REL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "REL-04": {
       "status": "approved",
@@ -2200,7 +2417,8 @@
       "category": "Release & Licensing (REL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "REL-05": {
       "status": "approved",
@@ -2210,7 +2428,8 @@
       "category": "Release & Licensing (REL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "REL-06": {
       "status": "approved",
@@ -2220,7 +2439,8 @@
       "category": "Release & Licensing (REL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "REL-07": {
       "status": "denied",
@@ -2230,7 +2450,8 @@
       "category": "Release & Licensing (REL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "REL-08": {
       "status": "approved",
@@ -2240,7 +2461,8 @@
       "category": "Release & Licensing (REL)",
       "section": "",
       "starred": true,
-      "in_ideas_md": true
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
     },
     "REL-09": {
       "status": "approved",
@@ -2250,6 +2472,1602 @@
       "category": "Release & Licensing (REL)",
       "section": "",
       "starred": true,
+      "in_ideas_md": true,
+      "file": "IDEAS.md"
+    },
+    "TRE-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Brackenvale Oak",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Silver Birch",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Apple Tree",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Burned Tree",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Giant Wolfwood Pine",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Dead Pine",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Web-Wrapped Tree",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Weeping Swamp Willow",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Bald Cypress",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Drowned Dead Tree",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Snowy Fir",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Frozen Dead Tree",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Charred Ash Tree",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-14": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Petrified Tree",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-15": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Thorn-Black Tree",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-16": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Great Fallen Oak",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-17": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Fallen Log",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-18": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Tree Stump",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Meadow Bush",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Bracken Fern Clump",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Wildflower Patch",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Bramble Thicket",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Forest Mushrooms",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Giant Toadstool",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Reeds & Cattails",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Lily Pads",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Hanging Moss Curtain",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Glowcap Fungus",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Snow Shrub",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Ice Crystals",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Ash Scrub",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-14": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Black Thornbush",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "RCK-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Mossy Boulder",
+      "category": "Objects · Rocks & Stone (RCK)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "RCK-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Rock Cluster",
+      "category": "Objects · Rocks & Stone (RCK)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "RCK-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Cliff Chunk",
+      "category": "Objects · Rocks & Stone (RCK)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "RCK-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Standing Stone",
+      "category": "Objects · Rocks & Stone (RCK)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "RCK-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Swamp Stone",
+      "category": "Objects · Rocks & Stone (RCK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "RCK-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Stepping Stones",
+      "category": "Objects · Rocks & Stone (RCK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "RCK-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Snowy Boulder",
+      "category": "Objects · Rocks & Stone (RCK)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "RCK-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Obsidian Shard",
+      "category": "Objects · Rocks & Stone (RCK)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "RCK-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Lava Rock",
+      "category": "Objects · Rocks & Stone (RCK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "RCK-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Basalt Columns",
+      "category": "Objects · Rocks & Stone (RCK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "RCK-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Dark Spire Rock",
+      "category": "Objects · Rocks & Stone (RCK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "RCK-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Natural Rock Arch",
+      "category": "Objects · Rocks & Stone (RCK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VIL-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Thatched Cottage",
+      "category": "Objects · Brackenvale Village (VIL)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VIL-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Burned Cottage",
+      "category": "Objects · Brackenvale Village (VIL)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VIL-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Fenhallow Farmhouse",
+      "category": "Objects · Brackenvale Village (VIL)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VIL-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Barn",
+      "category": "Objects · Brackenvale Village (VIL)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VIL-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Burned Windmill",
+      "category": "Objects · Brackenvale Village (VIL)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VIL-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Village Well",
+      "category": "Objects · Brackenvale Village (VIL)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VIL-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Smithy",
+      "category": "Objects · Brackenvale Village (VIL)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VIL-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Village Chapel",
+      "category": "Objects · Brackenvale Village (VIL)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VIL-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Market Stall",
+      "category": "Objects · Brackenvale Village (VIL)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VIL-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Haycart",
+      "category": "Objects · Brackenvale Village (VIL)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VIL-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Hay Bales",
+      "category": "Objects · Brackenvale Village (VIL)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "VIL-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Scarecrow",
+      "category": "Objects · Brackenvale Village (VIL)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "BLD-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Ruined Watchtower",
+      "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "BLD-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Ruined Wall Section",
+      "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "BLD-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Ruined Archway",
+      "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "BLD-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Broken Pillar",
+      "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "BLD-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Hunter's Lodge",
+      "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "BLD-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Stilt Hut",
+      "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "BLD-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Witch's Hut",
+      "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "BLD-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Sunken Shrine",
+      "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "BLD-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Summit Shelter",
+      "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "BLD-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Ice Cave Mouth",
+      "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "BLD-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Cinder Forge",
+      "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "BLD-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Rune Pillar",
+      "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "BLD-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Sunken Crypts Entrance",
+      "category": "Objects · Buildings & Ruins Elsewhere (BLD)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "STR-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Wooden Fence",
+      "category": "Objects · Walls, Fences, Bridges & Water (STR)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "STR-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Dry Stone Wall",
+      "category": "Objects · Walls, Fences, Bridges & Water (STR)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "STR-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Stone Bridge",
+      "category": "Objects · Walls, Fences, Bridges & Water (STR)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "STR-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Troll Bridge",
+      "category": "Objects · Walls, Fences, Bridges & Water (STR)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "STR-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Rope Bridge",
+      "category": "Objects · Walls, Fences, Bridges & Water (STR)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "STR-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Boardwalk",
+      "category": "Objects · Walls, Fences, Bridges & Water (STR)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "STR-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Wooden Dock",
+      "category": "Objects · Walls, Fences, Bridges & Water (STR)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "STR-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Rowboat",
+      "category": "Objects · Walls, Fences, Bridges & Water (STR)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "STR-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Fishing Hut",
+      "category": "Objects · Walls, Fences, Bridges & Water (STR)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "STR-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Waterfall Rocks",
+      "category": "Objects · Walls, Fences, Bridges & Water (STR)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "STR-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Palisade Wall",
+      "category": "Objects · Walls, Fences, Bridges & Water (STR)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "STR-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Wooden Gate",
+      "category": "Objects · Walls, Fences, Bridges & Water (STR)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "LMK-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The Frozen Giant",
+      "category": "Objects · Landmarks (LMK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "LMK-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Wyvern Roost",
+      "category": "Objects · Landmarks (LMK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "LMK-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Orc Warcamp Centerpiece",
+      "category": "Objects · Landmarks (LMK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "LMK-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Grimtooth's Clearing Altar",
+      "category": "Objects · Landmarks (LMK)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "LMK-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Ancient Hero Statue",
+      "category": "Objects · Landmarks (LMK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "LMK-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Giant Skeleton",
+      "category": "Objects · Landmarks (LMK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "DSK-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Citadel Gatehouse",
+      "category": "Objects · Duskhold Citadel (DSK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "DSK-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Citadel Wall Segment",
+      "category": "Objects · Duskhold Citadel (DSK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "DSK-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Citadel Tower",
+      "category": "Objects · Duskhold Citadel (DSK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "DSK-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Dark Lord Statue",
+      "category": "Objects · Duskhold Citadel (DSK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "DSK-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Chained Brazier",
+      "category": "Objects · Duskhold Citadel (DSK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "DSK-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Duskhold Banner",
+      "category": "Objects · Duskhold Citadel (DSK)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "DSK-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Spiked Barricade",
+      "category": "Objects · Duskhold Citadel (DSK)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "INT-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Waystone",
+      "category": "Objects · Gameplay Objects (INT)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "INT-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Wooden Chest",
+      "category": "Objects · Gameplay Objects (INT)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "INT-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Iron Chest",
+      "category": "Objects · Gameplay Objects (INT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "INT-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Ornate Chest",
+      "category": "Objects · Gameplay Objects (INT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "INT-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Mimic Chest Body",
+      "category": "Objects · Gameplay Objects (INT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "INT-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Shortcut Lever",
+      "category": "Objects · Gameplay Objects (INT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "INT-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Ladder",
+      "category": "Objects · Gameplay Objects (INT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "INT-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Iron Portcullis",
+      "category": "Objects · Gameplay Objects (INT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "INT-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Mist Gate Arch",
+      "category": "Objects · Gameplay Objects (INT)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "INT-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Training Dummy",
+      "category": "Objects · Gameplay Objects (INT)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "INT-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Signpost",
+      "category": "Objects · Gameplay Objects (INT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "INT-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Breakable Pot",
+      "category": "Objects · Gameplay Objects (INT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "INT-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Explosive Barrel",
+      "category": "Objects · Gameplay Objects (INT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "INT-14": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Cracked Wall",
+      "category": "Objects · Gameplay Objects (INT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "INT-15": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Spike Trap",
+      "category": "Objects · Gameplay Objects (INT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "CLT-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Barrel",
+      "category": "Objects · Camps & Clutter (CLT)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "CLT-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Crate",
+      "category": "Objects · Camps & Clutter (CLT)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "CLT-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Grain Sacks",
+      "category": "Objects · Camps & Clutter (CLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "CLT-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Campfire",
+      "category": "Objects · Camps & Clutter (CLT)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "CLT-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Bandit Tent",
+      "category": "Objects · Camps & Clutter (CLT)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "CLT-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Orc War Tent",
+      "category": "Objects · Camps & Clutter (CLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "CLT-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Weapon Rack",
+      "category": "Objects · Camps & Clutter (CLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "CLT-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Goblin Junk Pile",
+      "category": "Objects · Camps & Clutter (CLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "CLT-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Cooking Spit",
+      "category": "Objects · Camps & Clutter (CLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "CLT-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Lantern Post",
+      "category": "Objects · Camps & Clutter (CLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "CLT-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Wall Torch",
+      "category": "Objects · Camps & Clutter (CLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "CLT-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "War Drum",
+      "category": "Objects · Camps & Clutter (CLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "CLT-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Cage",
+      "category": "Objects · Camps & Clutter (CLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "CLT-14": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Bones & Skulls",
+      "category": "Objects · Camps & Clutter (CLT)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "CLT-15": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Spider Egg Sacs",
+      "category": "Objects · Camps & Clutter (CLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "DNG-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Tombstones",
+      "category": "Objects · Crypt Dressing (DNG)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "DNG-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Sarcophagus",
+      "category": "Objects · Crypt Dressing (DNG)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "DNG-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Bone Pile Alcove",
+      "category": "Objects · Crypt Dressing (DNG)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "DNG-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Candle Cluster",
+      "category": "Objects · Crypt Dressing (DNG)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "DNG-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Necromancer's Altar",
+      "category": "Objects · Crypt Dressing (DNG)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "DNG-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Cobweb Corner",
+      "category": "Objects · Crypt Dressing (DNG)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "ITM-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Dawnblade, Rusty",
+      "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "ITM-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Dawnblade, Restored",
+      "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "ITM-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Dawnblade, Awakened",
+      "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "ITM-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Rowan's Buckler",
+      "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "ITM-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Hand Crossbow",
+      "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "ITM-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Crossbow Bolts",
+      "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "ITM-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Lifewater Flask",
+      "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "ITM-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Heart Shard",
+      "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": true,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "ITM-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Crown Shard",
+      "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "ITM-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Upgrade Ore",
+      "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "ITM-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Firebomb & Holy Water",
+      "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "ITM-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Key",
+      "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "ITM-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Boss Masks",
+      "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "ITM-14": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Weapon Set",
+      "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "ITM-15": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Essence Remnant",
+      "category": "Objects · Items, Weapons & Pickups (ITM)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
       "in_ideas_md": true
     },
     "AUD-12": {

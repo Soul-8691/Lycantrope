@@ -283,8 +283,13 @@ def generate(layout: dict, size_px: int, seed: int | None = None, log=print) -> 
 
     # 4. plateaus --------------------------------------------------------- #
     for p in layout.get("plateaus", []):
-        d = np.hypot(X - p["x"], Y - p["y"]) + 25.0 * F["mid"]
-        wgt = smoothstep(p["r"] + p["falloff_m"], p["r"], d)
+        d = np.hypot(X - p["x"], Y - p["y"]) + float(p.get("edge_noise_m", 25.0)) * F["mid"]
+        t = np.clip((p["r"] + p["falloff_m"] - d) / p["falloff_m"], 0.0, 1.0)
+        if p.get("profile") == "cliff":     # gentle foot, then a steep rock band up to the top
+            foot = float(p.get("foot", 0.3))
+            wgt = foot * smoothstep(0.0, 0.6, t) + (1 - foot) * smoothstep(0.62, 0.88, t)
+        else:
+            wgt = smoothstep(0.0, 1.0, t)
         H = H * (1 - wgt) + (p["height_m"] + 2.0 * F["detail"]) * wgt
     step("plateaus")
 
@@ -455,7 +460,7 @@ def render_preview(layout: dict, res: dict, size: int = 1024) -> Image.Image:
     m = size // 40
     draw.polygon([(size - 2 * m, m), (size - 2.6 * m, 2.6 * m), (size - 1.4 * m, 2.6 * m)], fill=(240, 240, 240))
     _label(draw, (size - 2 * m, 3.4 * m), "N", f_big, anchor="mm")
-    bar_m = 250
+    bar_m = 250 if grid.world <= 2500 else 500
     bar_px = bar_m / grid.world * size
     y0 = size - 2 * m
     draw.rectangle([m, y0, m + bar_px, y0 + max(3, size // 250)], fill=(240, 240, 240), outline=(0, 0, 0))

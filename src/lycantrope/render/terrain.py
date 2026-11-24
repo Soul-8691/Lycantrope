@@ -3,7 +3,7 @@
 The whole heightmap lives on the GPU as a float texture. The CPU only decides
 which 64 m chunks are visible and how detailed each one should be; every chunk
 of a given detail level shares one grid mesh, so the terrain is drawn with one
-instanced draw call per level of detail (4 calls in total).
+instanced draw call per level of detail (5 calls in total).
 """
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ from lycantrope.render.shaders import ShaderLibrary, set_uniform
 from lycantrope.world.heightfield import Heightfield
 
 CHUNK_M = 64.0
-LOD_QUADS = (64, 32, 16, 8)        # quads per chunk side at LOD 0..3
+LOD_QUADS = (64, 32, 16, 8, 4)     # quads per chunk side at LOD 0..4
 SKIRT_DEPTH_M = 6.0
 
 
@@ -43,7 +43,7 @@ def grid_mesh(quads: int) -> tuple[np.ndarray, np.ndarray]:
 @dataclass
 class TerrainStats:
     chunks_total: int = 0
-    per_lod: tuple[int, ...] = (0, 0, 0, 0)
+    per_lod: tuple[int, ...] = (0, 0, 0, 0, 0)
     triangles: int = 0
 
 

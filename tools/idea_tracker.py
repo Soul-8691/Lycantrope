@@ -41,6 +41,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 IDEAS_MD = ROOT / "IDEAS.md"
+OBJECTS_MD = ROOT / "OBJECTS.md"
+# every file the tracker reads, with the label put in front of its categories
+SOURCES = ((IDEAS_MD, ""), (OBJECTS_MD, "Objects · "))
 STATE_JSON = ROOT / "ideas_status.json"
 STATUS_MD = ROOT / "IDEAS_STATUS.md"
 
@@ -87,10 +90,32 @@ class Idea:
     source: str
     starred: bool
     line: int
+    file: str = "IDEAS.md"
 
 
-def parse_ideas(path: Path = IDEAS_MD) -> tuple[list[Idea], list[str]]:
-    """Return (ideas in file order, warnings)."""
+def parse_all() -> tuple[list[Idea], list[str]]:
+    """Ideas from every source file (IDEAS.md, OBJECTS.md), with duplicate-ID checks across files."""
+    ideas: list[Idea] = []
+    warnings: list[str] = []
+    seen: dict[str, str] = {}
+    for path, prefix in SOURCES:
+        if not path.exists():
+            if path == IDEAS_MD:
+                warnings.append(f"{path.name} not found")
+            continue
+        found, warn = parse_ideas(path, prefix)
+        warnings += warn
+        for idea in found:
+            if idea.id in seen:
+                warnings.append(f"Duplicate ID {idea.id} in {idea.file} (already in {seen[idea.id]}) ignored")
+                continue
+            seen[idea.id] = idea.file
+            ideas.append(idea)
+    return ideas, warnings
+
+
+def parse_ideas(path: Path = IDEAS_MD, category_prefix: str = "") -> tuple[list[Idea], list[str]]:
+    """Return (ideas in file order, warnings) for one markdown file."""
     if not path.exists():
         return [], [f"{path.name} not found"]
     ideas: list[Idea] = []
@@ -117,8 +142,8 @@ def parse_ideas(path: Path = IDEAS_MD) -> tuple[list[Idea], list[str]]:
             title, desc = m["title"], m["desc"]
         else:
             title, _, desc = text.partition(" — ")
-        idea = Idea(current["id"], strip_md(title), strip_md(desc), current["category"],
-                    current["section"], source, starred, current["line"])
+        idea = Idea(current["id"], strip_md(title), strip_md(desc), category_prefix + current["category"],
+                    current["section"], source, starred, current["line"], path.name)
         if idea.id in seen:
             warnings.append(f"Duplicate ID {idea.id} (line {idea.line}) ignored")
         else:
@@ -185,7 +210,7 @@ class Store:
         self.by_id: dict[str, Idea] = {}
         self.data: dict = {}
         self.warnings: list[str] = []
-        self.mtime_md: int | None = None
+        self.mtime_md: dict[str, int | None] = {}
         self.mtime_json: int | None = None
         self.load_state()
         self.sync_ideas()
@@ -212,8 +237,8 @@ class Store:
 
     def sync_ideas(self) -> bool:
         """Re-parse IDEAS.md and merge. Returns True if the state changed."""
-        self.mtime_md = _mtime(IDEAS_MD)
-        ideas, warnings = parse_ideas()
+        self.mtime_md = {str(p): _mtime(p) for p, _ in SOURCES}
+        ideas, warnings = parse_all()
         self.warnings = [w for w in self.warnings if "unreadable" in w] + warnings
         self.ideas = ideas
         self.by_id = {i.id: i for i in ideas}
@@ -222,7 +247,7 @@ class Store:
         for idea in ideas:
             entry = states.get(idea.id)
             fresh = {"title": idea.title, "category": idea.category, "section": idea.section,
-                     "starred": idea.starred, "in_ideas_md": True}
+                     "starred": idea.starred, "file": idea.file, "in_ideas_md": True}
             if entry is None:
                 entry = {"status": "awaiting", "note": "", "changed": None, **fresh}
                 states[idea.id] = entry
@@ -251,8 +276,7 @@ class Store:
             json_changed = True
             if self.sync_ideas():
                 self.save()
-        m = _mtime(IDEAS_MD)
-        if m != self.mtime_md:
+        if {str(p): _mtime(p) for p, _ in SOURCES} != self.mtime_md:
             md_changed = True
             if self.sync_ideas():
                 self.save()
@@ -312,7 +336,8 @@ class Store:
     def save(self, digest: bool = True) -> None:
         self.data["_about"] = (
             "Lycantrope idea tracker state. Source of truth for idea decisions. "
-            "IDs come from IDEAS.md. status is one of: awaiting, approved, denied. "
+            "IDs come from IDEAS.md and OBJECTS.md ('file' says which; 'in_ideas_md' means the ID "
+            "still exists in its source file). status is one of: awaiting, approved, denied. "
             "'ui' records what the user had selected/filtered in the tracker window. "
             "Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file."
         )
@@ -353,7 +378,7 @@ class Store:
             lines.append("")
         orphans = [k for k, v in self.data["ideas"].items() if not v.get("in_ideas_md", True)]
         if orphans:
-            lines += ["## Removed from IDEAS.md (decision kept)", ""]
+            lines += ["## Removed from IDEAS.md / OBJECTS.md (decision kept)", ""]
             lines += [f"- **{k}** {self.data['ideas'][k].get('title', '')} — "
                       f"{self.data['ideas'][k]['status']}" for k in orphans]
             lines.append("")
@@ -597,7 +622,7 @@ def run_gui() -> int:
             self.tree.heading("#0", text="ID", anchor="w")
             self.tree.heading("status", text="Status", anchor="w")
             self.tree.heading("title", text="Idea", anchor="w")
-            self.tree.heading("src", text="Inspired by", anchor="w")
+            self.tree.heading("src", text="Source / where", anchor="w")
             self.tree.column("#0", width=150, stretch=False)
             self.tree.column("status", width=110, stretch=False)
             self.tree.column("title", width=380, stretch=True)
@@ -680,6 +705,7 @@ def run_gui() -> int:
             self.menu.add_separator()
             self.menu.add_command(label="Copy reference", command=self.copy_ref)
             self.menu.add_command(label="Open IDEAS.md", command=lambda: self.open_file(IDEAS_MD))
+            self.menu.add_command(label="Open OBJECTS.md", command=lambda: self.open_file(OBJECTS_MD))
             self.menu.add_command(label="Open IDEAS_STATUS.md", command=lambda: self.open_file(STATUS_MD))
 
         # ---------------- data → view ---------------- #
@@ -764,7 +790,7 @@ def run_gui() -> int:
             c = self.store.counts()
             parts = [f"Total {c['total']}", f"✔ {c['approved']}", f"✘ {c['denied']}",
                      f"○ {c['awaiting']}", f"showing {len(self.visible)}",
-                     f"state: {STATE_JSON.name}", "watching IDEAS.md"]
+                     f"state: {STATE_JSON.name}", "watching IDEAS.md + OBJECTS.md"]
             parts += [f"⚠ {w}" for w in self.store.warnings]
             if msg:
                 parts.insert(0, msg)
@@ -811,7 +837,7 @@ def run_gui() -> int:
                 meta.append(f"Inspired by: {idea.source}")
             if idea.starred:
                 meta.append("⭐ First Playable")
-            meta.append(f"IDEAS.md line {idea.line}")
+            meta.append(f"{idea.file} line {idea.line}")
             self.d_meta.configure(text="   ·   ".join(meta))
             changed = self.store.data["ideas"][iid].get("changed")
             self.d_status.configure(text=f"{ICONS[st]} {LABELS[st]}" + (f"   (changed {changed})" if changed else ""),
@@ -1017,7 +1043,7 @@ def run_gui() -> int:
                 if md or js:
                     self.note_dirty = False
                     self.refresh(select=cur)
-                    self.flash("Reloaded " + " & ".join(n for n, f in (("IDEAS.md", md),
+                    self.flash("Reloaded " + " & ".join(n for n, f in (("IDEAS.md / OBJECTS.md", md),
                                                                         (STATE_JSON.name, js)) if f))
             except Exception as exc:                       # never let polling die
                 self.flash(f"Reload error: {exc}")

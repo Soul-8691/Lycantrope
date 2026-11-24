@@ -133,7 +133,7 @@ Each day has a **code track** and an **asset kitchen** track (batch jobs that ru
 - [ ] `git init`, `.gitignore` (venv, `.env`, `__pycache__`, `*.tmp`), `git lfs track "*.glb" "*.png" "*.ogg" "*.wav" "*.npy"`, MIT `LICENSE`, README stub. *(REL-01, REL-05, REL-06)*
 - [ ] venv + `pip install pygame-ce moderngl PyGLM numpy pygltflib Pillow pytest`. *(TEC-01 to TEC-03)*
 - [ ] `main.py`: pygame window with an OpenGL 3.3 core context, a moderngl context, a fixed 60 Hz loop with an accumulator and interpolation alpha, and a debug text overlay. *(TEC-04, TEC-17)*
-- [x] `tools/worldgen/terrain.py` + `data/world/layout.json`: 2048² (1 m/px) world with no concept art, built from a layout file. It covers six biomes plus the World's Edge, per-biome noise recipes, the Duskhold crag, erosion, five graded roads, and flat pads for 6 Waystones and 8 landmarks. Outputs `assets/world/height.png` (16-bit), `biome.png`, `road.png`, `meta.json`, `preview.png`. Tested in `tests/test_worldgen.py`. *(WLD-01, WLD-13)*
+- [x] `tools/worldgen/terrain.py` + `data/world/layout.json`: 4 × 4 km world (4096², 1 m/px) with no concept art, built from a layout file. It covers six biomes plus the World's Edge, per-biome noise recipes, the cliff-walled Duskhold crag (about 520 m across), erosion, five graded roads, and flat pads for 11 Waystones and 14 landmarks. Outputs `assets/world/height.png` (16-bit), `biome.png`, `road.png`, `meta.json`, `preview.png`. Tested in `tests/test_worldgen.py`. *(WLD-01, WLD-13)*
 - [x] `render/terrain.py`: 64 m chunks drawn as 4 instanced LOD levels with skirts and frustum culling. Splat, slope, snowline, road and shoreline blending of 8 procedural ground textures (`tools/worldgen/textures.py`), plus sky, height fog and water. Free-fly and walk camera, debug overlay, shader hot-reload, `--screenshot`/`--bench`. About 5 ms per frame at 1600×900 on Iris Xe. *(TEC-10, ART-08, TEC-02, TEC-04, TEC-17)*
 
 **Asset kitchen**
@@ -316,7 +316,7 @@ ember_parry_01,ember,"[laughs] Now THAT was the old hero's footwork.",,3
 |---|---|---|
 | Rowan + the Dawnblade (4 stages) | 1 rigged character + 4 sword models | Meshy image-to-3D or text-to-3D, plus rigging and animation |
 | Enemies | 20 (+ Grimtooth) | Meshy. Humanoids rigged by Meshy; animals and creatures animated in code (ART-04) |
-| Props | ~40 (6–8 per biome, plus shared items) | Meshy |
+| Props | ~45 ⭐ objects from [OBJECTS.md](OBJECTS.md) (145 listed in total) | Meshy |
 | Terrain textures, sky, grass, particles, LUTs | all | Python scripts (ART-08 to ART-13) |
 | Voice lines | Rowan ~40, enemy barks ~14 × 12 voiced types ≈ 170, ×2–3 takes | ElevenLabs TTS |
 | SFX | ~80 | ElevenLabs Sound Effects |

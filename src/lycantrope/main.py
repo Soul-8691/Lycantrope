@@ -222,7 +222,7 @@ class App:
             f"LYCANTROPE  terrain preview   {1000 / max(ms, 1e-3):5.0f} fps  {ms:5.1f} ms",
             f"pos  x {p.x:7.1f}  z {p.z:7.1f}  y {p.y:6.1f}   ground {ground:6.1f} m   (north = -z)",
             f"biome {self.world.biome_at(p.x, p.z):<18} {mode}",
-            f"chunks LOD0-3 {st.per_lod}  of {st.chunks_total}   {st.triangles / 1000:.0f}k tris",
+            f"chunks LOD0-4 {st.per_lod}  of {st.chunks_total}   {st.triangles / 1000:.0f}k tris",
             "click: mouse look  Esc: release  WASD QE  Shift/Ctrl  wheel: speed",
             "F1 wire  F2 fog  F3 overlay  F4 walk  F5 shaders  F6 debug  F12 shot",
         ]

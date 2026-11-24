@@ -16,9 +16,9 @@ class Settings:
     fov_deg: float = 70.0
     mouse_sensitivity: float = 0.0022
     invert_y: bool = False
-    # terrain level of detail: chunk distance (m) where LOD 1, 2 and 3 start
-    lod_distances_m: list[float] = field(default_factory=lambda: [110.0, 260.0, 560.0])
-    view_distance_m: float = 3000.0
+    # terrain level of detail: chunk distance (m) where LOD 1, 2, 3 and 4 start
+    lod_distances_m: list[float] = field(default_factory=lambda: [110.0, 260.0, 560.0, 1200.0])
+    view_distance_m: float = 6000.0
 
     @classmethod
     def load(cls) -> "Settings":
