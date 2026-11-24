@@ -175,6 +175,22 @@
       "prompt": "stylized low-poly bush made of five rounded smooth foliage clumps, solid blob shapes with soft bumps, no individual leaves, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795551774.0668452,
       "credits": 5
+    },
+    "VIL-04/v2": {
+      "task_id": "01a20f44-9d23-779c-885a-8f0f7876355d",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "large wooden medieval barn, big double doors, hay loft, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795552485.5829644,
+      "credits": 5
+    },
+    "TRE-01/v2": {
+      "task_id": "01a20f44-a213-7171-a2d7-350b328875aa",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "broad gnarled oak tree, thick twisted trunk, wide rounded canopy of chunky foliage clumps, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795552486.7741773,
+      "credits": 5
     }
   },
   "replaced": [

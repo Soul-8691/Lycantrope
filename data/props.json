@@ -9,7 +9,7 @@
   "props": {
     "VIL-01":     {"name": "Thatched Cottage",    "source": "VIL-01/v1/model.glb",       "height_m": 7.0, "color": [0.72, 0.68, 0.58], "top_color": [0.56, 0.46, 0.29], "top_from": 0.45},
     "VIL-03":     {"name": "Fenhallow Farmhouse", "source": "VIL-03/v1/model.glb",       "height_m": 7.5, "color": [0.72, 0.68, 0.58], "top_color": [0.56, 0.46, 0.29], "top_from": 0.45},
-    "VIL-04":     {"name": "Barn",                "source": "VIL-04/v1/model.glb",       "height_m": 8.5, "stretch": [1.0, 1.0, 3.5], "color": [0.48, 0.33, 0.22], "top_color": [0.36, 0.29, 0.23], "top_from": 0.6},
+    "VIL-04":     {"name": "Barn",                "source": "VIL-04/v2/model.glb",       "height_m": 8.5,"color": [0.48, 0.33, 0.22], "top_color": [0.36, 0.29, 0.23], "top_from": 0.6},
     "VIL-06":     {"name": "Village Well",        "source": "VIL-06/v1/model.glb",       "height_m": 3.6, "color": [0.62, 0.60, 0.56], "top_color": [0.45, 0.32, 0.22], "top_from": 0.6},
     "VIL-07":     {"name": "Smithy",              "source": "VIL-07/v1/model.glb",       "height_m": 5.0, "color": [0.55, 0.53, 0.50], "top_color": [0.40, 0.35, 0.30], "top_from": 0.55},
     "VIL-09":     {"name": "Market Stall",        "source": "VIL-09/v1/model.glb",       "height_m": 3.0, "color": [0.55, 0.40, 0.26], "top_color": [0.62, 0.26, 0.20], "top_from": 0.62},
@@ -24,7 +24,7 @@
     "CLT-02":     {"name": "Crate",               "source": "CLT-02/v1/model.glb",       "height_m": 1.6, "color": [0.62, 0.48, 0.32]},
     "CLT-03":     {"name": "Grain Sacks",         "source": "CLT-03/v1/model.glb",       "height_m": 0.7, "color": [0.70, 0.62, 0.46]},
     "CLT-10":     {"name": "Lantern Post",        "source": "CLT-10/v1/model.glb",       "height_m": 2.8, "color": [0.38, 0.30, 0.24]},
-    "TRE-01":     {"name": "Brackenvale Oak",     "source": "TRE-01/v1/model.glb",       "height_m": 11.0, "color": [0.40, 0.32, 0.24], "top_color": [0.30, 0.42, 0.20], "top_from": 0.35},
+    "TRE-01":     {"name": "Brackenvale Oak",     "source": "TRE-01/v2/model.glb",      "height_m": 11.0, "color": [0.40, 0.32, 0.24], "top_color": [0.30, 0.42, 0.20], "top_from": 0.35},
     "PLT-01":     {"name": "Meadow Bush",         "source": "PLT-01/v1/model_1500.glb",  "height_m": 1.4, "color": [0.30, 0.44, 0.22]}
   }
 }

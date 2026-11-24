@@ -117,15 +117,29 @@ class Placer:
                 self.place(key, a[0] + dx * t, a[1] + dz * t, rot, shade=1.0 - 0.06 * (i % 2))
 
     def scatter(self, key: str, cx: float, cz: float, count: int, ring: tuple[float, float],
-                seed: int, scale: tuple[float, float], spacing: float) -> None:
+                seed: int, scale: tuple[float, float], spacing: float,
+                groves: tuple[int, float] | None = None) -> None:
+        """Random placement in a ring. With groves=(n, radius), props cluster around n
+        random grove centers in the ring instead of spreading evenly."""
         rng = np.random.default_rng(seed)
         w = self.world
+
+        def ring_point() -> tuple[float, float]:
+            ang = rng.uniform(0, math.tau)
+            r = math.sqrt(rng.uniform(ring[0] ** 2, ring[1] ** 2))
+            return cx + r * math.cos(ang), cz + r * math.sin(ang)
+
+        centers = [ring_point() for _ in range(int(groves[0]))] if groves else []
         placed, tries = 0, 0
         while placed < count and tries < count * 40:
             tries += 1
-            ang = rng.uniform(0, math.tau)
-            r = math.sqrt(rng.uniform(ring[0] ** 2, ring[1] ** 2))
-            x, z = cx + r * math.cos(ang), cz + r * math.sin(ang)
+            if centers:
+                gx, gz = centers[int(rng.integers(len(centers)))]
+                x, z = gx + rng.normal(0, groves[1] / 2), gz + rng.normal(0, groves[1] / 2)
+                if math.hypot(x - cx, z - cz) < ring[0]:
+                    continue
+            else:
+                x, z = ring_point()
             if abs(x) > w.half - 5 or abs(z) > w.half - 5:
                 continue
             c, rr = w._px(x, z)
@@ -170,7 +184,8 @@ class Placer:
                 elif "scatter" in it:
                     self.scatter(it["scatter"], ax, az, int(it["count"]), tuple(it["ring"]),
                                  int(it.get("seed", 0)), tuple(it.get("scale", (1.0, 1.0))),
-                                 float(it.get("spacing", 2.0)))
+                                 float(it.get("spacing", 2.0)),
+                                 tuple(it["groves"]) if "groves" in it else None)
         return self.out
 
 
