@@ -1,16 +1,21 @@
-"""Lycantrope entry point: window, fixed-step loop, free-fly/walk camera over the terrain.
+"""Lycantrope entry point: window, fixed-step loop, Rowan in third person (or a free-fly camera).
 
-Controls
---------
+Controls (play mode)
+--------------------
 Click            capture the mouse (Esc releases it; Esc again quits)
-WASD / QE        move / down-up              Shift: fast  ·  Ctrl: slow  ·  wheel: base speed
-F1 wireframe · F2 fog · F3 overlay · F4 walk mode · F5 reload shaders
-F6 debug view (normal / normals / rock-road-snow) · F12 screenshot
+WASD             move (camera-relative)     Shift: sprint  ·  Ctrl: walk  ·  wheel: camera distance
+Left click       light attack (click again during a swing to chain up to three)
+Right mouse      hold to block              R: heavy attack  ·  Q: cast (off hand)
+H / K            debug: hit reaction / die and get back up
+F4 free-fly camera · F7 helmet on/off
+
+Free-fly mode: WASD / QE move, Shift fast, Ctrl slow, wheel base speed.
+Always: F1 wireframe · F2 fog · F3 overlay · F5 reload shaders · F6 terrain debug view · F12 screenshot
 
 Command line
 ------------
 python -m lycantrope [--cam X,Z,YAW,PITCH[,HEIGHT]] [--screenshot FILE] [--bench N] [--size WxH]
-    --cam         start position: X/Z in meters (game coords: z = south), yaw/pitch in degrees,
+    --cam         start in free-fly mode at X/Z (meters, z = south), yaw/pitch in degrees,
                   HEIGHT above the ground (default 40)
     --screenshot  render a few frames, save a PNG and quit
     --bench       render N frames, print timing and quit
@@ -34,16 +39,17 @@ from lycantrope.core.config import Settings
 from lycantrope.core.paths import SCREENSHOTS
 from lycantrope.core.timing import FixedStep
 from lycantrope.render.camera import Camera
+from lycantrope.render.characters import CharacterSystem
 from lycantrope.render.environment import Sky, Water, default_environment
 from lycantrope.render.props import PropRenderer
 from lycantrope.render.shaders import ShaderLibrary
 from lycantrope.render.terrain import TerrainRenderer
 from lycantrope.ui.overlay import TextOverlay
+from lycantrope.world.actors import RowanInput
 from lycantrope.world.heightfield import Heightfield
 from lycantrope.world.props import load_placements, paint_paths
 
-EYE_HEIGHT = 1.7
-WALK_SPEED, RUN_SPEED = 5.0, 11.0
+CAM_PIVOT_HEIGHT = 1.55
 
 
 def fit_to_desktop(size: tuple[int, int], margin: float = 0.9) -> tuple[int, int]:
@@ -90,22 +96,38 @@ class App:
         paint_paths(self.world, placements)          # before the terrain uploads the road map
         self.terrain = TerrainRenderer(self.ctx, self.shaders, self.world)
         self.props = PropRenderer(self.ctx, self.shaders, self.world, placements)
+        self.chars = CharacterSystem(self.ctx, self.shaders, self.world)
         self.sky = Sky(self.ctx, self.shaders)
         self.water = Water(self.ctx, self.shaders, self.world, self.terrain.tex_height)
         self.overlay = TextOverlay(self.ctx, self.shaders)
         self.load_seconds = time.perf_counter() - t0
 
         self.camera = Camera(fov_deg=settings.fov_deg, far=settings.view_distance_m)
+        self.play = self.chars.rowan is not None and not args.cam
+        self.orbit_dist = 4.2
+        self.orbit_pitch = -0.22
+        self.orbit_yaw = math.pi - self.chars.rowan.a.heading if self.chars.rowan else 0.0
         self.place_camera()
         self.clock = FixedStep(60)
         self.base_speed = 25.0
-        self.walk = False
         self.fog = True
         self.show_overlay = True
         self.captured = False
         self.time_s = 0.0
         self.frame_times: list[float] = []
         self.overlay_timer = 0.0
+        self.pressed: set[str] = set()                # one-shot actions since the last tick
+        self.ticks = 0
+        if args.orbit and self.chars.rowan:
+            y, p, d = (float(v) for v in args.orbit.split(","))
+            self.orbit_yaw = math.pi - self.chars.rowan.a.heading + math.radians(y)
+            self.orbit_pitch, self.orbit_dist = math.radians(p), d
+        if args.act and args.act.startswith("teleport:") and self.chars.rowan:
+            x, z = (float(v) for v in args.act.split(":")[1].split(","))
+            a = self.chars.rowan.a
+            a.x, a.z = x, z
+            a.y = self.world.height_at(x, z)
+            a.save_prev()
 
     # ------------------------------------------------------------------ setup
     def place_camera(self) -> None:
@@ -116,12 +138,31 @@ class App:
             above = vals[4] if len(vals) > 4 else 40.0
             cam.position = glm.vec3(x, self.world.height_at(x, z) + above, z)
             cam.yaw, cam.pitch = math.radians(yaw), math.radians(pitch)
+        elif self.chars.rowan is not None:
+            self.follow_camera(1.0)
         else:                                   # above Brackenvale Village, Rowan's home
             v = next((p for p in self.world.landmarks if p.name == "Brackenvale Village"),
                      self.world.waystones[0])
             cam.position = glm.vec3(v.x + 55.0, v.height + 22.0, v.z + 75.0)
             cam.look_at((v.x - 5.0, v.height + 2.0, v.z + 5.0))
         cam.prev_position = glm.vec3(cam.position)
+
+    def follow_camera(self, alpha: float) -> None:
+        """Third-person orbit around Rowan, kept above the ground."""
+        a = self.chars.rowan.a
+        cam = self.camera
+        pivot = glm.vec3(a.px + (a.x - a.px) * alpha, a.py + (a.y - a.py) * alpha + CAM_PIVOT_HEIGHT,
+                         a.pz + (a.z - a.pz) * alpha)
+        cam.yaw, cam.pitch = self.orbit_yaw, self.orbit_pitch
+        pos = pivot - cam.forward() * self.orbit_dist
+        floor = self.world.height_at(pos.x, pos.z) + 0.35
+        if pos.y < floor:
+            pos.y = floor
+            d = pivot - pos
+            cam.yaw = math.atan2(d.x, -d.z)
+            cam.pitch = math.atan2(d.y, math.hypot(d.x, d.z))
+        cam.position = pos
+        cam.prev_position = glm.vec3(pos)
 
     # ------------------------------------------------------------------ input
     def set_capture(self, on: bool) -> None:
@@ -139,71 +180,111 @@ class App:
                 return False
             if ev.type == pygame.MOUSEBUTTONDOWN and ev.button in (1, 3) and not self.captured:
                 self.set_capture(True)
+            elif ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1 and self.play:
+                self.pressed.add("light")
             elif ev.type == pygame.MOUSEMOTION and self.captured:
                 s = self.settings.mouse_sensitivity
                 dy = ev.rel[1] * s * (1 if self.settings.invert_y else -1)
-                self.camera.look(ev.rel[0] * s, dy)
+                if self.play:
+                    self.orbit_yaw = (self.orbit_yaw + ev.rel[0] * s) % math.tau
+                    self.orbit_pitch = max(-1.2, min(0.6, self.orbit_pitch + dy))
+                else:
+                    self.camera.look(ev.rel[0] * s, dy)
             elif ev.type == pygame.MOUSEWHEEL:
-                self.base_speed = min(400.0, max(2.0, self.base_speed * (1.25 ** ev.y)))
+                if self.play:
+                    self.orbit_dist = min(12.0, max(1.8, self.orbit_dist * (0.9 ** ev.y)))
+                else:
+                    self.base_speed = min(400.0, max(2.0, self.base_speed * (1.25 ** ev.y)))
             elif ev.type == pygame.KEYDOWN:
-                if ev.key == pygame.K_ESCAPE:
+                k = ev.key
+                if k == pygame.K_ESCAPE:
                     if self.captured:
                         self.set_capture(False)
                     else:
                         return False
-                elif ev.key == pygame.K_F1:
+                elif k == pygame.K_F1:
                     self.ctx.wireframe = not self.ctx.wireframe
-                elif ev.key == pygame.K_F2:
+                elif k == pygame.K_F2:
                     self.fog = not self.fog
-                elif ev.key == pygame.K_F3:
+                elif k == pygame.K_F3:
                     self.show_overlay = not self.show_overlay
-                elif ev.key == pygame.K_F4:
-                    self.walk = not self.walk
-                elif ev.key == pygame.K_F5:
+                elif k == pygame.K_F4 and self.chars.rowan is not None:
+                    self.play = not self.play
+                    if not self.play:
+                        self.camera.prev_position = glm.vec3(self.camera.position)
+                elif k == pygame.K_F5:
                     errors = self.shaders.reload()
                     print("shaders reloaded" if not errors else "shader errors:\n" + "\n".join(errors))
-                elif ev.key == pygame.K_F6:
+                elif k == pygame.K_F6:
                     self.terrain.debug_view = (self.terrain.debug_view + 1) % 3
-                elif ev.key == pygame.K_F12:
+                elif k == pygame.K_F7:
+                    self.chars.helmet = not self.chars.helmet
+                elif k == pygame.K_F12:
                     SCREENSHOTS.mkdir(exist_ok=True)
                     self.screenshot(SCREENSHOTS / f"lycantrope_{datetime.now():%Y%m%d_%H%M%S}.png")
+                elif self.play:
+                    name = {pygame.K_r: "heavy", pygame.K_q: "cast", pygame.K_h: "hit", pygame.K_k: "die"}.get(k)
+                    if name:
+                        self.pressed.add(name)
         return True
 
     # ------------------------------------------------------------- simulation
     def update(self, dt: float) -> None:
+        keys = pygame.key.get_pressed()
+        inp = RowanInput()
+        if self.play:
+            inp.move_x = keys[pygame.K_d] - keys[pygame.K_a]
+            inp.move_y = keys[pygame.K_w] - keys[pygame.K_s]
+            inp.sprint = bool(keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT])
+            inp.walk = bool(keys[pygame.K_LCTRL] or keys[pygame.K_RCTRL])
+            inp.block = bool(self.captured and pygame.mouse.get_pressed()[2])
+            inp.light, inp.heavy = "light" in self.pressed, "heavy" in self.pressed
+            inp.cast, inp.hit, inp.die = "cast" in self.pressed, "hit" in self.pressed, "die" in self.pressed
+            self.pressed.clear()
+            act = self.args.act or ""
+            if act:                                      # --act: scripted input for screenshots
+                inp.move_y = max(inp.move_y, 1.0 if act in ("run", "sprint", "walk") else 0.0)
+                inp.sprint |= act == "sprint"
+                inp.walk |= act == "walk"
+                inp.block |= act == "block"
+                first = self.ticks == 1
+                inp.light |= (act == "light" and first) or (act == "combo" and self.ticks % 20 == 1)
+                inp.heavy |= act == "heavy" and first
+                inp.cast |= act == "cast" and first
+                inp.hit |= act == "hit" and first
+                inp.die |= act == "die" and first
+            self.ticks += 1
+        else:
+            self.fly(dt, keys)
+        self.chars.update(inp, self.orbit_yaw, dt)
+        self.time_s += dt
+
+    def fly(self, dt: float, keys) -> None:
         cam = self.camera
         cam.prev_position = glm.vec3(cam.position)
-        keys = pygame.key.get_pressed()
         fwd = (keys[pygame.K_w] - keys[pygame.K_s])
         side = (keys[pygame.K_d] - keys[pygame.K_a])
         up = (keys[pygame.K_e] - keys[pygame.K_q])
         fast = keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]
         slow = keys[pygame.K_LCTRL] or keys[pygame.K_RCTRL]
-        if self.walk:
-            move = cam.flat_forward() * fwd + cam.right() * side
-            if glm.length(move) > 0:
-                move = glm.normalize(move) * (RUN_SPEED if fast else WALK_SPEED) * dt
-            p = cam.position + move
-            p.y = self.world.height_at(p.x, p.z) + EYE_HEIGHT
-            cam.position = p
-        else:
-            move = cam.forward() * fwd + cam.right() * side + glm.vec3(0, 1, 0) * up
-            if glm.length(move) > 0:
-                speed = self.base_speed * (5.0 if fast else 1.0) * (0.2 if slow else 1.0)
-                cam.position = cam.position + glm.normalize(move) * speed * dt
-            floor = self.world.height_at(cam.position.x, cam.position.z) + 0.6
-            if cam.position.y < floor:
-                cam.position.y = floor
+        move = cam.forward() * fwd + cam.right() * side + glm.vec3(0, 1, 0) * up
+        if glm.length(move) > 0:
+            speed = self.base_speed * (5.0 if fast else 1.0) * (0.2 if slow else 1.0)
+            cam.position = cam.position + glm.normalize(move) * speed * dt
+        floor = self.world.height_at(cam.position.x, cam.position.z) + 0.6
+        if cam.position.y < floor:
+            cam.position.y = floor
         lim = self.world.half - 1.0
         cam.position.x = min(max(cam.position.x, -lim), lim)
         cam.position.z = min(max(cam.position.z, -lim), lim)
-        self.time_s += dt
 
     # ---------------------------------------------------------------- render
     def render(self, alpha: float) -> None:
         w, h = pygame.display.get_window_size()
         self.ctx.viewport = (0, 0, w, h)
         self.ctx.clear(0.0, 0.0, 0.0, 1.0, depth=1.0)
+        if self.play:
+            self.follow_camera(alpha)
         eye, _view, _proj, viewproj = self.camera.matrices(w / max(h, 1), alpha)
         env = default_environment(self.fog)
         wire = self.ctx.wireframe
@@ -212,6 +293,7 @@ class App:
         self.ctx.wireframe = wire
         self.terrain.render(eye, viewproj, env, self.settings.lod_distances_m)
         self.props.render(eye, viewproj, env)
+        self.chars.render(eye, viewproj, env, alpha)
         self.ctx.wireframe = False
         self.water.render(eye, viewproj, env, self.time_s)
         if self.show_overlay:
@@ -222,18 +304,27 @@ class App:
         ft = self.frame_times[-60:] or [0.0]
         ms = 1000 * sum(ft) / len(ft)
         p = self.camera.position
-        ground = self.world.height_at(p.x, p.z)
         st = self.terrain.stats
-        mode = "WALK" if self.walk else f"FLY {self.base_speed:.0f} m/s"
-        return [
-            f"LYCANTROPE  terrain preview   {1000 / max(ms, 1e-3):5.0f} fps  {ms:5.1f} ms",
-            f"pos  x {p.x:7.1f}  z {p.z:7.1f}  y {p.y:6.1f}   ground {ground:6.1f} m   (north = -z)",
-            f"biome {self.world.biome_at(p.x, p.z):<18} {mode}",
-            f"chunks LOD0-4 {st.per_lod}  of {st.chunks_total}   {st.triangles / 1000:.0f}k tris",
-            f"props {self.props.drawn} of {self.props.count} drawn   {self.props.triangles / 1000:.0f}k tris",
-            "click: mouse look  Esc: release  WASD QE  Shift/Ctrl  wheel: speed",
-            "F1 wire  F2 fog  F3 overlay  F4 walk  F5 shaders  F6 debug  F12 shot",
+        counts = self.chars.counts()
+        lines = [f"LYCANTROPE   {1000 / max(ms, 1e-3):5.0f} fps  {ms:5.1f} ms"]
+        if self.play and self.chars.rowan:
+            a = self.chars.rowan.a
+            lines.append(f"ROWAN  x {a.x:7.1f}  z {a.z:7.1f}   {a.state:<7} {a.anim.clip:<7} {a.speed:4.1f} m/s"
+                         f"   biome {self.world.biome_at(a.x, a.z)}")
+        else:
+            lines.append(f"FLY {self.base_speed:.0f} m/s   x {p.x:7.1f}  z {p.z:7.1f}  y {p.y:6.1f}   (north = -z)")
+        lines += [
+            f"characters {self.chars.drawn} drawn of {sum(counts.values())}  "
+            + "  ".join(f"{k} {v}" for k, v in counts.items()),
+            f"terrain {st.triangles / 1000:.0f}k tris   props {self.props.drawn}/{self.props.count}",
         ]
+        if self.play:
+            lines += ["WASD move  Shift sprint  Ctrl walk  LMB attack  RMB block  R heavy  Q cast",
+                      "H hit  K die/revive  F7 helmet  F4 free camera  wheel zoom  Esc release mouse"]
+        else:
+            lines += ["WASD QE fly  Shift/Ctrl speed  wheel base speed  F4 back to Rowan",
+                      "F1 wire  F2 fog  F3 overlay  F5 shaders  F6 debug  F12 shot"]
+        return lines
 
     def screenshot(self, path) -> None:
         w, h = pygame.display.get_window_size()
@@ -246,13 +337,15 @@ class App:
         print(f"world loaded in {self.load_seconds:.1f}s  ({self.world.size}² heightmap, "
               f"{self.terrain.stats.chunks_total} chunks)")
         frames = 0
-        target = self.args.bench or (5 if self.args.screenshot else 0)
+        target = self.args.bench or (int(self.args.frames) if self.args.screenshot else 0)
         last = time.perf_counter()
         running = True
         while running:
             now = time.perf_counter()
-            dt = now - last
+            real_dt = now - last
             last = now
+            # screenshots step the world exactly 1/60 s per frame so they're repeatable
+            dt = 1 / 60 if self.args.screenshot else real_dt
             running = self.handle_events()
             for _ in range(self.clock.advance(dt)):
                 self.update(self.clock.dt)
@@ -260,7 +353,7 @@ class App:
             pygame.display.flip()
             frames += 1
             if frames > 2:
-                self.frame_times.append(dt)
+                self.frame_times.append(real_dt)
                 del self.frame_times[:-600]
             self.overlay_timer -= dt
             if self.overlay_timer <= 0:
@@ -281,11 +374,15 @@ class App:
 
 
 def run(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(prog="lycantrope", description="Lycantrope terrain preview")
-    ap.add_argument("--cam", help="X,Z,YAW,PITCH[,HEIGHT_ABOVE_GROUND]")
+    ap = argparse.ArgumentParser(prog="lycantrope", description="Lycantrope")
+    ap.add_argument("--cam", help="free-fly start: X,Z,YAW,PITCH[,HEIGHT_ABOVE_GROUND]")
     ap.add_argument("--screenshot", help="save a PNG after a few frames and quit")
+    ap.add_argument("--frames", default="5", help="frames to run before --screenshot (default 5)")
     ap.add_argument("--bench", type=int, default=0, help="render N frames, print timing, quit")
     ap.add_argument("--size", help="window size WxH")
+    ap.add_argument("--orbit", help="testing: camera around Rowan as YAW,PITCH,DIST (yaw 0 = behind him)")
+    ap.add_argument("--act", help="testing: what Rowan does from the start: run, sprint, walk, light, "
+                                  "combo, heavy, block, cast, hit, die; or 'teleport:X,Z' near enemies")
     args = ap.parse_args(sys.argv[1:] if argv is None else argv)
     return App(Settings.load(), args).run()
 

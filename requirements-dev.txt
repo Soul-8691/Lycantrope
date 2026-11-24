@@ -6,3 +6,4 @@ requests>=2.31      # Meshy / ElevenLabs batch tools (offline only)
 python-dotenv>=1.0  # reads MESHY_API_KEY / ELEVENLABS_API_KEY from .env
 trimesh>=4.0        # GLB normalizer: scale, pivot, LODs, colliders (ART-07)
 fast-simplification>=0.1  # triangle reduction for Meshy meshes (tools/meshy/reduce.py)
+scipy>=1.11         # k-d tree for armor weight transfer (optional; the game falls back to numpy)

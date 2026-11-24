@@ -1,2 +1,4 @@
 .venv\Scripts\python.exe tools\meshy\keep.py
 .venv\Scripts\python.exe tools\meshy\animsheet.py ENM-03 --gif
+Sounds
+Music (like Morrowind [don't copy])

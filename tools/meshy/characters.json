@@ -27,7 +27,15 @@
     "ENM-02": {
       "name": "Grey Wolf",
       "prompt": "lean grey wolf, thick grey fur with a darker back, long legs, alert ears, mouth closed, full body, standing on all four legs in a neutral pose, facing forward",
-      "tris": 6000, "rig": "quadruped"
+      "tris": 6000, "rig": "quadruped",
+      "actions": {
+        "1251": "idle (Wolf-Idle01)",
+        "1253": "alert / fight idle (Wolf-Idle02)",
+        "1256": "attack 1: pounce (Wolf-Jump-Start)",
+        "1254": "attack 2: landing snap (Wolf-Jump-End)",
+        "1252": "howl (Wolf-Howl)",
+        "1250": "death (Wolf-Death)"
+      }
     },
     "ENM-03": {
       "name": "Goblin Cutthroat",
@@ -43,7 +51,14 @@
     "MON-15": {
       "name": "Brown Bear",
       "prompt": "large brown bear, heavy muscular body, shaggy brown fur, big shoulder hump, mouth closed, full body, standing on all four legs in a neutral pose, facing forward",
-      "tris": 8000, "rig": "quadruped"
+      "tris": 8000, "rig": "quadruped",
+      "actions": {
+        "1182": "idle (Leopard-Idle01; no bear set in Meshy's library)",
+        "1184": "alert / fight idle (Leopard-Idle02)",
+        "1256": "attack 1: lunge (Wolf-Jump-Start)",
+        "1254": "attack 2: slam down (Wolf-Jump-End)",
+        "1180": "death (Leopard-Death01)"
+      }
     }
   }
 }

@@ -150,7 +150,8 @@ Each day has a **code track** and an **asset kitchen** track (batch jobs that ru
 - [ ] Capsule character controller: ground snapping on the heightfield, slope limit, gravity, jump and auto-jump at ledges, run and sprint. *(TEC-09, WLD-19)*
 - [ ] Third-person orbit camera with terrain collision, and lock-on with target switching. *(CMB-01, CMB-02)*
 - [ ] Stamina and a dodge roll with i-frames, plus the input buffer. *(CMB-03, CMB-06, CMB-15)*
-- [ ] `render/gltf.py`: load static GLB meshes and textures, with Rowan shown in a bind pose. Add `tools/meshy/normalize.py` (scale, axis, pivot at the feet). *(ART-07)*
+- [x] `render/gltf.py`: GLB meshes, textures, skins and clips (baked to 30 fps, played in place, retargeted between Meshy biped rigs by joint name). Armor fitting per ARS-05 (Rowan's skin weights copied to the outfit, split into head/arms/torso/legs). *(ART-07, TEC-08)*
+- [x] First pass of play mode: third-person orbit camera, camera-relative movement with walk/run/sprint, light ×3 chain, heavy, held block, cast; Rowan wears chainmail set 05 with the Rusty Dawnblade and the Tome of Wards. 10 goblins, 20 wolves and 5 bears around Brackenvale wander, chase, circle and swing (no hitboxes, stats or damage yet). Still to do from this day: capsule controller (slopes, jump), camera collision with props, lock-on, stamina.
 - [ ] Controller support through `pygame.joystick`. *(UIX-11)*
 
 **Asset kitchen**
@@ -162,7 +163,7 @@ Each day has a **code track** and an **asset kitchen** track (batch jobs that ru
 
 ### Day 3: Skinning and the combat core
 **Code**
-- [ ] GPU skinning: up to 4 weights per vertex, a joint palette in a UBO, clip sampling with linear/slerp interpolation and 0.15 s crossfades. In-place animations, so movement comes from code. *(TEC-08)*
+- [x] GPU skinning: up to 4 weights per vertex, a 64-joint palette uniform, baked clips with linear interpolation and 0.15 s crossfades. In-place animations, so movement comes from code. *(TEC-08)*
 - [ ] `data/attacks/*.json` frame data and `combat/attacks.py` running light and heavy strings with cancel windows. *(CMB-04, CMB-16)*
 - [ ] Swept-capsule hitboxes against hurtboxes, and damage resolution. *(CMB-17, CMB-18)*
 - [ ] Hit feel: hitstop, camera shake, FOV punch and impact SFX hooks on the event bus (no sparks). *(CMB-14, TEC-06)*
