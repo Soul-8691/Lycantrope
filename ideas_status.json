@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md. status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-24T11:29:07",
+  "updated": "2026-11-24T11:38:05",
   "counts": {
-    "awaiting": 13,
-    "approved": 172,
-    "denied": 38,
+    "awaiting": 2,
+    "approved": 178,
+    "denied": 43,
     "total": 223
   },
   "ui": {
     "selected": [
-      "PIL-01"
+      "WLD-19"
     ],
     "selected_titles": {
-      "PIL-01": "Combat first"
+      "WLD-19": "Simple traversal"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-24T11:29:07"
+    "at": "2026-11-24T11:38:05"
   },
   "ideas": {
     "PIL-01": {
@@ -823,9 +823,9 @@
       "in_ideas_md": true
     },
     "STA-11": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T11:35:08",
       "title": "Heart shards",
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
@@ -963,9 +963,9 @@
       "in_ideas_md": true
     },
     "ENM-11": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T11:33:53",
       "title": "Harpy",
       "category": "Enemies (ENM)",
       "section": "",
@@ -1053,9 +1053,9 @@
       "in_ideas_md": true
     },
     "ENM-20": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T11:33:59",
       "title": "Runestone Golem",
       "category": "Enemies (ENM)",
       "section": "",
@@ -1133,9 +1133,9 @@
       "in_ideas_md": true
     },
     "BOS-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T11:34:08",
       "title": "Old Mother Mire",
       "category": "Bosses (BOS)",
       "section": "",
@@ -1173,9 +1173,9 @@
       "in_ideas_md": true
     },
     "BOS-09": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T11:35:34",
       "title": "Use the dungeon item",
       "category": "Bosses (BOS)",
       "section": "",
@@ -1403,9 +1403,9 @@
       "in_ideas_md": true
     },
     "WLD-21": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T11:35:01",
       "title": "World validators",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1813,9 +1813,9 @@
       "in_ideas_md": true
     },
     "ART-14": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T11:35:52",
       "title": "Auto-rendered item icons",
       "category": "Art Pipeline (ART)",
       "section": "",
@@ -1893,9 +1893,9 @@
       "in_ideas_md": true
     },
     "TEC-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T11:37:54",
       "title": "Simulation doesn't touch rendering",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -1903,9 +1903,9 @@
       "in_ideas_md": true
     },
     "TEC-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T11:37:55",
       "title": "Event bus",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -1943,9 +1943,9 @@
       "in_ideas_md": true
     },
     "TEC-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T11:37:55",
       "title": "Terrain chunks with LOD and culling",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -1963,9 +1963,9 @@
       "in_ideas_md": true
     },
     "TEC-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T11:36:47",
       "title": "Shadow map",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -3787,6 +3787,72 @@
     {
       "time": "2026-11-24T11:28:18",
       "id": "CMB-29",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T11:33:53",
+      "id": "ENM-11",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T11:33:59",
+      "id": "ENM-20",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T11:34:08",
+      "id": "BOS-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T11:35:01",
+      "id": "WLD-21",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T11:35:08",
+      "id": "STA-11",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T11:35:34",
+      "id": "BOS-09",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T11:35:52",
+      "id": "ART-14",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T11:36:47",
+      "id": "TEC-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T11:37:54",
+      "id": "TEC-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T11:37:55",
+      "id": "TEC-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T11:37:55",
+      "id": "TEC-10",
       "from": "awaiting",
       "to": "approved"
     }
