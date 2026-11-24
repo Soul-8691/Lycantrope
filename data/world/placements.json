@@ -11,13 +11,28 @@
     {
       "name": "Brackenvale Village",
       "anchor": "Brackenvale Village",
+      "plazas": [
+        {"at": [0, 0], "r": 8}
+      ],
+      "paths": [
+        {"name": "main lane",      "width": 4.0, "points": [[42, 44], [29, 27], [14, 11], [4, 3]]},
+        {"name": "west cottage",   "width": 2.5, "points": [[-25.5, 14], [-16, 9], [-6, 3]]},
+        {"name": "north cottage",  "width": 2.5, "points": [[-13, 30], [-9, 18], [-4, 7]]},
+        {"name": "south-west cottage", "width": 2.5, "points": [[-10.5, -18], [-7, -11], [-3, -6]]},
+        {"name": "south-east cottage", "width": 2.5, "points": [[21.5, -14], [13, -9], [5, -5]]},
+        {"name": "east cottage",   "width": 2.5, "points": [[27, 7], [17, 6], [8, 5]]},
+        {"name": "far south cottage", "width": 2.5, "points": [[7.5, -34], [6, -20], [2, -8]]},
+        {"name": "smithy",         "width": 3.0, "points": [[13.5, 23.5], [17, 20], [21, 19]]},
+        {"name": "farm track",     "width": 3.0, "points": [[-6, -4], [-18, -9], [-21, -20], [-21, -35.6], [-30, -38], [-40, -41]]},
+        {"name": "barn track",     "width": 3.0, "points": [[-33, -39], [-44, -31], [-53, -24]]}
+      ],
       "items": [
         {"id": "VIL-06", "at": [0, 0], "facing": 160},
 
-        {"id": "VIL-09", "at": [9, 7], "facing": 225},
+        {"id": "VIL-09", "at": [11.5, -2], "facing": 260},
         {"id": "VIL-09", "at": [-10, 8], "facing": 140},
-        {"id": "CLT-02", "at": [12, 4], "facing": 200},
-        {"id": "CLT-01", "at": [11.5, 9.5], "facing": 0},
+        {"id": "CLT-02", "at": [14.5, -4], "facing": 200},
+        {"id": "CLT-01", "at": [13.5, 1.5], "facing": 0},
         {"id": "CLT-03", "at": [-13, 4.5], "facing": 30},
         {"id": "CLT-01", "at": [-13.5, 10.5], "facing": 70},
 
@@ -29,14 +44,14 @@
         {"id": "VIL-01", "at": [-14, 34], "facing": 165},
 
         {"id": "VIL-07", "at": [16, 28], "facing": 210},
-        {"id": "CLT-01", "at": [11, 25], "facing": 0},
-        {"id": "CLT-01", "at": [11.3, 23.6], "facing": 40},
+        {"id": "CLT-01", "at": [10.5, 26.5], "facing": 0},
+        {"id": "CLT-01", "at": [9.3, 25.2], "facing": 40},
         {"id": "CLT-02", "at": [21, 33], "facing": 250},
 
-        {"id": "CLT-10", "at": [30, 27], "facing": 225},
-        {"id": "CLT-10", "at": [15, 13], "facing": 225},
-        {"id": "CLT-10", "at": [-6, -9], "facing": 45},
-        {"id": "CLT-10", "at": [-20, -10], "facing": 90},
+        {"id": "CLT-10", "at": [33, 25], "facing": 225},
+        {"id": "CLT-10", "at": [12.5, 15], "facing": 225},
+        {"id": "CLT-10", "at": [-9, -2], "facing": 45},
+        {"id": "CLT-10", "at": [-25, -10], "facing": 90},
         {"id": "INT-11", "at": [40, 47], "facing": 200},
 
         {"id": "VIL-03", "at": [-44, -44], "facing": 50},
@@ -45,7 +60,7 @@
         {"id": "VIL-11", "at": [-64, -40], "facing": 80},
         {"id": "VIL-11", "at": [-62, -48], "facing": 15},
         {"id": "CLT-03", "at": [-49, -20], "facing": 200},
-        {"id": "CLT-01", "at": [-51, -27], "facing": 0},
+        {"id": "CLT-01", "at": [-52, -30], "facing": 0},
 
         {"line": "STR-01", "from": [-72, -62], "to": [-24, -62]},
         {"line": "STR-01", "from": [-72, -14], "to": [-72, -62]},

@@ -75,7 +75,8 @@ class PropModel:
 
 
 class PropRenderer:
-    def __init__(self, ctx: moderngl.Context, shaders: ShaderLibrary, world: Heightfield) -> None:
+    def __init__(self, ctx: moderngl.Context, shaders: ShaderLibrary, world: Heightfield,
+                 placements: dict | None = None) -> None:
         self.ctx = ctx
         self.shaders = shaders
         self.catalog = load_catalog()
@@ -89,7 +90,7 @@ class PropRenderer:
             spec.extents = tuple(float(e) for e in v.max(axis=0) - v.min(axis=0))
             meshes[key] = (v, f)
         self.catalog = {k: s for k, s in self.catalog.items() if k in meshes}
-        instances = place_props(world, self.catalog).arrays()
+        instances = place_props(world, self.catalog, placements).arrays()
 
         self.models: list[PropModel] = []
         for key, rows in instances.items():

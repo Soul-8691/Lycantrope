@@ -63,6 +63,25 @@ def test_scatter_keeps_its_distance():
     assert d.min() > 2.0
 
 
+def test_paint_paths_marks_road_and_keeps_scatter_off():
+    from lycantrope.world.heightfield import Place
+    from lycantrope.world.props import paint_paths
+
+    w = FlatWorld()
+    w.road = np.zeros((1000, 1000), dtype=np.uint8)
+    w.landmarks = [Place("Town", 0.0, 0.0, 10.0, 50.0)]
+    placements = {"groups": [{"anchor": "Town", "items": [],
+                              "paths": [{"width": 4, "points": [[-30, 0], [30, 0]]}],
+                              "plazas": [{"at": [0, 20], "r": 5}]}]}
+    assert paint_paths(w, placements) == 2
+    c, r = (int(round(v)) for v in w._px(10.0, 0.0))
+    assert w.road[r, c] == 255                             # path center
+    c, r = (int(round(v)) for v in w._px(10.0, 6.0))
+    assert w.road[r, c] == 0                               # well outside a 4 m path
+    c, r = (int(round(v)) for v in w._px(0.0, -20.0))       # plaza: 20 m north = z -20
+    assert w.road[r, c] == 255
+
+
 def test_read_glb_roundtrip(tmp_path):
     trimesh = pytest.importorskip("trimesh")
     from lycantrope.render.props import flat_mesh, read_glb

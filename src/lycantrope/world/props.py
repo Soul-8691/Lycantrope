@@ -189,6 +189,78 @@ class Placer:
         return self.out
 
 
-def place_props(world: Heightfield, catalog: dict[str, PropSpec],
-                path: Path = DATA / "world" / "placements.json") -> Instances:
-    return Placer(world, catalog).run(json.loads(path.read_text(encoding="utf-8")))
+PLACEMENTS = DATA / "world" / "placements.json"
+
+
+def load_placements(path: Path = PLACEMENTS) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def place_props(world: Heightfield, catalog: dict[str, PropSpec], placements: dict | None = None) -> Instances:
+    return Placer(world, catalog).run(placements or load_placements())
+
+
+# ---------------------------------------------------------------------------- #
+# Footpaths: painted into the road map at load time, so the terrain shader draws
+# them with the road material and scatter keeps off them.
+
+def smooth_polyline(pts: np.ndarray, iterations: int = 3) -> np.ndarray:
+    """Chaikin corner cutting; keeps both end points."""
+    for _ in range(iterations):
+        if len(pts) < 3:
+            break
+        a, b = pts[:-1], pts[1:]
+        mid = np.empty((2 * len(a), 2))
+        mid[0::2] = 0.75 * a + 0.25 * b
+        mid[1::2] = 0.25 * a + 0.75 * b
+        pts = np.vstack([pts[:1], mid[1:-1], pts[-1:]])
+    return pts
+
+
+def _smoothstep(e0: float, e1: float, x: np.ndarray) -> np.ndarray:
+    t = np.clip((x - e0) / (e1 - e0), 0.0, 1.0)
+    return t * t * (3 - 2 * t)
+
+
+def paint_paths(world: Heightfield, placements: dict | None = None) -> int:
+    """Paint every group's 'paths' (polylines) and 'plazas' (circles) into world.road."""
+    placements = placements or load_placements()
+    anchors = {p.name: p for p in world.landmarks + world.waystones}
+    road = world.road.copy()
+    count = 0
+    for group in placements["groups"]:
+        anchor = anchors.get(group["anchor"])
+        if anchor is None:
+            continue
+        shapes = []
+        for p in group.get("paths", []):
+            pts = np.array([[anchor.x + e, anchor.z - n] for e, n in p["points"]], dtype=np.float64)
+            shapes.append((smooth_polyline(pts), float(p.get("width", 2.5)) / 2))
+        for p in group.get("plazas", []):
+            e, n = p["at"]
+            shapes.append((np.array([[anchor.x + e, anchor.z - n]]), float(p["r"])))
+        for pts, hw in shapes:
+            reach = hw + 2.5
+            lo, hi = pts.min(axis=0) - reach, pts.max(axis=0) + reach
+            c0, r0 = (int(v) for v in world._px(lo[0], lo[1]))
+            c1, r1 = (int(v) + 2 for v in world._px(hi[0], hi[1]))
+            c0, r0 = max(c0, 0), max(r0, 0)
+            c1, r1 = min(c1, world.size), min(r1, world.size)
+            if c0 >= c1 or r0 >= r1:
+                continue
+            xs = (np.arange(c0, c1) + 0.5) * world.mpp - world.half
+            zs = (np.arange(r0, r1) + 0.5) * world.mpp - world.half
+            X, Z = np.meshgrid(xs, zs)
+            D = np.full(X.shape, np.inf)
+            segs = list(zip(pts[:-1], pts[1:])) or [(pts[0], pts[0])]
+            for (x0, z0), (x1, z1) in segs:
+                dx, dz = x1 - x0, z1 - z0
+                t = np.clip(((X - x0) * dx + (Z - z0) * dz) / (dx * dx + dz * dz or 1e-9), 0.0, 1.0)
+                D = np.minimum(D, np.hypot(X - (x0 + t * dx), Z - (z0 + t * dz)))
+            wobble = 0.35 * np.sin(0.9 * X + 1.3 * Z) + 0.25 * np.sin(1.7 * Z - 0.6 * X)  # ragged edges
+            w = _smoothstep(hw + 1.0, hw * 0.35, D + wobble)
+            patch = road[r0:r1, c0:c1]
+            road[r0:r1, c0:c1] = np.maximum(patch, (w * 255).astype(np.uint8))
+            count += 1
+    world.road = road
+    return count

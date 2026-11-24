@@ -40,6 +40,7 @@ from lycantrope.render.shaders import ShaderLibrary
 from lycantrope.render.terrain import TerrainRenderer
 from lycantrope.ui.overlay import TextOverlay
 from lycantrope.world.heightfield import Heightfield
+from lycantrope.world.props import load_placements, paint_paths
 
 EYE_HEIGHT = 1.7
 WALK_SPEED, RUN_SPEED = 5.0, 11.0
@@ -85,8 +86,10 @@ class App:
         t0 = time.perf_counter()
         self.shaders = ShaderLibrary(self.ctx)
         self.world = Heightfield()
+        placements = load_placements()
+        paint_paths(self.world, placements)          # before the terrain uploads the road map
         self.terrain = TerrainRenderer(self.ctx, self.shaders, self.world)
-        self.props = PropRenderer(self.ctx, self.shaders, self.world)
+        self.props = PropRenderer(self.ctx, self.shaders, self.world, placements)
         self.sky = Sky(self.ctx, self.shaders)
         self.water = Water(self.ctx, self.shaders, self.world, self.terrain.tex_height)
         self.overlay = TextOverlay(self.ctx, self.shaders)
