@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md. status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-24T09:59:17",
+  "updated": "2026-11-24T10:10:27",
   "counts": {
-    "awaiting": 94,
-    "approved": 125,
+    "awaiting": 57,
+    "approved": 162,
     "denied": 4,
     "total": 223
   },
   "ui": {
     "selected": [
-      "ART-01"
+      "REL-08"
     ],
     "selected_titles": {
-      "ART-01": "Meshy batch script"
+      "REL-08": "SmartScreen note"
     },
     "filter": "all",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-24T09:59:17"
+    "at": "2026-11-24T10:10:27"
   },
   "ideas": {
     "PIL-01": {
@@ -1683,9 +1683,9 @@
       "in_ideas_md": true
     },
     "ART-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:00:32",
       "title": "Meshy batch script",
       "category": "Art Pipeline (ART)",
       "section": "",
@@ -1693,9 +1693,9 @@
       "in_ideas_md": true
     },
     "ART-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:00:38",
       "title": "Shared style suffix",
       "category": "Art Pipeline (ART)",
       "section": "",
@@ -1703,9 +1703,9 @@
       "in_ideas_md": true
     },
     "ART-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:00:46",
       "title": "Meshy auto-rig and animations for humanoids",
       "category": "Art Pipeline (ART)",
       "section": "",
@@ -1713,9 +1713,9 @@
       "in_ideas_md": true
     },
     "ART-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:00:51",
       "title": "Procedural animation for non-humanoids",
       "category": "Art Pipeline (ART)",
       "section": "",
@@ -1743,9 +1743,9 @@
       "in_ideas_md": true
     },
     "ART-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:01:23",
       "title": "Python normalizer (no Blender needed)",
       "category": "Art Pipeline (ART)",
       "section": "",
@@ -1753,9 +1753,9 @@
       "in_ideas_md": true
     },
     "ART-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:01:29",
       "title": "Procedural terrain textures",
       "category": "Art Pipeline (ART)",
       "section": "",
@@ -1783,9 +1783,9 @@
       "in_ideas_md": true
     },
     "ART-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:01:47",
       "title": "Scripted modular dungeon kit",
       "category": "Art Pipeline (ART)",
       "section": "",
@@ -1793,9 +1793,9 @@
       "in_ideas_md": true
     },
     "ART-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:01:53",
       "title": "Post-processing stack",
       "category": "Art Pipeline (ART)",
       "section": "",
@@ -1843,9 +1843,9 @@
       "in_ideas_md": true
     },
     "ART-17": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:02:45",
       "title": "Dawnblade stages",
       "category": "Art Pipeline (ART)",
       "section": "",
@@ -1853,9 +1853,9 @@
       "in_ideas_md": true
     },
     "TEC-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:02:52",
       "title": "pygame-ce instead of pygame",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -1863,9 +1863,9 @@
       "in_ideas_md": true
     },
     "TEC-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:02:55",
       "title": "moderngl on OpenGL 3.3 core",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -1873,9 +1873,9 @@
       "in_ideas_md": true
     },
     "TEC-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:02:59",
       "title": "PyGLM for math",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -1883,9 +1883,9 @@
       "in_ideas_md": true
     },
     "TEC-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:03:01",
       "title": "Fixed 60 Hz simulation and interpolated rendering",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -1913,9 +1913,9 @@
       "in_ideas_md": true
     },
     "TEC-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:03:25",
       "title": "Content as data, with hot reload",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -1923,9 +1923,9 @@
       "in_ideas_md": true
     },
     "TEC-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:03:48",
       "title": "GLB loader with GPU skinning",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -1953,9 +1953,9 @@
       "in_ideas_md": true
     },
     "TEC-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:05:07",
       "title": "Instanced rendering",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -1973,9 +1973,9 @@
       "in_ideas_md": true
     },
     "TEC-13": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:05:17",
       "title": "Enemy AI",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -1983,9 +1983,9 @@
       "in_ideas_md": true
     },
     "TEC-14": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:05:23",
       "title": "Activation radius",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -1993,9 +1993,9 @@
       "in_ideas_md": true
     },
     "TEC-15": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:05:41",
       "title": "Seeded RNG and input replays",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -2003,9 +2003,9 @@
       "in_ideas_md": true
     },
     "TEC-16": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:05:49",
       "title": "Save system",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -2013,9 +2013,9 @@
       "in_ideas_md": true
     },
     "TEC-17": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:05:56",
       "title": "Debug overlay",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -2023,9 +2023,9 @@
       "in_ideas_md": true
     },
     "TEC-18": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:06:04",
       "title": "pytest from day one",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -2033,9 +2033,9 @@
       "in_ideas_md": true
     },
     "TEC-19": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:07:22",
       "title": "Profile, then optimize",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -2043,9 +2043,9 @@
       "in_ideas_md": true
     },
     "TEC-20": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:07:24",
       "title": "Lua modding through Lupa",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -2053,9 +2053,9 @@
       "in_ideas_md": true
     },
     "TEC-21": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:08:29",
       "title": "PyInstaller onedir build and butler",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -2063,9 +2063,9 @@
       "in_ideas_md": true
     },
     "TEC-22": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:08:31",
       "title": "GitHub Actions CI",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -2073,9 +2073,9 @@
       "in_ideas_md": true
     },
     "TEC-23": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:08:35",
       "title": "Settings file",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -2083,9 +2083,9 @@
       "in_ideas_md": true
     },
     "TEC-24": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:08:41",
       "title": "Background asset loading",
       "category": "Engine & Tech (TEC)",
       "section": "",
@@ -2093,9 +2093,9 @@
       "in_ideas_md": true
     },
     "TOL-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:08:44",
       "title": "Idea tracker",
       "category": "Tools (TOL)",
       "section": "",
@@ -2113,9 +2113,9 @@
       "in_ideas_md": true
     },
     "TOL-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:08:55",
       "title": "Voice take picker",
       "category": "Tools (TOL)",
       "section": "",
@@ -2143,9 +2143,9 @@
       "in_ideas_md": true
     },
     "TOL-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:09:13",
       "title": "Asset credits builder",
       "category": "Tools (TOL)",
       "section": "",
@@ -2163,9 +2163,9 @@
       "in_ideas_md": true
     },
     "REL-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:09:28",
       "title": "MIT license for the code",
       "category": "Release & Licensing (REL)",
       "section": "",
@@ -2173,9 +2173,9 @@
       "in_ideas_md": true
     },
     "REL-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:09:33",
       "title": "CREDITS.md from day one",
       "category": "Release & Licensing (REL)",
       "section": "",
@@ -2183,9 +2183,9 @@
       "in_ideas_md": true
     },
     "REL-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:09:35",
       "title": "AI disclosure on itch.io",
       "category": "Release & Licensing (REL)",
       "section": "",
@@ -2193,9 +2193,9 @@
       "in_ideas_md": true
     },
     "REL-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:09:42",
       "title": "Check the terms for public assets",
       "category": "Release & Licensing (REL)",
       "section": "",
@@ -2203,9 +2203,9 @@
       "in_ideas_md": true
     },
     "REL-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:09:50",
       "title": "Git LFS for binaries",
       "category": "Release & Licensing (REL)",
       "section": "",
@@ -2213,9 +2213,9 @@
       "in_ideas_md": true
     },
     "REL-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T10:09:53",
       "title": "Keys stay secret",
       "category": "Release & Licensing (REL)",
       "section": "",
@@ -3301,6 +3301,228 @@
     {
       "time": "2026-11-24T09:59:13",
       "id": "AUD-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:00:32",
+      "id": "ART-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:00:38",
+      "id": "ART-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:00:46",
+      "id": "ART-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:00:51",
+      "id": "ART-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:01:23",
+      "id": "ART-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:01:29",
+      "id": "ART-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:01:47",
+      "id": "ART-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:01:53",
+      "id": "ART-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:02:45",
+      "id": "ART-17",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:02:52",
+      "id": "TEC-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:02:55",
+      "id": "TEC-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:02:59",
+      "id": "TEC-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:03:01",
+      "id": "TEC-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:03:25",
+      "id": "TEC-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:03:48",
+      "id": "TEC-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:05:07",
+      "id": "TEC-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:05:17",
+      "id": "TEC-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:05:23",
+      "id": "TEC-14",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:05:41",
+      "id": "TEC-15",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:05:49",
+      "id": "TEC-16",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:05:56",
+      "id": "TEC-17",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:06:04",
+      "id": "TEC-18",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:07:22",
+      "id": "TEC-19",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:07:24",
+      "id": "TEC-20",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:08:29",
+      "id": "TEC-21",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:08:31",
+      "id": "TEC-22",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:08:35",
+      "id": "TEC-23",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:08:41",
+      "id": "TEC-24",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:08:44",
+      "id": "TOL-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:08:55",
+      "id": "TOL-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:09:13",
+      "id": "TOL-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:09:28",
+      "id": "REL-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:09:33",
+      "id": "REL-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:09:35",
+      "id": "REL-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:09:42",
+      "id": "REL-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:09:50",
+      "id": "REL-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T10:09:53",
+      "id": "REL-06",
       "from": "awaiting",
       "to": "approved"
     }
