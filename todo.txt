@@ -2,3 +2,10 @@
 .venv\Scripts\python.exe tools\meshy\animsheet.py ENM-03 --gif
 Sounds
 Music (like Morrowind [don't copy])
+World map
+Health and damage
+Character stats
+Weapon stats
+Armor stats
+Magic stats
+Magic casting

@@ -4,20 +4,22 @@
     "Each group spawns 'count' of one character within 'radius' m of its point and wanders",
     "around there. 'facing' is a compass heading for Rowan (0 = north)."
   ],
-  "rowan": {"anchor": "Brackenvale Village", "at": [-27, -36], "facing": 40},
+  "rowan": {
+    "anchor": "Brackenvale Village",
+    "at": [-27, -36],
+    "facing": 40
+  },
   "groups": [
-    {"name": "goblin camp, east fields",     "kind": "goblin", "count": 6, "anchor": "Brackenvale Village", "at": [240, 70],   "radius": 9},
-    {"name": "goblins lurking by the road",  "kind": "goblin", "count": 4, "anchor": "Brackenvale Village", "at": [-95, 300],  "radius": 8},
-
-    {"name": "wolf pack, west",              "kind": "wolf", "count": 5, "anchor": "Brackenvale Village", "at": [-300, 140],  "radius": 10},
-    {"name": "wolf pack, south-west",        "kind": "wolf", "count": 5, "anchor": "Brackenvale Village", "at": [-250, -170], "radius": 10},
-    {"name": "wolf pack, south-east",        "kind": "wolf", "count": 5, "anchor": "Brackenvale Village", "at": [300, -170],  "radius": 10},
-    {"name": "wolf pack, north-west",        "kind": "wolf", "count": 5, "anchor": "Brackenvale Village", "at": [-380, 380],  "radius": 10},
-
-    {"name": "bear, east",                   "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [440, 150],   "radius": 0},
-    {"name": "bear, north-west",             "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [-470, 240],  "radius": 0},
-    {"name": "bear, south",                  "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [110, -230],  "radius": 0},
-    {"name": "bear, north",                  "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [160, 470],   "radius": 0},
-    {"name": "bear, far east",               "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [520, -90],   "radius": 0}
+    {"name": "goblin camp, east fields", "kind": "goblin", "count": 6, "anchor": "Brackenvale Village", "at": [130, 30], "radius": 9},
+    {"name": "goblins lurking by the road", "kind": "goblin", "count": 4, "anchor": "Brackenvale Village", "at": [-70, 140], "radius": 8},
+    {"name": "wolf pack, west", "kind": "wolf", "count": 5, "anchor": "Brackenvale Village", "at": [-170, 90], "radius": 10},
+    {"name": "wolf pack, south-west", "kind": "wolf", "count": 5, "anchor": "Brackenvale Village", "at": [-150, -140], "radius": 10},
+    {"name": "wolf pack, south-east", "kind": "wolf", "count": 5, "anchor": "Brackenvale Village", "at": [140, -130], "radius": 10},
+    {"name": "wolf pack, north-west", "kind": "wolf", "count": 5, "anchor": "Brackenvale Village", "at": [-380, 380], "radius": 10},
+    {"name": "bear, east", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [440, 150], "radius": 0},
+    {"name": "bear, north-west", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [-470, 240], "radius": 0},
+    {"name": "bear, south", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [60, -170], "radius": 0},
+    {"name": "bear, north", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [160, 470], "radius": 0},
+    {"name": "bear, far east", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [520, -90], "radius": 0}
   ]
 }

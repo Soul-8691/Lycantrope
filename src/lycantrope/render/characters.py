@@ -29,7 +29,7 @@ from lycantrope.world.heightfield import Heightfield
 MODELS = ASSETS / "models" / "meshy"
 CACHE = ROOT / "assets" / "cache"
 MAX_JOINTS = 64
-DRAW_DISTANCE = 230.0
+DRAW_DISTANCE = 300.0
 STATIC_CLIPS = {"idle": ClipInfo(1.0, True), "walk": ClipInfo(1.0, True), "run": ClipInfo(1.0, True),
                 "alert": ClipInfo(1.0, True), "attack1": ClipInfo(0.9, False), "attack2": ClipInfo(0.9, False),
                 "hit": ClipInfo(0.5, False), "death": ClipInfo(1.0, False)}
