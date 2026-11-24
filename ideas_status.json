@@ -1,0 +1,2273 @@
+{
+  "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md. status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
+  "updated": "2026-11-23T20:26:35",
+  "counts": {
+    "awaiting": 225,
+    "approved": 0,
+    "denied": 0,
+    "total": 225
+  },
+  "ui": {
+    "selected": [],
+    "selected_titles": {},
+    "filter": "all",
+    "category": "All categories",
+    "search": "",
+    "starred_only": false,
+    "window_open": true,
+    "at": "2026-11-23T20:26:35"
+  },
+  "ideas": {
+    "PIL-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Combat first",
+      "category": "Pillars (PIL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "PIL-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Deliberate, readable, fair",
+      "category": "Pillars (PIL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "PIL-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Two bodies, one hero",
+      "category": "Pillars (PIL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "PIL-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "See it, go there",
+      "category": "Pillars (PIL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "PIL-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Generated, not hand-made",
+      "category": "Pillars (PIL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "PIL-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Tropes played straight, with a wink",
+      "category": "Pillars (PIL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "PIL-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Ship small, ship often",
+      "category": "Pillars (PIL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "STY-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Premise: the Chained Moon",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "STY-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The realm of Aldmoor",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "STY-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Four Moon Seals, four dungeons",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STY-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The term \"Lycantrope\"",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STY-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Prologue: the hunt gone wrong",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "STY-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The Hunger: a voice in the bite",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STY-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The Wardens hunt you",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STY-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Two endings",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STY-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Story told through items and places",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "STY-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Readable lore books and notes",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STY-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Blood Moon nights",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STY-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Cult lieutenants with names and barks",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "HER-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Rowan Fenhallow, the Moonbitten",
+      "category": "The Hero (HER)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "HER-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Rowan is a woman",
+      "category": "The Hero (HER)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "HER-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Rowan is a man",
+      "category": "The Hero (HER)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "HER-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The bite scar glows",
+      "category": "The Hero (HER)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "HER-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "A few memorable lines",
+      "category": "The Hero (HER)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "HER-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The beast is still Rowan",
+      "category": "The Hero (HER)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "HER-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Visible armor swaps",
+      "category": "The Hero (HER)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "HER-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Signature idle animations",
+      "category": "The Hero (HER)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "CMB-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Third-person orbit camera",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Lock-on targeting",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Stamina",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Light and heavy combo strings",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Directional power attacks",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "CMB-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Dodge roll with i-frames",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Block and guard break",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Parry → riposte",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Backstabs and sneak attacks",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "CMB-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Poise and stagger",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Charged spin attack",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "CMB-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Hidden techniques",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "CMB-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Jump strike and plunge attack",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "CMB-14": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Hit feel",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-15": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Input buffering",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-16": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Frame data as JSON",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-17": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Swept-capsule hitboxes",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-18": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Damage types and resistances",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-19": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Status buildup",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "CMB-20": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Hand crossbow",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-21": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Throwables",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "CMB-22": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Moonwater flask",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-23": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Weapon classes",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "CMB-24": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Weapon upgrades at Moonwells",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "CMB-25": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Rune sockets",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "CMB-26": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Equip load tiers",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "CMB-27": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Attack tokens",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-28": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Difficulty through reaction time",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-29": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Moon Rites (small spell set)",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "CMB-30": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Essence drop on death",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "CMB-31": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Kicks and environment kills",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "CMB-32": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Mounted combat on a dire wolf",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLF-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Bloodlust meter",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLF-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Beast moveset",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLF-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Feeding",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLF-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Scent senses",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLF-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Moon phases",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLF-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Losing control",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLF-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Instinct prompts",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLF-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Silver hurts",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLF-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Beast perk tree",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLF-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Howls",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLF-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Wolves are kin",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLF-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Trophy masks",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLF-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Its own camera",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLF-14": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Climb and dig",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STA-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "XP from kills",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "STA-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Level up anywhere",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "STA-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Level up only at Moonwells",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STA-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Six attributes",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "STA-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Derived stats with soft caps",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "STA-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Skills improve by use",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "STA-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Hybrid progression",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "STA-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Perks every 10 skill levels",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STA-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Weapon scaling grades",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STA-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Fixed-level regions",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "STA-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Heart shards",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "STA-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Respec item",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STA-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Optional damage numbers",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STA-14": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Stat gates",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "ENM-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Giant Rat",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Grey Wolf",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Goblin Cutthroat",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Bandit Brigand",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Bog Ooze",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Bandit Crossbowman",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Goblin Hexer",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Skeleton Warrior",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Giant Spider",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Drowned Thrall",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Harpy",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Lizardfolk Spearman",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Orc Berserker",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-14": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Bog Troll",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-15": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Wraith",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-16": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Frost Yeti",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-17": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Ogre Brute",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-18": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Rogue Werewolf",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-19": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Silver Warden Knight",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-20": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Runestone Golem",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-21": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Mimic Chest",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "ENM-22": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Necromancer",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "ENM-23": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Elite variants",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "ENM-24": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Behavior archetypes",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ENM-25": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Telegraph language",
+      "category": "Enemies (ENM)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "BOS-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Grimtooth, Alpha of the Wolfwood",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "BOS-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The Brood Queen",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "BOS-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Old Mother Mire",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "BOS-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The Frostfang Wyvern",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "BOS-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The Cinder Colossus",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "BOS-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Inquisitor Maren Ashby",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "BOS-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Lycaon, the First Wolf",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "BOS-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Silver mist gates",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "BOS-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Use the dungeon item",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLD-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "One seamless heightmap world",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLD-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Brackenvale (start)",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLD-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The Wolfwood",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLD-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The Blackmire",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLD-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Frostfang Peaks",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLD-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The Ashen Reach",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLD-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The Sunken Crypts",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLD-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The Eclipse Spire",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLD-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Moonwells",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLD-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Shortcuts that loop back",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLD-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Day/night cycle and weather",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLD-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Scripted scatter",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLD-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "One hand-picked landmark per area",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLD-14": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Dungeons from a scripted kit",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLD-15": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Dungeon tools that gate the world",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLD-16": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Hidden walls and secrets",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLD-17": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Loot chests and loot tables",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLD-18": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Ambient wildlife",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLD-19": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Simple traversal",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLD-20": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Pacing director",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "WLD-21": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "World validators",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "WLD-22": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Fishing pond",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "UIX-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Minimal HUD",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "UIX-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Compass bar",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "UIX-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Map and compass items",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "UIX-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Lock-on reticle and enemy plates",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "UIX-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Boss bar",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "UIX-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Level-up screen",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "UIX-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Pause menu",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "UIX-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Bestiary",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "UIX-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Death screen",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "UIX-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Subtitles for every voice line",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "UIX-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Controller and rebinding",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "UIX-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Comfort and accessibility",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "UIX-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "UI drawn with pygame, shown through GL",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "UIX-14": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The Hunger's subtitles look different",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "AUD-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Voice pipeline",
+      "category": "Audio & Voice (AUD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "AUD-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Designed voices only",
+      "category": "Audio & Voice (AUD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "AUD-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Enemy barks",
+      "category": "Audio & Voice (AUD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "AUD-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Expressive audio tags",
+      "category": "Audio & Voice (AUD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "AUD-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Creature sounds from the SFX API",
+      "category": "Audio & Voice (AUD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "AUD-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Combat SFX set",
+      "category": "Audio & Voice (AUD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "AUD-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Music for each biome",
+      "category": "Audio & Voice (AUD)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "AUD-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Positional audio",
+      "category": "Audio & Voice (AUD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "AUD-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Signature jingles",
+      "category": "Audio & Voice (AUD)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "AUD-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Loudness mastering",
+      "category": "Audio & Voice (AUD)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "AUD-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Pronunciation dictionary",
+      "category": "Audio & Voice (AUD)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "AUD-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Beast-form audio filter",
+      "category": "Audio & Voice (AUD)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "ART-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Meshy batch script",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ART-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Shared style suffix",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ART-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Meshy auto-rig and animations for humanoids",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ART-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Procedural animation for non-humanoids",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ART-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Image → 3D for hero assets",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "ART-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Polygon and texture budgets",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ART-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Python normalizer (no Blender needed)",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ART-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Procedural terrain textures",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ART-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Procedural sky",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ART-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Instanced grass with wind",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ART-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Scripted modular dungeon kit",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "ART-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Post-processing stack",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ART-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "GPU particles",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ART-14": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Auto-rendered item icons",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "ART-15": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Unifying shading",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "ART-16": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Asset previewer",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "TEC-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "pygame-ce instead of pygame",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "moderngl on OpenGL 3.3 core",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "PyGLM for math",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Fixed 60 Hz simulation and interpolated rendering",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Simulation doesn't touch rendering",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Event bus",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Content as data, with hot reload",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "GLB loader with GPU skinning",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Light collision",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Terrain chunks with LOD and culling",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Instanced rendering",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Shadow map",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Enemy AI",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-14": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Activation radius",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-15": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Seeded RNG and input replays",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "TEC-16": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Save system",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-17": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Debug overlay",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-18": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "pytest from day one",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-19": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Profile, then optimize",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "TEC-20": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Lua modding through Lupa",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "TEC-21": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "PyInstaller onedir build and butler",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-22": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "GitHub Actions CI",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "TEC-23": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Settings file",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TEC-24": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Background asset loading",
+      "category": "Engine & Tech (TEC)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "TOL-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Idea tracker",
+      "category": "Tools (TOL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TOL-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Frame-data editor",
+      "category": "Tools (TOL)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "TOL-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Voice take picker",
+      "category": "Tools (TOL)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "TOL-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Balance simulator",
+      "category": "Tools (TOL)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "TOL-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Biome mask painter",
+      "category": "Tools (TOL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TOL-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Asset credits builder",
+      "category": "Tools (TOL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "TOL-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "AI playtest bot",
+      "category": "Tools (TOL)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "REL-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "MIT license for the code",
+      "category": "Release & Licensing (REL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "REL-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "CREDITS.md from day one",
+      "category": "Release & Licensing (REL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "REL-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "AI disclosure on itch.io",
+      "category": "Release & Licensing (REL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "REL-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Check the terms for public assets",
+      "category": "Release & Licensing (REL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "REL-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Git LFS for binaries",
+      "category": "Release & Licensing (REL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "REL-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Keys stay secret",
+      "category": "Release & Licensing (REL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "REL-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Weekly devlog and build",
+      "category": "Release & Licensing (REL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "REL-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "SmartScreen note",
+      "category": "Release & Licensing (REL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "REL-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Name check",
+      "category": "Release & Licensing (REL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    }
+  },
+  "history": []
+}
