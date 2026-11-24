@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md. status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-23T22:44:09",
+  "updated": "2026-11-23T22:48:20",
   "counts": {
-    "awaiting": 177,
-    "approved": 45,
-    "denied": 1,
+    "awaiting": 163,
+    "approved": 58,
+    "denied": 2,
     "total": 223
   },
   "ui": {
     "selected": [
-      "VAL-01"
+      "STA-14"
     ],
     "selected_titles": {
-      "VAL-01": "Valor meter"
+      "STA-14": "Stat gates"
     },
     "filter": "all",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-23T22:44:09"
+    "at": "2026-11-23T22:48:20"
   },
   "ideas": {
     "PIL-01": {
@@ -653,9 +653,9 @@
       "in_ideas_md": true
     },
     "VAL-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:46:00",
       "title": "Relic powers",
       "category": "Valor & the Dawnblade (VAL)",
       "section": "",
@@ -673,9 +673,9 @@
       "in_ideas_md": true
     },
     "VAL-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:46:09",
       "title": "A new move with each shard",
       "category": "Valor & the Dawnblade (VAL)",
       "section": "",
@@ -683,9 +683,9 @@
       "in_ideas_md": true
     },
     "VAL-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:46:20",
       "title": "Seer's Lens",
       "category": "Valor & the Dawnblade (VAL)",
       "section": "",
@@ -693,9 +693,9 @@
       "in_ideas_md": true
     },
     "VAL-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:46:35",
       "title": "Trophy masks",
       "category": "Valor & the Dawnblade (VAL)",
       "section": "",
@@ -723,9 +723,9 @@
       "in_ideas_md": true
     },
     "STA-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:47:16",
       "title": "XP from kills",
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
@@ -733,9 +733,9 @@
       "in_ideas_md": true
     },
     "STA-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:47:27",
       "title": "Level up anywhere",
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
@@ -743,9 +743,9 @@
       "in_ideas_md": true
     },
     "STA-03": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:47:29",
       "title": "Level up only at Waystones",
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
@@ -753,9 +753,9 @@
       "in_ideas_md": true
     },
     "STA-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:47:37",
       "title": "Six attributes",
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
@@ -763,9 +763,9 @@
       "in_ideas_md": true
     },
     "STA-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:47:41",
       "title": "Derived stats with soft caps",
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
@@ -773,9 +773,9 @@
       "in_ideas_md": true
     },
     "STA-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:47:45",
       "title": "Skills improve by use",
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
@@ -783,9 +783,9 @@
       "in_ideas_md": true
     },
     "STA-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:47:48",
       "title": "Hybrid progression",
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
@@ -793,9 +793,9 @@
       "in_ideas_md": true
     },
     "STA-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:47:53",
       "title": "Perks every 10 skill levels",
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
@@ -803,9 +803,9 @@
       "in_ideas_md": true
     },
     "STA-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:48:01",
       "title": "Weapon scaling grades",
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
@@ -813,9 +813,9 @@
       "in_ideas_md": true
     },
     "STA-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:48:07",
       "title": "Fixed-level regions",
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
@@ -2803,6 +2803,90 @@
     {
       "time": "2026-11-23T22:44:08",
       "id": "CMB-32",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:46:00",
+      "id": "VAL-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:46:09",
+      "id": "VAL-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:46:20",
+      "id": "VAL-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:46:35",
+      "id": "VAL-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:47:16",
+      "id": "STA-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:47:27",
+      "id": "STA-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:47:29",
+      "id": "STA-03",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-23T22:47:37",
+      "id": "STA-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:47:41",
+      "id": "STA-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:47:45",
+      "id": "STA-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:47:48",
+      "id": "STA-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:47:53",
+      "id": "STA-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:48:01",
+      "id": "STA-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:48:07",
+      "id": "STA-10",
       "from": "awaiting",
       "to": "approved"
     }
