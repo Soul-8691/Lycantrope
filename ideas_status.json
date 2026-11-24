@@ -1,21 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md. status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-23T20:26:35",
+  "updated": "2026-11-23T22:44:09",
   "counts": {
-    "awaiting": 225,
-    "approved": 0,
-    "denied": 0,
-    "total": 225
+    "awaiting": 177,
+    "approved": 45,
+    "denied": 1,
+    "total": 223
   },
   "ui": {
-    "selected": [],
-    "selected_titles": {},
+    "selected": [
+      "VAL-01"
+    ],
+    "selected_titles": {
+      "VAL-01": "Valor meter"
+    },
     "filter": "all",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-23T20:26:35"
+    "at": "2026-11-23T22:44:09"
   },
   "ideas": {
     "PIL-01": {
@@ -29,29 +33,19 @@
       "in_ideas_md": true
     },
     "PIL-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:34:04",
       "title": "Deliberate, readable, fair",
       "category": "Pillars (PIL)",
       "section": "",
       "starred": true,
       "in_ideas_md": true
     },
-    "PIL-03": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "Two bodies, one hero",
-      "category": "Pillars (PIL)",
-      "section": "",
-      "starred": true,
-      "in_ideas_md": true
-    },
     "PIL-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:34:09",
       "title": "See it, go there",
       "category": "Pillars (PIL)",
       "section": "",
@@ -59,9 +53,9 @@
       "in_ideas_md": true
     },
     "PIL-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:34:19",
       "title": "Generated, not hand-made",
       "category": "Pillars (PIL)",
       "section": "",
@@ -69,9 +63,9 @@
       "in_ideas_md": true
     },
     "PIL-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:34:28",
       "title": "Tropes played straight, with a wink",
       "category": "Pillars (PIL)",
       "section": "",
@@ -88,20 +82,40 @@
       "starred": true,
       "in_ideas_md": true
     },
-    "STY-01": {
+    "PIL-08": {
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Premise: the Chained Moon",
-      "category": "Story & Setting (STY)",
+      "title": "Valor: fight bravely, get stronger mid-fight",
+      "category": "Pillars (PIL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "PIL-09": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-23T22:35:34",
+      "title": "From nobody to legend",
+      "category": "Pillars (PIL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "PIL-10": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-23T22:35:41",
+      "title": "A monster for every trope",
+      "category": "Pillars (PIL)",
       "section": "",
       "starred": true,
       "in_ideas_md": true
     },
     "STY-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:35:50",
       "title": "The realm of Aldmoor",
       "category": "Story & Setting (STY)",
       "section": "",
@@ -109,69 +123,19 @@
       "in_ideas_md": true
     },
     "STY-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
-      "title": "Four Moon Seals, four dungeons",
-      "category": "Story & Setting (STY)",
-      "section": "",
-      "starred": false,
-      "in_ideas_md": true
-    },
-    "STY-04": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "The term \"Lycantrope\"",
-      "category": "Story & Setting (STY)",
-      "section": "",
-      "starred": false,
-      "in_ideas_md": true
-    },
-    "STY-05": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "Prologue: the hunt gone wrong",
-      "category": "Story & Setting (STY)",
-      "section": "",
-      "starred": true,
-      "in_ideas_md": true
-    },
-    "STY-06": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "The Hunger: a voice in the bite",
-      "category": "Story & Setting (STY)",
-      "section": "",
-      "starred": false,
-      "in_ideas_md": true
-    },
-    "STY-07": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "The Wardens hunt you",
-      "category": "Story & Setting (STY)",
-      "section": "",
-      "starred": false,
-      "in_ideas_md": true
-    },
-    "STY-08": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "Two endings",
+      "changed": "2026-11-23T22:36:00",
+      "title": "Four Crown Shards, four dungeons",
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": false,
       "in_ideas_md": true
     },
     "STY-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:36:06",
       "title": "Story told through items and places",
       "category": "Story & Setting (STY)",
       "section": "",
@@ -179,9 +143,9 @@
       "in_ideas_md": true
     },
     "STY-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:36:16",
       "title": "Readable lore books and notes",
       "category": "Story & Setting (STY)",
       "section": "",
@@ -192,7 +156,7 @@
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Blood Moon nights",
+      "title": "Shadow Moon nights",
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": false,
@@ -202,26 +166,86 @@
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Cult lieutenants with names and barks",
+      "title": "Four generals with names and barks",
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": false,
       "in_ideas_md": true
     },
-    "HER-01": {
-      "status": "awaiting",
+    "STY-13": {
+      "status": "approved",
       "note": "",
-      "changed": null,
-      "title": "Rowan Fenhallow, the Moonbitten",
-      "category": "The Hero (HER)",
+      "changed": "2026-11-23T22:36:32",
+      "title": "Premise: the Dark Lord returns",
+      "category": "Story & Setting (STY)",
       "section": "",
       "starred": true,
       "in_ideas_md": true
     },
-    "HER-02": {
+    "STY-14": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-23T22:36:47",
+      "title": "Prologue: the village burns",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "STY-15": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-23T22:36:56",
+      "title": "The wise mentor",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STY-16": {
       "status": "awaiting",
       "note": "",
       "changed": null,
+      "title": "Ember, the spirit in the sword",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STY-17": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Ending: the final battle, with one secret",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STY-18": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-23T22:37:24",
+      "title": "\"The Lycantrope\": an in-world bestiary",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "STY-19": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-23T22:37:30",
+      "title": "A rival champion",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "HER-02": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-23T22:37:46",
       "title": "Rowan is a woman",
       "category": "The Hero (HER)",
       "section": "",
@@ -229,49 +253,29 @@
       "in_ideas_md": true
     },
     "HER-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:37:53",
       "title": "Rowan is a man",
       "category": "The Hero (HER)",
       "section": "",
       "starred": true,
       "in_ideas_md": true
     },
-    "HER-04": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "The bite scar glows",
-      "category": "The Hero (HER)",
-      "section": "",
-      "starred": true,
-      "in_ideas_md": true
-    },
     "HER-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:38:06",
       "title": "A few memorable lines",
       "category": "The Hero (HER)",
       "section": "",
       "starred": true,
       "in_ideas_md": true
     },
-    "HER-06": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "The beast is still Rowan",
-      "category": "The Hero (HER)",
-      "section": "",
-      "starred": true,
-      "in_ideas_md": true
-    },
     "HER-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:38:14",
       "title": "Visible armor swaps",
       "category": "The Hero (HER)",
       "section": "",
@@ -279,19 +283,39 @@
       "in_ideas_md": true
     },
     "HER-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:38:21",
       "title": "Signature idle animations",
       "category": "The Hero (HER)",
       "section": "",
       "starred": false,
       "in_ideas_md": true
     },
-    "CMB-01": {
+    "HER-09": {
       "status": "awaiting",
       "note": "",
       "changed": null,
+      "title": "Rowan Fenhallow, the farmhand of prophecy",
+      "category": "The Hero (HER)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "HER-10": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-23T22:38:36",
+      "title": "The Dawnblade grows with you",
+      "category": "The Hero (HER)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": true
+    },
+    "CMB-01": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-23T22:38:50",
       "title": "Third-person orbit camera",
       "category": "Combat (CMB)",
       "section": "",
@@ -299,9 +323,9 @@
       "in_ideas_md": true
     },
     "CMB-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:38:54",
       "title": "Lock-on targeting",
       "category": "Combat (CMB)",
       "section": "",
@@ -309,9 +333,9 @@
       "in_ideas_md": true
     },
     "CMB-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:38:58",
       "title": "Stamina",
       "category": "Combat (CMB)",
       "section": "",
@@ -329,9 +353,9 @@
       "in_ideas_md": true
     },
     "CMB-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:39:09",
       "title": "Directional power attacks",
       "category": "Combat (CMB)",
       "section": "",
@@ -339,9 +363,9 @@
       "in_ideas_md": true
     },
     "CMB-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:39:13",
       "title": "Dodge roll with i-frames",
       "category": "Combat (CMB)",
       "section": "",
@@ -349,9 +373,9 @@
       "in_ideas_md": true
     },
     "CMB-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:39:19",
       "title": "Block and guard break",
       "category": "Combat (CMB)",
       "section": "",
@@ -379,9 +403,9 @@
       "in_ideas_md": true
     },
     "CMB-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:39:35",
       "title": "Poise and stagger",
       "category": "Combat (CMB)",
       "section": "",
@@ -399,9 +423,9 @@
       "in_ideas_md": true
     },
     "CMB-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:39:52",
       "title": "Hidden techniques",
       "category": "Combat (CMB)",
       "section": "",
@@ -419,9 +443,9 @@
       "in_ideas_md": true
     },
     "CMB-14": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:40:47",
       "title": "Hit feel",
       "category": "Combat (CMB)",
       "section": "",
@@ -429,9 +453,9 @@
       "in_ideas_md": true
     },
     "CMB-15": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:40:54",
       "title": "Input buffering",
       "category": "Combat (CMB)",
       "section": "",
@@ -439,9 +463,9 @@
       "in_ideas_md": true
     },
     "CMB-16": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:40:59",
       "title": "Frame data as JSON",
       "category": "Combat (CMB)",
       "section": "",
@@ -449,9 +473,9 @@
       "in_ideas_md": true
     },
     "CMB-17": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:42:01",
       "title": "Swept-capsule hitboxes",
       "category": "Combat (CMB)",
       "section": "",
@@ -459,9 +483,9 @@
       "in_ideas_md": true
     },
     "CMB-18": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:42:08",
       "title": "Damage types and resistances",
       "category": "Combat (CMB)",
       "section": "",
@@ -469,9 +493,9 @@
       "in_ideas_md": true
     },
     "CMB-19": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:42:10",
       "title": "Status buildup",
       "category": "Combat (CMB)",
       "section": "",
@@ -479,9 +503,9 @@
       "in_ideas_md": true
     },
     "CMB-20": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:42:19",
       "title": "Hand crossbow",
       "category": "Combat (CMB)",
       "section": "",
@@ -489,9 +513,9 @@
       "in_ideas_md": true
     },
     "CMB-21": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:42:23",
       "title": "Throwables",
       "category": "Combat (CMB)",
       "section": "",
@@ -499,19 +523,19 @@
       "in_ideas_md": true
     },
     "CMB-22": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
-      "title": "Moonwater flask",
+      "changed": "2026-11-23T22:42:28",
+      "title": "Lifewater flask",
       "category": "Combat (CMB)",
       "section": "",
       "starred": true,
       "in_ideas_md": true
     },
     "CMB-23": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:42:31",
       "title": "Weapon classes",
       "category": "Combat (CMB)",
       "section": "",
@@ -522,16 +546,16 @@
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Weapon upgrades at Moonwells",
+      "title": "Weapon upgrades at Waystones",
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
       "in_ideas_md": true
     },
     "CMB-25": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:42:52",
       "title": "Rune sockets",
       "category": "Combat (CMB)",
       "section": "",
@@ -539,9 +563,9 @@
       "in_ideas_md": true
     },
     "CMB-26": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:42:59",
       "title": "Equip load tiers",
       "category": "Combat (CMB)",
       "section": "",
@@ -549,9 +573,9 @@
       "in_ideas_md": true
     },
     "CMB-27": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:43:09",
       "title": "Attack tokens",
       "category": "Combat (CMB)",
       "section": "",
@@ -559,9 +583,9 @@
       "in_ideas_md": true
     },
     "CMB-28": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:43:16",
       "title": "Difficulty through reaction time",
       "category": "Combat (CMB)",
       "section": "",
@@ -572,16 +596,16 @@
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Moon Rites (small spell set)",
+      "title": "Rites (small spell set)",
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
       "in_ideas_md": true
     },
     "CMB-30": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:43:50",
       "title": "Essence drop on death",
       "category": "Combat (CMB)",
       "section": "",
@@ -589,9 +613,9 @@
       "in_ideas_md": true
     },
     "CMB-31": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-23T22:44:01",
       "title": "Kicks and environment kills",
       "category": "Combat (CMB)",
       "section": "",
@@ -599,151 +623,101 @@
       "in_ideas_md": true
     },
     "CMB-32": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
-      "title": "Mounted combat on a dire wolf",
+      "changed": "2026-11-23T22:44:08",
+      "title": "Mounted combat on horseback",
       "category": "Combat (CMB)",
       "section": "",
       "starred": false,
       "in_ideas_md": true
     },
-    "WLF-01": {
+    "VAL-01": {
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Bloodlust meter",
-      "category": "Beast Form (WLF)",
+      "title": "Valor meter",
+      "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": true,
       "in_ideas_md": true
     },
-    "WLF-02": {
+    "VAL-02": {
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Beast moveset",
-      "category": "Beast Form (WLF)",
+      "title": "Awakening",
+      "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": true,
       "in_ideas_md": true
     },
-    "WLF-03": {
+    "VAL-03": {
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Feeding",
-      "category": "Beast Form (WLF)",
+      "title": "Relic powers",
+      "category": "Valor & the Dawnblade (VAL)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "VAL-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Last Stand",
+      "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": true,
       "in_ideas_md": true
     },
-    "WLF-04": {
+    "VAL-05": {
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Scent senses",
-      "category": "Beast Form (WLF)",
+      "title": "A new move with each shard",
+      "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": false,
       "in_ideas_md": true
     },
-    "WLF-05": {
+    "VAL-06": {
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Moon phases",
-      "category": "Beast Form (WLF)",
+      "title": "Seer's Lens",
+      "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": false,
       "in_ideas_md": true
     },
-    "WLF-06": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "Losing control",
-      "category": "Beast Form (WLF)",
-      "section": "",
-      "starred": false,
-      "in_ideas_md": true
-    },
-    "WLF-07": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "Instinct prompts",
-      "category": "Beast Form (WLF)",
-      "section": "",
-      "starred": false,
-      "in_ideas_md": true
-    },
-    "WLF-08": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "Silver hurts",
-      "category": "Beast Form (WLF)",
-      "section": "",
-      "starred": true,
-      "in_ideas_md": true
-    },
-    "WLF-09": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "Beast perk tree",
-      "category": "Beast Form (WLF)",
-      "section": "",
-      "starred": false,
-      "in_ideas_md": true
-    },
-    "WLF-10": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "Howls",
-      "category": "Beast Form (WLF)",
-      "section": "",
-      "starred": false,
-      "in_ideas_md": true
-    },
-    "WLF-11": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "Wolves are kin",
-      "category": "Beast Form (WLF)",
-      "section": "",
-      "starred": false,
-      "in_ideas_md": true
-    },
-    "WLF-12": {
+    "VAL-07": {
       "status": "awaiting",
       "note": "",
       "changed": null,
       "title": "Trophy masks",
-      "category": "Beast Form (WLF)",
+      "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": false,
       "in_ideas_md": true
     },
-    "WLF-13": {
+    "VAL-08": {
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Its own camera",
-      "category": "Beast Form (WLF)",
+      "title": "Light against darkness",
+      "category": "Valor & the Dawnblade (VAL)",
       "section": "",
-      "starred": true,
+      "starred": false,
       "in_ideas_md": true
     },
-    "WLF-14": {
+    "VAL-09": {
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Climb and dig",
-      "category": "Beast Form (WLF)",
+      "title": "Ember's commentary",
+      "category": "Valor & the Dawnblade (VAL)",
       "section": "",
       "starred": false,
       "in_ideas_md": true
@@ -772,7 +746,7 @@
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Level up only at Moonwells",
+      "title": "Level up only at Waystones",
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": false,
@@ -1062,7 +1036,7 @@
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Rogue Werewolf",
+      "title": "Werewolf",
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
@@ -1072,7 +1046,7 @@
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Silver Warden Knight",
+      "title": "Dread Knight",
       "category": "Enemies (ENM)",
       "section": "",
       "starred": true,
@@ -1188,31 +1162,11 @@
       "starred": false,
       "in_ideas_md": true
     },
-    "BOS-06": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "Inquisitor Maren Ashby",
-      "category": "Bosses (BOS)",
-      "section": "",
-      "starred": false,
-      "in_ideas_md": true
-    },
-    "BOS-07": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
-      "title": "Lycaon, the First Wolf",
-      "category": "Bosses (BOS)",
-      "section": "",
-      "starred": false,
-      "in_ideas_md": true
-    },
     "BOS-08": {
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Silver mist gates",
+      "title": "Mist gates",
       "category": "Bosses (BOS)",
       "section": "",
       "starred": true,
@@ -1223,6 +1177,26 @@
       "note": "",
       "changed": null,
       "title": "Use the dungeon item",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "BOS-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Sir Calder the Black",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": true
+    },
+    "BOS-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Malgrath the Undying",
       "category": "Bosses (BOS)",
       "section": "",
       "starred": false,
@@ -1302,7 +1276,7 @@
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "The Eclipse Spire",
+      "title": "Duskhold, the Dark Lord's citadel",
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
@@ -1312,7 +1286,7 @@
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Moonwells",
+      "title": "Waystones",
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": true,
@@ -1582,7 +1556,7 @@
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "The Hunger's subtitles look different",
+      "title": "Ember's subtitles look different",
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": false,
@@ -1698,11 +1672,11 @@
       "starred": false,
       "in_ideas_md": true
     },
-    "AUD-12": {
+    "AUD-13": {
       "status": "awaiting",
       "note": "",
       "changed": null,
-      "title": "Beast-form audio filter",
+      "title": "Awakening music swell",
       "category": "Audio & Voice (AUD)",
       "section": "",
       "starred": false,
@@ -1866,6 +1840,16 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": false,
+      "in_ideas_md": true
+    },
+    "ART-17": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Dawnblade stages",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": true,
       "in_ideas_md": true
     },
     "TEC-01": {
@@ -2267,7 +2251,560 @@
       "section": "",
       "starred": true,
       "in_ideas_md": true
+    },
+    "AUD-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Beast-form audio filter",
+      "category": "Audio & Voice (AUD)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
+    },
+    "BOS-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Inquisitor Maren Ashby",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
+    },
+    "BOS-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Lycaon, the First Wolf",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
+    },
+    "HER-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Rowan Fenhallow, the Moonbitten",
+      "category": "The Hero (HER)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": false
+    },
+    "HER-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The bite scar glows",
+      "category": "The Hero (HER)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": false
+    },
+    "HER-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The beast is still Rowan",
+      "category": "The Hero (HER)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": false
+    },
+    "PIL-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Two bodies, one hero",
+      "category": "Pillars (PIL)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": false
+    },
+    "STY-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Premise: the Chained Moon",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": false
+    },
+    "STY-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The term \"Lycantrope\"",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
+    },
+    "STY-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Prologue: the hunt gone wrong",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": false
+    },
+    "STY-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The Hunger: a voice in the bite",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
+    },
+    "STY-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The Wardens hunt you",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
+    },
+    "STY-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Two endings",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
+    },
+    "WLF-01": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Bloodlust meter",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": false
+    },
+    "WLF-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Beast moveset",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": false
+    },
+    "WLF-03": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Feeding",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": false
+    },
+    "WLF-04": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Scent senses",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
+    },
+    "WLF-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Moon phases",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
+    },
+    "WLF-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Losing control",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
+    },
+    "WLF-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Instinct prompts",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
+    },
+    "WLF-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Silver hurts",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": false
+    },
+    "WLF-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Beast perk tree",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
+    },
+    "WLF-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Howls",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
+    },
+    "WLF-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Wolves are kin",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
+    },
+    "WLF-12": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Trophy masks",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
+    },
+    "WLF-13": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Its own camera",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": true,
+      "in_ideas_md": false
+    },
+    "WLF-14": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Climb and dig",
+      "category": "Beast Form (WLF)",
+      "section": "",
+      "starred": false,
+      "in_ideas_md": false
     }
   },
-  "history": []
+  "history": [
+    {
+      "time": "2026-11-23T22:34:04",
+      "id": "PIL-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:34:09",
+      "id": "PIL-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:34:19",
+      "id": "PIL-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:34:28",
+      "id": "PIL-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:35:34",
+      "id": "PIL-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:35:41",
+      "id": "PIL-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:35:50",
+      "id": "STY-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:36:00",
+      "id": "STY-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:36:06",
+      "id": "STY-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:36:16",
+      "id": "STY-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:36:32",
+      "id": "STY-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:36:47",
+      "id": "STY-14",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:36:56",
+      "id": "STY-15",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:37:24",
+      "id": "STY-18",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:37:30",
+      "id": "STY-19",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:37:35",
+      "id": "HER-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:37:46",
+      "id": "HER-02",
+      "from": "approved",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-23T22:37:53",
+      "id": "HER-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:38:06",
+      "id": "HER-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:38:14",
+      "id": "HER-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:38:21",
+      "id": "HER-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:38:36",
+      "id": "HER-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:38:50",
+      "id": "CMB-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:38:54",
+      "id": "CMB-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:38:58",
+      "id": "CMB-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:39:09",
+      "id": "CMB-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:39:13",
+      "id": "CMB-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:39:19",
+      "id": "CMB-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:39:35",
+      "id": "CMB-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:39:52",
+      "id": "CMB-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:40:47",
+      "id": "CMB-14",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:40:54",
+      "id": "CMB-15",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:40:59",
+      "id": "CMB-16",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:42:01",
+      "id": "CMB-17",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:42:08",
+      "id": "CMB-18",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:42:10",
+      "id": "CMB-19",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:42:19",
+      "id": "CMB-20",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:42:23",
+      "id": "CMB-21",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:42:28",
+      "id": "CMB-22",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:42:31",
+      "id": "CMB-23",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:42:52",
+      "id": "CMB-25",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:42:59",
+      "id": "CMB-26",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:43:09",
+      "id": "CMB-27",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:43:16",
+      "id": "CMB-28",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:43:50",
+      "id": "CMB-30",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:44:01",
+      "id": "CMB-31",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-23T22:44:08",
+      "id": "CMB-32",
+      "from": "awaiting",
+      "to": "approved"
+    }
+  ]
 }
