@@ -1,2 +1,2 @@
-# The Dreamlands
-A free TES3 Morrowind mod set in the worlds of H.P. Lovecraft
+# Lycantrope
+Generic fantasy trope video game focused on combat
