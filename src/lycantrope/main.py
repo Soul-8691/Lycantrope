@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import math
+import os
 import sys
 import time
 from datetime import datetime
@@ -43,6 +44,21 @@ EYE_HEIGHT = 1.7
 WALK_SPEED, RUN_SPEED = 5.0, 11.0
 
 
+def fit_to_desktop(size: tuple[int, int], margin: float = 0.9) -> tuple[int, int]:
+    """Shrink a window size (keeping its aspect ratio) so it fits on the screen.
+
+    With Windows display scaling (e.g. 125%), a 1920×1080 screen is only
+    1536×864 to the game, so a 1600×900 window would hang off the edges.
+    """
+    try:
+        dw, dh = pygame.display.get_desktop_sizes()[0]
+    except (pygame.error, IndexError):
+        return size
+    w, h = size
+    scale = min(1.0, dw * margin / w, dh * margin / h)
+    return max(320, int(w * scale)), max(180, int(h * scale))
+
+
 class App:
     def __init__(self, settings: Settings, args: argparse.Namespace) -> None:
         self.settings = settings
@@ -55,6 +71,9 @@ class App:
         size = (settings.width, settings.height)
         if args.size:
             size = tuple(int(v) for v in args.size.lower().split("x"))
+        if not settings.fullscreen:
+            size = fit_to_desktop(size)
+            os.environ.setdefault("SDL_VIDEO_CENTERED", "1")
         flags = pygame.OPENGL | pygame.DOUBLEBUF | (pygame.FULLSCREEN if settings.fullscreen else pygame.RESIZABLE)
         vsync = 0 if (args.bench or not settings.vsync) else 1
         pygame.display.set_mode(size, flags, vsync=vsync)

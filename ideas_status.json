@@ -1,9 +1,9 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md. status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-24T11:01:45",
+  "updated": "2026-11-24T11:29:07",
   "counts": {
-    "awaiting": 15,
-    "approved": 170,
+    "awaiting": 13,
+    "approved": 172,
     "denied": 38,
     "total": 223
   },
@@ -19,7 +19,7 @@
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-24T11:01:45"
+    "at": "2026-11-24T11:29:07"
   },
   "ideas": {
     "PIL-01": {
@@ -293,9 +293,9 @@
       "in_ideas_md": true
     },
     "HER-09": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
+      "status": "approved",
+      "note": "Farmhand yes, Look no, Weapon yes",
+      "changed": "2026-11-24T11:27:54",
       "title": "Rowan Fenhallow, the farmhand of prophecy",
       "category": "The Hero (HER)",
       "section": "",
@@ -593,9 +593,9 @@
       "in_ideas_md": true
     },
     "CMB-29": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
+      "status": "approved",
+      "note": "Spells yes, Focus no (need a different casting system)",
+      "changed": "2026-11-24T11:28:18",
       "title": "Rites (small spell set)",
       "category": "Combat (CMB)",
       "section": "",
@@ -3775,6 +3775,18 @@
     {
       "time": "2026-11-24T11:01:43",
       "id": "REL-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T11:27:54",
+      "id": "HER-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T11:28:18",
+      "id": "CMB-29",
       "from": "awaiting",
       "to": "approved"
     }
