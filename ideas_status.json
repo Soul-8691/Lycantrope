@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md. status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-23T22:48:20",
+  "updated": "2026-11-24T09:48:47",
   "counts": {
-    "awaiting": 163,
-    "approved": 58,
-    "denied": 2,
+    "awaiting": 118,
+    "approved": 101,
+    "denied": 4,
     "total": 223
   },
   "ui": {
     "selected": [
-      "STA-14"
+      "WLD-22"
     ],
     "selected_titles": {
-      "STA-14": "Stat gates"
+      "WLD-22": "Fishing pond"
     },
     "filter": "all",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-23T22:48:20"
+    "at": "2026-11-24T09:48:47"
   },
   "ideas": {
     "PIL-01": {
@@ -863,9 +863,9 @@
       "in_ideas_md": true
     },
     "ENM-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:41:00",
       "title": "Giant Rat",
       "category": "Enemies (ENM)",
       "section": "",
@@ -873,9 +873,9 @@
       "in_ideas_md": true
     },
     "ENM-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:41:01",
       "title": "Grey Wolf",
       "category": "Enemies (ENM)",
       "section": "",
@@ -883,9 +883,9 @@
       "in_ideas_md": true
     },
     "ENM-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:41:12",
       "title": "Goblin Cutthroat",
       "category": "Enemies (ENM)",
       "section": "",
@@ -893,9 +893,9 @@
       "in_ideas_md": true
     },
     "ENM-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:41:15",
       "title": "Bandit Brigand",
       "category": "Enemies (ENM)",
       "section": "",
@@ -903,9 +903,9 @@
       "in_ideas_md": true
     },
     "ENM-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:41:19",
       "title": "Bog Ooze",
       "category": "Enemies (ENM)",
       "section": "",
@@ -913,9 +913,9 @@
       "in_ideas_md": true
     },
     "ENM-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:41:22",
       "title": "Bandit Crossbowman",
       "category": "Enemies (ENM)",
       "section": "",
@@ -923,9 +923,9 @@
       "in_ideas_md": true
     },
     "ENM-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:41:27",
       "title": "Goblin Hexer",
       "category": "Enemies (ENM)",
       "section": "",
@@ -933,9 +933,9 @@
       "in_ideas_md": true
     },
     "ENM-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:41:29",
       "title": "Skeleton Warrior",
       "category": "Enemies (ENM)",
       "section": "",
@@ -943,9 +943,9 @@
       "in_ideas_md": true
     },
     "ENM-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:41:30",
       "title": "Giant Spider",
       "category": "Enemies (ENM)",
       "section": "",
@@ -953,9 +953,9 @@
       "in_ideas_md": true
     },
     "ENM-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:41:34",
       "title": "Drowned Thrall",
       "category": "Enemies (ENM)",
       "section": "",
@@ -973,9 +973,9 @@
       "in_ideas_md": true
     },
     "ENM-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:41:46",
       "title": "Lizardfolk Spearman",
       "category": "Enemies (ENM)",
       "section": "",
@@ -983,9 +983,9 @@
       "in_ideas_md": true
     },
     "ENM-13": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:41:51",
       "title": "Orc Berserker",
       "category": "Enemies (ENM)",
       "section": "",
@@ -993,9 +993,9 @@
       "in_ideas_md": true
     },
     "ENM-14": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:41:55",
       "title": "Bog Troll",
       "category": "Enemies (ENM)",
       "section": "",
@@ -1003,9 +1003,9 @@
       "in_ideas_md": true
     },
     "ENM-15": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:42:05",
       "title": "Wraith",
       "category": "Enemies (ENM)",
       "section": "",
@@ -1013,9 +1013,9 @@
       "in_ideas_md": true
     },
     "ENM-16": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:42:09",
       "title": "Frost Yeti",
       "category": "Enemies (ENM)",
       "section": "",
@@ -1023,9 +1023,9 @@
       "in_ideas_md": true
     },
     "ENM-17": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:42:10",
       "title": "Ogre Brute",
       "category": "Enemies (ENM)",
       "section": "",
@@ -1033,9 +1033,9 @@
       "in_ideas_md": true
     },
     "ENM-18": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:42:11",
       "title": "Werewolf",
       "category": "Enemies (ENM)",
       "section": "",
@@ -1043,9 +1043,9 @@
       "in_ideas_md": true
     },
     "ENM-19": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:42:24",
       "title": "Dread Knight",
       "category": "Enemies (ENM)",
       "section": "",
@@ -1063,9 +1063,9 @@
       "in_ideas_md": true
     },
     "ENM-21": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:42:53",
       "title": "Mimic Chest",
       "category": "Enemies (ENM)",
       "section": "",
@@ -1073,9 +1073,9 @@
       "in_ideas_md": true
     },
     "ENM-22": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:42:56",
       "title": "Necromancer",
       "category": "Enemies (ENM)",
       "section": "",
@@ -1093,9 +1093,9 @@
       "in_ideas_md": true
     },
     "ENM-24": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:43:09",
       "title": "Behavior archetypes",
       "category": "Enemies (ENM)",
       "section": "",
@@ -1103,9 +1103,9 @@
       "in_ideas_md": true
     },
     "ENM-25": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:43:26",
       "title": "Telegraph language",
       "category": "Enemies (ENM)",
       "section": "",
@@ -1113,9 +1113,9 @@
       "in_ideas_md": true
     },
     "BOS-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:43:40",
       "title": "Grimtooth, Alpha of the Wolfwood",
       "category": "Bosses (BOS)",
       "section": "",
@@ -1123,9 +1123,9 @@
       "in_ideas_md": true
     },
     "BOS-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:43:44",
       "title": "The Brood Queen",
       "category": "Bosses (BOS)",
       "section": "",
@@ -1143,9 +1143,9 @@
       "in_ideas_md": true
     },
     "BOS-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:43:54",
       "title": "The Frostfang Wyvern",
       "category": "Bosses (BOS)",
       "section": "",
@@ -1153,9 +1153,9 @@
       "in_ideas_md": true
     },
     "BOS-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:44:08",
       "title": "The Cinder Colossus",
       "category": "Bosses (BOS)",
       "section": "",
@@ -1163,9 +1163,9 @@
       "in_ideas_md": true
     },
     "BOS-08": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:44:14",
       "title": "Mist gates",
       "category": "Bosses (BOS)",
       "section": "",
@@ -1193,9 +1193,9 @@
       "in_ideas_md": true
     },
     "BOS-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:45:10",
       "title": "Malgrath the Undying",
       "category": "Bosses (BOS)",
       "section": "",
@@ -1203,9 +1203,9 @@
       "in_ideas_md": true
     },
     "WLD-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:45:33",
       "title": "One seamless heightmap world",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1213,9 +1213,9 @@
       "in_ideas_md": true
     },
     "WLD-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:45:37",
       "title": "Brackenvale (start)",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1223,9 +1223,9 @@
       "in_ideas_md": true
     },
     "WLD-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:45:40",
       "title": "The Wolfwood",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1233,9 +1233,9 @@
       "in_ideas_md": true
     },
     "WLD-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:45:45",
       "title": "The Blackmire",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1243,9 +1243,9 @@
       "in_ideas_md": true
     },
     "WLD-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:45:52",
       "title": "Frostfang Peaks",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1253,9 +1253,9 @@
       "in_ideas_md": true
     },
     "WLD-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:45:56",
       "title": "The Ashen Reach",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1263,9 +1263,9 @@
       "in_ideas_md": true
     },
     "WLD-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:46:00",
       "title": "The Sunken Crypts",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1273,9 +1273,9 @@
       "in_ideas_md": true
     },
     "WLD-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:46:06",
       "title": "Duskhold, the Dark Lord's citadel",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1283,9 +1283,9 @@
       "in_ideas_md": true
     },
     "WLD-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:46:16",
       "title": "Waystones",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1293,9 +1293,9 @@
       "in_ideas_md": true
     },
     "WLD-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:46:27",
       "title": "Shortcuts that loop back",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1303,9 +1303,9 @@
       "in_ideas_md": true
     },
     "WLD-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:46:38",
       "title": "Day/night cycle and weather",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1313,9 +1313,9 @@
       "in_ideas_md": true
     },
     "WLD-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:46:47",
       "title": "Scripted scatter",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1323,9 +1323,9 @@
       "in_ideas_md": true
     },
     "WLD-13": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:46:54",
       "title": "One hand-picked landmark per area",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1333,9 +1333,9 @@
       "in_ideas_md": true
     },
     "WLD-14": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:47:02",
       "title": "Dungeons from a scripted kit",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1343,9 +1343,9 @@
       "in_ideas_md": true
     },
     "WLD-15": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:47:13",
       "title": "Dungeon tools that gate the world",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1353,9 +1353,9 @@
       "in_ideas_md": true
     },
     "WLD-16": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:47:23",
       "title": "Hidden walls and secrets",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -1363,9 +1363,9 @@
       "in_ideas_md": true
     },
     "WLD-17": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T09:47:28",
       "title": "Loot chests and loot tables",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -2887,6 +2887,276 @@
     {
       "time": "2026-11-23T22:48:07",
       "id": "STA-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:41:00",
+      "id": "ENM-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:41:01",
+      "id": "ENM-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:41:12",
+      "id": "ENM-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:41:15",
+      "id": "ENM-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:41:19",
+      "id": "ENM-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:41:22",
+      "id": "ENM-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:41:27",
+      "id": "ENM-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:41:29",
+      "id": "ENM-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:41:30",
+      "id": "ENM-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:41:34",
+      "id": "ENM-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:41:46",
+      "id": "ENM-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:41:51",
+      "id": "ENM-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:41:55",
+      "id": "ENM-14",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:42:05",
+      "id": "ENM-15",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:42:09",
+      "id": "ENM-16",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:42:10",
+      "id": "ENM-17",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:42:11",
+      "id": "ENM-18",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:42:24",
+      "id": "ENM-19",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:42:53",
+      "id": "ENM-21",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:42:56",
+      "id": "ENM-22",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:43:09",
+      "id": "ENM-24",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:43:26",
+      "id": "ENM-25",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T09:43:40",
+      "id": "BOS-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:43:44",
+      "id": "BOS-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:43:54",
+      "id": "BOS-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:44:08",
+      "id": "BOS-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:44:14",
+      "id": "BOS-08",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T09:45:10",
+      "id": "BOS-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:45:33",
+      "id": "WLD-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:45:37",
+      "id": "WLD-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:45:40",
+      "id": "WLD-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:45:45",
+      "id": "WLD-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:45:52",
+      "id": "WLD-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:45:56",
+      "id": "WLD-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:46:00",
+      "id": "WLD-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:46:06",
+      "id": "WLD-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:46:16",
+      "id": "WLD-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:46:27",
+      "id": "WLD-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:46:38",
+      "id": "WLD-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:46:47",
+      "id": "WLD-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:46:54",
+      "id": "WLD-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:47:02",
+      "id": "WLD-14",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:47:13",
+      "id": "WLD-15",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:47:23",
+      "id": "WLD-16",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T09:47:28",
+      "id": "WLD-17",
       "from": "awaiting",
       "to": "approved"
     }
