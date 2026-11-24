@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-24T12:58:52",
+  "updated": "2026-11-24T14:14:04",
   "counts": {
-    "awaiting": 284,
-    "approved": 223,
+    "awaiting": 275,
+    "approved": 232,
     "denied": 52,
     "total": 559
   },
   "ui": {
     "selected": [
-      "VIL-01"
+      "BLD-01"
     ],
     "selected_titles": {
-      "VIL-01": "Thatched Cottage"
+      "BLD-01": "Ruined Watchtower"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-24T12:58:52"
+    "at": "2026-11-24T14:14:04"
   },
   "ideas": {
     "PIL-01": {
@@ -3125,9 +3125,9 @@
       "in_ideas_md": true
     },
     "VIL-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:13:29",
       "title": "Thatched Cottage",
       "category": "Objects · Brackenvale Village (VIL)",
       "section": "",
@@ -3136,9 +3136,9 @@
       "in_ideas_md": true
     },
     "VIL-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:13:32",
       "title": "Burned Cottage",
       "category": "Objects · Brackenvale Village (VIL)",
       "section": "",
@@ -3147,9 +3147,9 @@
       "in_ideas_md": true
     },
     "VIL-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:13:35",
       "title": "Fenhallow Farmhouse",
       "category": "Objects · Brackenvale Village (VIL)",
       "section": "",
@@ -3158,9 +3158,9 @@
       "in_ideas_md": true
     },
     "VIL-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:13:37",
       "title": "Barn",
       "category": "Objects · Brackenvale Village (VIL)",
       "section": "",
@@ -3180,9 +3180,9 @@
       "in_ideas_md": true
     },
     "VIL-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:13:42",
       "title": "Village Well",
       "category": "Objects · Brackenvale Village (VIL)",
       "section": "",
@@ -3191,9 +3191,9 @@
       "in_ideas_md": true
     },
     "VIL-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:13:43",
       "title": "Smithy",
       "category": "Objects · Brackenvale Village (VIL)",
       "section": "",
@@ -3213,9 +3213,9 @@
       "in_ideas_md": true
     },
     "VIL-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:13:48",
       "title": "Market Stall",
       "category": "Objects · Brackenvale Village (VIL)",
       "section": "",
@@ -3224,9 +3224,9 @@
       "in_ideas_md": true
     },
     "VIL-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:13:50",
       "title": "Haycart",
       "category": "Objects · Brackenvale Village (VIL)",
       "section": "",
@@ -3235,9 +3235,9 @@
       "in_ideas_md": true
     },
     "VIL-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:13:51",
       "title": "Hay Bales",
       "category": "Objects · Brackenvale Village (VIL)",
       "section": "",
@@ -8108,6 +8108,60 @@
     {
       "time": "2026-11-24T12:58:41",
       "id": "RCK-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:13:29",
+      "id": "VIL-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:13:32",
+      "id": "VIL-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:13:35",
+      "id": "VIL-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:13:37",
+      "id": "VIL-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:13:42",
+      "id": "VIL-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:13:43",
+      "id": "VIL-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:13:48",
+      "id": "VIL-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:13:50",
+      "id": "VIL-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:13:51",
+      "id": "VIL-11",
       "from": "awaiting",
       "to": "approved"
     }
