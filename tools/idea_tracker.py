@@ -42,8 +42,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 IDEAS_MD = ROOT / "IDEAS.md"
 OBJECTS_MD = ROOT / "OBJECTS.md"
+ENEMIES_MD = ROOT / "ENEMIES.md"
 # every file the tracker reads, with the label put in front of its categories
-SOURCES = ((IDEAS_MD, ""), (OBJECTS_MD, "Objects · "))
+SOURCES = ((IDEAS_MD, ""), (OBJECTS_MD, "Objects · "), (ENEMIES_MD, "Enemies · "))
 STATE_JSON = ROOT / "ideas_status.json"
 STATUS_MD = ROOT / "IDEAS_STATUS.md"
 
@@ -336,7 +337,7 @@ class Store:
     def save(self, digest: bool = True) -> None:
         self.data["_about"] = (
             "Lycantrope idea tracker state. Source of truth for idea decisions. "
-            "IDs come from IDEAS.md and OBJECTS.md ('file' says which; 'in_ideas_md' means the ID "
+            "IDs come from IDEAS.md, OBJECTS.md and ENEMIES.md ('file' says which; 'in_ideas_md' means the ID "
             "still exists in its source file). status is one of: awaiting, approved, denied. "
             "'ui' records what the user had selected/filtered in the tracker window. "
             "Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file."
@@ -378,7 +379,7 @@ class Store:
             lines.append("")
         orphans = [k for k, v in self.data["ideas"].items() if not v.get("in_ideas_md", True)]
         if orphans:
-            lines += ["## Removed from IDEAS.md / OBJECTS.md (decision kept)", ""]
+            lines += ["## Removed from the source files (decision kept)", ""]
             lines += [f"- **{k}** {self.data['ideas'][k].get('title', '')} — "
                       f"{self.data['ideas'][k]['status']}" for k in orphans]
             lines.append("")
@@ -706,6 +707,7 @@ def run_gui() -> int:
             self.menu.add_command(label="Copy reference", command=self.copy_ref)
             self.menu.add_command(label="Open IDEAS.md", command=lambda: self.open_file(IDEAS_MD))
             self.menu.add_command(label="Open OBJECTS.md", command=lambda: self.open_file(OBJECTS_MD))
+            self.menu.add_command(label="Open ENEMIES.md", command=lambda: self.open_file(ENEMIES_MD))
             self.menu.add_command(label="Open IDEAS_STATUS.md", command=lambda: self.open_file(STATUS_MD))
 
         # ---------------- data → view ---------------- #
@@ -790,7 +792,7 @@ def run_gui() -> int:
             c = self.store.counts()
             parts = [f"Total {c['total']}", f"✔ {c['approved']}", f"✘ {c['denied']}",
                      f"○ {c['awaiting']}", f"showing {len(self.visible)}",
-                     f"state: {STATE_JSON.name}", "watching IDEAS.md + OBJECTS.md"]
+                     f"state: {STATE_JSON.name}", "watching " + " + ".join(p.name for p, _ in SOURCES)]
             parts += [f"⚠ {w}" for w in self.store.warnings]
             if msg:
                 parts.insert(0, msg)
@@ -1043,7 +1045,7 @@ def run_gui() -> int:
                 if md or js:
                     self.note_dirty = False
                     self.refresh(select=cur)
-                    self.flash("Reloaded " + " & ".join(n for n, f in (("IDEAS.md / OBJECTS.md", md),
+                    self.flash("Reloaded " + " & ".join(n for n, f in (("the .md files", md),
                                                                         (STATE_JSON.name, js)) if f))
             except Exception as exc:                       # never let polling die
                 self.flash(f"Reload error: {exc}")

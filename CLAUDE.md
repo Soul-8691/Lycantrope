@@ -3,7 +3,7 @@
 A 3D action-adventure fantasy RPG in Python (pygame-ce + moderngl). MIT, free on itch.io. Assets are generated with Meshy, ElevenLabs and Python scripts. The design is in IDEAS.md and the plan is in ROADMAP.md.
 
 ## Idea tracker (the user refers to it often)
-- `IDEAS.md` holds the ideas and `OBJECTS.md` the Meshy props/items; the tracker reads both. Each entry is a bullet starting with an ID like `[CMB-04]` or `[TRE-05]`, unique across both files. **Never renumber or reuse IDs.** A new idea takes the next free number in its category.
+- `IDEAS.md` holds the ideas, `OBJECTS.md` the Meshy props/items and `ENEMIES.md` extra enemy ideas (`MON-` IDs); the tracker reads all three. Each entry is a bullet starting with an ID like `[CMB-04]` or `[TRE-05]`, unique across both files. **Never renumber or reuse IDs.** A new idea takes the next free number in its category.
 - `ideas_status.json` is the **source of truth** for decisions. `ideas[ID].status` is `awaiting`, `approved` or `denied`, and `ideas[ID].note` holds the user's note. `ui.selected` is what the user currently has selected in the tracker window ("this one", "the selected idea"). `history` lists recent changes.
 - `IDEAS_STATUS.md` is a readable digest generated from the JSON. Don't edit it.
 - To check state: `python tools/idea_tracker.py summary`, or read the JSON.
