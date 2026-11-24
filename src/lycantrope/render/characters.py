@@ -228,7 +228,7 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
             if not (MODELS / ispec["model"]).exists():
                 continue
             _m, item = load_item(ctx, ispec)
-            t.attachments.append(place_item(skel, bind, slot, item))
+            t.attachments.append(place_item(skel, bind, slot, item, body, ispec))
         return t
     # not rigged yet: a static mesh moved by code
     m = normalized_static(load_mesh(MODELS / spec["static"], skinned=False), spec.get("height_m", 1.0))
@@ -236,17 +236,37 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
                     height=spec.get("height_m", 1.0))
 
 
-def place_item(skel: Skeleton, bind: np.ndarray, slot: str, item: Item) -> Attachment:
+def hand_center(skel: Skeleton, body: MeshData, joint: int, bind: np.ndarray) -> np.ndarray | None:
+    """Middle of the hand mesh in the bind pose: vertices that mostly follow the hand bone."""
+    if body.joints is None:
+        return None
+    main = body.joints[np.arange(len(body.joints)), np.argmax(body.weights, axis=1)]
+    pts = body.pos[main == joint]
+    if len(pts) < 10:
+        return None
+    m2w = bind[0] @ skel.ibm[0]
+    pts = pts @ m2w[:3, :3].T + m2w[:3, 3]
+    lo, hi = pts.min(axis=0), pts.max(axis=0)
+    return (lo + hi) / 2                     # box center: fingers and thumb pull a mean around
+
+
+def place_item(skel: Skeleton, bind: np.ndarray, slot: str, item: Item, body: MeshData | None = None,
+               spec: dict | None = None) -> Attachment:
     def pos(name):
         return bind[skel.joint_index(name)][:3, 3]
+    spec = spec or {}
     if slot in ("right_hand", "left_hand"):
         side = "Right" if slot == "right_hand" else "Left"
+        joint = skel.joint_index(f"{side}Hand")
         hand, fore = pos(f"{side}Hand"), pos(f"{side}ForeArm")
         arm = (hand - fore) / np.linalg.norm(hand - fore)
-        grip = hand + arm * 0.075                       # palm center, a bit past the wrist
-        blade = np.array([0.0, 0.35, 1.0])              # forward and a little up in the bind pose
+        grip = hand_center(skel, body, joint, bind) if body is not None else None
+        if grip is None:
+            grip = hand + arm * 0.075                   # palm center, a bit past the wrist
+        # blade forward (and a little up), square to the forearm like a fist grip
+        blade = np.array([0.0, 0.35, 1.0])
+        blade = blade - arm * np.dot(blade, arm)
         world = look_basis(grip, blade, [0.0, 1.0, 0.0])
-        joint = skel.joint_index(f"{side}Hand")
     else:                                               # hip_left / hip_right: hang beside the thigh
         side = "Left" if slot == "hip_left" else "Right"
         leg = pos(f"{side}UpLeg")
