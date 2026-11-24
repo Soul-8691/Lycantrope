@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-24T12:46:23",
+  "updated": "2026-11-24T12:58:52",
   "counts": {
-    "awaiting": 324,
-    "approved": 183,
+    "awaiting": 284,
+    "approved": 223,
     "denied": 52,
     "total": 559
   },
   "ui": {
     "selected": [
-      "PIL-01"
+      "VIL-01"
     ],
     "selected_titles": {
-      "PIL-01": "Combat first"
+      "VIL-01": "Thatched Cottage"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
-    "window_open": false,
-    "at": "2026-11-24T12:16:50"
+    "window_open": true,
+    "at": "2026-11-24T12:58:52"
   },
   "ideas": {
     "PIL-01": {
@@ -1079,9 +1079,9 @@
       "in_ideas_md": true
     },
     "STA-23": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:52:59",
       "title": "Attunement slots",
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
@@ -2641,9 +2641,9 @@
       "file": "IDEAS.md"
     },
     "TRE-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:53:07",
       "title": "Brackenvale Oak",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -2652,9 +2652,9 @@
       "in_ideas_md": true
     },
     "TRE-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:53:11",
       "title": "Silver Birch",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -2674,9 +2674,9 @@
       "in_ideas_md": true
     },
     "TRE-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:53:21",
       "title": "Burned Tree",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -2685,9 +2685,9 @@
       "in_ideas_md": true
     },
     "TRE-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:53:24",
       "title": "Giant Wolfwood Pine",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -2696,9 +2696,9 @@
       "in_ideas_md": true
     },
     "TRE-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:53:27",
       "title": "Dead Pine",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -2707,9 +2707,9 @@
       "in_ideas_md": true
     },
     "TRE-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:53:31",
       "title": "Web-Wrapped Tree",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -2718,9 +2718,9 @@
       "in_ideas_md": true
     },
     "TRE-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:53:33",
       "title": "Weeping Swamp Willow",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -2729,9 +2729,9 @@
       "in_ideas_md": true
     },
     "TRE-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:53:39",
       "title": "Bald Cypress",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -2740,9 +2740,9 @@
       "in_ideas_md": true
     },
     "TRE-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:53:42",
       "title": "Drowned Dead Tree",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -2751,9 +2751,9 @@
       "in_ideas_md": true
     },
     "TRE-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:53:44",
       "title": "Snowy Fir",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -2762,9 +2762,9 @@
       "in_ideas_md": true
     },
     "TRE-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:53:47",
       "title": "Frozen Dead Tree",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -2773,9 +2773,9 @@
       "in_ideas_md": true
     },
     "TRE-13": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:53:49",
       "title": "Charred Ash Tree",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -2795,9 +2795,9 @@
       "in_ideas_md": true
     },
     "TRE-15": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:54:00",
       "title": "Thorn-Black Tree",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -2817,9 +2817,9 @@
       "in_ideas_md": true
     },
     "TRE-17": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:54:19",
       "title": "Fallen Log",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -2828,9 +2828,9 @@
       "in_ideas_md": true
     },
     "TRE-18": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:54:21",
       "title": "Tree Stump",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -2839,9 +2839,9 @@
       "in_ideas_md": true
     },
     "PLT-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:56:47",
       "title": "Meadow Bush",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -2850,9 +2850,9 @@
       "in_ideas_md": true
     },
     "PLT-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:56:52",
       "title": "Bracken Fern Clump",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -2861,9 +2861,9 @@
       "in_ideas_md": true
     },
     "PLT-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:56:59",
       "title": "Wildflower Patch",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -2872,9 +2872,9 @@
       "in_ideas_md": true
     },
     "PLT-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:57:03",
       "title": "Bramble Thicket",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -2883,9 +2883,9 @@
       "in_ideas_md": true
     },
     "PLT-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:57:08",
       "title": "Forest Mushrooms",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -2894,9 +2894,9 @@
       "in_ideas_md": true
     },
     "PLT-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:57:10",
       "title": "Giant Toadstool",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -2905,9 +2905,9 @@
       "in_ideas_md": true
     },
     "PLT-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:57:14",
       "title": "Reeds & Cattails",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -2916,9 +2916,9 @@
       "in_ideas_md": true
     },
     "PLT-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:57:26",
       "title": "Lily Pads",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -2927,9 +2927,9 @@
       "in_ideas_md": true
     },
     "PLT-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:57:29",
       "title": "Hanging Moss Curtain",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -2938,9 +2938,9 @@
       "in_ideas_md": true
     },
     "PLT-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:57:35",
       "title": "Glowcap Fungus",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -2949,9 +2949,9 @@
       "in_ideas_md": true
     },
     "PLT-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:57:40",
       "title": "Snow Shrub",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -2960,9 +2960,9 @@
       "in_ideas_md": true
     },
     "PLT-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:57:42",
       "title": "Ice Crystals",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -2971,9 +2971,9 @@
       "in_ideas_md": true
     },
     "PLT-13": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:57:47",
       "title": "Ash Scrub",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -2982,9 +2982,9 @@
       "in_ideas_md": true
     },
     "PLT-14": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:57:48",
       "title": "Black Thornbush",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -2993,9 +2993,9 @@
       "in_ideas_md": true
     },
     "RCK-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:57:51",
       "title": "Mossy Boulder",
       "category": "Objects · Rocks & Stone (RCK)",
       "section": "",
@@ -3004,9 +3004,9 @@
       "in_ideas_md": true
     },
     "RCK-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:57:53",
       "title": "Rock Cluster",
       "category": "Objects · Rocks & Stone (RCK)",
       "section": "",
@@ -3015,9 +3015,9 @@
       "in_ideas_md": true
     },
     "RCK-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:57:55",
       "title": "Cliff Chunk",
       "category": "Objects · Rocks & Stone (RCK)",
       "section": "",
@@ -3037,9 +3037,9 @@
       "in_ideas_md": true
     },
     "RCK-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:58:23",
       "title": "Swamp Stone",
       "category": "Objects · Rocks & Stone (RCK)",
       "section": "",
@@ -3048,9 +3048,9 @@
       "in_ideas_md": true
     },
     "RCK-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:58:27",
       "title": "Stepping Stones",
       "category": "Objects · Rocks & Stone (RCK)",
       "section": "",
@@ -3059,9 +3059,9 @@
       "in_ideas_md": true
     },
     "RCK-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:58:31",
       "title": "Snowy Boulder",
       "category": "Objects · Rocks & Stone (RCK)",
       "section": "",
@@ -3070,9 +3070,9 @@
       "in_ideas_md": true
     },
     "RCK-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:58:36",
       "title": "Obsidian Shard",
       "category": "Objects · Rocks & Stone (RCK)",
       "section": "",
@@ -3081,9 +3081,9 @@
       "in_ideas_md": true
     },
     "RCK-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:58:38",
       "title": "Lava Rock",
       "category": "Objects · Rocks & Stone (RCK)",
       "section": "",
@@ -3092,9 +3092,9 @@
       "in_ideas_md": true
     },
     "RCK-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:58:39",
       "title": "Basalt Columns",
       "category": "Objects · Rocks & Stone (RCK)",
       "section": "",
@@ -3103,9 +3103,9 @@
       "in_ideas_md": true
     },
     "RCK-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T12:58:41",
       "title": "Dark Spire Rock",
       "category": "Objects · Rocks & Stone (RCK)",
       "section": "",
@@ -7870,6 +7870,246 @@
       "id": "ART-18",
       "from": "approved",
       "to": "denied"
+    },
+    {
+      "time": "2026-11-24T12:52:59",
+      "id": "STA-23",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:53:07",
+      "id": "TRE-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:53:11",
+      "id": "TRE-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:53:21",
+      "id": "TRE-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:53:24",
+      "id": "TRE-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:53:27",
+      "id": "TRE-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:53:31",
+      "id": "TRE-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:53:33",
+      "id": "TRE-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:53:39",
+      "id": "TRE-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:53:42",
+      "id": "TRE-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:53:44",
+      "id": "TRE-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:53:47",
+      "id": "TRE-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:53:49",
+      "id": "TRE-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:54:00",
+      "id": "TRE-15",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:54:19",
+      "id": "TRE-17",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:54:21",
+      "id": "TRE-18",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:56:47",
+      "id": "PLT-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:56:52",
+      "id": "PLT-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:56:59",
+      "id": "PLT-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:57:03",
+      "id": "PLT-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:57:08",
+      "id": "PLT-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:57:10",
+      "id": "PLT-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:57:14",
+      "id": "PLT-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:57:26",
+      "id": "PLT-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:57:29",
+      "id": "PLT-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:57:35",
+      "id": "PLT-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:57:40",
+      "id": "PLT-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:57:42",
+      "id": "PLT-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:57:47",
+      "id": "PLT-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:57:48",
+      "id": "PLT-14",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:57:51",
+      "id": "RCK-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:57:53",
+      "id": "RCK-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:57:55",
+      "id": "RCK-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:58:23",
+      "id": "RCK-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:58:27",
+      "id": "RCK-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:58:31",
+      "id": "RCK-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:58:36",
+      "id": "RCK-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:58:38",
+      "id": "RCK-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:58:39",
+      "id": "RCK-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T12:58:41",
+      "id": "RCK-11",
+      "from": "awaiting",
+      "to": "approved"
     }
   ]
 }
