@@ -1,2 +1,0 @@
-Create another document with possible armor (head/arms/torso/legs) in a file called ARMOR.md. Have at least 10 different items for each body type, and make them all have matching counterparts with the other 3 body types.
-Create another document with possible weapons (one-handed/two-handed/shields/magic) in a file called WEAPONS.md. Have at least 15 one-handed, 5 two-handed, 5 shields, and 15 magic weapons in the document.

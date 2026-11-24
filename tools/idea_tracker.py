@@ -44,8 +44,10 @@ IDEAS_MD = ROOT / "IDEAS.md"
 OBJECTS_MD = ROOT / "OBJECTS.md"
 ENEMIES_MD = ROOT / "ENEMIES.md"
 ARMOR_MD = ROOT / "ARMOR.md"
+WEAPONS_MD = ROOT / "WEAPONS.md"
 # every file the tracker reads, with the label put in front of its categories
-SOURCES = ((IDEAS_MD, ""), (OBJECTS_MD, "Objects · "), (ENEMIES_MD, "Enemies · "), (ARMOR_MD, "Armor · "))
+SOURCES = ((IDEAS_MD, ""), (OBJECTS_MD, "Objects · "), (ENEMIES_MD, "Enemies · "), (ARMOR_MD, "Armor · "),
+           (WEAPONS_MD, "Weapons · "))
 STATE_JSON = ROOT / "ideas_status.json"
 STATUS_MD = ROOT / "IDEAS_STATUS.md"
 
@@ -338,7 +340,7 @@ class Store:
     def save(self, digest: bool = True) -> None:
         self.data["_about"] = (
             "Lycantrope idea tracker state. Source of truth for idea decisions. "
-            "IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md and ARMOR.md ('file' says which; 'in_ideas_md' means the ID "
+            "IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID "
             "still exists in its source file). status is one of: awaiting, approved, denied. "
             "'ui' records what the user had selected/filtered in the tracker window. "
             "Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file."
@@ -710,6 +712,7 @@ def run_gui() -> int:
             self.menu.add_command(label="Open OBJECTS.md", command=lambda: self.open_file(OBJECTS_MD))
             self.menu.add_command(label="Open ENEMIES.md", command=lambda: self.open_file(ENEMIES_MD))
             self.menu.add_command(label="Open ARMOR.md", command=lambda: self.open_file(ARMOR_MD))
+            self.menu.add_command(label="Open WEAPONS.md", command=lambda: self.open_file(WEAPONS_MD))
             self.menu.add_command(label="Open IDEAS_STATUS.md", command=lambda: self.open_file(STATUS_MD))
 
         # ---------------- data → view ---------------- #
