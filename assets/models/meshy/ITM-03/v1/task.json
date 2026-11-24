@@ -1,0 +1,43 @@
+{
+  "id": "01a20f8f-9a4e-76ce-857a-e6ec17ae6511",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "smart-topology",
+  "seed": 2683908606,
+  "prompt": "legendary holy longsword, sun-shaped crossguard, glowing gem in the pommel, engraved blade, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795557401039,
+  "progress": 100,
+  "started_at": 1795557401051,
+  "finished_at": 1795557412826,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-9a4e-76ce-857a-e6ec17ae6511/output/model.glb?Expires=4949078400&Signature=WcXWKNQfyh9MooR10inUQEC6mYoHJ87Fvo1XjNoh1V7iCM7vETraRlI~iTum-eIIreKQ1CVvES8wu5jvoIBJIwujGcjZ579v4x~1Xzxd2T0pCLwVRSxNMF3TLuXpjc~0zJI485NCIcPE94QyV9bydDO1x3yDRy5~akIFdJrbr98xRI-f9jQyhDUxDnFuupJM4Q1mhNSbG8e8kekciRzSBs0azuQgIhb2kTgrau5ZDSKBo3pZuXrgL9Wjb8mfNCDiO~gCsmqi6NpFQSV~1W-LaqJN1pl~b~sHWbJVJHBAQ78Uewq3JBXZV4sS6M7zjZ51whejWhUFhvB5~izmIDJDcw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-9a4e-76ce-857a-e6ec17ae6511/output/preview.png?Expires=4949078400&Signature=pk6ZUanA92QHr4COJALJrvVN-POzWwxbWO5HAxKRUEcY4doo7YOttNP3exjLzl5hBkAe0e8qfS8mAZGv4woarK2GopijyC8rCEdYTc1vJpSzrERmV3z6gz55FQ7vn3LKBOoQ9P7CM7wcGC1mOQUCMbyUZxgYHdvoaWmz1GwHdFtTKWP4jNqQWVqsVgW4WAiE6tPd3UANu1LsAy3LtHjocq~X0-coF6OLQ4dj3Ai3SLmEoV0qRpg8ZbrLHiAiClI2nSVxUsgXsLVDFMR7IKWlHAKYZVUdMjn5OT5evvS-xB5pekYM~I~CM33PnZ6utUv6LYMxUOlfdZZ3ENkx199Y6w__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 5,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "meshy-t2.5",
+    "mode": "preview",
+    "model_type": "smart-topology",
+    "prompt": "legendary holy longsword, sun-shaped crossguard, glowing gem in the pommel, engraved blade, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 3000
+  },
+  "output": {
+    "seed": 2683908606,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-9a4e-76ce-857a-e6ec17ae6511/output/model.glb?Expires=4949078400&Signature=WcXWKNQfyh9MooR10inUQEC6mYoHJ87Fvo1XjNoh1V7iCM7vETraRlI~iTum-eIIreKQ1CVvES8wu5jvoIBJIwujGcjZ579v4x~1Xzxd2T0pCLwVRSxNMF3TLuXpjc~0zJI485NCIcPE94QyV9bydDO1x3yDRy5~akIFdJrbr98xRI-f9jQyhDUxDnFuupJM4Q1mhNSbG8e8kekciRzSBs0azuQgIhb2kTgrau5ZDSKBo3pZuXrgL9Wjb8mfNCDiO~gCsmqi6NpFQSV~1W-LaqJN1pl~b~sHWbJVJHBAQ78Uewq3JBXZV4sS6M7zjZ51whejWhUFhvB5~izmIDJDcw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-9a4e-76ce-857a-e6ec17ae6511/output/preview.png?Expires=4949078400&Signature=pk6ZUanA92QHr4COJALJrvVN-POzWwxbWO5HAxKRUEcY4doo7YOttNP3exjLzl5hBkAe0e8qfS8mAZGv4woarK2GopijyC8rCEdYTc1vJpSzrERmV3z6gz55FQ7vn3LKBOoQ9P7CM7wcGC1mOQUCMbyUZxgYHdvoaWmz1GwHdFtTKWP4jNqQWVqsVgW4WAiE6tPd3UANu1LsAy3LtHjocq~X0-coF6OLQ4dj3Ai3SLmEoV0qRpg8ZbrLHiAiClI2nSVxUsgXsLVDFMR7IKWlHAKYZVUdMjn5OT5evvS-xB5pekYM~I~CM33PnZ6utUv6LYMxUOlfdZZ3ENkx199Y6w__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

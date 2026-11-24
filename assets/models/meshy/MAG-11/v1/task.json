@@ -1,0 +1,43 @@
+{
+  "id": "01a20f95-ec29-76ff-b561-fa7d4a8033ff",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "smart-topology",
+  "seed": 1911791507,
+  "prompt": "thick leather-bound tome with brass corners and a short chain, protective sigil on the cover, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795557815206,
+  "progress": 100,
+  "started_at": 1795557815218,
+  "finished_at": 1795557828017,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f95-ec29-76ff-b561-fa7d4a8033ff/output/model.glb?Expires=4949078400&Signature=CAjbjEEbbJfhI3230iZG99p9UyOZNYg3w73uB361mZE7wVulYolEs0BtEJ6CLVVMQ573XhVWFxiWtSU6nLh7PPhRenDI1QxfNtM-c1r0ENOYtI6GszrCPwW~JiHb~mjzaZDUuFokGOpTaDB1OWbZ7pu6hlGfEa5df0lbxoaQjKPjuUtJBSGa53ijjRV8sxbbivBblrqT5XzvjD9T3POFlZHq2My2b-QEQSIw5gldQ6Q5ObhWOZoiGoWvMv0CYlxZJrQEyXRXHngoAXsaQ88-1HMrZmFH-3KgNplMq6Z0OsouCWFkHNcDzd0RJbz4PMNqVyKx6YnqjlP4nvaq~fcx3Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f95-ec29-76ff-b561-fa7d4a8033ff/output/preview.png?Expires=4949078400&Signature=OVcpOxPo66Q-1smQyG1rdBecJpN3DPO972lg6sY~dlQmFTGn-MoBxVxxPBxJAQZ2HuF0B3dAR7dGwYfoQ2IRcTyZw~SgsdYaDz9whmRjMaYtyL~mEg3yjY0HzW912ItToc8iPFEoJn5qSYYfmPviIO-uctaonajQAJdfTL48sjiciYUoWHpXkeIc~OkLzZrhzLEeZiRIGuNNEnWSnw44FEBcyNi8HHWEJrp6QJrCDWnnWdSZu7yV7W0m2BbFQhit0t-X19g1sz-QA~~d78kP5jFQa0DXwtLeTkflcVNhoI1~ggS74hoz4HZlC3TKHro4XWQIan6VKeZgcsQXXFJrAw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 5,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "meshy-t2.5",
+    "mode": "preview",
+    "model_type": "smart-topology",
+    "prompt": "thick leather-bound tome with brass corners and a short chain, protective sigil on the cover, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750
+  },
+  "output": {
+    "seed": 1911791507,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f95-ec29-76ff-b561-fa7d4a8033ff/output/model.glb?Expires=4949078400&Signature=CAjbjEEbbJfhI3230iZG99p9UyOZNYg3w73uB361mZE7wVulYolEs0BtEJ6CLVVMQ573XhVWFxiWtSU6nLh7PPhRenDI1QxfNtM-c1r0ENOYtI6GszrCPwW~JiHb~mjzaZDUuFokGOpTaDB1OWbZ7pu6hlGfEa5df0lbxoaQjKPjuUtJBSGa53ijjRV8sxbbivBblrqT5XzvjD9T3POFlZHq2My2b-QEQSIw5gldQ6Q5ObhWOZoiGoWvMv0CYlxZJrQEyXRXHngoAXsaQ88-1HMrZmFH-3KgNplMq6Z0OsouCWFkHNcDzd0RJbz4PMNqVyKx6YnqjlP4nvaq~fcx3Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f95-ec29-76ff-b561-fa7d4a8033ff/output/preview.png?Expires=4949078400&Signature=OVcpOxPo66Q-1smQyG1rdBecJpN3DPO972lg6sY~dlQmFTGn-MoBxVxxPBxJAQZ2HuF0B3dAR7dGwYfoQ2IRcTyZw~SgsdYaDz9whmRjMaYtyL~mEg3yjY0HzW912ItToc8iPFEoJn5qSYYfmPviIO-uctaonajQAJdfTL48sjiciYUoWHpXkeIc~OkLzZrhzLEeZiRIGuNNEnWSnw44FEBcyNi8HHWEJrp6QJrCDWnnWdSZu7yV7W0m2BbFQhit0t-X19g1sz-QA~~d78kP5jFQa0DXwtLeTkflcVNhoI1~ggS74hoz4HZlC3TKHro4XWQIan6VKeZgcsQXXFJrAw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

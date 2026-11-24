@@ -1,0 +1,45 @@
+{
+  "id": "01a20f6a-1347-732f-8628-4ab25bef8d22",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 1877310973,
+  "prompt": "small wiry goblin, green skin, long pointed ears, large yellow eyes, sly sharp-toothed grin, ragged leather hood and vest, cloth wraps on bare feet, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795554941809,
+  "progress": 100,
+  "started_at": 1795554941818,
+  "finished_at": 1795555013713,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f6a-1347-732f-8628-4ab25bef8d22/output/model.glb?Expires=4949078400&Signature=clA0u6k1ODerJ05-i7D1FmlWAvEujsXHGS1KJZ70aM6Mm5bXYw9fApiJlLU7XBixnJmsjPEMdhzFSiLbHxNM1mCIYzWysnSBwWn~fYRaQGXPj1AP56s21YxhtvbVUlYPo5cIquQ-f4Tvf1Zye~z~gu9mhVLRbn166XHIjCdOIENvhEqNCizWLHc8YmgJo5OvBc-KY2eB6qllCQpI5OtvHdvksfCTpYRE2xQoLI9lk1Zt8-Y1EaZlfoQAwa9Pb4-rgN7N0GE347oCderN7eiNycSUOh-ZrNdxVDCh8TT1wbiBuOmpC3hXpVeL~1M8Aaaq7h14MYQtsk5vA8o3BhGJaw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f6a-1347-732f-8628-4ab25bef8d22/output/preview.png?Expires=4949078400&Signature=Zd-KiVsm0nDRRxSWHo8ditz5-mAKNs8yImULQPXiMzoH0ny9Ychqyfa2pWjOJS-ozNdZcCT1iKW3FGH3ftVobr8VpUYZhQatQ7qNKrDJzkty9TGARfj94P3Vf6MEkav8BKaBwr6g9WIbrD99KUXIR-ViwX6HlXe2TbFFbSHPZAvFto~3uoVKoYA3~cbl2RDyM0FlibBgk~MT2z50jz4iySRITgIpWRjhCnqGQl~Q52aGd~lEt21kOBJDR-qWDo6XFEywqEqm6o5OkIByQMtVVLUKW-K56zpcvZq2p0K0NUdNHSf-7Ka30WvOlL5Sga09zUjJBzVFDqK3z2Ug4qZFdw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "small wiry goblin, green skin, long pointed ears, large yellow eyes, sly sharp-toothed grin, ragged leather hood and vest, cloth wraps on bare feet, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 6000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 1877310973,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f6a-1347-732f-8628-4ab25bef8d22/output/model.glb?Expires=4949078400&Signature=clA0u6k1ODerJ05-i7D1FmlWAvEujsXHGS1KJZ70aM6Mm5bXYw9fApiJlLU7XBixnJmsjPEMdhzFSiLbHxNM1mCIYzWysnSBwWn~fYRaQGXPj1AP56s21YxhtvbVUlYPo5cIquQ-f4Tvf1Zye~z~gu9mhVLRbn166XHIjCdOIENvhEqNCizWLHc8YmgJo5OvBc-KY2eB6qllCQpI5OtvHdvksfCTpYRE2xQoLI9lk1Zt8-Y1EaZlfoQAwa9Pb4-rgN7N0GE347oCderN7eiNycSUOh-ZrNdxVDCh8TT1wbiBuOmpC3hXpVeL~1M8Aaaq7h14MYQtsk5vA8o3BhGJaw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f6a-1347-732f-8628-4ab25bef8d22/output/preview.png?Expires=4949078400&Signature=Zd-KiVsm0nDRRxSWHo8ditz5-mAKNs8yImULQPXiMzoH0ny9Ychqyfa2pWjOJS-ozNdZcCT1iKW3FGH3ftVobr8VpUYZhQatQ7qNKrDJzkty9TGARfj94P3Vf6MEkav8BKaBwr6g9WIbrD99KUXIR-ViwX6HlXe2TbFFbSHPZAvFto~3uoVKoYA3~cbl2RDyM0FlibBgk~MT2z50jz4iySRITgIpWRjhCnqGQl~Q52aGd~lEt21kOBJDR-qWDo6XFEywqEqm6o5OkIByQMtVVLUKW-K56zpcvZq2p0K0NUdNHSf-7Ka30WvOlL5Sga09zUjJBzVFDqK3z2Ug4qZFdw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

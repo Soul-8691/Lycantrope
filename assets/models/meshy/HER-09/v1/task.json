@@ -1,0 +1,45 @@
+{
+  "id": "01a20f69-fe53-7422-a83b-173e431093ec",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 2247767739,
+  "prompt": "18-year-old young man, humble farmhand, simple linen shirt with rolled sleeves, brown leather work vest, worn trousers tucked into leather boots, belt with small pouches, short messy brown hair, friendly determined face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795554936654,
+  "progress": 100,
+  "started_at": 1795554936667,
+  "finished_at": 1795554984193,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f69-fe53-7422-a83b-173e431093ec/output/model.glb?Expires=4949078400&Signature=Mafv~1kUdVlI-lMnBSM5mzX4bL2AStbivIOdMvLlc28tw5pcCqsoc8-W7BgfrUuDO5zD353JpJd66Jm9JqgvRCjsxpcXpqBR9n708umO344quZ42S6G0hZZhgP6dss7kz9uoIJLsSGPQyPGrAegdsJe14mgJXbLSz~JXEyb5N7kx43UQfZYxXGiWIZMf0abWnOjxvhoOfguXYRU364mHCvhXv391RJtoXWB6BIM1YSPOVHREmMXBW9JxarEqdmBUMGafzSH9pbPAce9CQGJ3U3vSon3-91ia5DBTinyj~qhDi-TacZRs3PQ0UEcwgdTjn4hw0orhyBcTGcMWHGCZxA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f69-fe53-7422-a83b-173e431093ec/output/preview.png?Expires=4949078400&Signature=ik1-lI6QY1YLogLE9FXEuNeWN1eD7uQBw3-SNcd33C~EbzwvAeUXFnDItHxRSvLQoeiJVCitlBmDmAIKdM6RBtsFHDJ1EZ1xH~XcXrtZ2W0Pj-FVpneJIbz0MfnPD2c3IRfnZlKhaMj2Fw2jXRzAZwDDqMK6va0D6iW8kxT3~XwFdB-OVVY2Ul9KSYgmdVNhOItYz4iuK-WT1alK2cWoHjLV5Ncl0aBBXqyP0DSq5~V7mmxzJrAy-20vcTZD9y~ky328LYuRKmq4tFVZFCGR5yuyQN3BK4tqP9-k5kf7kCgvavppUoPgFsezMGDFyjJ86IoLXEbdpEiflddytwINjw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "18-year-old young man, humble farmhand, simple linen shirt with rolled sleeves, brown leather work vest, worn trousers tucked into leather boots, belt with small pouches, short messy brown hair, friendly determined face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 15000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 2247767739,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f69-fe53-7422-a83b-173e431093ec/output/model.glb?Expires=4949078400&Signature=Mafv~1kUdVlI-lMnBSM5mzX4bL2AStbivIOdMvLlc28tw5pcCqsoc8-W7BgfrUuDO5zD353JpJd66Jm9JqgvRCjsxpcXpqBR9n708umO344quZ42S6G0hZZhgP6dss7kz9uoIJLsSGPQyPGrAegdsJe14mgJXbLSz~JXEyb5N7kx43UQfZYxXGiWIZMf0abWnOjxvhoOfguXYRU364mHCvhXv391RJtoXWB6BIM1YSPOVHREmMXBW9JxarEqdmBUMGafzSH9pbPAce9CQGJ3U3vSon3-91ia5DBTinyj~qhDi-TacZRs3PQ0UEcwgdTjn4hw0orhyBcTGcMWHGCZxA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f69-fe53-7422-a83b-173e431093ec/output/preview.png?Expires=4949078400&Signature=ik1-lI6QY1YLogLE9FXEuNeWN1eD7uQBw3-SNcd33C~EbzwvAeUXFnDItHxRSvLQoeiJVCitlBmDmAIKdM6RBtsFHDJ1EZ1xH~XcXrtZ2W0Pj-FVpneJIbz0MfnPD2c3IRfnZlKhaMj2Fw2jXRzAZwDDqMK6va0D6iW8kxT3~XwFdB-OVVY2Ul9KSYgmdVNhOItYz4iuK-WT1alK2cWoHjLV5Ncl0aBBXqyP0DSq5~V7mmxzJrAy-20vcTZD9y~ky328LYuRKmq4tFVZFCGR5yuyQN3BK4tqP9-k5kf7kCgvavppUoPgFsezMGDFyjJ86IoLXEbdpEiflddytwINjw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

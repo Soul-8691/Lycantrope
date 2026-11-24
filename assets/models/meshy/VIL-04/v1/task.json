@@ -1,0 +1,44 @@
+{
+  "id": "01a20f1c-2b11-7114-b767-ae6461adcf99",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 1453438274,
+  "prompt": "large wooden medieval barn, big double doors, hay loft, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795549836138,
+  "progress": 100,
+  "started_at": 1795549836150,
+  "finished_at": 1795549881183,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-2b11-7114-b767-ae6461adcf99/output/model.glb?Expires=4949078400&Signature=B3l~7KvAESiJVVASW-IO5PTMfW4r8BoG0KutjXlhw5wo-9VzzxKPkg~SC-t5NoDmYMtxy0fLBsF8HVthV-XiLXouzMIGTAxxa4-p3j3RcqctPZVa4gEHfjhrqx1CFlZg4rmB-nYnRyYr~pYFuhAF3k9nOPhiYyHicUPDprw9Lcm5DYIeucD7Ey2pr7n0fi71jnzQ6O1V6XqV7hCipLiznhMiwHMX9hg6TPV13y04v8vykh4dSDZVPuW1DAmXTtR6ppAsvLUya5sgHTm6HoQpedQvIKEK221alBOLR-AUAnn0p9B6kPh~Vd~f02yMmrUDR746U7z5otnT9Ai6dlyN9A__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-2b11-7114-b767-ae6461adcf99/output/preview.png?Expires=4949078400&Signature=kGd0woFIK-jXRr7ncvvfgXFH~rI3J6p40mMFddOLQkfUYgCOX3BPlwt7rLtgfVspL5SCtVIyIr2mwdUDmOrhhr9zBL5yVbJhugPPD9Skivl91HrDl3Mlx5WVuBTnp65yzDpmCfS4qYwQAz2nf0CJ8ckB1h055cJHMnFxVBjolgtZaagIL7NoR5Q0cFqCLt2j0UpR1xmhJ9zoSLFPRPDgyckCntjHklmbmhMJT0YoDcIsz43UdZo1bEEOWrPKQSqwviZdD1a4tZbPnLk-ieq1BX6whHpepKFlX2ShLMwL3jDvnfhxaVRTKxfSM2Jt6iSa-y7Q4g9-GcZFNsqrAbLOSg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "large wooden medieval barn, big double doors, hay loft, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 4000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 1453438274,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-2b11-7114-b767-ae6461adcf99/output/model.glb?Expires=4949078400&Signature=B3l~7KvAESiJVVASW-IO5PTMfW4r8BoG0KutjXlhw5wo-9VzzxKPkg~SC-t5NoDmYMtxy0fLBsF8HVthV-XiLXouzMIGTAxxa4-p3j3RcqctPZVa4gEHfjhrqx1CFlZg4rmB-nYnRyYr~pYFuhAF3k9nOPhiYyHicUPDprw9Lcm5DYIeucD7Ey2pr7n0fi71jnzQ6O1V6XqV7hCipLiznhMiwHMX9hg6TPV13y04v8vykh4dSDZVPuW1DAmXTtR6ppAsvLUya5sgHTm6HoQpedQvIKEK221alBOLR-AUAnn0p9B6kPh~Vd~f02yMmrUDR746U7z5otnT9Ai6dlyN9A__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-2b11-7114-b767-ae6461adcf99/output/preview.png?Expires=4949078400&Signature=kGd0woFIK-jXRr7ncvvfgXFH~rI3J6p40mMFddOLQkfUYgCOX3BPlwt7rLtgfVspL5SCtVIyIr2mwdUDmOrhhr9zBL5yVbJhugPPD9Skivl91HrDl3Mlx5WVuBTnp65yzDpmCfS4qYwQAz2nf0CJ8ckB1h055cJHMnFxVBjolgtZaagIL7NoR5Q0cFqCLt2j0UpR1xmhJ9zoSLFPRPDgyckCntjHklmbmhMJT0YoDcIsz43UdZo1bEEOWrPKQSqwviZdD1a4tZbPnLk-ieq1BX6whHpepKFlX2ShLMwL3jDvnfhxaVRTKxfSM2Jt6iSa-y7Q4g9-GcZFNsqrAbLOSg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

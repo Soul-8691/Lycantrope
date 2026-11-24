@@ -1,0 +1,44 @@
+{
+  "id": "01a20f1c-35da-7249-85be-bb5671503199",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 626436015,
+  "prompt": "medieval stone village well with small wooden roof, rope and bucket, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795549838851,
+  "progress": 100,
+  "started_at": 1795549838865,
+  "finished_at": 1795549890313,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-35da-7249-85be-bb5671503199/output/model.glb?Expires=4949078400&Signature=mpw1grWby5lha4jvzina3YPMHAF-0VS7WUeAoktjjIfC2wkX3XUhRM9ahPKMeXC5Qf8soTD5mNl39W3S8syfNKsTy1z9a0p0AEoe5iMoRc-RaFK7XQLBZjuw0GmU4Sf4B1Sjj2pqpeOe3fD9odXuA6Xb-mb~k8aAz55tVuE~lNtqqHffRx7zlYMwuS~6Aln2FlxqpsIvsJVGFCkIHd26RreEza8JMsI5gaGAuSxl7IGbSFmDaZa5ueeGkeDGtIT~8vSVrPgjW~lG8futn4xcZRwaryweoH3CI3fUnzoy7pDIGcBLINFMLfSKZUNMsS0uy7gw9XKDG540hi0PiAYt3g__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-35da-7249-85be-bb5671503199/output/preview.png?Expires=4949078400&Signature=FIg8JPpqL5A6CnZunLMWLtxRY6rpOM5D3n4LflW7UehFtkBgJds19WZTkzP2W7L32ykO28NbBucTm1pvFWqKZfFbnyZLlYGYvAp5Bas0i0FMXMFKgS~cUBfkZjov06xUiaoUntoqPr6tPmAIF2zipALzbQ7UEFQEJa~XmesyNgiEdIXcRmmSqdwbAXyCQ7D0CQPTDvwhHQN39JyBde24AYiFb3SR1MRJvyoJqWzUnhu5hcUZivcz9Zief7m9y5k5ttF1vtk0Ui1ILkXsH~gadpG34nvNz4qa54OZRG1xXpWff9iQceOVuvI9RLiF6ct1EiMt0e0sGaaX9tJUBRRC5Q__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "medieval stone village well with small wooden roof, rope and bucket, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 1500,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 626436015,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-35da-7249-85be-bb5671503199/output/model.glb?Expires=4949078400&Signature=mpw1grWby5lha4jvzina3YPMHAF-0VS7WUeAoktjjIfC2wkX3XUhRM9ahPKMeXC5Qf8soTD5mNl39W3S8syfNKsTy1z9a0p0AEoe5iMoRc-RaFK7XQLBZjuw0GmU4Sf4B1Sjj2pqpeOe3fD9odXuA6Xb-mb~k8aAz55tVuE~lNtqqHffRx7zlYMwuS~6Aln2FlxqpsIvsJVGFCkIHd26RreEza8JMsI5gaGAuSxl7IGbSFmDaZa5ueeGkeDGtIT~8vSVrPgjW~lG8futn4xcZRwaryweoH3CI3fUnzoy7pDIGcBLINFMLfSKZUNMsS0uy7gw9XKDG540hi0PiAYt3g__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-35da-7249-85be-bb5671503199/output/preview.png?Expires=4949078400&Signature=FIg8JPpqL5A6CnZunLMWLtxRY6rpOM5D3n4LflW7UehFtkBgJds19WZTkzP2W7L32ykO28NbBucTm1pvFWqKZfFbnyZLlYGYvAp5Bas0i0FMXMFKgS~cUBfkZjov06xUiaoUntoqPr6tPmAIF2zipALzbQ7UEFQEJa~XmesyNgiEdIXcRmmSqdwbAXyCQ7D0CQPTDvwhHQN39JyBde24AYiFb3SR1MRJvyoJqWzUnhu5hcUZivcz9Zief7m9y5k5ttF1vtk0Ui1ILkXsH~gadpG34nvNz4qa54OZRG1xXpWff9iQceOVuvI9RLiF6ct1EiMt0e0sGaaX9tJUBRRC5Q__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

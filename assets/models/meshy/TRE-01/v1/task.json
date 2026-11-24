@@ -1,0 +1,44 @@
+{
+  "id": "01a20f1d-9556-7326-a089-9520ced16909",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 725764375,
+  "prompt": "broad gnarled oak tree, thick twisted trunk, wide rounded canopy of chunky foliage clumps, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795549930120,
+  "progress": 100,
+  "started_at": 1795549930129,
+  "finished_at": 1795550036561,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-9556-7326-a089-9520ced16909/output/model.glb?Expires=4949078400&Signature=jYFSVp9wY2-5afz2xXqxHWG2d~fta36pcamcTzbWl7dWkgTac5QpFwzv4P58i7Xw1S0-un-YVe6nhHp3-hPnkU2Yt8Tx6qb1g2GfKZIZ2aL017VY~LoJpcgkhrkVWFDnAK-M64Mq3bsyQC99WrAaK1N6lK983IBmbsa1JlKhss98h9wTMV05yd7osHkdkn8rf-YhDJ7iwZ3mEKACS075GJ7htBdgQjoHEKYXeFrgR3dD~39ajAYURr3R7dWa58xO273Q7aOQlaRd9kxkvWcI9LmXZ6CtmsVf-Qex1H6nVxqvOnhSJL0SbwPwK~dYrwnMUQYZBfYg~IuqBjgkI1fwLg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-9556-7326-a089-9520ced16909/output/preview.png?Expires=4949078400&Signature=XV0sEaLlqDB1uVXVAbi3Y9uxCboWMxrB35EQC-DslaiIoJ4fr8l04a0EX7H7wEsLr3xQPi6Xl3N-qKC6gubFCexMlIg52PNW-hnLkXAg15hLBJjR6zAmZk6PBCkGbGmHIOQB1C4V~4q7EHTApGPJQcWJto6AB9tw4-k3NkyLpjYxPRmhBVu7KRXsjjEEeyyXEbtnuV1pXsXn8J4tjrgyUjJDFUM9M6mKSPh-MtSWeFt5mJsb7czGG3cnivRuiPoEAhqImYd-dPI4kr-LkXaj7WyTpU3p~EML-3k3ksg3FMkGzDfiVITtgQG0GtP6mnKF64El7BzJ9fRxVrXjBuFX-g__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "broad gnarled oak tree, thick twisted trunk, wide rounded canopy of chunky foliage clumps, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 3000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 725764375,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-9556-7326-a089-9520ced16909/output/model.glb?Expires=4949078400&Signature=jYFSVp9wY2-5afz2xXqxHWG2d~fta36pcamcTzbWl7dWkgTac5QpFwzv4P58i7Xw1S0-un-YVe6nhHp3-hPnkU2Yt8Tx6qb1g2GfKZIZ2aL017VY~LoJpcgkhrkVWFDnAK-M64Mq3bsyQC99WrAaK1N6lK983IBmbsa1JlKhss98h9wTMV05yd7osHkdkn8rf-YhDJ7iwZ3mEKACS075GJ7htBdgQjoHEKYXeFrgR3dD~39ajAYURr3R7dWa58xO273Q7aOQlaRd9kxkvWcI9LmXZ6CtmsVf-Qex1H6nVxqvOnhSJL0SbwPwK~dYrwnMUQYZBfYg~IuqBjgkI1fwLg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-9556-7326-a089-9520ced16909/output/preview.png?Expires=4949078400&Signature=XV0sEaLlqDB1uVXVAbi3Y9uxCboWMxrB35EQC-DslaiIoJ4fr8l04a0EX7H7wEsLr3xQPi6Xl3N-qKC6gubFCexMlIg52PNW-hnLkXAg15hLBJjR6zAmZk6PBCkGbGmHIOQB1C4V~4q7EHTApGPJQcWJto6AB9tw4-k3NkyLpjYxPRmhBVu7KRXsjjEEeyyXEbtnuV1pXsXn8J4tjrgyUjJDFUM9M6mKSPh-MtSWeFt5mJsb7czGG3cnivRuiPoEAhqImYd-dPI4kr-LkXaj7WyTpU3p~EML-3k3ksg3FMkGzDfiVITtgQG0GtP6mnKF64El7BzJ9fRxVrXjBuFX-g__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

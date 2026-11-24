@@ -1,0 +1,43 @@
+{
+  "id": "01a20f8f-a345-75c5-86fe-63098c276919",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "smart-topology",
+  "seed": 1558704736,
+  "prompt": "crude jagged goblin knife, rusty serrated blade, rag-wrapped handle, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795557403200,
+  "progress": 100,
+  "started_at": 1795557403210,
+  "finished_at": 1795557416782,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-a345-75c5-86fe-63098c276919/output/model.glb?Expires=4949078400&Signature=mOHrLS4G~rsi0o6ojxMuf~8KwdxeuwehDZ9wZR9QlUbN~CwIwHLbTy3ANpjfSXA1uejGzSJGJWBEuAdOCOdzdFTZZir3eRBgc5JcRAf~Q5P1Ww3lEwwuqhAoIX9TQAxD-bB1Yj~QLUmwZC~2fXrvVZwpnHpdQMMU-kMTzO6OaebsmQ5diYHxi5yc0Sys1X~ETDsWP8zzj9xcO6fxoM-tqN9JF8h2lDcF03zPoK0ei-lPzc-DKgm8fsdHIPaSxrMpKGdms7T4LBylWxIse04KHEWOc4oZeycFCbcpnzSwK9UwGfvJjLTd2WkYaM0pZtHtcCfVMV53T03CCCxn~vo6pA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-a345-75c5-86fe-63098c276919/output/preview.png?Expires=4949078400&Signature=BMo26o0wiLKUoT9S3Kt2Uc7az4sUCfhPFkoSleqYSDRK5WJ9~wwVUyoY9XFKqUzKLd-QekUE05j~Q98NkcwyS1MPZJGUiFaS-uG-4ND2vnxmKfUvhBVPJnuJY3iDvVsEpQ7dIoHkkoVxo1y154DKJcx~S-AbKtKgIOxnLrWqXqDNZHG-2VFIvTMNgXUEuyEHie46vTkrYP47F-wHuPzHT8p6c94loGunlDDYqrGZ47nU3CGmWcLlPMEmypM2alS7oJQgqiXXuV~Y9XwqEfmN3xmhv6q~udnfg4o9a-z-lu3GJq86hL8i8xnvt3tIT0dbQemrAMokPdPT9C0GDYC2LA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 5,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "meshy-t2.5",
+    "mode": "preview",
+    "model_type": "smart-topology",
+    "prompt": "crude jagged goblin knife, rusty serrated blade, rag-wrapped handle, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750
+  },
+  "output": {
+    "seed": 1558704736,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-a345-75c5-86fe-63098c276919/output/model.glb?Expires=4949078400&Signature=mOHrLS4G~rsi0o6ojxMuf~8KwdxeuwehDZ9wZR9QlUbN~CwIwHLbTy3ANpjfSXA1uejGzSJGJWBEuAdOCOdzdFTZZir3eRBgc5JcRAf~Q5P1Ww3lEwwuqhAoIX9TQAxD-bB1Yj~QLUmwZC~2fXrvVZwpnHpdQMMU-kMTzO6OaebsmQ5diYHxi5yc0Sys1X~ETDsWP8zzj9xcO6fxoM-tqN9JF8h2lDcF03zPoK0ei-lPzc-DKgm8fsdHIPaSxrMpKGdms7T4LBylWxIse04KHEWOc4oZeycFCbcpnzSwK9UwGfvJjLTd2WkYaM0pZtHtcCfVMV53T03CCCxn~vo6pA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-a345-75c5-86fe-63098c276919/output/preview.png?Expires=4949078400&Signature=BMo26o0wiLKUoT9S3Kt2Uc7az4sUCfhPFkoSleqYSDRK5WJ9~wwVUyoY9XFKqUzKLd-QekUE05j~Q98NkcwyS1MPZJGUiFaS-uG-4ND2vnxmKfUvhBVPJnuJY3iDvVsEpQ7dIoHkkoVxo1y154DKJcx~S-AbKtKgIOxnLrWqXqDNZHG-2VFIvTMNgXUEuyEHie46vTkrYP47F-wHuPzHT8p6c94loGunlDDYqrGZ47nU3CGmWcLlPMEmypM2alS7oJQgqiXXuV~Y9XwqEfmN3xmhv6q~udnfg4o9a-z-lu3GJq86hL8i8xnvt3tIT0dbQemrAMokPdPT9C0GDYC2LA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

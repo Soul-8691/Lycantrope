@@ -1,0 +1,44 @@
+{
+  "id": "01a20f1d-367e-74b2-8e5b-3fa3609990c0",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 3357953560,
+  "prompt": "wooden barrel, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795549904418,
+  "progress": 100,
+  "started_at": 1795549904430,
+  "finished_at": 1795549945625,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-367e-74b2-8e5b-3fa3609990c0/output/model.glb?Expires=4949078400&Signature=Yxd44lU3CM5Mm5idztTTxcKPl6bNeXdkHvvPzXNNm1v9LfAezQ-N8GI3n9TuGerlktn92gW3Gk9ITm4~MQZKPkklVm0lh23UVqc0VW59bmvf~9xNBaaiBaPUImp8LCyTmz3fFG6ARFTgKMrdp2Lagt-iVThiv9QSpTYmW4JRbj3N4CeGiPhrWFlxEZN5S87PAdROxv53AvHkHik7LtPLxxBM67GE9aXx6e8-HyRDNg6dTCUrCca2CRn2ZTti7uWg51ihhsJt4-gof69gYO~a8ry4DeOfjkoNNI2ZDb-yIBpmq50JoCfJKl2DtN3WijuQ9PK5VJZ-eAMFSL5RkGKD7A__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-367e-74b2-8e5b-3fa3609990c0/output/preview.png?Expires=4949078400&Signature=TGdMTefqJ~8RmnA4ojdOKrF9Bd5bzdYCvT-xGQ9SFUgEo8rqvKvGBQ0ayutRIvOwE0b-XbGxS~tGZcBCHonLhBGCizJZRTVcuknrTPI6OKbl99tGVE7EHYVpZ29r8NreHT4Im7NUeM3THC44Zhq3ROtwMOS9W3g49zey~gAm8ayhMaBFMjj07ntO6zA8j6TF5yTcMucc9hj-CqeiYvCXezY4eM2lyiDwX~gzcelz1GM-0COu7GZLm9iicZmKwLcv~eZdYiFrM9hKByxOTsE61r22QP4lTppKYxYXhEO9BTzrAvKTBaPngj8duzmfhE84DGEsp9ZjZbjKNjoIbQRLkA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "wooden barrel, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 3357953560,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-367e-74b2-8e5b-3fa3609990c0/output/model.glb?Expires=4949078400&Signature=Yxd44lU3CM5Mm5idztTTxcKPl6bNeXdkHvvPzXNNm1v9LfAezQ-N8GI3n9TuGerlktn92gW3Gk9ITm4~MQZKPkklVm0lh23UVqc0VW59bmvf~9xNBaaiBaPUImp8LCyTmz3fFG6ARFTgKMrdp2Lagt-iVThiv9QSpTYmW4JRbj3N4CeGiPhrWFlxEZN5S87PAdROxv53AvHkHik7LtPLxxBM67GE9aXx6e8-HyRDNg6dTCUrCca2CRn2ZTti7uWg51ihhsJt4-gof69gYO~a8ry4DeOfjkoNNI2ZDb-yIBpmq50JoCfJKl2DtN3WijuQ9PK5VJZ-eAMFSL5RkGKD7A__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-367e-74b2-8e5b-3fa3609990c0/output/preview.png?Expires=4949078400&Signature=TGdMTefqJ~8RmnA4ojdOKrF9Bd5bzdYCvT-xGQ9SFUgEo8rqvKvGBQ0ayutRIvOwE0b-XbGxS~tGZcBCHonLhBGCizJZRTVcuknrTPI6OKbl99tGVE7EHYVpZ29r8NreHT4Im7NUeM3THC44Zhq3ROtwMOS9W3g49zey~gAm8ayhMaBFMjj07ntO6zA8j6TF5yTcMucc9hj-CqeiYvCXezY4eM2lyiDwX~gzcelz1GM-0COu7GZLm9iicZmKwLcv~eZdYiFrM9hKByxOTsE61r22QP4lTppKYxYXhEO9BTzrAvKTBaPngj8duzmfhE84DGEsp9ZjZbjKNjoIbQRLkA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

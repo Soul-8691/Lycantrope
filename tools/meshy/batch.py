@@ -392,12 +392,17 @@ def wait(url: str, task_id: str, headers: dict, label: str) -> dict:
 def do_refine(tasks: dict, key: str, prev: dict, headers: dict, texture_prompt: str | None = None) -> None:
     """Texture a finished preview (text-to-3D refine) and download it to <key>/textured/."""
     refines = tasks.setdefault("refines", {})
-    body = {"mode": "refine", "preview_task_id": prev["task_id"], "enable_pbr": False}
-    if texture_prompt:
-        body["texture_prompt"] = texture_prompt
-    tid = submit(API, body, headers)
-    refines[key] = {"task_id": tid, "status": "PENDING", "created": time.time()}
-    save_tasks(tasks)
+    running = refines.get(key, {})
+    if running.get("status") in ("PENDING", "IN_PROGRESS"):
+        tid = running["task_id"]                 # interrupted earlier: pick the same task back up
+        print(f"  resuming the texture task already running on Meshy ({tid}); not charged again")
+    else:
+        body = {"mode": "refine", "preview_task_id": prev["task_id"], "enable_pbr": False}
+        if texture_prompt:
+            body["texture_prompt"] = texture_prompt
+        tid = submit(API, body, headers)
+        refines[key] = {"task_id": tid, "status": "PENDING", "created": time.time()}
+        save_tasks(tasks)
     t = wait(API, tid, headers, "texture")
     refines[key].update(status=t["status"], credits=t.get("consumed_credits"))
     save_tasks(tasks)
@@ -421,6 +426,11 @@ def cmd_texture(args) -> None:
         sys.exit(f"No finished preview {key}. Make the preview first (batch.py preview {args.id}).")
     if tasks.get("refines", {}).get(key, {}).get("status") == "SUCCEEDED" and not args.redo:
         print(f"{key} is already textured (add --redo to texture it again).")
+        return
+    if tasks.get("refines", {}).get(key, {}).get("status") in ("PENDING", "IN_PROGRESS"):
+        print(f"{key}: a texture task is already running on Meshy; waiting for it (no new charge).")
+        do_refine(tasks, key, prev, {"Authorization": f"Bearer {api_key()}"})
+        print(f"\nCredits recorded so far: {credits_spent(tasks)}")
         return
     print(f"\nMeshy texture (refine, 2K) for {key}: {REFINE_CREDITS} credits")
     if args.texture_prompt:
@@ -506,12 +516,16 @@ def cmd_animate(args) -> None:
         do_refine(tasks, key, prev, headers)
 
     if rigs.get(key, {}).get("status") != "SUCCEEDED":
-        body = {"input_task_id": refines[key]["task_id"], "animation_type": e.rig}
-        if e.height:
-            body["height_meters"] = e.height
-        tid = submit(RIG_API, body, headers)
-        rigs[key] = {"task_id": tid, "status": "PENDING", "created": time.time()}
-        save_tasks(tasks)
+        if rigs.get(key, {}).get("status") in ("PENDING", "IN_PROGRESS"):
+            tid = rigs[key]["task_id"]           # interrupted earlier: pick the same task back up
+            print(f"  resuming the rig task already running on Meshy ({tid}); not charged again")
+        else:
+            body = {"input_task_id": refines[key]["task_id"], "animation_type": e.rig}
+            if e.height:
+                body["height_meters"] = e.height
+            tid = submit(RIG_API, body, headers)
+            rigs[key] = {"task_id": tid, "status": "PENDING", "created": time.time()}
+            save_tasks(tasks)
         t = wait(RIG_API, tid, headers, "rig")
         rigs[key].update(status=t["status"], credits=t.get("consumed_credits"))
         save_tasks(tasks)

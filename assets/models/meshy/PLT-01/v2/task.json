@@ -1,0 +1,43 @@
+{
+  "id": "01a20f37-f1f6-7656-bec3-ed9c7395dc57",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "smart-topology",
+  "seed": 4114346449,
+  "prompt": "round leafy green bush, chunky foliage, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795551655208,
+  "progress": 100,
+  "started_at": 1795551655217,
+  "finished_at": 1795551672078,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f37-f1f6-7656-bec3-ed9c7395dc57/output/model.glb?Expires=4949078400&Signature=ZroySaEisM4XuDfZuUl1AiJ9TujLArxIiFB16OqbCnWYAudXT3bXw03Fk9QNHxbT-b4W1BRDOh4R0cCYBaKxAuLIzu0IwiX6lwmiKgp1x6IaTUdk2ZKAd2Gxjeny~QKYCZ-eNuuHmXmiiDr8epTIsUCyaCzP1NlIi1UQ6ngPSoxrMp4qqd3fxbeLRlFfX9e4tPSbT9oCtr0rBGWrPTyK2GMFmnEOOs~xFLCFkYKlGphHFFwE7USivQ1XK8P9Iwu9Dl5xyeLEW3lOJqTij5Ky1uR51fN4ZrnZGHxkzH0litKki6DybMkcZdtNZn9qetnm~UJ9CL2sVDOMaDLZvjSYZg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f37-f1f6-7656-bec3-ed9c7395dc57/output/preview.png?Expires=4949078400&Signature=AzloG17fAIltMe96W~Scd5lktsUteVemp3FeY~8Lw7GGjtyR0vRCizs-YD~AC8oHwxgjqX~YFiiGOeq5NeZqhO7YD3gBwZCq00waPTRHSt9MwPpZAndys4R13ED3F9A2Rt95n1m4usCb~J2UsIp-dHHZfSq970UCQgjuOfJGR7-8C3m8xnY1iHaHZWoaeVmlXNAFpyNOef3MMwvsKAAqWOCv-SJJwI1Cu5gLSxDApGPRrthpR2yVr9JlvD4sYg4-R4kYSlLxm9fskIOaGbVMNtkzOkk5FTCrJ-~ZRmbbi35n~L8K5RyzrTxBtbbv8FpGMhgXHG9urNNy~LBlbMwTnA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 5,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "meshy-t2.5",
+    "mode": "preview",
+    "model_type": "smart-topology",
+    "prompt": "round leafy green bush, chunky foliage, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750
+  },
+  "output": {
+    "seed": 4114346449,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f37-f1f6-7656-bec3-ed9c7395dc57/output/model.glb?Expires=4949078400&Signature=ZroySaEisM4XuDfZuUl1AiJ9TujLArxIiFB16OqbCnWYAudXT3bXw03Fk9QNHxbT-b4W1BRDOh4R0cCYBaKxAuLIzu0IwiX6lwmiKgp1x6IaTUdk2ZKAd2Gxjeny~QKYCZ-eNuuHmXmiiDr8epTIsUCyaCzP1NlIi1UQ6ngPSoxrMp4qqd3fxbeLRlFfX9e4tPSbT9oCtr0rBGWrPTyK2GMFmnEOOs~xFLCFkYKlGphHFFwE7USivQ1XK8P9Iwu9Dl5xyeLEW3lOJqTij5Ky1uR51fN4ZrnZGHxkzH0litKki6DybMkcZdtNZn9qetnm~UJ9CL2sVDOMaDLZvjSYZg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f37-f1f6-7656-bec3-ed9c7395dc57/output/preview.png?Expires=4949078400&Signature=AzloG17fAIltMe96W~Scd5lktsUteVemp3FeY~8Lw7GGjtyR0vRCizs-YD~AC8oHwxgjqX~YFiiGOeq5NeZqhO7YD3gBwZCq00waPTRHSt9MwPpZAndys4R13ED3F9A2Rt95n1m4usCb~J2UsIp-dHHZfSq970UCQgjuOfJGR7-8C3m8xnY1iHaHZWoaeVmlXNAFpyNOef3MMwvsKAAqWOCv-SJJwI1Cu5gLSxDApGPRrthpR2yVr9JlvD4sYg4-R4kYSlLxm9fskIOaGbVMNtkzOkk5FTCrJ-~ZRmbbi35n~L8K5RyzrTxBtbbv8FpGMhgXHG9urNNy~LBlbMwTnA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "01a20f1d-13b0-75ea-bc13-54af9fc47814",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 720575241,
+  "prompt": "low dry stone field wall segment, stacked flat stones, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795549894195,
+  "progress": 100,
+  "started_at": 1795549894205,
+  "finished_at": 1795549927280,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-13b0-75ea-bc13-54af9fc47814/output/model.glb?Expires=4949078400&Signature=RytQsO6ypUn8bzyjKbOiwq37U~MP6btwur2GsJdYR~i3tn0CZ9Lq2HUFFSC-2pC9oeWK44ZnuyZcwrMz1ercOYjzxZ6UKY~-q9vRFVomjopgqVXCmC8CciwCQDUX4iBUZ2mvihlDfk0oMo4KT~wQLsPRk66UazX4P-~rmQFaUczvFnKjiTRbwa15LktBzY5REEbQhnH-HF3xR547u1Qz-9s62ijI8G5-ZNNcKFbHw5yoo2wPxcxE4iyYLc6-M0~ThmSdCkhpD0Ok42JyYxv00I-aeCBBPB0pWF-mAq8iB-uyTrFdBfdZLwoY7ahqdAFsijjlegWB2hSqElA3zMt9YQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-13b0-75ea-bc13-54af9fc47814/output/preview.png?Expires=4949078400&Signature=NnzagYOnkVShzoLYzMqWb9bsjFx5WqGw4Mf1STg3t1X5xCLb4vlOury-4b64uHxK6C-tvY0tZ2h6HIhOAC5nkU-HLDCvWDVfxm3DnhekEUU02QuNVAzKLUOk1Z35uF2qI-iVVVXgar4UPQ6JCPhDUnf44fWP0ZwYrkfOeXBJ9HRoBEKvzpO688PP4GQxnvEOshv8x6tWxBidMAepM6SwsKbt-Pii~sOwJIdCs6Kg378FY6mbCn-040yaSiSD5j7HEzFiArRjqSca9yzmPJcGfOlH0uloGnVp84o8IYHU0vA-XtHoQNyfMYInxvmu5WmmFTLC3pqq~Rs34lVVj5ulYQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "low dry stone field wall segment, stacked flat stones, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 720575241,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-13b0-75ea-bc13-54af9fc47814/output/model.glb?Expires=4949078400&Signature=RytQsO6ypUn8bzyjKbOiwq37U~MP6btwur2GsJdYR~i3tn0CZ9Lq2HUFFSC-2pC9oeWK44ZnuyZcwrMz1ercOYjzxZ6UKY~-q9vRFVomjopgqVXCmC8CciwCQDUX4iBUZ2mvihlDfk0oMo4KT~wQLsPRk66UazX4P-~rmQFaUczvFnKjiTRbwa15LktBzY5REEbQhnH-HF3xR547u1Qz-9s62ijI8G5-ZNNcKFbHw5yoo2wPxcxE4iyYLc6-M0~ThmSdCkhpD0Ok42JyYxv00I-aeCBBPB0pWF-mAq8iB-uyTrFdBfdZLwoY7ahqdAFsijjlegWB2hSqElA3zMt9YQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-13b0-75ea-bc13-54af9fc47814/output/preview.png?Expires=4949078400&Signature=NnzagYOnkVShzoLYzMqWb9bsjFx5WqGw4Mf1STg3t1X5xCLb4vlOury-4b64uHxK6C-tvY0tZ2h6HIhOAC5nkU-HLDCvWDVfxm3DnhekEUU02QuNVAzKLUOk1Z35uF2qI-iVVVXgar4UPQ6JCPhDUnf44fWP0ZwYrkfOeXBJ9HRoBEKvzpO688PP4GQxnvEOshv8x6tWxBidMAepM6SwsKbt-Pii~sOwJIdCs6Kg378FY6mbCn-040yaSiSD5j7HEzFiArRjqSca9yzmPJcGfOlH0uloGnVp84o8IYHU0vA-XtHoQNyfMYInxvmu5WmmFTLC3pqq~Rs34lVVj5ulYQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

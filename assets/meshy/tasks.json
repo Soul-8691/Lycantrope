@@ -263,6 +263,14 @@
       "prompt": "crude jagged goblin knife, rusty serrated blade, rag-wrapped handle, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795557403.287399,
       "credits": 5
+    },
+    "MAG-11/v1": {
+      "task_id": "01a20f95-ec29-76ff-b561-fa7d4a8033ff",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "thick leather-bound tome with brass corners and a short chain, protective sigil on the cover, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795557815.2858763,
+      "credits": 5
     }
   },
   "replaced": [
@@ -294,6 +302,24 @@
       "task_id": "01a20f90-bf5d-70e3-b6cc-4f1648e06bc8",
       "status": "SUCCEEDED",
       "created": 1795557474.2365334,
+      "credits": 10
+    },
+    "ENM-03/v1": {
+      "task_id": "01a20f96-814d-72dc-9f2a-a15ebf9d258d",
+      "status": "SUCCEEDED",
+      "created": 1795557851.5736156,
+      "credits": 10
+    },
+    "ENM-02/v1": {
+      "task_id": "01a20f97-3952-7461-ac93-cb3ad9adce91",
+      "status": "SUCCEEDED",
+      "created": 1795557898.6866946,
+      "credits": 10
+    },
+    "MON-15/v1": {
+      "task_id": "01a20f99-397d-754e-9ace-09529369f828",
+      "status": "SUCCEEDED",
+      "created": 1795558029.7867126,
       "credits": 10
     }
   },

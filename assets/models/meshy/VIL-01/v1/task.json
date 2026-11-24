@@ -1,0 +1,44 @@
+{
+  "id": "01a20f1c-033b-730c-ab9f-7edfac33ced0",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 3026964285,
+  "prompt": "small medieval thatched-roof cottage, timber frame and white plaster, stone chimney, wooden door, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795549829331,
+  "progress": 100,
+  "started_at": 1795549829608,
+  "finished_at": 1795549924795,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-033b-730c-ab9f-7edfac33ced0/output/model.glb?Expires=4949078400&Signature=B-qKyx92GPTM-tjGgMViuYDzqTtyLz-2HD65peoVxJFJ7BZI2fvyViboU8xXOzIlbUjvOXYdT68btyQsinPk~aptrRgwpIDeb-9QLiYfN49gdyoiTOUiUHWjvZZ4YTv0z4H7WX~dSJDbV8uVrua3hnv6xbCgsUY3mR~QjDC1Lr-U9vjHUTabNQbTl7OPSZdreib--OUDVTrk7n~-O2179sxFdwCyCNLsI6LoZTSDSKjMPzYQeo135Si9qaAwixdgrTPYInG6c4qwN9T-2jBQS3L0Nkx7fTFij2IIVAOygjO5t-AE7t9jryD64ws0izwNKmn7YqDRuNYW9vprahMSFg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-033b-730c-ab9f-7edfac33ced0/output/preview.png?Expires=4949078400&Signature=DrtqNNd92vF6zF4E~pn2K-N0vmH4qejH5bTZ7Pk2nsMey5RNH~xLq3c3jm8V6FnfTOIdpAPk7~FwXolORW~9HzfmuXQcVxM6akNVQY0ezHwrR05iHMTuvm5pRj5B5-IFXszMTv4umuK-kyAQJIZ4GbBXBMYP4G-5hruFqxZ7y~VKvk-Hh41QbjulkT6-R-~IMJL6-DInOHFwFHPiAIp9GquWzfScFItFOCrMS4dEhZNQk5odV3n4LOiQBLMkdqfg-N~Ov8er8ew6N2oqUizLLTuOOkBsDq2yA-irgU-46SxaQexUBdQvykV7eDk76PpLb8ifbo~nYmS8ZJ0xHqrdaA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "small medieval thatched-roof cottage, timber frame and white plaster, stone chimney, wooden door, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 4000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 3026964285,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-033b-730c-ab9f-7edfac33ced0/output/model.glb?Expires=4949078400&Signature=B-qKyx92GPTM-tjGgMViuYDzqTtyLz-2HD65peoVxJFJ7BZI2fvyViboU8xXOzIlbUjvOXYdT68btyQsinPk~aptrRgwpIDeb-9QLiYfN49gdyoiTOUiUHWjvZZ4YTv0z4H7WX~dSJDbV8uVrua3hnv6xbCgsUY3mR~QjDC1Lr-U9vjHUTabNQbTl7OPSZdreib--OUDVTrk7n~-O2179sxFdwCyCNLsI6LoZTSDSKjMPzYQeo135Si9qaAwixdgrTPYInG6c4qwN9T-2jBQS3L0Nkx7fTFij2IIVAOygjO5t-AE7t9jryD64ws0izwNKmn7YqDRuNYW9vprahMSFg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-033b-730c-ab9f-7edfac33ced0/output/preview.png?Expires=4949078400&Signature=DrtqNNd92vF6zF4E~pn2K-N0vmH4qejH5bTZ7Pk2nsMey5RNH~xLq3c3jm8V6FnfTOIdpAPk7~FwXolORW~9HzfmuXQcVxM6akNVQY0ezHwrR05iHMTuvm5pRj5B5-IFXszMTv4umuK-kyAQJIZ4GbBXBMYP4G-5hruFqxZ7y~VKvk-Hh41QbjulkT6-R-~IMJL6-DInOHFwFHPiAIp9GquWzfScFItFOCrMS4dEhZNQk5odV3n4LOiQBLMkdqfg-N~Ov8er8ew6N2oqUizLLTuOOkBsDq2yA-irgU-46SxaQexUBdQvykV7eDk76PpLb8ifbo~nYmS8ZJ0xHqrdaA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

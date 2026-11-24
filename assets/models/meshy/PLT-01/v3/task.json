@@ -1,0 +1,43 @@
+{
+  "id": "01a20f39-b978-72cc-a79a-78311527e2c3",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "smart-topology",
+  "seed": 1839378575,
+  "prompt": "stylized low-poly bush made of five rounded smooth foliage clumps, solid blob shapes with soft bumps, no individual leaves, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795551773962,
+  "progress": 100,
+  "started_at": 1795551773973,
+  "finished_at": 1795551808508,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f39-b978-72cc-a79a-78311527e2c3/output/model.glb?Expires=4949078400&Signature=XwkoPS-ubXXSvtyZS7Y5Q3LAOBmoBBab-CKU77gpS-KmHwLj2wWsA75xH9-WvARjCnG2ON54rXzWuiungQJt0bq-BdMijIfbzzcljecEg87ltsuHLBYRkOOmpvcj2ruzFINsnvp363ptUjlfHuVxnwsDwf-VHbIbLuQNeMTlZsiitl6AzUM7c~83nyAxTC4gsvG2e0aCuYZD43bCa2hTljoIpqq~EMmMz12zqkkUez3c4JWKKhYufJn2KR7iLLPjIISUEN8ioYB17vXH55t1eig-cDQAfHtzQ48v1SD1f2--6zI572zI3MqjqbGOx3jhnzGasQjMDyvjHETH~Hn5Zw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f39-b978-72cc-a79a-78311527e2c3/output/preview.png?Expires=4949078400&Signature=pNsK4uWYbHSIfzGollCxlMEKD3M3MhX~y8PRMvWuzBuKYT58lRYYIBXPMwCTEAUtDXWSlOGa~1pHcwCtIUDKD0V6as8cZ5CBPKhvHS3Yzaak3-FEeL5Lw90RoiTVxL8IGebvajRSnawtovMU0Bn7HXVHNhWE9SCLWB1fAib9OBlR4-YlJHaQaOpXV47heCkbmFE24-7vCdz5A-Q6cuS-TzMbFHcVhhmtVKu1Dwr6fRIRPTF6f4My2fMqKRM5B23JrdyLCQ575JVL6WPWpUjgeeZNOeFu9~qWy3pwuijUHFb3moM7Rx3rwQsL4EFcbKyKocyqtWVZLMl3llHAPZacow__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 5,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "meshy-t2.5",
+    "mode": "preview",
+    "model_type": "smart-topology",
+    "prompt": "stylized low-poly bush made of five rounded smooth foliage clumps, solid blob shapes with soft bumps, no individual leaves, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750
+  },
+  "output": {
+    "seed": 1839378575,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f39-b978-72cc-a79a-78311527e2c3/output/model.glb?Expires=4949078400&Signature=XwkoPS-ubXXSvtyZS7Y5Q3LAOBmoBBab-CKU77gpS-KmHwLj2wWsA75xH9-WvARjCnG2ON54rXzWuiungQJt0bq-BdMijIfbzzcljecEg87ltsuHLBYRkOOmpvcj2ruzFINsnvp363ptUjlfHuVxnwsDwf-VHbIbLuQNeMTlZsiitl6AzUM7c~83nyAxTC4gsvG2e0aCuYZD43bCa2hTljoIpqq~EMmMz12zqkkUez3c4JWKKhYufJn2KR7iLLPjIISUEN8ioYB17vXH55t1eig-cDQAfHtzQ48v1SD1f2--6zI572zI3MqjqbGOx3jhnzGasQjMDyvjHETH~Hn5Zw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f39-b978-72cc-a79a-78311527e2c3/output/preview.png?Expires=4949078400&Signature=pNsK4uWYbHSIfzGollCxlMEKD3M3MhX~y8PRMvWuzBuKYT58lRYYIBXPMwCTEAUtDXWSlOGa~1pHcwCtIUDKD0V6as8cZ5CBPKhvHS3Yzaak3-FEeL5Lw90RoiTVxL8IGebvajRSnawtovMU0Bn7HXVHNhWE9SCLWB1fAib9OBlR4-YlJHaQaOpXV47heCkbmFE24-7vCdz5A-Q6cuS-TzMbFHcVhhmtVKu1Dwr6fRIRPTF6f4My2fMqKRM5B23JrdyLCQ575JVL6WPWpUjgeeZNOeFu9~qWy3pwuijUHFb3moM7Rx3rwQsL4EFcbKyKocyqtWVZLMl3llHAPZacow__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

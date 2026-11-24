@@ -1,0 +1,45 @@
+{
+  "id": "01a20f8e-37e2-766b-a1d8-46e5b308db6b",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 2916676099,
+  "prompt": "full set of chainmail armor worn by a plain smooth featureless grey mannequin with the slim build of an 18-year-old young man, standing in A-pose: chainmail coif hood with a simple round steel cap, knee-length chainmail hauberk with a plain belted cloth surcoat, chainmail mittens over leather gloves, chainmail leggings with tall leather boots, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795557310289,
+  "progress": 100,
+  "started_at": 1795557310304,
+  "finished_at": 1795557364187,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8e-37e2-766b-a1d8-46e5b308db6b/output/model.glb?Expires=4949078400&Signature=Ap0HrmYd10SPQca5N7yTDGhyfzk4s~iViIv5Z5Sfeeu3Xo0A0bBiDZNpYerlrzTp-g-FiVPriMM1YARuwBvwV9mJ1xqJyfJdMKmil3LjvgwwDJER783yBfbP9D1VWURYyuDHabGTavv81cQSib26qoe6Knt-n76qLUeDm-5Rp~aRtR47VJPR5HDTP3ak3JkWNqjzqTJLH5sfhy2FXpS0AHpEwFH7GFJaXA8niZ~QjtloFigCYv0zMzYvF2a9hctUjcG9rcBhj0N7axN-dGr6h65YFAzI5pBUQAB18YSH51JDM5z-w7lP80CQXpCui0vGd5PjAVHG6LfPZbVJSxw0Lg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8e-37e2-766b-a1d8-46e5b308db6b/output/preview.png?Expires=4949078400&Signature=myvwyczE~Uprk3rw4q2iSUA6ii6LLglfqkfcWZCfSmP2k4lA6nIPU8Z6HN3o2S5ojjtyd-F7MIeoM1sKAyqRmPC7LvP7RdCkESL4qZZQzCmUSKFuAf315SGmsPwyip30s8hVdyPPpc-GF1c1zNiGbYoP~c3kGyS~v57kie29t5dez9FJhx5ehjpbKc1ko94C6tbaxslfPRdFRqFUomuVqXNt9QIENJ1sFkkyP3R-ud-tvS6LXafUahRjpPUdWKw-m9nKz7xW3~tI0H2YBt7kp4-DROOclBsnvHdY7tE~QkjD2vaDNQQwdYdZnV114iZZVBTaqkc0~-xUxamcOjuZwA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "full set of chainmail armor worn by a plain smooth featureless grey mannequin with the slim build of an 18-year-old young man, standing in A-pose: chainmail coif hood with a simple round steel cap, knee-length chainmail hauberk with a plain belted cloth surcoat, chainmail mittens over leather gloves, chainmail leggings with tall leather boots, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 15000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 2916676099,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8e-37e2-766b-a1d8-46e5b308db6b/output/model.glb?Expires=4949078400&Signature=Ap0HrmYd10SPQca5N7yTDGhyfzk4s~iViIv5Z5Sfeeu3Xo0A0bBiDZNpYerlrzTp-g-FiVPriMM1YARuwBvwV9mJ1xqJyfJdMKmil3LjvgwwDJER783yBfbP9D1VWURYyuDHabGTavv81cQSib26qoe6Knt-n76qLUeDm-5Rp~aRtR47VJPR5HDTP3ak3JkWNqjzqTJLH5sfhy2FXpS0AHpEwFH7GFJaXA8niZ~QjtloFigCYv0zMzYvF2a9hctUjcG9rcBhj0N7axN-dGr6h65YFAzI5pBUQAB18YSH51JDM5z-w7lP80CQXpCui0vGd5PjAVHG6LfPZbVJSxw0Lg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8e-37e2-766b-a1d8-46e5b308db6b/output/preview.png?Expires=4949078400&Signature=myvwyczE~Uprk3rw4q2iSUA6ii6LLglfqkfcWZCfSmP2k4lA6nIPU8Z6HN3o2S5ojjtyd-F7MIeoM1sKAyqRmPC7LvP7RdCkESL4qZZQzCmUSKFuAf315SGmsPwyip30s8hVdyPPpc-GF1c1zNiGbYoP~c3kGyS~v57kie29t5dez9FJhx5ehjpbKc1ko94C6tbaxslfPRdFRqFUomuVqXNt9QIENJ1sFkkyP3R-ud-tvS6LXafUahRjpPUdWKw-m9nKz7xW3~tI0H2YBt7kp4-DROOclBsnvHdY7tE~QkjD2vaDNQQwdYdZnV114iZZVBTaqkc0~-xUxamcOjuZwA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

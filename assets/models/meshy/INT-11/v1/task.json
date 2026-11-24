@@ -1,0 +1,44 @@
+{
+  "id": "01a20f1d-2821-73ce-a152-53f54007af6a",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 3152309067,
+  "prompt": "wooden signpost with three pointed arrow boards, blank, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795549901754,
+  "progress": 100,
+  "started_at": 1795549901767,
+  "finished_at": 1795549926617,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-2821-73ce-a152-53f54007af6a/output/model.glb?Expires=4949078400&Signature=P2wElMM8e23SqA03vInieLbA9u9QV4ikpnpl0f2Al2WdH4U3MeMiKrjTG13WrSA1j0TOUB7pgZmQWCIJ7ErAtitfJi3USzaYlLYfmu~~T-HrkltS0dPrdDvMdvE9zs4fLwCmtf0gd514DLbgWKIpFOi7OprdxRRgsBm7oaZa9f4ni0yyo6QW1qPklnyrDVwUlcaQpBkAaJxJG2GQTnD3INhnz1Zg4uUhNPghs5SYEY-kg2QntRwLnX0dJflwqyh4NsY73p2z6hu-WtOgrrVXnNgTm3vPGbaCpnsyt0W9SeZbrXP0ijG3IfBvOCCnom4jR-TsuDVHU2sTF-exclnimA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-2821-73ce-a152-53f54007af6a/output/preview.png?Expires=4949078400&Signature=Q2GQhFpZmvXxEcg9ztZU6kEIBseTFt4F42273xPJMYTuz4~XyWTwFepDFecRAXuxu~isc4jKJMTzoae6UvZW3fng7OB1CJXv5ht-6AJ6lMHCN43l-Lodfurc2x5MNZCRo3yym~SDQdV2UJbmUHWKKeXySUwAgAFn7915CwFnQTQjKbo9phZ86eZBiyus6onFZTICoxvfRo6Fh4KUjI~rZ3vgiovge3TXpKNONZTQlfxhVnqt0eG~u0SfWDzZ7u57Jif3GQpkBi4a5BX~UbbkzE4X-G2-zrkWw2opB3Z23Jwe0-S90tl94Z5u~88QtflvOjwwtoQgOwyTduNY8GLWMw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "wooden signpost with three pointed arrow boards, blank, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 3152309067,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-2821-73ce-a152-53f54007af6a/output/model.glb?Expires=4949078400&Signature=P2wElMM8e23SqA03vInieLbA9u9QV4ikpnpl0f2Al2WdH4U3MeMiKrjTG13WrSA1j0TOUB7pgZmQWCIJ7ErAtitfJi3USzaYlLYfmu~~T-HrkltS0dPrdDvMdvE9zs4fLwCmtf0gd514DLbgWKIpFOi7OprdxRRgsBm7oaZa9f4ni0yyo6QW1qPklnyrDVwUlcaQpBkAaJxJG2GQTnD3INhnz1Zg4uUhNPghs5SYEY-kg2QntRwLnX0dJflwqyh4NsY73p2z6hu-WtOgrrVXnNgTm3vPGbaCpnsyt0W9SeZbrXP0ijG3IfBvOCCnom4jR-TsuDVHU2sTF-exclnimA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-2821-73ce-a152-53f54007af6a/output/preview.png?Expires=4949078400&Signature=Q2GQhFpZmvXxEcg9ztZU6kEIBseTFt4F42273xPJMYTuz4~XyWTwFepDFecRAXuxu~isc4jKJMTzoae6UvZW3fng7OB1CJXv5ht-6AJ6lMHCN43l-Lodfurc2x5MNZCRo3yym~SDQdV2UJbmUHWKKeXySUwAgAFn7915CwFnQTQjKbo9phZ86eZBiyus6onFZTICoxvfRo6Fh4KUjI~rZ3vgiovge3TXpKNONZTQlfxhVnqt0eG~u0SfWDzZ7u57Jif3GQpkBi4a5BX~UbbkzE4X-G2-zrkWw2opB3Z23Jwe0-S90tl94Z5u~88QtflvOjwwtoQgOwyTduNY8GLWMw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

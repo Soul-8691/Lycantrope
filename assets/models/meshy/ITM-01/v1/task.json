@@ -1,0 +1,43 @@
+{
+  "id": "01a20f8f-888c-717d-b76f-b2a54c51f17b",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "smart-topology",
+  "seed": 1451505097,
+  "prompt": "old rusty longsword, plain crossguard, leather-wrapped grip, chipped blade, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795557396700,
+  "progress": 100,
+  "started_at": 1795557396709,
+  "finished_at": 1795557409054,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-888c-717d-b76f-b2a54c51f17b/output/model.glb?Expires=4949078400&Signature=PR7kA1tzQJffbT0l51ItXu8EPmKbihTXnxPaCBf1owxay85VcLSVZk9DdFmFcfwrBM-PF3ZHJVQJfEGkY73epA6486QfXS4dYUkmc1DpUw2S6rf2XSxb-TcE0iHHAl6pXUtUyCHAVK7p9s5u0LFC8IBEJGcQQjT1P3iwNQfQSQzxUOtJuk5lzKDwknN2wkyL6wvAf0HAiXUMbHLnJKrjiHWlOs9XM2BDjZPElgPRa0m7owYkUn4lt-gttJTLejw09BYmK39N2zbx2oJ~3V91fV3mxcIeDpcKyehWgtBToWWF1LgMdEgs~x62i23S96PSO4lvN2fST084ypBep2h4jA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-888c-717d-b76f-b2a54c51f17b/output/preview.png?Expires=4949078400&Signature=htyaZ-Arl2JgiYcGkN-CZTBURrNQ3vcBarrWyOxH1Sq6fleqLpiNFgAwuh5woowWO9RFYeHoMwgJlQ8FCjwKCvrMtXM66z06t5oA-n5qpYEDlGK8K4vVGuTJfFExszrhJmVkPkw21cYIXnqoYO9IraAqMW6FjtXvDozlJJ817Q0VvtJ4wux7HbSHsoAu25n-o0D6WaU39dlJwVz9vs5xlLk-BBmOj359jAjvee~LJ~2mLV5W3CvE2Z9D5BNyiTlKf2J2tSbuS4fZC4lIx0Ah~k8xzhyUILeoM3ieiHPScIZlHSVEddhwrZ~6ZqU~GIrVllrbQ9EE6lNpELn8y0fb5Q__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 5,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "meshy-t2.5",
+    "mode": "preview",
+    "model_type": "smart-topology",
+    "prompt": "old rusty longsword, plain crossguard, leather-wrapped grip, chipped blade, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 2000
+  },
+  "output": {
+    "seed": 1451505097,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-888c-717d-b76f-b2a54c51f17b/output/model.glb?Expires=4949078400&Signature=PR7kA1tzQJffbT0l51ItXu8EPmKbihTXnxPaCBf1owxay85VcLSVZk9DdFmFcfwrBM-PF3ZHJVQJfEGkY73epA6486QfXS4dYUkmc1DpUw2S6rf2XSxb-TcE0iHHAl6pXUtUyCHAVK7p9s5u0LFC8IBEJGcQQjT1P3iwNQfQSQzxUOtJuk5lzKDwknN2wkyL6wvAf0HAiXUMbHLnJKrjiHWlOs9XM2BDjZPElgPRa0m7owYkUn4lt-gttJTLejw09BYmK39N2zbx2oJ~3V91fV3mxcIeDpcKyehWgtBToWWF1LgMdEgs~x62i23S96PSO4lvN2fST084ypBep2h4jA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-888c-717d-b76f-b2a54c51f17b/output/preview.png?Expires=4949078400&Signature=htyaZ-Arl2JgiYcGkN-CZTBURrNQ3vcBarrWyOxH1Sq6fleqLpiNFgAwuh5woowWO9RFYeHoMwgJlQ8FCjwKCvrMtXM66z06t5oA-n5qpYEDlGK8K4vVGuTJfFExszrhJmVkPkw21cYIXnqoYO9IraAqMW6FjtXvDozlJJ817Q0VvtJ4wux7HbSHsoAu25n-o0D6WaU39dlJwVz9vs5xlLk-BBmOj359jAjvee~LJ~2mLV5W3CvE2Z9D5BNyiTlKf2J2tSbuS4fZC4lIx0Ah~k8xzhyUILeoM3ieiHPScIZlHSVEddhwrZ~6ZqU~GIrVllrbQ9EE6lNpELn8y0fb5Q__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

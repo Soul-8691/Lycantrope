@@ -1,0 +1,43 @@
+{
+  "id": "01a20f44-9d23-779c-885a-8f0f7876355d",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "smart-topology",
+  "seed": 3931508431,
+  "prompt": "large wooden medieval barn, big double doors, hay loft, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795552485484,
+  "progress": 100,
+  "started_at": 1795552485497,
+  "finished_at": 1795552523629,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f44-9d23-779c-885a-8f0f7876355d/output/model.glb?Expires=4949078400&Signature=jq4x3M8rO0sAHw0tVrw8z60To-YVdkd16sRFrh9xkWmPTDS8mAWha~k0aQuMSpASohWtRBzrD2floQgIFXwuPdUZZhNlFt60ym5jthChaQdxJD49SMgg-6cjYIHuuyX-O0MJh6NJQTLsLx8X83natG8~PV4VTcGAQNhb19sQ7XqF-E0dpOts1~5VtWd1KXohmi9QSTgQM4OJaneQx2oOdfF5Y-OlgOLWURmRSYgT01S0JhGhOO3dR7ImUNdoARBw~5yWwIVAI88n6Fj2fk9pfP-~jxZ08TKc6GFXgPWHGN9C0AmWyU3fOC5vUJZwWAqoPLwAhyLftBMkjXXFwwvrHQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f44-9d23-779c-885a-8f0f7876355d/output/preview.png?Expires=4949078400&Signature=lyPrIapmnGpRo5U6on2qnqjGc9JW67TDlXkF9mnFi7N5rkfps9N2UfdPq-z4bMniv6J3vpDnofryHyeTb7vo82hCVuwujd8OSuybFbdJdlRw0fjmPM2DtnLkf2V0uCpTjpAUkSF-aELHOtPE4hbEvivQQ7VQilylQ9HoqQ-~3RZFvo1iuKhZYUpugL6hF4WvU3i1M8jdPcS6L6Yy61EZmy4CQmuLX3qzSGkZcCRkYMCCH2qW3Y3ou~2quUUYCFLPrgJ05D6IgcPXRkBbToCNoq9j3H0ziKCH6v2eV~Wo4BzEC2mS-xvG1rA5WzFzPTI~Si~sT8x3JJ6T7B3mD6N1JQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 5,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "meshy-t2.5",
+    "mode": "preview",
+    "model_type": "smart-topology",
+    "prompt": "large wooden medieval barn, big double doors, hay loft, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 4000
+  },
+  "output": {
+    "seed": 3931508431,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f44-9d23-779c-885a-8f0f7876355d/output/model.glb?Expires=4949078400&Signature=jq4x3M8rO0sAHw0tVrw8z60To-YVdkd16sRFrh9xkWmPTDS8mAWha~k0aQuMSpASohWtRBzrD2floQgIFXwuPdUZZhNlFt60ym5jthChaQdxJD49SMgg-6cjYIHuuyX-O0MJh6NJQTLsLx8X83natG8~PV4VTcGAQNhb19sQ7XqF-E0dpOts1~5VtWd1KXohmi9QSTgQM4OJaneQx2oOdfF5Y-OlgOLWURmRSYgT01S0JhGhOO3dR7ImUNdoARBw~5yWwIVAI88n6Fj2fk9pfP-~jxZ08TKc6GFXgPWHGN9C0AmWyU3fOC5vUJZwWAqoPLwAhyLftBMkjXXFwwvrHQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f44-9d23-779c-885a-8f0f7876355d/output/preview.png?Expires=4949078400&Signature=lyPrIapmnGpRo5U6on2qnqjGc9JW67TDlXkF9mnFi7N5rkfps9N2UfdPq-z4bMniv6J3vpDnofryHyeTb7vo82hCVuwujd8OSuybFbdJdlRw0fjmPM2DtnLkf2V0uCpTjpAUkSF-aELHOtPE4hbEvivQQ7VQilylQ9HoqQ-~3RZFvo1iuKhZYUpugL6hF4WvU3i1M8jdPcS6L6Yy61EZmy4CQmuLX3qzSGkZcCRkYMCCH2qW3Y3ou~2quUUYCFLPrgJ05D6IgcPXRkBbToCNoq9j3H0ziKCH6v2eV~Wo4BzEC2mS-xvG1rA5WzFzPTI~Si~sT8x3JJ6T7B3mD6N1JQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

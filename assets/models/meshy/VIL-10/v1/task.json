@@ -1,0 +1,42 @@
+{
+  "id": "01a20f22-cbc6-77b6-8f73-39a909df2c43",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 1588106625,
+  "prompt": "wooden farm cart loaded with hay, large spoked wheels, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795550269143,
+  "progress": 100,
+  "started_at": 1795550269151,
+  "finished_at": 1795550374865,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f22-cbc6-77b6-8f73-39a909df2c43/output/model.glb?Expires=4949078400&Signature=ikbH3lHVQQbxIx8hNcnDyDbXJchJSGlZkUh6jI4FoI-6fUWU8aIKQiER7O~hbjT-X~9HLKEOlL0vwkD61cFHEWeSf-mDOSSPt583WAMACKSUgh6OdKcXff0UylUw247kEOCIbLjqrBOTDriuS4zxiQMBVlb8OBNZAROcMCjUwryL0UAXNGaa9~PK03QtZSO~0CH~aCdYwbMOwc-Xc5wvRcT4Zb6DtOutPSAGb3YkAj1~sf4wyRKf693Hx5pQKPz0QYBgOr0Ja~lpNenwys9Ci6rnUGGWVlWZ~9Ptrfp6~LiG98o4c334atn4CBFG2Z4lsnt33-simh3-1qsFjuEFow__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f22-cbc6-77b6-8f73-39a909df2c43/output/preview.png?Expires=4949078400&Signature=nqw7LcUBkD2I0VcsWcme4EPaNyBlHQkS5YjaCo3EzjZ5jMminvLZ6cdkh4PnIusMxJCoDs2fqN0oy~PU-JwsCrBaynGdL4Epx7Vwoei3N3qfE8uTecOQz4443Q~CgJCRoQgjqZ7unh8XgxuDjvo0WlMZ3Y9Iu2836BnNq0AUxTrS5p50IFwH1z3EDoOckzkfrrATC2uN0Zq4JdYBAIch3YLiNme5B8Ze6kmfU~~haE5DdsVtP3WYrQMB4cA3MgLzJCBDAmaXAQ4l0cm5xpNv56ck0vbuvElHc-HJjAMvv45l8Nzb5iy371saG~7wPlg1WxlXKSaoY56OzcDfdv7syQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "wooden farm cart loaded with hay, large spoked wheels, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": false,
+    "target_formats": [
+      "glb"
+    ]
+  },
+  "output": {
+    "seed": 1588106625,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f22-cbc6-77b6-8f73-39a909df2c43/output/model.glb?Expires=4949078400&Signature=ikbH3lHVQQbxIx8hNcnDyDbXJchJSGlZkUh6jI4FoI-6fUWU8aIKQiER7O~hbjT-X~9HLKEOlL0vwkD61cFHEWeSf-mDOSSPt583WAMACKSUgh6OdKcXff0UylUw247kEOCIbLjqrBOTDriuS4zxiQMBVlb8OBNZAROcMCjUwryL0UAXNGaa9~PK03QtZSO~0CH~aCdYwbMOwc-Xc5wvRcT4Zb6DtOutPSAGb3YkAj1~sf4wyRKf693Hx5pQKPz0QYBgOr0Ja~lpNenwys9Ci6rnUGGWVlWZ~9Ptrfp6~LiG98o4c334atn4CBFG2Z4lsnt33-simh3-1qsFjuEFow__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f22-cbc6-77b6-8f73-39a909df2c43/output/preview.png?Expires=4949078400&Signature=nqw7LcUBkD2I0VcsWcme4EPaNyBlHQkS5YjaCo3EzjZ5jMminvLZ6cdkh4PnIusMxJCoDs2fqN0oy~PU-JwsCrBaynGdL4Epx7Vwoei3N3qfE8uTecOQz4443Q~CgJCRoQgjqZ7unh8XgxuDjvo0WlMZ3Y9Iu2836BnNq0AUxTrS5p50IFwH1z3EDoOckzkfrrATC2uN0Zq4JdYBAIch3YLiNme5B8Ze6kmfU~~haE5DdsVtP3WYrQMB4cA3MgLzJCBDAmaXAQ4l0cm5xpNv56ck0vbuvElHc-HJjAMvv45l8Nzb5iy371saG~7wPlg1WxlXKSaoY56OzcDfdv7syQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

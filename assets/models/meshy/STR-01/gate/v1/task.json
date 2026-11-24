@@ -1,0 +1,44 @@
+{
+  "id": "01a20f1c-7b00-7158-b4d5-2afc359e0d45",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 736745724,
+  "prompt": "rustic wooden farm gate between two thick fence posts, split-rail style, closed, iron hinges and latch, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795549856706,
+  "progress": 100,
+  "started_at": 1795549856726,
+  "finished_at": 1795549890568,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-7b00-7158-b4d5-2afc359e0d45/output/model.glb?Expires=4949078400&Signature=FRjiZN0dL1jLUDCDb3jcG02DTxcxuOYmxpMETLohsGROgsJissOZavSAaeAT5k3OajDrsXJnnqAzWwEJcur1WqaE1WbRVmW2FvdG5dZyv6Gn42tYL28hVDE4dM2s9hen2YEyD80SwONM3XlnK5vERDkZ2hi5QMd60EiHLMuv9gQAxsDdLRUsdJEFEb~a0hHHbG9fmuRvMOvEIQKg3rkqD0fMHFV3BFpbl3IExv9RnpK3-OtM6VXjCfFMyVx95F7qCUV1EWTPmo0oQvSz3enrIA6h2Blj2XDRc1-waTjXremcPu1MIAK0rjtg7n02CdLPbLlt-3y-8TRX4qxpQJJAwA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-7b00-7158-b4d5-2afc359e0d45/output/preview.png?Expires=4949078400&Signature=ItYqOcUKqYdL3But80Sv3Zn9gjXTczaK6WgTG2ENWt3ufAkvrOi~nz~IBpSJNk7PIZZ9miUq9bJlsX6Fn3WrsdKgrjtM4X33vVG8KTBuwqrIPQd7fFkO~HsZ04AZR~Ze-3OBJ4AYP5T1ceo0uRbwfG2BPSXDwa8r~1PwAINGb8pNHo71y6l1C~8YJA25BJ7Dt--Iub9xEHL9fV8klORPVLWM03naUTkaqeGQR~g1dXcQYEQDScQRLrGHEfuFfrJOeuSvbRPGHder7YQ7MGmM22fTcEx21T8NkMLeG0LRvMT8FUIiHR1b8c2Hu26dt9n5NRLHSxV7pSE4pR7OD~SJdg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "rustic wooden farm gate between two thick fence posts, split-rail style, closed, iron hinges and latch, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 736745724,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-7b00-7158-b4d5-2afc359e0d45/output/model.glb?Expires=4949078400&Signature=FRjiZN0dL1jLUDCDb3jcG02DTxcxuOYmxpMETLohsGROgsJissOZavSAaeAT5k3OajDrsXJnnqAzWwEJcur1WqaE1WbRVmW2FvdG5dZyv6Gn42tYL28hVDE4dM2s9hen2YEyD80SwONM3XlnK5vERDkZ2hi5QMd60EiHLMuv9gQAxsDdLRUsdJEFEb~a0hHHbG9fmuRvMOvEIQKg3rkqD0fMHFV3BFpbl3IExv9RnpK3-OtM6VXjCfFMyVx95F7qCUV1EWTPmo0oQvSz3enrIA6h2Blj2XDRc1-waTjXremcPu1MIAK0rjtg7n02CdLPbLlt-3y-8TRX4qxpQJJAwA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-7b00-7158-b4d5-2afc359e0d45/output/preview.png?Expires=4949078400&Signature=ItYqOcUKqYdL3But80Sv3Zn9gjXTczaK6WgTG2ENWt3ufAkvrOi~nz~IBpSJNk7PIZZ9miUq9bJlsX6Fn3WrsdKgrjtM4X33vVG8KTBuwqrIPQd7fFkO~HsZ04AZR~Ze-3OBJ4AYP5T1ceo0uRbwfG2BPSXDwa8r~1PwAINGb8pNHo71y6l1C~8YJA25BJ7Dt--Iub9xEHL9fV8klORPVLWM03naUTkaqeGQR~g1dXcQYEQDScQRLrGHEfuFfrJOeuSvbRPGHder7YQ7MGmM22fTcEx21T8NkMLeG0LRvMT8FUIiHR1b8c2Hu26dt9n5NRLHSxV7pSE4pR7OD~SJdg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "01a20f1c-40a5-71ae-9ad9-ecb9b4a4b82e",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 1445476177,
+  "prompt": "small open-sided village smithy, stone forge, anvil, bellows, tools on the wall, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795549842115,
+  "progress": 100,
+  "started_at": 1795549842128,
+  "finished_at": 1795549906790,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-40a5-71ae-9ad9-ecb9b4a4b82e/output/model.glb?Expires=4949078400&Signature=XblMq59aaNm1Rec1-kqnOMFBNCWCEKuAPRP1taU9-QVF8B0daxejalIH9DuOYrcIylyCjXBecNnODBCIrGKuJBeJlLFr28V7RIUwYB3rt6Tb3ZPVX00IUHzF2jJegpXBUVuNioehJvYI1SX8zexQSbb6p6wV2jQRd5jzROAU4ikzQ2lSjoKotBUFX8MsN2MpMrqaQCgo~T4HdNjOnjb-VMtmz7cq52UXFuK5gE5vaddH1dizVk7RwLnFTyOqtuhPWzpV1S64NUhZQUNmF3HKo43GKTHhITnqjuczlbI~Ep6eDsoSE5wljorLnlEQuYn1m7sB-2nvtcLGz8BGxmR64g__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-40a5-71ae-9ad9-ecb9b4a4b82e/output/preview.png?Expires=4949078400&Signature=Amvd1MTSeOK~1mTxfgmkyR96mOzSnnEPySFR0VJM26587KyporeV8DW8uSGgQCBoDr9iNvcULA2czkceN5CdYwtv57nBrz5dGpTI~JXePmfaakwYtW3PpHEpPnyrgjcrTlTNjPTE08BWnJizsSoSPZcX3rlKpzjfxlPL5VVrnQBSMuSYV0B6J6a2VY4iY~sKDDr7BcCE4LIJ82QR9XB2xFxLXl1AfqLRCK2IkiEErRDp7DqXAbJN3tL2M8CRcAVhzJw48jveuGuiz~YA-TR7tjlkJCvjGHjcNtYaViT5wudfETrGIP2BMCNBZS4dL9dyXAVWHx3-BPgicmqr0UazRg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "small open-sided village smithy, stone forge, anvil, bellows, tools on the wall, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 5000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 1445476177,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-40a5-71ae-9ad9-ecb9b4a4b82e/output/model.glb?Expires=4949078400&Signature=XblMq59aaNm1Rec1-kqnOMFBNCWCEKuAPRP1taU9-QVF8B0daxejalIH9DuOYrcIylyCjXBecNnODBCIrGKuJBeJlLFr28V7RIUwYB3rt6Tb3ZPVX00IUHzF2jJegpXBUVuNioehJvYI1SX8zexQSbb6p6wV2jQRd5jzROAU4ikzQ2lSjoKotBUFX8MsN2MpMrqaQCgo~T4HdNjOnjb-VMtmz7cq52UXFuK5gE5vaddH1dizVk7RwLnFTyOqtuhPWzpV1S64NUhZQUNmF3HKo43GKTHhITnqjuczlbI~Ep6eDsoSE5wljorLnlEQuYn1m7sB-2nvtcLGz8BGxmR64g__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-40a5-71ae-9ad9-ecb9b4a4b82e/output/preview.png?Expires=4949078400&Signature=Amvd1MTSeOK~1mTxfgmkyR96mOzSnnEPySFR0VJM26587KyporeV8DW8uSGgQCBoDr9iNvcULA2czkceN5CdYwtv57nBrz5dGpTI~JXePmfaakwYtW3PpHEpPnyrgjcrTlTNjPTE08BWnJizsSoSPZcX3rlKpzjfxlPL5VVrnQBSMuSYV0B6J6a2VY4iY~sKDDr7BcCE4LIJ82QR9XB2xFxLXl1AfqLRCK2IkiEErRDp7DqXAbJN3tL2M8CRcAVhzJw48jveuGuiz~YA-TR7tjlkJCvjGHjcNtYaViT5wudfETrGIP2BMCNBZS4dL9dyXAVWHx3-BPgicmqr0UazRg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

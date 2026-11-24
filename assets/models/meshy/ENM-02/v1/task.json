@@ -1,0 +1,44 @@
+{
+  "id": "01a20f6a-08c1-7435-bdcf-bcc735970e72",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 1094796629,
+  "prompt": "lean grey wolf, thick grey fur with a darker back, long legs, alert ears, mouth closed, full body, standing on all four legs in a neutral pose, facing forward, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795554939355,
+  "progress": 100,
+  "started_at": 1795554939371,
+  "finished_at": 1795555014640,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f6a-08c1-7435-bdcf-bcc735970e72/output/model.glb?Expires=4949078400&Signature=XOcA~gyhI-K9MPaXmEmdUo-OR4e4ZceedqW-akkP5hxNZwyY9Y5sf~DTwTxTH8QXsQq0zVU1Z2VSKPFiHLEmAnQfuSfbMY1Dh93x0hqEoOENV0~GXcoznY3N-MifdQhN8ZsPn-mEcOKIYyTFvpxoh-~Sh~4JOp6M85rtj9BnpD7a7OR0~qos2nV63IN5tPp0zBpCNo1uLYjamx7MOvZYPQU32bIOiCPZZB4nD1Rom0e2AuiyG~fs-i~D9GEl-RjevJ3iZbv-5wMUQVpc-UpBUgwNk1aupKcOtuDMM6C5c4DHO7-gdXRiMEkME0DRLPWw3pqouZeebXOCOymjlpIXcw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f6a-08c1-7435-bdcf-bcc735970e72/output/preview.png?Expires=4949078400&Signature=ErnQYwnj3hxphRrWe4tROQ23HLxHqUw1021LziOz8Zr-BZxyrefX2~ipV~-oMgkmeZrkCl5hsiTjkOMZdL6MdVrx9el~AlyUBHcmox1b4zinw1jASuyN2KbsQRwptaxcGSL4RYCgqW6gSzQrswi2qDqeSx907c3cvT9Hzxz1Utbdl8Jy8sL8rkxGA7LA7XkgW7CkJZgh8Pa1zASLoUIORPiKQHOovgigQLBqD1E-E1jLXp4TGEuaxVyTQ2wzXlAO3WaFWCya3~AKFEXByyacOP8IOBMBzxMK5r4phMtSzwgXkyj91ndQVGCkPSkCdMaLmvMGJGjPDZRajbn2MpHUmA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "lean grey wolf, thick grey fur with a darker back, long legs, alert ears, mouth closed, full body, standing on all four legs in a neutral pose, facing forward, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 6000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 1094796629,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f6a-08c1-7435-bdcf-bcc735970e72/output/model.glb?Expires=4949078400&Signature=XOcA~gyhI-K9MPaXmEmdUo-OR4e4ZceedqW-akkP5hxNZwyY9Y5sf~DTwTxTH8QXsQq0zVU1Z2VSKPFiHLEmAnQfuSfbMY1Dh93x0hqEoOENV0~GXcoznY3N-MifdQhN8ZsPn-mEcOKIYyTFvpxoh-~Sh~4JOp6M85rtj9BnpD7a7OR0~qos2nV63IN5tPp0zBpCNo1uLYjamx7MOvZYPQU32bIOiCPZZB4nD1Rom0e2AuiyG~fs-i~D9GEl-RjevJ3iZbv-5wMUQVpc-UpBUgwNk1aupKcOtuDMM6C5c4DHO7-gdXRiMEkME0DRLPWw3pqouZeebXOCOymjlpIXcw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f6a-08c1-7435-bdcf-bcc735970e72/output/preview.png?Expires=4949078400&Signature=ErnQYwnj3hxphRrWe4tROQ23HLxHqUw1021LziOz8Zr-BZxyrefX2~ipV~-oMgkmeZrkCl5hsiTjkOMZdL6MdVrx9el~AlyUBHcmox1b4zinw1jASuyN2KbsQRwptaxcGSL4RYCgqW6gSzQrswi2qDqeSx907c3cvT9Hzxz1Utbdl8Jy8sL8rkxGA7LA7XkgW7CkJZgh8Pa1zASLoUIORPiKQHOovgigQLBqD1E-E1jLXp4TGEuaxVyTQ2wzXlAO3WaFWCya3~AKFEXByyacOP8IOBMBzxMK5r4phMtSzwgXkyj91ndQVGCkPSkCdMaLmvMGJGjPDZRajbn2MpHUmA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

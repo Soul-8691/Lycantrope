@@ -1,0 +1,43 @@
+{
+  "id": "01a20f8f-9257-738f-898c-b4641c243aa3",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "smart-topology",
+  "seed": 49811586,
+  "prompt": "elegant longsword with polished steel blade, gold inlay along the fuller, ornate crossguard, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795557398746,
+  "progress": 100,
+  "started_at": 1795557398756,
+  "finished_at": 1795557410972,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-9257-738f-898c-b4641c243aa3/output/model.glb?Expires=4949078400&Signature=SgMossm1q8hxZW45-U9VvOawtHCF9RaZtqAWa07XTyGShihG0BfS6qRF73Xphuxq84Ub4Ma~q0G8R7p9XMc1I8D7TSY5sUSaJ2FIw4E30koNK8CTNoDKTQBAsYsko4FkglXTpe-k~OzW1SE-MS7rklvt299fGUs8A8vLry6IOgzq4JGpDFNSixGjktICg7OMULBO40YSVGpFi~-DOJD4gXzLjKf3Bb2CrcIodryf258Xv89uptxG2Blg24V191dOGvm8e9SCOXRi~AvKZw6jrzT4~rJQ8K5IyDjLdRevElUo4KSwZ8M-8qXq7u5S3NiSHFXdxYDkMoiQflVp39MbsQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-9257-738f-898c-b4641c243aa3/output/preview.png?Expires=4949078400&Signature=Co9JcJJJrYXTEYJPKEvpN5uqWo-2gYwo9H2TlykeMTIo1N~jeVWYNsZn1IWsw5Olq~hvsHCEacR-9ZpJCIl1hop04ZC1X906BJPRw0DRxMxI7i07KuhCUj1BqLI2NhhNp-XIx7ITd5EEFlCY4ERxy8jjG4DUn7aEigypwDp89LU4VHUMf4JX4AYfP~yDVzkPs6YT8gXmLTde9eUZtDaZKXuYKaG-EDiKTHKMCVYN7SjrVIeezExFmDH19w3hd7l4umO9wOSzeLISuyoUzoZE6kO2EQI6p~5-oTcTZ9b709rB7fdrBWZfyjFpe7FV1po0JJML6ebU0nRdj7nh5S59Sw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 5,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "meshy-t2.5",
+    "mode": "preview",
+    "model_type": "smart-topology",
+    "prompt": "elegant longsword with polished steel blade, gold inlay along the fuller, ornate crossguard, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 2500
+  },
+  "output": {
+    "seed": 49811586,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-9257-738f-898c-b4641c243aa3/output/model.glb?Expires=4949078400&Signature=SgMossm1q8hxZW45-U9VvOawtHCF9RaZtqAWa07XTyGShihG0BfS6qRF73Xphuxq84Ub4Ma~q0G8R7p9XMc1I8D7TSY5sUSaJ2FIw4E30koNK8CTNoDKTQBAsYsko4FkglXTpe-k~OzW1SE-MS7rklvt299fGUs8A8vLry6IOgzq4JGpDFNSixGjktICg7OMULBO40YSVGpFi~-DOJD4gXzLjKf3Bb2CrcIodryf258Xv89uptxG2Blg24V191dOGvm8e9SCOXRi~AvKZw6jrzT4~rJQ8K5IyDjLdRevElUo4KSwZ8M-8qXq7u5S3NiSHFXdxYDkMoiQflVp39MbsQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f8f-9257-738f-898c-b4641c243aa3/output/preview.png?Expires=4949078400&Signature=Co9JcJJJrYXTEYJPKEvpN5uqWo-2gYwo9H2TlykeMTIo1N~jeVWYNsZn1IWsw5Olq~hvsHCEacR-9ZpJCIl1hop04ZC1X906BJPRw0DRxMxI7i07KuhCUj1BqLI2NhhNp-XIx7ITd5EEFlCY4ERxy8jjG4DUn7aEigypwDp89LU4VHUMf4JX4AYfP~yDVzkPs6YT8gXmLTde9eUZtDaZKXuYKaG-EDiKTHKMCVYN7SjrVIeezExFmDH19w3hd7l4umO9wOSzeLISuyoUzoZE6kO2EQI6p~5-oTcTZ9b709rB7fdrBWZfyjFpe7FV1po0JJML6ebU0nRdj7nh5S59Sw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

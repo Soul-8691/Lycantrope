@@ -1,0 +1,44 @@
+{
+  "id": "01a20f1c-4d31-767c-9108-77379ab52ab8",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 4182576027,
+  "prompt": "medieval market stall with striped cloth awning, wooden counter, baskets of goods, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795549845554,
+  "progress": 100,
+  "started_at": 1795549845565,
+  "finished_at": 1795549915830,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-4d31-767c-9108-77379ab52ab8/output/model.glb?Expires=4949078400&Signature=le74OvFy-HXUJEjK0CakLkK0cI4a~q08jc3xq045-O~qClvx5p1o6aP9Psx1xvSNO7GBnKsWyx6TNiLOFw1dNQ0Esr0d7m1gXlKPMfFWm67PKwAtNn-rqEMgomRwCTaLlkl2uARc6d6Zoo3GbvrRPrynqNOzBx1LKaOic4WH2cknzCQCDPsJ8CQtDcrsV4iaEikt1uBnhgyUFPMxNzeJo3ePf-cN6ssqtccIML9VwEXTB6o5YCKXdO63fPuSdEveFgNMwrMybmntmNPmFVwjoyYKRIpeeRy6C7-WAhcu3zh3XAS4-gtDZK6XaNyW0pctSd9TSt4dB44OMjpSFIXonw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-4d31-767c-9108-77379ab52ab8/output/preview.png?Expires=4949078400&Signature=DXZHtuBVFjmPljXpZA~K8R86wgYN-a3jNMYia5j0l2cg5I4wvbm7x~fqfvYPdq6sTw2ZIcL4~nkdLtVN6voRbjqvpKMgqvmwEw6ndWG-2Hwl15-AxvHehM8nahW3dFlx38Sqt26U-6RO96lf1e2U7r06QLRg-GaghBxSitAPDLEwepDvo-VKKDOx34B1ArhlWocGHQwJ5AIC3zSSxF2~YgJXZlaRBGgQjuYP819Ts4ajpVpU1DOIGlHAZUa1hcFsNziL5JIGBUguLHfAUjQJ-fwqk8vgCu4cvVvReEJiBc5E1k7lND1JZmAAo-6EFmHhUhPBz-m8snLGcdbdqDvcuA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "medieval market stall with striped cloth awning, wooden counter, baskets of goods, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 1500,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 4182576027,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-4d31-767c-9108-77379ab52ab8/output/model.glb?Expires=4949078400&Signature=le74OvFy-HXUJEjK0CakLkK0cI4a~q08jc3xq045-O~qClvx5p1o6aP9Psx1xvSNO7GBnKsWyx6TNiLOFw1dNQ0Esr0d7m1gXlKPMfFWm67PKwAtNn-rqEMgomRwCTaLlkl2uARc6d6Zoo3GbvrRPrynqNOzBx1LKaOic4WH2cknzCQCDPsJ8CQtDcrsV4iaEikt1uBnhgyUFPMxNzeJo3ePf-cN6ssqtccIML9VwEXTB6o5YCKXdO63fPuSdEveFgNMwrMybmntmNPmFVwjoyYKRIpeeRy6C7-WAhcu3zh3XAS4-gtDZK6XaNyW0pctSd9TSt4dB44OMjpSFIXonw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-4d31-767c-9108-77379ab52ab8/output/preview.png?Expires=4949078400&Signature=DXZHtuBVFjmPljXpZA~K8R86wgYN-a3jNMYia5j0l2cg5I4wvbm7x~fqfvYPdq6sTw2ZIcL4~nkdLtVN6voRbjqvpKMgqvmwEw6ndWG-2Hwl15-AxvHehM8nahW3dFlx38Sqt26U-6RO96lf1e2U7r06QLRg-GaghBxSitAPDLEwepDvo-VKKDOx34B1ArhlWocGHQwJ5AIC3zSSxF2~YgJXZlaRBGgQjuYP819Ts4ajpVpU1DOIGlHAZUa1hcFsNziL5JIGBUguLHfAUjQJ-fwqk8vgCu4cvVvReEJiBc5E1k7lND1JZmAAo-6EFmHhUhPBz-m8snLGcdbdqDvcuA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

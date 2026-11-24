@@ -1,0 +1,44 @@
+{
+  "id": "01a20f1c-656a-7647-afdd-5f19b268e1a3",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 1010325321,
+  "prompt": "stack of square hay bales and one round hay bale, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795549850812,
+  "progress": 100,
+  "started_at": 1795549850827,
+  "finished_at": 1795549922329,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-656a-7647-afdd-5f19b268e1a3/output/model.glb?Expires=4949078400&Signature=KCheQju6A-Roos-TaW5tLtLqqmKZOWMWT5ne42H1XuRCYmII3gFwCk4lGy4m53t7wg0wuBezkannyYS59fKXIi2q~c6CubUACWfJJssylWqqz4G9J9MAnaq2c6f8FDlPcvzjxU57kPppEJuulfBEjhN0bbTG5CNpPC37zGJSZKGkVQx-lfD8hm7OCOMMqMTeYVMgBmbAP4VWmvwc7ICG3wzEZbYSDbwOIK~AkNctMf9GJ0xgB0xgWauyHGqHeZ89gj4r8G-70XqXoGpPbNTRKB5P2grdl2oHKSIyo2l9aVCgsruqZ71zaqEUr8HLUBMEZFnc6FsmRmWpkvOU-PjJzA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-656a-7647-afdd-5f19b268e1a3/output/preview.png?Expires=4949078400&Signature=QwCWXTgNxirkvvDj7JQTR4weBW6YeGCOjabQuYEBcX1qf3e-uv6cZ~FXYO5sfOEtWPih2N8fMNIjtvE5XRKtGPCnTo~hMZQvANKu11MvdIrL7tz5KcHgePCn27JG9QP~ZK-gcd36dmVEVfv1RH5yFrienvWW4MbokYMjswQnot7HSk3O2yOc-2-~KyivZsH0oKIpiFDAH9SWwFooPNPHIz5IpR6Uzbg6LE8fRgQWdV0MNp0u818NQhSyawElFMZvVqdeDLQzMX48croWYWk1T30vKFmBVd1absPNNWMI3Bc1riT0kFnlGgV8jnMBsg6ElhKefsx1fIpgP3VF9yijKA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "stack of square hay bales and one round hay bale, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 1010325321,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-656a-7647-afdd-5f19b268e1a3/output/model.glb?Expires=4949078400&Signature=KCheQju6A-Roos-TaW5tLtLqqmKZOWMWT5ne42H1XuRCYmII3gFwCk4lGy4m53t7wg0wuBezkannyYS59fKXIi2q~c6CubUACWfJJssylWqqz4G9J9MAnaq2c6f8FDlPcvzjxU57kPppEJuulfBEjhN0bbTG5CNpPC37zGJSZKGkVQx-lfD8hm7OCOMMqMTeYVMgBmbAP4VWmvwc7ICG3wzEZbYSDbwOIK~AkNctMf9GJ0xgB0xgWauyHGqHeZ89gj4r8G-70XqXoGpPbNTRKB5P2grdl2oHKSIyo2l9aVCgsruqZ71zaqEUr8HLUBMEZFnc6FsmRmWpkvOU-PjJzA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-656a-7647-afdd-5f19b268e1a3/output/preview.png?Expires=4949078400&Signature=QwCWXTgNxirkvvDj7JQTR4weBW6YeGCOjabQuYEBcX1qf3e-uv6cZ~FXYO5sfOEtWPih2N8fMNIjtvE5XRKtGPCnTo~hMZQvANKu11MvdIrL7tz5KcHgePCn27JG9QP~ZK-gcd36dmVEVfv1RH5yFrienvWW4MbokYMjswQnot7HSk3O2yOc-2-~KyivZsH0oKIpiFDAH9SWwFooPNPHIz5IpR6Uzbg6LE8fRgQWdV0MNp0u818NQhSyawElFMZvVqdeDLQzMX48croWYWk1T30vKFmBVd1absPNNWMI3Bc1riT0kFnlGgV8jnMBsg6ElhKefsx1fIpgP3VF9yijKA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

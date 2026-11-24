@@ -1,0 +1,44 @@
+{
+  "id": "01a20f1d-8fec-76f3-914d-3de86c9e6950",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 2105813334,
+  "prompt": "wooden post with a hanging iron lantern, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795549926089,
+  "progress": 100,
+  "started_at": 1795549926099,
+  "finished_at": 1795549954808,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-8fec-76f3-914d-3de86c9e6950/output/model.glb?Expires=4949078400&Signature=hvzeCjCe55-MyLE0KyOVRCCBkoIXLk2LPiI0Nq3EjyOyYBMY4gTU9gIt2OuRo5YrIROyetA5KUC7O4hV2vpNmPTzsbS0MS3GKdy0OTdBbeUCyJ6-59Q519FEbyR8bUzNPwbpeOM-vNrFAw4LF8YEcQ1fzTVfwidF4UOUmQRZgZqeWcJ6VNfx-6It07nQ0efpj67BcKndFWVI8olpkELMSQNeB~mBeUyuIoFPnUGwaooL1IkPYSinZzJXo9H09FfRr~Sxips2Duz3kPva~to6U3Ho4mp8ArvWOIvBTgmGlLZ3uV33IFMKHIY6~62HsuB3OWnMfOoGZzRO8NzQs3riUA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-8fec-76f3-914d-3de86c9e6950/output/preview.png?Expires=4949078400&Signature=hLxYHa2HdLcXzOqMwhQ3tah6hCPeephBTEfR3Iy7fy9261mcfLQ294uqz4JePNaxuRV1j~3nIUCAsEcQAMMie9PQMNeo4HaDXFg8QFdVS0Hc5ZUCrxvUN2h~MXxryA~oSp6jNp5bRPDAtJhnfkxKZ776YmttA6YsRJ3oVNdDyCweKiEGdwx7hKTwMOPGQpJzEdKh60WuIl7G3~eouKS6Qi0SdJDq2YESEs7X4ozJ5du1Sc5wfvoFjmpStI4-pAVPjneklQHGCs~r68gTMCh0UNj7OcqAN5ax-UM6KEmokSKPD4DGVo1hiktvaprrpX87hT7q6Jp-4BNtSsEbgZo0Ng__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "wooden post with a hanging iron lantern, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 2105813334,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-8fec-76f3-914d-3de86c9e6950/output/model.glb?Expires=4949078400&Signature=hvzeCjCe55-MyLE0KyOVRCCBkoIXLk2LPiI0Nq3EjyOyYBMY4gTU9gIt2OuRo5YrIROyetA5KUC7O4hV2vpNmPTzsbS0MS3GKdy0OTdBbeUCyJ6-59Q519FEbyR8bUzNPwbpeOM-vNrFAw4LF8YEcQ1fzTVfwidF4UOUmQRZgZqeWcJ6VNfx-6It07nQ0efpj67BcKndFWVI8olpkELMSQNeB~mBeUyuIoFPnUGwaooL1IkPYSinZzJXo9H09FfRr~Sxips2Duz3kPva~to6U3Ho4mp8ArvWOIvBTgmGlLZ3uV33IFMKHIY6~62HsuB3OWnMfOoGZzRO8NzQs3riUA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-8fec-76f3-914d-3de86c9e6950/output/preview.png?Expires=4949078400&Signature=hLxYHa2HdLcXzOqMwhQ3tah6hCPeephBTEfR3Iy7fy9261mcfLQ294uqz4JePNaxuRV1j~3nIUCAsEcQAMMie9PQMNeo4HaDXFg8QFdVS0Hc5ZUCrxvUN2h~MXxryA~oSp6jNp5bRPDAtJhnfkxKZ776YmttA6YsRJ3oVNdDyCweKiEGdwx7hKTwMOPGQpJzEdKh60WuIl7G3~eouKS6Qi0SdJDq2YESEs7X4ozJ5du1Sc5wfvoFjmpStI4-pAVPjneklQHGCs~r68gTMCh0UNj7OcqAN5ax-UM6KEmokSKPD4DGVo1hiktvaprrpX87hT7q6Jp-4BNtSsEbgZo0Ng__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

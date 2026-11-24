@@ -1,0 +1,44 @@
+{
+  "id": "01a20f1d-18e7-7375-ab52-2f191785d4bf",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 2354537291,
+  "prompt": "waist-high carved standing stone shrine with a hollow niche at the top, worn runes, small stone base, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795549897622,
+  "progress": 100,
+  "started_at": 1795549897631,
+  "finished_at": 1795549929015,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-18e7-7375-ab52-2f191785d4bf/output/model.glb?Expires=4949078400&Signature=OgMz3aD9ZKXA5HVSGDxyWAQfb4ULl6I4zt89OcUcZioRfAFat6OQwBPAJN0p75JCl9REKoe~iYESnKtsAJroApuWiUhez25-i90OpLfBaVW-HWdMzLwSL~au71K3-SPUzU9QEaQFQeMTquAh0AWm0mLb-qXo5zqzhLzQ~kBQCii9JSXlp2dcOkK1-pFnpyYmHlmEd2UVO6UqCJrbC5dQRbiVYJSeOwFuH-onCk6Rfd1R5mZD17rkEOQFBJHO~PRHUXDB4hTiUFHmNsEua6ZncvRPrt16WlSW~n9oy1ttHELv31jfC-E5BvNIHthCtc8Z1gaPEuPtvVIN37TN9at8nw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-18e7-7375-ab52-2f191785d4bf/output/preview.png?Expires=4949078400&Signature=cr-AdoRwhsXOPIV9JlbgfjJRyJSV8JzL8xxM7vgp~iBgaUJay05P~rs13qLqQxvcEPvy8h21G1vKa6o9Xotseto0xzml2FlYSiYq7yT3y0K3jWjkyGevMkwi2Xg3myfWI2l5lM31J9xq3xG0Xr2sfNV3PM4MctfEAFjXNe01mLx5273bAQzH9j9AQGPxnk7gFOzw-hHnHLyhKDzM1NdqVm6TjWjTy9RboufPVQyIJNAAjeEf-lfR9FZg2tJDtCQuEJWslqIcQM-fZWoLpeS6nF88JGbkEN01wqBwRun6Qv7DMYw7MloFNMmwPHxXTSuSS-XOblfFBy7htm9z~U6e6Q__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "waist-high carved standing stone shrine with a hollow niche at the top, worn runes, small stone base, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 1500,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 2354537291,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-18e7-7375-ab52-2f191785d4bf/output/model.glb?Expires=4949078400&Signature=OgMz3aD9ZKXA5HVSGDxyWAQfb4ULl6I4zt89OcUcZioRfAFat6OQwBPAJN0p75JCl9REKoe~iYESnKtsAJroApuWiUhez25-i90OpLfBaVW-HWdMzLwSL~au71K3-SPUzU9QEaQFQeMTquAh0AWm0mLb-qXo5zqzhLzQ~kBQCii9JSXlp2dcOkK1-pFnpyYmHlmEd2UVO6UqCJrbC5dQRbiVYJSeOwFuH-onCk6Rfd1R5mZD17rkEOQFBJHO~PRHUXDB4hTiUFHmNsEua6ZncvRPrt16WlSW~n9oy1ttHELv31jfC-E5BvNIHthCtc8Z1gaPEuPtvVIN37TN9at8nw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1d-18e7-7375-ab52-2f191785d4bf/output/preview.png?Expires=4949078400&Signature=cr-AdoRwhsXOPIV9JlbgfjJRyJSV8JzL8xxM7vgp~iBgaUJay05P~rs13qLqQxvcEPvy8h21G1vKa6o9Xotseto0xzml2FlYSiYq7yT3y0K3jWjkyGevMkwi2Xg3myfWI2l5lM31J9xq3xG0Xr2sfNV3PM4MctfEAFjXNe01mLx5273bAQzH9j9AQGPxnk7gFOzw-hHnHLyhKDzM1NdqVm6TjWjTy9RboufPVQyIJNAAjeEf-lfR9FZg2tJDtCQuEJWslqIcQM-fZWoLpeS6nF88JGbkEN01wqBwRun6Qv7DMYw7MloFNMmwPHxXTSuSS-XOblfFBy7htm9z~U6e6Q__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

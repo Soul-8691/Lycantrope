@@ -1,0 +1,44 @@
+{
+  "id": "01a20f1c-1d34-7079-9304-8090659f1572",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 3767804001,
+  "prompt": "medieval farmhouse with a covered porch, thatched roof, stone base, partly burned on one side, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795549833217,
+  "progress": 100,
+  "started_at": 1795549833230,
+  "finished_at": 1795549929844,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-1d34-7079-9304-8090659f1572/output/model.glb?Expires=4949078400&Signature=pFc084JdBFiWQxSVmxckasBS01xNexQD6Uve-~BjaLlz-XbnRml~olAJIYPT05Slco89eaCCtxWD5j2aq4XT0353m2j~hIKym-DkSFKBZyFm~e-nN16GHFGjnEUdPv7zfqSi1K17G65FMdKEuElKQDSOYiKcmDDzm5KaWwOIkJKh2olSGB~tMShXoedBjTRhRNGMT9bDD79Dgw678SctyEd~TVF4vuXd74Mbnwm3hromnqum8~3yO3fj1DKMmAMQhyGgK~eDmCtAR3CJm0Xt00SzJpa-7KeqAaxjp9oadzV8lP5YIJKS0ZlTo1hl0uWA-wGSq~DHlEod~5HQEyiAqQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-1d34-7079-9304-8090659f1572/output/preview.png?Expires=4949078400&Signature=gCyNrGK8VA3ny0qPiNeGu55mZg5MN7xR1ngZ~DquR8gypg4vdYdj3wy8VP61fGUp93oE5RqovcecQaLFO7R9j24HCU1w4A1S8CNCsfrpy3Zo5GquPIMLGjFQi5fHrpGcRPQupTkvsJ33gKyKmY15cYwmjcb18SQlXq~RaKhcNMjr12c6i1ocqnOMkCKOWk33o39Nc4zlhNZ6OmKWqyK4FvJc0DjVJ0OgspLy1av9tqQ71llO44~mwNQF8hqvo9xGkXOSK6YgSxA0Twwie5Wk8U7TsZfi3G7eNQe-bbjVJH3gOhoFkwAoOpV0BS22QPMuKAxFZACJXUD~3SNov5NigQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "medieval farmhouse with a covered porch, thatched roof, stone base, partly burned on one side, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 6000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 3767804001,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-1d34-7079-9304-8090659f1572/output/model.glb?Expires=4949078400&Signature=pFc084JdBFiWQxSVmxckasBS01xNexQD6Uve-~BjaLlz-XbnRml~olAJIYPT05Slco89eaCCtxWD5j2aq4XT0353m2j~hIKym-DkSFKBZyFm~e-nN16GHFGjnEUdPv7zfqSi1K17G65FMdKEuElKQDSOYiKcmDDzm5KaWwOIkJKh2olSGB~tMShXoedBjTRhRNGMT9bDD79Dgw678SctyEd~TVF4vuXd74Mbnwm3hromnqum8~3yO3fj1DKMmAMQhyGgK~eDmCtAR3CJm0Xt00SzJpa-7KeqAaxjp9oadzV8lP5YIJKS0ZlTo1hl0uWA-wGSq~DHlEod~5HQEyiAqQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a20f1c-1d34-7079-9304-8090659f1572/output/preview.png?Expires=4949078400&Signature=gCyNrGK8VA3ny0qPiNeGu55mZg5MN7xR1ngZ~DquR8gypg4vdYdj3wy8VP61fGUp93oE5RqovcecQaLFO7R9j24HCU1w4A1S8CNCsfrpy3Zo5GquPIMLGjFQi5fHrpGcRPQupTkvsJ33gKyKmY15cYwmjcb18SQlXq~RaKhcNMjr12c6i1ocqnOMkCKOWk33o39Nc4zlhNZ6OmKWqyK4FvJc0DjVJ0OgspLy1av9tqQ71llO44~mwNQF8hqvo9xGkXOSK6YgSxA0Twwie5Wk8U7TsZfi3G7eNQe-bbjVJH3gOhoFkwAoOpV0BS22QPMuKAxFZACJXUD~3SNov5NigQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}
