@@ -1,0 +1,509 @@
+{
+  "_about": "World layout for tools/worldgen/terrain.py (WLD-01). Coordinates are meters from the map center: x = east, y = north. Edit, re-run the generator, look at assets/world/preview.png.",
+  "seed": 1337,
+  "world_size_m": 2048,
+  "max_height_m": 360,
+  "water_level_m": 22,
+  "noise_scales_m": {
+    "low": 700,
+    "mid": 180,
+    "ridge": 420,
+    "detail": 35
+  },
+  "warp": {
+    "scale_m": 520,
+    "amount_m": 150
+  },
+  "blend_softness": 0.08,
+  "border": {
+    "width_m": 150,
+    "height_m": 230
+  },
+  "erosion": {
+    "iterations": 40,
+    "talus_deg": 42,
+    "rate": 0.12
+  },
+  "biomes": {
+    "brackenvale": {
+      "id": 1,
+      "name": "Brackenvale",
+      "color": [
+        126,
+        170,
+        84
+      ],
+      "levels": [
+        1,
+        5
+      ],
+      "sites": [
+        {
+          "x": 0,
+          "y": -620,
+          "r": 330
+        },
+        {
+          "x": -260,
+          "y": -520,
+          "r": 220
+        },
+        {
+          "x": 250,
+          "y": -560,
+          "r": 200
+        }
+      ],
+      "height": {
+        "base": 34,
+        "low": 16,
+        "mid": 8,
+        "ridge": 0,
+        "detail": 1.2
+      }
+    },
+    "wolfwood": {
+      "id": 2,
+      "name": "The Wolfwood",
+      "color": [
+        46,
+        92,
+        58
+      ],
+      "levels": [
+        4,
+        10
+      ],
+      "sites": [
+        {
+          "x": -620,
+          "y": -40,
+          "r": 330
+        },
+        {
+          "x": -560,
+          "y": 330,
+          "r": 240
+        },
+        {
+          "x": -520,
+          "y": -330,
+          "r": 200
+        }
+      ],
+      "height": {
+        "base": 52,
+        "low": 22,
+        "mid": 20,
+        "ridge": 10,
+        "detail": 2.0
+      }
+    },
+    "blackmire": {
+      "id": 3,
+      "name": "The Blackmire",
+      "color": [
+        84,
+        96,
+        62
+      ],
+      "levels": [
+        6,
+        12
+      ],
+      "sites": [
+        {
+          "x": 560,
+          "y": -520,
+          "r": 300
+        },
+        {
+          "x": 330,
+          "y": -660,
+          "r": 180
+        }
+      ],
+      "height": {
+        "base": 21,
+        "low": 6,
+        "mid": 5,
+        "ridge": 0,
+        "detail": 0.8
+      },
+      "label_at": [
+        620,
+        -620
+      ]
+    },
+    "frostfang": {
+      "id": 4,
+      "name": "Frostfang Peaks",
+      "color": [
+        222,
+        228,
+        236
+      ],
+      "levels": [
+        10,
+        16
+      ],
+      "sites": [
+        {
+          "x": 0,
+          "y": 640,
+          "r": 380
+        },
+        {
+          "x": -380,
+          "y": 620,
+          "r": 220
+        },
+        {
+          "x": 330,
+          "y": 640,
+          "r": 220
+        }
+      ],
+      "height": {
+        "base": 110,
+        "low": 40,
+        "mid": 22,
+        "ridge": 80,
+        "detail": 2.5
+      },
+      "label_at": [
+        0,
+        560
+      ]
+    },
+    "ashen": {
+      "id": 5,
+      "name": "The Ashen Reach",
+      "color": [
+        96,
+        72,
+        66
+      ],
+      "levels": [
+        13,
+        18
+      ],
+      "sites": [
+        {
+          "x": 640,
+          "y": 220,
+          "r": 300
+        },
+        {
+          "x": 560,
+          "y": 520,
+          "r": 200
+        }
+      ],
+      "height": {
+        "base": 70,
+        "low": 20,
+        "mid": 18,
+        "ridge": 35,
+        "detail": 2.5,
+        "terrace_m": 10,
+        "terrace_mix": 0.5
+      }
+    },
+    "duskhold": {
+      "id": 6,
+      "name": "Duskhold",
+      "color": [
+        62,
+        50,
+        78
+      ],
+      "levels": [
+        18,
+        20
+      ],
+      "sites": [
+        {
+          "x": 0,
+          "y": 40,
+          "r": 170
+        }
+      ],
+      "height": {
+        "base": 70,
+        "low": 10,
+        "mid": 12,
+        "ridge": 40,
+        "detail": 2.0
+      }
+    }
+  },
+  "boundary": {
+    "id": 7,
+    "name": "World's Edge",
+    "color": [
+      120,
+      112,
+      104
+    ]
+  },
+  "plateaus": [
+    {
+      "name": "Duskhold Crag",
+      "x": 0,
+      "y": 70,
+      "r": 85,
+      "falloff_m": 240,
+      "height_m": 125
+    }
+  ],
+  "roads": [
+    {
+      "name": "King's Road",
+      "width_m": 7,
+      "points": [
+        [
+          0,
+          -740
+        ],
+        [
+          10,
+          -560
+        ],
+        [
+          -20,
+          -400
+        ],
+        [
+          10,
+          -260
+        ],
+        [
+          0,
+          -170
+        ],
+        [
+          -80,
+          -120
+        ],
+        [
+          60,
+          -80
+        ],
+        [
+          -20,
+          -30
+        ]
+      ],
+      "max_grade_deg": 14
+    },
+    {
+      "name": "Wolfwood Trail",
+      "width_m": 5,
+      "points": [
+        [
+          -20,
+          -560
+        ],
+        [
+          -260,
+          -470
+        ],
+        [
+          -420,
+          -300
+        ],
+        [
+          -560,
+          -60
+        ],
+        [
+          -600,
+          180
+        ],
+        [
+          -500,
+          380
+        ],
+        [
+          -360,
+          470
+        ]
+      ],
+      "max_grade_deg": 14
+    },
+    {
+      "name": "Mire Causeway",
+      "width_m": 5,
+      "points": [
+        [
+          20,
+          -600
+        ],
+        [
+          220,
+          -600
+        ],
+        [
+          420,
+          -560
+        ],
+        [
+          560,
+          -470
+        ],
+        [
+          620,
+          -300
+        ]
+      ],
+      "max_grade_deg": 14
+    },
+    {
+      "name": "Frostfang Pass",
+      "width_m": 5,
+      "points": [
+        [
+          -360,
+          470
+        ],
+        [
+          -180,
+          560
+        ],
+        [
+          0,
+          640
+        ],
+        [
+          80,
+          740
+        ]
+      ],
+      "max_grade_deg": 18
+    },
+    {
+      "name": "Ashen Road",
+      "width_m": 6,
+      "points": [
+        [
+          620,
+          -300
+        ],
+        [
+          660,
+          -60
+        ],
+        [
+          620,
+          180
+        ],
+        [
+          660,
+          380
+        ],
+        [
+          560,
+          540
+        ]
+      ],
+      "max_grade_deg": 16
+    }
+  ],
+  "waystones": [
+    {
+      "name": "Brackenvale Crossroads",
+      "x": 20,
+      "y": -640,
+      "r": 9
+    },
+    {
+      "name": "Wolfwood Hollow",
+      "x": -560,
+      "y": -60,
+      "r": 9
+    },
+    {
+      "name": "Mirewatch",
+      "x": 540,
+      "y": -470,
+      "r": 9
+    },
+    {
+      "name": "Frostfang Foothold",
+      "x": -360,
+      "y": 470,
+      "r": 9
+    },
+    {
+      "name": "Ashen Gate",
+      "x": 620,
+      "y": 180,
+      "r": 9
+    },
+    {
+      "name": "Duskhold Steps",
+      "x": 0,
+      "y": -180,
+      "r": 9
+    }
+  ],
+  "landmarks": [
+    {
+      "name": "Brackenvale Village",
+      "x": -20,
+      "y": -760,
+      "r": 45,
+      "idea": "STY-14"
+    },
+    {
+      "name": "Burned Windmill",
+      "x": 250,
+      "y": -700,
+      "r": 14,
+      "idea": "WLD-13"
+    },
+    {
+      "name": "Ruined Watchtower",
+      "x": -250,
+      "y": -420,
+      "r": 12,
+      "idea": "WLD-02"
+    },
+    {
+      "name": "Grimtooth's Clearing",
+      "x": -660,
+      "y": -260,
+      "r": 38,
+      "idea": "BOS-01"
+    },
+    {
+      "name": "Great Fallen Oak",
+      "x": -700,
+      "y": 200,
+      "r": 20,
+      "idea": "WLD-13"
+    },
+    {
+      "name": "Troll Bridge",
+      "x": 420,
+      "y": -560,
+      "r": 10,
+      "idea": "WLD-13"
+    },
+    {
+      "name": "Frozen Giant",
+      "x": 60,
+      "y": 720,
+      "r": 25,
+      "idea": "WLD-13"
+    },
+    {
+      "name": "Orc Warcamp",
+      "x": 700,
+      "y": 380,
+      "r": 45,
+      "idea": "WLD-06"
+    }
+  ]
+}

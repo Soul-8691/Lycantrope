@@ -78,7 +78,7 @@ You also need:
 
  OFFLINE (tools/, never shipped): Meshy batch → normalize GLB → assets/models
                                   ElevenLabs batch → ffmpeg → assets/audio
-                                  worldgen → heightmap.npy + biome mask + scatter.json
+                                  worldgen → height.png + biome.png + road.png + meta.json (+ scatter.json)
 ```
 
 **Rules that apply throughout** (PIL-07, TEC-04 to TEC-07):
@@ -117,7 +117,7 @@ Lycantrope/
 │   ├── idea_tracker.py          ← done
 │   ├── meshy/      batch.py  manifest.json  normalize.py  preview.py
 │   ├── voice/      design_voices.py  generate.py  sfx.py  music.py  master.py
-│   ├── worldgen/   heightmap.py  scatter.py  validate.py  textures.py
+│   ├── worldgen/   terrain.py  noise.py  scatter.py  validate.py  textures.py
 │   └── credits.py
 └── tests/          test_stats.py  test_damage.py  test_data_schema.py  test_save.py ...
 ```
@@ -133,7 +133,7 @@ Each day has a **code track** and an **asset kitchen** track (batch jobs that ru
 - [ ] `git init`, `.gitignore` (venv, `.env`, `__pycache__`, `*.tmp`), `git lfs track "*.glb" "*.png" "*.ogg" "*.wav" "*.npy"`, MIT `LICENSE`, README stub. *(REL-01, REL-05, REL-06)*
 - [ ] venv + `pip install pygame-ce moderngl PyGLM numpy pygltflib Pillow pytest`. *(TEC-01 to TEC-03)*
 - [ ] `main.py`: pygame window with an OpenGL 3.3 core context, a moderngl context, a fixed 60 Hz loop with an accumulator and interpolation alpha, and a debug text overlay. *(TEC-04, TEC-17)*
-- [ ] `tools/worldgen/heightmap.py`: 2048² heightmap from fBm and ridged noise, with a hand-paintable `biome_mask.png` (4 colours = Vale, Wolfwood, Blackmire, Frostfang) that shapes the height. Outputs `assets/world/height.npy` + `mask.png`. *(WLD-01, TOL-05)*
+- [x] `tools/worldgen/terrain.py` + `data/world/layout.json`: 2048² (1 m/px) world with no concept art, built from a layout file. It covers six biomes plus the World's Edge, per-biome noise recipes, the Duskhold crag, erosion, five graded roads, and flat pads for 6 Waystones and 8 landmarks. Outputs `assets/world/height.png` (16-bit), `biome.png`, `road.png`, `meta.json`, `preview.png`. Tested in `tests/test_worldgen.py`. *(WLD-01, WLD-13)*
 - [ ] `render/terrain.py`: 64 m chunk meshes, slope/height/mask splatting with procedural textures from `tools/worldgen/textures.py`, and a free-fly camera. *(TEC-10, ART-08)*
 
 **Asset kitchen**
