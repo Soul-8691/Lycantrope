@@ -1,21 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-24T15:25:16",
+  "updated": "2026-11-24T16:03:27",
   "counts": {
-    "awaiting": 182,
-    "approved": 312,
-    "denied": 65,
+    "awaiting": 141,
+    "approved": 345,
+    "denied": 73,
     "total": 559
   },
   "ui": {
-    "selected": [],
-    "selected_titles": {},
+    "selected": [
+      "ARS-01"
+    ],
+    "selected_titles": {
+      "ARS-01": "Under-requirement penalty"
+    },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-24T15:25:16"
+    "at": "2026-11-24T16:03:27"
   },
   "ideas": {
     "PIL-01": {
@@ -4397,9 +4401,9 @@
       "in_ideas_md": true
     },
     "MON-01": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T15:59:09",
       "title": "Kobold Trapper",
       "category": "Enemies · Tier 1: Levels 1–5 (MON)",
       "section": "",
@@ -4408,9 +4412,9 @@
       "in_ideas_md": true
     },
     "MON-02": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T15:59:14",
       "title": "Mischief Sprite",
       "category": "Enemies · Tier 1: Levels 1–5 (MON)",
       "section": "",
@@ -4419,9 +4423,9 @@
       "in_ideas_md": true
     },
     "MON-03": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T15:59:20",
       "title": "Cave Bat Swarm",
       "category": "Enemies · Tier 1: Levels 1–5 (MON)",
       "section": "",
@@ -4430,9 +4434,9 @@
       "in_ideas_md": true
     },
     "MON-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T15:59:24",
       "title": "Bog Leech",
       "category": "Enemies · Tier 1: Levels 1–5 (MON)",
       "section": "",
@@ -4441,9 +4445,9 @@
       "in_ideas_md": true
     },
     "MON-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T15:59:26",
       "title": "Wild Boar",
       "category": "Enemies · Tier 1: Levels 1–5 (MON)",
       "section": "",
@@ -4463,9 +4467,9 @@
       "in_ideas_md": true
     },
     "MON-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T15:59:36",
       "title": "Giant Crab",
       "category": "Enemies · Tier 1: Levels 1–5 (MON)",
       "section": "",
@@ -4474,9 +4478,9 @@
       "in_ideas_md": true
     },
     "MON-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T15:59:40",
       "title": "Imp",
       "category": "Enemies · Tier 1: Levels 1–5 (MON)",
       "section": "",
@@ -4485,9 +4489,9 @@
       "in_ideas_md": true
     },
     "MON-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T15:59:41",
       "title": "Skeleton Archer",
       "category": "Enemies · Tier 1: Levels 1–5 (MON)",
       "section": "",
@@ -4496,9 +4500,9 @@
       "in_ideas_md": true
     },
     "MON-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T15:59:43",
       "title": "Bandit Bruiser",
       "category": "Enemies · Tier 1: Levels 1–5 (MON)",
       "section": "",
@@ -4518,9 +4522,9 @@
       "in_ideas_md": true
     },
     "MON-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:00:59",
       "title": "Will-o'-Wisp",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4529,9 +4533,9 @@
       "in_ideas_md": true
     },
     "MON-13": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:01:02",
       "title": "Cockatrice",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4540,9 +4544,9 @@
       "in_ideas_md": true
     },
     "MON-14": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:01:10",
       "title": "Gnoll Raider",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4551,9 +4555,9 @@
       "in_ideas_md": true
     },
     "MON-15": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:01:10",
       "title": "Brown Bear",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4562,9 +4566,9 @@
       "in_ideas_md": true
     },
     "MON-16": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:01:17",
       "title": "Sporeling",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4573,9 +4577,9 @@
       "in_ideas_md": true
     },
     "MON-17": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:01:19",
       "title": "Hobgoblin Captain",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4584,9 +4588,9 @@
       "in_ideas_md": true
     },
     "MON-18": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:01:19",
       "title": "Crypt Ghoul",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4595,9 +4599,9 @@
       "in_ideas_md": true
     },
     "MON-19": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:01:20",
       "title": "Poltergeist",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4617,9 +4621,9 @@
       "in_ideas_md": true
     },
     "MON-21": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:01:29",
       "title": "Giant Scorpion",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4628,9 +4632,9 @@
       "in_ideas_md": true
     },
     "MON-22": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:01:30",
       "title": "Wolf Rider",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4639,9 +4643,9 @@
       "in_ideas_md": true
     },
     "MON-23": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:01:37",
       "title": "Centaur Outrider",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4650,9 +4654,9 @@
       "in_ideas_md": true
     },
     "MON-24": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:01:38",
       "title": "Barrow Wight",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4661,9 +4665,9 @@
       "in_ideas_md": true
     },
     "MON-25": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:01:42",
       "title": "Dark Acolyte",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4672,9 +4676,9 @@
       "in_ideas_md": true
     },
     "MON-26": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:01:44",
       "title": "Fire Salamander",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4683,9 +4687,9 @@
       "in_ideas_md": true
     },
     "MON-27": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:01:45",
       "title": "Hellhound",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4696,7 +4700,7 @@
     "MON-28": {
       "status": "awaiting",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:02:06",
       "title": "Siren",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -4705,9 +4709,9 @@
       "in_ideas_md": true
     },
     "MON-29": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:02:21",
       "title": "Battlemage",
       "category": "Enemies · Tier 3: Levels 11–15 (MON)",
       "section": "",
@@ -4716,9 +4720,9 @@
       "in_ideas_md": true
     },
     "MON-30": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:02:34",
       "title": "Blightwood Treant",
       "category": "Enemies · Tier 3: Levels 11–15 (MON)",
       "section": "",
@@ -4727,9 +4731,9 @@
       "in_ideas_md": true
     },
     "MON-31": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:02:36",
       "title": "Shadow Assassin",
       "category": "Enemies · Tier 3: Levels 11–15 (MON)",
       "section": "",
@@ -4738,9 +4742,9 @@
       "in_ideas_md": true
     },
     "MON-32": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:02:37",
       "title": "Banshee",
       "category": "Enemies · Tier 3: Levels 11–15 (MON)",
       "section": "",
@@ -4749,9 +4753,9 @@
       "in_ideas_md": true
     },
     "MON-33": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:02:41",
       "title": "Ash Burrower",
       "category": "Enemies · Tier 3: Levels 11–15 (MON)",
       "section": "",
@@ -4760,9 +4764,9 @@
       "in_ideas_md": true
     },
     "MON-34": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:02:42",
       "title": "Ember Elemental",
       "category": "Enemies · Tier 3: Levels 11–15 (MON)",
       "section": "",
@@ -4771,9 +4775,9 @@
       "in_ideas_md": true
     },
     "MON-35": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:02:42",
       "title": "Frost Elemental",
       "category": "Enemies · Tier 3: Levels 11–15 (MON)",
       "section": "",
@@ -4793,9 +4797,9 @@
       "in_ideas_md": true
     },
     "MON-37": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:02:56",
       "title": "Mire Lurker",
       "category": "Enemies · Tier 3: Levels 11–15 (MON)",
       "section": "",
@@ -4804,9 +4808,9 @@
       "in_ideas_md": true
     },
     "MON-38": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:02:59",
       "title": "Minotaur",
       "category": "Enemies · Tier 3: Levels 11–15 (MON)",
       "section": "",
@@ -4815,9 +4819,9 @@
       "in_ideas_md": true
     },
     "MON-39": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:03:02",
       "title": "Shadow Stalker",
       "category": "Enemies · Tier 3: Levels 11–15 (MON)",
       "section": "",
@@ -4826,9 +4830,9 @@
       "in_ideas_md": true
     },
     "MON-40": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:03:06",
       "title": "Basilisk",
       "category": "Enemies · Tier 3: Levels 11–15 (MON)",
       "section": "",
@@ -4837,9 +4841,9 @@
       "in_ideas_md": true
     },
     "MON-41": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:03:11",
       "title": "Shadow Double",
       "category": "Enemies · Tier 3: Levels 11–15 (MON)",
       "section": "",
@@ -4859,9 +4863,9 @@
       "in_ideas_md": true
     },
     "MON-43": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:03:19",
       "title": "Manticore",
       "category": "Enemies · Tier 4: Levels 16–20 (MON)",
       "section": "",
@@ -4870,9 +4874,9 @@
       "in_ideas_md": true
     },
     "MON-44": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:03:20",
       "title": "Hill Giant",
       "category": "Enemies · Tier 4: Levels 16–20 (MON)",
       "section": "",
@@ -4881,9 +4885,9 @@
       "in_ideas_md": true
     },
     "MON-45": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:03:21",
       "title": "Swamp Hydra",
       "category": "Enemies · Tier 4: Levels 16–20 (MON)",
       "section": "",
@@ -4892,9 +4896,9 @@
       "in_ideas_md": true
     },
     "MON-46": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:03:22",
       "title": "Ash Drake",
       "category": "Enemies · Tier 4: Levels 16–20 (MON)",
       "section": "",
@@ -4903,9 +4907,9 @@
       "in_ideas_md": true
     },
     "MON-47": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T16:03:26",
       "title": "Lich",
       "category": "Enemies · Tier 4: Levels 16–20 (MON)",
       "section": "",
@@ -8716,6 +8720,264 @@
     {
       "time": "2026-11-24T14:37:39",
       "id": "VFX-15",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T15:59:09",
+      "id": "MON-01",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T15:59:14",
+      "id": "MON-02",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T15:59:20",
+      "id": "MON-03",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T15:59:24",
+      "id": "MON-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T15:59:26",
+      "id": "MON-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T15:59:36",
+      "id": "MON-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T15:59:40",
+      "id": "MON-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T15:59:41",
+      "id": "MON-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T15:59:43",
+      "id": "MON-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:00:59",
+      "id": "MON-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:01:02",
+      "id": "MON-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:01:10",
+      "id": "MON-14",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:01:10",
+      "id": "MON-15",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:01:17",
+      "id": "MON-16",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:01:19",
+      "id": "MON-17",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:01:19",
+      "id": "MON-18",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:01:20",
+      "id": "MON-19",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:01:29",
+      "id": "MON-21",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:01:30",
+      "id": "MON-22",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:01:37",
+      "id": "MON-23",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:01:38",
+      "id": "MON-24",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:01:42",
+      "id": "MON-25",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:01:44",
+      "id": "MON-26",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:01:45",
+      "id": "MON-27",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:01:45",
+      "id": "MON-28",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:02:06",
+      "id": "MON-28",
+      "from": "approved",
+      "to": "awaiting"
+    },
+    {
+      "time": "2026-11-24T16:02:21",
+      "id": "MON-29",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:02:34",
+      "id": "MON-30",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:02:36",
+      "id": "MON-31",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:02:37",
+      "id": "MON-32",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:02:41",
+      "id": "MON-33",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:02:42",
+      "id": "MON-34",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:02:42",
+      "id": "MON-35",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:02:56",
+      "id": "MON-37",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:02:59",
+      "id": "MON-38",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:03:02",
+      "id": "MON-39",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:03:06",
+      "id": "MON-40",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:03:11",
+      "id": "MON-41",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:03:19",
+      "id": "MON-43",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T16:03:20",
+      "id": "MON-44",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:03:21",
+      "id": "MON-45",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:03:22",
+      "id": "MON-46",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T16:03:26",
+      "id": "MON-47",
       "from": "awaiting",
       "to": "approved"
     }
