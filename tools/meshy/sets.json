@@ -1,0 +1,9 @@
+{
+  "_about": "Named batches for tools/meshy/batch.py. Use them with --set NAME. Only approved IDs are sent.",
+  "brackenvale-town": [
+    "VIL-01", "VIL-03", "VIL-04", "VIL-06", "VIL-07", "VIL-09",
+    "VIL-10", "VIL-11", "STR-01", "STR-02", "INT-01", "INT-11",
+    "CLT-01", "CLT-02", "CLT-03", "CLT-10",
+    "TRE-01", "PLT-01"
+  ]
+}

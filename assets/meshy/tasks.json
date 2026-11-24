@@ -1,0 +1,198 @@
+{
+  "previews": {
+    "VIL-01/v1": {
+      "task_id": "01a20f1c-033b-730c-ab9f-7edfac33ced0",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "small medieval thatched-roof cottage, timber frame and white plaster, stone chimney, wooden door, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549829.7403326,
+      "credits": 20
+    },
+    "VIL-03/v1": {
+      "task_id": "01a20f1c-1d34-7079-9304-8090659f1572",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "medieval farmhouse with a covered porch, thatched roof, stone base, partly burned on one side, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549833.3054128,
+      "credits": 20
+    },
+    "VIL-04/v1": {
+      "task_id": "01a20f1c-2b11-7114-b767-ae6461adcf99",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "large wooden medieval barn, big double doors, hay loft, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549836.245773,
+      "credits": 20
+    },
+    "VIL-06/v1": {
+      "task_id": "01a20f1c-35da-7249-85be-bb5671503199",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "medieval stone village well with small wooden roof, rope and bucket, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549838.9479892,
+      "credits": 20
+    },
+    "VIL-07/v1": {
+      "task_id": "01a20f1c-40a5-71ae-9ad9-ecb9b4a4b82e",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "small open-sided village smithy, stone forge, anvil, bellows, tools on the wall, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549842.1985261,
+      "credits": 20
+    },
+    "VIL-09/v1": {
+      "task_id": "01a20f1c-4d31-767c-9108-77379ab52ab8",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "medieval market stall with striped cloth awning, wooden counter, baskets of goods, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549845.71279,
+      "credits": 20
+    },
+    "VIL-10/v1": {
+      "task_id": "01a20f22-cbc6-77b6-8f73-39a909df2c43",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "wooden farm cart loaded with hay, large spoked wheels, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795550269.2225392,
+      "credits": 20
+    },
+    "VIL-11/v1": {
+      "task_id": "01a20f1c-656a-7647-afdd-5f19b268e1a3",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "stack of square hay bales and one round hay bale, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549850.8974147,
+      "credits": 20
+    },
+    "STR-01/v1": {
+      "task_id": "01a20f1c-6e98-755e-a358-22a7ef936947",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "wooden split-rail fence segment, rustic, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549854.0880077,
+      "credits": 20
+    },
+    "STR-01/gate/v1": {
+      "task_id": "01a20f1c-7b00-7158-b4d5-2afc359e0d45",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "rustic wooden farm gate between two thick fence posts, split-rail style, closed, iron hinges and latch, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549856.8038468,
+      "credits": 20
+    },
+    "STR-02/v1": {
+      "task_id": "01a20f1d-13b0-75ea-bc13-54af9fc47814",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "low dry stone field wall segment, stacked flat stones, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549894.279549,
+      "credits": 20
+    },
+    "INT-01/v1": {
+      "task_id": "01a20f1d-18e7-7375-ab52-2f191785d4bf",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "waist-high carved standing stone shrine with a hollow niche at the top, worn runes, small stone base, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549897.7011268,
+      "credits": 20
+    },
+    "INT-11/v1": {
+      "task_id": "01a20f1d-2821-73ce-a152-53f54007af6a",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "wooden signpost with three pointed arrow boards, blank, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549901.843012,
+      "credits": 20
+    },
+    "CLT-01/v1": {
+      "task_id": "01a20f1d-367e-74b2-8e5b-3fa3609990c0",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "wooden barrel, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549904.5119534,
+      "credits": 20
+    },
+    "CLT-02/v1": {
+      "task_id": "01a20f1d-4101-7782-8194-57b0fdab1664",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "stack of wooden supply crates, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549907.1539283,
+      "credits": 20
+    },
+    "CLT-03/v1": {
+      "task_id": "01a20f1d-6a57-72f3-9471-a965762f24c8",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "pile of burlap grain sacks, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549916.5625412,
+      "credits": 20
+    },
+    "CLT-10/v1": {
+      "task_id": "01a20f1d-8fec-76f3-914d-3de86c9e6950",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "wooden post with a hanging iron lantern, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549926.1717706,
+      "credits": 20
+    },
+    "TRE-01/v1": {
+      "task_id": "01a20f1d-9556-7326-a089-9520ced16909",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "broad gnarled oak tree, thick twisted trunk, wide rounded canopy of chunky foliage clumps, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795549930.207604,
+      "credits": 20
+    },
+    "PLT-01/v1": {
+      "task_id": "01a20f22-d0aa-739e-9574-576800965896",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "round leafy green bush, chunky foliage, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795550270.34532,
+      "credits": 20
+    },
+    "VIL-10/v2": {
+      "task_id": "01a20f36-3b92-7570-9ce0-db0da0d09b54",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "wooden farm cart loaded with hay, large spoked wheels, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795551543.1790473,
+      "credits": 5
+    },
+    "PLT-01/v2": {
+      "task_id": "01a20f37-f1f6-7656-bec3-ed9c7395dc57",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "round leafy green bush, chunky foliage, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795551655.2923863,
+      "credits": 5
+    },
+    "PLT-01/v3": {
+      "task_id": "01a20f39-b978-72cc-a79a-78311527e2c3",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "stylized low-poly bush made of five rounded smooth foliage clumps, solid blob shapes with soft bumps, no individual leaves, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795551774.0668452,
+      "credits": 5
+    }
+  },
+  "replaced": [
+    {
+      "key": "VIL-10/v1",
+      "task_id": "01a20f1c-5adc-708d-87fb-38e2efe516a8",
+      "status": "SUCCEEDED",
+      "credits": 20,
+      "model": "latest",
+      "note": "blob from Meshy reduction; re-rolled with --full-detail"
+    },
+    {
+      "key": "PLT-01/v1",
+      "task_id": "01a20f1d-a56f-763d-8b8c-0131165f7baf",
+      "status": "SUCCEEDED",
+      "credits": 20,
+      "model": "latest",
+      "note": "blob from Meshy reduction; re-rolled with --full-detail"
+    }
+  ]
+}

@@ -137,7 +137,9 @@ Each day has a **code track** and an **asset kitchen** track (batch jobs that ru
 - [x] `render/terrain.py`: 64 m chunks drawn as 4 instanced LOD levels with skirts and frustum culling. Splat, slope, snowline, road and shoreline blending of 8 procedural ground textures (`tools/worldgen/textures.py`), plus sky, height fog and water. Free-fly and walk camera, debug overlay, shader hot-reload, `--screenshot`/`--bench`. About 5 ms per frame at 1600×900 on Iris Xe. *(TEC-10, ART-08, TEC-02, TEC-04, TEC-17)*
 
 **Asset kitchen**
-- [ ] `tools/meshy/batch.py` + `manifest.json`: text-to-3D preview → refine → remesh → download. Cache key = hash(prompt + settings). Resumable from a `jobs.json`. *(ART-01, ART-02, ART-06)*
+- [x] `tools/meshy/batch.py`: text-to-3D **previews** for approved IDs (dry run by default, typed credit confirmation, named sets in `sets.json`, task log in `assets/meshy/tasks.json`, `--model meshy-t2.5` smart topology for hard-edged props, `--full-detail` for foliage). Plus `reduce.py` (local triangle reduction in steps) and `thumbnail.py`. *(ART-01, ART-02, ART-06)*
+- [ ] Texturing step: check whether Meshy Retexture accepts our own reduced meshes (10 credits each), else refine the kept previews. Only for previews the user picks.
+- [x] Static props in the game: `tools/props/build.py` (scale, pivot, `data/props.json` catalog), `render/props.py` (GLB loading, one instanced draw per prop, culling), `world/props.py` + `data/world/placements.json` (hand-placed items, fence/wall lines with gates, ring scatter). Brackenvale Village and its crossroads are placed with 19 untextured Meshy previews. *(WLD-12, ART-07)*
 - [ ] Queue batch 1: **Rowan**, **the Dawnblade** (4 stages, ART-17), Bandit, Goblin, Skeleton, Orc, plus ~12 props (3 tree types per biome, rocks, Waystone, chest, ruined wall).
 - [ ] `tools/voice/design_voices.py`: create Rowan and 6 enemy voices with Voice Design. Save `data/voices.json`. *(AUD-02)*
 

@@ -35,6 +35,7 @@ from lycantrope.core.paths import SCREENSHOTS
 from lycantrope.core.timing import FixedStep
 from lycantrope.render.camera import Camera
 from lycantrope.render.environment import Sky, Water, default_environment
+from lycantrope.render.props import PropRenderer
 from lycantrope.render.shaders import ShaderLibrary
 from lycantrope.render.terrain import TerrainRenderer
 from lycantrope.ui.overlay import TextOverlay
@@ -85,6 +86,7 @@ class App:
         self.shaders = ShaderLibrary(self.ctx)
         self.world = Heightfield()
         self.terrain = TerrainRenderer(self.ctx, self.shaders, self.world)
+        self.props = PropRenderer(self.ctx, self.shaders, self.world)
         self.sky = Sky(self.ctx, self.shaders)
         self.water = Water(self.ctx, self.shaders, self.world, self.terrain.tex_height)
         self.overlay = TextOverlay(self.ctx, self.shaders)
@@ -111,10 +113,11 @@ class App:
             above = vals[4] if len(vals) > 4 else 40.0
             cam.position = glm.vec3(x, self.world.height_at(x, z) + above, z)
             cam.yaw, cam.pitch = math.radians(yaw), math.radians(pitch)
-        else:                                   # first Waystone, looking toward Duskhold
-            w = self.world.waystones[0]
-            cam.position = glm.vec3(w.x, w.height + 30.0, w.z + 60.0)
-            cam.look_at((0.0, 120.0, -70.0))
+        else:                                   # above Brackenvale Village, Rowan's home
+            v = next((p for p in self.world.landmarks if p.name == "Brackenvale Village"),
+                     self.world.waystones[0])
+            cam.position = glm.vec3(v.x + 55.0, v.height + 22.0, v.z + 75.0)
+            cam.look_at((v.x - 5.0, v.height + 2.0, v.z + 5.0))
         cam.prev_position = glm.vec3(cam.position)
 
     # ------------------------------------------------------------------ input
@@ -205,6 +208,7 @@ class App:
         self.sky.render(eye, viewproj, env)
         self.ctx.wireframe = wire
         self.terrain.render(eye, viewproj, env, self.settings.lod_distances_m)
+        self.props.render(eye, viewproj, env)
         self.ctx.wireframe = False
         self.water.render(eye, viewproj, env, self.time_s)
         if self.show_overlay:
@@ -223,6 +227,7 @@ class App:
             f"pos  x {p.x:7.1f}  z {p.z:7.1f}  y {p.y:6.1f}   ground {ground:6.1f} m   (north = -z)",
             f"biome {self.world.biome_at(p.x, p.z):<18} {mode}",
             f"chunks LOD0-4 {st.per_lod}  of {st.chunks_total}   {st.triangles / 1000:.0f}k tris",
+            f"props {self.props.drawn} of {self.props.count} drawn   {self.props.triangles / 1000:.0f}k tris",
             "click: mouse look  Esc: release  WASD QE  Shift/Ctrl  wheel: speed",
             "F1 wire  F2 fog  F3 overlay  F4 walk  F5 shaders  F6 debug  F12 shot",
         ]

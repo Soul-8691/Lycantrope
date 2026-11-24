@@ -53,7 +53,7 @@ Every prop, building and item in the world that **Meshy** should make. The idea 
 
 ## 2. Plants & Ground Cover (PLT)
 
-- [PLT-01] **Meadow Bush** — Round green bush for Brackenvale. Prompt: "round leafy green bush, chunky foliage" · 3 variants · 500 tris · scatter · collider: none. ⭐ *(Brackenvale)*
+- [PLT-01] **Meadow Bush** — Round green bush for Brackenvale. Prompt: "round leafy green bush, chunky foliage" · 3 variants · 1.5k tris · scatter · collider: none. ⭐ *(Brackenvale)*
 - [PLT-02] **Bracken Fern Clump** — Tall fern clumps the Vale is named after. Prompt: "clump of tall bracken ferns, curling fronds" · 3 variants · 400 tris · scatter · collider: none. ⭐ *(Brackenvale, Wolfwood)*
 - [PLT-03] **Wildflower Patch** — Clusters of small colorful flowers. Prompt: "small patch of wildflowers, poppies, cornflowers and daisies" · 3 variants · 300 tris · scatter · collider: none. *(Brackenvale)*
 - [PLT-04] **Bramble Thicket** — Thorny bushes that block paths and hide secrets. Prompt: "dense thorny bramble thicket with blackberries, tangled vines" · 2 variants · 800 tris · scatter · collider: box. *(Brackenvale, Wolfwood)*
@@ -116,7 +116,7 @@ Every prop, building and item in the world that **Meshy** should make. The idea 
 
 ## 6. Walls, Fences, Bridges & Water (STR)
 
-- [STR-01] **Wooden Fence** — Split-rail fence segments and gates. Prompt: "wooden split-rail fence segment, rustic" · 2 variants (straight, gate) · 300 tris · kit · collider: box. ⭐ *(Brackenvale)*
+- [STR-01] **Wooden Fence** — Split-rail fence segments and gates. Prompt: "wooden split-rail fence segment, rustic" · Gate prompt: "rustic wooden farm gate between two thick fence posts, split-rail style, closed, iron hinges and latch" · 2 variants (straight, gate) · 300 tris · kit · collider: box. ⭐ *(Brackenvale)*
 - [STR-02] **Dry Stone Wall** — Low field walls along roads. Prompt: "low dry stone field wall segment, stacked flat stones" · 2 variants · 600 tris · kit · collider: box. ⭐ *(Brackenvale)*
 - [STR-03] **Stone Bridge** — Arched bridge over streams. Prompt: "arched medieval stone bridge, single span, low walls" · 1 variant · 3k tris · placed · collider: boxes. *(roads)*
 - [STR-04] **Troll Bridge** — Landmark: a big old bridge with a dark arch underneath (there's a troll). Prompt: "large old stone bridge over a swamp, dark arch underneath, bones and junk under the arch, moss" · 1 variant · 6k tris · placed · collider: boxes. ⭐ *(Blackmire landmark)*

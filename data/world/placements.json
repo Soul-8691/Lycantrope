@@ -1,0 +1,80 @@
+{
+  "_about": [
+    "Where props go (WLD-12). Each group is anchored to a landmark or Waystone from layout.json.",
+    "'at' is [east, north] in meters from the anchor. 'facing' is the compass direction the prop's",
+    "front looks toward (0 = north, 90 = east). 'line' repeats a prop end to end from 'from' to 'to'",
+    "('gate_at' puts the gate prop at that fraction of the line). 'scatter' places props at random",
+    "in a ring around the anchor, keeping off roads, steep ground and other props."
+  ],
+  "groups": [
+    {
+      "name": "Brackenvale Village",
+      "anchor": "Brackenvale Village",
+      "items": [
+        {"id": "VIL-06", "at": [0, 0], "facing": 160},
+
+        {"id": "VIL-09", "at": [9, 7], "facing": 225},
+        {"id": "VIL-09", "at": [-10, 8], "facing": 140},
+        {"id": "CLT-02", "at": [12, 4], "facing": 200},
+        {"id": "CLT-01", "at": [11.5, 9.5], "facing": 0},
+        {"id": "CLT-03", "at": [-13, 4.5], "facing": 30},
+        {"id": "CLT-01", "at": [-13.5, 10.5], "facing": 70},
+
+        {"id": "VIL-01", "at": [-30, 14], "facing": 90},
+        {"id": "VIL-01", "at": [-12, -22], "facing": 20},
+        {"id": "VIL-01", "at": [24, -17], "facing": 320},
+        {"id": "VIL-01", "at": [31, 8], "facing": 255},
+        {"id": "VIL-01", "at": [8, -38], "facing": 350},
+        {"id": "VIL-01", "at": [-14, 34], "facing": 165},
+
+        {"id": "VIL-07", "at": [16, 28], "facing": 210},
+        {"id": "CLT-01", "at": [11, 25], "facing": 0},
+        {"id": "CLT-01", "at": [11.3, 23.6], "facing": 40},
+        {"id": "CLT-02", "at": [21, 33], "facing": 250},
+
+        {"id": "CLT-10", "at": [30, 27], "facing": 225},
+        {"id": "CLT-10", "at": [15, 13], "facing": 225},
+        {"id": "CLT-10", "at": [-6, -9], "facing": 45},
+        {"id": "CLT-10", "at": [-20, -10], "facing": 90},
+        {"id": "INT-11", "at": [40, 47], "facing": 200},
+
+        {"id": "VIL-03", "at": [-44, -44], "facing": 50},
+        {"id": "VIL-04", "at": [-58, -22], "facing": 110},
+        {"id": "VIL-10", "at": [-32, -30], "facing": 10},
+        {"id": "VIL-11", "at": [-64, -40], "facing": 80},
+        {"id": "VIL-11", "at": [-62, -48], "facing": 15},
+        {"id": "CLT-03", "at": [-49, -20], "facing": 200},
+        {"id": "CLT-01", "at": [-51, -27], "facing": 0},
+
+        {"line": "STR-01", "from": [-72, -62], "to": [-24, -62]},
+        {"line": "STR-01", "from": [-72, -14], "to": [-72, -62]},
+        {"line": "STR-01", "from": [-24, -14], "to": [-72, -14]},
+        {"line": "STR-01", "from": [-24, -62], "to": [-24, -14], "gate": "STR-01/gate", "gate_at": 0.55},
+
+        {"line": "STR-02", "from": [-10, -60], "to": [60, -48]},
+        {"line": "STR-02", "from": [60, -48], "to": [74, -10]},
+
+        {"id": "TRE-01", "at": [-4, 22], "facing": 30, "scale": 0.9},
+        {"id": "TRE-01", "at": [46, -30], "facing": 200},
+        {"id": "TRE-01", "at": [-40, 30], "facing": 300, "scale": 1.15},
+        {"id": "PLT-01", "at": [-27, 7], "facing": 0},
+        {"id": "PLT-01", "at": [-25, 21], "facing": 90},
+        {"id": "PLT-01", "at": [26, -9], "facing": 45},
+        {"id": "PLT-01", "at": [3, -28], "facing": 0},
+
+        {"scatter": "TRE-01", "count": 55, "ring": [85, 280], "seed": 11, "scale": [0.8, 1.3], "spacing": 9},
+        {"scatter": "PLT-01", "count": 140, "ring": [45, 260], "seed": 12, "scale": [0.7, 1.4], "spacing": 3}
+      ]
+    },
+    {
+      "name": "Brackenvale Crossroads",
+      "anchor": "Brackenvale Crossroads",
+      "items": [
+        {"id": "INT-01", "at": [0, 0], "facing": 180},
+        {"id": "INT-11", "at": [7, 5], "facing": 200},
+        {"id": "CLT-10", "at": [-5, -4], "facing": 45},
+        {"scatter": "PLT-01", "count": 20, "ring": [10, 45], "seed": 21, "scale": [0.7, 1.3], "spacing": 3}
+      ]
+    }
+  ]
+}
