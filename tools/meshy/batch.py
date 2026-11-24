@@ -7,6 +7,9 @@ credit estimate. Sending needs --send, and it also asks you to type the credit t
     python tools/meshy/batch.py preview VIL-01 CLT-01 --variants 1
     python tools/meshy/batch.py preview --set brackenvale-town --send
     python tools/meshy/batch.py status
+    python tools/meshy/batch.py animate HER-09 --variant 1          # texture -> rig -> animations
+
+Characters (hero and enemies) take their prompts from characters.json.
 
 Prompts come from OBJECTS.md (and the other tracker files) plus the shared style line.
 Only IDs marked approved in ideas_status.json are sent. Results go to
@@ -28,6 +31,7 @@ ROOT = Path(__file__).resolve().parents[2]
 SOURCE_FILES = ("OBJECTS.md", "ENEMIES.md", "ARMOR.md", "WEAPONS.md")
 STATUS_JSON = ROOT / "ideas_status.json"
 SETS_JSON = Path(__file__).with_name("sets.json")
+CHARACTERS_JSON = Path(__file__).with_name("characters.json")
 OUT_DIR = ROOT / "assets" / "meshy" / "previews"
 TASKS_JSON = ROOT / "assets" / "meshy" / "tasks.json"
 
@@ -56,6 +60,10 @@ class Entry:
     variants: int
     tris: int | None
     file: str
+    pose: str | None = None             # characters: "a-pose" / "t-pose"
+    rig: str | None = None              # characters: "biped" / "quadruped"
+    height: float | None = None         # rig height in meters
+    actions: dict[int, str] | None = None   # animation library ID -> what it's for
 
     def full_prompt(self, part: str = "") -> str:
         return f"{self.prompts[part].rstrip('. ')}, {STYLE}"
@@ -85,6 +93,12 @@ def parse_entries() -> dict[str, Entry]:
                 tris = int(float(t.group(1)) * (1000 if t.group(2) else 1))
             entries[m["id"]] = Entry(m["id"], m["name"], prompts, int(v.group(1)) if v else 1,
                                      tris, fname)
+    if CHARACTERS_JSON.exists():
+        chars = json.loads(CHARACTERS_JSON.read_text(encoding="utf-8"))["characters"]
+        for cid, c in chars.items():
+            entries[cid] = Entry(cid, c["name"], {"": c["prompt"]}, int(c.get("variants", 1)),
+                                 c.get("tris"), CHARACTERS_JSON.name, c.get("pose"), c.get("rig"),
+                                 c.get("height_m"), {int(k): v for k, v in c.get("actions", {}).items()})
     return entries
 
 
@@ -197,6 +211,8 @@ def request_body(e: Entry, part: str, model: str, full_detail: bool = False) -> 
         body["should_remesh"] = False
     else:
         body.update(should_remesh=True, topology="triangle", target_polycount=polycount(e))
+    if e.pose:
+        body["pose_mode"] = e.pose
     return body
 
 
@@ -259,33 +275,178 @@ def send(jobs, model: str, total: int, full_detail: bool = False) -> None:
 
 def credits_spent(tasks: dict) -> int:
     records = list(tasks["previews"].values()) + tasks.get("replaced", [])
+    for kind in ("refines", "rigs", "animations"):
+        records += list(tasks.get(kind, {}).values())
     return sum(r.get("credits") or 0 for r in records)
 
 
-def download(key: str, task: dict) -> None:
+def save_url(url: str, path: Path, label: str = "") -> None:
+    """Stream a download to disk (full-detail meshes can be ~180 MB)."""
     import requests
 
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with requests.get(url, stream=True, timeout=120) as r:
+        r.raise_for_status()
+        size = int(r.headers.get("content-length", 0))
+        got, last = 0, 0
+        tmp = path.with_name(path.name + ".part")
+        with open(tmp, "wb") as f:
+            for chunk in r.iter_content(1 << 20):
+                f.write(chunk)
+                got += len(chunk)
+                if size > 20_000_000 and got - last >= 20_000_000:
+                    print(f"    {label} {path.name}: {got // 1_000_000}/{size // 1_000_000} MB")
+                    last = got
+        tmp.replace(path)
+
+
+def download(key: str, task: dict) -> None:
     folder = OUT_DIR / key.replace("/", os.sep)
-    folder.mkdir(parents=True, exist_ok=True)
     for name, url in (("model.glb", task.get("model_urls", {}).get("glb")),
                       ("thumb.png", task.get("thumbnail_url"))):
-        if not url:
-            continue
-        # stream to disk: full-detail meshes can be ~180 MB
-        with requests.get(url, stream=True, timeout=120) as r:
-            r.raise_for_status()
-            size = int(r.headers.get("content-length", 0))
-            got, last = 0, 0
-            tmp = folder / (name + ".part")
-            with open(tmp, "wb") as f:
-                for chunk in r.iter_content(1 << 20):
-                    f.write(chunk)
-                    got += len(chunk)
-                    if size > 20_000_000 and got - last >= 20_000_000:
-                        print(f"    {key} {name}: {got // 1_000_000}/{size // 1_000_000} MB")
-                        last = got
-            tmp.replace(folder / name)
+        if url:
+            save_url(url, folder / name, key)
     (folder / "task.json").write_text(json.dumps(task, indent=2), encoding="utf-8")
+
+
+# ---------------------------------------------------------------------------- #
+# Characters: texture (refine) -> rig -> animations
+
+RIG_API = "https://api.meshy.ai/openapi/v1/rigging"
+ANIM_API = "https://api.meshy.ai/openapi/v1/animations"
+REFINE_CREDITS, RIG_CREDITS, ACTION_CREDITS = 10, 5, 3
+
+
+def submit(url: str, body: dict, headers: dict) -> str:
+    import requests
+
+    for attempt in range(6):
+        r = requests.post(url, json=body, headers=headers, timeout=60)
+        if r.status_code != 429:
+            break
+        time.sleep(5 * (attempt + 1))
+    if r.status_code >= 300:
+        sys.exit(f"  ! HTTP {r.status_code} from {url}: {r.text[:300]}")
+    return r.json()["result"]
+
+
+def wait(url: str, task_id: str, headers: dict, label: str) -> dict:
+    import requests
+
+    last = -1
+    while True:
+        time.sleep(10)
+        r = requests.get(f"{url}/{task_id}", headers=headers, timeout=60)
+        if r.status_code >= 300:
+            continue
+        t = r.json()
+        if t["status"] in ("SUCCEEDED", "FAILED", "CANCELED"):
+            return t
+        if t.get("progress", 0) != last:
+            last = t.get("progress", 0)
+            print(f"    {label}: {t['status'].lower()} {last}%")
+
+
+def cmd_animate(args) -> None:
+    entries = parse_entries()
+    e = entries.get(args.id)
+    if e is None or not e.rig:
+        sys.exit(f"{args.id} has no character entry with a rig type in {CHARACTERS_JSON.name}.")
+    if statuses().get(args.id) != "approved":
+        sys.exit(f"{args.id} isn't approved in the tracker.")
+    key = f"{args.id}/v{args.variant}"
+    tasks = load_tasks()
+    prev = tasks["previews"].get(key)
+    if not prev or prev.get("status") != "SUCCEEDED":
+        sys.exit(f"No finished preview {key}. Make the preview first (batch.py preview {args.id}).")
+    actions = ([int(a) for a in args.actions.split(",")] if args.actions
+               else list((e.actions or {}).keys()))
+    refines, rigs, anims = (tasks.setdefault(k, {}) for k in ("refines", "rigs", "animations"))
+    done_anim = set(anims.get(key, {}).get("actions", [])) if anims.get(key, {}).get("status") == "SUCCEEDED" else set()
+    todo = [a for a in actions if a not in done_anim]
+
+    steps = []
+    if refines.get(key, {}).get("status") != "SUCCEEDED":
+        steps.append(("texture (refine, 2K)", REFINE_CREDITS))
+    if rigs.get(key, {}).get("status") != "SUCCEEDED":
+        steps.append((f"rig ({e.rig}{f', {e.height} m' if e.height else ''}; includes walk + run clips)", RIG_CREDITS))
+    for i in range(0, len(todo), 10):
+        chunk = todo[i:i + 10]
+        steps.append((f"{len(chunk)} animations", ACTION_CREDITS * len(chunk)))
+    total = sum(c for _, c in steps)
+
+    print(f"\nMeshy character pipeline for {e.name} ({key})\n")
+    for name, c in steps:
+        print(f"  {name:<58}{c:>4} credits")
+    if todo:
+        print("\n  Animations:")
+        for a in todo:
+            print(f"    {a:>5}  {(e.actions or {}).get(a, '')}")
+    print(f"\n  Total: {total} credits")
+    if not steps:
+        print("  Everything is already done.")
+        return
+    if not args.send:
+        print("\n  Dry run: nothing was sent. Add --send to run it.")
+        return
+    typed = input(f"\nThis spends {total} Meshy credits. Type {total} to go on: ").strip()
+    if typed != str(total):
+        sys.exit("Cancelled. Nothing was sent.")
+
+    headers = {"Authorization": f"Bearer {api_key()}"}
+    folder = OUT_DIR / key.replace("/", os.sep)
+
+    if refines.get(key, {}).get("status") != "SUCCEEDED":
+        tid = submit(API, {"mode": "refine", "preview_task_id": prev["task_id"], "enable_pbr": False}, headers)
+        refines[key] = {"task_id": tid, "status": "PENDING", "created": time.time()}
+        save_tasks(tasks)
+        t = wait(API, tid, headers, "texture")
+        refines[key].update(status=t["status"], credits=t.get("consumed_credits"))
+        save_tasks(tasks)
+        if t["status"] != "SUCCEEDED":
+            sys.exit(f"  ! texture {t['status']}: {(t.get('task_error') or {}).get('message')}")
+        if t.get("model_urls", {}).get("glb"):
+            save_url(t["model_urls"]["glb"], folder / "textured" / "model.glb", key)
+        if t.get("thumbnail_url"):
+            save_url(t["thumbnail_url"], folder / "textured" / "thumb.png", key)
+        print("  textured")
+
+    if rigs.get(key, {}).get("status") != "SUCCEEDED":
+        body = {"input_task_id": refines[key]["task_id"], "animation_type": e.rig}
+        if e.height:
+            body["height_meters"] = e.height
+        tid = submit(RIG_API, body, headers)
+        rigs[key] = {"task_id": tid, "status": "PENDING", "created": time.time()}
+        save_tasks(tasks)
+        t = wait(RIG_API, tid, headers, "rig")
+        rigs[key].update(status=t["status"], credits=t.get("consumed_credits"))
+        save_tasks(tasks)
+        if t["status"] != "SUCCEEDED":
+            sys.exit(f"  ! rig {t['status']}: {(t.get('task_error') or {}).get('message')}")
+        res = t.get("result") or {}
+        if res.get("rigged_character_glb_url"):
+            save_url(res["rigged_character_glb_url"], folder / "rig" / "rigged.glb", key)
+        for clip, url in ((res.get("basic_animations") or {}).items()):
+            if url and clip.endswith("_glb_url") and "armature" not in clip:
+                save_url(url, folder / "rig" / (clip.replace("_glb_url", "") + ".glb"), key)
+        print("  rigged")
+
+    for i in range(0, len(todo), 10):
+        chunk = todo[i:i + 10]
+        tid = submit(ANIM_API, {"rig_task_id": rigs[key]["task_id"], "action_ids": chunk}, headers)
+        akey = key if i == 0 else f"{key}#{i // 10}"
+        anims[akey] = {"task_id": tid, "status": "PENDING", "actions": chunk, "created": time.time()}
+        save_tasks(tasks)
+        t = wait(ANIM_API, tid, headers, "animations")
+        anims[akey].update(status=t["status"], credits=t.get("consumed_credits"))
+        save_tasks(tasks)
+        if t["status"] != "SUCCEEDED":
+            sys.exit(f"  ! animations {t['status']}: {(t.get('task_error') or {}).get('message')}")
+        url = (t.get("result") or {}).get("animation_glb_url")
+        if url:
+            save_url(url, folder / "rig" / f"animations_{i // 10 + 1}.glb", key)
+        print(f"  animated ({len(chunk)} clips)")
+    print(f"\nFinished. Files are in {folder.relative_to(ROOT)}. Credits recorded so far: {credits_spent(tasks)}")
 
 
 def cmd_status(_args) -> None:
@@ -318,10 +479,18 @@ def main() -> None:
     p.add_argument("--show-prompts", action="store_true")
     p.add_argument("--send", action="store_true", help="actually call Meshy (spends credits)")
     sub.add_parser("status", help="list recorded preview tasks")
+    a = sub.add_parser("animate", help="texture, rig and animate a character's chosen preview")
+    a.add_argument("id", help="character ID from characters.json, such as HER-09")
+    a.add_argument("--variant", type=int, default=1, help="which preview to use (v1, v2, ...)")
+    a.add_argument("--actions", help="comma-separated animation library IDs (default: from characters.json)")
+    a.add_argument("--send", action="store_true", help="actually call Meshy (spends credits)")
     args = ap.parse_args()
 
     if args.cmd == "status":
         cmd_status(args)
+        return
+    if args.cmd == "animate":
+        cmd_animate(args)
         return
     jobs = plan(args)
     if not jobs:

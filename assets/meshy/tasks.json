@@ -191,6 +191,38 @@
       "prompt": "broad gnarled oak tree, thick twisted trunk, wide rounded canopy of chunky foliage clumps, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795552486.7741773,
       "credits": 5
+    },
+    "HER-09/v1": {
+      "task_id": "01a20f69-fe53-7422-a83b-173e431093ec",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "18-year-old young man, humble farmhand, simple linen shirt with rolled sleeves, brown leather work vest, worn trousers tucked into leather boots, belt with small pouches, short messy brown hair, friendly determined face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795554936.741978,
+      "credits": 20
+    },
+    "ENM-02/v1": {
+      "task_id": "01a20f6a-08c1-7435-bdcf-bcc735970e72",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "lean grey wolf, thick grey fur with a darker back, long legs, alert ears, mouth closed, full body, standing on all four legs in a neutral pose, facing forward, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795554939.4638298,
+      "credits": 20
+    },
+    "ENM-03/v1": {
+      "task_id": "01a20f6a-1347-732f-8628-4ab25bef8d22",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "small wiry goblin, green skin, long pointed ears, large yellow eyes, sly sharp-toothed grin, ragged leather hood and vest, cloth wraps on bare feet, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795554941.8996618,
+      "credits": 20
+    },
+    "MON-15/v1": {
+      "task_id": "01a20f6a-1cdc-7031-918f-c1561e8b9394",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "large brown bear, heavy muscular body, shaggy brown fur, big shoulder hump, mouth closed, full body, standing on all four legs in a neutral pose, facing forward, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795554944.1478207,
+      "credits": 20
     }
   },
   "replaced": [
