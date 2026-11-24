@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-24T14:32:59",
+  "updated": "2026-11-24T14:37:53",
   "counts": {
-    "awaiting": 211,
-    "approved": 289,
-    "denied": 59,
+    "awaiting": 182,
+    "approved": 312,
+    "denied": 65,
     "total": 559
   },
   "ui": {
     "selected": [
-      "ITM-01"
+      "PIL-01"
     ],
     "selected_titles": {
-      "ITM-01": "Dawnblade, Rusty"
+      "PIL-01": "Combat first"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-24T14:32:59"
+    "at": "2026-11-24T14:37:53"
   },
   "ideas": {
     "PIL-01": {
@@ -4071,9 +4071,9 @@
       "in_ideas_md": true
     },
     "ITM-01": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:36:04",
       "title": "Dawnblade, Rusty",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
       "section": "",
@@ -4082,9 +4082,9 @@
       "in_ideas_md": true
     },
     "ITM-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:36:05",
       "title": "Dawnblade, Restored",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
       "section": "",
@@ -4093,9 +4093,9 @@
       "in_ideas_md": true
     },
     "ITM-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:36:11",
       "title": "Dawnblade, Awakened",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
       "section": "",
@@ -4104,9 +4104,9 @@
       "in_ideas_md": true
     },
     "ITM-04": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:36:19",
       "title": "Rowan's Buckler",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
       "section": "",
@@ -4115,9 +4115,9 @@
       "in_ideas_md": true
     },
     "ITM-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:36:23",
       "title": "Hand Crossbow",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
       "section": "",
@@ -4126,9 +4126,9 @@
       "in_ideas_md": true
     },
     "ITM-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:36:23",
       "title": "Crossbow Bolts",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
       "section": "",
@@ -4137,9 +4137,9 @@
       "in_ideas_md": true
     },
     "ITM-07": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:36:26",
       "title": "Lifewater Flask",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
       "section": "",
@@ -4148,9 +4148,9 @@
       "in_ideas_md": true
     },
     "ITM-08": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:36:27",
       "title": "Heart Shard",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
       "section": "",
@@ -4159,9 +4159,9 @@
       "in_ideas_md": true
     },
     "ITM-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:36:33",
       "title": "Crown Shard",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
       "section": "",
@@ -4170,9 +4170,9 @@
       "in_ideas_md": true
     },
     "ITM-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:36:34",
       "title": "Upgrade Ore",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
       "section": "",
@@ -4181,9 +4181,9 @@
       "in_ideas_md": true
     },
     "ITM-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:36:35",
       "title": "Firebomb & Holy Water",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
       "section": "",
@@ -4192,9 +4192,9 @@
       "in_ideas_md": true
     },
     "ITM-12": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:36:38",
       "title": "Key",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
       "section": "",
@@ -4203,9 +4203,9 @@
       "in_ideas_md": true
     },
     "ITM-13": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:36:41",
       "title": "Boss Masks",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
       "section": "",
@@ -4214,9 +4214,9 @@
       "in_ideas_md": true
     },
     "ITM-14": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:36:43",
       "title": "Weapon Set",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
       "section": "",
@@ -4225,9 +4225,9 @@
       "in_ideas_md": true
     },
     "ITM-15": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:36:51",
       "title": "Essence Remnant",
       "category": "Objects · Items, Weapons & Pickups (ITM)",
       "section": "",
@@ -4236,9 +4236,9 @@
       "in_ideas_md": true
     },
     "VFX-01": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:37:00",
       "title": "Flash Burst",
       "category": "Objects · Effects (VFX)",
       "section": "",
@@ -4247,9 +4247,9 @@
       "in_ideas_md": true
     },
     "VFX-02": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:37:02",
       "title": "Ward Dome",
       "category": "Objects · Effects (VFX)",
       "section": "",
@@ -4258,9 +4258,9 @@
       "in_ideas_md": true
     },
     "VFX-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:37:03",
       "title": "Mark Sigil",
       "category": "Objects · Effects (VFX)",
       "section": "",
@@ -4269,9 +4269,9 @@
       "in_ideas_md": true
     },
     "VFX-04": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:37:09",
       "title": "Cast Circle",
       "category": "Objects · Effects (VFX)",
       "section": "",
@@ -4291,9 +4291,9 @@
       "in_ideas_md": true
     },
     "VFX-06": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:37:17",
       "title": "Campfire Flame",
       "category": "Objects · Effects (VFX)",
       "section": "",
@@ -4302,9 +4302,9 @@
       "in_ideas_md": true
     },
     "VFX-07": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:37:18",
       "title": "Torch Flame",
       "category": "Objects · Effects (VFX)",
       "section": "",
@@ -4313,9 +4313,9 @@
       "in_ideas_md": true
     },
     "VFX-08": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:37:21",
       "title": "Dark Flame",
       "category": "Objects · Effects (VFX)",
       "section": "",
@@ -4324,9 +4324,9 @@
       "in_ideas_md": true
     },
     "VFX-09": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:37:21",
       "title": "Candle Flames",
       "category": "Objects · Effects (VFX)",
       "section": "",
@@ -4335,9 +4335,9 @@
       "in_ideas_md": true
     },
     "VFX-10": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:37:22",
       "title": "Firebomb Blast",
       "category": "Objects · Effects (VFX)",
       "section": "",
@@ -4346,9 +4346,9 @@
       "in_ideas_md": true
     },
     "VFX-11": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:37:23",
       "title": "Holy Water Splash",
       "category": "Objects · Effects (VFX)",
       "section": "",
@@ -4357,9 +4357,9 @@
       "in_ideas_md": true
     },
     "VFX-12": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:37:29",
       "title": "Smoke Puff",
       "category": "Objects · Effects (VFX)",
       "section": "",
@@ -4368,9 +4368,9 @@
       "in_ideas_md": true
     },
     "VFX-13": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:37:32",
       "title": "Relic Power Shapes",
       "category": "Objects · Effects (VFX)",
       "section": "",
@@ -4379,9 +4379,9 @@
       "in_ideas_md": true
     },
     "VFX-14": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:37:34",
       "title": "Waystone Glow Wisp",
       "category": "Objects · Effects (VFX)",
       "section": "",
@@ -4390,9 +4390,9 @@
       "in_ideas_md": true
     },
     "VFX-15": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-24T14:37:39",
       "title": "Level-Up Pillar",
       "category": "Objects · Effects (VFX)",
       "section": "",
@@ -8546,6 +8546,180 @@
     {
       "time": "2026-11-24T14:32:58",
       "id": "DNG-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:36:04",
+      "id": "ITM-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:36:05",
+      "id": "ITM-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:36:11",
+      "id": "ITM-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:36:19",
+      "id": "ITM-04",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T14:36:23",
+      "id": "ITM-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:36:23",
+      "id": "ITM-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:36:26",
+      "id": "ITM-07",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T14:36:27",
+      "id": "ITM-08",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T14:36:33",
+      "id": "ITM-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:36:34",
+      "id": "ITM-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:36:35",
+      "id": "ITM-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:36:38",
+      "id": "ITM-12",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T14:36:41",
+      "id": "ITM-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:36:43",
+      "id": "ITM-14",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:36:51",
+      "id": "ITM-15",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T14:37:00",
+      "id": "VFX-01",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-24T14:37:02",
+      "id": "VFX-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:37:03",
+      "id": "VFX-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:37:09",
+      "id": "VFX-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:37:17",
+      "id": "VFX-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:37:18",
+      "id": "VFX-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:37:21",
+      "id": "VFX-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:37:21",
+      "id": "VFX-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:37:22",
+      "id": "VFX-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:37:23",
+      "id": "VFX-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:37:29",
+      "id": "VFX-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:37:32",
+      "id": "VFX-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:37:34",
+      "id": "VFX-14",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-24T14:37:39",
+      "id": "VFX-15",
       "from": "awaiting",
       "to": "approved"
     }
