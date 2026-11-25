@@ -97,6 +97,7 @@ Every prop, building and item in the world that **Meshy** should make. The idea 
 - [VIL-10] **Haycart** — Farm cart, one broken. Prompt: "wooden farm cart loaded with hay, large spoked wheels" · 2 variants · 1.5k tris · placed · collider: box. *(Brackenvale)*
 - [VIL-11] **Hay Bales** — Round and square bales. Prompt: "stack of square hay bales and one round hay bale" · 2 variants · 500 tris · scatter · collider: box. *(Brackenvale)*
 - [VIL-12] **Scarecrow** — A ragged scarecrow in the fields (a fine place for crows). Prompt: "ragged scarecrow on a wooden pole, straw stuffing, burlap head, old hat" · 2 variants · 800 tris · placed · collider: capsule. *(Brackenvale)*
+- [VIL-13] **Cow** — A farm cow for the Fenhallow fields and pastures; grazes and wanders, harmless. Prompt: "sturdy brown and white farm cow with short horns, standing still on all four legs, legs straight, head level and looking straight ahead, symmetrical neutral stance, not walking" · 1 variant · 6k tris · animated (quadruped rig) · collider: capsule. *(Brackenvale farms)*
 
 ## 5. Buildings & Ruins Elsewhere (BLD)
 

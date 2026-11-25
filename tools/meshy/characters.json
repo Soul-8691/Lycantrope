@@ -91,6 +91,17 @@
       "actions": {
         "125": "fireball / ward cast (Charged Spell Cast)"
       }
+    },
+    "VIL-13": {
+      "name": "Cow",
+      "prompt": "sturdy brown and white farm cow with short horns, full body, standing still on all four legs, legs straight and spread apart, all four hooves flat on the ground, head level and looking straight ahead, symmetrical neutral stance, not walking",
+      "tris": 6000,
+      "rig": "quadruped",
+      "actions": {
+        "1066": "idle (Cow-Idle01)",
+        "1067": "idle 2: looks around (Cow-Idle02)",
+        "1068": "idle 3: grazing (Cow-Idle03)"
+      }
     }
   }
 }

@@ -1,11 +1,11 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-25T00:04:09",
+  "updated": "2026-11-25T10:08:47",
   "counts": {
     "awaiting": 31,
-    "approved": 435,
+    "approved": 436,
     "denied": 94,
-    "total": 560
+    "total": 561
   },
   "ui": {
     "selected": [],
@@ -3252,6 +3252,17 @@
       "file": "OBJECTS.md",
       "in_ideas_md": true
     },
+    "VIL-13": {
+      "status": "approved",
+      "note": "Added and approved 2026-11-25 at the user's request: farm cows for Brackenvale.",
+      "changed": "2026-11-25T10:08:47",
+      "title": "Cow",
+      "category": "Objects · Brackenvale Village (VIL)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
     "BLD-01": {
       "status": "approved",
       "note": "",
@@ -6451,12 +6462,6 @@
   },
   "history": [
     {
-      "time": "2026-11-23T22:42:10",
-      "id": "CMB-19",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
       "time": "2026-11-23T22:42:19",
       "id": "CMB-20",
       "from": "awaiting",
@@ -9447,6 +9452,12 @@
     {
       "time": "2026-11-25T00:04:09",
       "id": "TWO-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T10:08:47",
+      "id": "VIL-13",
       "from": "awaiting",
       "to": "approved"
     }

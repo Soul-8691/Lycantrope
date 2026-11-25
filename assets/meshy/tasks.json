@@ -343,6 +343,14 @@
       "prompt": "heavy iron flanged mace, six flanges, leather-wrapped handle, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795583099.8208036,
       "credits": 5
+    },
+    "VIL-13/v1": {
+      "task_id": "01a21342-18e9-76a9-8bd5-a06db4076e08",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "sturdy brown and white farm cow with short horns, full body, standing still on all four legs, legs straight and spread apart, all four hooves flat on the ground, head level and looking straight ahead, symmetrical neutral stance, not walking, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795619430.6718051,
+      "credits": 20
     }
   },
   "replaced": [
@@ -449,6 +457,12 @@
       "status": "SUCCEEDED",
       "created": 1795582424.8251574,
       "credits": 10
+    },
+    "VIL-13/v1": {
+      "task_id": "01a21343-0852-70b6-b1f2-4cd64d4b3c21",
+      "status": "SUCCEEDED",
+      "created": 1795619490.024718,
+      "credits": 10
     }
   },
   "rigs": {
@@ -492,6 +506,12 @@
       "task_id": "01a2110e-233a-70d1-a786-e35ce9262126",
       "status": "SUCCEEDED",
       "created": 1795582472.1972125,
+      "credits": 5
+    },
+    "VIL-13/v1": {
+      "task_id": "01a21343-8fd0-726f-a3bd-577bf2534740",
+      "status": "SUCCEEDED",
+      "created": 1795619525.03733,
       "credits": 5
     }
   },
@@ -575,6 +595,17 @@
       ],
       "created": 1795582488.6801984,
       "credits": 3
+    },
+    "VIL-13/v1": {
+      "task_id": "01a21343-f8d0-722b-82ec-00f96c8967bc",
+      "status": "SUCCEEDED",
+      "actions": [
+        1066,
+        1067,
+        1068
+      ],
+      "created": 1795619551.8914232,
+      "credits": 9
     }
   },
   "motions": {
