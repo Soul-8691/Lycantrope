@@ -16,6 +16,7 @@ from lycantrope.core.paths import DATA
 
 FADE_S = 0.15
 IDLE_DELAY_S = 3.0      # after stopping, hold still this long before the idle animation plays
+TURBO = 4.0                                  # turbo hotkey: movement speed multiplier (Rowan and fly camera)
 IDLE_CLIPS = ("idle", "idle2", "idle3")   # standing-still animations; one is picked at random
 
 
@@ -80,6 +81,7 @@ class Actor:
     pz: float = 0.0
     ph: float = 0.0
     idle_wait: float = 0.0        # seconds spent standing still on the idle's first frame
+    gait_scale: float = 1.0       # turbo: speed multiplier the walk/run/sprint choice ignores
 
     def has(self, clip: str) -> bool:
         return clip in self.clips
@@ -100,7 +102,7 @@ class Actor:
 
     def locomotion(self) -> None:
         """Pick idle / walk / run / sprint for the current speed, synced to the clip's stride."""
-        s = self.speed
+        s = self.speed / self.gait_scale
         sp = self.speeds
         if s < 0.15:
             if self.anim.clip not in IDLE_CLIPS:
@@ -151,6 +153,7 @@ class RowanInput:
     block: bool = False      # held
     hit: bool = False        # debug: play the hit reaction
     die: bool = False        # debug: toggle death
+    turbo: bool = False      # debug/travel: move TURBO times faster
 
 
 class Rowan:
@@ -218,7 +221,9 @@ class Rowan:
                 dx, dz = fx * my + rx * mx, fz * my + rz * mx
                 a.heading = turn_towards(a.heading, heading_to(dx, dz), 12.0 * dt)
                 target = a.speeds["walk"] if inp.walk else a.speeds["sprint"] if inp.sprint else a.speeds["run"]
-        accel = 25.0 if target > a.speed else 30.0
+        a.gait_scale = TURBO if inp.turbo else 1.0       # same gait and stride, just covering more ground
+        target *= a.gait_scale
+        accel = (25.0 if target > a.speed else 30.0) * a.gait_scale
         a.speed += max(-accel * dt, min(accel * dt, target - a.speed))
         a.x += math.sin(a.heading) * a.speed * dt
         a.z += math.cos(a.heading) * a.speed * dt

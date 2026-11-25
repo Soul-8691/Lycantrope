@@ -60,6 +60,16 @@ def test_rowan_moves_relative_to_camera_and_picks_clips():
     assert r.a.anim.clip == "idle" and r.a.speed == 0.0
 
 
+def test_turbo_is_four_times_faster_with_the_same_gait():
+    from lycantrope.world.actors import TURBO
+    r = Rowan(actor(heading=math.pi))
+    step(lambda dt: (r.update(RowanInput(move_y=1.0, turbo=True), 0.0, dt), r.a.anim.update(dt)), 90)
+    assert r.a.speed == pytest.approx(SPEEDS["run"] * TURBO)
+    assert r.a.anim.clip == "run"                            # not bumped up to the sprint clip
+    step(lambda dt: r.update(RowanInput(move_y=1.0), 0.0, dt), 60)
+    assert r.a.speed == pytest.approx(SPEEDS["run"])        # off again: back to normal
+
+
 def test_light_attack_chain():
     r = Rowan(actor())
     tick = lambda inp: (r.update(inp, 0.0, 1 / 60), r.a.anim.update(1 / 60))

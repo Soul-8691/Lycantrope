@@ -10,7 +10,8 @@ H / K            debug: hit reaction / die and get back up
 F4 free-fly camera · F7 helmet on/off · F8 grass on/off · F9 music on/off
 
 Free-fly mode: WASD / QE move, Shift fast, Ctrl slow, wheel base speed.
-Always: F1 wireframe · F2 fog · F3 overlay · F5 reload shaders · F6 terrain debug view · F12 screenshot
+Always: T turbo (4x speed, walking and flying) · F1 wireframe · F2 fog · F3 debug overlay ·
+        F4 fly / back to Rowan · F5 reload shaders · F6 terrain debug view · F12 screenshot
 
 Command line
 ------------
@@ -47,7 +48,7 @@ from lycantrope.render.props import PropRenderer
 from lycantrope.render.shaders import ShaderLibrary
 from lycantrope.render.terrain import TerrainRenderer
 from lycantrope.ui.overlay import TextOverlay
-from lycantrope.world.actors import RowanInput
+from lycantrope.world.actors import TURBO, RowanInput
 from lycantrope.world.heightfield import Heightfield
 from lycantrope.world.props import load_placements, paint_ground, paint_paths
 
@@ -119,6 +120,7 @@ class App:
         self.clock = FixedStep(60)
         self.base_speed = 25.0
         self.fog = True
+        self.turbo = False
         self.show_overlay = True
         self.captured = False
         self.time_s = 0.0
@@ -210,6 +212,9 @@ class App:
                         self.set_capture(False)
                     else:
                         return False
+                elif k == pygame.K_t:
+                    self.turbo = not self.turbo
+                    self.overlay_timer = 0.0                 # show the change straight away
                 elif k == pygame.K_F1:
                     self.ctx.wireframe = not self.ctx.wireframe
                 elif k == pygame.K_F2:
@@ -249,6 +254,7 @@ class App:
             inp.move_y = keys[pygame.K_w] - keys[pygame.K_s]
             inp.sprint = bool(keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT])
             inp.walk = bool(keys[pygame.K_LCTRL] or keys[pygame.K_RCTRL])
+            inp.turbo = self.turbo
             inp.block = bool(self.captured and pygame.mouse.get_pressed()[2])
             inp.light, inp.heavy = "light" in self.pressed, "heavy" in self.pressed
             inp.cast, inp.hit, inp.die = "cast" in self.pressed, "hit" in self.pressed, "die" in self.pressed
@@ -283,7 +289,7 @@ class App:
         slow = keys[pygame.K_LCTRL] or keys[pygame.K_RCTRL]
         move = cam.forward() * fwd + cam.right() * side + glm.vec3(0, 1, 0) * up
         if glm.length(move) > 0:
-            speed = self.base_speed * (5.0 if fast else 1.0) * (0.2 if slow else 1.0)
+            speed = self.base_speed * (5.0 if fast else 1.0) * (0.2 if slow else 1.0) * (TURBO if self.turbo else 1.0)
             cam.position = cam.position + glm.normalize(move) * speed * dt
         floor = self.world.height_at(cam.position.x, cam.position.z) + 0.6
         if cam.position.y < floor:
@@ -321,7 +327,8 @@ class App:
         p = self.camera.position
         st = self.terrain.stats
         counts = self.chars.counts()
-        lines = [f"LYCANTROPE   {1000 / max(ms, 1e-3):5.0f} fps  {ms:5.1f} ms"]
+        lines = [f"LYCANTROPE   {1000 / max(ms, 1e-3):5.0f} fps  {ms:5.1f} ms"
+                 + (f"   TURBO x{TURBO:g}" if self.turbo else "") + ("" if self.fog else "   fog off")]
         if self.play and self.chars.rowan:
             a = self.chars.rowan.a
             lines.append(f"ROWAN  x {a.x:7.1f}  z {a.z:7.1f}   {a.state:<7} {a.anim.clip:<7} {a.speed:4.1f} m/s"
@@ -334,11 +341,12 @@ class App:
             f"terrain {st.triangles / 1000:.0f}k tris   props {self.props.drawn}/{self.props.count}",
         ]
         if self.play:
-            lines += ["WASD move  Shift sprint  Ctrl walk  LMB attack  RMB block  R heavy  Q cast",
-                      "H hit  K die/revive  F7 helmet  F8 grass  F9 music  F4 free camera  wheel zoom  Esc mouse"]
+            lines += ["WASD move  Shift sprint  Ctrl walk  T turbo  LMB attack  RMB block  R heavy  Q cast",
+                      "H hit  K die/revive  F7 helmet  F8 grass  F9 music  wheel zoom  Esc mouse",
+                      "F2 fog  F3 hide overlay  F4 fly"]
         else:
-            lines += ["WASD QE fly  Shift/Ctrl speed  wheel base speed  F4 back to Rowan",
-                      "F1 wire  F2 fog  F3 overlay  F5 shaders  F6 debug  F12 shot"]
+            lines += ["WASD QE fly  Shift/Ctrl speed  T turbo  wheel base speed  F4 back to Rowan",
+                      "F1 wire  F2 fog  F3 hide overlay  F5 shaders  F6 debug  F9 music  F12 shot"]
         return lines
 
     def screenshot(self, path) -> None:

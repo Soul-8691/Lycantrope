@@ -3,13 +3,8 @@ Helpful:
 .venv\Scripts\python.exe tools\meshy\animsheet.py ENM-03 --gif
 
 To-Do:
-Loop music
-Turbo sprint
 Sounds
 Collision
-Debug hotkey
-Fog hotkey
-Fly hotkey
 Character stats
 Armor stats
 Weapon stats
@@ -18,11 +13,13 @@ Health and damage
 Fall damage
 Dialogue
 Choices
-Magic casting
+Ward casting
+Swimming
 World map
 Caves
 Story
 
 Later:
+Textures
 Guards
 NPCs

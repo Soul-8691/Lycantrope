@@ -1,7 +1,8 @@
 """Background music (AUD-07): exploration pieces with quiet gaps between them, and a combat
 layer that crossfades in while enemies are after Rowan.
 
-Exploration tracks play through once (they have their own endings), then there is a quiet
+With `explore_loop`, the exploration track loops seamlessly (like combat music). Without it,
+exploration tracks play through once (they have their own endings), then there is a quiet
 stretch of `gap_s` seconds before the next one, picked at random and never the same twice in a
 row when there's a choice. When combat starts, the combat track fades in (looping) over `fade_s`
 and the exploration music fades down underneath it, still playing so it picks up where it was.
@@ -10,7 +11,7 @@ Combat ends `combat_hold_s` after the last enemy gives up, and the two fade back
 `MusicDirector` holds the timing and volumes and talks to a small player interface, so it can be
 tested without a sound card. `MixerPlayer` is that interface on pygame's mixer: each track is
 decoded into memory on a background thread (no hitch at load or when a track starts), and
-combat tracks are made into seamless loops (`make_loop`: generated pieces fade out at the end).
+looping tracks are made seamless (`make_loop`: generated pieces fade in and out).
 Settings live in data/audio/music.json; tracks that don't exist yet are skipped.
 """
 from __future__ import annotations
@@ -82,7 +83,7 @@ class MusicDirector:
             if self.gap <= 0:
                 track = self._pick("explore")
                 if track and p.ready(track):
-                    p.play("explore", track, loop=False)
+                    p.play("explore", track, loop=bool(cfg.get("explore_loop", False)))
                     self.playing["explore"] = self.last_explore = track
 
         # combat layer: starts when needed, stops once faded out
@@ -122,18 +123,28 @@ def make_loop(samples: np.ndarray, rate: int, blend_s: float = 1.5, within_db: f
     n = len(mono) // win
     if n < 8:
         return samples
-    rms = np.sqrt((mono[:n * win].reshape(n, win) ** 2).mean(axis=1)) + 1e-9
-    db = 20 * np.log10(rms)
+    power = (mono[:n * win].reshape(n, win) ** 2).mean(axis=1)
+    k = min(20, n)                                            # judge loudness over ~1 s, so one loud
+    power = np.convolve(power, np.ones(k) / k, mode="same")   # moment inside a fade doesn't count
+    db = 10 * np.log10(power + 1e-18)
     full = np.nonzero(db >= np.median(db) - within_db)[0]
     body = x[full[0] * win:(full[-1] + 1) * win]
     blend = min(int(blend_s * rate), len(body) // 4)
     if blend < 2:
         return body.astype(samples.dtype)
+    # line the end up with the start (shift the cut by up to 50 ms) so held notes don't cancel out
+    bm = body.mean(axis=1) if body.ndim > 1 else body
+    shift = min(int(0.05 * rate), len(body) - 2 * blend)
+    if shift > 0:
+        d = max(1, rate // 11025)                             # correlate at ~11 kHz: plenty for this
+        region = bm[len(bm) - blend - shift:]
+        corr = np.correlate(region[::d], bm[:blend][::d], mode="valid")
+        body = body[:len(bm) - shift + int(corr.argmax()) * d]
     t = np.linspace(0.0, 1.0, blend, dtype=np.float32)
     if body.ndim > 1:
         t = t[:, None]
     out = body[:-blend].copy()
-    out[:blend] = body[-blend:] * np.cos(t * np.pi / 2) + body[:blend] * np.sin(t * np.pi / 2)   # equal power
+    out[:blend] = body[-blend:] * (1.0 - t) + body[:blend] * t   # aligned, so a plain crossfade
     if np.issubdtype(samples.dtype, np.integer):
         info = np.iinfo(samples.dtype)
         out = np.clip(np.round(out), info.min, info.max)
@@ -192,4 +203,5 @@ def start_music(volume: float) -> MusicDirector | None:
     tracks = cfg["explore"] + cfg["combat"]
     if not tracks:
         return None
-    return MusicDirector(cfg, MixerPlayer(tracks, loops=cfg["combat"]), volume)
+    loops = cfg["combat"] + (cfg["explore"] if cfg.get("explore_loop") else [])
+    return MusicDirector(cfg, MixerPlayer(tracks, loops=loops), volume)

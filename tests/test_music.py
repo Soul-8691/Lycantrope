@@ -87,6 +87,14 @@ def test_no_combat_track_keeps_exploring_and_mute():
     assert p.vol["explore"] == 0.0
 
 
+def test_explore_loop_plays_one_looping_track_without_gaps():
+    p = FakePlayer(length_s=10.0)
+    d = MusicDirector(dict(CFG, explore_loop=True), p, volume=1.0, seed=4)
+    run(d, p, 60.0)
+    assert len(p.starts) == 1 and p.busy("explore")          # started once, still going, no gap
+    assert p.vol["explore"] == pytest.approx(1.0)
+
+
 def test_make_loop_trims_fades_and_has_no_dip_at_the_seam():
     import numpy as np
     from lycantrope.audio.music import make_loop

@@ -1,13 +1,15 @@
 {
   "_about": [
-    "Background music (AUD-07). Exploration pieces play through once, then a quiet gap of gap_s",
-    "seconds (random in the range) before the next. While enemies chase Rowan the combat track",
+    "Background music (AUD-07). explore_loop: true loops the exploration track seamlessly; false",
+    "plays each piece through once, then a quiet gap of gap_s seconds (random in the range) before",
+    "the next. While enemies chase Rowan the combat track",
     "fades in over fade_s and loops; exploration fades to explore_under_combat underneath and comes",
     "back combat_hold_s after the last enemy gives up. combat_range_m: how close a chasing enemy",
     "has to be. Paths are from the repo root; missing files are skipped. Volume: settings.json."
   ],
   "explore": ["assets/audio/music/brackenvale_explore.mp3"],
   "combat": ["assets/audio/music/brackenvale_combat.mp3"],
+  "explore_loop": true,
   "first_delay_s": 4,
   "gap_s": [30, 90],
   "fade_s": 2.0,
