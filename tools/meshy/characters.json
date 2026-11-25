@@ -102,6 +102,30 @@
         "1067": "idle 2: looks around (Cow-Idle02)",
         "1068": "idle 3: grazing (Cow-Idle03)"
       }
+    },
+    "WLD-23": {
+      "name": "Villager (man)",
+      "prompt": "middle-aged male farming villager, plain linen shirt, brown wool waistcoat, rolled sleeves, sturdy work trousers, simple leather shoes, belt with a small pouch, short brown hair and a trimmed beard, kind weathered face, empty hands, full body, standing in A-pose",
+      "tris": 12000,
+      "rig": "biped",
+      "pose": "a-pose",
+      "height_m": 1.76
+    },
+    "WLD-24": {
+      "name": "Villager (woman)",
+      "prompt": "young adult female farming villager, long-sleeved linen blouse, laced brown bodice, ankle-length wool skirt with an apron, simple leather shoes, hair tied back in a braid, friendly face, empty hands, full body, standing in A-pose",
+      "tris": 12000,
+      "rig": "biped",
+      "pose": "a-pose",
+      "height_m": 1.66
+    },
+    "STY-20": {
+      "name": "Farmer Oswin Tull",
+      "prompt": "old farmer around sixty, broad and sturdy with a slight stoop, weathered kind face, bushy grey beard and balding grey hair, worn wide-brimmed straw hat, faded green wool tunic over a linen shirt, leather work apron, patched trousers, muddy leather boots, empty hands, full body, standing in A-pose",
+      "tris": 12000,
+      "rig": "biped",
+      "pose": "a-pose",
+      "height_m": 1.72
     }
   }
 }

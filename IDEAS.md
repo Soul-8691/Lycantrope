@@ -45,6 +45,7 @@
 - [STY-17] **Ending: the final battle, with one secret** — Defeat Malgrath and restore the Crown. The normal ending is triumphant. A secret ending lets Rowan put the Crown on instead, becoming the next Dark Lord. *(DS1, SK)*
 - [STY-18] **"The Lycantrope": an in-world bestiary** — The bestiary is a book called *The Lycantrope: A Field Guide to Monsters Most Common*, by a snarky travelling scholar. Its entries poke fun at each monster's trope while giving real tactics. This ties the title into the game. *(NEW)*
 - [STY-19] **A rival champion** — Sir Calder the Black, the Dark Lord's champion and a fallen hero of the old order, duels Rowan several times across the journey (see BOS-10). *(DS, OoT)*
+- [STY-20] **Farmer Oswin Tull, who took Rowan in** — The gruff, kind old farmer who runs the Fenhallow farm and raised Rowan as a farmhand after Rowan's grandfather died. Gives the first chores (the tutorial), keeps grandfather's sword above the hearth, and is in danger when the village burns (STY-14). Name is a placeholder. *(OoT, SK)*
 
 ## 3. The Hero (HER)
 
@@ -205,6 +206,8 @@
 - [WLD-20] **Pacing director** — A hidden system that watches HP, deaths and how long since the last fight, then adjusts ambushes, quiet stretches and Elite spawns. *(DOC)*
 - [WLD-21] **World validators** — Automated checks: every Waystone can be reached, no spawns inside geometry, no slopes you can't climb on main paths, and a maximum distance between safe points. ⭐ *(DOC)*
 - [WLD-22] **Fishing pond** — A later stretch goal: a relaxing fishing minigame at a lake hut. *(OoT, TP)*
+- [WLD-23] **Brackenvale villager (man)** — An everyday farming villager, generated already dressed, rigged on the shared skeleton so he borrows Rowan's animations. Variety comes from per-NPC tints, height/build and timing, not more models. *(NEW)*
+- [WLD-24] **Brackenvale villager (woman)** — The female counterpart: an everyday villager, generated already dressed, same skeleton and the same per-NPC variety. *(NEW)*
 
 ## 10. HUD & UI (UIX)
 

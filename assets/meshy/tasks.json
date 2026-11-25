@@ -351,6 +351,14 @@
       "prompt": "sturdy brown and white farm cow with short horns, full body, standing still on all four legs, legs straight and spread apart, all four hooves flat on the ground, head level and looking straight ahead, symmetrical neutral stance, not walking, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795619430.6718051,
       "credits": 20
+    },
+    "STY-20/v1": {
+      "task_id": "01a21352-4491-767a-9238-b0c5b8d7473e",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "old farmer around sixty, broad and sturdy with a slight stoop, weathered kind face, bushy grey beard and balding grey hair, worn wide-brimmed straw hat, faded green wool tunic over a linen shirt, leather work apron, patched trousers, muddy leather boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795620490.593952,
+      "credits": 20
     }
   },
   "replaced": [
@@ -463,6 +471,12 @@
       "status": "SUCCEEDED",
       "created": 1795619490.024718,
       "credits": 10
+    },
+    "STY-20/v1": {
+      "task_id": "01a21353-5ad8-7146-a840-eba6fa8edaf3",
+      "status": "SUCCEEDED",
+      "created": 1795620559.7143016,
+      "credits": 10
     }
   },
   "rigs": {
@@ -512,6 +526,12 @@
       "task_id": "01a21343-8fd0-726f-a3bd-577bf2534740",
       "status": "SUCCEEDED",
       "created": 1795619525.03733,
+      "credits": 5
+    },
+    "STY-20/v1": {
+      "task_id": "01a21354-06a7-718a-9fa0-46d02acbca92",
+      "status": "SUCCEEDED",
+      "created": 1795620608.710475,
       "credits": 5
     }
   },

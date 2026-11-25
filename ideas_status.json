@@ -1,11 +1,11 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-25T10:08:47",
+  "updated": "2026-11-25T10:24:34",
   "counts": {
     "awaiting": 31,
-    "approved": 436,
+    "approved": 439,
     "denied": 94,
-    "total": 561
+    "total": 564
   },
   "ui": {
     "selected": [],
@@ -259,6 +259,17 @@
       "starred": false,
       "in_ideas_md": true,
       "file": "IDEAS.md"
+    },
+    "STY-20": {
+      "status": "approved",
+      "note": "Added and approved 2026-11-25 at the user's request: the farmer who looks after Rowan (name is a placeholder).",
+      "changed": "2026-11-25T10:24:34",
+      "title": "Farmer Oswin Tull, who took Rowan in",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
     },
     "HER-02": {
       "status": "denied",
@@ -1700,6 +1711,28 @@
       "starred": false,
       "in_ideas_md": true,
       "file": "IDEAS.md"
+    },
+    "WLD-23": {
+      "status": "approved",
+      "note": "Added and approved 2026-11-25 at the user's request: two dressed villagers for NPCs.",
+      "changed": "2026-11-25T10:23:47",
+      "title": "Brackenvale villager (man)",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-24": {
+      "status": "approved",
+      "note": "Added and approved 2026-11-25 at the user's request: two dressed villagers for NPCs.",
+      "changed": "2026-11-25T10:23:47",
+      "title": "Brackenvale villager (woman)",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
     },
     "UIX-01": {
       "status": "approved",
@@ -6462,24 +6495,6 @@
   },
   "history": [
     {
-      "time": "2026-11-23T22:42:19",
-      "id": "CMB-20",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:42:23",
-      "id": "CMB-21",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:42:28",
-      "id": "CMB-22",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
       "time": "2026-11-23T22:42:31",
       "id": "CMB-23",
       "from": "awaiting",
@@ -9458,6 +9473,24 @@
     {
       "time": "2026-11-25T10:08:47",
       "id": "VIL-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T10:23:47",
+      "id": "WLD-23",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T10:23:47",
+      "id": "WLD-24",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T10:24:34",
+      "id": "STY-20",
       "from": "awaiting",
       "to": "approved"
     }

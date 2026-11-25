@@ -1,0 +1,45 @@
+{
+  "id": "01a21352-4491-767a-9238-b0c5b8d7473e",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 2321941342,
+  "prompt": "old farmer around sixty, broad and sturdy with a slight stoop, weathered kind face, bushy grey beard and balding grey hair, worn wide-brimmed straw hat, faded green wool tunic over a linen shirt, leather work apron, patched trousers, muddy leather boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795620490470,
+  "progress": 100,
+  "started_at": 1795620490483,
+  "finished_at": 1795620539967,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21352-4491-767a-9238-b0c5b8d7473e/output/model.glb?Expires=4949164800&Signature=lEDu-pAtBHZzKSohekXPLAZfoSNTVvPSY8yrJlXgPASBXyyAxO9~ngi7JaK4x52H5rpyUqUNnwIhRMQLysb8zXb2VImYsYFmKr0rWffKNUGXT7zwzVqJ36AmVve0ZBI~WXnW2Nz7cKL2qW4oC82Rhkkq-BDVqONxNElfM8TTqxE9P8Xg~hZmcyQnSVnX1NHfirf4~PZH4ltVCyYMRF4BWG6m9UKE1Z-o3fni0YHBmE~3eGLVN1pUB8AJf6u1JfnJ9pXvMXX9ov-HP4yl~GtBQpZy5k4u~8Nos36HXcWYZhdVv8f223GzNLxDkMl9QvogbF~JjdaUmbVvgNWhphb3Mw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21352-4491-767a-9238-b0c5b8d7473e/output/preview.png?Expires=4949164800&Signature=T4LDf6QkFhHK-bTAq4OCxKURvH9gEhspNuTMQFV4AmGYURfw6k7UONxWLJEtOhwIrKT38F9VeM6bhJr7kQdOs6rC5-7oL1-uF5sy0VhT1YcSOP85tv137XmiGFwv3PJZwafcWq1V~d~b69pn2l809as8tRTJ96c05VHEagq51GwZguipwHc93BGiOeNRk1B0hN2305eOvk0~I~4Zkp81a~Ls6Z04RQEy-qgKdVES~eEDWiELFJsAxNc6FO3zLzr~mEE5JXpLJKD4AJWYBm-dc584JxeyPjCJnrEHbbFmBMGsavfUdzS9qlHSQho1EgOAD~9FxpM0414PE8oSU4C8dA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "old farmer around sixty, broad and sturdy with a slight stoop, weathered kind face, bushy grey beard and balding grey hair, worn wide-brimmed straw hat, faded green wool tunic over a linen shirt, leather work apron, patched trousers, muddy leather boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 2321941342,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21352-4491-767a-9238-b0c5b8d7473e/output/model.glb?Expires=4949164800&Signature=lEDu-pAtBHZzKSohekXPLAZfoSNTVvPSY8yrJlXgPASBXyyAxO9~ngi7JaK4x52H5rpyUqUNnwIhRMQLysb8zXb2VImYsYFmKr0rWffKNUGXT7zwzVqJ36AmVve0ZBI~WXnW2Nz7cKL2qW4oC82Rhkkq-BDVqONxNElfM8TTqxE9P8Xg~hZmcyQnSVnX1NHfirf4~PZH4ltVCyYMRF4BWG6m9UKE1Z-o3fni0YHBmE~3eGLVN1pUB8AJf6u1JfnJ9pXvMXX9ov-HP4yl~GtBQpZy5k4u~8Nos36HXcWYZhdVv8f223GzNLxDkMl9QvogbF~JjdaUmbVvgNWhphb3Mw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21352-4491-767a-9238-b0c5b8d7473e/output/preview.png?Expires=4949164800&Signature=T4LDf6QkFhHK-bTAq4OCxKURvH9gEhspNuTMQFV4AmGYURfw6k7UONxWLJEtOhwIrKT38F9VeM6bhJr7kQdOs6rC5-7oL1-uF5sy0VhT1YcSOP85tv137XmiGFwv3PJZwafcWq1V~d~b69pn2l809as8tRTJ96c05VHEagq51GwZguipwHc93BGiOeNRk1B0hN2305eOvk0~I~4Zkp81a~Ls6Z04RQEy-qgKdVES~eEDWiELFJsAxNc6FO3zLzr~mEE5JXpLJKD4AJWYBm-dc584JxeyPjCJnrEHbbFmBMGsavfUdzS9qlHSQho1EgOAD~9FxpM0414PE8oSU4C8dA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}
