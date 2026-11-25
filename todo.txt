@@ -3,6 +3,8 @@ Helpful:
 .venv\Scripts\python.exe tools\meshy\animsheet.py ENM-03 --gif
 
 To-Do:
+Planning
+HUD
 Sounds
 Character stats
 Armor stats

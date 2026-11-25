@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-25T15:46:34",
+  "updated": "2026-11-25T16:59:35",
   "counts": {
-    "awaiting": 57,
-    "approved": 489,
-    "denied": 102,
+    "awaiting": 44,
+    "approved": 493,
+    "denied": 111,
     "total": 648
   },
   "ui": {
     "selected": [
-      "DRM-69"
+      "PIL-01"
     ],
     "selected_titles": {
-      "DRM-69": "The Shantak Roost"
+      "PIL-01": "Combat first"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
-    "window_open": false,
-    "at": "2026-11-25T15:46:34"
+    "window_open": true,
+    "at": "2026-11-25T16:59:35"
   },
   "ideas": {
     "PIL-01": {
@@ -2784,9 +2784,9 @@
       "in_ideas_md": true
     },
     "DRM-02": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T16:52:56",
       "title": "Nyarlathotep behind the Dark Lord",
       "category": "Dreamlands Fusion (DRM)",
       "section": "The frame",
@@ -2817,9 +2817,9 @@
       "in_ideas_md": true
     },
     "DRM-05": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T16:52:57",
       "title": "The mentor can't leave his ward",
       "category": "Dreamlands Fusion (DRM)",
       "section": "The frame",
@@ -2840,8 +2840,8 @@
     },
     "DRM-07": {
       "status": "approved",
-      "note": "",
-      "changed": "2026-11-25T15:32:41",
+      "note": "Yes to hero's sword; no to Nyarlathotep/door to the past idea",
+      "changed": "2026-11-25T16:55:15",
       "title": "The Dawnblade's time loop",
       "category": "Dreamlands Fusion (DRM)",
       "section": "The frame",
@@ -3125,9 +3125,9 @@
       "in_ideas_md": true
     },
     "DRM-33": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T16:54:14",
       "title": "The offer at Kadath",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Part II: the Dreamlands",
@@ -3136,9 +3136,9 @@
       "in_ideas_md": true
     },
     "DRM-34": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T16:56:05",
       "title": "Epilogue: the last door",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Part II: the Dreamlands",
@@ -3334,9 +3334,9 @@
       "in_ideas_md": true
     },
     "DRM-52": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T16:59:29",
       "title": "The Colour Out of Space",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Creatures (from CREATURES.md)",
@@ -3444,9 +3444,9 @@
       "in_ideas_md": true
     },
     "DRM-62": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T16:55:41",
       "title": "Nyarlathotep's dialogue duel",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Bosses (from BOSSES.md)",
@@ -3455,9 +3455,9 @@
       "in_ideas_md": true
     },
     "DRM-63": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T16:55:45",
       "title": "The Night of the Rising Star (final boss)",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Bosses (from BOSSES.md)",
@@ -3490,7 +3490,7 @@
     "DRM-66": {
       "status": "awaiting",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T16:58:19",
       "title": "Grandmother Zoog",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Bosses (from BOSSES.md)",
@@ -3543,9 +3543,9 @@
       "in_ideas_md": true
     },
     "DRM-71": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T16:56:25",
       "title": "The Flight to Azathoth",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Bosses (from BOSSES.md)",
@@ -3554,9 +3554,9 @@
       "in_ideas_md": true
     },
     "DRM-72": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T16:56:33",
       "title": "The Martense Patriarch",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Bosses (from BOSSES.md)",
@@ -3565,9 +3565,9 @@
       "in_ideas_md": true
     },
     "DRM-73": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T16:56:45",
       "title": "Hatheg-Kla",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Bosses (from BOSSES.md)",
@@ -3576,9 +3576,9 @@
       "in_ideas_md": true
     },
     "DRM-74": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T16:57:26",
       "title": "The Quarry of Inganok",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Bosses (from BOSSES.md)",
@@ -3587,9 +3587,9 @@
       "in_ideas_md": true
     },
     "DRM-75": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T16:57:32",
       "title": "Kuranes' Dream",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Bosses (from BOSSES.md)",
@@ -3620,9 +3620,9 @@
       "in_ideas_md": true
     },
     "TRE-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T16:58:48",
       "title": "Apple Tree",
       "category": "Objects · Trees (TRE)",
       "section": "",
@@ -7423,96 +7423,6 @@
   },
   "history": [
     {
-      "time": "2026-11-24T09:46:16",
-      "id": "WLD-09",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:46:27",
-      "id": "WLD-10",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:46:38",
-      "id": "WLD-11",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:46:47",
-      "id": "WLD-12",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:46:54",
-      "id": "WLD-13",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:47:02",
-      "id": "WLD-14",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:47:13",
-      "id": "WLD-15",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:47:23",
-      "id": "WLD-16",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:47:28",
-      "id": "WLD-17",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:53:33",
-      "id": "UIX-01",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:53:36",
-      "id": "UIX-02",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:53:41",
-      "id": "UIX-03",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:53:45",
-      "id": "UIX-04",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:53:51",
-      "id": "UIX-05",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:53:59",
-      "id": "UIX-06",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
       "time": "2026-11-24T09:54:01",
       "id": "UIX-07",
       "from": "awaiting",
@@ -10421,6 +10331,96 @@
       "id": "DRM-65",
       "from": "awaiting",
       "to": "denied"
+    },
+    {
+      "time": "2026-11-25T16:52:56",
+      "id": "DRM-02",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T16:52:57",
+      "id": "DRM-05",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T16:54:14",
+      "id": "DRM-33",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T16:55:41",
+      "id": "DRM-62",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T16:55:45",
+      "id": "DRM-63",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T16:56:05",
+      "id": "DRM-34",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T16:56:25",
+      "id": "DRM-71",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T16:56:33",
+      "id": "DRM-72",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T16:56:45",
+      "id": "DRM-73",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T16:57:26",
+      "id": "DRM-74",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T16:57:32",
+      "id": "DRM-75",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T16:57:44",
+      "id": "DRM-66",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T16:58:19",
+      "id": "DRM-66",
+      "from": "denied",
+      "to": "awaiting"
+    },
+    {
+      "time": "2026-11-25T16:58:48",
+      "id": "TRE-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T16:59:29",
+      "id": "DRM-52",
+      "from": "awaiting",
+      "to": "approved"
     }
   ]
 }
