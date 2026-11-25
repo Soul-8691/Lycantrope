@@ -1,21 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-25T10:24:34",
+  "updated": "2026-11-25T15:37:25",
   "counts": {
-    "awaiting": 31,
-    "approved": 439,
-    "denied": 94,
-    "total": 564
+    "awaiting": 35,
+    "approved": 463,
+    "denied": 100,
+    "total": 598
   },
   "ui": {
-    "selected": [],
-    "selected_titles": {},
+    "selected": [
+      "DRM-02"
+    ],
+    "selected_titles": {
+      "DRM-02": "Nyarlathotep behind the Dark Lord"
+    },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-24T17:07:49"
+    "at": "2026-11-25T15:37:25"
   },
   "ideas": {
     "PIL-01": {
@@ -2668,6 +2672,380 @@
       "starred": true,
       "in_ideas_md": true,
       "file": "IDEAS.md"
+    },
+    "DRM-01": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-25T15:31:08",
+      "title": "Fusion premise: Malgrath and the sky-folk",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "The frame",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-02": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Nyarlathotep behind the Dark Lord",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "The frame",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-03": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:31:44",
+      "title": "Rowan the dreamer",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "The frame",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-04": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:31:57",
+      "title": "The mentor once served the enemy",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "The frame",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-05": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The mentor can't leave his ward",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "The frame",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-06": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:32:22",
+      "title": "Mindspeak",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "The frame",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-07": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:32:41",
+      "title": "The Dawnblade's time loop",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "The frame",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-08": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:32:59",
+      "title": "The apprentice, the enemy's human face",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "The frame",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-09": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:33:05",
+      "title": "The Archsage's testament as the game's frame",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "The frame",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-10": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:33:14",
+      "title": "Training that keeps getting cut short",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part I: the waking world",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-11": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:33:16",
+      "title": "The horror in the jar",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part I: the waking world",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-12": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:33:48",
+      "title": "First incursion: Brackenvale's burying ground",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part I: the waking world",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-13": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:33:57",
+      "title": "Second incursion: the stone circle",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part I: the waking world",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-14": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:34:05",
+      "title": "Third incursion: the galley from the clouds",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part I: the waking world",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-15": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:34:22",
+      "title": "Boss: the Shantak Rider",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part I: the waking world",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-16": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:34:33",
+      "title": "Teachers besides the mentor",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part I: the waking world",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-17": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:34:36",
+      "title": "Sidequests from public-domain tales",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part I: the waking world",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-18": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:34:40",
+      "title": "Sealing rifts",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Mechanics",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-19": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:34:55",
+      "title": "Incursions as data",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Mechanics",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-20": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-25T15:35:13",
+      "title": "The Black Tongue",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Mechanics",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-21": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-25T15:35:21",
+      "title": "Dread",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Mechanics",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-22": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-25T15:35:28",
+      "title": "Fractures",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Mechanics",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-23": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-25T15:35:33",
+      "title": "Insight reveals true forms",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Mechanics",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-24": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:35:37",
+      "title": "The Silver Key",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Mechanics",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-25": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:35:45",
+      "title": "Dream-Shapes",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Mechanics",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-26": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:35:52",
+      "title": "Found documents with clues",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Mechanics",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-27": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:35:57",
+      "title": "Into the Dreamlands through sleep",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part II: the Dreamlands",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-28": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:36:30",
+      "title": "Crown Shards on both sides of the Wall",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part II: the Dreamlands",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-29": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:36:34",
+      "title": "Allies who remember",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part II: the Dreamlands",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-30": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:36:43",
+      "title": "Randolph Carter and Kuranes",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part II: the Dreamlands",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-31": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T15:36:49",
+      "title": "Fallen Serannian restored",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part II: the Dreamlands",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-32": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-25T15:37:01",
+      "title": "Voices that pull you back",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part II: the Dreamlands",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-33": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The offer at Kadath",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part II: the Dreamlands",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-34": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Epilogue: the last door",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Part II: the Dreamlands",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
     },
     "TRE-01": {
       "status": "approved",
@@ -6495,186 +6873,6 @@
   },
   "history": [
     {
-      "time": "2026-11-23T22:42:31",
-      "id": "CMB-23",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:42:52",
-      "id": "CMB-25",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:42:59",
-      "id": "CMB-26",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:43:09",
-      "id": "CMB-27",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:43:16",
-      "id": "CMB-28",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:43:50",
-      "id": "CMB-30",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:44:01",
-      "id": "CMB-31",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:44:08",
-      "id": "CMB-32",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:46:00",
-      "id": "VAL-03",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:46:09",
-      "id": "VAL-05",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:46:20",
-      "id": "VAL-06",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:46:35",
-      "id": "VAL-07",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:47:16",
-      "id": "STA-01",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:47:27",
-      "id": "STA-02",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:47:29",
-      "id": "STA-03",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-23T22:47:37",
-      "id": "STA-04",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:47:41",
-      "id": "STA-05",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:47:45",
-      "id": "STA-06",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:47:48",
-      "id": "STA-07",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:47:53",
-      "id": "STA-08",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:48:01",
-      "id": "STA-09",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-23T22:48:07",
-      "id": "STA-10",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:41:00",
-      "id": "ENM-01",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:41:01",
-      "id": "ENM-02",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:41:12",
-      "id": "ENM-03",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:41:15",
-      "id": "ENM-04",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:41:19",
-      "id": "ENM-05",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:41:22",
-      "id": "ENM-06",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:41:27",
-      "id": "ENM-07",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:41:29",
-      "id": "ENM-08",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
       "time": "2026-11-24T09:41:30",
       "id": "ENM-09",
       "from": "awaiting",
@@ -9493,6 +9691,186 @@
       "id": "STY-20",
       "from": "awaiting",
       "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:31:08",
+      "id": "DRM-01",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T15:31:44",
+      "id": "DRM-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:31:57",
+      "id": "DRM-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:32:22",
+      "id": "DRM-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:32:41",
+      "id": "DRM-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:32:59",
+      "id": "DRM-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:33:05",
+      "id": "DRM-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:33:14",
+      "id": "DRM-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:33:16",
+      "id": "DRM-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:33:48",
+      "id": "DRM-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:33:57",
+      "id": "DRM-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:34:05",
+      "id": "DRM-14",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:34:22",
+      "id": "DRM-15",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:34:33",
+      "id": "DRM-16",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:34:36",
+      "id": "DRM-17",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:34:40",
+      "id": "DRM-18",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:34:55",
+      "id": "DRM-19",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:35:13",
+      "id": "DRM-20",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T15:35:21",
+      "id": "DRM-21",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T15:35:28",
+      "id": "DRM-22",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T15:35:33",
+      "id": "DRM-23",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T15:35:37",
+      "id": "DRM-24",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:35:45",
+      "id": "DRM-25",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:35:52",
+      "id": "DRM-26",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:35:57",
+      "id": "DRM-27",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:36:30",
+      "id": "DRM-28",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:36:34",
+      "id": "DRM-29",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:36:43",
+      "id": "DRM-30",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:36:49",
+      "id": "DRM-31",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T15:37:01",
+      "id": "DRM-32",
+      "from": "awaiting",
+      "to": "denied"
     }
   ]
 }
