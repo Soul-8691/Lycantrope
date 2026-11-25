@@ -1,0 +1,130 @@
+{
+  "_about": [
+    "Which sound each character makes, and when (AUD-05, AUD-06, AUD-08). Files are",
+    "assets/audio/sfx/<group>/<sound>_<n>.mp3 (made by tools/voice/sfx.py); a random take plays, never",
+    "the same one twice in a row. A sound is \"group/sound\", or an object with s (that), chance (0..1),",
+    "volume and delay_s. In a list, sounds without a chance always play; of those with one, a single",
+    "roll picks at most one (so chances 0.75 and 0.25 mean one or the other). {ground} becomes grass or",
+    "dirt from the ground underfoot.",
+    "Events: step (footfalls, steps_per_cycle per walk/run loop), alert (spots Rowan), attack (enemy",
+    "melee), light / heavy / cast (Rowan), release (a caster's spell leaves the hand), hit, death,",
+    "idle (now and then while wandering, every idle_every_s), startled (Rowan swings nearby).",
+    "Sounds fade with distance (full within ref_m, silent past max_m) and pan with the camera."
+  ],
+  "volume": 1.0,
+  "ref_m": 4.0,
+  "max_m": 45.0,
+  "steps_within_m": 22.0,
+  "min_gap_s": 0.3,
+  "spell": {"loop": "combat/fireball_loop", "loop_volume": 0.55, "hit": "combat/fireball_hit"},
+  "kinds": {
+    "rowan": {
+      "positional": false,
+      "steps_per_cycle": 2,
+      "events": {
+        "step": {"s": "footsteps/boot_{ground}", "volume": 0.32},
+        "light": ["combat/swing_light", {"s": "rowan/attack_light", "chance": 0.45, "volume": 0.8}],
+        "heavy": ["combat/swing_heavy", {"s": "rowan/attack_heavy", "volume": 0.85}],
+        "cast": [{"s": "rowan/cast", "volume": 0.8}, {"s": "combat/rite_cast", "delay_s": 0.25}],
+        "hit": ["rowan/hurt", {"s": "combat/hit_flesh", "volume": 0.7}],
+        "death": ["rowan/death", {"s": "combat/body_fall", "delay_s": 0.9}]
+      }
+    },
+    "goblin": {
+      "steps_per_cycle": 2,
+      "idle_every_s": [10, 25],
+      "events": {
+        "step": {"s": "footsteps/bare_small", "volume": 0.3},
+        "alert": "goblin/alert",
+        "idle": {"s": "goblin/idle", "volume": 0.7},
+        "attack": [{"s": "combat/swing_light", "volume": 0.8}, {"s": "goblin/attack", "chance": 0.7}],
+        "hit": "goblin/hurt",
+        "death": ["goblin/death", {"s": "combat/body_fall", "delay_s": 0.7, "volume": 0.6}]
+      }
+    },
+    "wolf": {
+      "steps_per_cycle": 2,
+      "idle_every_s": [12, 30],
+      "events": {
+        "step": {"s": "footsteps/paw", "volume": 0.25},
+        "alert": [{"s": "wolf/alert", "chance": 0.75}, {"s": "wolf/howl", "chance": 0.25}],
+        "idle": {"s": "wolf/idle", "volume": 0.6},
+        "attack": "wolf/attack",
+        "hit": "wolf/hurt",
+        "death": "wolf/death"
+      }
+    },
+    "bear": {
+      "steps_per_cycle": 2,
+      "idle_every_s": [10, 25],
+      "events": {
+        "step": {"s": "footsteps/paw_heavy", "volume": 0.4},
+        "alert": "bear/alert",
+        "idle": {"s": "bear/idle", "volume": 0.7},
+        "attack": "bear/attack",
+        "hit": "bear/hurt",
+        "death": ["bear/death", {"s": "combat/body_fall", "delay_s": 1.0}]
+      }
+    },
+    "bruiser": {
+      "steps_per_cycle": 2,
+      "events": {
+        "step": {"s": "footsteps/boot_{ground}", "volume": 0.35},
+        "alert": "bruiser/alert",
+        "attack": ["combat/swing_heavy", {"s": "bruiser/attack", "chance": 0.8}],
+        "hit": ["bruiser/hurt", {"s": "combat/hit_blunt", "volume": 0.7}],
+        "death": ["bruiser/death", {"s": "combat/body_fall", "delay_s": 0.9}]
+      }
+    },
+    "battlemage": {
+      "steps_per_cycle": 2,
+      "events": {
+        "step": {"s": "footsteps/boot_{ground}", "volume": 0.3},
+        "alert": "battlemage/alert",
+        "attack": ["combat/swing_light", {"s": "battlemage/attack", "chance": 0.7}],
+        "cast": {"s": "battlemage/cast", "volume": 0.85},
+        "release": "combat/fireball_cast",
+        "hit": "battlemage/hurt",
+        "death": ["battlemage/death", {"s": "combat/body_fall", "delay_s": 0.9}]
+      }
+    },
+    "cow": {
+      "steps_per_cycle": 2,
+      "idle_every_s": [15, 45],
+      "events": {
+        "step": {"s": "footsteps/hoof", "volume": 0.25},
+        "idle": [{"s": "cow/moo", "chance": 0.5}, {"s": "cow/moo_short", "chance": 0.3}, {"s": "cow/chew", "chance": 0.2, "volume": 0.6}],
+        "startled": "cow/startled"
+      }
+    },
+    "villager_m": {
+      "steps_per_cycle": 2,
+      "events": {
+        "step": {"s": "footsteps/boot_{ground}", "volume": 0.25},
+        "startled": "villager_m/startled",
+        "hit": "villager_m/hurt",
+        "death": "villager_m/death"
+      }
+    },
+    "villager_f": {
+      "steps_per_cycle": 2,
+      "events": {
+        "step": {"s": "footsteps/boot_{ground}", "volume": 0.22},
+        "startled": "villager_f/startled",
+        "hit": "villager_f/hurt",
+        "death": "villager_f/death"
+      }
+    },
+    "farmer": {
+      "steps_per_cycle": 2,
+      "idle_every_s": [20, 50],
+      "events": {
+        "step": {"s": "footsteps/boot_{ground}", "volume": 0.25},
+        "idle": {"s": "farmer/idle", "volume": 0.7},
+        "startled": "farmer/startled",
+        "hit": "farmer/hurt",
+        "death": "farmer/death"
+      }
+    }
+  }
+}

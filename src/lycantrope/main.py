@@ -7,7 +7,7 @@ WASD             move (camera-relative)     Shift: sprint  ·  Ctrl: walk  ·  w
 Left click       light attack (click again during a swing to chain up to three)
 Right mouse      hold to block              R: heavy attack  ·  Q: cast (off hand)
 H / K            debug: hit reaction / die and get back up
-F4 free-fly camera · F7 helmet on/off · F8 grass on/off · F9 music on/off
+F4 free-fly camera · F7 helmet on/off · F8 grass on/off · F9 music on/off · F10 sound effects on/off
 
 Free-fly mode: WASD / QE move, Shift fast, Ctrl slow, wheel base speed.
 Always: T turbo (4x speed, walking and flying) · F1 wireframe · F2 fog · F3 debug overlay ·
@@ -37,6 +37,7 @@ import pygame
 from PIL import Image
 
 from lycantrope.audio.music import start_music
+from lycantrope.audio.sfx import start_sfx
 from lycantrope.core.config import Settings
 from lycantrope.core.paths import SCREENSHOTS
 from lycantrope.core.timing import FixedStep
@@ -111,6 +112,8 @@ class App:
         # no music for benchmarks and screenshots (timing and silence)
         quiet = args.bench or args.screenshot or settings.music_volume <= 0
         self.music = None if quiet else start_music(settings.music_volume)
+        no_sfx = args.bench or args.screenshot or settings.sfx_volume <= 0
+        self.sfx = None if no_sfx else start_sfx(settings.sfx_volume)
 
         self.camera = Camera(fov_deg=settings.fov_deg, far=settings.view_distance_m)
         self.play = self.chars.rowan is not None and not args.cam
@@ -241,6 +244,8 @@ class App:
                     self.grass.enabled = not self.grass.enabled
                 elif k == pygame.K_F9 and self.music is not None:
                     self.music.enabled = not self.music.enabled
+                elif k == pygame.K_F10 and self.sfx is not None:
+                    self.sfx.enabled = not self.sfx.enabled
                 elif k == pygame.K_F12:
                     SCREENSHOTS.mkdir(exist_ok=True)
                     self.screenshot(SCREENSHOTS / f"lycantrope_{datetime.now():%Y%m%d_%H%M%S}.png")
@@ -282,7 +287,20 @@ class App:
         self.chars.update(inp, self.orbit_yaw, dt)
         if self.music is not None:
             self.music.update(dt, self.chars.chased(self.music.cfg.get("combat_range_m", 45.0)))
+        if self.sfx is not None:
+            cam = self.camera
+            p, r = cam.position, cam.right()
+            self.sfx.update(self.chars.chars, self.chars.rowan.a if self.chars.rowan else None,
+                            self.chars.spells.items, (p.x, p.y, p.z), (r.x, r.y, r.z), dt, self.ground_sound)
         self.time_s += dt
+
+    def ground_sound(self, x: float, z: float) -> str:
+        """Footstep surface: 'dirt' on paths and lanes, 'grass' elsewhere."""
+        w = self.world
+        c, r = w._px(x, z)
+        ci, ri = int(round(c)), int(round(r))
+        on_path = 0 <= ci < w.size and 0 <= ri < w.size and w.road[ri, ci] >= 120
+        return "dirt" if on_path else "grass"
 
     def fly(self, dt: float, keys) -> None:
         cam = self.camera
@@ -347,11 +365,11 @@ class App:
         ]
         if self.play:
             lines += ["WASD move  Shift sprint  Ctrl walk  T turbo  LMB attack  RMB block  R heavy  Q cast",
-                      "H hit  K die/revive  F7 helmet  F8 grass  F9 music  wheel zoom  Esc mouse",
+                      "H hit  K die/revive  F7 helmet  F8 grass  F9 music  F10 sfx  wheel zoom  Esc mouse",
                       "F2 fog  F3 hide overlay  F4 fly"]
         else:
             lines += ["WASD QE fly  Shift/Ctrl speed  T turbo  wheel base speed  F4 back to Rowan",
-                      "F1 wire  F2 fog  F3 hide overlay  F5 shaders  F6 debug  F9 music  F12 shot"]
+                      "F1 wire  F2 fog  F3 hide overlay  F5 shaders  F6 debug  F9 music  F10 sfx  F12 shot"]
         return lines
 
     def screenshot(self, path) -> None:
