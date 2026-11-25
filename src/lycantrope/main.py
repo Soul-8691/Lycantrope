@@ -7,7 +7,7 @@ WASD             move (camera-relative)     Shift: sprint  ·  Ctrl: walk  ·  w
 Left click       light attack (click again during a swing to chain up to three)
 Right mouse      hold to block              R: heavy attack  ·  Q: cast (off hand)
 H / K            debug: hit reaction / die and get back up
-F4 free-fly camera · F7 helmet on/off · F8 grass on/off
+F4 free-fly camera · F7 helmet on/off · F8 grass on/off · F9 music on/off
 
 Free-fly mode: WASD / QE move, Shift fast, Ctrl slow, wheel base speed.
 Always: F1 wireframe · F2 fog · F3 overlay · F5 reload shaders · F6 terrain debug view · F12 screenshot
@@ -35,6 +35,7 @@ import numpy as np
 import pygame
 from PIL import Image
 
+from lycantrope.audio.music import start_music
 from lycantrope.core.config import Settings
 from lycantrope.core.paths import SCREENSHOTS
 from lycantrope.core.timing import FixedStep
@@ -72,6 +73,7 @@ class App:
     def __init__(self, settings: Settings, args: argparse.Namespace) -> None:
         self.settings = settings
         self.args = args
+        pygame.mixer.pre_init(44100, -16, 2, 2048)       # a roomy buffer: music without crackles
         pygame.init()
         for attr, val in ((pygame.GL_CONTEXT_MAJOR_VERSION, 3), (pygame.GL_CONTEXT_MINOR_VERSION, 3),
                           (pygame.GL_CONTEXT_PROFILE_MASK, pygame.GL_CONTEXT_PROFILE_CORE),
@@ -104,6 +106,9 @@ class App:
         self.water = Water(self.ctx, self.shaders, self.world, self.terrain.tex_height, self.terrain.tex_water)
         self.overlay = TextOverlay(self.ctx, self.shaders)
         self.load_seconds = time.perf_counter() - t0
+        # no music for benchmarks and screenshots (timing and silence)
+        quiet = args.bench or args.screenshot or settings.music_volume <= 0
+        self.music = None if quiet else start_music(settings.music_volume)
 
         self.camera = Camera(fov_deg=settings.fov_deg, far=settings.view_distance_m)
         self.play = self.chars.rowan is not None and not args.cam
@@ -224,6 +229,8 @@ class App:
                     self.chars.helmet = not self.chars.helmet
                 elif k == pygame.K_F8:
                     self.grass.enabled = not self.grass.enabled
+                elif k == pygame.K_F9 and self.music is not None:
+                    self.music.enabled = not self.music.enabled
                 elif k == pygame.K_F12:
                     SCREENSHOTS.mkdir(exist_ok=True)
                     self.screenshot(SCREENSHOTS / f"lycantrope_{datetime.now():%Y%m%d_%H%M%S}.png")
@@ -262,6 +269,8 @@ class App:
         else:
             self.fly(dt, keys)
         self.chars.update(inp, self.orbit_yaw, dt)
+        if self.music is not None:
+            self.music.update(dt, self.chars.chased(self.music.cfg.get("combat_range_m", 45.0)))
         self.time_s += dt
 
     def fly(self, dt: float, keys) -> None:
@@ -326,7 +335,7 @@ class App:
         ]
         if self.play:
             lines += ["WASD move  Shift sprint  Ctrl walk  LMB attack  RMB block  R heavy  Q cast",
-                      "H hit  K die/revive  F7 helmet  F8 grass  F4 free camera  wheel zoom  Esc mouse"]
+                      "H hit  K die/revive  F7 helmet  F8 grass  F9 music  F4 free camera  wheel zoom  Esc mouse"]
         else:
             lines += ["WASD QE fly  Shift/Ctrl speed  wheel base speed  F4 back to Rowan",
                       "F1 wire  F2 fog  F3 overlay  F5 shaders  F6 debug  F12 shot"]

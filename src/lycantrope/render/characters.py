@@ -512,6 +512,15 @@ class CharacterSystem:
                 return False
         return True
 
+    def chased(self, range_m: float) -> bool:
+        """Is any enemy within range_m actively after Rowan (for the combat music)?"""
+        if self.rowan is None or self.rowan.a.state == "dead":
+            return False
+        r = self.rowan.a
+        return any(c.brain is not None and c.actor.state in ("chase", "engage", "attack", "cast")
+                   and (c.actor.x - r.x) ** 2 + (c.actor.z - r.z) ** 2 < range_m * range_m
+                   for c in self.chars)
+
     def counts(self) -> dict[str, int]:
         out: dict[str, int] = {}
         for c in self.chars:

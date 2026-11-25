@@ -19,6 +19,7 @@ class Settings:
     # terrain level of detail: chunk distance (m) where LOD 1, 2, 3 and 4 start
     lod_distances_m: list[float] = field(default_factory=lambda: [110.0, 260.0, 560.0, 1200.0])
     view_distance_m: float = 6000.0
+    music_volume: float = 0.6         # 0 = off, 1 = full
 
     @classmethod
     def load(cls) -> "Settings":

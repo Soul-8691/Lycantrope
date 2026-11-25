@@ -1,0 +1,6 @@
+{
+  "model_id": "music_v1",
+  "music_length_ms": 120000,
+  "force_instrumental": true,
+  "prompt": "Tense orchestral fantasy battle music in D minor at 70 BPM, felt in double time. Pounding low war drums and timpani ostinato, urgent staccato cellos and basses, bold French horn and trombone calls, short fierce bursts from a low wordless male choir. Strings rising in tension, cymbal swells on phrase changes. Heroic and dangerous rather than chaotic, tight and driving. Ends the way it began so it loops seamlessly."
+}

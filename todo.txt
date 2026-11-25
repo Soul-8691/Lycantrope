@@ -4,7 +4,12 @@ Helpful:
 
 To-Do:
 Debug hotkey
+Fog hotkey
 Collision
+Fall damage
+Random houses
+Random NPCs walking the roads
+Place the enemies closer to Brackenvale
 Sounds
 Music (like Elder Scrolls [https://www.elderscrollsonline.com/en-us/news/post/827])
 Character stats

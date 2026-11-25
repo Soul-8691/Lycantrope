@@ -1,0 +1,6 @@
+{
+  "model_id": "music_v1",
+  "music_length_ms": 150000,
+  "force_instrumental": true,
+  "prompt": "Slow, contemplative orchestral fantasy score for wandering open countryside at dawn, in D minor (Dorian feel). Warm sustained strings, a lone French horn carrying a gentle, wistful melody, soft harp arpeggios, and a solo flute or oboe answering the horn. Distant low wordless male choir swelling in and out like wind over hills. Sparse soft timpani rolls, no driving beat. Spacious hall reverb, gentle dynamics, lots of space between phrases. Melancholy but hopeful, peaceful and timeless. 70 BPM. Ends the way it began so it loops seamlessly."
+}
