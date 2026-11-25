@@ -1,21 +1,21 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-25T17:31:46",
+  "updated": "2026-11-25T17:52:33",
   "counts": {
     "awaiting": 29,
-    "approved": 513,
-    "denied": 119,
+    "approved": 512,
+    "denied": 120,
     "total": 661
   },
   "ui": {
     "selected": [],
     "selected_titles": {},
-    "filter": "awaiting",
+    "filter": "approved",
     "category": "All categories",
-    "search": "",
+    "search": "cmb-30",
     "starred_only": false,
     "window_open": false,
-    "at": "2026-11-25T17:31:46"
+    "at": "2026-11-25T17:52:33"
   },
   "ideas": {
     "PIL-01": {
@@ -668,9 +668,9 @@
       "file": "IDEAS.md"
     },
     "CMB-30": {
-      "status": "approved",
-      "note": "",
-      "changed": "2026-11-23T22:43:50",
+      "status": "denied",
+      "note": "No XP drop on death: experience stays with the player. Dying loads the previous save, so XP resets to what it was then",
+      "changed": "2026-11-25T17:52:32",
       "title": "Essence drop on death",
       "category": "Combat (CMB)",
       "section": "",
@@ -680,8 +680,8 @@
     },
     "CMB-31": {
       "status": "approved",
-      "note": "",
-      "changed": "2026-11-23T22:44:01",
+      "note": "No explosive barrels",
+      "changed": "2026-11-25T17:51:52",
       "title": "Kicks and environment kills",
       "category": "Combat (CMB)",
       "section": "",
@@ -1791,8 +1791,8 @@
     },
     "WLD-16": {
       "status": "approved",
-      "note": "",
-      "changed": "2026-11-24T09:47:23",
+      "note": "No cracked walls to bomb",
+      "changed": "2026-11-25T17:51:52",
       "title": "Hidden walls and secrets",
       "category": "World & Biomes (WLD)",
       "section": "",
@@ -7562,12 +7562,6 @@
   },
   "history": [
     {
-      "time": "2026-11-24T10:02:55",
-      "id": "TEC-02",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
       "time": "2026-11-24T10:02:59",
       "id": "TEC-03",
       "from": "awaiting",
@@ -10560,6 +10554,12 @@
       "id": "ONE-13",
       "from": "awaiting",
       "to": "approved"
+    },
+    {
+      "time": "2026-11-25T17:52:32",
+      "id": "CMB-30",
+      "from": "approved",
+      "to": "denied"
     }
   ]
 }

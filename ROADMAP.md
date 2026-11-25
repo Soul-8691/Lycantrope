@@ -196,7 +196,7 @@ Each day has a **code track** and an **asset kitchen** track (batch jobs that ru
 - [ ] One shadow cascade and per-biome color grading. *(TEC-12, ART-12)*
 - [ ] Waystones: rest, heal, refill flasks, respawn enemies, save, fast travel. *(WLD-09, CMB-22, TEC-16)*
 - [ ] Spawn tables per biome with fixed level ranges, plus the activation radius. *(STA-10, TEC-14)*
-- [ ] Death loop: the "AND SO THE LEGEND ENDED… or did it?" screen, respawn at a Waystone, dropped essence you can recover. *(UIX-09, CMB-30)*
+- [ ] Death loop: the "AND SO THE LEGEND ENDED… or did it?" screen, then load the previous save, so XP and everything else go back to what they were then. No XP is dropped at death. *(UIX-09, CMB-30 as changed in its note)*
 
 **Done when:** you can run from Brackenvale to the Frostfang foothills, meet enemies of the right level along the way, die, and get your XP back.
 
