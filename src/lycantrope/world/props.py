@@ -81,6 +81,9 @@ def ground_y(world: Heightfield, x: float, z: float, rot: float, half_x: float, 
 GRID_M = 16.0           # cell size for the "is this spot taken?" lookup
 
 
+PATH_CORE = 110         # road map value (0-255) counted as "on the path"
+
+
 class Placer:
     def __init__(self, world: Heightfield, catalog: dict[str, PropSpec]) -> None:
         self.world = world
@@ -91,10 +94,34 @@ class Placer:
         self._max_r = 0.0
         self.anchors = {p.name: p for p in world.landmarks + world.waystones}
         self.missing: set[str] = set()
+        self.blocked_by_path: list[tuple[str, float, float]] = []
 
     # ------------------------------------------------------------------ #
+    def footprint(self, key: str, scale: float) -> float:
+        """Radius of what actually sits on the ground: a trunk for trees, the base for the rest."""
+        ex, _ey, ez = self.catalog[key].extents
+        k = 0.1 if key.startswith("TRE") else 0.35
+        return max(ex, ez) * scale * k
+
+    def on_path(self, x: float, z: float, r: float) -> bool:
+        """Does a circle of radius r at (x, z) touch a path or road (its well-trodden middle)?"""
+        w = self.world
+        if not hasattr(w, "road"):
+            return False
+        for dx, dz in ((0, 0), (r, 0), (-r, 0), (0, r), (0, -r), (0.7 * r, 0.7 * r), (-0.7 * r, 0.7 * r),
+                       (0.7 * r, -0.7 * r), (-0.7 * r, -0.7 * r)):
+            c, rr = w._px(x + dx, z + dz)
+            ci, ri = int(round(c)), int(round(rr))
+            if 0 <= ci < w.size and 0 <= ri < w.size and w.road[ri, ci] > PATH_CORE:
+                return True
+        return False
+
     def place(self, key: str, x: float, z: float, rot: float, scale: float = 1.0,
-              shade: float = 1.0, sink: float = 0.05, stretch: float = 1.0) -> None:
+              shade: float = 1.0, sink: float = 0.05, stretch: float = 1.0, path_ok: bool = False) -> bool:
+        """Place a prop; returns False (and places nothing) if it would sit on a path."""
+        if not path_ok and self.on_path(x, z, self.footprint(key, scale)):
+            self.blocked_by_path.append((key, round(x, 1), round(z, 1)))
+            return False
         spec = self.catalog[key]
         ex, _ey, ez = spec.extents
         y = ground_y(self.world, x, z, rot, ex * scale / 2, ez * scale / 2) - sink * scale
@@ -103,6 +130,7 @@ class Placer:
         self.taken.append((x, z, r))
         self._grid.setdefault((int(x // GRID_M), int(z // GRID_M)), []).append((x, z, r))
         self._max_r = max(self._max_r, r)
+        return True
 
     def blocked(self, x: float, z: float, rad: float, spacing: float) -> bool:
         """Is there already a prop within rad + its radius + spacing/2 of (x, z)?"""
@@ -130,7 +158,8 @@ class Placer:
             g = self.catalog[gate].extents[0]
             mid = gate_at * length
             g0, g1 = max(0.0, mid - g / 2), min(length, mid + g / 2)
-            self.place(gate, a[0] + dx * (g0 + g1) / 2 / length, a[1] + dz * (g0 + g1) / 2 / length, rot)
+            self.place(gate, a[0] + dx * (g0 + g1) / 2 / length, a[1] + dz * (g0 + g1) / 2 / length, rot,
+                       path_ok=True)
             spans = [(0.0, g0), (g1, length)]
         for s0, s1 in spans:
             n = max(1, round((s1 - s0) / seg)) if s1 - s0 > seg * 0.5 else 0
@@ -186,6 +215,8 @@ class Placer:
             rad = max(self.catalog[key].extents[0], self.catalog[key].extents[2]) * s / 2
             if self.blocked(x, z, rad, spacing):
                 continue
+            if self.on_path(x, z, self.footprint(key, s)):
+                continue
             self.place(key, x, z, float(rng.uniform(0, math.tau)), s, float(rng.uniform(0.85, 1.1)), sink=0.15,
                        stretch=float(rng.uniform(*stretch)))
             placed += 1
@@ -236,6 +267,8 @@ class Placer:
             rad = max(self.catalog[kk].extents[0], self.catalog[kk].extents[2]) * s / 2
             if self.blocked(x, z, rad, spacing):
                 continue
+            if self.on_path(x, z, self.footprint(kk, s)):
+                continue
             self.place(kk, x, z, float(rng.uniform(0, math.tau)), s, float(rng.uniform(0.85, 1.1)),
                        sink=0.2, stretch=float(rng.uniform(*stretch)))
             placed += 1
@@ -273,7 +306,7 @@ class Placer:
                 if "id" in it:
                     x, z = pos(it["at"])
                     self.place(it["id"], x, z, facing_to_rotation(it.get("facing", 180)),
-                               float(it.get("scale", 1.0)))
+                               float(it.get("scale", 1.0)), path_ok=bool(it.get("path_ok", False)))
                 elif "line" in it:
                     self.line(it["line"], pos(it["from"]), pos(it["to"]), it.get("gate"),
                               float(it.get("gate_at", 0.5)))
@@ -285,6 +318,9 @@ class Placer:
                                  tuple(it.get("stretch", (1.0, 1.0))))
         if self.missing:
             print(f"placements: skipped props that aren't built yet: {', '.join(sorted(self.missing))}")
+        hand = [b for b in self.blocked_by_path if not b[0].startswith(("STR-01", "STR-02"))]
+        if hand:
+            print(f"placements: left out {len(hand)} props that would stand on a path: {hand[:6]}")
         return self.out
 
 
@@ -363,3 +399,36 @@ def paint_paths(world: Heightfield, placements: dict | None = None) -> int:
             count += 1
     world.road = road
     return count
+
+
+def paint_ground(world: Heightfield, placements: dict | None = None) -> np.ndarray:
+    """Paint the groups' 'ground' patches (loose hay, for now) into a uint8 map, ragged at the edges.
+
+    Each patch: {"material": "hay", "at": [east, north], "r": metres}. Returns the hay map
+    (same size as the heightmap, 255 = fully covered) and stores it as world.hay.
+    """
+    placements = placements or load_placements()
+    anchors = {p.name: p for p in world.landmarks + world.waystones}
+    hay = np.zeros((world.size, world.size), dtype=np.float32)
+    for group in placements["groups"]:
+        anchor = anchors.get(group["anchor"])
+        if anchor is None:
+            continue
+        for patch in group.get("ground", []):
+            if patch.get("material", "hay") != "hay":
+                continue
+            x, z, r = anchor.x + patch["at"][0], anchor.z - patch["at"][1], float(patch["r"])
+            reach = r * 1.5 + 2
+            c0, r0 = (max(0, int(v)) for v in world._px(x - reach, z - reach))
+            c1, r1 = (min(world.size, int(v) + 2) for v in world._px(x + reach, z + reach))
+            if c0 >= c1 or r0 >= r1:
+                continue
+            X, Z = np.meshgrid((np.arange(c0, c1) + 0.5) * world.mpp - world.half,
+                               (np.arange(r0, r1) + 0.5) * world.mpp - world.half)
+            ang = np.arctan2(Z - z, X - x)
+            wob = 0.22 * np.sin(3 * ang + x) + 0.15 * np.sin(5 * ang - z) + 0.1 * np.sin(0.9 * X + 1.3 * Z)
+            d = np.hypot(X - x, Z - z) / (r * (1.0 + wob))
+            w = _smoothstep(1.15, 0.6, d) * float(patch.get("strength", 1.0))
+            hay[r0:r1, c0:c1] = np.maximum(hay[r0:r1, c0:c1], w)
+    world.hay = (np.clip(hay, 0, 1) * 255 + 0.5).astype(np.uint8)
+    return world.hay

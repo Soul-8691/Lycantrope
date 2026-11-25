@@ -1,5 +1,5 @@
 {
-  "_about": "World layout for tools/worldgen/terrain.py (WLD-01). Coordinates are meters from the map center: x = east, y = north. Edit, re-run the generator, look at assets/world/preview.png. Lakes: x/y/r (+ depth_m, optional level_m); the rim sets the level. Rivers: points from source to mouth, width_m, depth_m; the water surface never rises downstream.",
+  "_about": "World layout for tools/worldgen/terrain.py (WLD-01). Coordinates are meters from the map center: x = east, y = north. Edit, re-run the generator, look at assets/world/preview.png. Lakes: x/y/r (+ depth_m, optional level_m); the rim sets the level. Rivers: points from source to mouth, width_m, depth_m; the water surface never rises downstream. Hills: x/y/r/height_m, a smooth rise added to the ground.",
   "seed": 1337,
   "world_size_m": 4096,
   "max_height_m": 520,
@@ -262,6 +262,17 @@
       "profile": "cliff",
       "foot": 0.3,
       "edge_noise_m": 75
+    },
+    {
+      "name": "Brack Tor",
+      "x": -780,
+      "y": -1580,
+      "r": 75,
+      "falloff_m": 90,
+      "height_m": 92,
+      "profile": "cliff",
+      "foot": 0.3,
+      "edge_noise_m": 25
     }
   ],
   "roads": [
@@ -829,6 +840,36 @@
           -1370
         ]
       ]
+    }
+  ],
+  "hills": [
+    {
+      "name": "Fenhallow Rise",
+      "x": 260,
+      "y": -1700,
+      "r": 150,
+      "height_m": 42
+    },
+    {
+      "name": "Bramble Hill",
+      "x": -380,
+      "y": -1660,
+      "r": 135,
+      "height_m": 38
+    },
+    {
+      "name": "Crossroads Knoll",
+      "x": -330,
+      "y": -1180,
+      "r": 120,
+      "height_m": 34
+    },
+    {
+      "name": "Mill Down",
+      "x": 560,
+      "y": -1670,
+      "r": 140,
+      "height_m": 46
     }
   ]
 }

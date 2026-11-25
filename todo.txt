@@ -11,5 +11,5 @@ Magic stats
 Magic casting
 Collision
 Remove debug hotkey
-Elevated landmasses
 Caves
+Cows

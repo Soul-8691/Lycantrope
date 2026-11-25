@@ -48,7 +48,7 @@ from lycantrope.render.terrain import TerrainRenderer
 from lycantrope.ui.overlay import TextOverlay
 from lycantrope.world.actors import RowanInput
 from lycantrope.world.heightfield import Heightfield
-from lycantrope.world.props import load_placements, paint_paths
+from lycantrope.world.props import load_placements, paint_ground, paint_paths
 
 CAM_PIVOT_HEIGHT = 1.55
 
@@ -95,6 +95,7 @@ class App:
         self.world = Heightfield()
         placements = load_placements()
         paint_paths(self.world, placements)          # before the terrain uploads the road map
+        paint_ground(self.world, placements)         # loose hay and other painted patches
         self.terrain = TerrainRenderer(self.ctx, self.shaders, self.world)
         self.props = PropRenderer(self.ctx, self.shaders, self.world, placements)
         self.grass = Grass(self.ctx, self.shaders, self.world, self.terrain)

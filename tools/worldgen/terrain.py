@@ -293,6 +293,16 @@ def generate(layout: dict, size_px: int, seed: int | None = None, log=print) -> 
         H = H * (1 - wgt) + (p["height_m"] + 2.0 * F["detail"]) * wgt
     step("plateaus")
 
+    # 4b. hills: smooth rounded rises with irregular outlines (added to whatever is there) --- #
+    for hl in layout.get("hills", []):
+        r = float(hl["r"])
+        d = np.hypot(X - hl["x"], Y - hl["y"]) + 0.28 * r * F["mid"]
+        t = np.clip(1.0 - d / r, 0.0, 1.0)
+        bell = 0.5 - 0.5 * np.cos(np.pi * t)                        # 0 at the foot, 1 on top
+        H += float(hl["height_m"]) * bell * (1.0 + 0.18 * F["detail"] + 0.25 * F["ridge"] * bell)
+    if layout.get("hills"):
+        step("hills")
+
     # 5. erosion ---------------------------------------------------------- #
     e = layout.get("erosion", {})
     if e.get("iterations", 0):

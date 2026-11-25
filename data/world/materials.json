@@ -1,5 +1,5 @@
 {
-  "_about": "Ground materials for the terrain shader (ART-08). Textures come from tools/worldgen/textures.py. tile_m = meters per texture repeat. bank_layer covers river banks and beds (from the river curves in meta.json).",
+  "_about": "Ground materials for the terrain shader (ART-08). Textures come from tools/worldgen/textures.py. tile_m = meters per texture repeat. bank_layer covers river banks and beds (from the river curves in meta.json). paint_layers: materials placements.json can paint in patches ('ground' lists).",
   "layers": [
     {
       "name": "grass",
@@ -45,6 +45,11 @@
       "name": "pebbles",
       "file": "textures/ground/pebbles.png",
       "tile_m": 2.5
+    },
+    {
+      "name": "hay",
+      "file": "textures/ground/hay.png",
+      "tile_m": 2.0
     }
   ],
   "biome_layers": {
@@ -61,5 +66,8 @@
   "snow_layer": "snow",
   "underwater_layer": "mud",
   "snowline_m": 215,
-  "bank_layer": "pebbles"
+  "bank_layer": "pebbles",
+  "paint_layers": {
+    "hay": "hay"
+  }
 }

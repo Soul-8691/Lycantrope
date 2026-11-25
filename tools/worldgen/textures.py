@@ -184,7 +184,28 @@ def pebbles():
     return rgb, np.clip(0.15 + 0.75 * dome + 0.25 * gravel, 0, 1)
 
 
-MATERIALS = {f.__name__: f for f in (grass, forest, mud, snow, ash, darkstone, rock, dirt, pebbles)}
+def hay():
+    """Loose straw on the ground: thin strands lying across each other at many angles."""
+    rgb = lerp(c(0.36, 0.29, 0.16), c(0.46, 0.38, 0.21), n01(F(5, 3, 101)))        # shaded bed of straw
+    height = np.zeros_like(U)
+    dirs = [(1, 0), (0, 1), (1, 1), (1, -1), (2, 1), (1, 2), (2, -1), (1, -2)]
+    for i, (a, b_) in enumerate(dirs):
+        # coordinates along / across this direction; integer directions keep the texture tileable
+        across = (a * U + b_ * V)
+        along = (-b_ * U + a * V)
+        n = fbm(across * 96.0, along * 6.0, 2, 110 + i, period=6)
+        strand = ss(0.55, 0.85, 1.0 - np.abs(n) * 2.2)                       # thin bright lines
+        strand *= ss(0.35, 0.65, n01(fbm(across * 12.0, along * 3.0, 2, 130 + i, period=3)))   # broken up
+        shade = 0.78 + 0.3 * (i % 3) / 2.0
+        col = lerp(c(0.72, 0.60, 0.33), c(0.90, 0.80, 0.50), n01(F(64, 2, 150 + i))) * shade
+        top = strand > height                                                # later strands lie on top
+        rgb = np.where(top[..., None], lerp(rgb, col, strand), rgb)
+        height = np.maximum(height, strand * (0.55 + 0.45 * i / len(dirs)))
+    rgb *= (0.9 + 0.2 * n01(F(32, 2, 160)))[..., None]
+    return rgb, np.clip(0.15 + 0.8 * height, 0, 1)
+
+
+MATERIALS = {f.__name__: f for f in (grass, forest, mud, snow, ash, darkstone, rock, dirt, pebbles, hay)}
 
 
 def build(name: str, out: Path = OUT) -> Path:

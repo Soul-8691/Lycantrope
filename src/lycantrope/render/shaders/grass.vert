@@ -12,6 +12,7 @@ uniform sampler2D u_water_tex;
 uniform sampler2D u_patch_a;       // baked at load: rgb meadow tint / 2, a bare dirt
 uniform sampler2D u_patch_b;       // baked at load: rgb soil tint / 2, a tall grass
 uniform sampler2D u_bank;          // river banks (pebbles)
+uniform sampler2D u_paint;         // painted patches (r = loose hay)
 uniform float u_world_size;
 uniform float u_cell;
 uniform float u_radius;
@@ -47,6 +48,7 @@ void main() {
     vec4 pa = textureLod(u_patch_a, uv, 0.0);
     grow *= 1.0 - smoothstep(0.2, 0.75, pa.a);                  // nothing grows on the bare dirt
     grow *= 1.0 - smoothstep(0.15, 0.6, textureLod(u_bank, uv, 0.0).r);   // or on the pebble banks
+    grow *= 1.0 - smoothstep(0.2, 0.7, textureLod(u_paint, uv, 0.0).r);   // or under loose hay
     grow *= step(r3, grow * 1.15);                               // thinner where it grows less
 
     // height: big patches of tall meadow, short lawn elsewhere; mown in the village

@@ -7,7 +7,10 @@
     "in a ring around the anchor, keeping off roads, steep ground and other props; 'scale' sizes each copy,",
     "'stretch' scales only its height (tall/slim vs squat variants of one model); 'groves': [n, radius]",
     "clusters them around n random grove centers instead. 'shore' scatters props along rivers and lakes",
-    "(dry ground within reach_m of the water, plus the shallows) within 'radius' of the anchor."
+    "(dry ground within reach_m of the water, plus the shallows) within 'radius' of the anchor.",
+    "'ground' paints loose material on the terrain in ragged patches: {material, at, r} (material: hay).",
+    "Nothing is placed on a path or road; 'path_ok': true allows it for places a path leads to",
+    "(the well in the square, a cottage at the end of its doorstep path). Fence and wall lines leave gaps."
   ],
   "groups": [
     {
@@ -15,6 +18,18 @@
       "anchor": "Brackenvale Village",
       "plazas": [
         {"at": [0, 0], "r": 8}
+      ],
+      "ground": [
+        {"material": "hay", "at": [-50, -23], "r": 6.5},
+        {"material": "hay", "at": [-66, -20], "r": 5},
+        {"material": "hay", "at": [-68.5, -30], "r": 4.5},
+        {"material": "hay", "at": [-61, -35], "r": 4},
+        {"material": "hay", "at": [-46, -16.5], "r": 3.5},
+        {"material": "hay", "at": [-56, -53], "r": 5.5},
+        {"material": "hay", "at": [-28, -50], "r": 4},
+        {"material": "hay", "at": [-32, -30], "r": 3.5},
+        {"material": "hay", "at": [-38, -55], "r": 3.5},
+        {"material": "hay", "at": [-63, -44], "r": 4.5}
       ],
       "paths": [
         {"name": "main lane",      "width": 4.0, "points": [[42, 44], [29, 27], [14, 11], [4, 3]]},
@@ -33,23 +48,23 @@
         {"name": "north-west lane",             "width": 2.5, "points": [[-9, 18], [-30, 70], [-55, 112], [-68, 136]]}
       ],
       "items": [
-        {"id": "VIL-06", "at": [0, 0], "facing": 160},
+        {"id": "VIL-06", "at": [0, 0], "facing": 160, "path_ok": true},
 
         {"id": "VIL-09", "at": [11.5, -2], "facing": 260},
-        {"id": "VIL-09", "at": [-10, 8], "facing": 140},
+        {"id": "VIL-09", "at": [-11, 13], "facing": 140},
         {"id": "CLT-02", "at": [14.5, -4], "facing": 200},
         {"id": "CLT-01", "at": [13.5, 1.5], "facing": 0},
-        {"id": "CLT-03", "at": [-13, 4.5], "facing": 30},
+        {"id": "CLT-03", "at": [-15.5, 16], "facing": 30},
         {"id": "CLT-01", "at": [-13.5, 10.5], "facing": 70},
 
-        {"id": "VIL-01", "at": [-30, 14], "facing": 90},
-        {"id": "VIL-01", "at": [-12, -22], "facing": 20},
-        {"id": "VIL-01", "at": [24, -17], "facing": 320},
-        {"id": "VIL-01", "at": [31, 8], "facing": 255},
-        {"id": "VIL-01", "at": [8, -38], "facing": 350},
-        {"id": "VIL-01", "at": [-14, 34], "facing": 165},
+        {"id": "VIL-01", "at": [-30, 14], "facing": 90, "path_ok": true},
+        {"id": "VIL-01", "at": [-12, -22], "facing": 20, "path_ok": true},
+        {"id": "VIL-01", "at": [24, -17], "facing": 320, "path_ok": true},
+        {"id": "VIL-01", "at": [31, 8], "facing": 255, "path_ok": true},
+        {"id": "VIL-01", "at": [8, -38], "facing": 350, "path_ok": true},
+        {"id": "VIL-01", "at": [-14, 34], "facing": 165, "path_ok": true},
 
-        {"id": "VIL-07", "at": [16, 28], "facing": 210},
+        {"id": "VIL-07", "at": [16, 28], "facing": 210, "path_ok": true},
         {"id": "CLT-01", "at": [10.5, 26.5], "facing": 0},
         {"id": "CLT-01", "at": [9.3, 25.2], "facing": 40},
         {"id": "CLT-02", "at": [21, 33], "facing": 250},
@@ -58,14 +73,27 @@
         {"id": "CLT-10", "at": [12.5, 15], "facing": 225},
         {"id": "CLT-10", "at": [-9, -2], "facing": 45},
         {"id": "CLT-10", "at": [-25, -10], "facing": 90},
-        {"id": "INT-11", "at": [40, 47], "facing": 200},
+        {"id": "INT-11", "at": [47, 46], "facing": 200},
 
-        {"id": "VIL-03", "at": [-44, -44], "facing": 50},
-        {"id": "VIL-04", "at": [-58, -22], "facing": 110},
+        {"id": "VIL-03", "at": [-44, -44], "facing": 50, "path_ok": true},
+        {"id": "VIL-04", "at": [-58, -22], "facing": 110, "path_ok": true},
         {"id": "VIL-10", "at": [-32, -30], "facing": 10},
         {"id": "VIL-11", "at": [-64, -40], "facing": 80},
         {"id": "VIL-11", "at": [-62, -48], "facing": 15},
         {"id": "CLT-03", "at": [-49, -20], "facing": 200},
+        {"id": "VIL-11", "at": [-66, -17], "facing": 30, "scale": 1.0},
+        {"id": "VIL-11", "at": [-69.5, -23], "facing": 95, "scale": 0.9},
+        {"id": "VIL-11", "at": [-67, -29], "facing": 160, "scale": 1.05},
+        {"id": "VIL-11", "at": [-70, -34], "facing": 15, "scale": 0.85},
+        {"id": "VIL-11", "at": [-61, -33], "facing": 250, "scale": 0.95},
+        {"id": "VIL-11", "at": [-55, -36], "facing": 120, "scale": 0.8},
+        {"id": "VIL-11", "at": [-48, -15.5], "facing": 300, "scale": 0.9},
+        {"id": "VIL-11", "at": [-44, -17.5], "facing": 75, "scale": 0.75},
+        {"id": "VIL-11", "at": [-58, -53], "facing": 200, "scale": 1.0},
+        {"id": "VIL-11", "at": [-52, -57], "facing": 40, "scale": 0.9},
+        {"id": "VIL-11", "at": [-30, -55], "facing": 110, "scale": 0.85},
+        {"id": "VIL-11", "at": [-27, -48], "facing": 330, "scale": 0.8},
+        {"id": "VIL-10", "at": [-38, -55], "facing": 80},
         {"id": "CLT-01", "at": [-52, -30], "facing": 0},
 
         {"line": "STR-01", "from": [-72, -62], "to": [-24, -62]},

@@ -71,6 +71,12 @@ class TerrainRenderer:
         self.tex_bank = ctx.texture((world.size, world.size), 1, np.ascontiguousarray(world.bank).tobytes())
         self.tex_bank.filter = (moderngl.LINEAR, moderngl.LINEAR)
         self.tex_bank.repeat_x = self.tex_bank.repeat_y = False
+        paint = getattr(world, "hay", None)
+        if paint is None:
+            paint = np.zeros((world.size, world.size), np.uint8)
+        self.tex_paint = ctx.texture((world.size, world.size), 1, np.ascontiguousarray(paint).tobytes())
+        self.tex_paint.filter = (moderngl.LINEAR, moderngl.LINEAR)
+        self.tex_paint.repeat_x = self.tex_paint.repeat_y = False
         self.tex_water = ctx.texture((world.size, world.size), 1,
                                      world.water_surface.astype(np.float32).tobytes(), dtype="f4")
         self.tex_water.filter = (moderngl.LINEAR, moderngl.LINEAR)
@@ -89,7 +95,7 @@ class TerrainRenderer:
         self.tex_ground.build_mipmaps()
         self.tex_ground.filter = (moderngl.LINEAR_MIPMAP_LINEAR, moderngl.LINEAR)
         self.tex_ground.anisotropy = 8.0
-        self.tiles = tuple(float(m["tile_m"]) for m in layers) + (1.0,) * (9 - len(layers))
+        self.tiles = tuple(float(m["tile_m"]) for m in layers) + (1.0,) * (10 - len(layers))
         chans = world.meta["splat"]["channels"]
         bl = self.materials["biome_layers"]
         self.splat_layer = tuple(self.layer_index[bl[c]] if c in bl else -1 for c in chans)
@@ -170,8 +176,9 @@ class TerrainRenderer:
         self.tex_patch_a.use(6)
         self.tex_patch_b.use(7)
         self.tex_bank.use(8)
+        self.tex_paint.use(9)
         for name, unit in (("u_height", 0), ("u_splat_a", 1), ("u_splat_b", 2), ("u_road", 3), ("u_ground", 4),
-                           ("u_water_tex", 5), ("u_patch_a", 6), ("u_patch_b", 7), ("u_bank", 8)):
+                           ("u_water_tex", 5), ("u_patch_a", 6), ("u_patch_b", 7), ("u_bank", 8), ("u_paint", 9)):
             set_uniform(prog, name, unit)
         set_uniform(prog, "u_viewproj", viewproj)
         set_uniform(prog, "u_world_size", world.world_size)
@@ -187,6 +194,7 @@ class TerrainRenderer:
         set_uniform(prog, "u_road_layer", self.layer_index[self.materials["road_layer"]])
         set_uniform(prog, "u_snow_layer", self.layer_index[self.materials["snow_layer"]])
         set_uniform(prog, "u_mud_layer", self.layer_index[self.materials["underwater_layer"]])
+        set_uniform(prog, "u_hay_layer", self.layer_index.get(self.materials.get("paint_layers", {}).get("hay", ""), -1))
         set_uniform(prog, "u_bank_layer", self.layer_index[self.materials.get("bank_layer", self.materials["underwater_layer"])])
         set_uniform(prog, "u_debug_view", self.debug_view)
         for k, v in env.items():
