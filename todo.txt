@@ -3,22 +3,20 @@ Helpful:
 .venv\Scripts\python.exe tools\meshy\animsheet.py ENM-03 --gif
 
 To-Do:
-Planning
-HUD
 Sounds
+Ward casting
+Swimming
 Character stats
 Armor stats
 Weapon stats
 Magic stats
 Health and damage
 Fall damage
+HUD
+Caves
+World map
 Dialogue
 Choices
-Ward casting
-Swimming
-World map
-Caves
-Story
 
 Later:
 Textures

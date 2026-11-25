@@ -1,0 +1,926 @@
+{
+  "battlemage/alert_1.mp3": {
+    "hash": "bb4ceb40f263",
+    "made": "2026-11-25T18:00:46",
+    "prompt": "A soldier-mage, an arrogant adult man with a clipped, educated voice. short scornful scoff, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.8
+  },
+  "battlemage/alert_2.mp3": {
+    "hash": "bb4ceb40f263",
+    "made": "2026-11-25T18:00:47",
+    "prompt": "A soldier-mage, an arrogant adult man with a clipped, educated voice. short scornful scoff, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.8
+  },
+  "battlemage/attack_1.mp3": {
+    "hash": "1f0da04a454a",
+    "made": "2026-11-25T18:00:48",
+    "prompt": "A soldier-mage, an arrogant adult man with a clipped, educated voice. sharp grunt of effort on a sword thrust, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "battlemage/attack_2.mp3": {
+    "hash": "1f0da04a454a",
+    "made": "2026-11-25T18:00:49",
+    "prompt": "A soldier-mage, an arrogant adult man with a clipped, educated voice. sharp grunt of effort on a sword thrust, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "battlemage/attack_3.mp3": {
+    "hash": "1f0da04a454a",
+    "made": "2026-11-25T18:00:50",
+    "prompt": "A soldier-mage, an arrogant adult man with a clipped, educated voice. sharp grunt of effort on a sword thrust, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "battlemage/cast_1.mp3": {
+    "hash": "eabaf85f0158",
+    "made": "2026-11-25T18:00:51",
+    "prompt": "A soldier-mage, an arrogant adult man with a clipped, educated voice. focused hissing breath building to a sharp exhale as he hurls a spell, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "battlemage/cast_2.mp3": {
+    "hash": "eabaf85f0158",
+    "made": "2026-11-25T18:00:53",
+    "prompt": "A soldier-mage, an arrogant adult man with a clipped, educated voice. focused hissing breath building to a sharp exhale as he hurls a spell, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "battlemage/death_1.mp3": {
+    "hash": "e1e0cb096592",
+    "made": "2026-11-25T18:00:58",
+    "prompt": "A soldier-mage, an arrogant adult man with a clipped, educated voice. strangled gasp and a long dying exhale, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.6
+  },
+  "battlemage/death_2.mp3": {
+    "hash": "e1e0cb096592",
+    "made": "2026-11-25T18:00:58",
+    "prompt": "A soldier-mage, an arrogant adult man with a clipped, educated voice. strangled gasp and a long dying exhale, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.6
+  },
+  "battlemage/hurt_1.mp3": {
+    "hash": "caf9ad01e783",
+    "made": "2026-11-25T18:00:54",
+    "prompt": "A soldier-mage, an arrogant adult man with a clipped, educated voice. surprised pained gasp, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.6
+  },
+  "battlemage/hurt_2.mp3": {
+    "hash": "caf9ad01e783",
+    "made": "2026-11-25T18:00:55",
+    "prompt": "A soldier-mage, an arrogant adult man with a clipped, educated voice. surprised pained gasp, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.6
+  },
+  "battlemage/hurt_3.mp3": {
+    "hash": "caf9ad01e783",
+    "made": "2026-11-25T18:00:56",
+    "prompt": "A soldier-mage, an arrogant adult man with a clipped, educated voice. surprised pained gasp, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.6
+  },
+  "bear/alert_1.mp3": {
+    "hash": "fd9c4583170e",
+    "made": "2026-11-25T18:00:22",
+    "prompt": "A huge brown bear. rearing up with a loud, deep, ferocious roar. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 2.5
+  },
+  "bear/alert_2.mp3": {
+    "hash": "fd9c4583170e",
+    "made": "2026-11-25T18:00:23",
+    "prompt": "A huge brown bear. rearing up with a loud, deep, ferocious roar. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 2.5
+  },
+  "bear/attack_1.mp3": {
+    "hash": "14123ef2a962",
+    "made": "2026-11-25T18:00:25",
+    "prompt": "A huge brown bear. short heavy growling bellow as it swipes with a paw. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "bear/attack_2.mp3": {
+    "hash": "14123ef2a962",
+    "made": "2026-11-25T18:00:25",
+    "prompt": "A huge brown bear. short heavy growling bellow as it swipes with a paw. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "bear/attack_3.mp3": {
+    "hash": "14123ef2a962",
+    "made": "2026-11-25T18:00:26",
+    "prompt": "A huge brown bear. short heavy growling bellow as it swipes with a paw. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "bear/death_1.mp3": {
+    "hash": "fdbd89f3f76a",
+    "made": "2026-11-25T18:00:30",
+    "prompt": "A huge brown bear. long deep groaning moan fading out as it falls. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 2.0
+  },
+  "bear/death_2.mp3": {
+    "hash": "fdbd89f3f76a",
+    "made": "2026-11-25T18:00:31",
+    "prompt": "A huge brown bear. long deep groaning moan fading out as it falls. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 2.0
+  },
+  "bear/hurt_1.mp3": {
+    "hash": "a285694c7f36",
+    "made": "2026-11-25T18:00:28",
+    "prompt": "A huge brown bear. deep pained grunting bawl. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.8
+  },
+  "bear/hurt_2.mp3": {
+    "hash": "a285694c7f36",
+    "made": "2026-11-25T18:00:28",
+    "prompt": "A huge brown bear. deep pained grunting bawl. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.8
+  },
+  "bear/hurt_3.mp3": {
+    "hash": "a285694c7f36",
+    "made": "2026-11-25T18:00:29",
+    "prompt": "A huge brown bear. deep pained grunting bawl. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.8
+  },
+  "bear/idle_1.mp3": {
+    "hash": "e0de53a5aa80",
+    "made": "2026-11-25T18:00:19",
+    "prompt": "A huge brown bear. deep huffing breath and a low grumble while sniffing the ground. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 2.0
+  },
+  "bear/idle_2.mp3": {
+    "hash": "e0de53a5aa80",
+    "made": "2026-11-25T18:00:20",
+    "prompt": "A huge brown bear. deep huffing breath and a low grumble while sniffing the ground. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 2.0
+  },
+  "bruiser/alert_1.mp3": {
+    "hash": "9c5aacb4d190",
+    "made": "2026-11-25T18:00:33",
+    "prompt": "A huge, burly bandit man with a deep, gruff, rough voice. deep mocking belly laugh, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.5
+  },
+  "bruiser/alert_2.mp3": {
+    "hash": "9c5aacb4d190",
+    "made": "2026-11-25T18:00:37",
+    "prompt": "A huge, burly bandit man with a deep, gruff, rough voice. deep mocking belly laugh, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.5
+  },
+  "bruiser/attack_1.mp3": {
+    "hash": "9b2004395f09",
+    "made": "2026-11-25T18:00:38",
+    "prompt": "A huge, burly bandit man with a deep, gruff, rough voice. loud roaring grunt of effort on an overhead hammer slam, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "bruiser/attack_2.mp3": {
+    "hash": "9b2004395f09",
+    "made": "2026-11-25T18:00:39",
+    "prompt": "A huge, burly bandit man with a deep, gruff, rough voice. loud roaring grunt of effort on an overhead hammer slam, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "bruiser/attack_3.mp3": {
+    "hash": "9b2004395f09",
+    "made": "2026-11-25T18:00:40",
+    "prompt": "A huge, burly bandit man with a deep, gruff, rough voice. loud roaring grunt of effort on an overhead hammer slam, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "bruiser/death_1.mp3": {
+    "hash": "e075fc23bcc6",
+    "made": "2026-11-25T18:00:44",
+    "prompt": "A huge, burly bandit man with a deep, gruff, rough voice. heavy choking groan as he falls, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.8
+  },
+  "bruiser/death_2.mp3": {
+    "hash": "e075fc23bcc6",
+    "made": "2026-11-25T18:00:45",
+    "prompt": "A huge, burly bandit man with a deep, gruff, rough voice. heavy choking groan as he falls, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.8
+  },
+  "bruiser/hurt_1.mp3": {
+    "hash": "b64a4e42dab1",
+    "made": "2026-11-25T18:00:41",
+    "prompt": "A huge, burly bandit man with a deep, gruff, rough voice. deep angry grunt of pain, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "bruiser/hurt_2.mp3": {
+    "hash": "b64a4e42dab1",
+    "made": "2026-11-25T18:00:42",
+    "prompt": "A huge, burly bandit man with a deep, gruff, rough voice. deep angry grunt of pain, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "bruiser/hurt_3.mp3": {
+    "hash": "b64a4e42dab1",
+    "made": "2026-11-25T18:00:42",
+    "prompt": "A huge, burly bandit man with a deep, gruff, rough voice. deep angry grunt of pain, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "combat/block_metal_1.mp3": {
+    "hash": "f03206f9ae9e",
+    "made": "2026-11-25T18:01:58",
+    "prompt": "sword clashing against a steel blade, bright ringing clang. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "combat/block_metal_2.mp3": {
+    "hash": "f03206f9ae9e",
+    "made": "2026-11-25T18:01:59",
+    "prompt": "sword clashing against a steel blade, bright ringing clang. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "combat/block_metal_3.mp3": {
+    "hash": "f03206f9ae9e",
+    "made": "2026-11-25T18:02:00",
+    "prompt": "sword clashing against a steel blade, bright ringing clang. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "combat/block_wood_1.mp3": {
+    "hash": "b17a554aafc6",
+    "made": "2026-11-25T18:01:55",
+    "prompt": "weapon striking a wooden shield, solid knock. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "combat/block_wood_2.mp3": {
+    "hash": "b17a554aafc6",
+    "made": "2026-11-25T18:01:56",
+    "prompt": "weapon striking a wooden shield, solid knock. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "combat/block_wood_3.mp3": {
+    "hash": "b17a554aafc6",
+    "made": "2026-11-25T18:01:57",
+    "prompt": "weapon striking a wooden shield, solid knock. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "combat/body_fall_1.mp3": {
+    "hash": "d0910e1fa5a6",
+    "made": "2026-11-25T18:02:01",
+    "prompt": "body collapsing onto grassy ground. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "combat/body_fall_2.mp3": {
+    "hash": "d0910e1fa5a6",
+    "made": "2026-11-25T18:02:02",
+    "prompt": "body collapsing onto grassy ground. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "combat/fireball_cast_1.mp3": {
+    "hash": "6a1ad868218c",
+    "made": "2026-11-25T18:02:04",
+    "prompt": "whooshing ignition as a ball of fire forms and launches. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "combat/fireball_cast_2.mp3": {
+    "hash": "6a1ad868218c",
+    "made": "2026-11-25T18:02:04",
+    "prompt": "whooshing ignition as a ball of fire forms and launches. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "combat/fireball_hit_1.mp3": {
+    "hash": "e347b507d878",
+    "made": "2026-11-25T18:02:07",
+    "prompt": "fiery explosion impact with a burst of flame. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "combat/fireball_hit_2.mp3": {
+    "hash": "e347b507d878",
+    "made": "2026-11-25T18:02:09",
+    "prompt": "fiery explosion impact with a burst of flame. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "combat/fireball_loop_1.mp3": {
+    "hash": "5af7befda2a2",
+    "made": "2026-11-25T18:02:06",
+    "prompt": "steady roaring crackle of a flying ball of fire. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 2.0
+  },
+  "combat/hit_blunt_1.mp3": {
+    "hash": "9df38c213fde",
+    "made": "2026-11-25T18:01:52",
+    "prompt": "heavy blunt hammer impact on a body, dull thud. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "combat/hit_blunt_2.mp3": {
+    "hash": "9df38c213fde",
+    "made": "2026-11-25T18:01:53",
+    "prompt": "heavy blunt hammer impact on a body, dull thud. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "combat/hit_blunt_3.mp3": {
+    "hash": "9df38c213fde",
+    "made": "2026-11-25T18:01:53",
+    "prompt": "heavy blunt hammer impact on a body, dull thud. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "combat/hit_flesh_1.mp3": {
+    "hash": "f18a070c26fc",
+    "made": "2026-11-25T18:01:48",
+    "prompt": "blade striking flesh, a meaty slash impact. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "combat/hit_flesh_2.mp3": {
+    "hash": "f18a070c26fc",
+    "made": "2026-11-25T18:01:49",
+    "prompt": "blade striking flesh, a meaty slash impact. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "combat/hit_flesh_3.mp3": {
+    "hash": "f18a070c26fc",
+    "made": "2026-11-25T18:01:50",
+    "prompt": "blade striking flesh, a meaty slash impact. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "combat/hit_flesh_4.mp3": {
+    "hash": "f18a070c26fc",
+    "made": "2026-11-25T18:01:50",
+    "prompt": "blade striking flesh, a meaty slash impact. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "combat/rite_cast_1.mp3": {
+    "hash": "22810b1b23f5",
+    "made": "2026-11-25T18:02:10",
+    "prompt": "bright shimmering magical chime swelling into a warm holy glow. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "combat/rite_cast_2.mp3": {
+    "hash": "22810b1b23f5",
+    "made": "2026-11-25T18:02:11",
+    "prompt": "bright shimmering magical chime swelling into a warm holy glow. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "combat/swing_heavy_1.mp3": {
+    "hash": "5965ba521be8",
+    "made": "2026-11-25T18:01:46",
+    "prompt": "slow heavy whoosh of a large weapon swung hard. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.8
+  },
+  "combat/swing_heavy_2.mp3": {
+    "hash": "5965ba521be8",
+    "made": "2026-11-25T18:01:46",
+    "prompt": "slow heavy whoosh of a large weapon swung hard. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.8
+  },
+  "combat/swing_heavy_3.mp3": {
+    "hash": "5965ba521be8",
+    "made": "2026-11-25T18:01:47",
+    "prompt": "slow heavy whoosh of a large weapon swung hard. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.8
+  },
+  "combat/swing_light_1.mp3": {
+    "hash": "5d18abaf9907",
+    "made": "2026-11-25T18:01:42",
+    "prompt": "fast whoosh of a sword cutting the air. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "combat/swing_light_2.mp3": {
+    "hash": "5d18abaf9907",
+    "made": "2026-11-25T18:01:44",
+    "prompt": "fast whoosh of a sword cutting the air. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "combat/swing_light_3.mp3": {
+    "hash": "5d18abaf9907",
+    "made": "2026-11-25T18:01:44",
+    "prompt": "fast whoosh of a sword cutting the air. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "cow/chew_1.mp3": {
+    "hash": "35b9688b5608",
+    "made": "2026-11-25T18:01:06",
+    "prompt": "A farm cow. slow chewing of grass and a soft snort. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 2.0
+  },
+  "cow/moo_1.mp3": {
+    "hash": "fee2aeec0752",
+    "made": "2026-11-25T18:01:00",
+    "prompt": "A farm cow. long lazy moo in a meadow. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 2.0
+  },
+  "cow/moo_2.mp3": {
+    "hash": "fee2aeec0752",
+    "made": "2026-11-25T18:01:01",
+    "prompt": "A farm cow. long lazy moo in a meadow. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 2.0
+  },
+  "cow/moo_3.mp3": {
+    "hash": "fee2aeec0752",
+    "made": "2026-11-25T18:01:01",
+    "prompt": "A farm cow. long lazy moo in a meadow. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 2.0
+  },
+  "cow/moo_short_1.mp3": {
+    "hash": "7978760ee540",
+    "made": "2026-11-25T18:01:03",
+    "prompt": "A farm cow. short low grumbling moo. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "cow/moo_short_2.mp3": {
+    "hash": "7978760ee540",
+    "made": "2026-11-25T18:01:03",
+    "prompt": "A farm cow. short low grumbling moo. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "cow/startled_1.mp3": {
+    "hash": "0f568ad8b262",
+    "made": "2026-11-25T18:01:05",
+    "prompt": "A farm cow. startled bellowing moo. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "farmer/death_1.mp3": {
+    "hash": "e9eebf4701ef",
+    "made": "2026-11-25T18:01:21",
+    "prompt": "A gruff old farmer of about sixty. weak dying groan, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.4
+  },
+  "farmer/hurt_1.mp3": {
+    "hash": "4c4535f439c8",
+    "made": "2026-11-25T18:01:19",
+    "prompt": "A gruff old farmer of about sixty. pained old man's groan, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.8
+  },
+  "farmer/hurt_2.mp3": {
+    "hash": "4c4535f439c8",
+    "made": "2026-11-25T18:01:20",
+    "prompt": "A gruff old farmer of about sixty. pained old man's groan, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.8
+  },
+  "farmer/idle_1.mp3": {
+    "hash": "c73051ff1e51",
+    "made": "2026-11-25T18:01:23",
+    "prompt": "A gruff old farmer of about sixty. old man clearing his throat with a gruff cough. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "farmer/idle_2.mp3": {
+    "hash": "c73051ff1e51",
+    "made": "2026-11-25T18:01:23",
+    "prompt": "A gruff old farmer of about sixty. old man clearing his throat with a gruff cough. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "farmer/startled_1.mp3": {
+    "hash": "ed9510e208dd",
+    "made": "2026-11-25T18:01:17",
+    "prompt": "A gruff old farmer of about sixty. alarmed grunt, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "farmer/startled_2.mp3": {
+    "hash": "ed9510e208dd",
+    "made": "2026-11-25T18:01:18",
+    "prompt": "A gruff old farmer of about sixty. alarmed grunt, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "footsteps/bare_small_1.mp3": {
+    "hash": "5323a0b6f057",
+    "made": "2026-11-25T18:01:31",
+    "prompt": "one quick light footstep of a small creature's cloth-wrapped bare foot on dirt. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/bare_small_2.mp3": {
+    "hash": "5323a0b6f057",
+    "made": "2026-11-25T18:01:32",
+    "prompt": "one quick light footstep of a small creature's cloth-wrapped bare foot on dirt. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/bare_small_3.mp3": {
+    "hash": "5323a0b6f057",
+    "made": "2026-11-25T18:01:33",
+    "prompt": "one quick light footstep of a small creature's cloth-wrapped bare foot on dirt. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/boot_dirt_1.mp3": {
+    "hash": "9bb5d9cd5cbf",
+    "made": "2026-11-25T18:01:28",
+    "prompt": "one footstep of a leather boot on a packed dirt path. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/boot_dirt_2.mp3": {
+    "hash": "9bb5d9cd5cbf",
+    "made": "2026-11-25T18:01:29",
+    "prompt": "one footstep of a leather boot on a packed dirt path. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/boot_dirt_3.mp3": {
+    "hash": "9bb5d9cd5cbf",
+    "made": "2026-11-25T18:01:29",
+    "prompt": "one footstep of a leather boot on a packed dirt path. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/boot_dirt_4.mp3": {
+    "hash": "9bb5d9cd5cbf",
+    "made": "2026-11-25T18:01:30",
+    "prompt": "one footstep of a leather boot on a packed dirt path. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/boot_grass_1.mp3": {
+    "hash": "8dfa3121fe94",
+    "made": "2026-11-25T18:01:25",
+    "prompt": "one footstep of a leather boot on grass and soft earth. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/boot_grass_2.mp3": {
+    "hash": "8dfa3121fe94",
+    "made": "2026-11-25T18:01:26",
+    "prompt": "one footstep of a leather boot on grass and soft earth. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/boot_grass_3.mp3": {
+    "hash": "8dfa3121fe94",
+    "made": "2026-11-25T18:01:26",
+    "prompt": "one footstep of a leather boot on grass and soft earth. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/boot_grass_4.mp3": {
+    "hash": "8dfa3121fe94",
+    "made": "2026-11-25T18:01:27",
+    "prompt": "one footstep of a leather boot on grass and soft earth. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/hoof_1.mp3": {
+    "hash": "14f873214b91",
+    "made": "2026-11-25T18:01:39",
+    "prompt": "one dull footfall of a cow's hoof on soft grass. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/hoof_2.mp3": {
+    "hash": "14f873214b91",
+    "made": "2026-11-25T18:01:40",
+    "prompt": "one dull footfall of a cow's hoof on soft grass. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/hoof_3.mp3": {
+    "hash": "14f873214b91",
+    "made": "2026-11-25T18:01:41",
+    "prompt": "one dull footfall of a cow's hoof on soft grass. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/paw_1.mp3": {
+    "hash": "4443feaacbe3",
+    "made": "2026-11-25T18:01:34",
+    "prompt": "one soft footfall of a wolf's paw on grass. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/paw_2.mp3": {
+    "hash": "4443feaacbe3",
+    "made": "2026-11-25T18:01:35",
+    "prompt": "one soft footfall of a wolf's paw on grass. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/paw_3.mp3": {
+    "hash": "4443feaacbe3",
+    "made": "2026-11-25T18:01:36",
+    "prompt": "one soft footfall of a wolf's paw on grass. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/paw_heavy_1.mp3": {
+    "hash": "57a120647cf5",
+    "made": "2026-11-25T18:01:37",
+    "prompt": "one heavy thudding footfall of a bear's paw on earth. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/paw_heavy_2.mp3": {
+    "hash": "57a120647cf5",
+    "made": "2026-11-25T18:01:37",
+    "prompt": "one heavy thudding footfall of a bear's paw on earth. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "footsteps/paw_heavy_3.mp3": {
+    "hash": "57a120647cf5",
+    "made": "2026-11-25T18:01:38",
+    "prompt": "one heavy thudding footfall of a bear's paw on earth. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "goblin/alert_1.mp3": {
+    "hash": "ea6383c81919",
+    "made": "2026-11-25T17:59:47",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. excited shrill cackle on spotting prey, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "goblin/alert_2.mp3": {
+    "hash": "ea6383c81919",
+    "made": "2026-11-25T17:59:48",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. excited shrill cackle on spotting prey, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "goblin/alert_3.mp3": {
+    "hash": "ea6383c81919",
+    "made": "2026-11-25T17:59:48",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. excited shrill cackle on spotting prey, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "goblin/attack_1.mp3": {
+    "hash": "7ebe69d92dac",
+    "made": "2026-11-25T17:59:52",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. quick vicious hiss and snarl as it lunges with a dagger, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "goblin/attack_2.mp3": {
+    "hash": "7ebe69d92dac",
+    "made": "2026-11-25T17:59:53",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. quick vicious hiss and snarl as it lunges with a dagger, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "goblin/attack_3.mp3": {
+    "hash": "7ebe69d92dac",
+    "made": "2026-11-25T17:59:54",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. quick vicious hiss and snarl as it lunges with a dagger, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "goblin/attack_4.mp3": {
+    "hash": "7ebe69d92dac",
+    "made": "2026-11-25T17:59:54",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. quick vicious hiss and snarl as it lunges with a dagger, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "goblin/death_1.mp3": {
+    "hash": "a567da36f70c",
+    "made": "2026-11-25T17:59:58",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. shrill dying screech that cuts off with a gurgle, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.3
+  },
+  "goblin/death_2.mp3": {
+    "hash": "a567da36f70c",
+    "made": "2026-11-25T17:59:59",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. shrill dying screech that cuts off with a gurgle, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.3
+  },
+  "goblin/flee_1.mp3": {
+    "hash": "71f51d27ba99",
+    "made": "2026-11-25T18:00:00",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. panicked squealing whine as it runs away, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "goblin/flee_2.mp3": {
+    "hash": "71f51d27ba99",
+    "made": "2026-11-25T18:00:01",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. panicked squealing whine as it runs away, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "goblin/hurt_1.mp3": {
+    "hash": "0db06bae41f4",
+    "made": "2026-11-25T17:59:56",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. high yelp of pain, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.6
+  },
+  "goblin/hurt_2.mp3": {
+    "hash": "0db06bae41f4",
+    "made": "2026-11-25T17:59:56",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. high yelp of pain, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.6
+  },
+  "goblin/hurt_3.mp3": {
+    "hash": "0db06bae41f4",
+    "made": "2026-11-25T17:59:57",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. high yelp of pain, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.6
+  },
+  "goblin/idle_1.mp3": {
+    "hash": "48a42030cc78",
+    "made": "2026-11-25T17:59:50",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. quiet muttering, sniffing and snickering gibberish to itself, no real words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 2.0
+  },
+  "goblin/idle_2.mp3": {
+    "hash": "48a42030cc78",
+    "made": "2026-11-25T17:59:50",
+    "prompt": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice. quiet muttering, sniffing and snickering gibberish to itself, no real words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 2.0
+  },
+  "rowan/attack_heavy_1.mp3": {
+    "hash": "4857b181b373",
+    "made": "2026-11-25T17:59:35",
+    "prompt": "An 18-year-old young man, earnest and steady. strong grunting shout of effort on a big two-handed sword swing, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "rowan/attack_heavy_2.mp3": {
+    "hash": "4857b181b373",
+    "made": "2026-11-25T17:59:36",
+    "prompt": "An 18-year-old young man, earnest and steady. strong grunting shout of effort on a big two-handed sword swing, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "rowan/attack_heavy_3.mp3": {
+    "hash": "4857b181b373",
+    "made": "2026-11-25T17:59:36",
+    "prompt": "An 18-year-old young man, earnest and steady. strong grunting shout of effort on a big two-handed sword swing, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "rowan/attack_light_1.mp3": {
+    "hash": "0b68501fe202",
+    "made": "2026-11-25T17:59:32",
+    "prompt": "An 18-year-old young man, earnest and steady. short sharp exhale of effort as he swings a sword, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "rowan/attack_light_2.mp3": {
+    "hash": "0b68501fe202",
+    "made": "2026-11-25T17:59:32",
+    "prompt": "An 18-year-old young man, earnest and steady. short sharp exhale of effort as he swings a sword, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "rowan/attack_light_3.mp3": {
+    "hash": "0b68501fe202",
+    "made": "2026-11-25T17:59:33",
+    "prompt": "An 18-year-old young man, earnest and steady. short sharp exhale of effort as he swings a sword, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "rowan/attack_light_4.mp3": {
+    "hash": "0b68501fe202",
+    "made": "2026-11-25T17:59:34",
+    "prompt": "An 18-year-old young man, earnest and steady. short sharp exhale of effort as he swings a sword, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "rowan/cast_1.mp3": {
+    "hash": "1cb3f91d016c",
+    "made": "2026-11-25T17:59:38",
+    "prompt": "An 18-year-old young man, earnest and steady. focused breath in and a quiet determined push of breath as he casts a spell, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "rowan/cast_2.mp3": {
+    "hash": "1cb3f91d016c",
+    "made": "2026-11-25T17:59:39",
+    "prompt": "An 18-year-old young man, earnest and steady. focused breath in and a quiet determined push of breath as he casts a spell, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.0
+  },
+  "rowan/death_1.mp3": {
+    "hash": "fad08cc5d992",
+    "made": "2026-11-25T17:59:43",
+    "prompt": "An 18-year-old young man, earnest and steady. final pained groan fading out as he collapses, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.8
+  },
+  "rowan/death_2.mp3": {
+    "hash": "fad08cc5d992",
+    "made": "2026-11-25T17:59:44",
+    "prompt": "An 18-year-old young man, earnest and steady. final pained groan fading out as he collapses, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.8
+  },
+  "rowan/hurt_1.mp3": {
+    "hash": "c78be2d63324",
+    "made": "2026-11-25T17:59:40",
+    "prompt": "An 18-year-old young man, earnest and steady. short pained grunt as he is struck, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "rowan/hurt_2.mp3": {
+    "hash": "c78be2d63324",
+    "made": "2026-11-25T17:59:41",
+    "prompt": "An 18-year-old young man, earnest and steady. short pained grunt as he is struck, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "rowan/hurt_3.mp3": {
+    "hash": "c78be2d63324",
+    "made": "2026-11-25T17:59:42",
+    "prompt": "An 18-year-old young man, earnest and steady. short pained grunt as he is struck, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "rowan/hurt_4.mp3": {
+    "hash": "c78be2d63324",
+    "made": "2026-11-25T17:59:42",
+    "prompt": "An 18-year-old young man, earnest and steady. short pained grunt as he is struck, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "rowan/sprint_breath_1.mp3": {
+    "hash": "7afb914e7aaa",
+    "made": "2026-11-25T17:59:46",
+    "prompt": "An 18-year-old young man, earnest and steady. steady heavy breathing while running hard. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 3.0
+  },
+  "villager_f/death_1.mp3": {
+    "hash": "4672addc7cb3",
+    "made": "2026-11-25T18:01:16",
+    "prompt": "A young adult farming woman. dying groan, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.4
+  },
+  "villager_f/hurt_1.mp3": {
+    "hash": "8dc3657d9857",
+    "made": "2026-11-25T18:01:14",
+    "prompt": "A young adult farming woman. pained cry, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "villager_f/hurt_2.mp3": {
+    "hash": "8dc3657d9857",
+    "made": "2026-11-25T18:01:15",
+    "prompt": "A young adult farming woman. pained cry, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "villager_f/startled_1.mp3": {
+    "hash": "ffbfd7c077ee",
+    "made": "2026-11-25T18:01:12",
+    "prompt": "A young adult farming woman. frightened gasp, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "villager_f/startled_2.mp3": {
+    "hash": "ffbfd7c077ee",
+    "made": "2026-11-25T18:01:13",
+    "prompt": "A young adult farming woman. frightened gasp, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "villager_m/death_1.mp3": {
+    "hash": "745c3ce0e04f",
+    "made": "2026-11-25T18:01:11",
+    "prompt": "A middle-aged farming man. dying groan, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.4
+  },
+  "villager_m/hurt_1.mp3": {
+    "hash": "7d13d957bc0a",
+    "made": "2026-11-25T18:01:09",
+    "prompt": "A middle-aged farming man. pained cry, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "villager_m/hurt_2.mp3": {
+    "hash": "7d13d957bc0a",
+    "made": "2026-11-25T18:01:09",
+    "prompt": "A middle-aged farming man. pained cry, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "villager_m/startled_1.mp3": {
+    "hash": "f09f9bc5489f",
+    "made": "2026-11-25T18:01:07",
+    "prompt": "A middle-aged farming man. frightened gasp, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "villager_m/startled_2.mp3": {
+    "hash": "f09f9bc5489f",
+    "made": "2026-11-25T18:01:08",
+    "prompt": "A middle-aged farming man. frightened gasp, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.7
+  },
+  "wolf/alert_1.mp3": {
+    "hash": "3245f5d58ed7",
+    "made": "2026-11-25T18:00:05",
+    "prompt": "A large grey wolf. low rumbling threatening growl with bared teeth. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.5
+  },
+  "wolf/alert_2.mp3": {
+    "hash": "3245f5d58ed7",
+    "made": "2026-11-25T18:00:05",
+    "prompt": "A large grey wolf. low rumbling threatening growl with bared teeth. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.5
+  },
+  "wolf/alert_3.mp3": {
+    "hash": "3245f5d58ed7",
+    "made": "2026-11-25T18:00:06",
+    "prompt": "A large grey wolf. low rumbling threatening growl with bared teeth. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.5
+  },
+  "wolf/attack_1.mp3": {
+    "hash": "287ac0a5e3b8",
+    "made": "2026-11-25T18:00:08",
+    "prompt": "A large grey wolf. fast vicious snarl and a snapping bite of jaws. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.8
+  },
+  "wolf/attack_2.mp3": {
+    "hash": "287ac0a5e3b8",
+    "made": "2026-11-25T18:00:08",
+    "prompt": "A large grey wolf. fast vicious snarl and a snapping bite of jaws. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.8
+  },
+  "wolf/attack_3.mp3": {
+    "hash": "287ac0a5e3b8",
+    "made": "2026-11-25T18:00:09",
+    "prompt": "A large grey wolf. fast vicious snarl and a snapping bite of jaws. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.8
+  },
+  "wolf/attack_4.mp3": {
+    "hash": "287ac0a5e3b8",
+    "made": "2026-11-25T18:00:10",
+    "prompt": "A large grey wolf. fast vicious snarl and a snapping bite of jaws. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.8
+  },
+  "wolf/death_1.mp3": {
+    "hash": "b303550d181a",
+    "made": "2026-11-25T18:00:16",
+    "prompt": "A large grey wolf. whimpering yelp fading into a last breath. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.5
+  },
+  "wolf/death_2.mp3": {
+    "hash": "b303550d181a",
+    "made": "2026-11-25T18:00:17",
+    "prompt": "A large grey wolf. whimpering yelp fading into a last breath. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.5
+  },
+  "wolf/howl_1.mp3": {
+    "hash": "dcc2f2a24a05",
+    "made": "2026-11-25T18:00:11",
+    "prompt": "A large grey wolf. long mournful howl rising and falling, heard from nearby in open country. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 4.0
+  },
+  "wolf/howl_2.mp3": {
+    "hash": "dcc2f2a24a05",
+    "made": "2026-11-25T18:00:12",
+    "prompt": "A large grey wolf. long mournful howl rising and falling, heard from nearby in open country. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 4.0
+  },
+  "wolf/hurt_1.mp3": {
+    "hash": "56520c86db9e",
+    "made": "2026-11-25T18:00:14",
+    "prompt": "A large grey wolf. sharp yelp of pain. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "wolf/hurt_2.mp3": {
+    "hash": "56520c86db9e",
+    "made": "2026-11-25T18:00:14",
+    "prompt": "A large grey wolf. sharp yelp of pain. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "wolf/hurt_3.mp3": {
+    "hash": "56520c86db9e",
+    "made": "2026-11-25T18:00:15",
+    "prompt": "A large grey wolf. sharp yelp of pain. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.5
+  },
+  "wolf/idle_1.mp3": {
+    "hash": "198b0eb9c80b",
+    "made": "2026-11-25T18:00:03",
+    "prompt": "A large grey wolf. soft panting and a short sniff. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.5
+  },
+  "wolf/idle_2.mp3": {
+    "hash": "198b0eb9c80b",
+    "made": "2026-11-25T18:00:03",
+    "prompt": "A large grey wolf. soft panting and a short sniff. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.5
+  }
+}

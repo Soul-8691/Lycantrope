@@ -1,0 +1,138 @@
+{
+  "_about": [
+    "Sound effects for the characters and creatures already in the game (AUD-05, AUD-06), made with the",
+    "ElevenLabs Sound Effects API by tools/voice/sfx.py. Non-verbal only: efforts, pain, death, growls,",
+    "footsteps. Spoken barks with words need designed voices (AUD-02, AUD-03) and are a separate job.",
+    "Each sound: prompt, seconds (always set, so the cost is known: 40 credits per second per take),",
+    "takes (how many variants), and optional loop / influence. 'voice' is prepended to that character's",
+    "vocal prompts; 'style' is appended to every prompt. Files go to assets/audio/sfx/<group>/<sound>_<n>.mp3.",
+    "Changing a prompt, seconds or influence makes that sound generate again; otherwise it's skipped."
+  ],
+  "model_id": "eleven_text_to_sound_v3",
+  "output_format": "mp3_44100_128",
+  "influence": 0.45,
+  "style": "Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+  "groups": {
+    "rowan": {
+      "voice": "An 18-year-old young man, earnest and steady.",
+      "sounds": {
+        "attack_light": {"prompt": "short sharp exhale of effort as he swings a sword, no words", "seconds": 0.7, "takes": 4},
+        "attack_heavy": {"prompt": "strong grunting shout of effort on a big two-handed sword swing, no words", "seconds": 1.0, "takes": 3},
+        "cast": {"prompt": "focused breath in and a quiet determined push of breath as he casts a spell, no words", "seconds": 1.0, "takes": 2},
+        "hurt": {"prompt": "short pained grunt as he is struck, no words", "seconds": 0.7, "takes": 4},
+        "death": {"prompt": "final pained groan fading out as he collapses, no words", "seconds": 1.8, "takes": 2},
+        "sprint_breath": {"prompt": "steady heavy breathing while running hard", "seconds": 3.0, "takes": 1, "loop": true}
+      }
+    },
+    "goblin": {
+      "voice": "A small, wiry goblin creature with a shrill, raspy, high-pitched voice.",
+      "sounds": {
+        "alert": {"prompt": "excited shrill cackle on spotting prey, no words", "seconds": 1.2, "takes": 3},
+        "idle": {"prompt": "quiet muttering, sniffing and snickering gibberish to itself, no real words", "seconds": 2.0, "takes": 2},
+        "attack": {"prompt": "quick vicious hiss and snarl as it lunges with a dagger, no words", "seconds": 0.7, "takes": 4},
+        "hurt": {"prompt": "high yelp of pain, no words", "seconds": 0.6, "takes": 3},
+        "death": {"prompt": "shrill dying screech that cuts off with a gurgle, no words", "seconds": 1.3, "takes": 2},
+        "flee": {"prompt": "panicked squealing whine as it runs away, no words", "seconds": 1.2, "takes": 2}
+      }
+    },
+    "wolf": {
+      "voice": "A large grey wolf.",
+      "sounds": {
+        "idle": {"prompt": "soft panting and a short sniff", "seconds": 1.5, "takes": 2},
+        "alert": {"prompt": "low rumbling threatening growl with bared teeth", "seconds": 1.5, "takes": 3},
+        "attack": {"prompt": "fast vicious snarl and a snapping bite of jaws", "seconds": 0.8, "takes": 4},
+        "howl": {"prompt": "long mournful howl rising and falling, heard from nearby in open country", "seconds": 4.0, "takes": 2},
+        "hurt": {"prompt": "sharp yelp of pain", "seconds": 0.5, "takes": 3},
+        "death": {"prompt": "whimpering yelp fading into a last breath", "seconds": 1.5, "takes": 2}
+      }
+    },
+    "bear": {
+      "voice": "A huge brown bear.",
+      "sounds": {
+        "idle": {"prompt": "deep huffing breath and a low grumble while sniffing the ground", "seconds": 2.0, "takes": 2},
+        "alert": {"prompt": "rearing up with a loud, deep, ferocious roar", "seconds": 2.5, "takes": 2},
+        "attack": {"prompt": "short heavy growling bellow as it swipes with a paw", "seconds": 1.0, "takes": 3},
+        "hurt": {"prompt": "deep pained grunting bawl", "seconds": 0.8, "takes": 3},
+        "death": {"prompt": "long deep groaning moan fading out as it falls", "seconds": 2.0, "takes": 2}
+      }
+    },
+    "bruiser": {
+      "voice": "A huge, burly bandit man with a deep, gruff, rough voice.",
+      "sounds": {
+        "alert": {"prompt": "deep mocking belly laugh, no words", "seconds": 1.5, "takes": 2},
+        "attack": {"prompt": "loud roaring grunt of effort on an overhead hammer slam, no words", "seconds": 1.0, "takes": 3},
+        "hurt": {"prompt": "deep angry grunt of pain, no words", "seconds": 0.7, "takes": 3},
+        "death": {"prompt": "heavy choking groan as he falls, no words", "seconds": 1.8, "takes": 2}
+      }
+    },
+    "battlemage": {
+      "voice": "A soldier-mage, an arrogant adult man with a clipped, educated voice.",
+      "sounds": {
+        "alert": {"prompt": "short scornful scoff, no words", "seconds": 0.8, "takes": 2},
+        "attack": {"prompt": "sharp grunt of effort on a sword thrust, no words", "seconds": 0.7, "takes": 3},
+        "cast": {"prompt": "focused hissing breath building to a sharp exhale as he hurls a spell, no words", "seconds": 1.2, "takes": 2},
+        "hurt": {"prompt": "surprised pained gasp, no words", "seconds": 0.6, "takes": 3},
+        "death": {"prompt": "strangled gasp and a long dying exhale, no words", "seconds": 1.6, "takes": 2}
+      }
+    },
+    "cow": {
+      "voice": "A farm cow.",
+      "sounds": {
+        "moo": {"prompt": "long lazy moo in a meadow", "seconds": 2.0, "takes": 3},
+        "moo_short": {"prompt": "short low grumbling moo", "seconds": 1.0, "takes": 2},
+        "startled": {"prompt": "startled bellowing moo", "seconds": 1.2, "takes": 1},
+        "chew": {"prompt": "slow chewing of grass and a soft snort", "seconds": 2.0, "takes": 1}
+      }
+    },
+    "villager_m": {
+      "voice": "A middle-aged farming man.",
+      "sounds": {
+        "startled": {"prompt": "frightened gasp, no words", "seconds": 0.7, "takes": 2},
+        "hurt": {"prompt": "pained cry, no words", "seconds": 0.7, "takes": 2},
+        "death": {"prompt": "dying groan, no words", "seconds": 1.4, "takes": 1}
+      }
+    },
+    "villager_f": {
+      "voice": "A young adult farming woman.",
+      "sounds": {
+        "startled": {"prompt": "frightened gasp, no words", "seconds": 0.7, "takes": 2},
+        "hurt": {"prompt": "pained cry, no words", "seconds": 0.7, "takes": 2},
+        "death": {"prompt": "dying groan, no words", "seconds": 1.4, "takes": 1}
+      }
+    },
+    "farmer": {
+      "voice": "A gruff old farmer of about sixty.",
+      "sounds": {
+        "startled": {"prompt": "alarmed grunt, no words", "seconds": 0.7, "takes": 2},
+        "hurt": {"prompt": "pained old man's groan, no words", "seconds": 0.8, "takes": 2},
+        "death": {"prompt": "weak dying groan, no words", "seconds": 1.4, "takes": 1},
+        "idle": {"prompt": "old man clearing his throat with a gruff cough", "seconds": 1.2, "takes": 2}
+      }
+    },
+    "footsteps": {
+      "sounds": {
+        "boot_grass": {"prompt": "one footstep of a leather boot on grass and soft earth", "seconds": 0.5, "takes": 4},
+        "boot_dirt": {"prompt": "one footstep of a leather boot on a packed dirt path", "seconds": 0.5, "takes": 4},
+        "bare_small": {"prompt": "one quick light footstep of a small creature's cloth-wrapped bare foot on dirt", "seconds": 0.5, "takes": 3},
+        "paw": {"prompt": "one soft footfall of a wolf's paw on grass", "seconds": 0.5, "takes": 3},
+        "paw_heavy": {"prompt": "one heavy thudding footfall of a bear's paw on earth", "seconds": 0.5, "takes": 3},
+        "hoof": {"prompt": "one dull footfall of a cow's hoof on soft grass", "seconds": 0.5, "takes": 3}
+      }
+    },
+    "combat": {
+      "sounds": {
+        "swing_light": {"prompt": "fast whoosh of a sword cutting the air", "seconds": 0.5, "takes": 3},
+        "swing_heavy": {"prompt": "slow heavy whoosh of a large weapon swung hard", "seconds": 0.8, "takes": 3},
+        "hit_flesh": {"prompt": "blade striking flesh, a meaty slash impact", "seconds": 0.5, "takes": 4},
+        "hit_blunt": {"prompt": "heavy blunt hammer impact on a body, dull thud", "seconds": 0.5, "takes": 3},
+        "block_wood": {"prompt": "weapon striking a wooden shield, solid knock", "seconds": 0.5, "takes": 3},
+        "block_metal": {"prompt": "sword clashing against a steel blade, bright ringing clang", "seconds": 0.7, "takes": 3},
+        "body_fall": {"prompt": "body collapsing onto grassy ground", "seconds": 1.0, "takes": 2},
+        "fireball_cast": {"prompt": "whooshing ignition as a ball of fire forms and launches", "seconds": 1.0, "takes": 2},
+        "fireball_loop": {"prompt": "steady roaring crackle of a flying ball of fire", "seconds": 2.0, "takes": 1, "loop": true},
+        "fireball_hit": {"prompt": "fiery explosion impact with a burst of flame", "seconds": 1.2, "takes": 2},
+        "rite_cast": {"prompt": "bright shimmering magical chime swelling into a warm holy glow", "seconds": 1.2, "takes": 2}
+      }
+    }
+  }
+}
