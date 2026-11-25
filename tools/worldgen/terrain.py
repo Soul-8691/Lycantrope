@@ -316,6 +316,7 @@ def generate(layout: dict, size_px: int, seed: int | None = None, log=print) -> 
 
     # 7. roads ------------------------------------------------------------ #
     road_w = np.zeros_like(H)
+    road_keep = np.zeros_like(H)          # roads and their shoulders: rivers don't dig here
     road_curves = []
     spacing = max(1.0, mpp)
     for road in layout.get("roads", []):
@@ -335,7 +336,14 @@ def generate(layout: dict, size_px: int, seed: int | None = None, log=print) -> 
         core = smoothstep(half_w, half_w * 0.4, D)
         H = H * (1 - rw) + (P - 0.15 * core) * rw
         road_w = np.maximum(road_w, smoothstep(half_w + 1.5, half_w * 0.5, D))
+        road_keep = np.maximum(road_keep, smoothstep(shoulder, half_w + 1.5, D))
     step("roads")
+
+    # 8. lakes and rivers (after roads: rivers pass under them like a culvert) -- #
+    # shoreline noise: big bays plus smaller coves, so lakes aren't ovals
+    shore = F["mid"] + 0.8 * fbm(X / 90.0, Y / 90.0, 3, seed + 7)
+    surface, lakes_out, rivers_out = carve_water(layout, grid, H, road_keep, shore, water)
+    step("lakes and rivers")
 
     H = np.clip(H, 0.0, max_h)
 
@@ -347,7 +355,152 @@ def generate(layout: dict, size_px: int, seed: int | None = None, log=print) -> 
     slope = slope_deg(H, mpp)
     step("done")
     return {"grid": grid, "H": H, "W": W, "names": names, "biome": biome, "road": road_w, "border": border_w,
-            "slope": slope, "pads": pads, "road_curves": road_curves, "seed": seed}
+            "slope": slope, "pads": pads, "road_curves": road_curves, "seed": seed,
+            "surface": surface, "lakes": lakes_out, "rivers": rivers_out}
+
+
+def meander(pts: np.ndarray, amount: float, seed: int) -> np.ndarray:
+    """Wiggle a path sideways (two sine waves along its length), keeping both ends in place."""
+    if amount <= 0 or len(pts) < 3:
+        return pts
+    seg = np.hypot(*np.diff(pts, axis=0).T)
+    s = np.concatenate([[0.0], np.cumsum(seg)])
+    L = s[-1]
+    rng = np.random.default_rng(seed)
+    p1, p2 = rng.uniform(0, math.tau, 2)
+    off = amount * (np.sin(s / 75.0 + p1) + 0.45 * np.sin(s / 29.0 + p2))
+    off *= smoothstep(0.0, 70.0, s) * smoothstep(L, L - 70.0, s)
+    tang = np.gradient(pts, axis=0)
+    tang /= np.maximum(np.linalg.norm(tang, axis=1, keepdims=True), 1e-9)
+    nrm = np.column_stack([-tang[:, 1], tang[:, 0]])
+    return resample(pts + nrm * off[:, None], max(1.0, float(seg.mean())))
+
+
+def carve_water(layout: dict, grid: Grid, H: np.ndarray, road_keep: np.ndarray, noise: np.ndarray,
+                sea: float) -> tuple[np.ndarray, list, list]:
+    """Carve lake basins and river channels into H (in place) and return the water surface map.
+
+    The surface map holds the water height at every pixel: sea level by default, a lake's own
+    level over the lake, and a falling profile along each river. Water is wherever the
+    surface is above the ground. Order: lake levels (from the untouched ground), then rivers
+    (a river leaving a lake starts at its level and never runs uphill), then lake basins with
+    a low rim so they can't spill.
+    """
+    X, Y, mpp = grid.X, grid.Y, grid.mpp
+    surface = np.full(H.shape, sea, dtype=np.float32)
+    lakes_out, rivers_out = [], []
+
+    # 1. lake levels: a little below the ground they sit in
+    lakes = []
+    for lake in layout.get("lakes", []):
+        x, y, r = float(lake["x"]), float(lake["y"]), float(lake["r"])
+        rs, cs = grid.window(x - 2.2 * r, y - 2.2 * r, x + 2.2 * r, y + 2.2 * r)
+        # several overlapping basins (arms and bays), seeded by the lake's name, then a wobbly shore
+        rng = np.random.default_rng(sum(map(ord, lake["name"])) * 7919 + 13)
+        px, py = X[rs, cs] - x, Y[rs, cs] - y
+        fields = []
+        main_ang = rng.uniform(0, math.pi)                     # the lake's long axis
+        for i in range(int(lake.get("lobes", rng.integers(4, 8)))):
+            if i == 0:
+                cx, cy, lr, ang, stretch = 0.0, 0.0, 0.7, main_ang, rng.uniform(1.2, 1.8)
+            else:
+                a, dist = rng.uniform(0, math.tau), rng.uniform(0.3, 0.95) * r
+                cx, cy = dist * math.cos(a), dist * math.sin(a)
+                lr, ang, stretch = rng.uniform(0.18, 0.55), rng.uniform(0, math.pi), rng.uniform(1.0, 2.6)
+            ca, sa = math.cos(ang), math.sin(ang)
+            u = ((px - cx) * ca + (py - cy) * sa) / stretch       # elongated lobes: arms and inlets
+            v = -(px - cx) * sa + (py - cy) * ca
+            fields.append(np.hypot(u, v) / (lr * r))
+        k = 0.18                                               # smooth union: no clover cusps
+        dn = -k * np.log(np.sum(np.exp(-np.stack(fields) / k), axis=0))
+        d = dn * r + 0.32 * r * noise[rs, cs]
+        inner = d <= 0.6 * r
+        ground = float(H[rs, cs][inner].mean()) if inner.any() else \
+            float(sample(H, grid, np.array([x]), np.array([y]))[0])   # tiny lake on a coarse grid
+        level = float(lake.get("level_m", ground - 1.0))
+        lakes.append((lake, x, y, r, rs, cs, d, max(level, sea + 0.3)))
+
+    # 2. rivers
+    spacing = max(1.0, mpp)
+    channel = np.zeros(H.shape, dtype=bool)
+    for river in layout.get("rivers", []):
+        pts = resample(catmull_rom(river["points"], samples=12), spacing)
+        pts = meander(pts, float(river.get("meander_m", 0.9 * float(river.get("width_m", 8.0)) + 6.0)),
+                      sum(map(ord, river["name"])))
+        width = float(river.get("width_m", 8.0))
+        depth = float(river.get("depth_m", 1.8))
+        bank = float(river.get("bank_m", 14.0))
+        tang = np.gradient(pts, axis=0)
+        tang /= np.maximum(np.linalg.norm(tang, axis=1, keepdims=True), 1e-9)
+        nrm = np.column_stack([-tang[:, 1], tang[:, 0]])
+        across = np.stack([sample(H, grid, pts[:, 0] + nrm[:, 0] * o, pts[:, 1] + nrm[:, 1] * o)
+                           for o in (-width / 2, -width / 4, 0.0, width / 4, width / 2)])
+        prof = across.min(axis=0) - 0.6
+        for (_l, lx, ly, lr, *_rest, level) in lakes:            # flowing out of a lake: start at its level
+            inside = np.hypot(pts[:, 0] - lx, pts[:, 1] - ly) <= lr
+            if inside[0]:
+                prof[inside] = level
+        prof = np.maximum(np.minimum.accumulate(prof), sea)        # never uphill
+        # a brook that ends at a river meets it at the river's level: look around the end for
+        # water already laid down, then ramp the last stretch down to it (cutting into the bank)
+        ex, ey = pts[-1]
+        ring = [(ex + rr * math.cos(t), ey + rr * math.sin(t)) for rr in (0.0, 6.0, 12.0, 18.0)
+                for t in np.linspace(0, math.tau, 8, endpoint=False)]
+        joins = float(sample(surface, grid, np.array([q[0] for q in ring]), np.array([q[1] for q in ring])).max())
+        if joins > sea + 0.1:
+            along = np.concatenate([[0.0], np.cumsum(np.hypot(*np.diff(pts, axis=0).T))])
+            prof = np.minimum(prof, joins + (along[-1] - along) * 0.06)
+            prof = np.maximum(prof, joins)
+        for (_l, lx, ly, lr, *_rest, level) in lakes:            # flowing into a lake: arrive at its level
+            if np.hypot(pts[-1, 0] - lx, pts[-1, 1] - ly) <= lr * 1.35:
+                along = np.concatenate([[0.0], np.cumsum(np.hypot(*np.diff(pts, axis=0).T))])
+                prof = np.maximum(np.minimum(prof, level + (along[-1] - along) * 0.06), level)
+        D, S = polyline_distance(grid, pts, width / 2 + bank + 3 * mpp, prof)
+        near = np.isfinite(D)
+        Dn, Sn = D[near], S[near]
+        hw = width / 2
+        bed = Sn - depth * smoothstep(hw, 0.15 * width, Dn)
+        bankside = Sn + np.maximum(Dn - hw, 0.0) * float(river.get("bank_slope", 0.35))
+        target = np.where(Dn <= hw, bed, bankside)
+        k = road_keep[near]                              # roads stay: the river runs under them
+        Hn = H[near]
+        Hn = Hn + (np.minimum(Hn, target) - Hn) * (1.0 - k)
+        keep = k > 0.5
+        levee = (Dn > hw) & (Dn < hw + bank) & ~keep     # low ground beside it gets a small bank
+        Hn = np.where(levee, np.maximum(Hn, Sn + 0.25 * smoothstep(hw + bank, hw, Dn)), Hn)
+        H[near] = Hn
+        wet = Dn <= hw + 3.0
+        sv = surface[near]
+        surface[near] = np.where(wet, np.maximum(sv, Sn), sv)
+        cm = channel[near]
+        channel[near] = cm | (Dn <= hw + 2.0)
+        rivers_out.append({"name": river["name"], "width_m": width,
+                           "curve": [[round(float(px), 1), round(float(py), 1), round(float(sv_), 2)]
+                                     for (px, py), sv_ in zip(pts[::5], prof[::5])]})
+
+    # 3. lake basins, with a low rim (except where a river runs in or out)
+    for lake, x, y, r, rs, cs, d, level in lakes:
+        depth = float(lake.get("depth_m", 4.0))
+        bowl = np.where(d <= r, level - depth * smoothstep(r, 0.25 * r, d),
+                        level + (d - r) * float(lake.get("bank_slope", 0.3)))
+        Hp = np.minimum(H[rs, cs], bowl)
+        rim = (d > r) & (d < 1.35 * r) & ~channel[rs, cs]
+        Hp = np.where(rim, np.maximum(Hp, level + 0.6 * smoothstep(1.35 * r, r * 1.05, d)), Hp)
+        H[rs, cs] = Hp
+        wet = (d <= 1.35 * r) & (Hp < level)
+        try:                                           # keep only water connected to the middle
+            from scipy import ndimage
+            lab, _n = ndimage.label(wet)
+            cr, cc = (int(v) for v in np.unravel_index(np.argmin(d), d.shape))
+            if lab[cr, cc]:
+                wet = lab == lab[cr, cc]
+            wet = ndimage.binary_dilation(wet, iterations=3)
+        except ImportError:
+            pass
+        patch = surface[rs, cs]
+        surface[rs, cs] = np.where(wet, np.maximum(patch, level), patch)
+        lakes_out.append({"name": lake["name"], "x": x, "y": y, "r": r, "level_m": round(level, 2)})
+    return surface, lakes_out, rivers_out
 
 
 # --------------------------------------------------------------------------- #
@@ -356,7 +509,7 @@ def generate(layout: dict, size_px: int, seed: int | None = None, log=print) -> 
 
 def compute_stats(layout: dict, res: dict) -> tuple[dict, list[str]]:
     H, biome, slope, road = res["H"], res["biome"], res["slope"], res["road"]
-    water = layout["water_level_m"]
+    water = res.get("surface", layout["water_level_m"])        # per-pixel: sea, lakes, rivers
     stats: dict = {"biomes": {}, "roads": {}}
     warnings: list[str] = []
     all_biomes = dict(layout["biomes"], boundary=layout["boundary"])
@@ -370,7 +523,7 @@ def compute_stats(layout: dict, res: dict) -> tuple[dict, list[str]]:
             "height_min": round(float(H[m].min()), 1),
             "height_mean": round(float(H[m].mean()), 1),
             "height_max": round(float(H[m].max()), 1),
-            "water_pct": round(100 * float((H[m] < water).mean()), 1),
+            "water_pct": round(100 * float((H[m] < (water[m] if isinstance(water, np.ndarray) else water)).mean()), 1),
             "unwalkable_pct": round(100 * float((slope[m] > WALKABLE_DEG).mean()), 1),
         }
     grid = res["grid"]
@@ -381,8 +534,9 @@ def compute_stats(layout: dict, res: dict) -> tuple[dict, list[str]]:
         if s.size == 0:
             continue
         p95 = float(np.percentile(s, 95))
+        wcore = water[core] if isinstance(water, np.ndarray) else water
         stats["roads"][road["name"]] = {"slope_p95_deg": round(p95, 1), "slope_max_deg": round(float(s.max()), 1),
-                                        "underwater_pct": round(100 * float((H[core] < water).mean()), 1)}
+                                        "underwater_pct": round(100 * float((H[core] < wcore).mean()), 1)}
         if p95 > WALKABLE_DEG:
             warnings.append(f"Road '{road['name']}' is too steep in places (95th pct {p95:.0f}°)")
     for p in res["pads"]:
@@ -423,8 +577,9 @@ def render_preview(layout: dict, res: dict, size: int = 1024) -> Image.Image:
     shade = np.clip((-gx * nz) * light[0] + (gy * nz) * light[1] + nz * light[2], 0, 1)[..., None]
     rgb = rgb * (0.35 + 0.85 * shade)
 
-    depth = np.clip((water - H) / 6.0, 0, 1)[..., None]
-    under = (H < water)[..., None]
+    surf = res.get("surface", np.full_like(H, water))
+    depth = np.clip((surf - H) / 6.0, 0, 1)[..., None]
+    under = (H < surf)[..., None]
     wcol = np.array([0.20, 0.33, 0.38], np.float32) * (1 - 0.5 * depth) + 0.05
     rgb = np.where(under, wcol * (0.8 + 0.2 * shade), rgb)
 
@@ -491,6 +646,8 @@ def write_outputs(layout: dict, res: dict, out: Path, preview_size: int) -> dict
     Image.fromarray(h16).save(out / "height.png", optimize=True)
     Image.fromarray(res["biome"]).save(out / "biome.png", optimize=True)
     Image.fromarray((res["road"] * 255).astype(np.uint8)).save(out / "road.png", optimize=True)
+    w16 = np.round(np.clip(res["surface"], 0, max_h) / max_h * 65535).astype(np.uint16)
+    Image.fromarray(w16).save(out / "water.png", optimize=True)
     # soft per-biome weights for texture blending: 2 RGBA maps, channel order in meta["splat"]
     edge = smoothstep(0.3, 0.6, res["border"])
     chans = [res["W"][i] * (1 - edge) for i in range(len(res["names"]))] + [edge]
@@ -516,6 +673,10 @@ def write_outputs(layout: dict, res: dict, out: Path, preview_size: int) -> dict
         "height": {"file": "height.png", "encoding": "uint16", "max_height_m": max_h,
                    "decode": "h_m = value / 65535 * max_height_m"},
         "water_level_m": layout["water_level_m"],
+        "water_map": {"file": "water.png", "encoding": "uint16 water surface height, same decode as height; "
+                      "water wherever it is above the ground"},
+        "lakes": res["lakes"],
+        "rivers": res["rivers"],
         "biome_map": {"file": "biome.png", "encoding": "uint8 biome id"},
         "road_map": {"file": "road.png", "encoding": "uint8 weight, 255 = road center"},
         "splat": {"files": ["splat_a.png", "splat_b.png"], "channels": channel_names,

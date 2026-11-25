@@ -156,8 +156,8 @@ class Placer:
             if not (0 <= ci < w.size and 0 <= ri < w.size) or w.road[ri, ci] > 20:
                 continue
             h0 = w.height_at(x, z)
-            if h0 < w.water_level + 0.5:
-                continue
+            if h0 < getattr(w, "water_at", lambda _x, _z: w.water_level)(x, z) + 0.5:
+                continue                                # not in the sea, lakes or rivers
             slope = max(abs(w.height_at(x + 2, z) - h0), abs(w.height_at(x, z + 2) - h0)) / 2
             if slope > 0.45:
                 continue

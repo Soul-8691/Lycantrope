@@ -38,3 +38,50 @@ vec3 tonemap(vec3 x) {           // ACES filmic fit, then gamma
     x = clamp((x * (a * x + b)) / (x * (c * x + d) + e), 0.0, 1.0);
     return pow(x, vec3(1.0 / 2.2));
 }
+
+// ---- value noise and the meadow colour field (shared by terrain and grass) ----
+float hash12(vec2 p) {
+    vec3 q = fract(vec3(p.xyx) * 0.1031);
+    q += dot(q, q.yzx + 33.33);
+    return fract((q.x + q.y) * q.z);
+}
+
+float vnoise(vec2 p) {
+    vec2 i = floor(p), f = fract(p);
+    vec2 u = f * f * (3.0 - 2.0 * f);
+    return mix(mix(hash12(i), hash12(i + vec2(1.0, 0.0)), u.x),
+               mix(hash12(i + vec2(0.0, 1.0)), hash12(i + vec2(1.0, 1.0)), u.x), u.y);
+}
+
+float fbm3(vec2 p) {
+    return 0.55 * vnoise(p) + 0.3 * vnoise(p * 2.03 + 11.7) + 0.15 * vnoise(p * 4.11 - 5.3);
+}
+
+// Colour multiplier for grassy ground: big dry (straw) and lush (deep green) patches, plus
+// finer brightness changes, so meadows and distant hills don't read as one flat green.
+vec3 meadow_tint(vec2 xz) {
+    float dry  = smoothstep(0.40, 0.66, fbm3(xz / 430.0));
+    float lush = smoothstep(0.44, 0.70, fbm3(xz / 190.0 + 17.0));
+    float fine = fbm3(xz / 37.0 - 4.0);
+    vec3 c = mix(vec3(1.0), vec3(1.30, 1.10, 0.55), dry * 0.9);            // straw
+    c = mix(c, vec3(0.62, 0.92, 0.62), lush * 0.7);                         // deep green
+    return c * (0.78 + 0.44 * fine);
+}
+
+// Bare dirt patches (0..1) with ragged, soft edges: roughly one-twelfth of open ground.
+float dirt_patch(vec2 xz) {
+    float n = fbm3(xz / 58.0 + vec2(41.0, -7.0)) + 0.16 * (vnoise(xz / 5.5) - 0.5);
+    return smoothstep(0.645, 0.725, n);
+}
+
+// Soil colour per patch (multiplies the dark mud texture): dusty tan, grey-brown,
+// red earth or dark loam, with a little mottling inside each patch.
+vec3 dirt_tint(vec2 xz) {
+    float k = vnoise(xz / 120.0 + 3.7) * 4.0;
+    vec3 tan_ = vec3(1.55, 1.38, 1.10), grey = vec3(1.30, 1.24, 1.14);
+    vec3 red = vec3(1.42, 1.06, 0.84), loam = vec3(1.02, 0.94, 0.86);
+    vec3 col = k < 1.0 ? mix(tan_, grey, smoothstep(0.75, 1.0, k))
+             : k < 2.0 ? mix(grey, red, smoothstep(1.75, 2.0, k))
+             : k < 3.0 ? mix(red, loam, smoothstep(2.75, 3.0, k)) : loam;
+    return col * (0.88 + 0.24 * vnoise(xz / 7.0));
+}

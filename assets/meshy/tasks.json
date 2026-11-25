@@ -295,6 +295,22 @@
       "prompt": "slender silver birch tree, white bark with black marks, light airy canopy of chunky leaf clumps, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795578151.5072973,
       "credits": 5
+    },
+    "RCK-01/v1": {
+      "task_id": "01a210ed-d9b4-709a-97f9-1fb0b8067da1",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "large rounded mossy boulder, granite, moss on top, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795580355.0610948,
+      "credits": 5
+    },
+    "RCK-02/v1": {
+      "task_id": "01a210ed-e2fa-7079-958d-4150c0d95bab",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "cluster of small and medium grey rocks, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795580357.4547057,
+      "credits": 5
     }
   },
   "replaced": [

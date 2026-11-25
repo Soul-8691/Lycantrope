@@ -66,6 +66,11 @@ class TerrainRenderer:
             t.filter = (moderngl.LINEAR, moderngl.LINEAR)
             t.repeat_x = t.repeat_y = False
             self.tex_splat.append(t)
+        self.tex_water = ctx.texture((world.size, world.size), 1,
+                                     world.water_surface.astype(np.float32).tobytes(), dtype="f4")
+        self.tex_water.filter = (moderngl.LINEAR, moderngl.LINEAR)
+        self.tex_water.repeat_x = self.tex_water.repeat_y = False
+        self.tex_patch_a, self.tex_patch_b = self.bake_patches(ctx, shaders, world.world_size)
         self.tex_road = ctx.texture((world.size, world.size), 1, np.ascontiguousarray(world.road).tobytes())
         self.tex_road.filter = (moderngl.LINEAR, moderngl.LINEAR)
         self.tex_road.repeat_x = self.tex_road.repeat_y = False
@@ -103,6 +108,32 @@ class TerrainRenderer:
         self._vao_version = -1
 
     # ------------------------------------------------------------------------ #
+    PATCH_PX = 2048                     # 2 m per pixel over the 4 km world
+
+    @staticmethod
+    def bake_patches(ctx: moderngl.Context, shaders: ShaderLibrary, world_size: float):
+        """Draw the meadow colour, dirt, soil colour and tall-grass fields into two textures once."""
+        n = TerrainRenderer.PATCH_PX
+        texs = [ctx.texture((n, n), 4) for _ in range(2)]
+        fbo = ctx.framebuffer(color_attachments=texs)
+        prog = shaders.get("patches")
+        set_uniform(prog, "u_world_size", world_size)
+        vao = ctx.vertex_array(prog, [])
+        prev_viewport = ctx.viewport
+        fbo.use()
+        ctx.viewport = (0, 0, n, n)
+        ctx.disable(moderngl.DEPTH_TEST)
+        vao.render(moderngl.TRIANGLES, vertices=3)
+        ctx.enable(moderngl.DEPTH_TEST)
+        ctx.screen.use()
+        ctx.viewport = prev_viewport
+        vao.release()
+        fbo.release()
+        for t in texs:
+            t.filter = (moderngl.LINEAR, moderngl.LINEAR)
+            t.repeat_x = t.repeat_y = False
+        return texs
+
     def _vaos(self) -> moderngl.Program:
         prog = self.shaders.get("terrain")
         if self._vao_version != self.shaders.version or self.lods[0]["vao"] is None:
@@ -130,7 +161,11 @@ class TerrainRenderer:
         self.tex_splat[1].use(2)
         self.tex_road.use(3)
         self.tex_ground.use(4)
-        for name, unit in (("u_height", 0), ("u_splat_a", 1), ("u_splat_b", 2), ("u_road", 3), ("u_ground", 4)):
+        self.tex_water.use(5)
+        self.tex_patch_a.use(6)
+        self.tex_patch_b.use(7)
+        for name, unit in (("u_height", 0), ("u_splat_a", 1), ("u_splat_b", 2), ("u_road", 3), ("u_ground", 4),
+                           ("u_water_tex", 5), ("u_patch_a", 6), ("u_patch_b", 7)):
             set_uniform(prog, name, unit)
         set_uniform(prog, "u_viewproj", viewproj)
         set_uniform(prog, "u_world_size", world.world_size)

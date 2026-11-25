@@ -1,10 +1,10 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-24T17:07:49",
+  "updated": "2026-11-24T23:12:56",
   "counts": {
     "awaiting": 31,
-    "approved": 433,
-    "denied": 95,
+    "approved": 434,
+    "denied": 94,
     "total": 559
   },
   "ui": {
@@ -2087,9 +2087,9 @@
       "file": "IDEAS.md"
     },
     "ART-10": {
-      "status": "denied",
-      "note": "",
-      "changed": "2026-11-24T10:57:53",
+      "status": "approved",
+      "note": "Re-approved 2026-11-24: the user asked for varying heights of tall grass in Brackenvale.",
+      "changed": "2026-11-24T23:12:56",
       "title": "Instanced grass with wind",
       "category": "Art Pipeline (ART)",
       "section": "",
@@ -6440,12 +6440,6 @@
   },
   "history": [
     {
-      "time": "2026-11-23T22:42:01",
-      "id": "CMB-17",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
       "time": "2026-11-23T22:42:08",
       "id": "CMB-18",
       "from": "awaiting",
@@ -9438,6 +9432,12 @@
       "id": "MAG-16",
       "from": "awaiting",
       "to": "denied"
+    },
+    {
+      "time": "2026-11-24T23:12:56",
+      "id": "ART-10",
+      "from": "denied",
+      "to": "approved"
     }
   ]
 }

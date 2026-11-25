@@ -40,6 +40,15 @@ class Heightfield:
         self.heights = raw * (max_h / 65535.0)                     # meters, float32
         self.biome = np.asarray(Image.open(folder / m["biome_map"]["file"]), dtype=np.uint8)
         self.road = np.asarray(Image.open(folder / m["road_map"]["file"]), dtype=np.uint8)
+        # water surface height per pixel (sea, lakes, rivers); water wherever it's above the ground
+        wm = m.get("water_map")
+        if wm and (folder / wm["file"]).exists():
+            raw_w = np.asarray(Image.open(folder / wm["file"]), dtype=np.float32)
+            self.water_surface = raw_w * (max_h / 65535.0)
+        else:
+            self.water_surface = np.full_like(self.heights, self.water_level)
+        self.lakes = m.get("lakes", [])
+        self.rivers = m.get("rivers", [])
         self.splat = [np.asarray(Image.open(folder / f).convert("RGBA"), dtype=np.uint8)
                       for f in m["splat"]["files"]]
         self.biome_names = {b["id"]: b["name"] for b in m["biomes"].values()}
@@ -50,18 +59,28 @@ class Heightfield:
     def _px(self, x: float, z: float) -> tuple[float, float]:
         return (x + self.half) / self.mpp - 0.5, (z + self.half) / self.mpp - 0.5
 
-    def height_at(self, x: float, z: float) -> float:
-        """Bilinear terrain height (m) at a world position; clamps at the map edge."""
+    def _bilinear(self, arr: np.ndarray, x: float, z: float) -> float:
         c, r = self._px(x, z)
         n = self.size - 1
         c = min(max(c, 0.0), n - 1e-3)
         r = min(max(r, 0.0), n - 1e-3)
         c0, r0 = int(c), int(r)
         fc, fr = c - c0, r - r0
-        h = self.heights
-        top = h[r0, c0] * (1 - fc) + h[r0, c0 + 1] * fc
-        bot = h[r0 + 1, c0] * (1 - fc) + h[r0 + 1, c0 + 1] * fc
+        top = arr[r0, c0] * (1 - fc) + arr[r0, c0 + 1] * fc
+        bot = arr[r0 + 1, c0] * (1 - fc) + arr[r0 + 1, c0 + 1] * fc
         return float(top * (1 - fr) + bot * fr)
+
+    def height_at(self, x: float, z: float) -> float:
+        """Bilinear terrain height (m) at a world position; clamps at the map edge."""
+        return self._bilinear(self.heights, x, z)
+
+    def water_at(self, x: float, z: float) -> float:
+        """Water surface height (m) here: sea level, a lake's level or a river's surface."""
+        return self._bilinear(self.water_surface, x, z)
+
+    def water_depth(self, x: float, z: float) -> float:
+        """How deep the water is here (0 on dry land)."""
+        return max(0.0, self.water_at(x, z) - self.height_at(x, z))
 
     def biome_at(self, x: float, z: float) -> str:
         c, r = self._px(x, z)

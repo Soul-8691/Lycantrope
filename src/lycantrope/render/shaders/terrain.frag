@@ -8,6 +8,9 @@ uniform sampler2D u_height;
 uniform sampler2D u_splat_a;
 uniform sampler2D u_splat_b;
 uniform sampler2D u_road;
+uniform sampler2D u_water_tex;           // water surface height (sea, lakes, rivers)
+uniform sampler2D u_patch_a;             // baked at load: rgb meadow tint / 2, a bare dirt
+uniform sampler2D u_patch_b;             // baked at load: rgb soil tint / 2, a tall grass
 uniform sampler2DArray u_ground;     // RGB albedo (sRGB), A = height for blending
 uniform float u_world_size;
 uniform float u_mpp;
@@ -68,13 +71,19 @@ void main() {
     float snow = smoothstep(u_snowline, u_snowline + 40.0, v_world.y + macro * 30.0) * smoothstep(0.70, 0.85, n.y);
     float rock = smoothstep(0.86, 0.72, n.y);
     float road = texture(u_road, uv).r * (1.0 - rock * 0.6);
-    float wet = smoothstep(u_water + 0.6, u_water - 0.4, v_world.y);
+    float wl = texture(u_water_tex, uv).r;
+    float wet = smoothstep(wl + 0.6, wl - 0.4, v_world.y);
     for (int i = 0; i < 8; i++) w[i] *= (1.0 - snow);
     w[u_snow_layer] += snow;
     for (int i = 0; i < 8; i++) w[i] *= (1.0 - rock);
     w[u_rock_layer] += rock;
     for (int i = 0; i < 8; i++) w[i] *= (1.0 - road);
     w[u_road_layer] += road;
+    // bare dirt patches on open ground (the mud layer, tinted per patch below)
+    vec4 pa = texture(u_patch_a, uv), pb = texture(u_patch_b, uv);
+    float bare = pa.a * (1.0 - rock) * (1.0 - snow) * (1.0 - road);
+    for (int i = 0; i < 8; i++) w[i] *= (1.0 - bare);
+    w[u_mud_layer] += bare;
     for (int i = 0; i < 8; i++) w[i] *= (1.0 - wet);
     w[u_mud_layer] += wet;
 
@@ -99,8 +108,12 @@ void main() {
     }
     albedo /= max(total, 1e-4);
     albedo *= 0.82 + 0.36 * macro;                       // break up tiling at a distance
+    // meadow colour patches on grassy ground (not rock, road, snow or wet shore)
+    float grassy = (1.0 - rock) * (1.0 - road) * (1.0 - snow) * (1.0 - wet) * (1.0 - bare);
+    albedo *= mix(vec3(1.0), pa.rgb * 2.0, grassy);
+    albedo *= mix(vec3(1.0), pb.rgb * 2.0, bare * (1.0 - wet));
     albedo = pow(albedo, vec3(2.2));                     // sRGB -> linear
-    albedo *= mix(1.0, 0.55, smoothstep(u_water + 1.5, u_water, v_world.y));   // damp shoreline
+    albedo *= mix(1.0, 0.55, smoothstep(wl + 1.5, wl, v_world.y));             // damp shoreline
 
     float ndl = max(dot(n, u_sun_dir), 0.0);
     vec3 ambient = mix(u_ambient_ground, u_ambient_sky, n.y * 0.5 + 0.5);

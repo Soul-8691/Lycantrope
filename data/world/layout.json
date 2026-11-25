@@ -1,5 +1,5 @@
 {
-  "_about": "World layout for tools/worldgen/terrain.py (WLD-01). Coordinates are meters from the map center: x = east, y = north. Edit, re-run the generator, look at assets/world/preview.png.",
+  "_about": "World layout for tools/worldgen/terrain.py (WLD-01). Coordinates are meters from the map center: x = east, y = north. Edit, re-run the generator, look at assets/world/preview.png. Lakes: x/y/r (+ depth_m, optional level_m); the rim sets the level. Rivers: points from source to mouth, width_m, depth_m; the water surface never rises downstream.",
   "seed": 1337,
   "world_size_m": 4096,
   "max_height_m": 520,
@@ -583,6 +583,252 @@
       "y": 700,
       "r": 60,
       "idea": "BOS-05"
+    }
+  ],
+  "lakes": [
+    {
+      "name": "Bracken Mere",
+      "x": -560,
+      "y": -1380,
+      "r": 85,
+      "depth_m": 5,
+      "level_m": 30
+    },
+    {
+      "name": "Greywater",
+      "x": -850,
+      "y": 250,
+      "r": 110,
+      "depth_m": 6
+    },
+    {
+      "name": "Millpond",
+      "x": 420,
+      "y": -1480,
+      "r": 45,
+      "depth_m": 3
+    },
+    {
+      "name": "Fenhallow Pond",
+      "x": -160,
+      "y": -1580,
+      "r": 26,
+      "depth_m": 2
+    },
+    {
+      "name": "Frostfang Tarn",
+      "x": -150,
+      "y": 1000,
+      "r": 60,
+      "depth_m": 5
+    }
+  ],
+  "rivers": [
+    {
+      "name": "Greywater Run",
+      "width_m": 7,
+      "depth_m": 1.6,
+      "points": [
+        [
+          -850,
+          180
+        ],
+        [
+          -800,
+          -100
+        ],
+        [
+          -700,
+          -450
+        ],
+        [
+          -640,
+          -760
+        ],
+        [
+          -610,
+          -1050
+        ],
+        [
+          -575,
+          -1300
+        ]
+      ]
+    },
+    {
+      "name": "Bracken Water",
+      "width_m": 10,
+      "depth_m": 2.0,
+      "points": [
+        [
+          -545,
+          -1392
+        ],
+        [
+          -300,
+          -1352
+        ],
+        [
+          -120,
+          -1338
+        ],
+        [
+          40,
+          -1345
+        ],
+        [
+          200,
+          -1342
+        ],
+        [
+          380,
+          -1292
+        ],
+        [
+          560,
+          -1258
+        ],
+        [
+          760,
+          -1205
+        ],
+        [
+          845,
+          -1110
+        ],
+        [
+          950,
+          -1015
+        ],
+        [
+          1060,
+          -1060
+        ],
+        [
+          1180,
+          -1080
+        ]
+      ]
+    },
+    {
+      "name": "Fen Brook",
+      "width_m": 4,
+      "depth_m": 1.0,
+      "bank_m": 9,
+      "points": [
+        [
+          -160,
+          -1560
+        ],
+        [
+          -185,
+          -1495
+        ],
+        [
+          -200,
+          -1420
+        ],
+        [
+          -215,
+          -1347
+        ]
+      ]
+    },
+    {
+      "name": "Crossroads Brook",
+      "width_m": 4.5,
+      "depth_m": 1.1,
+      "bank_m": 10,
+      "points": [
+        [
+          230,
+          -1120
+        ],
+        [
+          222,
+          -1200
+        ],
+        [
+          206,
+          -1270
+        ],
+        [
+          200,
+          -1335
+        ]
+      ]
+    },
+    {
+      "name": "Bramble Beck",
+      "width_m": 4,
+      "depth_m": 1.0,
+      "bank_m": 9,
+      "points": [
+        [
+          240,
+          -1690
+        ],
+        [
+          300,
+          -1590
+        ],
+        [
+          360,
+          -1515
+        ],
+        [
+          400,
+          -1490
+        ]
+      ]
+    },
+    {
+      "name": "Mill Run",
+      "width_m": 5,
+      "depth_m": 1.2,
+      "bank_m": 10,
+      "points": [
+        [
+          425,
+          -1465
+        ],
+        [
+          430,
+          -1400
+        ],
+        [
+          425,
+          -1340
+        ],
+        [
+          415,
+          -1284
+        ]
+      ]
+    },
+    {
+      "name": "Old Watch Beck",
+      "width_m": 4.5,
+      "depth_m": 1.1,
+      "bank_m": 10,
+      "points": [
+        [
+          -880,
+          -1230
+        ],
+        [
+          -780,
+          -1290
+        ],
+        [
+          -690,
+          -1340
+        ],
+        [
+          -610,
+          -1370
+        ]
+      ]
     }
   ]
 }

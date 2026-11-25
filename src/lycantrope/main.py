@@ -7,7 +7,7 @@ WASD             move (camera-relative)     Shift: sprint  ·  Ctrl: walk  ·  w
 Left click       light attack (click again during a swing to chain up to three)
 Right mouse      hold to block              R: heavy attack  ·  Q: cast (off hand)
 H / K            debug: hit reaction / die and get back up
-F4 free-fly camera · F7 helmet on/off
+F4 free-fly camera · F7 helmet on/off · F8 grass on/off
 
 Free-fly mode: WASD / QE move, Shift fast, Ctrl slow, wheel base speed.
 Always: F1 wireframe · F2 fog · F3 overlay · F5 reload shaders · F6 terrain debug view · F12 screenshot
@@ -41,6 +41,7 @@ from lycantrope.core.timing import FixedStep
 from lycantrope.render.camera import Camera
 from lycantrope.render.characters import CharacterSystem
 from lycantrope.render.environment import Sky, Water, default_environment
+from lycantrope.render.grass import Grass
 from lycantrope.render.props import PropRenderer
 from lycantrope.render.shaders import ShaderLibrary
 from lycantrope.render.terrain import TerrainRenderer
@@ -96,9 +97,10 @@ class App:
         paint_paths(self.world, placements)          # before the terrain uploads the road map
         self.terrain = TerrainRenderer(self.ctx, self.shaders, self.world)
         self.props = PropRenderer(self.ctx, self.shaders, self.world, placements)
+        self.grass = Grass(self.ctx, self.shaders, self.world, self.terrain)
         self.chars = CharacterSystem(self.ctx, self.shaders, self.world)
         self.sky = Sky(self.ctx, self.shaders)
-        self.water = Water(self.ctx, self.shaders, self.world, self.terrain.tex_height)
+        self.water = Water(self.ctx, self.shaders, self.world, self.terrain.tex_height, self.terrain.tex_water)
         self.overlay = TextOverlay(self.ctx, self.shaders)
         self.load_seconds = time.perf_counter() - t0
 
@@ -219,6 +221,8 @@ class App:
                     self.terrain.debug_view = (self.terrain.debug_view + 1) % 3
                 elif k == pygame.K_F7:
                     self.chars.helmet = not self.chars.helmet
+                elif k == pygame.K_F8:
+                    self.grass.enabled = not self.grass.enabled
                 elif k == pygame.K_F12:
                     SCREENSHOTS.mkdir(exist_ok=True)
                     self.screenshot(SCREENSHOTS / f"lycantrope_{datetime.now():%Y%m%d_%H%M%S}.png")
@@ -293,6 +297,7 @@ class App:
         self.ctx.wireframe = wire
         self.terrain.render(eye, viewproj, env, self.settings.lod_distances_m)
         self.props.render(eye, viewproj, env)
+        self.grass.render(eye, viewproj, env, self.time_s)
         self.chars.render(eye, viewproj, env, alpha)
         self.ctx.wireframe = False
         self.water.render(eye, viewproj, env, self.time_s)
@@ -320,7 +325,7 @@ class App:
         ]
         if self.play:
             lines += ["WASD move  Shift sprint  Ctrl walk  LMB attack  RMB block  R heavy  Q cast",
-                      "H hit  K die/revive  F7 helmet  F4 free camera  wheel zoom  Esc release mouse"]
+                      "H hit  K die/revive  F7 helmet  F8 grass  F4 free camera  wheel zoom  Esc mouse"]
         else:
             lines += ["WASD QE fly  Shift/Ctrl speed  wheel base speed  F4 back to Rowan",
                       "F1 wire  F2 fog  F3 overlay  F5 shaders  F6 debug  F12 shot"]

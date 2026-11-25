@@ -30,6 +30,7 @@ MODELS = ASSETS / "models" / "meshy"
 CACHE = ROOT / "assets" / "cache"
 MAX_JOINTS = 64
 DRAW_DISTANCE = 300.0
+WADE_DEPTH = 0.9           # meters, for a 1.75 m character (scaled by height)
 STATIC_CLIPS = {"idle": ClipInfo(1.0, True), "walk": ClipInfo(1.0, True), "run": ClipInfo(1.0, True),
                 "alert": ClipInfo(1.0, True), "attack1": ClipInfo(0.9, False), "attack2": ClipInfo(0.9, False),
                 "hit": ClipInfo(0.5, False), "death": ClipInfo(1.0, False)}
@@ -372,6 +373,12 @@ class CharacterSystem:
             a = c.actor
             a.x = min(max(a.x, -lim), lim)
             a.z = min(max(a.z, -lim), lim)
+            # no swimming yet: wading is fine, deeper water stops you at the edge
+            if self.world.water_depth(a.x, a.z) > WADE_DEPTH * (c.t.height / 1.75) and                     self.world.water_depth(a.x, a.z) > self.world.water_depth(a.px, a.pz):
+                a.x, a.z = a.px, a.pz
+                a.speed = 0.0
+                if c.brain is not None:
+                    c.brain.goal = None
             a.y = self.world.height_at(a.x, a.z)
             a.anim.update(dt)
             if c.t.skel is None:

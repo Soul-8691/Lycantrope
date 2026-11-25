@@ -1,7 +1,7 @@
 .venv\Scripts\python.exe tools\meshy\keep.py
 .venv\Scripts\python.exe tools\meshy\animsheet.py ENM-03 --gif
 Sounds
-Music (like Morrowind [don't copy])
+Music (like Elder Scrolls [https://www.elderscrollsonline.com/en-us/news/post/827])
 World map
 Health and damage
 Character stats
@@ -9,3 +9,5 @@ Weapon stats
 Armor stats
 Magic stats
 Magic casting
+Finish texturing trees
+Collision
