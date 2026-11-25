@@ -5,6 +5,9 @@ in vec3 v_world;
 in vec3 v_nrm;
 in float v_rel_h;
 in float v_shade;
+in vec2 v_uv;
+uniform sampler2D u_tex;
+uniform int u_has_tex;       // 1: use the Meshy texture instead of the flat colours
 out vec4 f_color;
 
 uniform vec3 u_cam;
@@ -19,6 +22,7 @@ void main() {
 
     float top = smoothstep(u_top_from - 0.04, u_top_from + 0.04, v_rel_h);
     vec3 albedo = mix(u_color, u_top_color, top) * v_shade;
+    if (u_has_tex == 1) albedo = pow(texture(u_tex, v_uv).rgb, vec3(2.2)) * v_shade;
 
     float ao = mix(0.55, 1.0, smoothstep(0.0, 0.25, v_rel_h));     // darker near the ground
     float ndl = max(dot(n, u_sun_dir), 0.0);

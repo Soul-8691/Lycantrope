@@ -1,6 +1,7 @@
 #version 330
 in vec3 in_pos;           // model space, pivot at the bottom center, front = +z
 in vec3 in_nrm;
+in vec2 in_uv;
 in vec3 in_offset;        // per instance: world position of the pivot
 in float in_rot;          // rotation about +y (radians)
 in float in_scale;
@@ -13,6 +14,7 @@ out vec3 v_world;
 out vec3 v_nrm;
 out float v_rel_h;        // 0 at the base, 1 at the top of the model
 out float v_shade;
+out vec2 v_uv;
 
 uniform float u_height;
 
@@ -24,5 +26,6 @@ void main() {
     v_nrm = rot * (in_nrm / sc);                            // inverse-transpose of the scale
     v_rel_h = in_pos.y / max(u_height, 1e-3);
     v_shade = in_shade;
+    v_uv = in_uv;
     gl_Position = u_viewproj * vec4(v_world, 1.0);
 }

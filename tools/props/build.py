@@ -31,28 +31,41 @@ def build(key: str, spec: dict) -> None:
     if not src.exists():
         print(f"  ! {key}: missing {src.relative_to(ROOT)}")
         return
-    mesh = trimesh.load(src, force="mesh")
-    mesh = trimesh.Trimesh(mesh.vertices, mesh.faces, process=True)   # geometry only
+    mesh = trimesh.load(src, force="mesh", process=False)
+    uv = getattr(mesh.visual, "uv", None)
+    textured = uv is not None and getattr(mesh.visual, "material", None) is not None
     lo, hi = mesh.bounds
     v = mesh.vertices - [(lo[0] + hi[0]) / 2, lo[1], (lo[2] + hi[2]) / 2]
     v *= spec["height_m"] / (hi[1] - lo[1])
     v *= np.asarray(spec.get("stretch", [1.0, 1.0, 1.0]))
-    out_mesh = trimesh.Trimesh(v, mesh.faces, process=False)
+    if textured:                       # keep the texture and its coordinates
+        out_mesh = trimesh.Trimesh(v, mesh.faces, visual=mesh.visual.copy(), process=False)
+    else:
+        out_mesh = trimesh.Trimesh(v, mesh.faces, process=True)
     OUT.mkdir(parents=True, exist_ok=True)
     out = model_path(key)
     out_mesh.export(out)
     e = out_mesh.extents
     print(f"  {key:<12} {len(out_mesh.faces):>6} tris   {e[0]:5.1f} x {e[1]:4.1f} x {e[2]:5.1f} m   "
-          f"{out.relative_to(ROOT)}")
+          f"{out.relative_to(ROOT)}{'   (textured)' if textured else ''}")
     # distant version (TEC-11): about a third of the triangles, drawn beyond ~90 m
     lod = lod_path(key)
     if len(out_mesh.faces) >= 1500:
         try:
             import fast_simplification
             target = max(400, len(out_mesh.faces) // 3)
-            v2, f2 = fast_simplification.simplify(np.asarray(out_mesh.vertices, np.float32),
-                                                  np.asarray(out_mesh.faces), target_count=target, agg=5)
-            trimesh.Trimesh(v2, f2, process=True).export(lod)
+            welded = trimesh.Trimesh(out_mesh.vertices, out_mesh.faces, process=True)   # join seams first
+            v2, f2 = fast_simplification.simplify(np.asarray(welded.vertices, np.float32),
+                                                  np.asarray(welded.faces), target_count=target, agg=5)
+            if textured:
+                # the simplifier drops texture coordinates: borrow each new vertex's from the
+                # nearest original vertex (fine for something drawn 90 m+ away)
+                from scipy.spatial import cKDTree
+                near = cKDTree(np.asarray(out_mesh.vertices)).query(v2)[1]
+                vis = trimesh.visual.TextureVisuals(uv=np.asarray(uv)[near], material=mesh.visual.material)
+                trimesh.Trimesh(v2, f2, visual=vis, process=False).export(lod)
+            else:
+                trimesh.Trimesh(v2, f2, process=True).export(lod)
             print(f"  {'':<12} {len(f2):>6} tris   distant version {lod.relative_to(ROOT)}")
         except ImportError:
             print("    (no fast-simplification installed: skipping the distant version)")

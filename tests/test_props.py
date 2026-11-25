@@ -92,6 +92,7 @@ def test_read_glb_roundtrip(tmp_path):
     assert len(f) == 12
     assert np.allclose(v.max(axis=0) - v.min(axis=0), (2.0, 1.0, 3.0))
     rows = flat_mesh(v, f)
-    assert rows.shape == (36, 6)
-    assert np.allclose(np.linalg.norm(rows[:, 3:], axis=1), 1.0)
+    assert rows.shape == (36, 8)                              # position, face normal, uv
+    assert np.allclose(np.linalg.norm(rows[:, 3:6], axis=1), 1.0)
+    assert np.all(rows[:, 6:] == 0.0)                         # untextured: uv left at zero
     assert math.isfinite(float(rows.sum()))

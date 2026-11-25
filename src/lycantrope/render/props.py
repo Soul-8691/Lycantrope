@@ -54,13 +54,22 @@ def read_glb(path: Path) -> tuple[np.ndarray, np.ndarray]:
     return np.concatenate(verts), np.concatenate(faces)
 
 
-def flat_mesh(verts: np.ndarray, faces: np.ndarray) -> np.ndarray:
-    """Unindexed (position, face normal) rows for the faceted low-poly look."""
+def flat_mesh(verts: np.ndarray, faces: np.ndarray, uv: np.ndarray | None = None) -> np.ndarray:
+    """Unindexed (position, face normal, uv) rows for the faceted low-poly look."""
     tri = verts[faces]                                        # (M, 3, 3)
     n = np.cross(tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0])
     n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-12)
-    data = np.concatenate([tri, np.repeat(n[:, None, :], 3, axis=1)], axis=2)
-    return np.ascontiguousarray(data.reshape(-1, 6), dtype=np.float32)
+    t = uv[faces] if uv is not None else np.zeros((len(faces), 3, 2), np.float32)
+    data = np.concatenate([tri, np.repeat(n[:, None, :], 3, axis=1), t], axis=2)
+    return np.ascontiguousarray(data.reshape(-1, 8), dtype=np.float32)
+
+
+def load_prop(path: Path):
+    """Positions, faces, uv (or None) and texture image (or None) of a built prop GLB."""
+    from lycantrope.render.gltf import load_mesh
+    m = load_mesh(path, skinned=False)
+    has_uv = m.texture is not None and np.any(m.uv)
+    return m.pos, m.idx.reshape(-1, 3), (m.uv if has_uv else None), m.texture
 
 
 @dataclass
@@ -77,6 +86,7 @@ class PropModel:
     lod_inst: moderngl.Buffer | None = None
     lod_tris: int = 0
     lod_vao: moderngl.VertexArray | None = None
+    texture: moderngl.Texture | None = None     # Meshy texture, if the prop has one
     centers: np.ndarray | None = None           # per instance: middle of the prop (world)
     rad: np.ndarray | None = None               # per instance: bounding sphere radius
     box_lo: np.ndarray | None = None            # all instances: bounds, to skip far-off groups fast
@@ -99,30 +109,35 @@ class PropRenderer:
             if not path.exists():
                 print(f"props: {path.name} not built yet (python tools/props/build.py)")
                 continue
-            v, f = read_glb(path)
+            v, f, uv, tex = load_prop(path)
             spec.extents = tuple(float(e) for e in v.max(axis=0) - v.min(axis=0))
-            meshes[key] = (v, f)
+            meshes[key] = (v, f, uv, tex)
         self.catalog = {k: s for k, s in self.catalog.items() if k in meshes}
         instances = place_props(world, self.catalog, placements).arrays()
 
         self.models: list[PropModel] = []
         for key, rows in instances.items():
-            v, f = meshes[key]
+            v, f, uv, tex = meshes[key]
             spec = self.catalog[key]
             ex, ey, ez = spec.extents
             radius = 0.5 * float(np.sqrt(ex * ex + ey * ey + ez * ez))
-            pm = PropModel(spec, ctx.buffer(flat_mesh(v, f).tobytes()), ctx.buffer(rows.tobytes(), dynamic=True),
+            pm = PropModel(spec, ctx.buffer(flat_mesh(v, f, uv).tobytes()), ctx.buffer(rows.tobytes(), dynamic=True),
                            rows, radius, len(f), draw_m=min(900.0, max(250.0, spec.height * 110.0)))
             lod = MODELS / (key.replace("/", "_") + "_lod1.glb")
             if lod.exists():
-                lv, lf = read_glb(lod)
-                pm.lod_vbo = ctx.buffer(flat_mesh(lv, lf).tobytes())
+                lv, lf, luv, _lt = load_prop(lod)
+                pm.lod_vbo = ctx.buffer(flat_mesh(lv, lf, luv if uv is not None else None).tobytes())
                 pm.lod_inst = ctx.buffer(rows.tobytes(), dynamic=True)
                 pm.lod_tris = len(lf)
             pm.centers = rows[:, :3] + np.outer(rows[:, 4] * rows[:, 6], [0.0, spec.height * 0.5, 0.0])
             pm.rad = radius * rows[:, 4] * np.maximum(rows[:, 6], 1.0)
             pm.box_lo = (pm.centers - pm.rad[:, None]).min(axis=0)
             pm.box_hi = (pm.centers + pm.rad[:, None]).max(axis=0)
+            if tex is not None and uv is not None:
+                pm.texture = ctx.texture(tex.size, 3, tex.tobytes())
+                pm.texture.build_mipmaps()
+                pm.texture.filter = (moderngl.LINEAR_MIPMAP_LINEAR, moderngl.LINEAR)
+                pm.texture.anisotropy = 4.0
             self.models.append(pm)
         self.count = sum(len(m.rows) for m in self.models)
         self.drawn = 0
@@ -133,7 +148,7 @@ class PropRenderer:
         prog = self.shaders.get("props")
         if self._version != self.shaders.version:
             def vao(vbo, inst):
-                return self.ctx.vertex_array(prog, [(vbo, "3f 3f", "in_pos", "in_nrm"),
+                return self.ctx.vertex_array(prog, [(vbo, "3f 3f 2f", "in_pos", "in_nrm", "in_uv"),
                                                     (inst, "3f 1f 1f 1f 1f/i", "in_offset", "in_rot",
                                                      "in_scale", "in_shade", "in_stretch")])
             for m in self.models:
@@ -169,6 +184,10 @@ class PropRenderer:
             set_uniform(prog, "u_color", tuple(c ** 2.2 for c in s.color))
             set_uniform(prog, "u_top_color", tuple(c ** 2.2 for c in s.top_color))
             set_uniform(prog, "u_top_from", s.top_from)
+            if m.texture is not None:
+                m.texture.use(0)
+                set_uniform(prog, "u_tex", 0)
+            set_uniform(prog, "u_has_tex", 1 if m.texture is not None else 0)
             near = vis & (dist < LOD_M + rad) if m.lod_vao is not None else vis
             for mask, inst, vao, t in ((near, m.inst, m.vao, m.triangles),
                                        (vis & ~near, m.lod_inst, m.lod_vao, m.lod_tris)):
