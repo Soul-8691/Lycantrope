@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-25T17:16:27",
+  "updated": "2026-11-25T17:19:52",
   "counts": {
     "awaiting": 35,
-    "approved": 508,
-    "denied": 112,
-    "total": 655
+    "approved": 510,
+    "denied": 116,
+    "total": 661
   },
   "ui": {
     "selected": [
-      "TRE-14"
+      "WLD-19"
     ],
     "selected_titles": {
-      "TRE-14": "Petrified Tree"
+      "WLD-19": "Simple traversal"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-25T17:16:27"
+    "at": "2026-11-25T17:19:52"
   },
   "ideas": {
     "PIL-01": {
@@ -1556,6 +1556,72 @@
       "note": "",
       "changed": "2026-11-25T17:14:39",
       "title": "Old Corwin of the Road",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "BOS-20": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T17:19:19",
+      "title": "The Vault-Wyrm",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "BOS-21": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-25T17:19:13",
+      "title": "The Hoard",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "BOS-22": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-25T17:19:17",
+      "title": "The Keeper of Fallen Things",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "BOS-23": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T17:19:51",
+      "title": "The Black Marble Colossus",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "BOS-24": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-25T17:19:48",
+      "title": "The Dreamer's Shadow",
+      "category": "Bosses (BOS)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "BOS-25": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-25T17:19:49",
+      "title": "The Chained Sky-Whale",
       "category": "Bosses (BOS)",
       "section": "",
       "starred": false,
@@ -7500,42 +7566,6 @@
   },
   "history": [
     {
-      "time": "2026-11-24T09:59:08",
-      "id": "AUD-10",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T09:59:13",
-      "id": "AUD-11",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:00:32",
-      "id": "ART-01",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:00:38",
-      "id": "ART-02",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:00:46",
-      "id": "ART-03",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:00:51",
-      "id": "ART-04",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
       "time": "2026-11-24T10:01:23",
       "id": "ART-07",
       "from": "awaiting",
@@ -10496,6 +10526,42 @@
     {
       "time": "2026-11-25T17:16:26",
       "id": "DRM-82",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T17:19:13",
+      "id": "BOS-21",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T17:19:17",
+      "id": "BOS-22",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T17:19:19",
+      "id": "BOS-20",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T17:19:48",
+      "id": "BOS-24",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T17:19:49",
+      "id": "BOS-25",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T17:19:51",
+      "id": "BOS-23",
       "from": "awaiting",
       "to": "approved"
     }
