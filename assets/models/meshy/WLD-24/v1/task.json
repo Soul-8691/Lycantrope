@@ -1,0 +1,45 @@
+{
+  "id": "01a21355-b037-75be-a365-3a74c011ce65",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 206977236,
+  "prompt": "young adult female farming villager, long-sleeved linen blouse, laced brown bodice, ankle-length wool skirt with an apron, simple leather shoes, hair tied back in a braid, friendly face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795620714470,
+  "progress": 100,
+  "started_at": 1795620714478,
+  "finished_at": 1795620763130,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21355-b037-75be-a365-3a74c011ce65/output/model.glb?Expires=4949164800&Signature=EN2bwrzXQrZDTD97boyJHFfNd-kleabAvmxoT9qKb1-2VmYHMaq5LkGrl6oEjaAOg8EjLPsW2R4vRnZu5by5VSWjyUNPJefNSn~LH5hkOFplM16LFAReEBF~qyQ~E5GqLBGT5E3ghjxeu4CGUtGq9Esq3ENc1vQ3zVa3s~~MylEZMYBeg69sB88pwlGVN9RRQrRRl9fT9m5zvgLoLKQP035BtB7gFMZaW59QKcp5NAeld-RySyVJCuCN~cOLW~y84RpRChxNe~qxNx1OWNRGLH5NLf3OsUe2AHoJiNHSaViNWKkkZYTcnGgyxy67cPjJH6okz6EGfaOxEG1iPXAH3Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21355-b037-75be-a365-3a74c011ce65/output/preview.png?Expires=4949164800&Signature=ZAyAU~HohYdrqQaxGyUKTBw9uEYDNGH5rzMiGh~JI3nd~~iYvjTq26M2AnDmyME5AKRdVjQILMYCZCI9D1jVe8Bmg4CAIgfBMRr8~rh3~gYVYRzV~PLqgWuXuZW9FSdWdBmcYOCwwsVqVgk3tRH0wY5Ntvx5ElaJ-sLysY50eAkNlC-xqtgMnJ-7GKoPlTJ8qnsRYQVagHGZkl5JPeVEyLW0UXB~OSuo8cvaCNkzKKcvBQFqeqkLB2uVOXE3PCZMhXWQZ7ri17zvHbazwruTtpbi22Nrrl3k7LKME5o4eKB1z8UdknkpO46dxm4TLipEGFv73wSOSOM2gVxwxEElRg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "young adult female farming villager, long-sleeved linen blouse, laced brown bodice, ankle-length wool skirt with an apron, simple leather shoes, hair tied back in a braid, friendly face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 206977236,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21355-b037-75be-a365-3a74c011ce65/output/model.glb?Expires=4949164800&Signature=EN2bwrzXQrZDTD97boyJHFfNd-kleabAvmxoT9qKb1-2VmYHMaq5LkGrl6oEjaAOg8EjLPsW2R4vRnZu5by5VSWjyUNPJefNSn~LH5hkOFplM16LFAReEBF~qyQ~E5GqLBGT5E3ghjxeu4CGUtGq9Esq3ENc1vQ3zVa3s~~MylEZMYBeg69sB88pwlGVN9RRQrRRl9fT9m5zvgLoLKQP035BtB7gFMZaW59QKcp5NAeld-RySyVJCuCN~cOLW~y84RpRChxNe~qxNx1OWNRGLH5NLf3OsUe2AHoJiNHSaViNWKkkZYTcnGgyxy67cPjJH6okz6EGfaOxEG1iPXAH3Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21355-b037-75be-a365-3a74c011ce65/output/preview.png?Expires=4949164800&Signature=ZAyAU~HohYdrqQaxGyUKTBw9uEYDNGH5rzMiGh~JI3nd~~iYvjTq26M2AnDmyME5AKRdVjQILMYCZCI9D1jVe8Bmg4CAIgfBMRr8~rh3~gYVYRzV~PLqgWuXuZW9FSdWdBmcYOCwwsVqVgk3tRH0wY5Ntvx5ElaJ-sLysY50eAkNlC-xqtgMnJ-7GKoPlTJ8qnsRYQVagHGZkl5JPeVEyLW0UXB~OSuo8cvaCNkzKKcvBQFqeqkLB2uVOXE3PCZMhXWQZ7ri17zvHbazwruTtpbi22Nrrl3k7LKME5o4eKB1z8UdknkpO46dxm4TLipEGFv73wSOSOM2gVxwxEElRg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

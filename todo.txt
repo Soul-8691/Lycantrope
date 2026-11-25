@@ -15,3 +15,4 @@ Caves
 NPCs
 Dialogue
 Choices
+Guards (later)

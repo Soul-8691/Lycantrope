@@ -359,6 +359,22 @@
       "prompt": "old farmer around sixty, broad and sturdy with a slight stoop, weathered kind face, bushy grey beard and balding grey hair, worn wide-brimmed straw hat, faded green wool tunic over a linen shirt, leather work apron, patched trousers, muddy leather boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795620490.593952,
       "credits": 20
+    },
+    "WLD-23/v1": {
+      "task_id": "01a21355-a1f7-743c-b650-c580ce1cba34",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "middle-aged male farming villager, plain linen shirt, brown wool waistcoat, rolled sleeves, sturdy work trousers, simple leather shoes, belt with a small pouch, short brown hair and a trimmed beard, kind weathered face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795620712.2469788,
+      "credits": 20
+    },
+    "WLD-24/v1": {
+      "task_id": "01a21355-b037-75be-a365-3a74c011ce65",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "young adult female farming villager, long-sleeved linen blouse, laced brown bodice, ankle-length wool skirt with an apron, simple leather shoes, hair tied back in a braid, friendly face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795620714.583384,
+      "credits": 20
     }
   },
   "replaced": [
@@ -477,6 +493,18 @@
       "status": "SUCCEEDED",
       "created": 1795620559.7143016,
       "credits": 10
+    },
+    "WLD-23/v1": {
+      "task_id": "01a21357-dc58-7479-a64b-41747e1381c4",
+      "status": "SUCCEEDED",
+      "created": 1795620855.0036166,
+      "credits": 10
+    },
+    "WLD-24/v1": {
+      "task_id": "01a21359-5c38-77be-8fe8-546fad5cc0b6",
+      "status": "SUCCEEDED",
+      "created": 1795620953.2955546,
+      "credits": 10
     }
   },
   "rigs": {
@@ -532,6 +560,18 @@
       "task_id": "01a21354-06a7-718a-9fa0-46d02acbca92",
       "status": "SUCCEEDED",
       "created": 1795620608.710475,
+      "credits": 5
+    },
+    "WLD-23/v1": {
+      "task_id": "01a21358-5ebe-77f5-8855-4161a17d6bce",
+      "status": "SUCCEEDED",
+      "created": 1795620911.84921,
+      "credits": 5
+    },
+    "WLD-24/v1": {
+      "task_id": "01a21359-de9d-71d8-bbaa-22a30ae81c6d",
+      "status": "SUCCEEDED",
+      "created": 1795620989.552068,
       "credits": 5
     }
   },

@@ -1,0 +1,45 @@
+{
+  "id": "01a21355-a1f7-743c-b650-c580ce1cba34",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 2252481311,
+  "prompt": "middle-aged male farming villager, plain linen shirt, brown wool waistcoat, rolled sleeves, sturdy work trousers, simple leather shoes, belt with a small pouch, short brown hair and a trimmed beard, kind weathered face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795620712115,
+  "progress": 100,
+  "started_at": 1795620712123,
+  "finished_at": 1795620765644,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21355-a1f7-743c-b650-c580ce1cba34/output/model.glb?Expires=4949164800&Signature=RQKxncYMgb-E98BgdHcBqrZjBtLMdHBVv4l8aNLHA6iiwxXgMrG5HhifxLo~tUpywPWydK~QLifGXFXzc1YBGmqlEhRUMYrLs-aH~y0SvHn76ofLal~WOoV-V7hfbJ9LuEsq74Al0xyOjLd5sMpGhVoCSbu1gtashTOopqR4RSDvejrGIhJtaNxI~964VkEvhA5Q~u8ZIlBXPvoY5bscuuYEz00JhwqkgVrBUMrmulDjZ~gIS-TzawJyZ5Q3eQhqYCppNt~HiDkWDmIvF7u5Cq-1-O60-muVOgVVlhBUbFohIcBpCFWcbx~T1~NO9l3rEtvpyOr1GlcZo6GQGlNaCw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21355-a1f7-743c-b650-c580ce1cba34/output/preview.png?Expires=4949164800&Signature=YrUisWlG5PQelK--64fD6og5m6W5E1kaZ2Crk3F0Ya963iMVwcdTGydyKritH7f6~hFxmTm8BOGKJnZR8hng-S9jzI9rCivRgdPHex2dDfp8r2PV4eMW7TYfzhiDvYrPkYAkV2Sm2X8YMLa0ACUiQnPo3PFWCvAMCusN4odAD59N9lT15iVKqj0h8CLd7L9NfNDuBFhMS9Vc8S~7YbQw1mPuC82Sedx5Hy0bmQjpvfW4IBSmVt128CDY-gM5L2ur4lwb-8Mkkube4xWAbzumPbRD55RDfBPI7sYIp6EUCnnikP2CgROdrzTllCgid65IjV3HFzQyhNokCgL04-ZfxA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "middle-aged male farming villager, plain linen shirt, brown wool waistcoat, rolled sleeves, sturdy work trousers, simple leather shoes, belt with a small pouch, short brown hair and a trimmed beard, kind weathered face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 2252481311,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21355-a1f7-743c-b650-c580ce1cba34/output/model.glb?Expires=4949164800&Signature=RQKxncYMgb-E98BgdHcBqrZjBtLMdHBVv4l8aNLHA6iiwxXgMrG5HhifxLo~tUpywPWydK~QLifGXFXzc1YBGmqlEhRUMYrLs-aH~y0SvHn76ofLal~WOoV-V7hfbJ9LuEsq74Al0xyOjLd5sMpGhVoCSbu1gtashTOopqR4RSDvejrGIhJtaNxI~964VkEvhA5Q~u8ZIlBXPvoY5bscuuYEz00JhwqkgVrBUMrmulDjZ~gIS-TzawJyZ5Q3eQhqYCppNt~HiDkWDmIvF7u5Cq-1-O60-muVOgVVlhBUbFohIcBpCFWcbx~T1~NO9l3rEtvpyOr1GlcZo6GQGlNaCw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21355-a1f7-743c-b650-c580ce1cba34/output/preview.png?Expires=4949164800&Signature=YrUisWlG5PQelK--64fD6og5m6W5E1kaZ2Crk3F0Ya963iMVwcdTGydyKritH7f6~hFxmTm8BOGKJnZR8hng-S9jzI9rCivRgdPHex2dDfp8r2PV4eMW7TYfzhiDvYrPkYAkV2Sm2X8YMLa0ACUiQnPo3PFWCvAMCusN4odAD59N9lT15iVKqj0h8CLd7L9NfNDuBFhMS9Vc8S~7YbQw1mPuC82Sedx5Hy0bmQjpvfW4IBSmVt128CDY-gM5L2ur4lwb-8Mkkube4xWAbzumPbRD55RDfBPI7sYIp6EUCnnikP2CgROdrzTllCgid65IjV3HFzQyhNokCgL04-ZfxA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}
