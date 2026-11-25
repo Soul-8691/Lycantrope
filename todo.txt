@@ -11,3 +11,4 @@ Magic stats
 Magic casting
 Finish texturing trees
 Collision
+Add more enemy clusters

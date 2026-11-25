@@ -93,8 +93,9 @@ class Grass:
         t.tex_water.use(4)
         t.tex_patch_a.use(5)
         t.tex_patch_b.use(6)
+        t.tex_bank.use(7)
         for name, unit in (("u_height", 0), ("u_splat_a", 1), ("u_splat_b", 2), ("u_road", 3), ("u_water_tex", 4),
-                           ("u_patch_a", 5), ("u_patch_b", 6)):
+                           ("u_patch_a", 5), ("u_patch_b", 6), ("u_bank", 7)):
             set_uniform(prog, name, unit)
         set_uniform(prog, "u_viewproj", viewproj)
         set_uniform(prog, "u_cam", eye)

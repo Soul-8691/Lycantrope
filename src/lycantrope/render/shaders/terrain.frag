@@ -17,12 +17,14 @@ uniform float u_mpp;
 uniform vec3 u_cam;
 uniform float u_water;
 uniform float u_snowline;
-uniform float u_tile[8];
+uniform float u_tile[9];
 uniform int u_splat_layer[8];        // splat channel -> material layer (-1 = unused)
 uniform int u_rock_layer;
 uniform int u_road_layer;
 uniform int u_snow_layer;
 uniform int u_mud_layer;
+uniform int u_bank_layer;
+uniform sampler2D u_bank;               // river banks (pebbles), computed at load
 uniform int u_debug_view;            // 0 normal, 1 normals, 2 rock/road/snow weights
 
 float H(vec2 uv) { return texture(u_height, uv).r; }
@@ -58,8 +60,8 @@ void main() {
     vec3 n = normalize(vec3(hl - hr, 2.0 * u_mpp, hd - hu));
 
     // material weights: biome splat, then snow, steep rock, road, underwater
-    float w[8];
-    for (int i = 0; i < 8; i++) w[i] = 0.0;
+    float w[9];                          // material layers (9); splat has 8 channels
+    for (int i = 0; i < 9; i++) w[i] = 0.0;
     vec4 sa = texture(u_splat_a, uv);
     vec4 sb = texture(u_splat_b, uv);
     float sp[8] = float[8](sa.r, sa.g, sa.b, sa.a, sb.r, sb.g, sb.b, sb.a);
@@ -73,24 +75,28 @@ void main() {
     float road = texture(u_road, uv).r * (1.0 - rock * 0.6);
     float wl = texture(u_water_tex, uv).r;
     float wet = smoothstep(wl + 0.6, wl - 0.4, v_world.y);
-    for (int i = 0; i < 8; i++) w[i] *= (1.0 - snow);
+    for (int i = 0; i < 9; i++) w[i] *= (1.0 - snow);
     w[u_snow_layer] += snow;
-    for (int i = 0; i < 8; i++) w[i] *= (1.0 - rock);
+    for (int i = 0; i < 9; i++) w[i] *= (1.0 - rock);
     w[u_rock_layer] += rock;
-    for (int i = 0; i < 8; i++) w[i] *= (1.0 - road);
+    for (int i = 0; i < 9; i++) w[i] *= (1.0 - road);
     w[u_road_layer] += road;
     // bare dirt patches on open ground (the mud layer, tinted per patch below)
     vec4 pa = texture(u_patch_a, uv), pb = texture(u_patch_b, uv);
     float bare = pa.a * (1.0 - rock) * (1.0 - snow) * (1.0 - road);
-    for (int i = 0; i < 8; i++) w[i] *= (1.0 - bare);
+    for (int i = 0; i < 9; i++) w[i] *= (1.0 - bare);
     w[u_mud_layer] += bare;
-    for (int i = 0; i < 8; i++) w[i] *= (1.0 - wet);
+    for (int i = 0; i < 9; i++) w[i] *= (1.0 - wet);
     w[u_mud_layer] += wet;
+    // river beds and banks: pebbles (over the mud and the grass)
+    float bank = texture(u_bank, uv).r * (1.0 - snow);
+    for (int i = 0; i < 9; i++) w[i] *= (1.0 - bank);
+    w[u_bank_layer] += bank;
 
     // height-based blending: the taller texture wins where materials meet
-    vec4 smp[8];
+    vec4 smp[9];
     float best = -1.0;
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 9; i++) {
         smp[i] = vec4(0.0);
         if (w[i] > 0.01) {
             smp[i] = (i == u_rock_layer) ? triplanar(i, v_world, n) : planar(i, v_world.xz);
@@ -99,7 +105,7 @@ void main() {
     }
     vec3 albedo = vec3(0.0);
     float total = 0.0;
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 9; i++) {
         if (w[i] > 0.01) {
             float k = max(w[i] + smp[i].a * 0.5 - best + 0.2, 0.0);
             albedo += smp[i].rgb * k;
@@ -109,9 +115,23 @@ void main() {
     albedo /= max(total, 1e-4);
     albedo *= 0.82 + 0.36 * macro;                       // break up tiling at a distance
     // meadow colour patches on grassy ground (not rock, road, snow or wet shore)
-    float grassy = (1.0 - rock) * (1.0 - road) * (1.0 - snow) * (1.0 - wet) * (1.0 - bare);
+    float grassy = (1.0 - rock) * (1.0 - road) * (1.0 - snow) * (1.0 - wet) * (1.0 - bare) * (1.0 - bank);
     albedo *= mix(vec3(1.0), pa.rgb * 2.0, grassy);
-    albedo *= mix(vec3(1.0), pb.rgb * 2.0, bare * (1.0 - wet));
+    albedo *= mix(vec3(1.0), pb.rgb * 2.0, bare * (1.0 - wet) * (1.0 - bank));
+    // raised pebbles on river banks: bend the lighting with the texture's height (A) so each
+    // stone has a lit top and shaded sides, and darken the gaps between them
+    if (bank > 0.01 && length(u_cam - v_world) < 120.0) {
+        float tile = u_tile[u_bank_layer];
+        vec2 q = v_world.xz / tile;
+        float e = 1.5 / 512.0;
+        float layer = float(u_bank_layer);
+        float h0 = texture(u_ground, vec3(q, layer)).a;
+        float hx = texture(u_ground, vec3(q + vec2(e, 0.0), layer)).a;
+        float hz = texture(u_ground, vec3(q + vec2(0.0, e), layer)).a;
+        float fade = bank * smoothstep(120.0, 40.0, length(u_cam - v_world));
+        n = normalize(n + vec3(h0 - hx, 0.0, h0 - hz) * 9.0 * fade);
+        albedo *= mix(1.0, 0.4 + 0.8 * h0, fade);
+    }
     albedo = pow(albedo, vec3(2.2));                     // sRGB -> linear
     albedo *= mix(1.0, 0.55, smoothstep(wl + 1.5, wl, v_world.y));             // damp shoreline
 

@@ -6,7 +6,8 @@
     "('gate_at' puts the gate prop at that fraction of the line). 'scatter' places props at random",
     "in a ring around the anchor, keeping off roads, steep ground and other props; 'scale' sizes each copy,",
     "'stretch' scales only its height (tall/slim vs squat variants of one model); 'groves': [n, radius]",
-    "clusters them around n random grove centers instead."
+    "clusters them around n random grove centers instead. 'shore' scatters props along rivers and lakes",
+    "(dry ground within reach_m of the water, plus the shallows) within 'radius' of the anchor."
   ],
   "groups": [
     {
@@ -83,6 +84,7 @@
         {"id": "PLT-01", "at": [26, -9], "facing": 45},
         {"id": "PLT-01", "at": [3, -28], "facing": 0},
 
+        {"shore": ["RCK-01", "RCK-02"], "count": 700, "radius": 950, "seed": 31, "scale": [0.8, 2.3], "stretch": [0.75, 1.25], "spacing": 2.5, "reach_m": 4},
         {"scatter": ["TRE-01", "TRE-01/v3", "TRE-02"], "count": 38, "ring": [30, 110], "seed": 15, "scale": [0.7, 1.1], "stretch": [0.85, 1.25], "spacing": 6},
         {"scatter": ["TRE-01", "TRE-01/v3"], "count": 130, "ring": [85, 450], "seed": 11, "scale": [0.8, 1.35], "stretch": [0.8, 1.3], "spacing": 9},
         {"scatter": ["TRE-01", "TRE-01/v3"], "count": 260, "ring": [110, 520], "seed": 13, "scale": [0.75, 1.35], "stretch": [0.8, 1.3], "spacing": 4, "groves": [22, 28]},

@@ -78,12 +78,17 @@ def ground_y(world: Heightfield, x: float, z: float, rot: float, half_x: float, 
     return min(hs)
 
 
+GRID_M = 16.0           # cell size for the "is this spot taken?" lookup
+
+
 class Placer:
     def __init__(self, world: Heightfield, catalog: dict[str, PropSpec]) -> None:
         self.world = world
         self.catalog = catalog
         self.out = Instances()
         self.taken: list[tuple[float, float, float]] = []      # (x, z, radius) of placed props
+        self._grid: dict[tuple[int, int], list[tuple[float, float, float]]] = {}   # the same, by 16 m cell
+        self._max_r = 0.0
         self.anchors = {p.name: p for p in world.landmarks + world.waystones}
         self.missing: set[str] = set()
 
@@ -94,7 +99,22 @@ class Placer:
         ex, _ey, ez = spec.extents
         y = ground_y(self.world, x, z, rot, ex * scale / 2, ez * scale / 2) - sink * scale
         self.out.add(key, x, y, z, rot, scale, shade, stretch)
-        self.taken.append((x, z, max(ex, ez) * scale / 2))
+        r = max(ex, ez) * scale / 2
+        self.taken.append((x, z, r))
+        self._grid.setdefault((int(x // GRID_M), int(z // GRID_M)), []).append((x, z, r))
+        self._max_r = max(self._max_r, r)
+
+    def blocked(self, x: float, z: float, rad: float, spacing: float) -> bool:
+        """Is there already a prop within rad + its radius + spacing/2 of (x, z)?"""
+        reach = rad + self._max_r + spacing * 0.5
+        n = int(reach // GRID_M) + 1
+        cx, cz = int(x // GRID_M), int(z // GRID_M)
+        for gx in range(cx - n, cx + n + 1):
+            for gz in range(cz - n, cz + n + 1):
+                for tx, tz, tr in self._grid.get((gx, gz), ()):
+                    if (x - tx) ** 2 + (z - tz) ** 2 < (rad + tr + spacing * 0.5) ** 2:
+                        return True
+        return False
 
     def line(self, key: str, a: tuple[float, float], b: tuple[float, float],
              gate: str | None = None, gate_at: float = 0.5) -> None:
@@ -164,10 +184,60 @@ class Placer:
             s = float(rng.uniform(*scale))
             key = keys[int(rng.integers(len(keys)))]
             rad = max(self.catalog[key].extents[0], self.catalog[key].extents[2]) * s / 2
-            if any((x - tx) ** 2 + (z - tz) ** 2 < (rad + tr + spacing * 0.5) ** 2 for tx, tz, tr in self.taken):
+            if self.blocked(x, z, rad, spacing):
                 continue
             self.place(key, x, z, float(rng.uniform(0, math.tau)), s, float(rng.uniform(0.85, 1.1)), sink=0.15,
                        stretch=float(rng.uniform(*stretch)))
+            placed += 1
+
+    def shore(self, key: str | list[str], cx: float, cz: float, radius: float, count: int, seed: int,
+              scale: tuple[float, float], spacing: float, stretch: tuple[float, float] = (1.0, 1.0),
+              reach_m: float = 4.0) -> None:
+        """Scatter props along rivers and lakes: dry ground within reach_m of the water, plus the
+        shallows (under 0.4 m deep). Sea shores are skipped."""
+        keys = [k for k in ([key] if isinstance(key, str) else key) if k in self.catalog]
+        w = self.world
+        if not keys or not hasattr(w, "water_surface"):
+            return
+        mpp, half = w.mpp, w.half
+        c0, c1 = (max(0, int((v + half) / mpp)) for v in (cx - radius, cx + radius))
+        r0, r1 = (max(0, int((v + half) / mpp)) for v in (cz - radius, cz + radius))
+        c1, r1 = min(c1, w.size), min(r1, w.size)
+        surf, ground = w.water_surface[r0:r1, c0:c1], w.heights[r0:r1, c0:c1]
+        depth = surf - ground
+        inland = surf > w.water_level + 0.3                  # rivers and lakes, not the sea
+        wet = (depth > 0.1) & inland
+        k = max(1, int(round(reach_m / mpp)))
+        near = wet.copy()                                     # grow the water outward by reach_m
+        for d in range(1, k + 1):
+            near[d:] |= wet[:-d]
+            near[:-d] |= wet[d:]
+        grown = near.copy()
+        for d in range(1, k + 1):
+            near[:, d:] |= grown[:, :-d]
+            near[:, :-d] |= grown[:, d:]
+        cand = near & ((depth < 0.4) | ~wet)
+        rows, cols = np.nonzero(cand)
+        if len(rows) == 0:
+            return
+        xs = (cols + c0 + 0.5) * mpp - half
+        zs = (rows + r0 + 0.5) * mpp - half
+        inside = np.hypot(xs - cx, zs - cz) <= radius
+        xs, zs = xs[inside], zs[inside]
+        rng = np.random.default_rng(seed)
+        order = rng.permutation(len(xs))
+        placed = 0
+        for i in order:
+            if placed >= count:
+                break
+            x, z = float(xs[i] + rng.uniform(-0.5, 0.5) * mpp), float(zs[i] + rng.uniform(-0.5, 0.5) * mpp)
+            s = float(rng.uniform(*scale))
+            kk = keys[int(rng.integers(len(keys)))]
+            rad = max(self.catalog[kk].extents[0], self.catalog[kk].extents[2]) * s / 2
+            if self.blocked(x, z, rad, spacing):
+                continue
+            self.place(kk, x, z, float(rng.uniform(0, math.tau)), s, float(rng.uniform(0.85, 1.1)),
+                       sink=0.2, stretch=float(rng.uniform(*stretch)))
             placed += 1
 
     # ------------------------------------------------------------------ #
@@ -184,7 +254,7 @@ class Placer:
 
             items = group["items"]
             # fixed items and lines first, so scatter keeps clear of them
-            for it in sorted(items, key=lambda i: "scatter" in i):
+            for it in sorted(items, key=lambda i: "scatter" in i or "shore" in i):
                 ref = it.get("id") or it.get("line")
                 if ref is not None and ref not in self.catalog:
                     self.missing.add(ref)               # not generated/built yet: skip quietly
@@ -192,6 +262,11 @@ class Placer:
                 if "gate" in it and it["gate"] not in self.catalog:
                     self.missing.add(it["gate"])
                     it = {k: v for k, v in it.items() if k != "gate"}
+                if "shore" in it:
+                    self.shore(it["shore"], ax, az, float(it["radius"]), int(it["count"]), int(it.get("seed", 0)),
+                               tuple(it.get("scale", (1.0, 1.0))), float(it.get("spacing", 2.0)),
+                               tuple(it.get("stretch", (1.0, 1.0))), float(it.get("reach_m", 4.0)))
+                    continue
                 if "scatter" in it:
                     wanted = [it["scatter"]] if isinstance(it["scatter"], str) else it["scatter"]
                     self.missing.update(k for k in wanted if k not in self.catalog)

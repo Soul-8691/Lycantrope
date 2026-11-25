@@ -163,7 +163,28 @@ def dirt():
     return rgb, np.clip(0.3 + 0.55 * peb + 0.15 * fine, 0, 1)
 
 
-MATERIALS = {f.__name__: f for f in (grass, forest, mud, snow, ash, darkstone, rock, dirt)}
+def pebbles():
+    """Riverbank stones: rounded pebbles of mixed colour in damp silt, with smaller gravel between."""
+    silt = lerp(c(0.30, 0.27, 0.22), c(0.40, 0.36, 0.29), n01(F(6, 3, 91)))
+    f1, f2, cid = worley(U, V, 22, 92)                                            # large stones
+    edge = f2 - f1                                                                # 0 on the gaps
+    stone = ss(0.06, 0.2, edge) * ss(0.62, 0.38, f1)
+    dome = np.sqrt(np.clip(1.0 - (f1 / 0.62) ** 2, 0, 1)) * stone                 # rounded tops
+    palette = [c(0.46, 0.45, 0.43), c(0.50, 0.48, 0.43), c(0.41, 0.42, 0.43),
+               c(0.54, 0.53, 0.50), c(0.44, 0.40, 0.35)]
+    k = np.clip((cid * len(palette)).astype(int), 0, len(palette) - 1)
+    stone_col = np.stack([palette[i] for i in range(len(palette))])[k]
+    g1, g2, gid = worley(U, V, 64, 93)                                             # gravel
+    gravel = ss(0.03, 0.12, g2 - g1) * ss(0.7, 0.4, g1) * (1 - stone)
+    gravel_col = lerp(c(0.40, 0.38, 0.35), c(0.58, 0.55, 0.50), gid)
+    rgb = lerp(silt, gravel_col, gravel * 0.85)
+    shade = (0.78 + 0.32 * dome)[..., None]                                       # lit tops, darker rims
+    rgb = lerp(rgb, stone_col * shade, stone)
+    rgb *= (0.92 + 0.16 * n01(F(48, 2, 94)))[..., None]
+    return rgb, np.clip(0.15 + 0.75 * dome + 0.25 * gravel, 0, 1)
+
+
+MATERIALS = {f.__name__: f for f in (grass, forest, mud, snow, ash, darkstone, rock, dirt, pebbles)}
 
 
 def build(name: str, out: Path = OUT) -> Path:
