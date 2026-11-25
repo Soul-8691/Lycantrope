@@ -459,10 +459,14 @@ class CharacterSystem:
             an = anchors[g["anchor"]]
             cx, cz = an.x + g["at"][0], an.z - g["at"][1]
             t = self.types[g["kind"]]
+            route = [(an.x + e, an.z - n) for e, n in g.get("route", [])]
             for i in range(g["count"]):
                 ang, rad = rng.uniform(0, math.tau), g.get("radius", 0) * math.sqrt(rng.random())
                 x, z = cx + rad * math.cos(ang), cz + rad * math.sin(ang)
-                if t.ai is not None and t.ai.on_paths:          # path walkers start on a path
+                start = rng.randrange(len(route)) if route else 0
+                if route:                                    # travellers start somewhere along their road
+                    x, z = route[start]
+                elif t.ai is not None and t.ai.on_paths:     # path walkers start on a path
                     x, z = self.nearest_path(x, z)
                 a = self._actor(g["kind"], x, z, rng.uniform(0, math.tau))
                 brain = Enemy(a, (x, z), t.ai or AiParams(), seed=gi * 100 + i)
@@ -477,7 +481,9 @@ class CharacterSystem:
                     plo, phi = vary.get("pace", (1.0, 1.0))
                     pace = rng.uniform(plo, phi)
                     a.speeds = {s: v * pace for s, v in a.speeds.items()}
-                if brain.ai.on_paths:
+                if route:
+                    brain.set_route(route, start, rng.choice((-1, 1)))
+                elif brain.ai.on_paths:
                     brain.goal_ok = self.path_walk_ok
                 self.chars.append(ch)
 

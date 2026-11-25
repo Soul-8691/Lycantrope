@@ -256,6 +256,10 @@ class Enemy:
         self.cooldown = self.rng.uniform(*ai.attack_every_s)
         self.cast_cooldown = self.rng.uniform(0.5, 1.5)
         self.goal_ok = None          # optional check for wander goals: (x0, z0, x1, z1) -> bool
+        self.route: list[tuple[float, float]] | None = None   # travellers: walk these points in turn
+        self.route_i = 0
+        self.route_dir = 1
+        self.route_loop = False      # True: the route is a circuit; False: walk it back and forth
         self.fired = True
         self.circle = self.rng.choice((-1.0, 1.0))
         self.a.state = "wander"
@@ -281,6 +285,36 @@ class Enemy:
         a.z += math.cos(a.heading) * a.speed * dt
         return d
 
+    def set_route(self, points: list[tuple[float, float]], start: int, direction: int) -> None:
+        """Travellers: walk the route's points in order; a circuit loops, a road is walked there and
+        back with a pause at each end."""
+        self.route = list(points)
+        self.route_loop = len(points) > 2 and math.dist(points[0], points[-1]) < 3.0
+        self.route_i = max(0, min(start, len(points) - 1))
+        self.route_dir = 1 if direction >= 0 else -1
+        self.goal = self.route[self.route_i]
+
+    def _travel(self, dt: float, turn: float) -> None:
+        a, ai, r = self.a, self.ai, self.route
+        if self.goal is None:                               # resting at the end of the road
+            a.timer -= dt
+            a.speed = max(0.0, a.speed - 6 * dt)
+            if a.timer <= 0:
+                self.goal = r[self.route_i]
+        elif self._move_to(*self.goal, a.speeds["walk"], dt, turn) < 1.2:
+            i = self.route_i + self.route_dir
+            if self.route_loop:
+                i %= len(r)
+            elif not 0 <= i < len(r):                       # the end: rest, then head back
+                self.route_dir = -self.route_dir
+                i = self.route_i + self.route_dir
+                self.goal = None
+                a.timer = self.rng.uniform(*ai.pause_s)
+            self.route_i = i
+            if self.goal is not None:
+                self.goal = r[i]
+        a.locomotion()
+
     def update(self, rowan: Actor, rowan_alive: bool, dt: float) -> None:
         a, ai = self.a, self.ai
         turn = {"bear": 3.5, "wolf": 7.0}.get(a.kind, 8.0)
@@ -296,7 +330,9 @@ class Enemy:
                                                           or to_r > ai.aggro_m * 2.0):
             a.state, self.goal = "return", None
 
-        if a.state == "wander":
+        if a.state == "wander" and self.route:
+            self._travel(dt, turn)
+        elif a.state == "wander":
             if self.goal is None:
                 a.timer -= dt
                 a.speed = max(0.0, a.speed - 6 * dt)
