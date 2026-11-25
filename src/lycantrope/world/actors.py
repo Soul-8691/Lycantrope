@@ -310,20 +310,26 @@ class Enemy:
 
 
 def separate(actors: list[Actor]) -> None:
-    """Push overlapping characters apart (no physics yet). O(n^2) is fine for a few dozen."""
-    for i in range(len(actors)):
-        a = actors[i]
-        for j in range(i + 1, len(actors)):
-            b = actors[j]
-            dx, dz = b.x - a.x, b.z - a.z
-            d = math.hypot(dx, dz)
-            r = a.radius + b.radius
-            if 1e-6 < d < r:
-                push = (r - d) / 2 / d
-                a.x -= dx * push
-                a.z -= dz * push
-                b.x += dx * push
-                b.z += dz * push
+    """Push overlapping characters apart (no physics yet). All pairs at once with numpy."""
+    n = len(actors)
+    if n < 2:
+        return
+    import numpy as np
+    pos = np.array([(a.x, a.z) for a in actors])
+    rad = np.array([a.radius for a in actors])
+    d = pos[None, :, :] - pos[:, None, :]                       # [i, j] = j - i
+    dist = np.hypot(d[..., 0], d[..., 1])
+    overlap = (rad[:, None] + rad[None, :]) - dist
+    np.fill_diagonal(overlap, 0.0)
+    hit = (overlap > 0) & (dist > 1e-6)
+    if not hit.any():
+        return
+    push = np.where(hit, overlap / 2 / np.maximum(dist, 1e-6), 0.0)
+    move = -(d * push[..., None]).sum(axis=1)                    # away from every overlapping neighbour
+    for a, (mx, mz) in zip(actors, move):
+        if mx or mz:
+            a.x += float(mx)
+            a.z += float(mz)
 
 
 def load_character_data(path: Path = DATA / "characters.json") -> dict:

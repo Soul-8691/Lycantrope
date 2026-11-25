@@ -9,6 +9,7 @@ Weapon stats
 Armor stats
 Magic stats
 Magic casting
-Finish texturing trees
 Collision
 Add more enemy clusters
+Longer til idle
+Remove debug hotkey

@@ -20,6 +20,25 @@
     {"name": "bear, north-west", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [-470, 240], "radius": 0},
     {"name": "bear, south", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [60, -170], "radius": 0},
     {"name": "bear, north", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [160, 470], "radius": 0},
-    {"name": "bear, far east", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [520, -90], "radius": 0}
+    {"name": "bear, far east", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [520, -90], "radius": 0},
+    {"name": "goblin camp, north-west (Brackenvale)", "kind": "goblin", "count": 4, "anchor": "Brackenvale Village", "at": [-240, 342], "radius": 9},
+    {"name": "goblin camp, north-east (The Blackmire)", "kind": "goblin", "count": 6, "anchor": "Brackenvale Village", "at": [602, 209], "radius": 9},
+    {"name": "goblin camp, north-west (Brackenvale)", "kind": "goblin", "count": 5, "anchor": "Brackenvale Village", "at": [-109, 342], "radius": 9},
+    {"name": "goblin camp, north-west (Brackenvale)", "kind": "goblin", "count": 5, "anchor": "Brackenvale Village", "at": [-74, 621], "radius": 9},
+    {"name": "goblin camp, north-east (Brackenvale)", "kind": "goblin", "count": 6, "anchor": "Brackenvale Village", "at": [146, 954], "radius": 9},
+    {"name": "goblin camp, north-east (Brackenvale)", "kind": "goblin", "count": 6, "anchor": "Brackenvale Village", "at": [268, 223], "radius": 9},
+    {"name": "wolf pack, north-west (Brackenvale)", "kind": "wolf", "count": 6, "anchor": "Brackenvale Village", "at": [-449, 620], "radius": 10},
+    {"name": "wolf pack, north-east (Brackenvale)", "kind": "wolf", "count": 6, "anchor": "Brackenvale Village", "at": [341, 80], "radius": 10},
+    {"name": "wolf pack, south-east (Brackenvale)", "kind": "wolf", "count": 4, "anchor": "Brackenvale Village", "at": [316, -232], "radius": 10},
+    {"name": "wolf pack, south-west (Brackenvale)", "kind": "wolf", "count": 6, "anchor": "Brackenvale Village", "at": [-285, -150], "radius": 10},
+    {"name": "wolf pack, south-east (Brackenvale)", "kind": "wolf", "count": 6, "anchor": "Brackenvale Village", "at": [265, -51], "radius": 10},
+    {"name": "wolf pack, north-west (Brackenvale)", "kind": "wolf", "count": 5, "anchor": "Brackenvale Village", "at": [-879, 397], "radius": 10},
+    {"name": "wolf pack, north-west (Brackenvale)", "kind": "wolf", "count": 4, "anchor": "Brackenvale Village", "at": [-154, 751], "radius": 10},
+    {"name": "bear, north-west (Brackenvale)", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [-622, 327], "radius": 0},
+    {"name": "bear, south-west (Brackenvale)", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [-921, -8], "radius": 0},
+    {"name": "bear, south-west (Brackenvale)", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [-698, -31], "radius": 0},
+    {"name": "bear, north-east (The Blackmire)", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [622, 95], "radius": 0},
+    {"name": "bear, north-east (The Blackmire)", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [938, 330], "radius": 0},
+    {"name": "bear, north-west (Brackenvale)", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [-29, 463], "radius": 0}
   ]
 }

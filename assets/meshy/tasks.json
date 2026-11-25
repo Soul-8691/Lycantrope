@@ -336,6 +336,13 @@
       "status": "SUCCEEDED",
       "created": 1795560719.8158474,
       "credits": 5
+    },
+    {
+      "key": "TRE-02/v1 (texture)",
+      "task_id": "01a210fb-d450-7755-9eb5-a14c3cd00eb7",
+      "status": "SUCCEEDED",
+      "created": 1795581269.214153,
+      "credits": 10
     }
   ],
   "refines": {
@@ -379,6 +386,24 @@
       "task_id": "01a20fcc-d2f1-73e0-9267-a7d173418369",
       "status": "SUCCEEDED",
       "created": 1795561411.425411,
+      "credits": 10
+    },
+    "TRE-01/v2": {
+      "task_id": "01a210fa-33b4-777a-bc76-ed7fe834c895",
+      "status": "SUCCEEDED",
+      "created": 1795581162.566422,
+      "credits": 10
+    },
+    "TRE-01/v3": {
+      "task_id": "01a210fb-148d-74b1-b1d7-375867253715",
+      "status": "SUCCEEDED",
+      "created": 1795581220.114631,
+      "credits": 10
+    },
+    "TRE-02/v1": {
+      "task_id": "01a21103-01fa-74a5-9db9-8f8cc2b789a4",
+      "status": "SUCCEEDED",
+      "created": 1795581741.3286352,
       "credits": 10
     }
   },

@@ -358,8 +358,8 @@ class CharacterSystem:
             c.actor.save_prev()
         self.rowan.update(inp, cam_yaw, dt)
         alive = ra.state != "dead"
-        near = [c.actor for c in self.chars
-                if abs(c.actor.x - ra.x) < 400 and abs(c.actor.z - ra.z) < 400]
+        near = [c.actor for c in self.chars                    # only these can bump into each other
+                if abs(c.actor.x - ra.x) < 150 and abs(c.actor.z - ra.z) < 150]
         for c in self.chars:
             if c.brain is not None:
                 far = math.hypot(c.actor.x - ra.x, c.actor.z - ra.z) > 300
@@ -371,6 +371,9 @@ class CharacterSystem:
         lim = self.world.half - 5
         for c in self.chars:
             a = c.actor
+            if a.x == a.px and a.z == a.pz:                   # didn't move: ground is the same
+                a.anim.update(dt)
+                continue
             a.x = min(max(a.x, -lim), lim)
             a.z = min(max(a.z, -lim), lim)
             # no swimming yet: wading is fine, deeper water stops you at the edge
@@ -430,20 +433,20 @@ class CharacterSystem:
             set_uniform(prog, k, v)
         planes = frustum_planes(viewproj)
         e = np.array([eye.x, eye.y, eye.z])
+        # cull everyone at once (one numpy pass), then only loop over who's on screen
+        pos = np.array([(c.actor.x, c.actor.y + c.t.height * 0.5, c.actor.z) for c in self.chars])
+        rad = np.array([max(c.t.height, 1.0) * 1.2 for c in self.chars])
+        vis = np.linalg.norm(pos - e, axis=1) <= DRAW_DISTANCE
+        vis &= ((pos @ planes[:, :3].T + planes[:, 3]) >= -rad[:, None] - 1.0).all(axis=1)
         drawn = 0
-        for c in self.chars:
+        for idx in np.nonzero(vis)[0]:
+            c = self.chars[idx]
             a, t = c.actor, c.t
             x = a.px + (a.x - a.px) * alpha
             y = a.py + (a.y - a.py) * alpha
             z = a.pz + (a.z - a.pz) * alpha
             dh = (a.heading - a.ph + math.pi) % math.tau - math.pi
             h = a.ph + dh * alpha
-            center = np.array([x, y + t.height * 0.5, z])
-            if np.linalg.norm(center - e) > DRAW_DISTANCE:
-                continue
-            rad = max(t.height, 1.0) * 1.2
-            if any(center @ p[:3] + p[3] < -rad for p in planes):
-                continue
             model = np.eye(4)
             model[:3, 3] = (x, y, z)
             model = model @ rot_y(h)

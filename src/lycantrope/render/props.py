@@ -77,6 +77,14 @@ class PropModel:
     lod_inst: moderngl.Buffer | None = None
     lod_tris: int = 0
     lod_vao: moderngl.VertexArray | None = None
+    centers: np.ndarray | None = None           # per instance: middle of the prop (world)
+    rad: np.ndarray | None = None               # per instance: bounding sphere radius
+    box_lo: np.ndarray | None = None            # all instances: bounds, to skip far-off groups fast
+    box_hi: np.ndarray | None = None
+
+    def all_far(self, eye: np.ndarray) -> bool:
+        nearest = np.clip(eye, self.box_lo, self.box_hi)
+        return float(np.linalg.norm(nearest - eye)) > self.draw_m
 
 
 class PropRenderer:
@@ -111,6 +119,10 @@ class PropRenderer:
                 pm.lod_vbo = ctx.buffer(flat_mesh(lv, lf).tobytes())
                 pm.lod_inst = ctx.buffer(rows.tobytes(), dynamic=True)
                 pm.lod_tris = len(lf)
+            pm.centers = rows[:, :3] + np.outer(rows[:, 4] * rows[:, 6], [0.0, spec.height * 0.5, 0.0])
+            pm.rad = radius * rows[:, 4] * np.maximum(rows[:, 6], 1.0)
+            pm.box_lo = (pm.centers - pm.rad[:, None]).min(axis=0)
+            pm.box_hi = (pm.centers + pm.rad[:, None]).max(axis=0)
             self.models.append(pm)
         self.count = sum(len(m.rows) for m in self.models)
         self.drawn = 0
@@ -145,12 +157,12 @@ class PropRenderer:
         for m in self.models:
             s = m.spec
             r = m.rows
-            centers = r[:, :3] + np.outer(r[:, 4] * r[:, 6], [0.0, s.height * 0.5, 0.0])
-            rad = m.radius * r[:, 4] * np.maximum(r[:, 6], 1.0)
+            centers, rad = m.centers, m.rad                    # props don't move: computed once
+            if m.all_far(e):
+                continue
             dist = np.linalg.norm(centers - e, axis=1)
             vis = dist < m.draw_m + rad
-            for a, b, c, d in planes:
-                vis &= centers @ np.array([a, b, c]) + d >= -rad
+            vis &= ((centers @ planes[:, :3].T + planes[:, 3]) >= -rad[:, None]).all(axis=1)
             if not vis.any():
                 continue
             set_uniform(prog, "u_height", s.height)
