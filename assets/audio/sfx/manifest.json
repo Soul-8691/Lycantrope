@@ -827,6 +827,84 @@
     "prompt": "A middle-aged farming man. frightened gasp, no words. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
     "seconds": 0.7
   },
+  "water/splash_in_1.mp3": {
+    "hash": "18d7ed7c08ab",
+    "made": "2026-11-25T18:37:00",
+    "prompt": "a person wading into deep lake water and starting to swim, a heavy splash. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.5
+  },
+  "water/splash_in_2.mp3": {
+    "hash": "18d7ed7c08ab",
+    "made": "2026-11-25T18:37:00",
+    "prompt": "a person wading into deep lake water and starting to swim, a heavy splash. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.5
+  },
+  "water/splash_out_1.mp3": {
+    "hash": "709457142e8a",
+    "made": "2026-11-25T18:37:02",
+    "prompt": "a person climbing out of a lake into the shallows, water pouring off clothes and dripping. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.5
+  },
+  "water/splash_out_2.mp3": {
+    "hash": "709457142e8a",
+    "made": "2026-11-25T18:37:02",
+    "prompt": "a person climbing out of a lake into the shallows, water pouring off clothes and dripping. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.5
+  },
+  "water/stroke_1.mp3": {
+    "hash": "897ada645a39",
+    "made": "2026-11-25T18:36:53",
+    "prompt": "one breaststroke swimming stroke in a calm lake: arms sweeping through the water with a soft splash and a gurgle. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "water/stroke_2.mp3": {
+    "hash": "897ada645a39",
+    "made": "2026-11-25T18:36:54",
+    "prompt": "one breaststroke swimming stroke in a calm lake: arms sweeping through the water with a soft splash and a gurgle. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "water/stroke_3.mp3": {
+    "hash": "897ada645a39",
+    "made": "2026-11-25T18:36:55",
+    "prompt": "one breaststroke swimming stroke in a calm lake: arms sweeping through the water with a soft splash and a gurgle. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "water/stroke_4.mp3": {
+    "hash": "897ada645a39",
+    "made": "2026-11-25T18:36:56",
+    "prompt": "one breaststroke swimming stroke in a calm lake: arms sweeping through the water with a soft splash and a gurgle. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 1.2
+  },
+  "water/tread_loop_1.mp3": {
+    "hash": "a18a3cfd20aa",
+    "made": "2026-11-25T18:36:58",
+    "prompt": "gentle lapping and swirling water around a person treading water in a calm lake. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 4.0
+  },
+  "water/wade_step_1.mp3": {
+    "hash": "f1e9812d2a0b",
+    "made": "2026-11-25T18:37:04",
+    "prompt": "one footstep wading through knee-deep water, a sloshing splash. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.6
+  },
+  "water/wade_step_2.mp3": {
+    "hash": "f1e9812d2a0b",
+    "made": "2026-11-25T18:37:04",
+    "prompt": "one footstep wading through knee-deep water, a sloshing splash. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.6
+  },
+  "water/wade_step_3.mp3": {
+    "hash": "f1e9812d2a0b",
+    "made": "2026-11-25T18:37:05",
+    "prompt": "one footstep wading through knee-deep water, a sloshing splash. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.6
+  },
+  "water/wade_step_4.mp3": {
+    "hash": "f1e9812d2a0b",
+    "made": "2026-11-25T18:37:06",
+    "prompt": "one footstep wading through knee-deep water, a sloshing splash. Single isolated sound effect, close-mic, dry, no music, no background noise, no reverb tail.",
+    "seconds": 0.6
+  },
   "wolf/alert_1.mp3": {
     "hash": "3245f5d58ed7",
     "made": "2026-11-25T18:00:05",

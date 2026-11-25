@@ -307,8 +307,10 @@ class App:
         self.time_s += dt
 
     def ground_sound(self, x: float, z: float) -> str:
-        """Footstep surface: 'dirt' on paths and lanes, 'grass' elsewhere."""
+        """Footstep surface: 'water' in the shallows, 'dirt' on paths and lanes, 'grass' elsewhere."""
         w = self.world
+        if w.water_depth(x, z) > 0.15:
+            return "water"
         c, r = w._px(x, z)
         ci, ri = int(round(c)), int(round(r))
         on_path = 0 <= ci < w.size and 0 <= ri < w.size and w.road[ri, ci] >= 120

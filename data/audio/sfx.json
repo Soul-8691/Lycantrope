@@ -9,7 +9,10 @@
     "Events: step (footfalls, steps_per_cycle per walk/run loop), alert (spots Rowan), attack (enemy",
     "melee), light / heavy / cast (Rowan), release (a caster's spell leaves the hand), hit, death,",
     "idle (now and then while wandering, every idle_every_s), startled (Rowan swings nearby).",
-    "Sounds fade with distance (full within ref_m, silent past max_m) and pan with the camera."
+    "Sounds fade with distance (full within ref_m, silent past max_m) and pan with the camera.",
+    "Per kind, also: cycle_events {clip: [[phase 0..1, event]]} fires once per loop of that clip;",
+    "state_events {state: {enter, leave}} fires on entering/leaving a state; clip_loops {clip: sound}",
+    "keeps a looping sound going while that clip plays. wade_step replaces any footstep in water."
   ],
   "volume": 1.0,
   "ref_m": 4.0,
@@ -17,11 +20,18 @@
   "steps_within_m": 22.0,
   "min_gap_s": 0.3,
   "spell": {"loop": "combat/fireball_loop", "loop_volume": 0.55, "hit": "combat/fireball_hit"},
+  "wade_step": {"s": "water/wade_step", "volume": 0.5},
   "kinds": {
     "rowan": {
       "positional": false,
       "steps_per_cycle": 2,
+      "cycle_events": {"swim": [[0.33, "stroke"]]},
+      "state_events": {"swim": {"enter": "splash_in", "leave": "splash_out"}},
+      "clip_loops": {"tread": {"s": "water/tread_loop", "volume": 0.45}, "swim": {"s": "water/tread_loop", "volume": 0.2}},
       "events": {
+        "stroke": {"s": "water/stroke", "volume": 0.75},
+        "splash_in": {"s": "water/splash_in", "volume": 0.9},
+        "splash_out": {"s": "water/splash_out", "volume": 0.8},
         "step": {"s": "footsteps/boot_{ground}", "volume": 0.32},
         "light": ["combat/swing_light", {"s": "rowan/attack_light", "chance": 0.45, "volume": 0.8}],
         "heavy": ["combat/swing_heavy", {"s": "rowan/attack_heavy", "volume": 0.85}],

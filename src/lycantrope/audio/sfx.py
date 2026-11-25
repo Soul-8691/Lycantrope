@@ -3,7 +3,8 @@
 SfxDirector watches the characters each tick and turns what they do into cues: a new attack, cast,
 hit or death clip; spotting Rowan; footfalls timed to the walk/run cycle; an occasional idle noise;
 villagers and cows startled by a swing nearby; a caster's spell leaving the hand; spells in flight
-(a loop) and where they land. data/audio/sfx.json maps each character kind's events to sounds.
+(a loop) and where they land; swim strokes, splashing in and out of deep water, lapping water while
+treading, and wading steps in the shallows. data/audio/sfx.json maps each character kind's events to sounds.
 
 The director is plain Python (tested without a sound device). MixerSfx plays the cues through
 pygame.mixer: a random take per sound (never the same twice running), quieter with distance and
@@ -78,6 +79,7 @@ class SfxDirector:
     last: dict[tuple[str, str], float] = field(default_factory=dict)
     pending: list[Cue] = field(default_factory=list)
     spells: dict[int, object] = field(default_factory=dict)      # in flight: id -> spell
+    loops: dict = field(default_factory=dict)                     # this tick's clip loops
 
     def kind(self, k: str) -> dict:
         return self.cfg.get("kinds", {}).get(k, {})
@@ -85,6 +87,8 @@ class SfxDirector:
     # ------------------------------------------------------------------ cues
     def emit(self, kind: str, event: str, pos, out: list[Cue], ground=None, positional=True) -> None:
         spec = self.kind(kind).get("events", {}).get(event)
+        if event == "step" and ground and pos and "wade_step" in self.cfg and ground(pos[0], pos[2]) == "water":
+            spec = self.cfg["wade_step"]                # splashing through the shallows
         if spec is None:
             return
         if event != "step":
@@ -116,6 +120,7 @@ class SfxDirector:
         with .pos and .burst. Returns (cues to play now, spell loops {id: (sound, pos, volume)})."""
         self.now += dt
         out: list[Cue] = []
+        self.loops = {}
         lx, lz = listener[0], listener[2]
         max_m = float(self.cfg.get("max_m", 45.0))
         steps_m = float(self.cfg.get("steps_within_m", 22.0))
@@ -146,6 +151,23 @@ class SfxDirector:
                 n = int(spec.get("steps_per_cycle", 2))
                 if math.floor(time / dur * n) != math.floor(t.time / dur * n):
                     self.emit(a.kind, "step", (a.x, a.y, a.z), out, ground, positional)
+            # once per loop of a clip, at a set point (a swim stroke's splash)
+            for ph, ev in spec.get("cycle_events", {}).get(clip, ()):
+                info = a.clips.get(clip)
+                dur = info.duration if info and info.duration > 0 else 1.0
+                if clip == t.clip and audible and math.floor(time / dur - ph) != math.floor(t.time / dur - ph):
+                    self.emit(a.kind, ev, pos, out, ground, positional)
+            # entering or leaving a state (into the water, out of it)
+            if a.state != t.state and t.state:
+                se = spec.get("state_events", {})
+                if a.state in se and "enter" in se[a.state] and audible:
+                    self.emit(a.kind, se[a.state]["enter"], pos, out, ground, positional)
+                if t.state in se and "leave" in se[t.state] and audible:
+                    self.emit(a.kind, se[t.state]["leave"], pos, out, ground, positional)
+            # a sound that keeps going while a clip plays (lapping water while treading)
+            cl = spec.get("clip_loops", {}).get(clip)
+            if cl and audible:
+                self.loops[("clip", id(a))] = (cl["s"], pos if positional else None, float(cl.get("volume", 1.0)))
             # spotting Rowan
             if a.state == "chase" and t.state in ALERT_FROM and self.now >= t.alert_ok_at:
                 t.alert_ok_at = self.now + ALERT_COOLDOWN_S
@@ -179,7 +201,9 @@ class SfxDirector:
         if due:
             self.pending = [q for q in self.pending if q.at > self.now]
             out += due
-        return out, self._spells(spells or [], out)
+        loops = self._spells(spells or [], out)
+        loops.update(self.loops)
+        return out, loops
 
     def _idle_wait(self, spec: dict) -> float:
         lo, hi = spec.get("idle_every_s", (10, 30))
@@ -213,7 +237,8 @@ class MixerSfx:
         self.enabled = True
         self.sounds: dict[str, list] = {}
         self.last_take: dict[str, int] = {}
-        self.loop_channels: dict[int, object] = {}
+        self.loop_channels: dict = {}
+        self.loop_names: dict = {}
         if pygame.mixer.get_num_channels() < 32:
             pygame.mixer.set_num_channels(32)
         threading.Thread(target=self._load, args=(root,), daemon=True).start()
@@ -262,8 +287,9 @@ class MixerSfx:
             if ch is not None:
                 ch.play(snd)
                 ch.set_volume(l, r)
-        for k in [k for k in self.loop_channels if k not in loops]:
+        for k in [k for k in self.loop_channels if k not in loops or loops[k][0] != self.loop_names.get(k)]:
             self.loop_channels.pop(k).stop()
+            self.loop_names.pop(k, None)
         for k, (name, pos, vol) in loops.items():
             ch = self.loop_channels.get(k)
             if ch is None:
@@ -273,6 +299,7 @@ class MixerSfx:
                     continue
                 ch.play(snd, loops=-1)
                 self.loop_channels[k] = ch
+                self.loop_names[k] = name
             ch.set_volume(*self._levels(pos, vol, listener, right))
 
 

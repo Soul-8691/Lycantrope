@@ -133,7 +133,38 @@ def test_every_sound_in_the_data_file_exists():
         for spec in k["events"].values():
             for i in spec if isinstance(spec, list) else [spec]:
                 names.add(i if isinstance(i, str) else i["s"])
-    names |= {cfg["spell"]["loop"], cfg["spell"]["hit"]}
+    names |= {cfg["spell"]["loop"], cfg["spell"]["hit"], cfg["wade_step"]["s"]}
+    names |= {l["s"] for k in cfg["kinds"].values() for l in k.get("clip_loops", {}).values()}
     names = {n.replace("{ground}", g) for n in names for g in ("grass", "dirt")}
     missing = [n for n in sorted(names) if not list(SFX_DIR.glob(f"{n}_*.mp3"))]
     assert not missing, missing
+
+
+def test_swimming_strokes_splashes_lapping_and_wading():
+    cfg = load_sfx_config()
+    d = SfxDirector(cfg, random.Random(1))
+    r = char("rowan")
+    a = r.actor
+    a.clips = dict(CLIPS, swim=ClipInfo(1.5, True), tread=ClipInfo(1.8, True))
+    a.state = "move"
+    run(d, [r], rowan=a)
+    a.state = "swim"                                   # into deep water
+    a.play("tread")
+    sounds, loops = run(d, [r], rowan=a)
+    assert "water/splash_in" in sounds
+    assert [v[0] for v in loops.values()] == ["water/tread_loop"]
+    a.play("swim")
+    a.speed = 1.5
+    strokes = []
+    for _ in range(90):                                # one stroke cycle = one splash
+        a.anim.update(1 / 60)
+        strokes += run(d, [r], rowan=a)[0]
+    assert strokes.count("water/stroke") == 1
+    a.state = "move"                                   # out again, wading in the shallows
+    a.play("walk")
+    assert "water/splash_out" in run(d, [r], rowan=a)[0]
+    steps = []
+    for _ in range(60):
+        a.anim.update(1 / 60)
+        steps += run(d, [r], rowan=a, ground=lambda x, z: "water")[0]
+    assert steps == ["water/wade_step"] * 2
