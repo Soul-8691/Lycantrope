@@ -7,7 +7,6 @@ Random houses
 More paths
 Place the enemies closer to Brackenvale
 Random NPCs walking the roads
-Combat music
 Sounds
 Collision
 Debug hotkey

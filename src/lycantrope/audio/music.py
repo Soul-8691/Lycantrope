@@ -9,7 +9,8 @@ Combat ends `combat_hold_s` after the last enemy gives up, and the two fade back
 
 `MusicDirector` holds the timing and volumes and talks to a small player interface, so it can be
 tested without a sound card. `MixerPlayer` is that interface on pygame's mixer: each track is
-decoded into memory on a background thread (no hitch at load or when a track starts).
+decoded into memory on a background thread (no hitch at load or when a track starts), and
+combat tracks are made into seamless loops (`make_loop`: generated pieces fade out at the end).
 Settings live in data/audio/music.json; tracks that don't exist yet are skipped.
 """
 from __future__ import annotations
@@ -19,6 +20,8 @@ import random
 import threading
 from pathlib import Path
 from typing import Protocol
+
+import numpy as np
 
 from lycantrope.core.paths import DATA, ROOT
 
@@ -106,22 +109,58 @@ class MusicDirector:
             p.set_volume(layer, master * self.gain[layer])
 
 
+def make_loop(samples: np.ndarray, rate: int, blend_s: float = 1.5, within_db: float = 8.0) -> np.ndarray:
+    """Turn a generated piece (quiet lead-in, fade-out ending) into a seamless loop.
+
+    Trims the start and end to where the music is at full strength (within `within_db` of its
+    median loudness), then blends the last `blend_s` seconds into the opening, so the end runs
+    straight into the start with no gap or dip. samples: (n,) or (n, channels).
+    """
+    x = samples.astype(np.float32)
+    mono = x.mean(axis=1) if x.ndim > 1 else x
+    win = max(1, rate // 20)                                  # 50 ms loudness windows
+    n = len(mono) // win
+    if n < 8:
+        return samples
+    rms = np.sqrt((mono[:n * win].reshape(n, win) ** 2).mean(axis=1)) + 1e-9
+    db = 20 * np.log10(rms)
+    full = np.nonzero(db >= np.median(db) - within_db)[0]
+    body = x[full[0] * win:(full[-1] + 1) * win]
+    blend = min(int(blend_s * rate), len(body) // 4)
+    if blend < 2:
+        return body.astype(samples.dtype)
+    t = np.linspace(0.0, 1.0, blend, dtype=np.float32)
+    if body.ndim > 1:
+        t = t[:, None]
+    out = body[:-blend].copy()
+    out[:blend] = body[-blend:] * np.cos(t * np.pi / 2) + body[:blend] * np.sin(t * np.pi / 2)   # equal power
+    if np.issubdtype(samples.dtype, np.integer):
+        info = np.iinfo(samples.dtype)
+        out = np.clip(np.round(out), info.min, info.max)
+    return out.astype(samples.dtype)
+
+
 class MixerPlayer:
     """pygame.mixer: one channel per layer; tracks decoded in the background."""
 
-    def __init__(self, tracks: list[str]) -> None:
+    def __init__(self, tracks: list[str], loops: list[str] = ()) -> None:
         import pygame
         self.pygame = pygame
         self.sounds: dict[str, object] = {}
         self.channels = {layer: pygame.mixer.Channel(i) for i, layer in enumerate(LAYERS)}
         pygame.mixer.set_reserved(len(LAYERS))           # sound effects won't steal these
-        threading.Thread(target=self._load, args=(list(tracks),), daemon=True).start()
+        threading.Thread(target=self._load, args=(list(tracks), set(loops)), daemon=True).start()
 
-    def _load(self, tracks: list[str]) -> None:
+    def _load(self, tracks: list[str], loops: set[str]) -> None:
+        pg = self.pygame
         for t in tracks:
             try:
-                self.sounds[t] = self.pygame.mixer.Sound(str(ROOT / t))
-            except (self.pygame.error, OSError) as exc:
+                snd = pg.mixer.Sound(str(ROOT / t))
+                if t in loops:                            # combat music: seamless loop
+                    rate = pg.mixer.get_init()[0]
+                    snd = pg.sndarray.make_sound(np.ascontiguousarray(make_loop(pg.sndarray.array(snd), rate)))
+                self.sounds[t] = snd
+            except (pg.error, OSError, ValueError) as exc:
                 print(f"music: could not load {t} ({exc})")
 
     def ready(self, track: str) -> bool:
@@ -153,4 +192,4 @@ def start_music(volume: float) -> MusicDirector | None:
     tracks = cfg["explore"] + cfg["combat"]
     if not tracks:
         return None
-    return MusicDirector(cfg, MixerPlayer(tracks), volume)
+    return MusicDirector(cfg, MixerPlayer(tracks, loops=cfg["combat"]), volume)

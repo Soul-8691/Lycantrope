@@ -87,6 +87,21 @@ def test_no_combat_track_keeps_exploring_and_mute():
     assert p.vol["explore"] == 0.0
 
 
+def test_make_loop_trims_fades_and_has_no_dip_at_the_seam():
+    import numpy as np
+    from lycantrope.audio.music import make_loop
+    rate = 1000
+    t = np.arange(20 * rate) / rate
+    env = np.clip(t / 1.0, 0, 1) * np.clip((20 - t) / 3.0, 0, 1)       # 1 s fade in, 3 s fade out
+    x = (np.sin(2 * np.pi * 50 * t) * env * 20000).astype(np.int16)
+    loop = make_loop(np.stack([x, x], axis=1), rate, blend_s=1.0)
+    assert loop.dtype == np.int16 and loop.shape[1] == 2
+    assert 13 * rate < len(loop) < 19 * rate                  # fades trimmed, blend overlapped
+    seam = np.concatenate([loop[-rate:, 0], loop[:rate, 0]]).astype(float)   # end runs into start
+    rms = [np.sqrt((seam[i:i + 100] ** 2).mean()) for i in range(0, len(seam), 100)]
+    assert min(rms) > 0.5 * max(rms)                          # no gap or dip across the seam
+
+
 def test_config_skips_missing_tracks(tmp_path):
     f = tmp_path / "music.json"
     f.write_text('{"explore": ["data/audio/music.json", "assets/audio/music/not_made_yet.mp3"], "combat": []}')
