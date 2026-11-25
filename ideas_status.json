@@ -1,25 +1,21 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-25T17:20:13",
+  "updated": "2026-11-25T17:31:46",
   "counts": {
-    "awaiting": 35,
-    "approved": 510,
-    "denied": 116,
+    "awaiting": 29,
+    "approved": 513,
+    "denied": 119,
     "total": 661
   },
   "ui": {
-    "selected": [
-      "WLD-19"
-    ],
-    "selected_titles": {
-      "WLD-19": "Simple traversal"
-    },
+    "selected": [],
+    "selected_titles": {},
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": false,
-    "at": "2026-11-25T17:20:13"
+    "at": "2026-11-25T17:31:46"
   },
   "ideas": {
     "PIL-01": {
@@ -4687,9 +4683,9 @@
       "in_ideas_md": true
     },
     "LMK-05": {
-      "status": "awaiting",
-      "note": "",
-      "changed": null,
+      "status": "approved",
+      "note": "Wolfwood",
+      "changed": "2026-11-25T17:28:54",
       "title": "Ancient Hero Statue",
       "category": "Objects · Landmarks (LMK)",
       "section": "",
@@ -4753,9 +4749,9 @@
       "in_ideas_md": true
     },
     "DSK-05": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T17:30:17",
       "title": "Chained Brazier",
       "category": "Objects · Duskhold Citadel (DSK)",
       "section": "",
@@ -5567,9 +5563,9 @@
       "in_ideas_md": true
     },
     "MON-06": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T17:30:26",
       "title": "Bramble Spitter",
       "category": "Enemies · Tier 1: Levels 1–5 (MON)",
       "section": "",
@@ -5622,9 +5618,9 @@
       "in_ideas_md": true
     },
     "MON-11": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T17:30:32",
       "title": "Giant Toad",
       "category": "Enemies · Tier 1: Levels 1–5 (MON)",
       "section": "",
@@ -5721,9 +5717,9 @@
       "in_ideas_md": true
     },
     "MON-20": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T17:30:34",
       "title": "Animated Armor",
       "category": "Enemies · Tier 2: Levels 6–10 (MON)",
       "section": "",
@@ -6898,9 +6894,9 @@
       "in_ideas_md": true
     },
     "ONE-13": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-25T17:31:08",
       "title": "Werewolf Fang Knife",
       "category": "Weapons · One-handed Weapons (ONE)",
       "section": "",
@@ -7565,42 +7561,6 @@
     }
   },
   "history": [
-    {
-      "time": "2026-11-24T10:01:23",
-      "id": "ART-07",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:01:29",
-      "id": "ART-08",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:01:47",
-      "id": "ART-11",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:01:53",
-      "id": "ART-12",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:02:45",
-      "id": "ART-17",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:02:52",
-      "id": "TEC-01",
-      "from": "awaiting",
-      "to": "approved"
-    },
     {
       "time": "2026-11-24T10:02:55",
       "id": "TEC-02",
@@ -10562,6 +10522,42 @@
     {
       "time": "2026-11-25T17:19:51",
       "id": "BOS-23",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T17:28:54",
+      "id": "LMK-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T17:30:17",
+      "id": "DSK-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T17:30:26",
+      "id": "MON-06",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T17:30:32",
+      "id": "MON-11",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T17:30:34",
+      "id": "MON-20",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-25T17:31:08",
+      "id": "ONE-13",
       "from": "awaiting",
       "to": "approved"
     }
