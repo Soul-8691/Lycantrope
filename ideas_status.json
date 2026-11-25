@@ -1,25 +1,21 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-25T16:59:35",
+  "updated": "2026-11-25T17:04:39",
   "counts": {
     "awaiting": 44,
-    "approved": 493,
+    "approved": 494,
     "denied": 111,
-    "total": 648
+    "total": 649
   },
   "ui": {
-    "selected": [
-      "PIL-01"
-    ],
-    "selected_titles": {
-      "PIL-01": "Combat first"
-    },
+    "selected": [],
+    "selected_titles": {},
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-25T16:59:35"
+    "at": "2026-11-25T17:04:39"
   },
   "ideas": {
     "PIL-01": {
@@ -2865,6 +2861,17 @@
       "note": "",
       "changed": "2026-11-25T15:33:05",
       "title": "The Archsage's testament as the game's frame",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "The frame",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-76": {
+      "status": "approved",
+      "note": "Nyarlathotep only implied as the orchestrator at the end; never interacted with",
+      "changed": "2026-11-25T17:03:08",
+      "title": "The unseen hand",
       "category": "Dreamlands Fusion (DRM)",
       "section": "The frame",
       "starred": false,
@@ -7423,12 +7430,6 @@
   },
   "history": [
     {
-      "time": "2026-11-24T09:54:01",
-      "id": "UIX-07",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
       "time": "2026-11-24T09:54:10",
       "id": "UIX-08",
       "from": "awaiting",
@@ -10419,6 +10420,12 @@
     {
       "time": "2026-11-25T16:59:29",
       "id": "DRM-52",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T17:03:08",
+      "id": "DRM-76",
       "from": "awaiting",
       "to": "approved"
     }
