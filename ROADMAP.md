@@ -30,9 +30,9 @@ You also need:
 |---|---|---|
 | **M0 Foundations** | Day 1 | Repo, venv, window with a GL context, fixed-step loop, terrain on screen, asset pipelines running |
 | **M1 First Playable** | End of Week 1 (core) + Week 2 (full roster) | Rowan with the Dawnblade, crossbow and Rites, 4 biomes on one map, **20 approved enemies** with voiced barks at levels 1–15, XP/levels with no NPC, 6 attributes + 8 use-based skills that change combat, Waystones, one boss, save/load, Windows build on itch |
-| **M2 Vertical Slice** | Weeks 3–5 | First Crown Shard dungeon (Wolfwood) with its tool (grappling chain), Brood Queen boss, the village prologue, the mentor, music, bestiary, compass |
-| **M3 Public Demo** | ~Week 8 | Two Crown Shards, relic powers, polish pass, settings and accessibility, devlog push |
-| **M4 Full Game** | Later | Four Crown Shards, Ashen Reach, the Crypts, Duskhold, Malgrath, NG+ |
+| **M2 Vertical Slice** | Weeks 3–5 | Act I opening: farm chores, the mentor, the first incursion at the burying ground with rift sealing, plus the first Crown Shard dungeon (Wolfwood) with its tool (grappling chain), the Brood Queen boss, music, bestiary, compass |
+| **M3 Public Demo** | ~Week 8 | The rest of Part I (the waking world): the stone circle and the galley incursions, the Shantak Rider, the second waking-world Crown Shard (Blackmire), the Brackenvale sidequests, relic powers, polish pass, settings and accessibility, devlog push |
+| **M4 Full Game** | Later | Part II (the Dreamlands): the descent through sleep, the two Dreamlands Crown Shards, fallen Serannian restored; then the return, the Crypts, Duskhold, Malgrath, the ending that hints at the unseen hand, NG+ |
 
 **Week 1 is about proving the core.** By Sunday you should have a downloadable build in which Rowan explores four biomes, fights about 12 enemy types, levels up, casts a Rite and kills a boss. **Week 2** finishes the roster to all 20, adds the rest of the voice lines, and tunes balance. With the Meshy and ElevenLabs batches running in the background all week, that is ambitious but achievable. The cut list (§6) says what to drop first if a day overruns.
 
@@ -104,13 +104,14 @@ Lycantrope/
 │   │               instancing.py  sky.py  shadows.py  post.py  particles.py  ui_layer.py
 │   │               shaders/*.vert|*.frag
 │   ├── world/      heightfield.py  biomes.py  scatter.py  collision.py  waystones.py  spawns.py
+│   │               incursions.py (rifts, waves, sealing: M2)
 │   ├── combat/     attacks.py  hitbox.py  damage.py  status.py  lockon.py  feel.py (hitstop/shake)
 │   ├── actors/     actor.py  player.py  valor.py  enemy.py
 │   │   └── ai/     fsm.py  archetypes.py  tokens.py  steering.py
 │   ├── rpg/        stats.py  skills.py  leveling.py  inventory.py  loot.py
 │   ├── audio/      mixer.py  voice.py  music.py
 │   └── ui/         hud.py  menus.py  levelup.py  subtitles.py  fonts.py
-├── data/           enemies/*.json  attacks/*.json  items.json  loot.json  biomes.json
+├── data/           enemies/*.json  attacks/*.json  items.json  loot.json  biomes.json  incursions/*.json
 │                   xp.json  voices.json  lines.csv  sfx.csv
 ├── assets/  (Git LFS)  models/  textures/  audio/{vo,sfx,music}/  fonts/  world/
 ├── tools/
@@ -201,7 +202,7 @@ Each day has a **code track** and an **asset kitchen** track (batch jobs that ru
 
 ### Day 6: Rites, HUD and sound
 **Code**
-- [ ] Rites cast from the off hand, each on its own cooldown with a HUD timer: 2–3 starter Rites (for example a radiant flash and a short ward). Faith scales radiant damage and shortens cooldowns. Their visuals are Meshy effect meshes (VFX-01 to VFX-04) drawn with a glowing, see-through shader and animated in code. *(CMB-29, CMB-34, STA-20, ART-19)*
+- [ ] Rites cast from the off hand, each on its own cooldown with a HUD timer: 2–3 starter Rites (for example a short ward and a marking sigil). Faith scales radiant damage and shortens cooldowns. Their visuals are Meshy effect meshes (VFX-02 to VFX-04) drawn with a glowing, see-through shader and animated in code. *(CMB-29, CMB-34, STA-20, ART-19)*
 - [ ] HUD: bars, quick slots, lock reticle, enemy plates, boss bar. Draw it with pygame and upload it as a texture. *(UIX-01, UIX-04, UIX-05, UIX-13)*
 - [ ] Hand crossbow (aim mode, bolts) to bring down fliers. *(CMB-20)*
 - [ ] Positional audio, per-biome ambience, and music if it's generated. *(AUD-08, AUD-07)*
@@ -336,9 +337,24 @@ Check your Meshy and ElevenLabs credit balances against this list on Day 1. Gene
 | Phase | Focus | Key ideas |
 |---|---|---|
 | **Week 2: Finish M1** | All 20 approved enemies plus approved MON- enemies, every bark, settings, accessibility, bug fixes | ENM list, ENEMIES.md, UIX-12 |
-| **Weeks 3–5: M2 Vertical slice** | Village prologue, Aldric the mentor, Wolfwood Crown Shard dungeon (kit + grappling chain), Brood Queen, compass, bestiary, music layers | STY-14, STY-15, WLD-14, WLD-15, BOS-02, UIX-02, UIX-08, AUD-07 |
-| **Weeks 6–8: M3 Demo** | Blackmire Crown Shard + Old Mother Mire, relic powers, Seer's Lens, perks, armor sets | BOS-03, VAL-03, VAL-06, STA-08, ARMOR.md |
-| **Later: M4** | Frostfang and Ashen Crown Shards, the Crypts, Duskhold, Malgrath, armor swaps, mount, Lua mods | BOS-04, BOS-05, BOS-11, HER-07, CMB-32, TEC-20 |
+| **Weeks 3–5: M2 Vertical slice** | Act I opening: Rowan's dream of Serannian, farm chores, Aldric arrives (the horror in the jar), Mindspeak, training with Captain Thorne. Rift sealing and incursions as data. The first incursion at the burying ground, fused with the village prologue (zoogs, Men of Leng, Oswin wounded on his doorstep), and its fight, the Unwritten Gate. Then the Wolfwood Crown Shard dungeon (kit + grappling chain), Brood Queen, compass, bestiary, music layers | DRM-03, DRM-10, DRM-11, DRM-06, DRM-16, DRM-18, DRM-19, DRM-12, DRM-54, DRM-35, DRM-36, STY-14, STY-15, WLD-14, WLD-15, BOS-02, UIX-02, UIX-08, AUD-07 |
+| **Weeks 6–8: M3 Demo** | Second incursion at the stone circle (ghasts and light, cultists, the Apprentice at the Stones). Third incursion, the galley from the clouds (moon-beasts), ending on the rift that can't be closed from this side, and the Shantak Rider. The Blackmire Crown Shard + Old Mother Mire. Brackenvale sidequests from the public-domain tales, with their creatures. Found documents with clues. Relic powers, Seer's Lens, perks, armor sets | DRM-13, DRM-55, DRM-37, DRM-38, DRM-14, DRM-39, DRM-15, DRM-40, BOS-03, DRM-17, DRM-48, DRM-49, DRM-50, DRM-51, DRM-52, DRM-64, DRM-26, VAL-03, VAL-06, STA-08, ARMOR.md |
+| **Later: M4, Part II** | The descent through sleep (the seventy steps, the Cavern of Flame, the Gate of Deeper Slumber). Then the Enchanted Wood (the Hostage-Keeper), Ulthar and its cats, Dylath-Leen (the Factor chase), Celephaïs (Carter, Kuranes and the Silver Key), Ngranek (the night-gaunts), the Underworld (ghouls, gugs, the Gug Warlord, dholes), Leng (the High Priest, the spider). Then Serannian restored (the Wound over Serannian). The two Dreamlands Crown Shards replace two of the original dungeons: Frostfang becomes the ghouls' vault of fallen things, and Ashen Reach becomes Serannian. Optional: the Quarry of Inganok, Kuranes' Dream. | DRM-27, DRM-56, DRM-44, DRM-57, DRM-30, DRM-24, DRM-58, DRM-41, DRM-42, DRM-43, DRM-59, DRM-46, DRM-60, DRM-45, DRM-31, DRM-61, DRM-28, DRM-29, DRM-74, DRM-75 |
+| **Later: M4, the end** | The return, the Drowned Coast and its Deep Ones, the Crypts, Duskhold, Malgrath as the final boss, allies who remember coming back for the finale, the Dawnblade's origin (grandfather was the fisherman who found it in his net), the testament frame, and the closing hints that Nyarlathotep arranged everything (never met, never named). Armor swaps, mount, Lua mods | BOS-11, DRM-53, DRM-29, DRM-07, DRM-09, DRM-08, DRM-76, HER-07, CMB-32, TEC-20 |
+| **Much later** | Player beast forms: the Dream-Shapes (cat, ghoul, night-gaunt) | DRM-25 |
+
+### 10.1 Story decisions (answered 2026-11-25)
+
+- **The Dawnblade's origin:** grandfather was the fisherman who found it in his net, so STY-14, HER-09 and DRM-07 all hold.
+- **The Apprentice is Sir Calder** (STY-19, DRM-08). His appearances are the Apprentice's fights: the Stones, the Factor chase, the High Priest of Leng.
+- **Moon-beasts** get a simpler fighting style instead of swelling and shrinking: a plain heavy melee enemy that commands the Men of Leng.
+- **The Dreamlands shards:** Frostfang → the ghouls' vault, Ashen Reach → Serannian. BOS-04 (the Wyvern) and BOS-05 (the Colossus) need new homes or replacements.
+- **The time loop:** no travel into the past. The Silver Key's last use lets Rowan play through the eyes of the hero of old, who passes something on to the sword. The new ideas are DRM-77 to DRM-82, awaiting your decision. Its daily rewind (DRM-24) restores position and HP only, because Dread was denied.
+- **Beast forms (DRM-25)** are allowed but saved for much later, and CLAUDE.md now says so.
+- **Deep Ones (DRM-53)** stay, on the Drowned Coast.
+- **No Black Tongue lesson** in Act I and no replacement (DRM-10).
+
+**Still awaiting a decision, so not scheduled yet:** the boss framework ideas BOS-12 to BOS-17 (one idea per boss, phase beats, non-kill bosses, retry at the arena door, bosses as data, scripted moves), the bosses BOS-18 (the Thing in the Cellar), BOS-19 (Old Corwin), DRM-66 to DRM-70 (Grandmother Zoog, the Drum-Master's Galley, the Gug Sentinel, the Shantak Roost, the Moon-Beast Admiral), DRM-77 to DRM-82 (the Silver Key and the hero of old), and TOL-08 (teleport to any boss). If BOS-16 is approved, build it before M2's first incursion boss, because every later boss uses it.
 
 ---
 
@@ -352,4 +368,6 @@ Check your Meshy and ElevenLabs credit balances against this list on Day 1. Gene
 | Combat doesn't feel good | Tune hitstop, wind-ups and the input buffer *before* adding content. Playtest every day. |
 | Credit burn | Previews first, caching by hash, never re-generate a line whose text hasn't changed. |
 | Asset terms change | Log plan and date per asset; re-read both services' terms before each public release (REL-04). |
+| The Dreamlands roughly double the game | Part II is M4 work. Ship the waking-world half (M3) as a complete demo first, and reuse rigs wherever possible: rats for the rats in the walls, the goblin rig for the Lurking Fear, the Brood Queen for the Spider of Leng, one cat model for allies, Ulthar and Saturn. |
+| Many new creatures need procedural rigs | Ghasts, moon-beasts, Shantaks, dholes and Things from Beyond are animated in code (ART-04). Prototype one hopper (the ghast) and one big flyer (the Shantak) early in M3, before committing to the rest. |
 | Scope creep | Anything not ⭐ waits until M1 ships. Add new ideas to IDEAS.md, where they start as Awaiting. |
