@@ -413,6 +413,59 @@
       "equipment": {
         "right_hand": "ONE-07"
       }
+    },
+    "cow": {
+      "name": "Cow",
+      "rig": "VIL-13/v1/rig/rigged.glb",
+      "static": "VIL-13/v1/textured/model.glb",
+      "height_m": 1.55,
+      "clips": {
+        "idle": {
+          "file": "VIL-13/v1/rig/animations_1.glb",
+          "clip": "cattle_idle",
+          "loop": true
+        },
+        "idle2": {
+          "file": "VIL-13/v1/rig/animations_1.glb",
+          "clip": "cattle_idle01",
+          "loop": true
+        },
+        "idle3": {
+          "file": "VIL-13/v1/rig/animations_1.glb",
+          "clip": "cattle_idle02",
+          "loop": true
+        },
+        "walk": {
+          "file": "VIL-13/v1/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 1.1
+        },
+        "run": {
+          "file": "VIL-13/v1/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 4.5
+        }
+      },
+      "speeds": {
+        "walk": 0.9,
+        "run": 4.0
+      },
+      "ai": {
+        "aggro_m": 0,
+        "leash_m": 80,
+        "reach_m": 1.0,
+        "attack_every_s": [
+          9,
+          9
+        ],
+        "wander_m": 22,
+        "pause_s": [
+          6,
+          16
+        ]
+      }
     }
   },
   "items": {

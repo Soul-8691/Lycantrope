@@ -34,7 +34,7 @@ WADE_DEPTH = 0.9           # meters, for a 1.75 m character (scaled by height)
 STATIC_CLIPS = {"idle": ClipInfo(1.0, True), "walk": ClipInfo(1.0, True), "run": ClipInfo(1.0, True),
                 "alert": ClipInfo(1.0, True), "attack1": ClipInfo(0.9, False), "attack2": ClipInfo(0.9, False),
                 "hit": ClipInfo(0.5, False), "death": ClipInfo(1.0, False)}
-RADIUS = {"rowan": 0.4, "goblin": 0.35, "wolf": 0.5, "bear": 0.9, "bruiser": 0.55, "battlemage": 0.4}
+RADIUS = {"rowan": 0.4, "goblin": 0.35, "wolf": 0.5, "bear": 0.9, "bruiser": 0.55, "battlemage": 0.4, "cow": 0.8}
 
 
 # ---------------------------------------------------------------------------- #

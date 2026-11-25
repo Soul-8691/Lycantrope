@@ -46,6 +46,10 @@
     {"name": "bandit bruiser, north-west (by the road)", "kind": "bruiser", "count": 2, "anchor": "Brackenvale Village", "at": [-255, 521], "radius": 5},
     {"name": "battlemage patrol, north-east (by the road)", "kind": "battlemage", "count": 2, "anchor": "Brackenvale Village", "at": [238, 337], "radius": 6},
     {"name": "battlemage patrol, north-east (by the road)", "kind": "battlemage", "count": 2, "anchor": "Brackenvale Village", "at": [552, 354], "radius": 6},
-    {"name": "battlemage patrol, north-east (by the road)", "kind": "battlemage", "count": 2, "anchor": "Brackenvale Village", "at": [354, 357], "radius": 6}
+    {"name": "battlemage patrol, north-east (by the road)", "kind": "battlemage", "count": 2, "anchor": "Brackenvale Village", "at": [354, 357], "radius": 6},
+    {"name": "cows grazing, south-west", "kind": "cow", "count": 3, "anchor": "Brackenvale Village", "at": [-32, -92], "radius": 12},
+    {"name": "cows grazing, north-west", "kind": "cow", "count": 4, "anchor": "Brackenvale Village", "at": [-98, 229], "radius": 12},
+    {"name": "cows grazing, south-west", "kind": "cow", "count": 5, "anchor": "Brackenvale Village", "at": [-67, -225], "radius": 12},
+    {"name": "cows grazing, north-east", "kind": "cow", "count": 4, "anchor": "Brackenvale Village", "at": [232, 78], "radius": 12}
   ]
 }

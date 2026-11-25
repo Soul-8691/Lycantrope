@@ -12,7 +12,6 @@ Magic casting
 Collision
 Remove debug hotkey
 Caves
-Cows
 NPCs
 Dialogue
 Choices

@@ -16,6 +16,7 @@ from lycantrope.core.paths import DATA
 
 FADE_S = 0.15
 IDLE_DELAY_S = 3.0      # after stopping, hold still this long before the idle animation plays
+IDLE_CLIPS = ("idle", "idle2", "idle3")   # standing-still animations; one is picked at random
 
 
 @dataclass
@@ -102,7 +103,7 @@ class Actor:
         s = self.speed
         sp = self.speeds
         if s < 0.15:
-            if self.anim.clip != "idle":
+            if self.anim.clip not in IDLE_CLIPS:
                 self.play("idle", rate=0.0)          # first frame (a plain stance) until the wait is over
                 self.idle_wait = 0.0
             return
@@ -123,9 +124,14 @@ class Actor:
         if self.anim.clip == "idle" and self.anim.rate == 0.0:
             self.idle_wait += dt
             if self.idle_wait >= IDLE_DELAY_S:
-                info = self.clips.get("idle")
-                self.anim.rate = info.speed if info else 1.0
-                self.anim.time = 0.0
+                choices = [c for c in IDLE_CLIPS if c in self.clips]
+                pick = random.choice(choices) if len(choices) > 1 else "idle"
+                if pick == "idle":
+                    info = self.clips.get("idle")
+                    self.anim.rate = info.speed if info else 1.0
+                    self.anim.time = 0.0
+                else:
+                    self.play(pick, restart=True)
         self.anim.update(dt)
 
     def save_prev(self) -> None:
@@ -229,6 +235,7 @@ class AiParams:
     attack_every_s: tuple[float, float] = (1.2, 2.0)
     wander_m: float = 10.0
     # casters: hold this distance and cast ("cast" clip), melee only when Rowan is in reach
+    pause_s: tuple[float, float] = (2.0, 6.0)   # wandering: how long to stand between strolls
     cast_range_m: float = 0.0          # 0 = no ranged attack
     keep_away_m: float = 7.0           # back off a little if Rowan is closer than this (but not in reach)
     cast_every_s: tuple[float, float] = (2.2, 3.4)
@@ -298,7 +305,7 @@ class Enemy:
             else:
                 if self._move_to(*self.goal, sp["walk"], dt, turn) < 0.6:
                     self.goal = None
-                    a.timer = self.rng.uniform(2.0, 6.0)
+                    a.timer = self.rng.uniform(*ai.pause_s)
             a.locomotion()
         elif a.state == "chase":
             if to_r <= ai.reach_m or (ai.cast_range_m and to_r <= ai.cast_range_m * 0.85):
