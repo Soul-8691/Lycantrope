@@ -4,7 +4,6 @@ Helpful:
 
 To-Do:
 Sounds
-Collision
 Character stats
 Armor stats
 Weapon stats

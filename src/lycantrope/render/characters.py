@@ -24,6 +24,7 @@ from lycantrope.render.gltf import (SLOTS, Clip, MeshData, Skeleton, fit_outfit,
 from lycantrope.render.shaders import ShaderLibrary, set_uniform
 from lycantrope.world.actors import (Actor, AiParams, ClipInfo, Enemy, Rowan, load_character_data,
                                      load_spawns, separate)
+from lycantrope.world.collision import Colliders
 from lycantrope.world.heightfield import Heightfield
 
 MODELS = ASSETS / "models" / "meshy"
@@ -430,9 +431,25 @@ class CharacterSystem:
         self.spells = Spells(ctx, shaders, world)
         self.chars: list[Character] = []
         self.rowan: Rowan | None = None
+        self.colliders: Colliders | None = None     # solid props, set by set_colliders()
         self.spawn(load_spawns())
         self._version = -1
         self.drawn = 0
+
+    def set_colliders(self, colliders: Colliders) -> None:
+        """Make props solid: characters slide around them, wanderers don't aim inside them, and
+        anyone who spawned overlapping one is nudged out."""
+        self.colliders = colliders
+        for c in self.chars:
+            a = c.actor
+            a.x, a.z, _ = colliders.push_out(a.x, a.z, a.radius, passes=4)
+            a.y = self.world.height_at(a.x, a.z)
+            a.save_prev()
+            b = c.brain
+            if b is not None and colliders.blocked(*b.home, a.radius):
+                b.home = (a.x, a.z)                           # home was inside something: use where it stands
+            if b is not None and b.goal_ok is None and not b.route:
+                b.goal_ok = lambda _x0, _z0, x1, z1, r=a.radius: not colliders.blocked(x1, z1, r + 0.3)
 
     # ------------------------------------------------------------------ #
     def _actor(self, key: str, x: float, z: float, heading: float) -> Actor:
@@ -570,6 +587,10 @@ class CharacterSystem:
                 continue
             a.x = min(max(a.x, -lim), lim)
             a.z = min(max(a.z, -lim), lim)
+            if self.colliders is not None:                     # houses, trunks, fences, rocks
+                a.x, a.z, hit = self.colliders.push_out(a.x, a.z, a.radius)
+                if hit and c.brain is not None:
+                    c.brain.bumped += dt
             # no swimming yet: wading is fine, deeper water stops you at the edge
             if self.world.water_depth(a.x, a.z) > WADE_DEPTH * (c.t.height / 1.75) and                     self.world.water_depth(a.x, a.z) > self.world.water_depth(a.px, a.pz):
                 a.x, a.z = a.px, a.pz

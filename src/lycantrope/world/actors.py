@@ -261,6 +261,7 @@ class Enemy:
         self.cooldown = self.rng.uniform(*ai.attack_every_s)
         self.cast_cooldown = self.rng.uniform(0.5, 1.5)
         self.goal_ok = None          # optional check for wander goals: (x0, z0, x1, z1) -> bool
+        self.bumped = 0.0            # seconds spent pushing against something solid (set by the world)
         self.route: list[tuple[float, float]] | None = None   # travellers: walk these points in turn
         self.route_i = 0
         self.route_dir = 1
@@ -306,7 +307,8 @@ class Enemy:
             a.speed = max(0.0, a.speed - 6 * dt)
             if a.timer <= 0:
                 self.goal = r[self.route_i]
-        elif self._move_to(*self.goal, a.speeds["walk"], dt, turn) < 1.2:
+        elif self._move_to(*self.goal, a.speeds["walk"], dt, turn) < 1.2 or self.bumped > 2.0:
+            self.bumped = 0.0                               # there (or blocked): on to the next point
             i = self.route_i + self.route_dir
             if self.route_loop:
                 i %= len(r)
@@ -342,18 +344,21 @@ class Enemy:
                 a.timer -= dt
                 a.speed = max(0.0, a.speed - 6 * dt)
                 if a.timer <= 0:
-                    for _ in range(24 if ai.on_paths else 1):
+                    for _ in range(24 if self.goal_ok is not None else 1):
                         ang = self.rng.uniform(0, math.tau)
                         r = self.rng.uniform(0.3, 1.0) * ai.wander_m
                         g = (self.home[0] + r * math.cos(ang), self.home[1] + r * math.sin(ang))
-                        if not ai.on_paths or self.goal_ok is None or self.goal_ok(a.x, a.z, *g):
+                        if self.goal_ok is None or self.goal_ok(a.x, a.z, *g):
                             self.goal = g
+                            self.bumped = 0.0
                             break
                     else:
                         a.timer = self.rng.uniform(1.0, 3.0)     # nowhere good right now: wait a bit
             else:
-                if self._move_to(*self.goal, sp["walk"], dt, turn) < 0.6:
+                arrived = self._move_to(*self.goal, sp["walk"], dt, turn) < 0.6
+                if arrived or self.bumped > 1.5:                 # there, or stuck behind something: stop
                     self.goal = None
+                    self.bumped = 0.0
                     a.timer = self.rng.uniform(*ai.pause_s)
             a.locomotion()
         elif a.state == "chase":
@@ -409,8 +414,9 @@ class Enemy:
                 if a.kind == "wolf" and self.rng.random() < 0.4:
                     self.circle = -self.circle
         elif a.state == "return":
-            if self._move_to(*self.home, sp["walk"] * 1.8, dt, turn) < 2.0:
+            if self._move_to(*self.home, sp["walk"] * 1.8, dt, turn) < 2.0 or self.bumped > 4.0:
                 a.state, self.goal, a.timer = "wander", None, self.rng.uniform(1.0, 3.0)
+                self.bumped = 0.0
             a.locomotion()
 
 

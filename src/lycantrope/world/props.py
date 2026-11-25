@@ -26,6 +26,7 @@ class PropSpec:
     top_color: tuple[float, float, float]
     top_from: float
     extents: tuple[float, float, float] = (1.0, 1.0, 1.0)   # filled in once the mesh is loaded
+    collide: dict | None = None   # solid shape for characters (world/collision.py); None = walk through
 
 
 @dataclass
@@ -53,7 +54,8 @@ def load_catalog(path: Path = DATA / "props.json") -> dict[str, PropSpec]:
     for key, p in raw.items():
         color = tuple(p["color"])
         out[key] = PropSpec(key, p["name"], float(p["height_m"]), color,
-                            tuple(p.get("top_color", color)), float(p.get("top_from", 2.0)))
+                            tuple(p.get("top_color", color)), float(p.get("top_from", 2.0)),
+                            collide=p.get("collide"))
     return out
 
 

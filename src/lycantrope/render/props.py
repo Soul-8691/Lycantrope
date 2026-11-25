@@ -16,6 +16,7 @@ import pygltflib
 from lycantrope.core.paths import ASSETS
 from lycantrope.render.camera import frustum_planes
 from lycantrope.render.shaders import ShaderLibrary, set_uniform
+from lycantrope.world.collision import Colliders
 from lycantrope.world.heightfield import Heightfield
 from lycantrope.world.props import PropSpec, load_catalog, place_props
 
@@ -114,6 +115,7 @@ class PropRenderer:
             meshes[key] = (v, f, uv, tex)
         self.catalog = {k: s for k, s in self.catalog.items() if k in meshes}
         instances = place_props(world, self.catalog, placements).arrays()
+        self.colliders = Colliders.from_instances(instances, self.catalog)   # what characters can't walk through
 
         self.models: list[PropModel] = []
         for key, rows in instances.items():

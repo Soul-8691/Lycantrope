@@ -103,6 +103,7 @@ class App:
         self.props = PropRenderer(self.ctx, self.shaders, self.world, placements)
         self.grass = Grass(self.ctx, self.shaders, self.world, self.terrain)
         self.chars = CharacterSystem(self.ctx, self.shaders, self.world)
+        self.chars.set_colliders(self.props.colliders)   # houses, trunks, fences and rocks are solid
         self.sky = Sky(self.ctx, self.shaders)
         self.water = Water(self.ctx, self.shaders, self.world, self.terrain.tex_height, self.terrain.tex_water)
         self.overlay = TextOverlay(self.ctx, self.shaders)
@@ -165,6 +166,10 @@ class App:
                          a.pz + (a.z - a.pz) * alpha)
         cam.yaw, cam.pitch = self.orbit_yaw, self.orbit_pitch
         pos = pivot - cam.forward() * self.orbit_dist
+        # pull the camera in rather than let it end up inside a house or a trunk
+        t = self.props.colliders.clear_distance((pivot.x, pivot.y, pivot.z), (pos.x, pos.y, pos.z))
+        if t < 1.0:
+            pos = pivot - cam.forward() * max(0.6, self.orbit_dist * t)
         floor = self.world.height_at(pos.x, pos.z) + 0.35
         if pos.y < floor:
             pos.y = floor
