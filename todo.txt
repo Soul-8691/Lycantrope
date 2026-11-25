@@ -1,18 +1,24 @@
+Helpful:
 .venv\Scripts\python.exe tools\meshy\keep.py
 .venv\Scripts\python.exe tools\meshy\animsheet.py ENM-03 --gif
+
+To-Do:
+Debug hotkey
+Collision
 Sounds
 Music (like Elder Scrolls [https://www.elderscrollsonline.com/en-us/news/post/827])
-World map
-Health and damage
 Character stats
-Weapon stats
 Armor stats
+Weapon stats
 Magic stats
-Magic casting
-Collision
-Remove debug hotkey
-Caves
+Health and damage
 NPCs
 Dialogue
 Choices
-Guards (later)
+Magic casting
+World map
+Caves
+
+Later:
+Cows
+Guards

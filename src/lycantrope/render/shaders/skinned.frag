@@ -10,6 +10,7 @@ out vec4 f_color;
 uniform vec3 u_cam;
 uniform sampler2D u_tex;
 uniform int u_has_tex;
+uniform vec3 u_tint;           // per-character colour variation (1 = as modelled)
 
 void main() {
     vec3 n = normalize(v_nrm);
@@ -18,6 +19,7 @@ void main() {
 
     vec3 albedo = v_color;
     if (u_has_tex == 1) albedo *= texture(u_tex, v_uv).rgb;
+    albedo *= u_tint;
     albedo = pow(albedo, vec3(2.2));                   // sRGB -> linear
 
     float ndl = max(dot(n, u_sun_dir), 0.0);

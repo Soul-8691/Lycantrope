@@ -236,6 +236,7 @@ class AiParams:
     wander_m: float = 10.0
     # casters: hold this distance and cast ("cast" clip), melee only when Rowan is in reach
     pause_s: tuple[float, float] = (2.0, 6.0)   # wandering: how long to stand between strolls
+    on_paths: bool = False             # wander only along paths (villagers: keeps them out of buildings)
     cast_range_m: float = 0.0          # 0 = no ranged attack
     keep_away_m: float = 7.0           # back off a little if Rowan is closer than this (but not in reach)
     cast_every_s: tuple[float, float] = (2.2, 3.4)
@@ -254,6 +255,7 @@ class Enemy:
         self.goal: tuple[float, float] | None = None
         self.cooldown = self.rng.uniform(*ai.attack_every_s)
         self.cast_cooldown = self.rng.uniform(0.5, 1.5)
+        self.goal_ok = None          # optional check for wander goals: (x0, z0, x1, z1) -> bool
         self.fired = True
         self.circle = self.rng.choice((-1.0, 1.0))
         self.a.state = "wander"
@@ -299,9 +301,15 @@ class Enemy:
                 a.timer -= dt
                 a.speed = max(0.0, a.speed - 6 * dt)
                 if a.timer <= 0:
-                    ang = self.rng.uniform(0, math.tau)
-                    r = self.rng.uniform(0.3, 1.0) * ai.wander_m
-                    self.goal = (self.home[0] + r * math.cos(ang), self.home[1] + r * math.sin(ang))
+                    for _ in range(24 if ai.on_paths else 1):
+                        ang = self.rng.uniform(0, math.tau)
+                        r = self.rng.uniform(0.3, 1.0) * ai.wander_m
+                        g = (self.home[0] + r * math.cos(ang), self.home[1] + r * math.sin(ang))
+                        if not ai.on_paths or self.goal_ok is None or self.goal_ok(a.x, a.z, *g):
+                            self.goal = g
+                            break
+                    else:
+                        a.timer = self.rng.uniform(1.0, 3.0)     # nowhere good right now: wait a bit
             else:
                 if self._move_to(*self.goal, sp["walk"], dt, turn) < 0.6:
                     self.goal = None

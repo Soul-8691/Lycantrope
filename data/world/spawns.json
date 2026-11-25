@@ -2,7 +2,8 @@
   "_about": [
     "Who starts where. 'at' is [east, north] in meters from the anchor (a landmark or Waystone).",
     "Each group spawns 'count' of one character within 'radius' m of its point and wanders",
-    "around there. 'facing' is a compass heading for Rowan (0 = north)."
+    "around there. 'facing' is a compass heading for Rowan (0 = north). 'vary' gives each one a",
+    "slightly different height, colouring and walking pace (villagers)."
   ],
   "rowan": {
     "anchor": "Brackenvale Village",
@@ -10,6 +11,9 @@
     "facing": 40
   },
   "groups": [
+    {"name": "villagers (men)", "kind": "villager_m", "count": 3, "anchor": "Brackenvale Village", "at": [6, 6], "radius": 14, "vary": {"height": [0.93, 1.06], "tint": 0.12, "pace": [0.85, 1.15]}},
+    {"name": "villagers (women)", "kind": "villager_f", "count": 3, "anchor": "Brackenvale Village", "at": [-6, 2], "radius": 14, "vary": {"height": [0.93, 1.06], "tint": 0.12, "pace": [0.85, 1.15]}},
+    {"name": "Farmer Oswin Tull", "kind": "farmer", "count": 1, "anchor": "Brackenvale Village", "at": [-34, -38], "radius": 0},
     {"name": "goblin camp, east fields", "kind": "goblin", "count": 6, "anchor": "Brackenvale Village", "at": [130, 30], "radius": 9},
     {"name": "goblins lurking by the road", "kind": "goblin", "count": 4, "anchor": "Brackenvale Village", "at": [-63, 133], "radius": 8},
     {"name": "wolf pack, west", "kind": "wolf", "count": 5, "anchor": "Brackenvale Village", "at": [-170, 80], "radius": 10},

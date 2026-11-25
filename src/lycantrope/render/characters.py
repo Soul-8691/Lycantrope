@@ -34,7 +34,7 @@ WADE_DEPTH = 0.9           # meters, for a 1.75 m character (scaled by height)
 STATIC_CLIPS = {"idle": ClipInfo(1.0, True), "walk": ClipInfo(1.0, True), "run": ClipInfo(1.0, True),
                 "alert": ClipInfo(1.0, True), "attack1": ClipInfo(0.9, False), "attack2": ClipInfo(0.9, False),
                 "hit": ClipInfo(0.5, False), "death": ClipInfo(1.0, False)}
-RADIUS = {"rowan": 0.4, "goblin": 0.35, "wolf": 0.5, "bear": 0.9, "bruiser": 0.55, "battlemage": 0.4, "cow": 0.8}
+RADIUS = {"rowan": 0.4, "goblin": 0.35, "wolf": 0.5, "bear": 0.9, "bruiser": 0.55, "battlemage": 0.4, "cow": 0.8, "villager_m": 0.35, "villager_f": 0.33, "farmer": 0.38}
 
 
 # ---------------------------------------------------------------------------- #
@@ -239,6 +239,8 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
     if animated or (rig is not None and rig.exists() and "static" not in spec):
         skel = load_skeleton(rig)
         body = load_mesh(rig)
+        if "skirt" in spec:
+            soften_skirt(body, skel, spec["skirt"])
         clips, info = {}, {}
         for name, c in spec["clips"].items():
             f = MODELS / c["file"]
@@ -306,6 +308,55 @@ def hand_center(skel: Skeleton, body: MeshData, joint: int, bind: np.ndarray) ->
     return (lo + hi) / 2                     # box center: fingers and thumb pull a mean around
 
 
+def soften_skirt(body: MeshData, skel: Skeleton, cfg: dict) -> None:
+    """Long skirts and robes: move most of the thigh/shin weight onto the hips, so the cloth
+    hangs and sways instead of splitting with each stride. Feet keep their own weights."""
+    legs = [skel.joint_index(n) for n in ("LeftUpLeg", "RightUpLeg", "LeftLeg", "RightLeg", "LeftFoot",
+                                          "RightFoot", "LeftToeBase", "RightToeBase") if n in skel.names]
+    hips = skel.joint_index(cfg.get("to", "Hips"))
+    amount = float(cfg.get("amount", 0.75))
+    m2w = skel.bind_world()[0] @ skel.ibm[0]
+    y = body.pos @ m2w[:3, 1] + m2w[1, 3]
+    above = y > float(cfg.get("min_height_m", 0.2)) * (y.max() - y.min()) / 1.7 + y.min()
+    # only cloth: vertices well away from the leg bones (the legs inside the skirt stay as they are)
+    bw = skel.bind_world()
+    pw = body.pos @ m2w[:3, :3].T + m2w[:3, 3]
+    near_leg = np.full(len(pw), np.inf)
+    for side in ("Left", "Right"):
+        pts = [bw[skel.joint_index(f"{side}{n}")][:3, 3] for n in ("UpLeg", "Leg", "Foot")]
+        for p0, p1 in zip(pts[:-1], pts[1:]):
+            d = p1 - p0
+            t = np.clip(((pw - p0) @ d) / max(float(d @ d), 1e-9), 0.0, 1.0)
+            near_leg = np.minimum(near_leg, np.linalg.norm(pw - (p0 + t[:, None] * d), axis=1))
+    cloth = near_leg > float(cfg.get("cloth_from_m", 0.11)) * (y.max() - y.min()) / 1.7
+    j, w = body.joints.copy(), body.weights.copy()
+    moved = np.zeros(len(w), np.float32)
+    for k in range(4):
+        on_leg = np.isin(j[:, k], legs) & above & cloth
+        take = w[:, k] * amount * on_leg
+        w[:, k] -= take
+        moved += take
+    # put the moved weight on the hips: reuse a hips slot if there is one, else the smallest slot
+    has_hips = j == hips
+    slot = np.where(has_hips.any(axis=1), has_hips.argmax(axis=1), w.argmin(axis=1))
+    rows = np.arange(len(w))
+    give = moved > 0
+    j[rows[give], slot[give]] = hips
+    w[rows[give], slot[give]] += moved[give]
+    body.joints, body.weights = j, w / np.maximum(w.sum(axis=1, keepdims=True), 1e-8)
+
+    # webbing: Meshy sometimes joins the legs with mesh bound to both of them at once (under a long
+    # skirt, near the ankles); it tears apart whenever the legs part, so drop those triangles
+    def side_weight(side):
+        ids = [skel.joint_index(f"{side}{n}") for n in ("UpLeg", "Leg", "Foot", "ToeBase") if f"{side}{n}" in skel.names]
+        return (body.weights * np.isin(body.joints, ids)).sum(axis=1)
+    both = (side_weight("Left") >= 0.2) & (side_weight("Right") >= 0.2)
+    low = y < y.min() + float(cfg.get("web_below", 0.5)) * (y.max() - y.min())
+    tri = body.idx.reshape(-1, 3)
+    web = (both & low)[tri].any(axis=1)
+    body.idx = np.ascontiguousarray(tri[~web].ravel())
+
+
 def place_item(skel: Skeleton, bind: np.ndarray, slot: str, item: Item, body: MeshData | None = None,
                spec: dict | None = None) -> Attachment:
     def pos(name):
@@ -356,6 +407,8 @@ class Character:
     brain: Enemy | None = None
     phase: float = 0.0            # static meshes: gait phase for the bob
     grip2: float = 0.0            # two-handed weapons: how much the second hand is on the haft (0..1)
+    size: float = 1.0             # per-character height/build variation
+    tint: tuple[float, float, float] = (1.0, 1.0, 1.0)   # per-character colour variation
 
 
 class CharacterSystem:
@@ -408,9 +461,55 @@ class CharacterSystem:
             for i in range(g["count"]):
                 ang, rad = rng.uniform(0, math.tau), g.get("radius", 0) * math.sqrt(rng.random())
                 x, z = cx + rad * math.cos(ang), cz + rad * math.sin(ang)
+                if t.ai is not None and t.ai.on_paths:          # path walkers start on a path
+                    x, z = self.nearest_path(x, z)
                 a = self._actor(g["kind"], x, z, rng.uniform(0, math.tau))
                 brain = Enemy(a, (x, z), t.ai or AiParams(), seed=gi * 100 + i)
-                self.chars.append(Character(t, a, brain))
+                ch = Character(t, a, brain)
+                vary = g.get("vary", {})
+                if vary:                                     # no two villagers quite alike
+                    lo, hi = vary.get("height", (1.0, 1.0))
+                    ch.size = rng.uniform(lo, hi)
+                    k = float(vary.get("tint", 0.0))
+                    base = rng.uniform(1 - k, 1 + k)
+                    ch.tint = tuple(base * rng.uniform(1 - k / 2, 1 + k / 2) for _ in range(3))
+                    plo, phi = vary.get("pace", (1.0, 1.0))
+                    pace = rng.uniform(plo, phi)
+                    a.speeds = {s: v * pace for s, v in a.speeds.items()}
+                if brain.ai.on_paths:
+                    brain.goal_ok = self.path_walk_ok
+                self.chars.append(ch)
+
+    def nearest_path(self, x: float, z: float, max_m: float = 40.0) -> tuple[float, float]:
+        """The closest point on a path (middle of it), searching outward up to max_m."""
+        w = self.world
+        for r in np.arange(0.0, max_m, 1.5):
+            for k in range(max(1, int(r * 2))):
+                t = k / max(1, int(r * 2)) * math.tau
+                px, pz = x + r * math.cos(t), z + r * math.sin(t)
+                c, rr = w._px(px, pz)
+                ci, ri = int(round(c)), int(round(rr))
+                if 0 <= ci < w.size and 0 <= ri < w.size and w.road[ri, ci] >= 170:
+                    return px, pz
+        return x, z
+
+    def path_walk_ok(self, x0: float, z0: float, x1: float, z1: float) -> bool:
+        """Is (x1, z1) on a path, and is the straight walk there along paths (or from off-path)?"""
+        w = self.world
+
+        def road(x, z):
+            c, r = w._px(x, z)
+            ci, ri = int(round(c)), int(round(r))
+            return int(w.road[ri, ci]) if 0 <= ci < w.size and 0 <= ri < w.size else 0
+        if road(x1, z1) < 120:
+            return False
+        start_on = road(x0, z0) >= 60
+        steps = max(8, int(math.hypot(x1 - x0, z1 - z0) / 1.5))    # a check every 1.5 m
+        for k in range(1, steps):
+            t = k / steps
+            if road(x0 + (x1 - x0) * t, z0 + (z1 - z0) * t) < (110 if start_on else 0):
+                return False
+        return True
 
     def counts(self) -> dict[str, int]:
         out: dict[str, int] = {}
@@ -537,8 +636,9 @@ class CharacterSystem:
             model = np.eye(4)
             model[:3, 3] = (x, y, z)
             model = model @ rot_y(h)
-            if t.scale != 1.0:
-                model = model @ np.diag([t.scale, t.scale, t.scale, 1.0])
+            sc = t.scale * c.size
+            if sc != 1.0:
+                model = model @ np.diag([sc, sc, sc, 1.0])
             if abs(t.lift) > 1e-4:
                 up = np.eye(4)
                 up[1, 3] = t.lift
@@ -554,6 +654,7 @@ class CharacterSystem:
             prog["u_joints"].write(np.ascontiguousarray(buf.transpose(0, 2, 1)).tobytes())
             set_uniform(prog, "u_model", glm.mat4(*model.T.ravel()))
             set_uniform(prog, "u_skinned", 1)
+            set_uniform(prog, "u_tint", glm.vec3(*c.tint))
             if t.armor is not None:
                 covered = [SLOTS.index(s) for s in t.armor_slots if s != "head" or self.helmet]
                 bare = [i for i in range(len(SLOTS)) if i not in covered]
@@ -570,6 +671,7 @@ class CharacterSystem:
         self.spells.render(eye, viewproj, env, alpha)
 
     def _draw_static(self, prog, c: Character, model: np.ndarray) -> None:
+        set_uniform(prog, "u_tint", glm.vec3(*c.tint))
         """Rigless animals: a bob while moving, a lunge when attacking, lying down when dead."""
         a, t = c.actor, c.t
         h = t.height
