@@ -34,7 +34,7 @@ WADE_DEPTH = 0.9           # meters, for a 1.75 m character (scaled by height)
 STATIC_CLIPS = {"idle": ClipInfo(1.0, True), "walk": ClipInfo(1.0, True), "run": ClipInfo(1.0, True),
                 "alert": ClipInfo(1.0, True), "attack1": ClipInfo(0.9, False), "attack2": ClipInfo(0.9, False),
                 "hit": ClipInfo(0.5, False), "death": ClipInfo(1.0, False)}
-RADIUS = {"rowan": 0.4, "goblin": 0.35, "wolf": 0.5, "bear": 0.9}
+RADIUS = {"rowan": 0.4, "goblin": 0.35, "wolf": 0.5, "bear": 0.9, "bruiser": 0.55, "battlemage": 0.4}
 
 
 # ---------------------------------------------------------------------------- #
@@ -148,6 +148,52 @@ class Attachment:
     item: Item
     joint: int
     offset: np.ndarray            # joint world (bind) -> item, 4x4
+    # two-handed weapons: where the other hand grips, in the item's frame (grip at the origin,
+    # +Y toward the head), and that hand's joints (upper arm, forearm, hand)
+    second_grip: np.ndarray | None = None
+    second_chain: tuple[int, int, int] | None = None
+
+
+def _rotation_between(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+    """3x3 rotation turning direction a onto direction b."""
+    a = a / np.linalg.norm(a)
+    b = b / np.linalg.norm(b)
+    v = np.cross(a, b)
+    c = float(np.dot(a, b))
+    if c < -0.9999:                                   # opposite: turn 180 degrees about any perpendicular
+        p = np.cross(a, [1.0, 0.0, 0.0])
+        if np.linalg.norm(p) < 1e-6:
+            p = np.cross(a, [0.0, 1.0, 0.0])
+        p /= np.linalg.norm(p)
+        return 2.0 * np.outer(p, p) - np.eye(3)
+    k = np.array([[0, -v[2], v[1]], [v[2], 0, -v[0]], [-v[1], v[0], 0]])
+    return np.eye(3) + k + k @ k / (1.0 + c)
+
+
+def two_bone_ik(W: np.ndarray, chain: tuple[int, int, int], target: np.ndarray) -> None:
+    """Bend an arm (upper arm, forearm, hand joint world matrices, in place) so the hand reaches
+    target, keeping the elbow bending the way the animation had it."""
+    i0, i1, i2 = chain
+    S, E, H = W[i0][:3, 3].copy(), W[i1][:3, 3].copy(), W[i2][:3, 3].copy()
+    a, b = np.linalg.norm(E - S), np.linalg.norm(H - E)
+    to_t = target - S
+    d = float(np.clip(np.linalg.norm(to_t), abs(a - b) + 1e-4, a + b - 1e-4))
+    dir_t = to_t / max(np.linalg.norm(to_t), 1e-6)
+    pole = (E - S) - dir_t * np.dot(E - S, dir_t)               # which way the elbow points now
+    if np.linalg.norm(pole) < 1e-5:
+        pole = np.cross(dir_t, [0.0, 1.0, 0.0])
+    pole /= np.linalg.norm(pole)
+    cos_s = (a * a + d * d - b * b) / (2 * a * d)                # law of cosines at the shoulder
+    sin_s = np.sqrt(max(0.0, 1.0 - cos_s * cos_s))
+    E2 = S + a * (dir_t * cos_s + pole * sin_s)
+    H2 = S + dir_t * d
+    R1 = _rotation_between(E - S, E2 - S)
+    W[i0][:3, :3] = R1 @ W[i0][:3, :3]
+    R2 = _rotation_between(R1 @ (H - E), H2 - E2)
+    W[i1][:3, :3] = R2 @ R1 @ W[i1][:3, :3]
+    W[i1][:3, 3] = E2
+    W[i2][:3, :3] = R2 @ R1 @ W[i2][:3, :3]
+    W[i2][:3, 3] = H2
 
 
 # ---------------------------------------------------------------------------- #
@@ -166,6 +212,7 @@ class CharType:
     height: float = 1.0           # in the world, after scale
     scale: float = 1.0            # rigs Meshy left at their own size (quadrupeds) -> height_m
     lift: float = 0.0             # raise the rig so its bind-pose feet sit on y = 0 (rig units)
+    spell: dict | None = None     # casters: projectile look (speed_m_s, radius_m, color)
 
 
 def _fit_cached(body: MeshData, skel: Skeleton, outfit_path: Path, rig_path: Path) -> MeshData:
@@ -229,7 +276,15 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
             if not (MODELS / ispec["model"]).exists():
                 continue
             _m, item = load_item(ctx, ispec)
-            t.attachments.append(place_item(skel, bind, slot, item, body, ispec))
+            att = place_item(skel, bind, slot, item, body, ispec)
+            if ispec.get("two_handed") and slot in ("right_hand", "left_hand"):
+                other = "Left" if slot == "right_hand" else "Right"
+                L = ispec["length_m"]
+                # the second hand sits this far from the main grip, toward the end of the handle
+                gap = (ispec.get("grip_from_end", 0.1) - ispec.get("second_grip_from_end", 0.08)) * L
+                att.second_grip = np.array([0.0, -gap, 0.0, 1.0])
+                att.second_chain = tuple(skel.joint_index(f"{other}{j}") for j in ("Arm", "ForeArm", "Hand"))
+            t.attachments.append(att)
         return t
     # not rigged yet: a static mesh moved by code
     m = normalized_static(load_mesh(MODELS / spec["static"], skinned=False), spec.get("height_m", 1.0))
@@ -264,10 +319,19 @@ def place_item(skel: Skeleton, bind: np.ndarray, slot: str, item: Item, body: Me
         grip = hand_center(skel, body, joint, bind) if body is not None else None
         if grip is None:
             grip = hand + arm * 0.075                   # palm center, a bit past the wrist
-        # blade forward (and a little up), square to the forearm like a fist grip
-        blade = np.array([0.0, 0.35, 1.0])
-        blade = blade - arm * np.dot(blade, arm)
-        world = look_basis(grip, blade, [0.0, 1.0, 0.0])
+        if spec.get("hold") == "along_arm":
+            # heavy two-handers: the haft runs along the forearm (head past the fingers), tipped a
+            # little forward so the handle clears the arm; overhead swings then bring the head down
+            fwd = np.array([0.0, 0.0, 1.0]) - arm * arm[2]
+            fwd /= np.linalg.norm(fwd)
+            t = np.radians(spec.get("tilt_deg", 18.0))
+            blade = arm * np.cos(t) + fwd * np.sin(t)
+            world = look_basis(grip, blade, fwd)
+        else:
+            # blade forward (and a little up), square to the forearm like a fist grip
+            blade = np.array([0.0, 0.35, 1.0])
+            blade = blade - arm * np.dot(blade, arm)
+            world = look_basis(grip, blade, [0.0, 1.0, 0.0])
     else:                                               # hip_left / hip_right: hang beside the thigh
         side = "Left" if slot == "hip_left" else "Right"
         leg = pos(f"{side}UpLeg")
@@ -291,6 +355,7 @@ class Character:
     actor: Actor
     brain: Enemy | None = None
     phase: float = 0.0            # static meshes: gait phase for the bob
+    grip2: float = 0.0            # two-handed weapons: how much the second hand is on the haft (0..1)
 
 
 class CharacterSystem:
@@ -303,9 +368,12 @@ class CharacterSystem:
         for key, spec in data["characters"].items():
             try:
                 self.types[key] = load_type(ctx, key, spec, data["items"], data.get("armor", {}))
+                self.types[key].spell = spec.get("spell")
             except (FileNotFoundError, KeyError, ValueError) as exc:
                 print(f"characters: can't load {key}: {exc}")
         self.helmet = True
+        from lycantrope.render.spells import Spells
+        self.spells = Spells(ctx, shaders, world)
         self.chars: list[Character] = []
         self.rowan: Rowan | None = None
         self.spawn(load_spawns())
@@ -356,6 +424,8 @@ class CharacterSystem:
         ra = self.rowan.a
         for c in self.chars:
             c.actor.save_prev()
+            want = 1.0 if c.actor.state == "attack" else 0.0      # both hands for the swing only
+            c.grip2 += (want - c.grip2) * min(1.0, dt * 7.0)
         self.rowan.update(inp, cam_yaw, dt)
         alive = ra.state != "dead"
         near = [c.actor for c in self.chars                    # only these can bump into each other
@@ -367,7 +437,15 @@ class CharacterSystem:
                     c.actor.timer -= dt                     # sleeping: just count down
                     continue
                 c.brain.update(ra, alive, dt)
+                if c.brain.should_release():                   # a caster lets its spell go
+                    a, sp = c.actor, c.t.spell or {}
+                    fwd = (math.sin(a.heading), math.cos(a.heading))
+                    start = (a.x + fwd[0] * 0.6, a.y + c.t.height * 0.72, a.z + fwd[1] * 0.6)
+                    target = (ra.x, ra.y + 1.2, ra.z)
+                    self.spells.cast(start, target, float(sp.get("speed_m_s", 16)), float(sp.get("radius_m", 0.28)),
+                                     sp.get("color", (1.0, 0.45, 0.12)))
         separate(near)
+        self.spells.update(dt)
         lim = self.world.half - 5
         for c in self.chars:
             a = c.actor
@@ -411,6 +489,14 @@ class CharacterSystem:
         if an.fade < 1.0 and an.prev in t.clips:
             f = an.fade * an.fade * (3 - 2 * an.fade)
             w = t.clips[an.prev].sample(an.prev_time) * (1 - f) + w * f
+        for at in t.attachments:                     # two-handed weapons: pull the other hand onto the haft
+            if at.second_chain is not None and c.grip2 > 0.01:
+                base = w.astype(float, copy=True)
+                ik = base.copy()
+                target = (base[at.joint] @ at.offset @ at.second_grip)[:3]
+                two_bone_ik(ik, at.second_chain, target)
+                k = c.grip2 * c.grip2 * (3 - 2 * c.grip2)
+                w = base + (ik - base) * k
         return w
 
     def _draw(self, prog, g: GpuMesh, slots_on: list[int] | None = None) -> None:
@@ -480,6 +566,7 @@ class CharacterSystem:
                 set_uniform(prog, "u_model", glm.mat4(*m.T.ravel()))
                 self._draw(prog, at.item.gpu)
         self.drawn = drawn
+        self.spells.render(eye, viewproj, env, alpha)
 
     def _draw_static(self, prog, c: Character, model: np.ndarray) -> None:
         """Rigless animals: a bob while moving, a lunge when attacking, lying down when dead."""

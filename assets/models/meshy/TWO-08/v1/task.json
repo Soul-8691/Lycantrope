@@ -1,0 +1,43 @@
+{
+  "id": "01a21117-aecd-7268-9765-92654a12c691",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "smart-topology",
+  "seed": 3019630368,
+  "prompt": "crude two-handed great maul, heavy iron-banded wooden hammer head on a long rough wooden haft, leather grip wraps, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795583096750,
+  "progress": 100,
+  "started_at": 1795583096763,
+  "finished_at": 1795583122375,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21117-aecd-7268-9765-92654a12c691/output/model.glb?Expires=4949164800&Signature=K3Nrvh1dXawmO1ctC5HxXEuhxooNtDhA9sMEdvzKQUeFJ3BHeExoKKlkLMC5IVcb-Sb3N5lNLxZkHHcYV1uO2Yqmi40CMsb0osqIbr0~-b5TtOpP7dgCJpagc1TCmbIy9WWZ-ic9BEAylQer2oghxs5CHF~4cDJyHin41ly-w16v1l5i0Xq8tiZzook0~e7QRLdDLgazek7KbKtyxVuQYH7kl2aCNezmUUfF7iHJzsFS9G-hBGY11T2C7eCOAXBqfTNfe1rY~TA8~fwuxwRA5Ibw-oUBF6kGumKELdncH81tbx9mxPh71rY7T0tlC-RezWrPJYcHqep4niTtuVBcBQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21117-aecd-7268-9765-92654a12c691/output/preview.png?Expires=4949164800&Signature=V6jbkfrSwoRd7KI~yQWu76ru5NHAYHZdRv-9J~TmHwWaVmEpukdQq2YEzc2A-OAn5bjgbAu9hqeABA77vWF6q7IMhK7Y9CkqvQwQrsvoso~1Wc9w5I0wVLx1hHKb6Dl9mAib77h31UV6PINV~bngoGalEqo3pSBSRxvoRupSbfXRGWdEBLYQaQn0oDmI7pglHkGngfeYi6u9Gm1US-~7mYzCSGFUGnuDAN1JM8OdNTPWSLCYSW1rRL2ighB0DKXsV38Ht5YVbIMwVbmXkQ4Hs5rbEKY4nYxUvSPptWc58DyII-zL9v~hPlzWxudnSwa00NcBUDxKKdtGyXt5z4sL0g__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 5,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "meshy-t2.5",
+    "mode": "preview",
+    "model_type": "smart-topology",
+    "prompt": "crude two-handed great maul, heavy iron-banded wooden hammer head on a long rough wooden haft, leather grip wraps, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750
+  },
+  "output": {
+    "seed": 3019630368,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21117-aecd-7268-9765-92654a12c691/output/model.glb?Expires=4949164800&Signature=K3Nrvh1dXawmO1ctC5HxXEuhxooNtDhA9sMEdvzKQUeFJ3BHeExoKKlkLMC5IVcb-Sb3N5lNLxZkHHcYV1uO2Yqmi40CMsb0osqIbr0~-b5TtOpP7dgCJpagc1TCmbIy9WWZ-ic9BEAylQer2oghxs5CHF~4cDJyHin41ly-w16v1l5i0Xq8tiZzook0~e7QRLdDLgazek7KbKtyxVuQYH7kl2aCNezmUUfF7iHJzsFS9G-hBGY11T2C7eCOAXBqfTNfe1rY~TA8~fwuxwRA5Ibw-oUBF6kGumKELdncH81tbx9mxPh71rY7T0tlC-RezWrPJYcHqep4niTtuVBcBQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21117-aecd-7268-9765-92654a12c691/output/preview.png?Expires=4949164800&Signature=V6jbkfrSwoRd7KI~yQWu76ru5NHAYHZdRv-9J~TmHwWaVmEpukdQq2YEzc2A-OAn5bjgbAu9hqeABA77vWF6q7IMhK7Y9CkqvQwQrsvoso~1Wc9w5I0wVLx1hHKb6Dl9mAib77h31UV6PINV~bngoGalEqo3pSBSRxvoRupSbfXRGWdEBLYQaQn0oDmI7pglHkGngfeYi6u9Gm1US-~7mYzCSGFUGnuDAN1JM8OdNTPWSLCYSW1rRL2ighB0DKXsV38Ht5YVbIMwVbmXkQ4Hs5rbEKY4nYxUvSPptWc58DyII-zL9v~hPlzWxudnSwa00NcBUDxKKdtGyXt5z4sL0g__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

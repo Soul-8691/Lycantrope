@@ -1,11 +1,11 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-24T23:12:56",
+  "updated": "2026-11-25T00:04:09",
   "counts": {
     "awaiting": 31,
-    "approved": 434,
+    "approved": 435,
     "denied": 94,
-    "total": 559
+    "total": 560
   },
   "ui": {
     "selected": [],
@@ -5914,6 +5914,17 @@
       "file": "WEAPONS.md",
       "in_ideas_md": true
     },
+    "TWO-08": {
+      "status": "approved",
+      "note": "Added and approved 2026-11-25 at the user's request: weapon for the Bandit Bruiser.",
+      "changed": "2026-11-25T00:04:09",
+      "title": "Bandit's Great Maul",
+      "category": "Weapons · Two-handed Weapons (TWO)",
+      "section": "",
+      "starred": false,
+      "file": "WEAPONS.md",
+      "in_ideas_md": true
+    },
     "SHD-01": {
       "status": "denied",
       "note": "",
@@ -6439,12 +6450,6 @@
     }
   },
   "history": [
-    {
-      "time": "2026-11-23T22:42:08",
-      "id": "CMB-18",
-      "from": "awaiting",
-      "to": "approved"
-    },
     {
       "time": "2026-11-23T22:42:10",
       "id": "CMB-19",
@@ -9437,6 +9442,12 @@
       "time": "2026-11-24T23:12:56",
       "id": "ART-10",
       "from": "denied",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T00:04:09",
+      "id": "TWO-08",
+      "from": "awaiting",
       "to": "approved"
     }
   ]

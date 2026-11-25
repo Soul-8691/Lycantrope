@@ -1,0 +1,43 @@
+{
+  "id": "01a21117-ba46-769f-9251-0cde85beffdb",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "smart-topology",
+  "seed": 2185980591,
+  "prompt": "heavy iron flanged mace, six flanges, leather-wrapped handle, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795583099686,
+  "progress": 100,
+  "started_at": 1795583099695,
+  "finished_at": 1795583112350,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21117-ba46-769f-9251-0cde85beffdb/output/model.glb?Expires=4949164800&Signature=NfKLHviTqOWrZQzkM9jxQ54sM0V6BfOISbDlvc0oFp1SC46RypY-H9Us3BxxVqYYKa6-h1OhGlOTP-Ntz3k1lgOUrOLUkL-rCNTScfapkBI2NdXVcgeGRRFVseMgLhLZU76hWhD2RA~-99dRN1SSQq2aQfNQaMUIyLIhUNq3Nc2A5PYGPrEzn1fLyIRBBhV6vgYqvJS4YQZSd9X9J-anoCzGvuZmTOPAaohkITOSwiYpxdI11~IaaRsYYss4bEouYWN68acscXqwPllC05LhtwpFSHPGUE2~s6kgsgUWilOtFAgngZBYENrscmaFn1jJaOpbqIiLS2MsIw78-2a3pg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21117-ba46-769f-9251-0cde85beffdb/output/preview.png?Expires=4949164800&Signature=iwXA5dJ1s1FIEp91pkaqqZUb6YbNsWIUaNnImZOx02iYxxAed8cAAwgB~s3kdq6p0lb5FRMsltKZMUg2mtR3fNdXaDaE7Yd8G5n6BtwbPwa9dRQcQuZLy03EMZlmPEokcp9qUBScaOLJS455ej6BBQXy2ddEYWnjUGaz6YqA4LIJZPwGr8KwS-COWAGmm1thfDXWOl5VNFljgRvrFpfY94TJiQ-Ufwy3b-eCt8WCF7tJapuxMg3Y97GVox-aAcjvmm7R90BnzceudmyKVMuG3bhLnzqmwksblxhaSKzG4h0Vey9jcMIE0WuPTeKBQ7adoooMRbvUFv6aM6ZVl74SVg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 5,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "meshy-t2.5",
+    "mode": "preview",
+    "model_type": "smart-topology",
+    "prompt": "heavy iron flanged mace, six flanges, leather-wrapped handle, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750
+  },
+  "output": {
+    "seed": 2185980591,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21117-ba46-769f-9251-0cde85beffdb/output/model.glb?Expires=4949164800&Signature=NfKLHviTqOWrZQzkM9jxQ54sM0V6BfOISbDlvc0oFp1SC46RypY-H9Us3BxxVqYYKa6-h1OhGlOTP-Ntz3k1lgOUrOLUkL-rCNTScfapkBI2NdXVcgeGRRFVseMgLhLZU76hWhD2RA~-99dRN1SSQq2aQfNQaMUIyLIhUNq3Nc2A5PYGPrEzn1fLyIRBBhV6vgYqvJS4YQZSd9X9J-anoCzGvuZmTOPAaohkITOSwiYpxdI11~IaaRsYYss4bEouYWN68acscXqwPllC05LhtwpFSHPGUE2~s6kgsgUWilOtFAgngZBYENrscmaFn1jJaOpbqIiLS2MsIw78-2a3pg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21117-ba46-769f-9251-0cde85beffdb/output/preview.png?Expires=4949164800&Signature=iwXA5dJ1s1FIEp91pkaqqZUb6YbNsWIUaNnImZOx02iYxxAed8cAAwgB~s3kdq6p0lb5FRMsltKZMUg2mtR3fNdXaDaE7Yd8G5n6BtwbPwa9dRQcQuZLy03EMZlmPEokcp9qUBScaOLJS455ej6BBQXy2ddEYWnjUGaz6YqA4LIJZPwGr8KwS-COWAGmm1thfDXWOl5VNFljgRvrFpfY94TJiQ-Ufwy3b-eCt8WCF7tJapuxMg3Y97GVox-aAcjvmm7R90BnzceudmyKVMuG3bhLnzqmwksblxhaSKzG4h0Vey9jcMIE0WuPTeKBQ7adoooMRbvUFv6aM6ZVl74SVg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

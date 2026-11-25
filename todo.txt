@@ -13,7 +13,4 @@ Collision
 Longer til idle
 Remove debug hotkey
 Great maul
-Bandit shield
-Bandit shield animation
-Shield usage
-Fireball spell
+Mace

@@ -7,44 +7,151 @@
     "'move_speed' on a looping clip is the ground speed (m/s) it was animated for; the game scales",
     "playback to the real speed so feet don't slide much.",
     "If 'rig' is missing (not rigged yet), 'static' is drawn instead, with simple code-driven motion.",
-    "equipment: slot -> item. right_hand/left_hand hold, hip_left hangs at the hip, armor is a set ID."
+    "equipment: slot -> item. right_hand/left_hand hold, hip_left hangs at the hip, armor is a set ID.",
+    "Items: 'hold': 'along_arm' points a heavy weapon along the forearm (head past the fingers), tilted forward by 'tilt_deg'; otherwise weapons point forward from the fist.",
+    "Items: 'two_handed': true pulls the other hand onto the haft (second_grip_from_end) with arm IK."
   ],
   "characters": {
     "rowan": {
       "name": "Rowan Fenhallow",
       "rig": "HER-09/v1/rig/rigged.glb",
       "clips": {
-        "idle":   {"file": "HER-09/v1/rig/animations_1.glb", "clip": "Idle", "loop": true},
-        "walk":   {"file": "HER-09/v1/rig/walking.glb", "clip": 0, "loop": true, "move_speed": 1.4},
-        "run":    {"file": "HER-09/v1/rig/running.glb", "clip": 0, "loop": true, "move_speed": 4.6},
-        "sprint": {"file": "HER-09/v1/rig/animations_1.glb", "clip": "Lean_Forward_Sprint", "loop": true, "move_speed": 7.0},
-        "light1": {"file": "HER-09/v1/rig/animations_1.glb", "clip": "Left_Slash", "speed": 1.7},
-        "light2": {"file": "HER-09/v1/rig/animations_1.glb", "clip": "Right_Hand_Sword_Slash", "speed": 1.25},
-        "light3": {"file": "HER-09/v1/rig/animations_1.glb", "clip": "Thrust_Slash", "speed": 1.6},
-        "heavy":  {"file": "HER-09/v1/rig/animations_1.glb", "clip": "Charged_Slash", "speed": 1.1},
-        "block":  {"file": "HER-09/v1/rig/motion_shield_guard.glb", "clip": 0, "loop": true},
-        "cast":   {"file": "HER-09/v1/rig/animations_1.glb", "clip": "mage_soell_cast", "speed": 1.2},
-        "hit":    {"file": "HER-09/v1/rig/animations_1.glb", "clip": "Hit_Reaction", "speed": 1.2},
-        "death":  {"file": "HER-09/v1/rig/animations_1.glb", "clip": "dying_backwards"}
+        "idle": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Idle",
+          "loop": true
+        },
+        "walk": {
+          "file": "HER-09/v1/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 1.4
+        },
+        "run": {
+          "file": "HER-09/v1/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 4.6
+        },
+        "sprint": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Lean_Forward_Sprint",
+          "loop": true,
+          "move_speed": 7.0
+        },
+        "light1": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Left_Slash",
+          "speed": 1.7
+        },
+        "light2": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Right_Hand_Sword_Slash",
+          "speed": 1.25
+        },
+        "light3": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Thrust_Slash",
+          "speed": 1.6
+        },
+        "heavy": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Charged_Slash",
+          "speed": 1.1
+        },
+        "block": {
+          "file": "HER-09/v1/rig/motion_shield_guard.glb",
+          "clip": 0,
+          "loop": true
+        },
+        "cast": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "mage_soell_cast",
+          "speed": 1.2
+        },
+        "hit": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Hit_Reaction",
+          "speed": 1.2
+        },
+        "death": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "dying_backwards"
+        }
       },
-      "speeds": {"walk": 1.6, "run": 5.0, "sprint": 7.5},
-      "equipment": {"right_hand": "ITM-01", "hip_left": "MAG-11", "armor": "TRS-05"}
+      "speeds": {
+        "walk": 1.6,
+        "run": 5.0,
+        "sprint": 7.5
+      },
+      "equipment": {
+        "right_hand": "ITM-01",
+        "hip_left": "MAG-11",
+        "armor": "TRS-05"
+      }
     },
     "goblin": {
       "name": "Goblin Cutthroat",
       "rig": "ENM-03/v1/rig/rigged.glb",
       "clips": {
-        "idle":    {"file": "ENM-03/v1/rig/animations_1.glb", "clip": 0, "loop": true},
-        "walk":    {"file": "ENM-03/v1/rig/walking.glb", "clip": 0, "loop": true, "move_speed": 0.9},
-        "run":     {"file": "ENM-03/v1/rig/running.glb", "clip": 0, "loop": true, "move_speed": 3.2},
-        "attack1": {"file": "HER-09/v1/rig/animations_1.glb", "clip": "Right_Hand_Sword_Slash", "speed": 1.6, "retarget": true},
-        "attack2": {"file": "HER-09/v1/rig/animations_1.glb", "clip": "Thrust_Slash", "speed": 2.0, "retarget": true},
-        "hit":     {"file": "HER-09/v1/rig/animations_1.glb", "clip": "Hit_Reaction", "speed": 1.3, "retarget": true},
-        "death":   {"file": "HER-09/v1/rig/animations_1.glb", "clip": "dying_backwards", "retarget": true}
+        "idle": {
+          "file": "ENM-03/v1/rig/animations_1.glb",
+          "clip": 0,
+          "loop": true
+        },
+        "walk": {
+          "file": "ENM-03/v1/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 0.9
+        },
+        "run": {
+          "file": "ENM-03/v1/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 3.2
+        },
+        "attack1": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Right_Hand_Sword_Slash",
+          "speed": 1.6,
+          "retarget": true
+        },
+        "attack2": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Thrust_Slash",
+          "speed": 2.0,
+          "retarget": true
+        },
+        "hit": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Hit_Reaction",
+          "speed": 1.3,
+          "retarget": true
+        },
+        "death": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "dying_backwards",
+          "retarget": true
+        }
       },
-      "speeds": {"walk": 1.1, "run": 4.6},
-      "ai": {"aggro_m": 18, "leash_m": 40, "reach_m": 1.5, "attack_every_s": [1.1, 2.0], "wander_m": 10},
-      "equipment": {"right_hand": "ONE-04"}
+      "speeds": {
+        "walk": 1.1,
+        "run": 4.6
+      },
+      "ai": {
+        "aggro_m": 18,
+        "leash_m": 40,
+        "reach_m": 1.5,
+        "attack_every_s": [
+          1.1,
+          2.0
+        ],
+        "wander_m": 10
+      },
+      "equipment": {
+        "right_hand": "ONE-04"
+      }
     },
     "wolf": {
       "name": "Grey Wolf",
@@ -52,17 +159,61 @@
       "static": "ENM-02/v1/textured/model.glb",
       "height_m": 1.0,
       "clips": {
-        "idle":    {"file": "ENM-02/v1/rig/animations_1.glb", "clip": 0, "loop": true},
-        "alert":   {"file": "ENM-02/v1/rig/animations_1.glb", "clip": 1, "loop": true},
-        "attack1": {"file": "ENM-02/v1/rig/animations_1.glb", "clip": 2, "speed": 1.2},
-        "attack2": {"file": "ENM-02/v1/rig/animations_1.glb", "clip": 3, "speed": 1.2},
-        "howl":    {"file": "ENM-02/v1/rig/animations_1.glb", "clip": 4},
-        "death":   {"file": "ENM-02/v1/rig/animations_1.glb", "clip": 5},
-        "walk":    {"file": "ENM-02/v1/rig/walking.glb", "clip": 0, "loop": true, "move_speed": 1.3},
-        "run":     {"file": "ENM-02/v1/rig/running.glb", "clip": 0, "loop": true, "move_speed": 6.0}
+        "idle": {
+          "file": "ENM-02/v1/rig/animations_1.glb",
+          "clip": 0,
+          "loop": true
+        },
+        "alert": {
+          "file": "ENM-02/v1/rig/animations_1.glb",
+          "clip": 1,
+          "loop": true
+        },
+        "attack1": {
+          "file": "ENM-02/v1/rig/animations_1.glb",
+          "clip": 2,
+          "speed": 1.2
+        },
+        "attack2": {
+          "file": "ENM-02/v1/rig/animations_1.glb",
+          "clip": 3,
+          "speed": 1.2
+        },
+        "howl": {
+          "file": "ENM-02/v1/rig/animations_1.glb",
+          "clip": 4
+        },
+        "death": {
+          "file": "ENM-02/v1/rig/animations_1.glb",
+          "clip": 5
+        },
+        "walk": {
+          "file": "ENM-02/v1/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 1.3
+        },
+        "run": {
+          "file": "ENM-02/v1/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 6.0
+        }
       },
-      "speeds": {"walk": 1.3, "run": 7.0},
-      "ai": {"aggro_m": 26, "leash_m": 55, "reach_m": 2.0, "attack_every_s": [0.9, 1.8], "wander_m": 14}
+      "speeds": {
+        "walk": 1.3,
+        "run": 7.0
+      },
+      "ai": {
+        "aggro_m": 26,
+        "leash_m": 55,
+        "reach_m": 2.0,
+        "attack_every_s": [
+          0.9,
+          1.8
+        ],
+        "wander_m": 14
+      }
     },
     "bear": {
       "name": "Brown Bear",
@@ -70,27 +221,293 @@
       "static": "MON-15/v1/textured/model.glb",
       "height_m": 1.35,
       "clips": {
-        "idle":    {"file": "MON-15/v2/rig/animations_1.glb", "clip": 0, "loop": true},
-        "alert":   {"file": "MON-15/v2/rig/animations_1.glb", "clip": 1, "loop": true},
-        "attack1": {"file": "MON-15/v2/rig/animations_1.glb", "clip": 2, "speed": 1.0},
-        "attack2": {"file": "MON-15/v2/rig/animations_1.glb", "clip": 3, "speed": 1.0},
-        "death":   {"file": "MON-15/v2/rig/animations_1.glb", "clip": 4},
-        "walk":    {"file": "MON-15/v2/rig/walking.glb", "clip": 0, "loop": true, "move_speed": 1.1},
-        "run":     {"file": "MON-15/v2/rig/running.glb", "clip": 0, "loop": true, "move_speed": 5.0}
+        "idle": {
+          "file": "MON-15/v2/rig/animations_1.glb",
+          "clip": 0,
+          "loop": true
+        },
+        "alert": {
+          "file": "MON-15/v2/rig/animations_1.glb",
+          "clip": 1,
+          "loop": true
+        },
+        "attack1": {
+          "file": "MON-15/v2/rig/animations_1.glb",
+          "clip": 2,
+          "speed": 1.0
+        },
+        "attack2": {
+          "file": "MON-15/v2/rig/animations_1.glb",
+          "clip": 3,
+          "speed": 1.0
+        },
+        "death": {
+          "file": "MON-15/v2/rig/animations_1.glb",
+          "clip": 4
+        },
+        "walk": {
+          "file": "MON-15/v2/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 1.1
+        },
+        "run": {
+          "file": "MON-15/v2/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 5.0
+        }
       },
-      "speeds": {"walk": 1.1, "run": 6.0},
-      "ai": {"aggro_m": 14, "leash_m": 35, "reach_m": 2.6, "attack_every_s": [1.6, 2.8], "wander_m": 12}
+      "speeds": {
+        "walk": 1.1,
+        "run": 6.0
+      },
+      "ai": {
+        "aggro_m": 14,
+        "leash_m": 35,
+        "reach_m": 2.6,
+        "attack_every_s": [
+          1.6,
+          2.8
+        ],
+        "wander_m": 12
+      }
+    },
+    "bruiser": {
+      "name": "Bandit Bruiser",
+      "rig": "MON-10/v1/rig/rigged.glb",
+      "clips": {
+        "idle": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Idle",
+          "loop": true,
+          "retarget": true
+        },
+        "walk": {
+          "file": "MON-10/v1/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 1.4
+        },
+        "run": {
+          "file": "MON-10/v1/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 4.4
+        },
+        "attack1": {
+          "file": "MON-10/v1/rig/animations_1.glb",
+          "clip": "Heavy_Hammer_Swing",
+          "speed": 1.15
+        },
+        "attack2": {
+          "file": "MON-10/v1/rig/animations_1.glb",
+          "clip": "Charged_Ground_Slam",
+          "speed": 1.35
+        },
+        "hit": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Hit_Reaction",
+          "speed": 1.1,
+          "retarget": true
+        },
+        "death": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "dying_backwards",
+          "retarget": true
+        }
+      },
+      "speeds": {
+        "walk": 1.2,
+        "run": 4.3
+      },
+      "ai": {
+        "aggro_m": 16,
+        "leash_m": 40,
+        "reach_m": 2.0,
+        "attack_every_s": [
+          1.8,
+          3.0
+        ],
+        "wander_m": 10
+      },
+      "equipment": {
+        "right_hand": "TWO-08"
+      }
+    },
+    "battlemage": {
+      "name": "Battlemage",
+      "rig": "MON-29/v1/rig/rigged.glb",
+      "clips": {
+        "idle": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Idle",
+          "loop": true,
+          "retarget": true
+        },
+        "walk": {
+          "file": "MON-29/v1/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 1.4
+        },
+        "run": {
+          "file": "MON-29/v1/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 4.6
+        },
+        "attack1": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Right_Hand_Sword_Slash",
+          "speed": 1.3,
+          "retarget": true
+        },
+        "hit": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Hit_Reaction",
+          "speed": 1.2,
+          "retarget": true
+        },
+        "death": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "dying_backwards",
+          "retarget": true
+        },
+        "cast": {
+          "file": "MON-29/v1/rig/animations_1.glb",
+          "clip": 0,
+          "speed": 1.2
+        }
+      },
+      "speeds": {
+        "walk": 1.4,
+        "run": 4.8
+      },
+      "ai": {
+        "aggro_m": 24,
+        "leash_m": 50,
+        "reach_m": 1.8,
+        "attack_every_s": [
+          1.4,
+          2.4
+        ],
+        "wander_m": 12,
+        "cast_range_m": 16,
+        "keep_away_m": 7,
+        "cast_every_s": [
+          2.2,
+          3.4
+        ],
+        "release_at": 0.5
+      },
+      "spell": {
+        "speed_m_s": 16,
+        "radius_m": 0.28,
+        "color": [
+          1.0,
+          0.45,
+          0.12
+        ]
+      },
+      "equipment": {
+        "right_hand": "ONE-07"
+      }
     }
   },
   "items": {
-    "ITM-01": {"name": "Dawnblade, Rusty", "model": "ITM-01/v1/model.glb", "length_m": 1.0, "tip": "-x", "grip_from_end": 0.09,
-               "color": [0.50, 0.42, 0.36], "end_color": [0.33, 0.22, 0.15], "end_fraction": 0.2},
-    "ONE-04": {"name": "Goblin Shiv", "model": "ONE-04/v1/model.glb", "length_m": 0.38, "tip": "-x", "grip_from_end": 0.16,
-               "color": [0.45, 0.38, 0.30], "end_color": [0.42, 0.34, 0.24], "end_fraction": 0.45},
-    "MAG-11": {"name": "Tome of Wards", "model": "MAG-11/v1/textured/model.glb", "height_m": 0.3}
+    "ITM-01": {
+      "name": "Dawnblade, Rusty",
+      "model": "ITM-01/v1/model.glb",
+      "length_m": 1.0,
+      "tip": "-x",
+      "grip_from_end": 0.09,
+      "color": [
+        0.5,
+        0.42,
+        0.36
+      ],
+      "end_color": [
+        0.33,
+        0.22,
+        0.15
+      ],
+      "end_fraction": 0.2
+    },
+    "ONE-04": {
+      "name": "Goblin Shiv",
+      "model": "ONE-04/v1/model.glb",
+      "length_m": 0.38,
+      "tip": "-x",
+      "grip_from_end": 0.16,
+      "color": [
+        0.45,
+        0.38,
+        0.3
+      ],
+      "end_color": [
+        0.42,
+        0.34,
+        0.24
+      ],
+      "end_fraction": 0.45
+    },
+    "MAG-11": {
+      "name": "Tome of Wards",
+      "model": "MAG-11/v1/textured/model.glb",
+      "height_m": 0.3
+    },
+    "TWO-08": {
+      "name": "Bandit's Great Maul",
+      "model": "TWO-08/v1/model.glb",
+      "length_m": 1.45,
+      "tip": "-x",
+      "grip_from_end": 0.4,
+      "color": [
+        0.34,
+        0.25,
+        0.17
+      ],
+      "end_color": [
+        0.2,
+        0.14,
+        0.1
+      ],
+      "end_fraction": 0.28,
+      "hold": "along_arm",
+      "tilt_deg": 18,
+      "two_handed": true,
+      "second_grip_from_end": 0.1
+    },
+    "ONE-07": {
+      "name": "Flanged Mace",
+      "model": "ONE-07/v1/model.glb",
+      "length_m": 0.75,
+      "tip": "+y",
+      "grip_from_end": 0.14,
+      "color": [
+        0.34,
+        0.34,
+        0.36
+      ],
+      "end_color": [
+        0.25,
+        0.17,
+        0.11
+      ],
+      "end_fraction": 0.4
+    }
   },
   "armor": {
-    "TRS-05": {"name": "Chainmail set 05", "model": "TRS-05/v1/textured/model.glb",
-               "slots": ["head", "arms", "torso", "legs"]}
+    "TRS-05": {
+      "name": "Chainmail set 05",
+      "model": "TRS-05/v1/textured/model.glb",
+      "slots": [
+        "head",
+        "arms",
+        "torso",
+        "legs"
+      ]
+    }
   }
 }

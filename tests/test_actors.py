@@ -145,3 +145,27 @@ def test_compose_matches_quaternion():
     m = compose(np.array([1.0, 2.0, 3.0]), q, np.array([2.0, 2.0, 2.0]))
     assert np.allclose(m[:3, :3] @ [0, 0, 1], [2, 0, 0], atol=1e-9)          # +z turns to +x, scaled
     assert np.allclose(m[:3, 3], [1, 2, 3])
+
+
+def test_caster_keeps_range_casts_and_uses_blade_up_close():
+    clips = dict(CLIPS, cast=ClipInfo(1.5, False), attack1=ClipInfo(0.9, False))
+    rowan = Actor("rowan", 0.0, 0.0, 0.0, clips, dict(SPEEDS))
+    mage = Actor("battlemage", 20.0, 0.0, 0.0, clips, {"walk": 1.4, "run": 4.8})
+    ai = AiParams(aggro_m=24, leash_m=60, reach_m=1.8, cast_range_m=16, keep_away_m=7,
+                  cast_every_s=(0.5, 0.6), attack_every_s=(0.5, 0.6), release_at=0.5)
+    e = Enemy(mage, (20.0, 0.0), ai, seed=3)
+    releases, states = 0, set()
+    for _ in range(600):
+        e.update(rowan, True, 1 / 60)
+        mage.anim.update(1 / 60)
+        releases += e.should_release()
+        states.add(mage.state)
+    assert "cast" in states and releases >= 2
+    assert 6.0 < math.hypot(mage.x, mage.z) <= 16.5          # stayed at casting range
+    assert "attack" not in states                            # never needed the blade at range
+    mage.x, mage.z = 1.5, 0.0                                # Rowan steps right up to it
+    for _ in range(200):
+        e.update(rowan, True, 1 / 60)
+        mage.anim.update(1 / 60)
+        states.add(mage.state)
+    assert "attack" in states

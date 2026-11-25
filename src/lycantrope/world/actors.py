@@ -214,10 +214,16 @@ class AiParams:
     reach_m: float = 1.5
     attack_every_s: tuple[float, float] = (1.2, 2.0)
     wander_m: float = 10.0
+    # casters: hold this distance and cast ("cast" clip), melee only when Rowan is in reach
+    cast_range_m: float = 0.0          # 0 = no ranged attack
+    keep_away_m: float = 7.0           # back off a little if Rowan is closer than this (but not in reach)
+    cast_every_s: tuple[float, float] = (2.2, 3.4)
+    release_at: float = 0.55           # fraction of the cast clip where the spell leaves the hand
 
 
 class Enemy:
-    """Wander near home; chase Rowan when he comes close; swing at him; give up past the leash."""
+    """Wander near home; chase Rowan when he comes close; swing at him; give up past the leash.
+    Casters (cast_range_m > 0) stop at range and throw spells, and only use melee up close."""
 
     def __init__(self, actor: Actor, home: tuple[float, float], ai: AiParams, seed: int) -> None:
         self.a = actor
@@ -226,9 +232,19 @@ class Enemy:
         self.rng = random.Random(seed)
         self.goal: tuple[float, float] | None = None
         self.cooldown = self.rng.uniform(*ai.attack_every_s)
+        self.cast_cooldown = self.rng.uniform(0.5, 1.5)
+        self.fired = True
         self.circle = self.rng.choice((-1.0, 1.0))
         self.a.state = "wander"
         self.a.timer = self.rng.uniform(0.5, 4.0)
+
+    def should_release(self) -> bool:
+        """True once per cast, when the spell leaves the hand (the renderer spawns the projectile)."""
+        a = self.a
+        if a.state == "cast" and not self.fired and a.progress() >= self.ai.release_at:
+            self.fired = True
+            return True
+        return False
 
     def _move_to(self, gx: float, gz: float, speed: float, dt: float, turn: float) -> float:
         a = self.a
@@ -248,11 +264,12 @@ class Enemy:
         to_r = math.hypot(rowan.x - a.x, rowan.z - a.z)
         from_home = math.hypot(a.x - self.home[0], a.z - self.home[1])
         self.cooldown -= dt
+        self.cast_cooldown -= dt
         sp = a.speeds
 
         if a.state in ("wander", "idle") and rowan_alive and to_r < ai.aggro_m:
             a.state = "chase"
-        if a.state in ("chase", "engage", "attack") and (not rowan_alive or from_home > ai.leash_m
+        if a.state in ("chase", "engage", "attack", "cast") and (not rowan_alive or from_home > ai.leash_m
                                                           or to_r > ai.aggro_m * 2.0):
             a.state, self.goal = "return", None
 
@@ -270,7 +287,7 @@ class Enemy:
                     a.timer = self.rng.uniform(2.0, 6.0)
             a.locomotion()
         elif a.state == "chase":
-            if to_r <= ai.reach_m:
+            if to_r <= ai.reach_m or (ai.cast_range_m and to_r <= ai.cast_range_m * 0.85):
                 a.state = "engage"
             else:
                 self._move_to(rowan.x, rowan.z, sp["run"], dt, turn)
@@ -279,13 +296,24 @@ class Enemy:
             # face Rowan; wolves circle him; swing when the cooldown is up
             dx, dz = rowan.x - a.x, rowan.z - a.z
             a.heading = turn_towards(a.heading, heading_to(dx, dz), turn * dt)
-            if to_r > ai.reach_m * 1.6:
+            caster = ai.cast_range_m > 0
+            if to_r > (ai.cast_range_m if caster else ai.reach_m * 1.6):
                 a.state = "chase"
             elif self.cooldown <= 0 and to_r <= ai.reach_m * 1.15:
-                a.state = "attack"
+                a.state = "attack"                      # in reach: melee (casters use their blade)
                 a.speed = 0.0
-                a.play(self.rng.choice([c for c in ("attack1", "attack2") if a.has(c)] or ["attack1"]),
-                       restart=True)
+                melee = ["attack1"] if caster else [c for c in ("attack1", "attack2") if a.has(c)]
+                a.play(self.rng.choice(melee or ["attack1"]), restart=True)
+            elif caster and self.cast_cooldown <= 0 and to_r > ai.reach_m * 1.6:
+                a.state = "cast"                        # at range: throw a spell
+                a.speed = 0.0
+                self.fired = False
+                a.play("cast", restart=True)
+            elif caster and to_r < ai.keep_away_m and to_r > ai.reach_m * 1.6:
+                # too close for comfort: step back while facing Rowan
+                self._move_to(a.x - dx, a.z - dz, sp["walk"], dt, 0.0)
+                a.heading = turn_towards(a.heading, heading_to(dx, dz), turn * dt)
+                a.locomotion()
             elif a.kind == "wolf":
                 # strafe sideways around Rowan at reach distance
                 tx = rowan.x - dx / max(to_r, 1e-3) * ai.reach_m * 1.3 + (-dz / max(to_r, 1e-3)) * self.circle * 2.0
@@ -296,6 +324,13 @@ class Enemy:
             else:
                 a.speed = max(0.0, a.speed - 8 * dt)
                 a.play("alert" if a.has("alert") else "idle")
+        elif a.state == "cast":
+            a.speed = 0.0
+            dx, dz = rowan.x - a.x, rowan.z - a.z
+            a.heading = turn_towards(a.heading, heading_to(dx, dz), turn * dt)
+            if a.clip_done() or (not a.has("cast") and a.anim.time > 1.2):
+                a.state = "engage"
+                self.cast_cooldown = self.rng.uniform(*ai.cast_every_s)
         elif a.state == "attack":
             a.speed = 0.0
             if a.clip_done() or (not a.has(a.anim.clip) and a.anim.time > 0.9):

@@ -39,6 +39,13 @@
     {"name": "bear, south-west (Brackenvale)", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [-698, -31], "radius": 0},
     {"name": "bear, north-east (The Blackmire)", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [622, 95], "radius": 0},
     {"name": "bear, north-east (The Blackmire)", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [938, 330], "radius": 0},
-    {"name": "bear, north-west (Brackenvale)", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [-29, 463], "radius": 0}
+    {"name": "bear, north-west (Brackenvale)", "kind": "bear", "count": 1, "anchor": "Brackenvale Village", "at": [-29, 463], "radius": 0},
+    {"name": "bandit bruiser, north-east (by the road)", "kind": "bruiser", "count": 2, "anchor": "Brackenvale Village", "at": [36, 652], "radius": 5},
+    {"name": "bandit bruiser, north-east (by the road)", "kind": "bruiser", "count": 1, "anchor": "Brackenvale Village", "at": [8, 257], "radius": 5},
+    {"name": "bandit bruiser, north-east (by the road)", "kind": "bruiser", "count": 2, "anchor": "Brackenvale Village", "at": [129, 285], "radius": 5},
+    {"name": "bandit bruiser, north-west (by the road)", "kind": "bruiser", "count": 2, "anchor": "Brackenvale Village", "at": [-255, 521], "radius": 5},
+    {"name": "battlemage patrol, north-east (by the road)", "kind": "battlemage", "count": 2, "anchor": "Brackenvale Village", "at": [238, 337], "radius": 6},
+    {"name": "battlemage patrol, north-east (by the road)", "kind": "battlemage", "count": 2, "anchor": "Brackenvale Village", "at": [552, 354], "radius": 6},
+    {"name": "battlemage patrol, north-east (by the road)", "kind": "battlemage", "count": 2, "anchor": "Brackenvale Village", "at": [354, 357], "radius": 6}
   ]
 }

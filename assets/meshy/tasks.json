@@ -327,6 +327,22 @@
       "prompt": "battlemage soldier, padded gambeson under a steel breastplate and pauldrons, long split robe skirt with faint arcane embroidery, leather gloves, belt with scroll cases, short dark hair, stern focused face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795582200.8182807,
       "credits": 20
+    },
+    "TWO-08/v1": {
+      "task_id": "01a21117-aecd-7268-9765-92654a12c691",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "crude two-handed great maul, heavy iron-banded wooden hammer head on a long rough wooden haft, leather grip wraps, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795583096.8901792,
+      "credits": 5
+    },
+    "ONE-07/v1": {
+      "task_id": "01a21117-ba46-769f-9251-0cde85beffdb",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "heavy iron flanged mace, six flanges, leather-wrapped handle, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795583099.8208036,
+      "credits": 5
     }
   },
   "replaced": [
