@@ -18,7 +18,6 @@ Weapon stats
 Magic stats
 Health and damage
 Fall damage
-NPCs
 Dialogue
 Choices
 Magic casting
@@ -27,3 +26,4 @@ Caves
 
 Later:
 Guards
+NPCs
