@@ -311,6 +311,22 @@
       "prompt": "cluster of small and medium grey rocks, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795580357.4547057,
       "credits": 5
+    },
+    "MON-10/v1": {
+      "task_id": "01a21109-f8dc-7370-b8a3-26e9cef7538f",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "burly bandit bruiser, huge muscular man, shaved head and scruffy beard, scarred face, patched leather and fur vest over a bare chest, heavy leather bracers, wide belt with pouches, rough trousers and heavy boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795582197.7497637,
+      "credits": 20
+    },
+    "MON-29/v1": {
+      "task_id": "01a2110a-0128-7694-a810-756e91c16dc6",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "battlemage soldier, padded gambeson under a steel breastplate and pauldrons, long split robe skirt with faint arcane embroidery, leather gloves, belt with scroll cases, short dark hair, stern focused face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795582200.8182807,
+      "credits": 20
     }
   },
   "replaced": [
@@ -405,6 +421,18 @@
       "status": "SUCCEEDED",
       "created": 1795581741.3286352,
       "credits": 10
+    },
+    "MON-10/v1": {
+      "task_id": "01a2110b-d129-74d6-9706-8f65ea3b4a1d",
+      "status": "SUCCEEDED",
+      "created": 1795582316.985954,
+      "credits": 10
+    },
+    "MON-29/v1": {
+      "task_id": "01a2110d-767a-7598-a7ee-adf4520622d3",
+      "status": "SUCCEEDED",
+      "created": 1795582424.8251574,
+      "credits": 10
     }
   },
   "rigs": {
@@ -436,6 +464,18 @@
       "task_id": "01a20fce-3c3a-762e-a56b-e9f46ed41a48",
       "status": "SUCCEEDED",
       "created": 1795561504.3228886,
+      "credits": 5
+    },
+    "MON-10/v1": {
+      "task_id": "01a2110c-56c7-7306-8b5a-52ad1235694f",
+      "status": "SUCCEEDED",
+      "created": 1795582353.9802246,
+      "credits": 5
+    },
+    "MON-29/v1": {
+      "task_id": "01a2110e-233a-70d1-a786-e35ce9262126",
+      "status": "SUCCEEDED",
+      "created": 1795582472.1972125,
       "credits": 5
     }
   },
@@ -500,6 +540,25 @@
       ],
       "created": 1795561535.727503,
       "credits": 15
+    },
+    "MON-10/v1": {
+      "task_id": "01a2110c-cfb9-7496-abda-408dcf1c5886",
+      "status": "SUCCEEDED",
+      "actions": [
+        128,
+        127
+      ],
+      "created": 1795582382.3260624,
+      "credits": 6
+    },
+    "MON-29/v1": {
+      "task_id": "01a2110e-6f84-705d-bea9-e26fc1250d3b",
+      "status": "SUCCEEDED",
+      "actions": [
+        125
+      ],
+      "created": 1795582488.6801984,
+      "credits": 3
     }
   },
   "motions": {

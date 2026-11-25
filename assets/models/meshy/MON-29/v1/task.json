@@ -1,0 +1,45 @@
+{
+  "id": "01a2110a-0128-7694-a810-756e91c16dc6",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 477415776,
+  "prompt": "battlemage soldier, padded gambeson under a steel breastplate and pauldrons, long split robe skirt with faint arcane embroidery, leather gloves, belt with scroll cases, short dark hair, stern focused face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795582200699,
+  "progress": 100,
+  "started_at": 1795582200708,
+  "finished_at": 1795582244148,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2110a-0128-7694-a810-756e91c16dc6/output/model.glb?Expires=4949164800&Signature=QJ17TMM7fVXqOQb7pzpQ5FVUD-t5wEE-1DkWtWrXoKobiTmg3D~4Jt34XriYspM-qtI4CbjU0PFcvJyOWtED9fWeq5mjudZP3~VYfYzDoIHPd2Jl1zNLXTO~XmEAcwzPEE2Di9ade7VhFd9F1a5t2odC1V7Gohe1ZlajAT2-2mdtXLEUvWuF7GOq9EIsVIb0S3XqZpH8cFRX7Imhf7ih83N4lwPPLdTSe9weGHuQMWU3Q9w6YsoW~-XubEpD0Tsczqo00QoWNJDlZP9YSUT~EGEOVwKj14a3qlWyeM-kltozWuDzqo2CdIIoWMxn8jq8Ub9g4vK6ZHpDf~3u1CSvYw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2110a-0128-7694-a810-756e91c16dc6/output/preview.png?Expires=4949164800&Signature=fq00Yd~05yUeqp-nLy17RikrLIGCTlQZlVFNHhlImWln8CeAwF-PfQoKfLInXb2DJ6A4kWaM5haYNT0fysqOjDQpNKiTrAdEWChO6-YowDvc5mSF4GtOCwlpBPasw4AAH8vZxM6tjW6tS2hSdgTfnm9owKv7nR6666rKZGBaVL~o73urM24XUoaqgU~mcbXFjZtxlW22JS1jcdfaiV~hApARM~y6cBOO2JHC101-0WsTyMFYh1OB9~kWDK8iaOBsvzu9FA9axT2R5SQmx4aBekEQ2tJjq86jnTQJ30L-OWqF-izjGuU1Ytxk-UxwYQpy48wU9jJR8HGkYv7gO8dkgg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "battlemage soldier, padded gambeson under a steel breastplate and pauldrons, long split robe skirt with faint arcane embroidery, leather gloves, belt with scroll cases, short dark hair, stern focused face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 477415776,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2110a-0128-7694-a810-756e91c16dc6/output/model.glb?Expires=4949164800&Signature=QJ17TMM7fVXqOQb7pzpQ5FVUD-t5wEE-1DkWtWrXoKobiTmg3D~4Jt34XriYspM-qtI4CbjU0PFcvJyOWtED9fWeq5mjudZP3~VYfYzDoIHPd2Jl1zNLXTO~XmEAcwzPEE2Di9ade7VhFd9F1a5t2odC1V7Gohe1ZlajAT2-2mdtXLEUvWuF7GOq9EIsVIb0S3XqZpH8cFRX7Imhf7ih83N4lwPPLdTSe9weGHuQMWU3Q9w6YsoW~-XubEpD0Tsczqo00QoWNJDlZP9YSUT~EGEOVwKj14a3qlWyeM-kltozWuDzqo2CdIIoWMxn8jq8Ub9g4vK6ZHpDf~3u1CSvYw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2110a-0128-7694-a810-756e91c16dc6/output/preview.png?Expires=4949164800&Signature=fq00Yd~05yUeqp-nLy17RikrLIGCTlQZlVFNHhlImWln8CeAwF-PfQoKfLInXb2DJ6A4kWaM5haYNT0fysqOjDQpNKiTrAdEWChO6-YowDvc5mSF4GtOCwlpBPasw4AAH8vZxM6tjW6tS2hSdgTfnm9owKv7nR6666rKZGBaVL~o73urM24XUoaqgU~mcbXFjZtxlW22JS1jcdfaiV~hApARM~y6cBOO2JHC101-0WsTyMFYh1OB9~kWDK8iaOBsvzu9FA9axT2R5SQmx4aBekEQ2tJjq86jnTQJ30L-OWqF-izjGuU1Ytxk-UxwYQpy48wU9jJR8HGkYv7gO8dkgg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

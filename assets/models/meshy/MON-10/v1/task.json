@@ -1,0 +1,45 @@
+{
+  "id": "01a21109-f8dc-7370-b8a3-26e9cef7538f",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 3241193232,
+  "prompt": "burly bandit bruiser, huge muscular man, shaved head and scruffy beard, scarred face, patched leather and fur vest over a bare chest, heavy leather bracers, wide belt with pouches, rough trousers and heavy boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795582197615,
+  "progress": 100,
+  "started_at": 1795582197627,
+  "finished_at": 1795582260541,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21109-f8dc-7370-b8a3-26e9cef7538f/output/model.glb?Expires=4949164800&Signature=qm88TPMC3TMPXod2FdNRIX6epZHB4~GEC7L2UaLapde8N-tceUwhUwplTB60nN0e~qCxBmrqJlewx-vXMY7I1UO7Ms4aClfus1eElCLHZwtcgzAmOoazIsLWrMJx6aynB~UnmngWII36RldasgXpGe8Fn5fbgtHujn4nRdiMAsmkR9bGlQAh1YQAvHwzFt~VG4H4ikNeXxvijZamev1vhvu2FK5wlaISdKYfAWVVVpPZH9cgOxDCFMEw6e1yScdDVxrPgaWs6DMI9WIANkSiWBfPXLVBduNJ-0f56Ax3SFsRnZAm6XrZOfsFpYObVv~BL7ItqZbEDAJUEwwTEz~9Xw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21109-f8dc-7370-b8a3-26e9cef7538f/output/preview.png?Expires=4949164800&Signature=NRqnv689daaUghYpGu1vhqzjO0KQheUfcsrnGG~IcQnXPZcA2oV2cSBJyVWT7FWJZWF1DRe3AcD3xGBCUH5s1sff79A9Cxk7P~RXjZm1NOv95A9504~a~vy0wqVeHQatLOso9xNc0OBQBVFDansa~JpP~IfmnFNSCVlMLcXPJMSdjphuVtDRfUeTvs3SWZxxuDtx-z7A5dA8rS99l4Wje00DB8W7Na4pgXG2L8MpYcSjOEs-hNpk0XvqOhd3W-4KZj3cWs5SFKxcppKwFYvmJbL3UnlEgKhyRmrHzCs2KuACqdYbqQMl1b6ZJaG3Swc810k~V5mQsNdlHG7WNk-esw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "burly bandit bruiser, huge muscular man, shaved head and scruffy beard, scarred face, patched leather and fur vest over a bare chest, heavy leather bracers, wide belt with pouches, rough trousers and heavy boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 3241193232,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21109-f8dc-7370-b8a3-26e9cef7538f/output/model.glb?Expires=4949164800&Signature=qm88TPMC3TMPXod2FdNRIX6epZHB4~GEC7L2UaLapde8N-tceUwhUwplTB60nN0e~qCxBmrqJlewx-vXMY7I1UO7Ms4aClfus1eElCLHZwtcgzAmOoazIsLWrMJx6aynB~UnmngWII36RldasgXpGe8Fn5fbgtHujn4nRdiMAsmkR9bGlQAh1YQAvHwzFt~VG4H4ikNeXxvijZamev1vhvu2FK5wlaISdKYfAWVVVpPZH9cgOxDCFMEw6e1yScdDVxrPgaWs6DMI9WIANkSiWBfPXLVBduNJ-0f56Ax3SFsRnZAm6XrZOfsFpYObVv~BL7ItqZbEDAJUEwwTEz~9Xw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21109-f8dc-7370-b8a3-26e9cef7538f/output/preview.png?Expires=4949164800&Signature=NRqnv689daaUghYpGu1vhqzjO0KQheUfcsrnGG~IcQnXPZcA2oV2cSBJyVWT7FWJZWF1DRe3AcD3xGBCUH5s1sff79A9Cxk7P~RXjZm1NOv95A9504~a~vy0wqVeHQatLOso9xNc0OBQBVFDansa~JpP~IfmnFNSCVlMLcXPJMSdjphuVtDRfUeTvs3SWZxxuDtx-z7A5dA8rS99l4Wje00DB8W7Na4pgXG2L8MpYcSjOEs-hNpk0XvqOhd3W-4KZj3cWs5SFKxcppKwFYvmJbL3UnlEgKhyRmrHzCs2KuACqdYbqQMl1b6ZJaG3Swc810k~V5mQsNdlHG7WNk-esw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}
