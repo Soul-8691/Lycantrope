@@ -20,6 +20,7 @@ from lycantrope.world.heightfield import Heightfield
 from lycantrope.world.props import PropSpec, load_catalog, place_props
 
 MODELS = ASSETS / "models" / "props"
+LOD_M = 90.0                    # beyond this, props with a distant version draw it instead
 _COMPONENTS = {"SCALAR": 1, "VEC2": 2, "VEC3": 3, "VEC4": 4}
 _DTYPES = {5120: np.int8, 5121: np.uint8, 5122: np.int16, 5123: np.uint16, 5125: np.uint32, 5126: np.float32}
 
@@ -67,11 +68,15 @@ class PropModel:
     spec: PropSpec
     vbo: moderngl.Buffer
     inst: moderngl.Buffer
-    rows: np.ndarray            # (N, 6) x y z rot scale shade
+    rows: np.ndarray            # (N, 7) x y z rot scale shade stretch
     radius: float               # bounding sphere radius at scale 1 (around mid-height)
     triangles: int
     draw_m: float
     vao: moderngl.VertexArray | None = None
+    lod_vbo: moderngl.Buffer | None = None      # simpler distant version (TEC-11)
+    lod_inst: moderngl.Buffer | None = None
+    lod_tris: int = 0
+    lod_vao: moderngl.VertexArray | None = None
 
 
 class PropRenderer:
@@ -98,9 +103,15 @@ class PropRenderer:
             spec = self.catalog[key]
             ex, ey, ez = spec.extents
             radius = 0.5 * float(np.sqrt(ex * ex + ey * ey + ez * ez))
-            self.models.append(PropModel(
-                spec, ctx.buffer(flat_mesh(v, f).tobytes()), ctx.buffer(rows.tobytes(), dynamic=True),
-                rows, radius, len(f), draw_m=max(250.0, spec.height * 110.0)))
+            pm = PropModel(spec, ctx.buffer(flat_mesh(v, f).tobytes()), ctx.buffer(rows.tobytes(), dynamic=True),
+                           rows, radius, len(f), draw_m=min(900.0, max(250.0, spec.height * 110.0)))
+            lod = MODELS / (key.replace("/", "_") + "_lod1.glb")
+            if lod.exists():
+                lv, lf = read_glb(lod)
+                pm.lod_vbo = ctx.buffer(flat_mesh(lv, lf).tobytes())
+                pm.lod_inst = ctx.buffer(rows.tobytes(), dynamic=True)
+                pm.lod_tris = len(lf)
+            self.models.append(pm)
         self.count = sum(len(m.rows) for m in self.models)
         self.drawn = 0
         self.triangles = 0
@@ -109,10 +120,14 @@ class PropRenderer:
     def _program(self) -> moderngl.Program:
         prog = self.shaders.get("props")
         if self._version != self.shaders.version:
+            def vao(vbo, inst):
+                return self.ctx.vertex_array(prog, [(vbo, "3f 3f", "in_pos", "in_nrm"),
+                                                    (inst, "3f 1f 1f 1f 1f/i", "in_offset", "in_rot",
+                                                     "in_scale", "in_shade", "in_stretch")])
             for m in self.models:
-                m.vao = self.ctx.vertex_array(prog, [(m.vbo, "3f 3f", "in_pos", "in_nrm"),
-                                                     (m.inst, "3f 1f 1f 1f/i", "in_offset", "in_rot",
-                                                      "in_scale", "in_shade")])
+                m.vao = vao(m.vbo, m.inst)
+                if m.lod_vbo is not None:
+                    m.lod_vao = vao(m.lod_vbo, m.lod_inst)
             self._version = self.shaders.version
         return prog
 
@@ -130,20 +145,26 @@ class PropRenderer:
         for m in self.models:
             s = m.spec
             r = m.rows
-            centers = r[:, :3] + np.outer(r[:, 4], [0.0, s.height * 0.5, 0.0])
-            rad = m.radius * r[:, 4]
-            vis = np.linalg.norm(centers - e, axis=1) < m.draw_m + rad
+            centers = r[:, :3] + np.outer(r[:, 4] * r[:, 6], [0.0, s.height * 0.5, 0.0])
+            rad = m.radius * r[:, 4] * np.maximum(r[:, 6], 1.0)
+            dist = np.linalg.norm(centers - e, axis=1)
+            vis = dist < m.draw_m + rad
             for a, b, c, d in planes:
                 vis &= centers @ np.array([a, b, c]) + d >= -rad
-            n = int(vis.sum())
-            if n == 0:
+            if not vis.any():
                 continue
-            m.inst.write(np.ascontiguousarray(r[vis]).tobytes())
             set_uniform(prog, "u_height", s.height)
             set_uniform(prog, "u_color", tuple(c ** 2.2 for c in s.color))
             set_uniform(prog, "u_top_color", tuple(c ** 2.2 for c in s.top_color))
             set_uniform(prog, "u_top_from", s.top_from)
-            m.vao.render(moderngl.TRIANGLES, instances=n)
-            drawn += n
-            tris += n * m.triangles
+            near = vis & (dist < LOD_M + rad) if m.lod_vao is not None else vis
+            for mask, inst, vao, t in ((near, m.inst, m.vao, m.triangles),
+                                       (vis & ~near, m.lod_inst, m.lod_vao, m.lod_tris)):
+                n = int(mask.sum())
+                if n == 0 or vao is None:
+                    continue
+                inst.write(np.ascontiguousarray(r[mask]).tobytes())
+                vao.render(moderngl.TRIANGLES, instances=n)
+                drawn += n
+                tris += n * t
         self.drawn, self.triangles = drawn, tris

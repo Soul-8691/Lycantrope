@@ -30,11 +30,14 @@ class PropSpec:
 
 @dataclass
 class Instances:
-    """Per prop key: rows of (x, y, z, rotation_rad, scale, shade)."""
+    """Per prop key: rows of (x, y, z, rotation_rad, scale, shade, stretch).
+
+    stretch multiplies the height only, so one model also comes out taller/slimmer or squatter."""
     rows: dict[str, list[tuple[float, ...]]] = field(default_factory=dict)
 
-    def add(self, key: str, x: float, y: float, z: float, rot: float, scale: float, shade: float) -> None:
-        self.rows.setdefault(key, []).append((x, y, z, rot, scale, shade))
+    def add(self, key: str, x: float, y: float, z: float, rot: float, scale: float, shade: float,
+            stretch: float = 1.0) -> None:
+        self.rows.setdefault(key, []).append((x, y, z, rot, scale, shade, stretch))
 
     def arrays(self) -> dict[str, np.ndarray]:
         return {k: np.asarray(v, dtype=np.float32) for k, v in self.rows.items()}
@@ -82,14 +85,15 @@ class Placer:
         self.out = Instances()
         self.taken: list[tuple[float, float, float]] = []      # (x, z, radius) of placed props
         self.anchors = {p.name: p for p in world.landmarks + world.waystones}
+        self.missing: set[str] = set()
 
     # ------------------------------------------------------------------ #
     def place(self, key: str, x: float, z: float, rot: float, scale: float = 1.0,
-              shade: float = 1.0, sink: float = 0.05) -> None:
+              shade: float = 1.0, sink: float = 0.05, stretch: float = 1.0) -> None:
         spec = self.catalog[key]
         ex, _ey, ez = spec.extents
         y = ground_y(self.world, x, z, rot, ex * scale / 2, ez * scale / 2) - sink * scale
-        self.out.add(key, x, y, z, rot, scale, shade)
+        self.out.add(key, x, y, z, rot, scale, shade, stretch)
         self.taken.append((x, z, max(ex, ez) * scale / 2))
 
     def line(self, key: str, a: tuple[float, float], b: tuple[float, float],
@@ -116,11 +120,16 @@ class Placer:
                 t = (s0 + (i + 0.5) * (s1 - s0) / n) / length
                 self.place(key, a[0] + dx * t, a[1] + dz * t, rot, shade=1.0 - 0.06 * (i % 2))
 
-    def scatter(self, key: str, cx: float, cz: float, count: int, ring: tuple[float, float],
+    def scatter(self, key: str | list[str], cx: float, cz: float, count: int, ring: tuple[float, float],
                 seed: int, scale: tuple[float, float], spacing: float,
-                groves: tuple[int, float] | None = None) -> None:
+                groves: tuple[int, float] | None = None,
+                stretch: tuple[float, float] = (1.0, 1.0)) -> None:
         """Random placement in a ring. With groves=(n, radius), props cluster around n
-        random grove centers in the ring instead of spreading evenly."""
+        random grove centers in the ring instead of spreading evenly. A list of keys mixes
+        those props (each placement picks one at random)."""
+        keys = [k for k in ([key] if isinstance(key, str) else key) if k in self.catalog]
+        if not keys:
+            return
         rng = np.random.default_rng(seed)
         w = self.world
 
@@ -153,10 +162,12 @@ class Placer:
             if slope > 0.45:
                 continue
             s = float(rng.uniform(*scale))
+            key = keys[int(rng.integers(len(keys)))]
             rad = max(self.catalog[key].extents[0], self.catalog[key].extents[2]) * s / 2
             if any((x - tx) ** 2 + (z - tz) ** 2 < (rad + tr + spacing * 0.5) ** 2 for tx, tz, tr in self.taken):
                 continue
-            self.place(key, x, z, float(rng.uniform(0, math.tau)), s, float(rng.uniform(0.85, 1.1)), sink=0.15)
+            self.place(key, x, z, float(rng.uniform(0, math.tau)), s, float(rng.uniform(0.85, 1.1)), sink=0.15,
+                       stretch=float(rng.uniform(*stretch)))
             placed += 1
 
     # ------------------------------------------------------------------ #
@@ -174,6 +185,16 @@ class Placer:
             items = group["items"]
             # fixed items and lines first, so scatter keeps clear of them
             for it in sorted(items, key=lambda i: "scatter" in i):
+                ref = it.get("id") or it.get("line")
+                if ref is not None and ref not in self.catalog:
+                    self.missing.add(ref)               # not generated/built yet: skip quietly
+                    continue
+                if "gate" in it and it["gate"] not in self.catalog:
+                    self.missing.add(it["gate"])
+                    it = {k: v for k, v in it.items() if k != "gate"}
+                if "scatter" in it:
+                    wanted = [it["scatter"]] if isinstance(it["scatter"], str) else it["scatter"]
+                    self.missing.update(k for k in wanted if k not in self.catalog)
                 if "id" in it:
                     x, z = pos(it["at"])
                     self.place(it["id"], x, z, facing_to_rotation(it.get("facing", 180)),
@@ -185,7 +206,10 @@ class Placer:
                     self.scatter(it["scatter"], ax, az, int(it["count"]), tuple(it["ring"]),
                                  int(it.get("seed", 0)), tuple(it.get("scale", (1.0, 1.0))),
                                  float(it.get("spacing", 2.0)),
-                                 tuple(it["groves"]) if "groves" in it else None)
+                                 tuple(it["groves"]) if "groves" in it else None,
+                                 tuple(it.get("stretch", (1.0, 1.0))))
+        if self.missing:
+            print(f"placements: skipped props that aren't built yet: {', '.join(sorted(self.missing))}")
         return self.out
 
 

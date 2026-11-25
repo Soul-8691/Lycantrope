@@ -4,7 +4,8 @@
     "'at' is [east, north] in meters from the anchor. 'facing' is the compass direction the prop's",
     "front looks toward (0 = north, 90 = east). 'line' repeats a prop end to end from 'from' to 'to'",
     "('gate_at' puts the gate prop at that fraction of the line). 'scatter' places props at random",
-    "in a ring around the anchor, keeping off roads, steep ground and other props; 'groves': [n, radius]",
+    "in a ring around the anchor, keeping off roads, steep ground and other props; 'scale' sizes each copy,",
+    "'stretch' scales only its height (tall/slim vs squat variants of one model); 'groves': [n, radius]",
     "clusters them around n random grove centers instead."
   ],
   "groups": [
@@ -24,7 +25,11 @@
         {"name": "far south cottage", "width": 2.5, "points": [[7.5, -34], [6, -20], [2, -8]]},
         {"name": "smithy",         "width": 3.0, "points": [[13.5, 23.5], [17, 20], [21, 19]]},
         {"name": "farm track",     "width": 3.0, "points": [[-6, -4], [-18, -9], [-21, -20], [-21, -35.6], [-30, -38], [-40, -41]]},
-        {"name": "barn track",     "width": 3.0, "points": [[-33, -39], [-44, -31], [-53, -24]]}
+        {"name": "barn track",     "width": 3.0, "points": [[-33, -39], [-44, -31], [-53, -24]]},
+        {"name": "west track to the meadows",   "width": 2.5, "points": [[-16, 9], [-60, 20], [-115, 38], [-165, 72]]},
+        {"name": "east track to the fields",    "width": 2.5, "points": [[17, 6], [60, 12], [100, 22], [124, 28]]},
+        {"name": "south track",                 "width": 2.5, "points": [[6, -20], [14, -70], [38, -118], [58, -160]]},
+        {"name": "north-west lane",             "width": 2.5, "points": [[-9, 18], [-30, 70], [-55, 112], [-68, 136]]}
       ],
       "items": [
         {"id": "VIL-06", "at": [0, 0], "facing": 160},
@@ -78,9 +83,11 @@
         {"id": "PLT-01", "at": [26, -9], "facing": 45},
         {"id": "PLT-01", "at": [3, -28], "facing": 0},
 
-        {"scatter": "TRE-01", "count": 90, "ring": [85, 320], "seed": 11, "scale": [0.8, 1.3], "spacing": 9},
-        {"scatter": "TRE-01", "count": 160, "ring": [110, 380], "seed": 13, "scale": [0.75, 1.35], "spacing": 4, "groves": [14, 26]},
-        {"scatter": "PLT-01", "count": 140, "ring": [45, 260], "seed": 12, "scale": [0.7, 1.4], "spacing": 3}
+        {"scatter": ["TRE-01", "TRE-01/v3", "TRE-02"], "count": 38, "ring": [30, 110], "seed": 15, "scale": [0.7, 1.1], "stretch": [0.85, 1.25], "spacing": 6},
+        {"scatter": ["TRE-01", "TRE-01/v3"], "count": 130, "ring": [85, 450], "seed": 11, "scale": [0.8, 1.35], "stretch": [0.8, 1.3], "spacing": 9},
+        {"scatter": ["TRE-01", "TRE-01/v3"], "count": 260, "ring": [110, 520], "seed": 13, "scale": [0.75, 1.35], "stretch": [0.8, 1.3], "spacing": 4, "groves": [22, 28]},
+        {"scatter": "TRE-02", "count": 160, "ring": [80, 500], "seed": 14, "scale": [0.8, 1.2], "stretch": [0.85, 1.35], "spacing": 3, "groves": [18, 14]},
+        {"scatter": "PLT-01", "count": 230, "ring": [45, 420], "seed": 12, "scale": [0.7, 1.4], "stretch": [0.8, 1.2], "spacing": 3}
       ]
     },
     {
@@ -90,7 +97,8 @@
         {"id": "INT-01", "at": [0, 0], "facing": 180},
         {"id": "INT-11", "at": [7, 5], "facing": 200},
         {"id": "CLT-10", "at": [-5, -4], "facing": 45},
-        {"scatter": "PLT-01", "count": 20, "ring": [10, 45], "seed": 21, "scale": [0.7, 1.3], "spacing": 3}
+        {"scatter": "PLT-01", "count": 20, "ring": [10, 45], "seed": 21, "scale": [0.7, 1.3], "spacing": 3},
+        {"scatter": "TRE-02", "count": 40, "ring": [14, 120], "seed": 22, "scale": [0.8, 1.2], "stretch": [0.85, 1.35], "spacing": 3, "groves": [6, 12]}
       ]
     }
   ]

@@ -279,6 +279,22 @@
       "prompt": "large brown bear, heavy muscular body, shaggy brown fur, big shoulder hump, mouth closed, full body, standing still on all four legs, legs straight and spread apart, all four paws flat on the ground, head level and looking straight ahead, symmetrical neutral stance, not walking, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795561313.7038789,
       "credits": 20
+    },
+    "TRE-01/v3": {
+      "task_id": "01a210cb-7d39-7594-9616-3f5f1269cbb7",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "broad gnarled oak tree, thick twisted trunk, wide rounded canopy of chunky foliage clumps, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795578102.0087023,
+      "credits": 5
+    },
+    "TRE-02/v1": {
+      "task_id": "01a210cc-39b2-72fc-a351-a6fff4e52002",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "slender silver birch tree, white bark with black marks, light airy canopy of chunky leaf clumps, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795578151.5072973,
+      "credits": 5
     }
   },
   "replaced": [

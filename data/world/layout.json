@@ -57,9 +57,9 @@
       "height": {
         "base": 34,
         "low": 22,
-        "mid": 10,
-        "ridge": 0,
-        "detail": 1.2
+        "mid": 24,
+        "ridge": 7,
+        "detail": 2.5
       }
     },
     "wolfwood": {

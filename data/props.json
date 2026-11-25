@@ -25,6 +25,8 @@
     "CLT-03":     {"name": "Grain Sacks",         "source": "CLT-03/v1/model.glb",       "height_m": 0.7, "color": [0.70, 0.62, 0.46]},
     "CLT-10":     {"name": "Lantern Post",        "source": "CLT-10/v1/model.glb",       "height_m": 2.8, "color": [0.38, 0.30, 0.24]},
     "TRE-01":     {"name": "Brackenvale Oak",     "source": "TRE-01/v2/model.glb",      "height_m": 11.0, "color": [0.40, 0.32, 0.24], "top_color": [0.30, 0.42, 0.20], "top_from": 0.35},
+    "TRE-01/v3":  {"name": "Brackenvale Oak (second shape)", "source": "TRE-01/v3/model.glb", "height_m": 10.0, "color": [0.40, 0.32, 0.24], "top_color": [0.33, 0.45, 0.21], "top_from": 0.35},
+    "TRE-02":     {"name": "Silver Birch",        "source": "TRE-02/v1/model.glb",       "height_m": 11.0, "color": [0.80, 0.78, 0.72], "top_color": [0.46, 0.58, 0.27], "top_from": 0.4},
     "PLT-01":     {"name": "Meadow Bush",         "source": "PLT-01/v1/model_1500.glb",  "height_m": 1.4, "color": [0.30, 0.44, 0.22]}
   }
 }

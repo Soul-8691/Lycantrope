@@ -44,6 +44,24 @@ def build(key: str, spec: dict) -> None:
     e = out_mesh.extents
     print(f"  {key:<12} {len(out_mesh.faces):>6} tris   {e[0]:5.1f} x {e[1]:4.1f} x {e[2]:5.1f} m   "
           f"{out.relative_to(ROOT)}")
+    # distant version (TEC-11): about a third of the triangles, drawn beyond ~90 m
+    lod = lod_path(key)
+    if len(out_mesh.faces) >= 1500:
+        try:
+            import fast_simplification
+            target = max(400, len(out_mesh.faces) // 3)
+            v2, f2 = fast_simplification.simplify(np.asarray(out_mesh.vertices, np.float32),
+                                                  np.asarray(out_mesh.faces), target_count=target, agg=5)
+            trimesh.Trimesh(v2, f2, process=True).export(lod)
+            print(f"  {'':<12} {len(f2):>6} tris   distant version {lod.relative_to(ROOT)}")
+        except ImportError:
+            print("    (no fast-simplification installed: skipping the distant version)")
+    elif lod.exists():
+        lod.unlink()
+
+
+def lod_path(key: str) -> Path:
+    return OUT / (key.replace("/", "_") + "_lod1.glb")
 
 
 def main() -> None:

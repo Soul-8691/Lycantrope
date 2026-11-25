@@ -1,0 +1,43 @@
+{
+  "id": "01a210cc-39b2-72fc-a351-a6fff4e52002",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "smart-topology",
+  "seed": 3524421400,
+  "prompt": "slender silver birch tree, white bark with black marks, light airy canopy of chunky leaf clumps, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795578151266,
+  "progress": 100,
+  "started_at": 1795578151279,
+  "finished_at": 1795578163370,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a210cc-39b2-72fc-a351-a6fff4e52002/output/model.glb?Expires=4949164800&Signature=hscHIxgGG7pSTKyc5t4stmIlNVRU7VXJC99CcZaaR4qRMDhEG~1W6Dij3aoQJGoL21SdlDPq7isZBQwJj3XCvHM2-iLqiz6ys3~xxpTl05EQrERDcRQpM2OvS2RbSZlWhgzDivjdWob3WGMZLeS-TcZIkWCF6upJ4~t1iBBx7SWLTw4Nm~QR90BwjQvMpdMfHMAZes4XhC-VfNsDLwwZav7i1zNTo3QZQ3ys0HHxJjufh0qCFmqEHSnDKMRg-ImXIq6dJYR-0Mu-ahfvlvPnDt0CDZcYw370iesIMubrlcf5v-nO~SixPUS1e8bSJ20eGqxfVDw1HrWJ0asaE7Zgqg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a210cc-39b2-72fc-a351-a6fff4e52002/output/preview.png?Expires=4949164800&Signature=Cej50WpKNlAI7cAkRgfNsSUiTyXuV8QoOsAYJu50LW7j~it6SHAzl3NSC3l5oGiL0-S7LVD6mESb3stDk4VoRlrzgSEgt6bdV5xzabuyGf9dCd2r1p7wdT~BBL3f4F-I0K7ep~6mHGcTnSskPDfjIyckJglmzrzPL~-QmXfR0T3lLXK13z4LBFF~JZ01wIToMkypAHVcUN~fSAqDQGY1lFrgDliDqVVYhKOqFBK0hMEE1aJKN-UF75BIh5BRO5067mEzRR4jwFY8o16rVHQTEQJ4za~vwTyg9A-IaAKcVXRrLIDy7b3G9QmVCFY79Bu3~QbGYXO7MgrNWVFczO7hFg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 5,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "meshy-t2.5",
+    "mode": "preview",
+    "model_type": "smart-topology",
+    "prompt": "slender silver birch tree, white bark with black marks, light airy canopy of chunky leaf clumps, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 2000
+  },
+  "output": {
+    "seed": 3524421400,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a210cc-39b2-72fc-a351-a6fff4e52002/output/model.glb?Expires=4949164800&Signature=hscHIxgGG7pSTKyc5t4stmIlNVRU7VXJC99CcZaaR4qRMDhEG~1W6Dij3aoQJGoL21SdlDPq7isZBQwJj3XCvHM2-iLqiz6ys3~xxpTl05EQrERDcRQpM2OvS2RbSZlWhgzDivjdWob3WGMZLeS-TcZIkWCF6upJ4~t1iBBx7SWLTw4Nm~QR90BwjQvMpdMfHMAZes4XhC-VfNsDLwwZav7i1zNTo3QZQ3ys0HHxJjufh0qCFmqEHSnDKMRg-ImXIq6dJYR-0Mu-ahfvlvPnDt0CDZcYw370iesIMubrlcf5v-nO~SixPUS1e8bSJ20eGqxfVDw1HrWJ0asaE7Zgqg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a210cc-39b2-72fc-a351-a6fff4e52002/output/preview.png?Expires=4949164800&Signature=Cej50WpKNlAI7cAkRgfNsSUiTyXuV8QoOsAYJu50LW7j~it6SHAzl3NSC3l5oGiL0-S7LVD6mESb3stDk4VoRlrzgSEgt6bdV5xzabuyGf9dCd2r1p7wdT~BBL3f4F-I0K7ep~6mHGcTnSskPDfjIyckJglmzrzPL~-QmXfR0T3lLXK13z4LBFF~JZ01wIToMkypAHVcUN~fSAqDQGY1lFrgDliDqVVYhKOqFBK0hMEE1aJKN-UF75BIh5BRO5067mEzRR4jwFY8o16rVHQTEQJ4za~vwTyg9A-IaAKcVXRrLIDy7b3G9QmVCFY79Bu3~QbGYXO7MgrNWVFczO7hFg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}
