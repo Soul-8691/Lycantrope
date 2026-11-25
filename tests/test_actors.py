@@ -169,3 +169,24 @@ def test_caster_keeps_range_casts_and_uses_blade_up_close():
         mage.anim.update(1 / 60)
         states.add(mage.state)
     assert "attack" in states
+
+
+def test_idle_waits_a_few_seconds_after_stopping():
+    from lycantrope.world.actors import IDLE_DELAY_S
+    r = Rowan(actor(heading=math.pi))
+    for _ in range(60):                                       # run for a second
+        r.update(RowanInput(move_y=1.0), 0.0, 1 / 60)
+        r.a.advance(1 / 60)
+    for _ in range(40):                                       # stop
+        r.update(RowanInput(), 0.0, 1 / 60)
+        r.a.advance(1 / 60)
+    assert r.a.anim.clip == "idle" and r.a.anim.time == 0.0   # holding the first frame
+    for _ in range(int(IDLE_DELAY_S * 60)):
+        r.update(RowanInput(), 0.0, 1 / 60)
+        r.a.advance(1 / 60)
+    assert r.a.anim.time > 0.0                                # now the idle plays
+    r.update(RowanInput(move_y=1.0), 0.0, 1 / 60)             # moving again...
+    for _ in range(30):
+        r.update(RowanInput(), 0.0, 1 / 60)
+        r.a.advance(1 / 60)
+    assert r.a.anim.clip == "idle" and r.a.anim.time == 0.0   # ...restarts the wait

@@ -10,7 +10,6 @@ Armor stats
 Magic stats
 Magic casting
 Collision
-Longer til idle
 Remove debug hotkey
-Great maul
-Mace
+Elevated landmasses
+Caves

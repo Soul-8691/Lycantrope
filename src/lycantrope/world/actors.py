@@ -15,6 +15,7 @@ from pathlib import Path
 from lycantrope.core.paths import DATA
 
 FADE_S = 0.15
+IDLE_DELAY_S = 3.0      # after stopping, hold still this long before the idle animation plays
 
 
 @dataclass
@@ -77,6 +78,7 @@ class Actor:
     py: float = 0.0
     pz: float = 0.0
     ph: float = 0.0
+    idle_wait: float = 0.0        # seconds spent standing still on the idle's first frame
 
     def has(self, clip: str) -> bool:
         return clip in self.clips
@@ -100,7 +102,9 @@ class Actor:
         s = self.speed
         sp = self.speeds
         if s < 0.15:
-            self.play("idle")
+            if self.anim.clip != "idle":
+                self.play("idle", rate=0.0)          # first frame (a plain stance) until the wait is over
+                self.idle_wait = 0.0
             return
         if "sprint" in sp and s > (sp.get("run", 5) + sp["sprint"]) / 2 and self.has("sprint"):
             name = "sprint"
@@ -113,6 +117,16 @@ class Actor:
         if info and info.move_speed > 0:
             rate = max(0.6, min(1.7, s / info.move_speed))
         self.play(name, rate=rate)
+
+    def advance(self, dt: float) -> None:
+        """Move the animation on; a freshly started idle stays on its first frame for IDLE_DELAY_S."""
+        if self.anim.clip == "idle" and self.anim.rate == 0.0:
+            self.idle_wait += dt
+            if self.idle_wait >= IDLE_DELAY_S:
+                info = self.clips.get("idle")
+                self.anim.rate = info.speed if info else 1.0
+                self.anim.time = 0.0
+        self.anim.update(dt)
 
     def save_prev(self) -> None:
         self.px, self.py, self.pz, self.ph = self.x, self.y, self.z, self.heading

@@ -385,6 +385,7 @@ class CharacterSystem:
         t = self.types[key]
         a = Actor(key, x, z, heading, t.info, t.speeds, radius=RADIUS.get(key, 0.5))
         a.y = self.world.height_at(x, z)
+        a.anim.rate = 0.0                     # start in the plain stance; the idle plays after a wait
         a.save_prev()
         return a
 
@@ -450,7 +451,7 @@ class CharacterSystem:
         for c in self.chars:
             a = c.actor
             if a.x == a.px and a.z == a.pz:                   # didn't move: ground is the same
-                a.anim.update(dt)
+                a.advance(dt)
                 continue
             a.x = min(max(a.x, -lim), lim)
             a.z = min(max(a.z, -lim), lim)
@@ -461,7 +462,7 @@ class CharacterSystem:
                 if c.brain is not None:
                     c.brain.goal = None
             a.y = self.world.height_at(a.x, a.z)
-            a.anim.update(dt)
+            a.advance(dt)
             if c.t.skel is None:
                 c.phase += a.speed * dt * 2.2
 
