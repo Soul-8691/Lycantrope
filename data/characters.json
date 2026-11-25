@@ -426,11 +426,6 @@
           "clip": "cattle_idle",
           "loop": true
         },
-        "idle2": {
-          "file": "VIL-13/v1/rig/animations_1.glb",
-          "clip": "cattle_idle01",
-          "loop": true
-        },
         "idle3": {
           "file": "VIL-13/v1/rig/animations_1.glb",
           "clip": "cattle_idle02",

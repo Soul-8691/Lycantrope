@@ -212,6 +212,7 @@ class CharType:
     height: float = 1.0           # in the world, after scale
     scale: float = 1.0            # rigs Meshy left at their own size (quadrupeds) -> height_m
     lift: float = 0.0             # raise the rig so its bind-pose feet sit on y = 0 (rig units)
+    turn: float = 0.0             # radians about y so the model faces +z (Meshy doesn't always)
     spell: dict | None = None     # casters: projectile look (speed_m_s, radius_m, color)
 
 
@@ -257,7 +258,7 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
         scale = spec["height_m"] / height if "height_m" in spec else 1.0
         # Meshy's quadruped rigs put the origin mid-body, so lift them onto the ground
         t = CharType(key, skel, None, clips, info, spec["speeds"], ai, height=height * scale, scale=scale,
-                     lift=-float(bind_y.min()))
+                     lift=-float(bind_y.min()), turn=math.radians(spec.get("turn_deg", 0.0)))
         # armor first: it decides which body parts are drawn
         slots = None
         eq = spec.get("equipment", {})
@@ -635,7 +636,7 @@ class CharacterSystem:
             h = a.ph + dh * alpha
             model = np.eye(4)
             model[:3, 3] = (x, y, z)
-            model = model @ rot_y(h)
+            model = model @ rot_y(h + t.turn)
             sc = t.scale * c.size
             if sc != 1.0:
                 model = model @ np.diag([sc, sc, sc, 1.0])
@@ -671,8 +672,8 @@ class CharacterSystem:
         self.spells.render(eye, viewproj, env, alpha)
 
     def _draw_static(self, prog, c: Character, model: np.ndarray) -> None:
-        set_uniform(prog, "u_tint", glm.vec3(*c.tint))
         """Rigless animals: a bob while moving, a lunge when attacking, lying down when dead."""
+        set_uniform(prog, "u_tint", glm.vec3(*c.tint))
         a, t = c.actor, c.t
         h = t.height
         bob = abs(math.sin(c.phase)) * 0.035 * h * min(1.0, a.speed / 2.0)

@@ -1,43 +1,42 @@
 {
-  "id": "01a21342-18e9-76a9-8bd5-a06db4076e08",
+  "id": "01a213c0-ee0d-77c0-9e80-f1bc4f5c067a",
   "type": "text-to-3d-preview",
   "mode": "preview",
   "name": "",
-  "model_type": "standard",
-  "seed": 1031368071,
+  "model_type": "smart-topology",
+  "seed": 3022364184,
   "prompt": "sturdy brown and white farm cow with short horns, full body, standing still on all four legs, legs straight and spread apart, all four hooves flat on the ground, head level and looking straight ahead, symmetrical neutral stance, not walking, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
   "texture_prompt": "",
   "texture_image_url": "",
   "status": "SUCCEEDED",
-  "created_at": 1795619430549,
+  "created_at": 1795627741727,
   "progress": 100,
-  "started_at": 1795619430565,
-  "finished_at": 1795619472666,
+  "started_at": 1795627741750,
+  "finished_at": 1795627756386,
   "model_urls": {
-    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21342-18e9-76a9-8bd5-a06db4076e08/output/model.glb?Expires=4949164800&Signature=JJqHNhN7JEcRsqPe6I31hNklTOsdeCeBHqqOe9VXvJCSdF6tiU0zrvZd5jJr38pzFaUIzMdaYtRMOdUKefZxdvfgCd-yrhBMOn2dVpXPdYxc~IT7g24mwZGH7IEvE2QJxZ3vpT-VNw1-0qtkYTMJQuF85oDt7UHCUqVgYidhynRI8NHihWk5FlQi9hWYAQLSJ~GINVv8SfeBYI0Q0fIjZdSiTrHp8jfysvrLYjaiMFu-0Cg1oSQf7raia3fVnrLfudNW5DXPO6k7wixrOoX-gWyJAHWn~RgU6AJJ98nlZiNPSvbyU3dytvpPUrbK79joONhQ9~BCrha~ww26yoeUzw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a213c0-ee0d-77c0-9e80-f1bc4f5c067a/output/model.glb?Expires=4949164800&Signature=f2KumNBechgNguA0~Rkzfcehdlz2DxLOLKvtu8CSSlS8AcvFi2rVmeDYLpcn77Tq8NN8PlSNxWXF6TknBHNtHVZWrjQaZ3EEqPDl8hf7HYjfTUOIguoPo6ZED5I6RPuVkpmjDvLPZ4A6wnoowLy5~pFg30YeyQQ12sdAOlssoYjQLleJ-LYvz-e7wPfxATlpUGNaSixi7SRlbAnZ-H2w1KKGs4GSRTCXGH4rlkFh~JAEuaDNiyzmPJzQL82BH06E6DEcbpndjNI2q3Wms6rA-LSyGVFSFedeSIQR4zt2qrJ0tFJ0g6DJwII0CIQ0K5PNjBhKrDrN6MTKw~TzKOEt-Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
   },
-  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21342-18e9-76a9-8bd5-a06db4076e08/output/preview.png?Expires=4949164800&Signature=bDfNqyoLC4bWb25oWwWgkoznHlwRFT9saZ103qEU6UcsJ0QjfV50Se0lTdKovxe0JdUp-1V8BslWlWnhIqDWLQ2m6zm4HY1onkb8rcTmZE1-O1XQ2RbnMOJNzlzPx9PoVclS93Vxfbex~xCpYX83AklEMlVxsNa9yREzXdZs89RkqrN2WPEj3NladJeLH1~LzOVUoci2LQWeC4xLkXdgPgK0nvbPcZK4o3s9u1Rf8Fn9tNNXfCI3LKQCqPU6O0OotKf7uIfDStKVukd8ejV-4J13WpxiFe0wJI4XIjPDcrqu8Wxfg42LeSMYUjjL44Tc6fntLUfk1zUItnOAJFHUSg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a213c0-ee0d-77c0-9e80-f1bc4f5c067a/output/preview.png?Expires=4949164800&Signature=CLoC6r9j9GqYOXPMwhCTRVYsgFaMZAZG-vkrUHJchEJzD-ZbhgsysEnNyKrJggRCOP~l2c-MAZZx-yAr9ZXpVl-dp77jsFV6wfI99jJoEfAeryWGrh8BAQsdCZjQeZ76avGeplBne~RxF96lqs18pnxte3qtmPIYul~M9F0qKMMebm7zHC8zistbc47pwS05OzPDbrArtk9AgylSm1l9axRExpA7LssVmWiby8Vj0vnd95TJTbM~yUP0Xms4027vhipt0bTx1r2V3jx3V3TehmYKhNsCJB6bvTWYZb-PbX7iebUHalGwe9msNR66l1pLfMqah0rBB8z~mLaKYWhPnA__&Key-Pair-Id=K1VGYTHIYLM9UM",
   "texture_urls": [],
-  "consumed_credits": 20,
+  "consumed_credits": 5,
   "task_error": null,
   "expires_at": null,
   "input": {
-    "ai_model": "latest",
+    "ai_model": "meshy-t2.5",
     "mode": "preview",
+    "model_type": "smart-topology",
     "prompt": "sturdy brown and white farm cow with short horns, full body, standing still on all four legs, legs straight and spread apart, all four hooves flat on the ground, head level and looking straight ahead, symmetrical neutral stance, not walking, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
-    "should_remesh": true,
     "target_formats": [
       "glb"
     ],
-    "target_polycount": 6000,
-    "topology": "triangle"
+    "target_polycount": 6000
   },
   "output": {
-    "seed": 1031368071,
+    "seed": 3022364184,
     "model_urls": {
-      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21342-18e9-76a9-8bd5-a06db4076e08/output/model.glb?Expires=4949164800&Signature=JJqHNhN7JEcRsqPe6I31hNklTOsdeCeBHqqOe9VXvJCSdF6tiU0zrvZd5jJr38pzFaUIzMdaYtRMOdUKefZxdvfgCd-yrhBMOn2dVpXPdYxc~IT7g24mwZGH7IEvE2QJxZ3vpT-VNw1-0qtkYTMJQuF85oDt7UHCUqVgYidhynRI8NHihWk5FlQi9hWYAQLSJ~GINVv8SfeBYI0Q0fIjZdSiTrHp8jfysvrLYjaiMFu-0Cg1oSQf7raia3fVnrLfudNW5DXPO6k7wixrOoX-gWyJAHWn~RgU6AJJ98nlZiNPSvbyU3dytvpPUrbK79joONhQ9~BCrha~ww26yoeUzw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a213c0-ee0d-77c0-9e80-f1bc4f5c067a/output/model.glb?Expires=4949164800&Signature=f2KumNBechgNguA0~Rkzfcehdlz2DxLOLKvtu8CSSlS8AcvFi2rVmeDYLpcn77Tq8NN8PlSNxWXF6TknBHNtHVZWrjQaZ3EEqPDl8hf7HYjfTUOIguoPo6ZED5I6RPuVkpmjDvLPZ4A6wnoowLy5~pFg30YeyQQ12sdAOlssoYjQLleJ-LYvz-e7wPfxATlpUGNaSixi7SRlbAnZ-H2w1KKGs4GSRTCXGH4rlkFh~JAEuaDNiyzmPJzQL82BH06E6DEcbpndjNI2q3Wms6rA-LSyGVFSFedeSIQR4zt2qrJ0tFJ0g6DJwII0CIQ0K5PNjBhKrDrN6MTKw~TzKOEt-Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
     },
-    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21342-18e9-76a9-8bd5-a06db4076e08/output/preview.png?Expires=4949164800&Signature=bDfNqyoLC4bWb25oWwWgkoznHlwRFT9saZ103qEU6UcsJ0QjfV50Se0lTdKovxe0JdUp-1V8BslWlWnhIqDWLQ2m6zm4HY1onkb8rcTmZE1-O1XQ2RbnMOJNzlzPx9PoVclS93Vxfbex~xCpYX83AklEMlVxsNa9yREzXdZs89RkqrN2WPEj3NladJeLH1~LzOVUoci2LQWeC4xLkXdgPgK0nvbPcZK4o3s9u1Rf8Fn9tNNXfCI3LKQCqPU6O0OotKf7uIfDStKVukd8ejV-4J13WpxiFe0wJI4XIjPDcrqu8Wxfg42LeSMYUjjL44Tc6fntLUfk1zUItnOAJFHUSg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a213c0-ee0d-77c0-9e80-f1bc4f5c067a/output/preview.png?Expires=4949164800&Signature=CLoC6r9j9GqYOXPMwhCTRVYsgFaMZAZG-vkrUHJchEJzD-ZbhgsysEnNyKrJggRCOP~l2c-MAZZx-yAr9ZXpVl-dp77jsFV6wfI99jJoEfAeryWGrh8BAQsdCZjQeZ76avGeplBne~RxF96lqs18pnxte3qtmPIYul~M9F0qKMMebm7zHC8zistbc47pwS05OzPDbrArtk9AgylSm1l9axRExpA7LssVmWiby8Vj0vnd95TJTbM~yUP0Xms4027vhipt0bTx1r2V3jx3V3TehmYKhNsCJB6bvTWYZb-PbX7iebUHalGwe9msNR66l1pLfMqah0rBB8z~mLaKYWhPnA__&Key-Pair-Id=K1VGYTHIYLM9UM",
     "alpha_thumbnail_url": null,
     "texture_urls": []
   }

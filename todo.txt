@@ -20,5 +20,4 @@ World map
 Caves
 
 Later:
-Cows
 Guards
