@@ -192,6 +192,21 @@ class App:
             pygame.mouse.set_visible(not on)
         pygame.mouse.get_rel()
 
+    def mouse_look(self, rel) -> None:
+        s = self.settings.mouse_sensitivity
+        dy = rel[1] * s * (1 if self.settings.invert_y else -1)
+        if self.play:
+            self.orbit_yaw = (self.orbit_yaw + rel[0] * s) % math.tau
+            self.orbit_pitch = max(-1.2, min(0.6, self.orbit_pitch + dy))
+        else:
+            self.camera.look(rel[0] * s, dy)
+
+    def latest_mouse(self) -> None:
+        """Mouse movement that arrived during the world update, so the frame shows it now."""
+        for ev in pygame.event.get(pygame.MOUSEMOTION):
+            if self.captured:
+                self.mouse_look(ev.rel)
+
     def handle_events(self) -> bool:
         for ev in pygame.event.get():
             if ev.type == pygame.QUIT:
@@ -201,13 +216,7 @@ class App:
             elif ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1 and self.play:
                 self.pressed.add("light")
             elif ev.type == pygame.MOUSEMOTION and self.captured:
-                s = self.settings.mouse_sensitivity
-                dy = ev.rel[1] * s * (1 if self.settings.invert_y else -1)
-                if self.play:
-                    self.orbit_yaw = (self.orbit_yaw + ev.rel[0] * s) % math.tau
-                    self.orbit_pitch = max(-1.2, min(0.6, self.orbit_pitch + dy))
-                else:
-                    self.camera.look(ev.rel[0] * s, dy)
+                self.mouse_look(ev.rel)
             elif ev.type == pygame.MOUSEWHEEL:
                 if self.play:
                     self.orbit_dist = min(12.0, max(1.8, self.orbit_dist * (0.9 ** ev.y)))
@@ -395,8 +404,11 @@ class App:
             running = self.handle_events()
             for _ in range(self.clock.advance(dt)):
                 self.update(self.clock.dt)
+            self.latest_mouse()
             self.render(self.clock.alpha)
             pygame.display.flip()
+            if self.settings.low_latency and not self.args.bench:
+                self.ctx.finish()        # don't let the driver queue frames ahead: the camera answers sooner
             frames += 1
             if frames > 2:
                 self.frame_times.append(real_dt)

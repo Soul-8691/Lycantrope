@@ -3,8 +3,6 @@ Helpful:
 .venv\Scripts\python.exe tools\meshy\animsheet.py ENM-03 --gif
 
 To-Do:
-More enemies
-Better camera
 Ward casting
 Swimming
 Character stats

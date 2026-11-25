@@ -13,8 +13,9 @@ class Settings:
     height: int = 900
     fullscreen: bool = False
     vsync: bool = True
+    low_latency: bool = True          # wait for each frame to finish: less mouse lag, slightly lower fps
     fov_deg: float = 70.0
-    mouse_sensitivity: float = 0.0022
+    mouse_sensitivity: float = 0.003
     invert_y: bool = False
     # terrain level of detail: chunk distance (m) where LOD 1, 2, 3 and 4 start
     lod_distances_m: list[float] = field(default_factory=lambda: [110.0, 260.0, 560.0, 1200.0])
