@@ -18,6 +18,7 @@ FADE_S = 0.15
 IDLE_DELAY_S = 3.0      # after stopping, hold still this long before the idle animation plays
 TURBO = 4.0                                  # turbo hotkey: movement speed multiplier (Rowan and fly camera)
 IDLE_CLIPS = ("idle", "idle2", "idle3")   # standing-still animations; one is picked at random
+SWIM_SPEEDS = {"slow": 0.9, "swim": 1.5, "fast": 2.4}   # m/s in deep water (Ctrl, normal, Shift)
 
 
 @dataclass
@@ -162,6 +163,7 @@ class Rowan:
     def __init__(self, actor: Actor) -> None:
         self.a = actor
         self.queued = False
+        self.swimming = False    # in deep water (set by the world each tick): swim, no fighting
 
     def update(self, inp: RowanInput, cam_yaw: float, dt: float) -> None:
         a = self.a
@@ -175,9 +177,13 @@ class Rowan:
         if a.state == "dead":
             a.speed = 0.0
             return
-        if inp.hit:
+        if inp.hit and not self.swimming:
             a.state = "hit"
             a.play("hit", restart=True)
+        if self.swimming:
+            a.state = "swim"                       # no swinging or casting while swimming
+        elif a.state == "swim":
+            a.state = "move"
 
         # actions start from free movement (or blocking)
         if a.state in ("move", "block"):
@@ -211,7 +217,7 @@ class Rowan:
 
         # movement
         target = 0.0
-        if a.state == "move":
+        if a.state in ("move", "swim"):
             mx, my = inp.move_x, inp.move_y
             m = math.hypot(mx, my)
             if m > 1e-3:
@@ -219,16 +225,25 @@ class Rowan:
                 fx, fz = math.sin(cam_yaw), -math.cos(cam_yaw)       # camera forward (flat)
                 rx, rz = math.cos(cam_yaw), math.sin(cam_yaw)        # camera right
                 dx, dz = fx * my + rx * mx, fz * my + rz * mx
-                a.heading = turn_towards(a.heading, heading_to(dx, dz), 12.0 * dt)
-                target = a.speeds["walk"] if inp.walk else a.speeds["sprint"] if inp.sprint else a.speeds["run"]
+                a.heading = turn_towards(a.heading, heading_to(dx, dz), (5.0 if self.swimming else 12.0) * dt)
+                if self.swimming:
+                    target = SWIM_SPEEDS["slow" if inp.walk else "fast" if inp.sprint else "swim"]
+                else:
+                    target = a.speeds["walk"] if inp.walk else a.speeds["sprint"] if inp.sprint else a.speeds["run"]
         a.gait_scale = TURBO if inp.turbo else 1.0       # same gait and stride, just covering more ground
         target *= a.gait_scale
-        accel = (25.0 if target > a.speed else 30.0) * a.gait_scale
+        accel = (4.0 if self.swimming else 25.0 if target > a.speed else 30.0) * a.gait_scale
         a.speed += max(-accel * dt, min(accel * dt, target - a.speed))
         a.x += math.sin(a.heading) * a.speed * dt
         a.z += math.cos(a.heading) * a.speed * dt
         if a.state == "move":
             a.locomotion()
+        elif a.state == "swim":
+            s = a.speed / a.gait_scale
+            if s > 0.25:                                   # stroke faster the faster he swims
+                a.play("swim", rate=max(0.7, min(1.6, s / SWIM_SPEEDS["swim"])))
+            else:
+                a.play("tread")
 
 
 # ---------------------------------------------------------------------------- #

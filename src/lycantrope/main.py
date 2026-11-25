@@ -173,8 +173,8 @@ class App:
         t = self.props.colliders.clear_distance((pivot.x, pivot.y, pivot.z), (pos.x, pos.y, pos.z))
         if t < 1.0:
             pos = pivot - cam.forward() * max(0.6, self.orbit_dist * t)
-        floor = self.world.height_at(pos.x, pos.z) + 0.35
-        if pos.y < floor:
+        floor = max(self.world.height_at(pos.x, pos.z) + 0.35, self.world.water_at(pos.x, pos.z) + 0.3)
+        if pos.y < floor:                         # stay above the ground and the water
             pos.y = floor
             d = pivot - pos
             cam.yaw = math.atan2(d.x, -d.z)
@@ -279,6 +279,9 @@ class App:
             inp.cast, inp.hit, inp.die = "cast" in self.pressed, "hit" in self.pressed, "die" in self.pressed
             self.pressed.clear()
             act = self.args.act or ""
+            if act.startswith("teleport:"):              # teleport:X,Z[:action]
+                parts = act.split(":")
+                act = parts[2] if len(parts) > 2 else ""
             if act:                                      # --act: scripted input for screenshots
                 inp.move_y = max(inp.move_y, 1.0 if act in ("run", "sprint", "walk") else 0.0)
                 inp.sprint |= act == "sprint"
@@ -440,7 +443,7 @@ def run(argv: list[str] | None = None) -> int:
     ap.add_argument("--size", help="window size WxH")
     ap.add_argument("--orbit", help="testing: camera around Rowan as YAW,PITCH,DIST (yaw 0 = behind him)")
     ap.add_argument("--act", help="testing: what Rowan does from the start: run, sprint, walk, light, "
-                                  "combo, heavy, block, cast, hit, die; or 'teleport:X,Z' near enemies")
+                                  "combo, heavy, block, cast, hit, die; or 'teleport:X,Z[:action]' to start elsewhere")
     args = ap.parse_args(sys.argv[1:] if argv is None else argv)
     return App(Settings.load(), args).run()
 

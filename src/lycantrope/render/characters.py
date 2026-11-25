@@ -32,6 +32,7 @@ CACHE = ROOT / "assets" / "cache"
 MAX_JOINTS = 64
 DRAW_DISTANCE = 300.0
 WADE_DEPTH = 0.9           # meters, for a 1.75 m character (scaled by height)
+SWIM_IN, SWIM_OUT = 1.2, 1.0   # Rowan starts swimming deeper than this, wades again shallower than that
 STATIC_CLIPS = {"idle": ClipInfo(1.0, True), "walk": ClipInfo(1.0, True), "run": ClipInfo(1.0, True),
                 "alert": ClipInfo(1.0, True), "attack1": ClipInfo(0.9, False), "attack2": ClipInfo(0.9, False),
                 "hit": ClipInfo(0.5, False), "death": ClipInfo(1.0, False)}
@@ -153,6 +154,7 @@ class Attachment:
     # +Y toward the head), and that hand's joints (upper arm, forearm, hand)
     second_grip: np.ndarray | None = None
     second_chain: tuple[int, int, int] | None = None
+    in_hand: bool = False         # put away while swimming
 
 
 def _rotation_between(a: np.ndarray, b: np.ndarray) -> np.ndarray:
@@ -215,6 +217,9 @@ class CharType:
     lift: float = 0.0             # raise the rig so its bind-pose feet sit on y = 0 (rig units)
     turn: float = 0.0             # radians about y so the model faces +z (Meshy doesn't always)
     spell: dict | None = None     # casters: projectile look (speed_m_s, radius_m, color)
+    float_m: dict[str, float] = field(default_factory=dict)   # swim clips: water level, in rig units above the feet
+    cast_hand: int = -1           # joint the cast animation raises (where the Rite's light gathers)
+    cast_release: float = 0.55    # fraction of the cast clip where that hand is highest
 
 
 def _fit_cached(body: MeshData, skel: Skeleton, outfit_path: Path, rig_path: Path) -> MeshData:
@@ -252,6 +257,13 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
                              speed=c.get("speed", 1.0), name=name)
             clips[name] = clip
             info[name] = ClipInfo(clip.duration, clip.loop, clip.speed, c.get("move_speed", 0.0))
+        float_m = {}
+        if spec.get("swim") == "procedural" and "swim" not in clips:
+            from lycantrope.render.procedural import make_swim_clips
+            for name, (clip, level) in make_swim_clips(skel).items():
+                clips[name] = clip
+                info[name] = ClipInfo(clip.duration, True, 1.0, 1.5 if name == "swim" else 0.0)
+                float_m[name] = level
         bind = skel.bind_world()
         m2w = bind[0] @ skel.ibm[0]
         bind_y = body.pos @ m2w[:3, 1] + m2w[1, 3]
@@ -260,6 +272,15 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
         # Meshy's quadruped rigs put the origin mid-body, so lift them onto the ground
         t = CharType(key, skel, None, clips, info, spec["speeds"], ai, height=height * scale, scale=scale,
                      lift=-float(bind_y.min()), turn=math.radians(spec.get("turn_deg", 0.0)))
+        t.float_m = {k: v + t.lift for k, v in float_m.items()}
+        t.float_m.update(spec.get("swim_float_m", {}))
+        if "cast" in clips:                       # the hand the cast raises highest is the casting hand
+            ys = {h: clips["cast"].world[:, skel.joint_index(h), 1, 3] for h in ("LeftHand", "RightHand")
+                  if h in skel.names}
+            if ys:
+                hand = max(ys, key=lambda h: float(ys[h].max()))
+                t.cast_hand = skel.joint_index(hand)
+                t.cast_release = float(np.argmax(ys[hand])) / max(1, len(ys[hand]) - 1)
         # armor first: it decides which body parts are drawn
         slots = None
         eq = spec.get("equipment", {})
@@ -393,7 +414,7 @@ def place_item(skel: Skeleton, bind: np.ndarray, slot: str, item: Item, body: Me
         world[:3, 0], world[:3, 1], world[:3, 2] = [0, 0, -1], [0, 1, 0], [1, 0, 0]
         world[:3, 3] = leg + [out * 0.17, -0.12, 0.02]
         joint = skel.joint_index("Hips")
-    return Attachment(item, joint, np.linalg.inv(bind[joint]) @ world)
+    return Attachment(item, joint, np.linalg.inv(bind[joint]) @ world, in_hand=slot in ("right_hand", "left_hand"))
 
 
 # ---------------------------------------------------------------------------- #
@@ -429,6 +450,9 @@ class CharacterSystem:
         self.helmet = True
         from lycantrope.render.spells import Spells
         self.spells = Spells(ctx, shaders, world)
+        from lycantrope.render.rites import RiteEffect
+        self.rite = RiteEffect(ctx, shaders, world, self.spells.vbo, self.spells.count)
+        self._cast_seen = (False, 0.0)            # Rowan: (casting last tick, cast clip time)
         self.chars: list[Character] = []
         self.rowan: Rowan | None = None
         self.colliders: Colliders | None = None     # solid props, set by set_colliders()
@@ -559,7 +583,15 @@ class CharacterSystem:
             c.actor.save_prev()
             want = 1.0 if c.actor.state == "attack" else 0.0      # both hands for the swing only
             c.grip2 += (want - c.grip2) * min(1.0, dt * 7.0)
+        rc = next((c for c in self.chars if c.actor is ra), None)
+        if rc is not None and "swim" in ra.clips and ra.state != "dead":
+            k = rc.t.height * rc.size / 1.75
+            depth = self.world.water_depth(ra.x, ra.z)
+            self.rowan.swimming = depth > (SWIM_OUT if self.rowan.swimming else SWIM_IN) * k
+        else:
+            self.rowan.swimming = False
         self.rowan.update(inp, cam_yaw, dt)
+        self._watch_cast(ra, rc)
         alive = ra.state != "dead"
         near = [c.actor for c in self.chars                    # only these can bump into each other
                 if abs(c.actor.x - ra.x) < 150 and abs(c.actor.z - ra.z) < 150]
@@ -579,9 +611,21 @@ class CharacterSystem:
                                      sp.get("color", (1.0, 0.45, 0.12)))
         separate(near)
         self.spells.update(dt)
+        self.rite.update(dt)
         lim = self.world.half - 5
         for c in self.chars:
             a = c.actor
+            if a is ra and self.rowan.swimming:                # float with the water at his back
+                if self.colliders is not None:
+                    a.x, a.z, _ = self.colliders.push_out(a.x, a.z, a.radius)
+                a.x = min(max(a.x, -lim), lim)
+                a.z = min(max(a.z, -lim), lim)
+                level = c.t.float_m.get(a.anim.clip, c.t.float_m.get("swim", 1.1)) * c.t.scale * c.size
+                target = self.world.water_at(a.x, a.z) - level
+                a.y += (target - a.y) * min(1.0, dt * 5.0)
+                a.y = max(a.y, self.world.height_at(a.x, a.z))
+                a.advance(dt)
+                continue
             if a.x == a.px and a.z == a.pz:                   # didn't move: ground is the same
                 a.advance(dt)
                 continue
@@ -591,8 +635,8 @@ class CharacterSystem:
                 a.x, a.z, hit = self.colliders.push_out(a.x, a.z, a.radius)
                 if hit and c.brain is not None:
                     c.brain.bumped += dt
-            # no swimming yet: wading is fine, deeper water stops you at the edge
-            if self.world.water_depth(a.x, a.z) > WADE_DEPTH * (c.t.height / 1.75) and                     self.world.water_depth(a.x, a.z) > self.world.water_depth(a.px, a.pz):
+            # only Rowan swims: everyone else wades, and deeper water stops them at the edge
+            if a is not ra and self.world.water_depth(a.x, a.z) > WADE_DEPTH * (c.t.height / 1.75) and                     self.world.water_depth(a.x, a.z) > self.world.water_depth(a.px, a.pz):
                 a.x, a.z = a.px, a.pz
                 a.speed = 0.0
                 if c.brain is not None:
@@ -601,6 +645,18 @@ class CharacterSystem:
             a.advance(dt)
             if c.t.skel is None:
                 c.phase += a.speed * dt * 2.2
+
+    def _watch_cast(self, ra: Actor, rc: "Character | None") -> None:
+        """Start Rowan's Rite effect when his cast animation starts; cancel it if he's interrupted."""
+        casting = ra.state == "cast" and ra.anim.clip == "cast"
+        was, t_prev = self._cast_seen
+        if casting and (not was or ra.anim.time < t_prev) and rc is not None:
+            info = ra.clips.get("cast")
+            length = info.duration if info else 1.5
+            self.rite.begin(rc.t.cast_release * length / max(ra.anim.rate, 1e-3))
+        elif not casting and was:
+            self.rite.cancel()
+        self._cast_seen = (casting, ra.anim.time)
 
     # ------------------------------------------------------------------ #
     def _program(self) -> moderngl.Program:
@@ -685,6 +741,10 @@ class CharacterSystem:
                 self._draw_static(prog, c, model)
                 continue
             W = self.joint_worlds(c)
+            if self.rowan is not None and a is self.rowan.a:   # where the Rite's light gathers
+                self.rite.feet = (x, y, z)
+                if t.cast_hand >= 0:
+                    self.rite.hand = tuple((model @ W[t.cast_hand].astype(float))[:3, 3])
             palette = np.einsum("jab,jbc->jac", W, t.skel.ibm)
             buf = np.zeros((MAX_JOINTS, 4, 4), np.float32)
             buf[:len(palette)] = palette
@@ -700,12 +760,16 @@ class CharacterSystem:
             else:
                 self._draw(prog, t.body)
             set_uniform(prog, "u_skinned", 0)
+            swimming = a.anim.clip in ("swim", "tread")
             for at in t.attachments:
+                if swimming and at.in_hand:
+                    continue
                 m = model @ W[at.joint].astype(float) @ at.offset
                 set_uniform(prog, "u_model", glm.mat4(*m.T.ravel()))
                 self._draw(prog, at.item.gpu)
         self.drawn = drawn
         self.spells.render(eye, viewproj, env, alpha)
+        self.rite.render(eye, viewproj, env)
 
     def _draw_static(self, prog, c: Character, model: np.ndarray) -> None:
         """Rigless animals: a bob while moving, a lunge when attacking, lying down when dead."""

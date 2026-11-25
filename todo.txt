@@ -3,8 +3,8 @@ Helpful:
 .venv\Scripts\python.exe tools\meshy\animsheet.py ENM-03 --gif
 
 To-Do:
-Ward casting
-Swimming
+Colorizing
+Shading
 Character stats
 Armor stats
 Weapon stats
