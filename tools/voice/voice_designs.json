@@ -1,0 +1,51 @@
+{
+  "_about": [
+    "ElevenLabs Voice Design prompts (AUD-02: designed voices only, never clones of real people).",
+    "description: what the voice should sound like (20-1000 characters). text: what the preview",
+    "voice reads (100-1000 characters), written in character so the previews are easy to judge.",
+    "Generate a few previews per voice, keep the best, and record its voice ID in data/voices.json.",
+    "Three voices per villager kind and two for guards, so neighbours don't all sound alike; each NPC is given one at random."
+  ],
+  "voices": {
+    "guard_1": {
+      "for": "WLD-25 Watch guard",
+      "description": "A man in his late thirties, a village watchman. Deep, steady, slightly gravelly voice with a rough northern English accent. Clipped, no-nonsense delivery, used to giving orders but not unkind. Speaks at a measured pace, close to the microphone, dry studio recording, no background noise.",
+      "text": "Halt there. State your business in Brackenvale. The north gate shuts at dusk, and it stays shut until the bells say otherwise. Keep that blade sheathed inside the fence, farmhand, and we'll get along just fine."
+    },
+    "guard_2": {
+      "for": "WLD-25 Watch guard",
+      "description": "A young man in his early twenties, a new recruit of the village watch. Clear, slightly nasal voice with a broad rural English accent, eager and a little nervous, trying to sound tougher than he is. Quick pace, close-mic, dry studio recording, no background noise.",
+      "text": "Oi! You there! Er, I mean, good evening. Captain says nobody walks the east road after dark, not with wolves about. I've had two nights of it already and I've not seen so much as a rabbit. Not that I'm complaining."
+    },
+    "villager_man_1": {
+      "for": "WLD-23 villager (man)",
+      "description": "A warm, friendly middle-aged farmer, about forty-five. Mellow baritone voice with a soft rural West Country English accent, unhurried and good-humoured, with a smile in the voice. Close-mic, dry studio recording, no background noise.",
+      "text": "Morning! Fine weather for it, if the rain holds off. You'll be Oswin's lad, then? Tell him the barley's come in early this year, and if he wants a hand with the threshing, he knows where to find me."
+    },
+    "villager_man_2": {
+      "for": "WLD-23 villager (man)",
+      "description": "An older villager in his sixties, thin and a little reedy, with a dry, grumbling wit and a broad rural English accent. Speaks slowly and sighs a lot, the type who has seen everything twice. Close-mic, dry studio recording, no background noise.",
+      "text": "Hmph. In my day we didn't need a watch on every gate. A good dog and a stout stick, that's all you wanted. Now look at it. Goblins in the barley and wolves on the road. Mark my words, it'll get worse before it gets better."
+    },
+    "villager_man_3": {
+      "for": "WLD-23 villager (man)",
+      "description": "A big, broad-shouldered man in his early thirties, a gentle giant who works the fields. Deep, booming bass voice with a slow, easy rural English accent, warm and a little simple, quick to laugh. Close-mic, dry studio recording, no background noise.",
+      "text": "Ha! Thought I heard someone coming up the lane. Don't mind me, I'm only mending this fence for the third time this month. The cows lean on it, see. Big daft things. Here, hold this post a moment, would you?"
+    },
+    "villager_woman_1": {
+      "for": "WLD-24 villager (woman)",
+      "description": "A bright, lively young woman in her twenties, a farm worker. Light, warm mezzo voice with a gentle rural English accent, quick and cheerful with a teasing edge. Close-mic, dry studio recording, no background noise.",
+      "text": "Oh, it's you! Mind the geese, they've taken against strangers this week. If you're heading to the market, the baker's put her honey buns out, but you'll have to be quick. The Watch eats half of them before noon."
+    },
+    "villager_woman_2": {
+      "for": "WLD-24 villager (woman)",
+      "description": "A capable woman in her fifties who runs a busy household. Firm, rich alto voice with a soft rural West Country English accent, practical and motherly, kind underneath the brisk manner. Close-mic, dry studio recording, no background noise.",
+      "text": "Don't stand there dripping on my doorstep, come in out of the cold. Sit. Eat something. You look half starved, and I'll not have it said that anyone left this house hungry. Now, what's all this about the stone circle?"
+    },
+    "villager_woman_3": {
+      "for": "WLD-24 villager (woman)",
+      "description": "An elderly woman in her seventies, the village's keeper of gossip and old stories. Thin, slightly cracked voice with a soft rural West Country English accent, sharp-witted and knowing, leaning in as if sharing a secret. Slow pace, close-mic, dry studio recording, no background noise.",
+      "text": "Come here, dearie, closer. You didn't hear it from me, but the miller's boy says he saw lights up on the tor last night. Green ones. Now, I'm not saying it's anything. But my old mother always said, when the stones glow, keep your doors barred."
+    }
+  }
+}

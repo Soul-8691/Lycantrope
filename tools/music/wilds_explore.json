@@ -1,0 +1,6 @@
+{
+  "model_id": "music_v1",
+  "music_length_ms": 150000,
+  "force_instrumental": true,
+  "prompt": "Lonely, wide-open orchestral fantasy score for travelling the untamed wilderness beyond the village, in E minor. Low sustained strings and a distant solo French horn calling across empty hills, a wooden flute answering, soft frame drum heartbeat far in the background, occasional deep cello swells and shimmering high violins like wind over grass. Sparse, spacious and a little uneasy, with a sense of adventure and quiet danger, less homely than the village theme. Big hall reverb, gentle dynamics, long pauses between phrases, no driving beat. 66 BPM. Ends the way it began so it loops seamlessly."
+}

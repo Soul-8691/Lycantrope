@@ -1,0 +1,45 @@
+{
+  "id": "01a21580-47ff-7724-ae70-3f810608f265",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 2873771628,
+  "prompt": "village watch guard, sturdy adult man in his thirties, steel kettle hat with a wide brim, short mail shirt over a quilted padded gambeson, sleeveless wool tabard in faded green with a small golden wheat-sheaf badge on the chest, leather belt with an empty scabbard, leather bracers, brown wool trousers, tall leather boots, clean-shaven stern face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795657060158,
+  "progress": 100,
+  "started_at": 1795657060169,
+  "finished_at": 1795657120121,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-47ff-7724-ae70-3f810608f265/output/model.glb?Expires=4949251200&Signature=fT0TxmNvgUR3GjbNVB0T9xtxq0VohoZhJAvDXshqKgy4HfCKp9D6Npg-CBJmZCjWUCPGssG5O22bg5S~R6jwvx~e2bdNoDYIWYzF7UQbnb-CIPtkfX63MDDF67pje16TN8JEfeGX~3~Ba5kO2r2T6MER-GDTZJh2f86FlVKoNt0uPduNEuTfGFMdwLsezLZlIJNCIyY~ETID0tmjX5Z9FNB02zoPkD~vTokCZyinR0AotuEVnWlUpQ1YeGHs7DDSAfc2op-WyYV1fKrp9vEwsGr1QbRAndJQ3VLIutXfcKb76nz1IlPDaVy5hKD6kQDCePVevnC86T4uk5fbGXEABQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-47ff-7724-ae70-3f810608f265/output/preview.png?Expires=4949251200&Signature=E7PssrkZ1LKwtpdaIfamzgmgX1ry8QUP7X8BKRmezSaJE1ELkwvrNgR1LFw5nnMItyZlzjcVTC7hT2y3NQeOQeNMpjGUjqqT3gmKESzZfD1nfaiIXHZnc6tF2jroabi8djFSu5UVwfXefXftp2dKmW7YMtVWlPcG7tiuW~InHW4zQ~u86MS4PqCWv8IQb8WRdWc3b9kZLujx-a12mIvJREXO4lwo2YGo3zUPC4acPdW2cucTH0ceW~jQ8bagoLFO-jH-2uSvUDlQVjWbTk8-yl1CXkhNx4Jjk6Nn4-Mkhk8eGzxI6nwHe0lhwy3EjSaD6XsvRxPoMSR1tT2XmVe0Dg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "village watch guard, sturdy adult man in his thirties, steel kettle hat with a wide brim, short mail shirt over a quilted padded gambeson, sleeveless wool tabard in faded green with a small golden wheat-sheaf badge on the chest, leather belt with an empty scabbard, leather bracers, brown wool trousers, tall leather boots, clean-shaven stern face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 2873771628,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-47ff-7724-ae70-3f810608f265/output/model.glb?Expires=4949251200&Signature=fT0TxmNvgUR3GjbNVB0T9xtxq0VohoZhJAvDXshqKgy4HfCKp9D6Npg-CBJmZCjWUCPGssG5O22bg5S~R6jwvx~e2bdNoDYIWYzF7UQbnb-CIPtkfX63MDDF67pje16TN8JEfeGX~3~Ba5kO2r2T6MER-GDTZJh2f86FlVKoNt0uPduNEuTfGFMdwLsezLZlIJNCIyY~ETID0tmjX5Z9FNB02zoPkD~vTokCZyinR0AotuEVnWlUpQ1YeGHs7DDSAfc2op-WyYV1fKrp9vEwsGr1QbRAndJQ3VLIutXfcKb76nz1IlPDaVy5hKD6kQDCePVevnC86T4uk5fbGXEABQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-47ff-7724-ae70-3f810608f265/output/preview.png?Expires=4949251200&Signature=E7PssrkZ1LKwtpdaIfamzgmgX1ry8QUP7X8BKRmezSaJE1ELkwvrNgR1LFw5nnMItyZlzjcVTC7hT2y3NQeOQeNMpjGUjqqT3gmKESzZfD1nfaiIXHZnc6tF2jroabi8djFSu5UVwfXefXftp2dKmW7YMtVWlPcG7tiuW~InHW4zQ~u86MS4PqCWv8IQb8WRdWc3b9kZLujx-a12mIvJREXO4lwo2YGo3zUPC4acPdW2cucTH0ceW~jQ8bagoLFO-jH-2uSvUDlQVjWbTk8-yl1CXkhNx4Jjk6Nn4-Mkhk8eGzxI6nwHe0lhwy3EjSaD6XsvRxPoMSR1tT2XmVe0Dg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

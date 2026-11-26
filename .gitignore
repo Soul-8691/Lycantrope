@@ -229,3 +229,6 @@ settings.json
 screenshots/
 assets/meshy/previews/
 assets/cache/
+
+# ElevenLabs voice design previews (pick one, keep its ID in data/voices.json)
+assets/voice_design/

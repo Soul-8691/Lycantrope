@@ -1,0 +1,45 @@
+{
+  "id": "01a21580-6d18-70fa-b58f-91ac5e8f93ac",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 3345318653,
+  "prompt": "peasant dairymaid clothing worn by a plain smooth featureless grey mannequin with the build of a young adult woman, standing in A-pose: white linen coif covering the hair, short-sleeved cream blouse under a laced green vest, calf-length russet wool kirtle, plain wooden clogs, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795657069723,
+  "progress": 100,
+  "started_at": 1795657069733,
+  "finished_at": 1795657110843,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-6d18-70fa-b58f-91ac5e8f93ac/output/model.glb?Expires=4949251200&Signature=hnBjN~uy37D198hPALCa1-SgWe~y67nQtliTAotcBAeFDiMdl7PL6slw2chiyxuo8hOrRKhccLArwAFSrRKkoX99pvjVyLoifqn9DFTtJzuDXT-iR8KExFnTyX5SjO~aubXgfthi4DZS4aR7lT6bgJv4WNXTO52urtqJ7JJbufftyI66tNEmHPnsQ15gSIkvxXbmqBihtd5H7azOctLB6Oz9ZMDVfOtH-aKf5cID2gRZ~CbaX5V2Zf3JwpkllK-NeFBvaldFsPmjNCUiFWW-yxyGdEXKMG~sgWvA99--YA19fUCvofmziwQqxHWouigdFpPWz65AgSsOLv2Vxtr8CA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-6d18-70fa-b58f-91ac5e8f93ac/output/preview.png?Expires=4949251200&Signature=Jt7W3wic9nbdQNzhKUSI2R8vRrGRe6YHNxh6xHjgFNvPGOcLwYdnqbg7xvgABSmpMlJZaS6ZS7AqIpgjdyOPzbCW3oIsLy8nQtLquy7Ytxby6~uRAz1-gYWQUeclpDu3wZGkO88m0tub48kFeiHUGxLKYb5-kMlkpbjz2SDtYsQmSp06gDkDEXfX9Lrwo~vx5OUa0uI27HHeJQotIra59eN18Q8TEyCPVxiMYI8ZQYDq0oDEOOyMGzM3f8Gi6IGhSA2hcXzOfeLtGl2~I6-2XsLdjLykO22-pWOVVYkqNPjCowBe33wQUVKNsFwk~P---VX-t67P8J85YqNtwBcpGw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "peasant dairymaid clothing worn by a plain smooth featureless grey mannequin with the build of a young adult woman, standing in A-pose: white linen coif covering the hair, short-sleeved cream blouse under a laced green vest, calf-length russet wool kirtle, plain wooden clogs, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 3345318653,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-6d18-70fa-b58f-91ac5e8f93ac/output/model.glb?Expires=4949251200&Signature=hnBjN~uy37D198hPALCa1-SgWe~y67nQtliTAotcBAeFDiMdl7PL6slw2chiyxuo8hOrRKhccLArwAFSrRKkoX99pvjVyLoifqn9DFTtJzuDXT-iR8KExFnTyX5SjO~aubXgfthi4DZS4aR7lT6bgJv4WNXTO52urtqJ7JJbufftyI66tNEmHPnsQ15gSIkvxXbmqBihtd5H7azOctLB6Oz9ZMDVfOtH-aKf5cID2gRZ~CbaX5V2Zf3JwpkllK-NeFBvaldFsPmjNCUiFWW-yxyGdEXKMG~sgWvA99--YA19fUCvofmziwQqxHWouigdFpPWz65AgSsOLv2Vxtr8CA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-6d18-70fa-b58f-91ac5e8f93ac/output/preview.png?Expires=4949251200&Signature=Jt7W3wic9nbdQNzhKUSI2R8vRrGRe6YHNxh6xHjgFNvPGOcLwYdnqbg7xvgABSmpMlJZaS6ZS7AqIpgjdyOPzbCW3oIsLy8nQtLquy7Ytxby6~uRAz1-gYWQUeclpDu3wZGkO88m0tub48kFeiHUGxLKYb5-kMlkpbjz2SDtYsQmSp06gDkDEXfX9Lrwo~vx5OUa0uI27HHeJQotIra59eN18Q8TEyCPVxiMYI8ZQYDq0oDEOOyMGzM3f8Gi6IGhSA2hcXzOfeLtGl2~I6-2XsLdjLykO22-pWOVVYkqNPjCowBe33wQUVKNsFwk~P---VX-t67P8J85YqNtwBcpGw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

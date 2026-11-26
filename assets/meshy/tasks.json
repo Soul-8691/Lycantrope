@@ -375,6 +375,62 @@
       "prompt": "young adult female farming villager, long-sleeved linen blouse, laced brown bodice, ankle-length wool skirt with an apron, simple leather shoes, hair tied back in a braid, friendly face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795620714.583384,
       "credits": 20
+    },
+    "WLD-25/v1": {
+      "task_id": "01a21580-47ff-7724-ae70-3f810608f265",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "village watch guard, sturdy adult man in his thirties, steel kettle hat with a wide brim, short mail shirt over a quilted padded gambeson, sleeveless wool tabard in faded green with a small golden wheat-sheaf badge on the chest, leather belt with an empty scabbard, leather bracers, brown wool trousers, tall leather boots, clean-shaven stern face, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795657060.2467265,
+      "credits": 20
+    },
+    "WLD-27/v1": {
+      "task_id": "01a21580-50b5-76a6-9111-ab7df3da39b9",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "peasant shepherd clothing worn by a plain smooth featureless grey mannequin with the build of a sturdy middle-aged man, standing in A-pose: undyed grey wool hood with a short shoulder cape, sheepskin vest with the fleece turned outward over a long belted brown tunic, wool leg wraps tied with cord, soft leather turnshoes, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795657062.571421,
+      "credits": 20
+    },
+    "WLD-28/v1": {
+      "task_id": "01a21580-59e5-75ba-b860-e8a3d85be52d",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "blacksmith's labourer clothing worn by a plain smooth featureless grey mannequin with the build of a sturdy middle-aged man, standing in A-pose: close-fitting leather cap, heavy scorched leather apron from chest to knees over a short-sleeved linen shirt, thick leather work gloves to the elbow, dark wool trousers, tall heavy work boots, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795657064.9342487,
+      "credits": 20
+    },
+    "WLD-29/v1": {
+      "task_id": "01a21580-6314-737b-8432-8c25f40cfc10",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "prosperous village merchant clothing worn by a plain smooth featureless grey mannequin with the build of a sturdy middle-aged man, standing in A-pose: brimmed brown felt hat, knee-length dark blue wool coat with wide cuffs and a broad leather belt, linen shirt collar, grey wool hose, buckled leather shoes, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795657067.4672675,
+      "credits": 20
+    },
+    "WLD-30/v1": {
+      "task_id": "01a21580-6d18-70fa-b58f-91ac5e8f93ac",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "peasant dairymaid clothing worn by a plain smooth featureless grey mannequin with the build of a young adult woman, standing in A-pose: white linen coif covering the hair, short-sleeved cream blouse under a laced green vest, calf-length russet wool kirtle, plain wooden clogs, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795657069.8047776,
+      "credits": 20
+    },
+    "WLD-31/v1": {
+      "task_id": "01a21580-75fe-7013-adea-3059e2472cdc",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "village weaver clothing worn by a plain smooth featureless grey mannequin with the build of a young adult woman, standing in A-pose: thick knitted wool shawl drawn over the head and shoulders, long-sleeved ankle-length plum wool dress, apron woven with a simple diamond pattern, soft leather shoes, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795657072.2976713,
+      "credits": 20
+    },
+    "WLD-32/v1": {
+      "task_id": "01a21580-803a-738f-8ca4-6b1893881ad8",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "market seller clothing worn by a plain smooth featureless grey mannequin with the build of a young adult woman, standing in A-pose: striped headscarf knotted at the back, sleeveless laced brown bodice over a linen blouse with rolled sleeves, full ankle-length mustard wool skirt, leather belt with a coin purse, leather shoes, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795657075.5743685,
+      "credits": 20
     }
   },
   "replaced": [
@@ -442,6 +498,20 @@
       ],
       "created": 1795619551.8914232,
       "credits": 9
+    },
+    {
+      "key": "VIL-10/v2 (texture)",
+      "task_id": "01a21579-dcc8-766b-9501-c10caa438f21",
+      "status": "SUCCEEDED",
+      "created": 1795656637.730774,
+      "credits": 10
+    },
+    {
+      "key": "VIL-04/v2 (texture)",
+      "task_id": "01a21577-63e1-7374-b22a-070553b521db",
+      "status": "SUCCEEDED",
+      "created": 1795656475.7068956,
+      "credits": 10
     }
   ],
   "refines": {
@@ -540,6 +610,192 @@
       "status": "SUCCEEDED",
       "created": 1795620953.2955546,
       "credits": 10
+    },
+    "CLT-01/v1": {
+      "task_id": "01a2156e-ff70-7305-811a-25c6b48a5c32",
+      "status": "SUCCEEDED",
+      "created": 1795655925.7453763,
+      "credits": 10
+    },
+    "CLT-02/v1": {
+      "task_id": "01a2156f-7f00-757c-a0e5-a714d07aaf16",
+      "status": "SUCCEEDED",
+      "created": 1795655958.3694756,
+      "credits": 10
+    },
+    "CLT-03/v1": {
+      "task_id": "01a21570-3350-7449-a3e6-4611808b7121",
+      "status": "SUCCEEDED",
+      "created": 1795656004.540785,
+      "credits": 10
+    },
+    "CLT-10/v1": {
+      "task_id": "01a21570-b35d-73db-a973-719e7f2acda4",
+      "status": "SUCCEEDED",
+      "created": 1795656037.3019595,
+      "credits": 10
+    },
+    "INT-01/v1": {
+      "task_id": "01a21571-32f3-70fe-8a31-dd32d921b524",
+      "status": "SUCCEEDED",
+      "created": 1795656069.9624853,
+      "credits": 10
+    },
+    "INT-11/v1": {
+      "task_id": "01a21571-8b8c-7719-94ab-915389c17d76",
+      "status": "SUCCEEDED",
+      "created": 1795656092.6574142,
+      "credits": 10
+    },
+    "ITM-01/v1": {
+      "task_id": "01a21571-e3e5-70c1-a409-e9c69aa3eef9",
+      "status": "SUCCEEDED",
+      "created": 1795656115.2599604,
+      "credits": 10
+    },
+    "ONE-04/v1": {
+      "task_id": "01a21572-3a5e-77ca-8cc8-8322df33b96c",
+      "status": "SUCCEEDED",
+      "created": 1795656137.407287,
+      "credits": 10
+    },
+    "ONE-07/v1": {
+      "task_id": "01a21572-baa3-707f-bf7d-3675e66aa7c2",
+      "status": "SUCCEEDED",
+      "created": 1795656170.282877,
+      "credits": 10
+    },
+    "RCK-01/v1": {
+      "task_id": "01a21573-3ad1-775d-80ae-245ce984c8f1",
+      "status": "SUCCEEDED",
+      "created": 1795656203.0627105,
+      "credits": 10
+    },
+    "RCK-02/v1": {
+      "task_id": "01a21573-e3a1-736f-9404-34b1944f8d47",
+      "status": "SUCCEEDED",
+      "created": 1795656246.286472,
+      "credits": 10
+    },
+    "STR-01/gate/v1": {
+      "task_id": "01a21574-62da-76d1-9fb7-7c555965eb25",
+      "status": "SUCCEEDED",
+      "created": 1795656278.8518798,
+      "credits": 10
+    },
+    "STR-01/v1": {
+      "task_id": "01a21574-bd91-7530-b86a-91b74268bc05",
+      "status": "SUCCEEDED",
+      "created": 1795656302.0628605,
+      "credits": 10
+    },
+    "STR-02/v1": {
+      "task_id": "01a21575-3c91-7668-a6c8-2db53307f493",
+      "status": "SUCCEEDED",
+      "created": 1795656334.578095,
+      "credits": 10
+    },
+    "TWO-08/v1": {
+      "task_id": "01a21575-94a4-744e-8259-1fdbef72c139",
+      "status": "SUCCEEDED",
+      "created": 1795656357.1303725,
+      "credits": 10
+    },
+    "VIL-01/v1": {
+      "task_id": "01a21576-140c-7277-957c-04c25e4c8d98",
+      "status": "SUCCEEDED",
+      "created": 1795656389.7366686,
+      "credits": 10
+    },
+    "VIL-03/v1": {
+      "task_id": "01a21576-e45d-744d-b174-76eb0ff1d932",
+      "status": "SUCCEEDED",
+      "created": 1795656443.0599704,
+      "credits": 10
+    },
+    "VIL-04/v2": {
+      "task_id": "01a2158d-bf34-72a0-8f32-f6766b593006",
+      "status": "SUCCEEDED",
+      "created": 1795657943.1163573,
+      "credits": 10
+    },
+    "VIL-06/v1": {
+      "task_id": "01a21578-33d1-7789-b152-fb7945b17ea8",
+      "status": "SUCCEEDED",
+      "created": 1795656528.9371135,
+      "credits": 10
+    },
+    "VIL-07/v1": {
+      "task_id": "01a21578-b536-7376-bc28-76bf1a78011d",
+      "status": "SUCCEEDED",
+      "created": 1795656562.0832012,
+      "credits": 10
+    },
+    "VIL-09/v1": {
+      "task_id": "01a21579-5dff-75b4-9cfd-922af18e22fe",
+      "status": "SUCCEEDED",
+      "created": 1795656605.2664557,
+      "credits": 10
+    },
+    "VIL-10/v2": {
+      "task_id": "01a2158c-6006-728e-9aa5-0611b2e7c783",
+      "status": "SUCCEEDED",
+      "created": 1795657853.0082877,
+      "credits": 10
+    },
+    "VIL-11/v1": {
+      "task_id": "01a2157a-63a2-722b-bff6-6d0039742eb0",
+      "status": "SUCCEEDED",
+      "created": 1795656672.240645,
+      "credits": 10
+    },
+    "WLD-27/v1": {
+      "task_id": "01a21583-e6c1-70eb-a04c-974961188c1c",
+      "status": "SUCCEEDED",
+      "created": 1795657295.6477487,
+      "credits": 10
+    },
+    "WLD-28/v1": {
+      "task_id": "01a21584-3ebe-71b9-9808-f713198ce419",
+      "status": "SUCCEEDED",
+      "created": 1795657318.1742985,
+      "credits": 10
+    },
+    "WLD-29/v1": {
+      "task_id": "01a21584-9684-7381-849c-a67c785fa321",
+      "status": "SUCCEEDED",
+      "created": 1795657340.655908,
+      "credits": 10
+    },
+    "WLD-30/v1": {
+      "task_id": "01a21585-19c1-7128-99ca-4d5e6d982568",
+      "status": "SUCCEEDED",
+      "created": 1795657374.2387311,
+      "credits": 10
+    },
+    "WLD-31/v1": {
+      "task_id": "01a21585-7258-775b-a2c2-e89b9231211c",
+      "status": "SUCCEEDED",
+      "created": 1795657396.937185,
+      "credits": 10
+    },
+    "WLD-32/v1": {
+      "task_id": "01a21585-d584-7363-a47a-bdbf8f60b155",
+      "status": "SUCCEEDED",
+      "created": 1795657422.3055882,
+      "credits": 10
+    },
+    "WLD-25/v1": {
+      "task_id": "01a21586-5a14-771a-b07b-e7d069a95474",
+      "status": "SUCCEEDED",
+      "created": 1795657456.2469838,
+      "credits": 10
+    },
+    "PLT-01/v2": {
+      "task_id": "01a21588-846d-756b-9212-2db2b74a6b63",
+      "status": "SUCCEEDED",
+      "created": 1795657598.1568224,
+      "credits": 10
     }
   },
   "rigs": {
@@ -607,6 +863,12 @@
       "task_id": "01a213c3-bd6b-70fb-abbe-4c6b3d391d21",
       "status": "SUCCEEDED",
       "created": 1795627925.3783333,
+      "credits": 5
+    },
+    "WLD-25/v1": {
+      "task_id": "01a21586-b3a2-76e9-a017-4c75c3505d9f",
+      "status": "SUCCEEDED",
+      "created": 1795657483.4815383,
       "credits": 5
     }
   },

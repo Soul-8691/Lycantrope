@@ -636,7 +636,7 @@
   "items": {
     "ITM-01": {
       "name": "Dawnblade, Rusty",
-      "model": "ITM-01/v1/model.glb",
+      "model": "ITM-01/v1/textured/model.glb",
       "length_m": 1.0,
       "tip": "-x",
       "grip_from_end": 0.09,
@@ -654,7 +654,7 @@
     },
     "ONE-04": {
       "name": "Goblin Shiv",
-      "model": "ONE-04/v1/model.glb",
+      "model": "ONE-04/v1/textured/model.glb",
       "length_m": 0.38,
       "tip": "-x",
       "grip_from_end": 0.16,
@@ -677,7 +677,7 @@
     },
     "TWO-08": {
       "name": "Bandit's Great Maul",
-      "model": "TWO-08/v1/model.glb",
+      "model": "TWO-08/v1/textured/model.glb",
       "length_m": 1.45,
       "tip": "-x",
       "grip_from_end": 0.4,
@@ -699,7 +699,7 @@
     },
     "ONE-07": {
       "name": "Flanged Mace",
-      "model": "ONE-07/v1/model.glb",
+      "model": "ONE-07/v1/textured/model.glb",
       "length_m": 0.75,
       "tip": "+y",
       "grip_from_end": 0.14,

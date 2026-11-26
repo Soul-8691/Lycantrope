@@ -1,0 +1,45 @@
+{
+  "id": "01a21580-6314-737b-8432-8c25f40cfc10",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 4181307254,
+  "prompt": "prosperous village merchant clothing worn by a plain smooth featureless grey mannequin with the build of a sturdy middle-aged man, standing in A-pose: brimmed brown felt hat, knee-length dark blue wool coat with wide cuffs and a broad leather belt, linen shirt collar, grey wool hose, buckled leather shoes, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795657067383,
+  "progress": 100,
+  "started_at": 1795657067392,
+  "finished_at": 1795657106756,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-6314-737b-8432-8c25f40cfc10/output/model.glb?Expires=4949251200&Signature=hs7tfbgSWXoJx5wwCVo027osYB6N07ZmFofMF8hv6WPTkJXqsgumSJF6P4PXKNiJWOoXZKClZWbAwEtv~vPSrtwrAURPFyhdZenG7pi6DvETr6PSRp3rgUx4pW5skf4nEpPCJ5JqL6LbzbcAW73OWdk-yXkTgTMahebnZwdx60VMKC2K0cl4v5RCI~vUJ-Hjmub28CuQYRo~jht04pGCwaPrwJcImFN-MQN0I~X1yH8CuR0EqmfJw8UwHqEXwUA-Ks6IgTJMxgQprVyOY93vMQ7--GIQS5-G3O50NjAUf9MubymBCz74dxKraaSgClOPW6ZgWb6vwRR9kS1OpT4aEQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-6314-737b-8432-8c25f40cfc10/output/preview.png?Expires=4949251200&Signature=UJ0t~JrX9CUsrP7NhJDzqZKw9jonWbVl8nukhiZhAEyYqa8vd6RZG7VDpwIaPsz5~OpHnw2MSEr9EiNHf4-ciVO4pSvZA9koz7RPm90WlJ49fZyfj-eVnl0rGX7fxB1YZ0GSxP1NcxuLFHHRQADCGTLtDT1nM~7X5k~nZRrY2hb3QdnjCb7f-qUctPSq8aQC-dd~GvEN~AaDzRNDHmAs-tnse8VbZqjm8a-rTsS-83VPRTdwh2uQqtDlv6TJZLdyy41X0BAZMCxz~POsl8b6ujm8di0niYud2B36HH-91ZDO-L3NtveAXQxuQH19mJSXRzKdf-69oNzUkaRUxJkDWw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "prosperous village merchant clothing worn by a plain smooth featureless grey mannequin with the build of a sturdy middle-aged man, standing in A-pose: brimmed brown felt hat, knee-length dark blue wool coat with wide cuffs and a broad leather belt, linen shirt collar, grey wool hose, buckled leather shoes, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 4181307254,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-6314-737b-8432-8c25f40cfc10/output/model.glb?Expires=4949251200&Signature=hs7tfbgSWXoJx5wwCVo027osYB6N07ZmFofMF8hv6WPTkJXqsgumSJF6P4PXKNiJWOoXZKClZWbAwEtv~vPSrtwrAURPFyhdZenG7pi6DvETr6PSRp3rgUx4pW5skf4nEpPCJ5JqL6LbzbcAW73OWdk-yXkTgTMahebnZwdx60VMKC2K0cl4v5RCI~vUJ-Hjmub28CuQYRo~jht04pGCwaPrwJcImFN-MQN0I~X1yH8CuR0EqmfJw8UwHqEXwUA-Ks6IgTJMxgQprVyOY93vMQ7--GIQS5-G3O50NjAUf9MubymBCz74dxKraaSgClOPW6ZgWb6vwRR9kS1OpT4aEQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-6314-737b-8432-8c25f40cfc10/output/preview.png?Expires=4949251200&Signature=UJ0t~JrX9CUsrP7NhJDzqZKw9jonWbVl8nukhiZhAEyYqa8vd6RZG7VDpwIaPsz5~OpHnw2MSEr9EiNHf4-ciVO4pSvZA9koz7RPm90WlJ49fZyfj-eVnl0rGX7fxB1YZ0GSxP1NcxuLFHHRQADCGTLtDT1nM~7X5k~nZRrY2hb3QdnjCb7f-qUctPSq8aQC-dd~GvEN~AaDzRNDHmAs-tnse8VbZqjm8a-rTsS-83VPRTdwh2uQqtDlv6TJZLdyy41X0BAZMCxz~POsl8b6ujm8di0niYud2B36HH-91ZDO-L3NtveAXQxuQH19mJSXRzKdf-69oNzUkaRUxJkDWw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

@@ -1,21 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-25T20:02:36",
+  "updated": "2026-11-25T20:36:55",
   "counts": {
     "awaiting": 29,
-    "approved": 512,
+    "approved": 520,
     "denied": 120,
-    "total": 661
+    "total": 669
   },
   "ui": {
-    "selected": [],
-    "selected_titles": {},
-    "filter": "all",
+    "selected": [
+      "DRM-66"
+    ],
+    "selected_titles": {
+      "DRM-66": "Grandmother Zoog"
+    },
+    "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-25T20:02:36"
+    "at": "2026-11-25T20:36:55"
   },
   "ideas": {
     "PIL-01": {
@@ -1882,6 +1886,94 @@
       "note": "Added and approved 2026-11-25 at the user's request: two dressed villagers for NPCs.",
       "changed": "2026-11-25T10:23:47",
       "title": "Brackenvale villager (woman)",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-25": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T20:36:41",
+      "title": "Watch guard",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-26": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T20:36:50",
+      "title": "Villager outfit kit",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-27": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T20:36:52",
+      "title": "Outfit: shepherd (man)",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-28": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T20:36:52",
+      "title": "Outfit: smith's hand (man)",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-29": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T20:36:52",
+      "title": "Outfit: merchant (man)",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-30": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T20:36:53",
+      "title": "Outfit: dairymaid (woman)",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-31": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T20:36:53",
+      "title": "Outfit: weaver (woman)",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-32": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T20:36:53",
+      "title": "Outfit: market seller (woman)",
       "category": "World & Biomes (WLD)",
       "section": "",
       "starred": false,
@@ -7562,54 +7654,6 @@
   },
   "history": [
     {
-      "time": "2026-11-24T10:02:59",
-      "id": "TEC-03",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:03:01",
-      "id": "TEC-04",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:03:25",
-      "id": "TEC-07",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:03:48",
-      "id": "TEC-08",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:05:07",
-      "id": "TEC-11",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:05:17",
-      "id": "TEC-13",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:05:23",
-      "id": "TEC-14",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:05:41",
-      "id": "TEC-15",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
       "time": "2026-11-24T10:05:49",
       "id": "TEC-16",
       "from": "awaiting",
@@ -10560,6 +10604,54 @@
       "id": "CMB-30",
       "from": "approved",
       "to": "denied"
+    },
+    {
+      "time": "2026-11-25T20:36:41",
+      "id": "WLD-25",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T20:36:50",
+      "id": "WLD-26",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T20:36:52",
+      "id": "WLD-27",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T20:36:52",
+      "id": "WLD-28",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T20:36:52",
+      "id": "WLD-29",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T20:36:53",
+      "id": "WLD-30",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T20:36:53",
+      "id": "WLD-31",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T20:36:53",
+      "id": "WLD-32",
+      "from": "awaiting",
+      "to": "approved"
     }
   ]
 }

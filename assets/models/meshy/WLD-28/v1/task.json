@@ -1,0 +1,45 @@
+{
+  "id": "01a21580-59e5-75ba-b860-e8a3d85be52d",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 1328612608,
+  "prompt": "blacksmith's labourer clothing worn by a plain smooth featureless grey mannequin with the build of a sturdy middle-aged man, standing in A-pose: close-fitting leather cap, heavy scorched leather apron from chest to knees over a short-sleeved linen shirt, thick leather work gloves to the elbow, dark wool trousers, tall heavy work boots, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795657064855,
+  "progress": 100,
+  "started_at": 1795657064863,
+  "finished_at": 1795657107692,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-59e5-75ba-b860-e8a3d85be52d/output/model.glb?Expires=4949251200&Signature=bcdUAC0j5WJABUkkxd8MXsmcb41QTF5S5Csii6kcq7gxO6UmpbUSGzB6mEMSX1NxgxECNUAPguGEOqD0AyOszg41XHr~pVzQAg8dY2s7Y3XGYoPQF-C1J5V8rDg33Fesz80lHHyxsWNdTQBUuWATRuQ7AMqg5sqZnYXlu5bMguS~ql-BT0UAr5k0b7Re0i1Jc4Dh-9eg4WHQA5JyUIDn8laH6Smp9gxX2pyffKiz6esbJclNdHCkaMRoziJAhbEKW3rYAW41RYNxwZyk5jtrPkfJp3k~bbu8DZyxUG6j3x-2BtZLmaR~5aObmEp1yetM6tYcG0o8kAJxzSF5W6Z~IQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-59e5-75ba-b860-e8a3d85be52d/output/preview.png?Expires=4949251200&Signature=bq7T0vRPe4vigY7qQIjOL-DDXVX7mmhstFO23Y-9WviMLgrHaH0MHidDvaiqslsPd1I5OJ0Q2-ZyCzg-pfaNHAl88atSAYUvIBSbWTEKNyvQCsLJ04zsZuyXJmqIREa~7UnoKZo~~KYrK0ejjenkjI~SOvNZyiknhI2cTOat1mWLQJQpxtOGYDfDcDe4WyqEZ7GQxbPvGnaToDwlCUodPVAwnuZ2KUCVayFdJG68ESI5JkphAksIvSmd3Z-DV4YqbLOfWWDqNnCEFkT-dF1qX17JqBl5Aq9TMXGnXjYBIXs0qMUC0QG-I-3qZCC69YNdyGE3NNRgQZ677OYLlq2Zuw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "blacksmith's labourer clothing worn by a plain smooth featureless grey mannequin with the build of a sturdy middle-aged man, standing in A-pose: close-fitting leather cap, heavy scorched leather apron from chest to knees over a short-sleeved linen shirt, thick leather work gloves to the elbow, dark wool trousers, tall heavy work boots, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 1328612608,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-59e5-75ba-b860-e8a3d85be52d/output/model.glb?Expires=4949251200&Signature=bcdUAC0j5WJABUkkxd8MXsmcb41QTF5S5Csii6kcq7gxO6UmpbUSGzB6mEMSX1NxgxECNUAPguGEOqD0AyOszg41XHr~pVzQAg8dY2s7Y3XGYoPQF-C1J5V8rDg33Fesz80lHHyxsWNdTQBUuWATRuQ7AMqg5sqZnYXlu5bMguS~ql-BT0UAr5k0b7Re0i1Jc4Dh-9eg4WHQA5JyUIDn8laH6Smp9gxX2pyffKiz6esbJclNdHCkaMRoziJAhbEKW3rYAW41RYNxwZyk5jtrPkfJp3k~bbu8DZyxUG6j3x-2BtZLmaR~5aObmEp1yetM6tYcG0o8kAJxzSF5W6Z~IQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-59e5-75ba-b860-e8a3d85be52d/output/preview.png?Expires=4949251200&Signature=bq7T0vRPe4vigY7qQIjOL-DDXVX7mmhstFO23Y-9WviMLgrHaH0MHidDvaiqslsPd1I5OJ0Q2-ZyCzg-pfaNHAl88atSAYUvIBSbWTEKNyvQCsLJ04zsZuyXJmqIREa~7UnoKZo~~KYrK0ejjenkjI~SOvNZyiknhI2cTOat1mWLQJQpxtOGYDfDcDe4WyqEZ7GQxbPvGnaToDwlCUodPVAwnuZ2KUCVayFdJG68ESI5JkphAksIvSmd3Z-DV4YqbLOfWWDqNnCEFkT-dF1qX17JqBl5Aq9TMXGnXjYBIXs0qMUC0QG-I-3qZCC69YNdyGE3NNRgQZ677OYLlq2Zuw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

@@ -126,6 +126,56 @@
       "rig": "biped",
       "pose": "a-pose",
       "height_m": 1.72
+    },
+    "WLD-25": {
+      "name": "Watch guard",
+      "prompt": "village watch guard, sturdy adult man in his thirties, steel kettle hat with a wide brim, short mail shirt over a quilted padded gambeson, sleeveless wool tabard in faded green with a small golden wheat-sheaf badge on the chest, leather belt with an empty scabbard, leather bracers, brown wool trousers, tall leather boots, clean-shaven stern face, empty hands, full body, standing in A-pose",
+      "tris": 12000,
+      "rig": "biped",
+      "pose": "a-pose",
+      "height_m": 1.8
+    },
+    "WLD-27": {
+      "name": "Outfit: shepherd (man)",
+      "_note": "WLD-26: one generation per outfit, on a mannequin with the villager's build and pose; split by bone (head/torso/arms/legs) and given the villager's skin weights later, like ARS-05.",
+      "prompt": "peasant shepherd clothing worn by a plain smooth featureless grey mannequin with the build of a sturdy middle-aged man, standing in A-pose: undyed grey wool hood with a short shoulder cape, sheepskin vest with the fleece turned outward over a long belted brown tunic, wool leg wraps tied with cord, soft leather turnshoes, empty hands, full body",
+      "tris": 12000,
+      "pose": "a-pose"
+    },
+    "WLD-28": {
+      "name": "Outfit: smith's hand (man)",
+      "_note": "WLD-26: one generation per outfit, on a mannequin with the villager's build and pose; split by bone (head/torso/arms/legs) and given the villager's skin weights later, like ARS-05.",
+      "prompt": "blacksmith's labourer clothing worn by a plain smooth featureless grey mannequin with the build of a sturdy middle-aged man, standing in A-pose: close-fitting leather cap, heavy scorched leather apron from chest to knees over a short-sleeved linen shirt, thick leather work gloves to the elbow, dark wool trousers, tall heavy work boots, empty hands, full body",
+      "tris": 12000,
+      "pose": "a-pose"
+    },
+    "WLD-29": {
+      "name": "Outfit: merchant (man)",
+      "_note": "WLD-26: one generation per outfit, on a mannequin with the villager's build and pose; split by bone (head/torso/arms/legs) and given the villager's skin weights later, like ARS-05.",
+      "prompt": "prosperous village merchant clothing worn by a plain smooth featureless grey mannequin with the build of a sturdy middle-aged man, standing in A-pose: brimmed brown felt hat, knee-length dark blue wool coat with wide cuffs and a broad leather belt, linen shirt collar, grey wool hose, buckled leather shoes, empty hands, full body",
+      "tris": 12000,
+      "pose": "a-pose"
+    },
+    "WLD-30": {
+      "name": "Outfit: dairymaid (woman)",
+      "_note": "WLD-26: one generation per outfit, on a mannequin with the villager's build and pose; split by bone (head/torso/arms/legs) and given the villager's skin weights later, like ARS-05.",
+      "prompt": "peasant dairymaid clothing worn by a plain smooth featureless grey mannequin with the build of a young adult woman, standing in A-pose: white linen coif covering the hair, short-sleeved cream blouse under a laced green vest, calf-length russet wool kirtle, plain wooden clogs, empty hands, full body",
+      "tris": 12000,
+      "pose": "a-pose"
+    },
+    "WLD-31": {
+      "name": "Outfit: weaver (woman)",
+      "_note": "WLD-26: one generation per outfit, on a mannequin with the villager's build and pose; split by bone (head/torso/arms/legs) and given the villager's skin weights later, like ARS-05.",
+      "prompt": "village weaver clothing worn by a plain smooth featureless grey mannequin with the build of a young adult woman, standing in A-pose: thick knitted wool shawl drawn over the head and shoulders, long-sleeved ankle-length plum wool dress, apron woven with a simple diamond pattern, soft leather shoes, empty hands, full body",
+      "tris": 12000,
+      "pose": "a-pose"
+    },
+    "WLD-32": {
+      "name": "Outfit: market seller (woman)",
+      "_note": "WLD-26: one generation per outfit, on a mannequin with the villager's build and pose; split by bone (head/torso/arms/legs) and given the villager's skin weights later, like ARS-05.",
+      "prompt": "market seller clothing worn by a plain smooth featureless grey mannequin with the build of a young adult woman, standing in A-pose: striped headscarf knotted at the back, sleeveless laced brown bodice over a linen blouse with rolled sleeves, full ankle-length mustard wool skirt, leather belt with a coin purse, leather shoes, empty hands, full body",
+      "tris": 12000,
+      "pose": "a-pose"
     }
   }
 }

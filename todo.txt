@@ -1,10 +1,17 @@
 Helpful:
 .venv\Scripts\python.exe tools\meshy\keep.py
+.venv\Scripts\python.exe tools\meshy\use_textures.py
 .venv\Scripts\python.exe tools\meshy\animsheet.py ENM-03 --gif
+.venv\Scripts\python.exe tools\voice\design_voices.py keep guard_1 2
+.venv\Scripts\python.exe tools\props\build.py VIL-10 VIL-04
 
 To-Do:
+Voices
+Wild theme
+NPCs
 Colorizing
 Shading
+Performance
 Character stats
 Armor stats
 Weapon stats
@@ -16,9 +23,3 @@ Caves
 World map
 Dialogue
 Choices
-
-Later:
-Textures
-Bush
-Guards
-NPCs

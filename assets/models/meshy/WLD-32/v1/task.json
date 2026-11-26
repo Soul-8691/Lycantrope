@@ -1,0 +1,45 @@
+{
+  "id": "01a21580-803a-738f-8ca4-6b1893881ad8",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 1932853555,
+  "prompt": "market seller clothing worn by a plain smooth featureless grey mannequin with the build of a young adult woman, standing in A-pose: striped headscarf knotted at the back, sleeveless laced brown bodice over a linen blouse with rolled sleeves, full ankle-length mustard wool skirt, leather belt with a coin purse, leather shoes, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795657075492,
+  "progress": 100,
+  "started_at": 1795657075501,
+  "finished_at": 1795657119839,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-803a-738f-8ca4-6b1893881ad8/output/model.glb?Expires=4949251200&Signature=iyfEy0x7CG91oQJRkgFjvfYe-tkHz3l5q3z8q0qMKDv5xLetZe1W-J~mNrLWxyVDS2~vv1Zu5Y8mEcLI9zLKT2NDNWYQJzGSwpt5Nws9YcOdeOa0hJSlpDO908jOUHKFSWHWPp7TbqOizJvt2iuvPxdtieZ2f2j2iJQv1mMyBhBmUh2RdYDVJ-xKweQUz1Rbnw2mY247FyXuK3KdA2lTR8qFSGWnUPAGMVF-GFx~pLdBx8YyuCp8phDmjNVwg9gk0pwrPYe-lcqfcdketQ9EhMSNlRJ~hxAdtUUw~u2e5We5kVPcJdmpL9LN3lmHSrfJSVSkVuI5sCjb9vUzIo0HIA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-803a-738f-8ca4-6b1893881ad8/output/preview.png?Expires=4949251200&Signature=JLwO3cugmOM4hXKWuWBhrzR5mNLot5CeD3EgwA4axR1Fa2rb7km29Vp9ScO7fHJClLATphlZCkCBh1cV4whCRDlwouDoNz0l0iXzBiihqBjjaSEXZ9uokCvSKV0ikZT8ruBwIDQdhVZgANKRChPBfVcNSl3AIAMbHa43ihRHL3-vD3D2WAqojHZDU-rF3r3ITlbzLr879~onf7bwZVKBbn8J3q2krQOpIugRF2dfQ9RHQUxmpwUrlPqgbh1oAMyfhZMK-uEDQP-7PvvHaLG3iQzB0TsrUp8gxyGdn0zmQty9YJ97ZBk4G21ULsRLy1XlkoYgYlEuf2Ui2z3TW3XHGQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "market seller clothing worn by a plain smooth featureless grey mannequin with the build of a young adult woman, standing in A-pose: striped headscarf knotted at the back, sleeveless laced brown bodice over a linen blouse with rolled sleeves, full ankle-length mustard wool skirt, leather belt with a coin purse, leather shoes, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 1932853555,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-803a-738f-8ca4-6b1893881ad8/output/model.glb?Expires=4949251200&Signature=iyfEy0x7CG91oQJRkgFjvfYe-tkHz3l5q3z8q0qMKDv5xLetZe1W-J~mNrLWxyVDS2~vv1Zu5Y8mEcLI9zLKT2NDNWYQJzGSwpt5Nws9YcOdeOa0hJSlpDO908jOUHKFSWHWPp7TbqOizJvt2iuvPxdtieZ2f2j2iJQv1mMyBhBmUh2RdYDVJ-xKweQUz1Rbnw2mY247FyXuK3KdA2lTR8qFSGWnUPAGMVF-GFx~pLdBx8YyuCp8phDmjNVwg9gk0pwrPYe-lcqfcdketQ9EhMSNlRJ~hxAdtUUw~u2e5We5kVPcJdmpL9LN3lmHSrfJSVSkVuI5sCjb9vUzIo0HIA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-803a-738f-8ca4-6b1893881ad8/output/preview.png?Expires=4949251200&Signature=JLwO3cugmOM4hXKWuWBhrzR5mNLot5CeD3EgwA4axR1Fa2rb7km29Vp9ScO7fHJClLATphlZCkCBh1cV4whCRDlwouDoNz0l0iXzBiihqBjjaSEXZ9uokCvSKV0ikZT8ruBwIDQdhVZgANKRChPBfVcNSl3AIAMbHa43ihRHL3-vD3D2WAqojHZDU-rF3r3ITlbzLr879~onf7bwZVKBbn8J3q2krQOpIugRF2dfQ9RHQUxmpwUrlPqgbh1oAMyfhZMK-uEDQP-7PvvHaLG3iQzB0TsrUp8gxyGdn0zmQty9YJ97ZBk4G21ULsRLy1XlkoYgYlEuf2Ui2z3TW3XHGQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

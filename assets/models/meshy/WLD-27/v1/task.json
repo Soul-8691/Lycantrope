@@ -1,0 +1,45 @@
+{
+  "id": "01a21580-50b5-76a6-9111-ab7df3da39b9",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 3408189555,
+  "prompt": "peasant shepherd clothing worn by a plain smooth featureless grey mannequin with the build of a sturdy middle-aged man, standing in A-pose: undyed grey wool hood with a short shoulder cape, sheepskin vest with the fleece turned outward over a long belted brown tunic, wool leg wraps tied with cord, soft leather turnshoes, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795657062488,
+  "progress": 100,
+  "started_at": 1795657062501,
+  "finished_at": 1795657106166,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-50b5-76a6-9111-ab7df3da39b9/output/model.glb?Expires=4949251200&Signature=AueMEOmkY0ihuIQMORXdQ-uEpvKYJ~nClXxB6QLI34TEC6wfC3FzxeC6CsZFaH-D63oKoFcWzNffsxNIDilb0FPTOBTJLqg101JbVMhT-wHu0VJz2peMcIC0I-Bs7geWnUmAlwtAjDElC5K3IRsh75fpI8A2l~PdryiyKGsi13PLUHDJj9xyI6P-fqfn0WJdu2HLqJLVuuh3hTXjbHcCBYi~2v9S4QZofmhGNb8eGJHVu~Kr8bdQIcYl4YzLWX2turqgeWbnt8tv5bIdumfLaizHLVdmWam3kkUycjf2rOIwcT0bBC8d7xeK509ti2S47n7gqvbXQNg7oJ2wkslfhQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-50b5-76a6-9111-ab7df3da39b9/output/preview.png?Expires=4949251200&Signature=Pdd~9DB-wozhXqbrl0YMWWzAvNknYjymr~ScdCueqdqPqT9kxem60-OQC2qNeDumgNcwI8dlgqLe4h0EzTYpVDEsm2eik-jt6qB4lP-YN8JkD~HHKL7yOHbK2HKzBsQ-jRFIk6NhQSyvH2mpDnHkbGBhmCbsYJ04zyDA0Y9Q~CCcmZXZdLf7W7~r8RN6ElsZG~QDsr1gIlr8fX2sSyXZ68cCF50S~Khk9D7nmAa50OMzjuITUK6K6ts11tk48vjigGfYtdvdGW9h9LTJB6fvq~Xlimn~mpeliUVflooNJ5i8vkOV3XJEpx~pHRXfTmXA4iRFWElew~7tCORbR6ZY0g__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "peasant shepherd clothing worn by a plain smooth featureless grey mannequin with the build of a sturdy middle-aged man, standing in A-pose: undyed grey wool hood with a short shoulder cape, sheepskin vest with the fleece turned outward over a long belted brown tunic, wool leg wraps tied with cord, soft leather turnshoes, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 3408189555,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-50b5-76a6-9111-ab7df3da39b9/output/model.glb?Expires=4949251200&Signature=AueMEOmkY0ihuIQMORXdQ-uEpvKYJ~nClXxB6QLI34TEC6wfC3FzxeC6CsZFaH-D63oKoFcWzNffsxNIDilb0FPTOBTJLqg101JbVMhT-wHu0VJz2peMcIC0I-Bs7geWnUmAlwtAjDElC5K3IRsh75fpI8A2l~PdryiyKGsi13PLUHDJj9xyI6P-fqfn0WJdu2HLqJLVuuh3hTXjbHcCBYi~2v9S4QZofmhGNb8eGJHVu~Kr8bdQIcYl4YzLWX2turqgeWbnt8tv5bIdumfLaizHLVdmWam3kkUycjf2rOIwcT0bBC8d7xeK509ti2S47n7gqvbXQNg7oJ2wkslfhQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-50b5-76a6-9111-ab7df3da39b9/output/preview.png?Expires=4949251200&Signature=Pdd~9DB-wozhXqbrl0YMWWzAvNknYjymr~ScdCueqdqPqT9kxem60-OQC2qNeDumgNcwI8dlgqLe4h0EzTYpVDEsm2eik-jt6qB4lP-YN8JkD~HHKL7yOHbK2HKzBsQ-jRFIk6NhQSyvH2mpDnHkbGBhmCbsYJ04zyDA0Y9Q~CCcmZXZdLf7W7~r8RN6ElsZG~QDsr1gIlr8fX2sSyXZ68cCF50S~Khk9D7nmAa50OMzjuITUK6K6ts11tk48vjigGfYtdvdGW9h9LTJB6fvq~Xlimn~mpeliUVflooNJ5i8vkOV3XJEpx~pHRXfTmXA4iRFWElew~7tCORbR6ZY0g__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

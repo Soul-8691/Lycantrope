@@ -222,6 +222,14 @@
 - [WLD-22] **Fishing pond** — A later stretch goal: a relaxing fishing minigame at a lake hut. *(OoT, TP)*
 - [WLD-23] **Brackenvale villager (man)** — An everyday farming villager, generated already dressed, rigged on the shared skeleton so he borrows Rowan's animations. Variety comes from per-NPC tints, height/build and timing, not more models. *(NEW)*
 - [WLD-24] **Brackenvale villager (woman)** — The female counterpart: an everyday villager, generated already dressed, same skeleton and the same per-NPC variety. *(NEW)*
+- [WLD-25] **Watch guard** — One rigged model for Brackenvale's Watch: padded gambeson, mail shirt, kettle hat and a tabard with the village's sheaf badge. Borrows Rowan's sword animations; holds the existing flanged mace (ONE-07) until a spear exists. Guards stand at gates and walk set rounds (the traveller routes). Varied by tint and height like the villagers. *(OB, SK)*
+- [WLD-26] **Villager outfit kit** — Builds on WLD-23/24's variety: extra outfits generated on a grey mannequin with each villager's build, split into head / torso / arms / legs and fitted over the villager like Rowan's armor (ARS-05). Each NPC draws its own mix of pieces (a hat from one outfit, a coat from another) on top of the tint, height and pace variety, so a few generations give dozens of looks. Needs per-NPC outfits in the character code. *(OB, SK, DOC)*
+- [WLD-27] **Outfit: shepherd (man)** — Wool hood, sheepskin vest over a tunic, leg wraps. Part of WLD-26. *(NEW)*
+- [WLD-28] **Outfit: smith's hand (man)** — Leather cap, heavy leather apron, thick work gloves, tall boots. Part of WLD-26. *(NEW)*
+- [WLD-29] **Outfit: merchant (man)** — Brimmed felt hat, long belted coat, wool hose, buckled shoes. Part of WLD-26. *(NEW)*
+- [WLD-30] **Outfit: dairymaid (woman)** — Linen coif, laced vest over a short-sleeved blouse, kirtle, clogs. Part of WLD-26. *(NEW)*
+- [WLD-31] **Outfit: weaver (woman)** — Knitted shawl over the head, long-sleeved wool dress, patterned apron. Part of WLD-26. *(NEW)*
+- [WLD-32] **Outfit: market seller (woman)** — Headscarf, sleeveless bodice, full skirt with a belt purse, rolled sleeves. Part of WLD-26. *(NEW)*
 
 ## 10. HUD & UI (UIX)
 

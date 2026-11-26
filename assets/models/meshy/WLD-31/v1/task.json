@@ -1,0 +1,45 @@
+{
+  "id": "01a21580-75fe-7013-adea-3059e2472cdc",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 3156728138,
+  "prompt": "village weaver clothing worn by a plain smooth featureless grey mannequin with the build of a young adult woman, standing in A-pose: thick knitted wool shawl drawn over the head and shoulders, long-sleeved ankle-length plum wool dress, apron woven with a simple diamond pattern, soft leather shoes, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795657072204,
+  "progress": 100,
+  "started_at": 1795657072214,
+  "finished_at": 1795657124252,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-75fe-7013-adea-3059e2472cdc/output/model.glb?Expires=4949251200&Signature=ci4QvFGvizVZNgYsvFezGUnhHhJNKpp5d57fvlySyKtIcHVzE5YbJvntgEDZ8MoylTIlXEx3zWZpPuK0xlSHNzYXVJC9kiP6grBS2yOO5Ww4hNsPiPEwF0fY9jPxSA2CtSjJL-u2AHb7f-DxsfmIfpm-HFIYDy59KNIN57s-WORU0SWDT6YtOmVbXwqgPYTQXjvkkc8kIiWNJAqYFKG~ndbpXMEan6CpXUbc-gX2ZUslvSflMteF8USnQhZp-lBfHrTNpTalBTMaos7Gx3RfRwBZgcE0kRuEF-o6rOHGNrhNACQOZOEVxu8LKOg~aqvLjRJpLh~OtMEQ9viZRSIvhw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-75fe-7013-adea-3059e2472cdc/output/preview.png?Expires=4949251200&Signature=nRtULggu8pjagkY35xTJayEyRakBBTE9dwYKC2-WvNotJLuywvT3ejY6Nau7IF50q5WhS75rs-PtyBSEs96nmtpCgNpd4IfSmkPcXZSHfI185iCuHYWkMBgetCeTOpj1NsH6h5dUvmu1DK3CIgSu-v1ZvyUsMwLOafYhXHa~R5Iw9mxa1FDyrKvK9nWJ-8PUFY3zfS8uUwV0HoPOQ1bYERdOMdFCmicONNNmz8QrPuZR3B-272IR3QAWy7d8dsVTJ0QyH3ffst-b3JMzzmucWBackjQh9O7XfxYtsTwgdD3YOzhPZ3iMWmLZnMHCs-8~deww0T5442vfLgsCLog2vw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "village weaver clothing worn by a plain smooth featureless grey mannequin with the build of a young adult woman, standing in A-pose: thick knitted wool shawl drawn over the head and shoulders, long-sleeved ankle-length plum wool dress, apron woven with a simple diamond pattern, soft leather shoes, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 3156728138,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-75fe-7013-adea-3059e2472cdc/output/model.glb?Expires=4949251200&Signature=ci4QvFGvizVZNgYsvFezGUnhHhJNKpp5d57fvlySyKtIcHVzE5YbJvntgEDZ8MoylTIlXEx3zWZpPuK0xlSHNzYXVJC9kiP6grBS2yOO5Ww4hNsPiPEwF0fY9jPxSA2CtSjJL-u2AHb7f-DxsfmIfpm-HFIYDy59KNIN57s-WORU0SWDT6YtOmVbXwqgPYTQXjvkkc8kIiWNJAqYFKG~ndbpXMEan6CpXUbc-gX2ZUslvSflMteF8USnQhZp-lBfHrTNpTalBTMaos7Gx3RfRwBZgcE0kRuEF-o6rOHGNrhNACQOZOEVxu8LKOg~aqvLjRJpLh~OtMEQ9viZRSIvhw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21580-75fe-7013-adea-3059e2472cdc/output/preview.png?Expires=4949251200&Signature=nRtULggu8pjagkY35xTJayEyRakBBTE9dwYKC2-WvNotJLuywvT3ejY6Nau7IF50q5WhS75rs-PtyBSEs96nmtpCgNpd4IfSmkPcXZSHfI185iCuHYWkMBgetCeTOpj1NsH6h5dUvmu1DK3CIgSu-v1ZvyUsMwLOafYhXHa~R5Iw9mxa1FDyrKvK9nWJ-8PUFY3zfS8uUwV0HoPOQ1bYERdOMdFCmicONNNmz8QrPuZR3B-272IR3QAWy7d8dsVTJ0QyH3ffst-b3JMzzmucWBackjQh9O7XfxYtsTwgdD3YOzhPZ3iMWmLZnMHCs-8~deww0T5442vfLgsCLog2vw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}
