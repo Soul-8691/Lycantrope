@@ -23,11 +23,11 @@ HUD
 Lock-on
 Experience
 Looting
-Beginning plot
 NPC fights
 Guard protect AI
 Player inventory
 Equip
+Beginning plot
 Shop inventory
 Shop
 
