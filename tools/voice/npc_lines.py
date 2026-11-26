@@ -115,6 +115,9 @@ def main() -> None:
                 for f in stale:
                     f.unlink()
                     manifest.pop(f"{f.parent.name}/{f.name}", None)
+                for d in OUT.iterdir():                     # and the folders they leave empty
+                    if d.is_dir() and not any(d.iterdir()):
+                        d.rmdir()
                 MANIFEST.write_text(json.dumps(manifest, indent=2, sort_keys=True, ensure_ascii=False),
                                     encoding="utf-8")
     chars = sum(len(j["text"]) for j in todo)

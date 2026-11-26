@@ -10,11 +10,17 @@
     "Townsfolk never name the Dreamlands (dialogue/bible.md). Keep lines short."
   ],
   "model_id": "eleven_multilingual_v2",
-  "voice_settings": {"stability": 0.45, "similarity_boost": 0.8, "style": 0.15},
+  "voice_settings": {
+    "stability": 0.45,
+    "similarity_boost": 0.8,
+    "style": 0.15
+  },
   "roles": {
     "oswin": {
       "who": "NPC-04 Oswin Tull, Fenhallow farm",
-      "voices": ["oswin"],
+      "voices": [
+        "oswin"
+      ],
       "lines": {
         "greet": [
           "Fence first, breakfast after. Same as every day.",
@@ -32,7 +38,9 @@
     },
     "nell": {
       "who": "NPC-05 Nell Ashby, the dairymaid, at Oswin's barn",
-      "voices": ["villager_woman_1"],
+      "voices": [
+        "villager_woman_1"
+      ],
       "lines": {
         "greet": [
           "You look like you slept in the hayloft. Again.",
@@ -50,7 +58,9 @@
     },
     "ebb": {
       "who": "NPC-06 Old Ebb Harrow, the shepherd, with the herd",
-      "voices": ["villager_man_2"],
+      "voices": [
+        "villager_man_2"
+      ],
       "lines": {
         "greet": [
           "Hmph. Counted them three times. Still two short.",
@@ -68,7 +78,9 @@
     },
     "tam": {
       "who": "NPC-07 Tam Corley, the smith's hand, by the smithy",
-      "voices": ["villager_man_3"],
+      "voices": [
+        "villager_man_3"
+      ],
       "lines": {
         "greet": [
           "Can't sharpen that for you. Gerda does the fine work, and Gerda's not here.",
@@ -86,7 +98,9 @@
     },
     "jory": {
       "who": "NPC-08 Jory Matchett, the merchant, at the east stall",
-      "voices": ["villager_man_1"],
+      "voices": [
+        "villager_man_1"
+      ],
       "lines": {
         "greet": [
           "Salt, pepper, good Hollin cloth. Last of it, so the price is what it is.",
@@ -104,7 +118,9 @@
     },
     "maud": {
       "who": "NPC-09 Granny Maud Pickering, the market seller, at the west stall",
-      "voices": ["villager_woman_3"],
+      "voices": [
+        "maud"
+      ],
       "lines": {
         "greet": [
           "Come here, dearie. Lavender for sleep? Everyone's buying it this month.",
@@ -123,7 +139,9 @@
     },
     "hester": {
       "who": "NPC-10 Hester Lowe, the weaver, about the square",
-      "voices": ["villager_woman_2"],
+      "voices": [
+        "villager_woman_2"
+      ],
       "lines": {
         "greet": [
           "Sit, sit. You'll be wanting to know about the hanging. Everyone does, eventually.",
@@ -141,7 +159,9 @@
     },
     "villager_man": {
       "who": "NPC-11 villagers in the square (men)",
-      "voices": ["villager_man_1"],
+      "voices": [
+        "villager_man_1"
+      ],
       "lines": {
         "greet": [
           "Morning. Mind the mud by the well, it's deeper than it looks.",
@@ -159,7 +179,9 @@
     },
     "villager_woman": {
       "who": "NPC-11 villagers in the square (women)",
-      "voices": ["villager_woman_1"],
+      "voices": [
+        "villager_woman_1"
+      ],
       "lines": {
         "greet": [
           "Oh, it's you! Mind the geese, they've taken against strangers this week.",
@@ -177,7 +199,10 @@
     },
     "pilgrims": {
       "who": "NPC-12 travellers on the river road, walking to the waystone shrine",
-      "voices": ["villager_man_1", "villager_woman_1"],
+      "voices": [
+        "villager_man_1",
+        "villager_woman_1"
+      ],
       "lines": {
         "greet": [
           "Off to the waystone to pray for the harvest. Walk with us a while, if you like.",
@@ -193,7 +218,9 @@
     },
     "bread_carrier": {
       "who": "NPC-12 traveller on the east fields path, taking bread to the reapers",
-      "voices": ["villager_woman_1"],
+      "voices": [
+        "villager_woman_1"
+      ],
       "lines": {
         "greet": [
           "Bread's still warm, if you're quick.",
@@ -209,7 +236,9 @@
     },
     "tinker": {
       "who": "NPC-12 traveller on the south-west lane, a tinker mending pots farm to farm",
-      "voices": ["villager_man_1"],
+      "voices": [
+        "villager_man_1"
+      ],
       "lines": {
         "greet": [
           "Pots mended, knives ground, gossip free of charge.",
@@ -225,7 +254,9 @@
     },
     "washerwoman": {
       "who": "NPC-12 traveller on the pond path, going to wash at the pond",
-      "voices": ["villager_woman_1"],
+      "voices": [
+        "villager_woman_1"
+      ],
       "lines": {
         "greet": [
           "Washing day, every day. That's my lot.",
@@ -241,7 +272,10 @@
     },
     "watch_gate": {
       "who": "NPC-13 Watchmen at the gates",
-      "voices": ["guard_1", "guard_2"],
+      "voices": [
+        "guard_1",
+        "guard_2"
+      ],
       "lines": {
         "greet": [
           "All quiet. For now.",
@@ -263,7 +297,10 @@
     },
     "watch_patrol": {
       "who": "NPC-14 the Watch patrol round the village",
-      "voices": ["guard_1", "guard_2"],
+      "voices": [
+        "guard_1",
+        "guard_2"
+      ],
       "lines": {
         "greet": [
           "Twice round the fence, she says. Twice! My boots are older than you.",

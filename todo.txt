@@ -25,6 +25,7 @@ HUD
 Lock-on
 A few more enemy types
 NPC fights
+Guard protect AI
 Caves
 Inventory
 Equip

@@ -117,7 +117,7 @@ def keep(name: str, number: str, spec: dict) -> None:
         sys.exit(f"No preview {number} for {name}. Have: {', '.join(previews) or 'none (design it first)'}")
     res = post(API, {"voice_name": f"Lycantrope {name}", "voice_description": v["description"],
                      "generated_voice_id": previews[number],
-                     "labels": {"game": "lycantrope", "role": v["for"]}}, api_key())
+                     "labels": {"game": "lycantrope", "role": v["for"][:50]}}, api_key())
     vid = res["voice_id"]
     voices = load_json(VOICES, {"_about": ["Designed ElevenLabs voices (AUD-02), made by tools/voice/design_voices.py."],
                                 "voices": {}})

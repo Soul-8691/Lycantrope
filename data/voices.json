@@ -56,6 +56,12 @@
       "for": "STY-20 / NPC-04 Farmer Oswin Tull",
       "description": "A gruff, kind old farmer of about sixty-five who raised the hero. Deep, weathered, slightly hoarse voice with a broad rural West Country English accent. Speaks in short, plain sentences, grumbling on the surface but warm underneath. Close-mic, dry studio recording, no background noise.",
       "kept": "2026-11-25"
+    },
+    "maud": {
+      "voice_id": "vvsaKtk6cTSeyZyirS4t",
+      "for": "NPC-09 / WLD-38 Granny Maud Pickering, the market seller",
+      "description": "A lively market woman in her early fifties, quick-witted and warm, who knows everyone's business. Bright, slightly husky mezzo voice with a soft rural West Country English accent, brisk and chatty, dropping to a conspiratorial murmur for gossip. Close-mic, dry studio recording, no background noise.",
+      "kept": "2026-11-26"
     }
   }
 }
