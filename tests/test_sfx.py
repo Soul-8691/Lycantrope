@@ -136,6 +136,7 @@ def test_every_sound_in_the_data_file_exists():
     names |= {cfg["spell"]["loop"], cfg["spell"]["hit"], cfg["wade_step"]["s"]}
     names |= {l["s"] for k in cfg["kinds"].values() for l in k.get("clip_loops", {}).values()}
     names = {n.replace("{ground}", g) for n in names for g in ("grass", "dirt")}
+    names = {n for n in names if not n.startswith("vo/")}        # voice lines: made per voice, checked below
     missing = [n for n in sorted(names) if not list(SFX_DIR.glob(f"{n}_*.mp3"))]
     assert not missing, missing
 
@@ -168,3 +169,27 @@ def test_swimming_strokes_splashes_lapping_and_wading():
         a.anim.update(1 / 60)
         steps += run(d, [r], rowan=a, ground=lambda x, z: "water")[0]
     assert steps == ["water/wade_step"] * 2
+
+
+def test_npcs_greet_rowan_in_their_own_voice_once_in_a_while():
+    cfg = load_sfx_config()
+    d = SfxDirector(cfg, random.Random(1))
+    r = char("rowan", 0.0, 0.0)
+    v = char("villager_m", 10.0, 0.0)
+    v.voice = "villager_man_2"
+    mute = char("villager_m", -10.0, 0.0)                 # no voice: never speaks
+    chars = [r, v, mute]
+    run(d, chars, rowan=r.actor)
+    v.actor.x, mute.actor.x = 3.0, -3.0                   # Rowan walks up to both
+    sounds = run(d, chars, rowan=r.actor)[0]
+    assert sounds == ["vo/villager_man_2/greet"]
+    v.actor.x = 20.0                                      # walks off and comes straight back: too soon
+    run(d, chars, rowan=r.actor)
+    v.actor.x = 3.0
+    assert run(d, chars, rowan=r.actor)[0] == []
+    for _ in range(46 * 60):
+        run(d, chars, rowan=r.actor)
+    v.actor.x = 20.0
+    run(d, chars, rowan=r.actor)
+    v.actor.x = 3.0
+    assert run(d, chars, rowan=r.actor)[0] == ["vo/villager_man_2/greet"]

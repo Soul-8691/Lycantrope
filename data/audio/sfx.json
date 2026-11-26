@@ -12,53 +12,172 @@
     "Sounds fade with distance (full within ref_m, silent past max_m) and pan with the camera.",
     "Per kind, also: cycle_events {clip: [[phase 0..1, event]]} fires once per loop of that clip;",
     "state_events {state: {enter, leave}} fires on entering/leaving a state; clip_loops {clip: sound}",
-    "keeps a looping sound going while that clip plays. wade_step replaces any footstep in water."
+    "keeps a looping sound going while that clip plays. wade_step replaces any footstep in water.",
+    "greet: an NPC with a voice speaks when Rowan walks up (once per 45 s). {voice} is that NPC's",
+    "voice (data/characters.json 'voices'); lines are assets/audio/vo/<voice>/<event>_<n>.mp3."
   ],
   "volume": 1.0,
   "ref_m": 4.0,
   "max_m": 45.0,
   "steps_within_m": 22.0,
   "min_gap_s": 0.3,
-  "spell": {"loop": "combat/fireball_loop", "loop_volume": 0.55, "hit": "combat/fireball_hit"},
-  "wade_step": {"s": "water/wade_step", "volume": 0.5},
+  "spell": {
+    "loop": "combat/fireball_loop",
+    "loop_volume": 0.55,
+    "hit": "combat/fireball_hit"
+  },
+  "wade_step": {
+    "s": "water/wade_step",
+    "volume": 0.5
+  },
   "kinds": {
     "rowan": {
       "positional": false,
       "steps_per_cycle": 2,
-      "cycle_events": {"swim": [[0.33, "stroke"]]},
-      "state_events": {"swim": {"enter": "splash_in", "leave": "splash_out"}},
-      "clip_loops": {"tread": {"s": "water/tread_loop", "volume": 0.45}, "swim": {"s": "water/tread_loop", "volume": 0.2}},
+      "cycle_events": {
+        "swim": [
+          [
+            0.33,
+            "stroke"
+          ]
+        ]
+      },
+      "state_events": {
+        "swim": {
+          "enter": "splash_in",
+          "leave": "splash_out"
+        }
+      },
+      "clip_loops": {
+        "tread": {
+          "s": "water/tread_loop",
+          "volume": 0.45
+        },
+        "swim": {
+          "s": "water/tread_loop",
+          "volume": 0.2
+        }
+      },
       "events": {
-        "stroke": {"s": "water/stroke", "volume": 0.75},
-        "splash_in": {"s": "water/splash_in", "volume": 0.9},
-        "splash_out": {"s": "water/splash_out", "volume": 0.8},
-        "step": {"s": "footsteps/boot_{ground}", "volume": 0.32},
-        "light": ["combat/swing_light", {"s": "rowan/attack_light", "chance": 0.45, "volume": 0.8}],
-        "heavy": ["combat/swing_heavy", {"s": "rowan/attack_heavy", "volume": 0.85}],
-        "cast": [{"s": "rowan/cast", "volume": 0.8}, {"s": "combat/rite_cast", "delay_s": 0.25}],
-        "hit": ["rowan/hurt", {"s": "combat/hit_flesh", "volume": 0.7}],
-        "death": ["rowan/death", {"s": "combat/body_fall", "delay_s": 0.9}]
+        "stroke": {
+          "s": "water/stroke",
+          "volume": 0.75
+        },
+        "splash_in": {
+          "s": "water/splash_in",
+          "volume": 0.9
+        },
+        "splash_out": {
+          "s": "water/splash_out",
+          "volume": 0.8
+        },
+        "step": {
+          "s": "footsteps/boot_{ground}",
+          "volume": 0.32
+        },
+        "light": [
+          "combat/swing_light",
+          {
+            "s": "rowan/attack_light",
+            "chance": 0.45,
+            "volume": 0.8
+          }
+        ],
+        "heavy": [
+          "combat/swing_heavy",
+          {
+            "s": "rowan/attack_heavy",
+            "volume": 0.85
+          }
+        ],
+        "cast": [
+          {
+            "s": "rowan/cast",
+            "volume": 0.8
+          },
+          {
+            "s": "combat/rite_cast",
+            "delay_s": 0.25
+          }
+        ],
+        "hit": [
+          "rowan/hurt",
+          {
+            "s": "combat/hit_flesh",
+            "volume": 0.7
+          }
+        ],
+        "death": [
+          "rowan/death",
+          {
+            "s": "combat/body_fall",
+            "delay_s": 0.9
+          }
+        ]
       }
     },
     "goblin": {
       "steps_per_cycle": 2,
-      "idle_every_s": [10, 25],
+      "idle_every_s": [
+        10,
+        25
+      ],
       "events": {
-        "step": {"s": "footsteps/bare_small", "volume": 0.3},
+        "step": {
+          "s": "footsteps/bare_small",
+          "volume": 0.3
+        },
         "alert": "goblin/alert",
-        "idle": {"s": "goblin/idle", "volume": 0.7},
-        "attack": [{"s": "combat/swing_light", "volume": 0.8}, {"s": "goblin/attack", "chance": 0.7}],
+        "idle": {
+          "s": "goblin/idle",
+          "volume": 0.7
+        },
+        "attack": [
+          {
+            "s": "combat/swing_light",
+            "volume": 0.8
+          },
+          {
+            "s": "goblin/attack",
+            "chance": 0.7
+          }
+        ],
         "hit": "goblin/hurt",
-        "death": ["goblin/death", {"s": "combat/body_fall", "delay_s": 0.7, "volume": 0.6}]
+        "death": [
+          "goblin/death",
+          {
+            "s": "combat/body_fall",
+            "delay_s": 0.7,
+            "volume": 0.6
+          }
+        ]
       }
     },
     "wolf": {
       "steps_per_cycle": 2,
-      "idle_every_s": [12, 30],
+      "idle_every_s": [
+        12,
+        30
+      ],
       "events": {
-        "step": {"s": "footsteps/paw", "volume": 0.25},
-        "alert": [{"s": "wolf/alert", "chance": 0.75}, {"s": "wolf/howl", "chance": 0.25}],
-        "idle": {"s": "wolf/idle", "volume": 0.6},
+        "step": {
+          "s": "footsteps/paw",
+          "volume": 0.25
+        },
+        "alert": [
+          {
+            "s": "wolf/alert",
+            "chance": 0.75
+          },
+          {
+            "s": "wolf/howl",
+            "chance": 0.25
+          }
+        ],
+        "idle": {
+          "s": "wolf/idle",
+          "volume": 0.6
+        },
         "attack": "wolf/attack",
         "hit": "wolf/hurt",
         "death": "wolf/death"
@@ -66,74 +185,207 @@
     },
     "bear": {
       "steps_per_cycle": 2,
-      "idle_every_s": [10, 25],
+      "idle_every_s": [
+        10,
+        25
+      ],
       "events": {
-        "step": {"s": "footsteps/paw_heavy", "volume": 0.4},
+        "step": {
+          "s": "footsteps/paw_heavy",
+          "volume": 0.4
+        },
         "alert": "bear/alert",
-        "idle": {"s": "bear/idle", "volume": 0.7},
+        "idle": {
+          "s": "bear/idle",
+          "volume": 0.7
+        },
         "attack": "bear/attack",
         "hit": "bear/hurt",
-        "death": ["bear/death", {"s": "combat/body_fall", "delay_s": 1.0}]
+        "death": [
+          "bear/death",
+          {
+            "s": "combat/body_fall",
+            "delay_s": 1.0
+          }
+        ]
       }
     },
     "bruiser": {
       "steps_per_cycle": 2,
       "events": {
-        "step": {"s": "footsteps/boot_{ground}", "volume": 0.35},
+        "step": {
+          "s": "footsteps/boot_{ground}",
+          "volume": 0.35
+        },
         "alert": "bruiser/alert",
-        "attack": ["combat/swing_heavy", {"s": "bruiser/attack", "chance": 0.8}],
-        "hit": ["bruiser/hurt", {"s": "combat/hit_blunt", "volume": 0.7}],
-        "death": ["bruiser/death", {"s": "combat/body_fall", "delay_s": 0.9}]
+        "attack": [
+          "combat/swing_heavy",
+          {
+            "s": "bruiser/attack",
+            "chance": 0.8
+          }
+        ],
+        "hit": [
+          "bruiser/hurt",
+          {
+            "s": "combat/hit_blunt",
+            "volume": 0.7
+          }
+        ],
+        "death": [
+          "bruiser/death",
+          {
+            "s": "combat/body_fall",
+            "delay_s": 0.9
+          }
+        ]
       }
     },
     "battlemage": {
       "steps_per_cycle": 2,
       "events": {
-        "step": {"s": "footsteps/boot_{ground}", "volume": 0.3},
+        "step": {
+          "s": "footsteps/boot_{ground}",
+          "volume": 0.3
+        },
         "alert": "battlemage/alert",
-        "attack": ["combat/swing_light", {"s": "battlemage/attack", "chance": 0.7}],
-        "cast": {"s": "battlemage/cast", "volume": 0.85},
+        "attack": [
+          "combat/swing_light",
+          {
+            "s": "battlemage/attack",
+            "chance": 0.7
+          }
+        ],
+        "cast": {
+          "s": "battlemage/cast",
+          "volume": 0.85
+        },
         "release": "combat/fireball_cast",
         "hit": "battlemage/hurt",
-        "death": ["battlemage/death", {"s": "combat/body_fall", "delay_s": 0.9}]
+        "death": [
+          "battlemage/death",
+          {
+            "s": "combat/body_fall",
+            "delay_s": 0.9
+          }
+        ]
       }
     },
     "cow": {
       "steps_per_cycle": 2,
-      "idle_every_s": [15, 45],
+      "idle_every_s": [
+        15,
+        45
+      ],
       "events": {
-        "step": {"s": "footsteps/hoof", "volume": 0.25},
-        "idle": [{"s": "cow/moo", "chance": 0.5}, {"s": "cow/moo_short", "chance": 0.3}, {"s": "cow/chew", "chance": 0.2, "volume": 0.6}],
+        "step": {
+          "s": "footsteps/hoof",
+          "volume": 0.25
+        },
+        "idle": [
+          {
+            "s": "cow/moo",
+            "chance": 0.5
+          },
+          {
+            "s": "cow/moo_short",
+            "chance": 0.3
+          },
+          {
+            "s": "cow/chew",
+            "chance": 0.2,
+            "volume": 0.6
+          }
+        ],
         "startled": "cow/startled"
       }
     },
     "villager_m": {
       "steps_per_cycle": 2,
       "events": {
-        "step": {"s": "footsteps/boot_{ground}", "volume": 0.25},
-        "startled": "villager_m/startled",
+        "step": {
+          "s": "footsteps/boot_{ground}",
+          "volume": 0.25
+        },
+        "startled": [
+          {
+            "s": "vo/{voice}/startled",
+            "chance": 0.6
+          },
+          {
+            "s": "villager_m/startled",
+            "chance": 0.4
+          }
+        ],
         "hit": "villager_m/hurt",
-        "death": "villager_m/death"
+        "death": "villager_m/death",
+        "greet": {
+          "s": "vo/{voice}/greet",
+          "volume": 1.0
+        }
       }
     },
     "villager_f": {
       "steps_per_cycle": 2,
       "events": {
-        "step": {"s": "footsteps/boot_{ground}", "volume": 0.22},
-        "startled": "villager_f/startled",
+        "step": {
+          "s": "footsteps/boot_{ground}",
+          "volume": 0.22
+        },
+        "startled": [
+          {
+            "s": "vo/{voice}/startled",
+            "chance": 0.6
+          },
+          {
+            "s": "villager_f/startled",
+            "chance": 0.4
+          }
+        ],
         "hit": "villager_f/hurt",
-        "death": "villager_f/death"
+        "death": "villager_f/death",
+        "greet": {
+          "s": "vo/{voice}/greet",
+          "volume": 1.0
+        }
       }
     },
     "farmer": {
       "steps_per_cycle": 2,
-      "idle_every_s": [20, 50],
+      "idle_every_s": [
+        20,
+        50
+      ],
       "events": {
-        "step": {"s": "footsteps/boot_{ground}", "volume": 0.25},
-        "idle": {"s": "farmer/idle", "volume": 0.7},
+        "step": {
+          "s": "footsteps/boot_{ground}",
+          "volume": 0.25
+        },
+        "idle": {
+          "s": "farmer/idle",
+          "volume": 0.7
+        },
         "startled": "farmer/startled",
         "hit": "farmer/hurt",
         "death": "farmer/death"
+      }
+    },
+    "guard": {
+      "steps_per_cycle": 2,
+      "events": {
+        "step": {
+          "s": "footsteps/boot_{ground}",
+          "volume": 0.3
+        },
+        "greet": {
+          "s": "vo/{voice}/greet",
+          "volume": 1.0
+        },
+        "startled": {
+          "s": "vo/{voice}/startled"
+        },
+        "hit": "villager_m/hurt",
+        "death": "villager_m/death"
       }
     }
   }

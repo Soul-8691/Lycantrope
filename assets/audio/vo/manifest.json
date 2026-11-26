@@ -1,0 +1,306 @@
+{
+  "guard_1/greet_1.mp3": {
+    "hash": "901de5e9966b",
+    "text": "Keep your blade sheathed inside the fence."
+  },
+  "guard_1/greet_2.mp3": {
+    "hash": "70b9157f3c75",
+    "text": "All quiet. For now."
+  },
+  "guard_1/greet_3.mp3": {
+    "hash": "28e0b27a3458",
+    "text": "Wolves on the east road again. Stay on the paths."
+  },
+  "guard_1/greet_4.mp3": {
+    "hash": "68abe18979ff",
+    "text": "Move along, farmhand."
+  },
+  "guard_1/greet_5.mp3": {
+    "hash": "8e147cd2749a",
+    "text": "If you see goblins, you come and tell the Watch. Don't play the hero."
+  },
+  "guard_1/startled_1.mp3": {
+    "hash": "5960cef9ba8c",
+    "text": "Hey! Put that away before someone gets hurt."
+  },
+  "guard_1/startled_2.mp3": {
+    "hash": "0e4a20d82633",
+    "text": "Easy there! That's the Watch you're swinging at."
+  },
+  "guard_1/startled_3.mp3": {
+    "hash": "87a02af8924d",
+    "text": "Try that again and you'll spend the night in the stocks."
+  },
+  "guard_2/greet_1.mp3": {
+    "hash": "901de5e9966b",
+    "text": "Keep your blade sheathed inside the fence."
+  },
+  "guard_2/greet_2.mp3": {
+    "hash": "70b9157f3c75",
+    "text": "All quiet. For now."
+  },
+  "guard_2/greet_3.mp3": {
+    "hash": "28e0b27a3458",
+    "text": "Wolves on the east road again. Stay on the paths."
+  },
+  "guard_2/greet_4.mp3": {
+    "hash": "68abe18979ff",
+    "text": "Move along, farmhand."
+  },
+  "guard_2/greet_5.mp3": {
+    "hash": "8e147cd2749a",
+    "text": "If you see goblins, you come and tell the Watch. Don't play the hero."
+  },
+  "guard_2/startled_1.mp3": {
+    "hash": "5960cef9ba8c",
+    "text": "Hey! Put that away before someone gets hurt."
+  },
+  "guard_2/startled_2.mp3": {
+    "hash": "0e4a20d82633",
+    "text": "Easy there! That's the Watch you're swinging at."
+  },
+  "guard_2/startled_3.mp3": {
+    "hash": "87a02af8924d",
+    "text": "Try that again and you'll spend the night in the stocks."
+  },
+  "villager_man_1/greet_1.mp3": {
+    "hash": "368c53fd6181",
+    "text": "Morning. Mind the mud by the well, it's deeper than it looks."
+  },
+  "villager_man_1/greet_2.mp3": {
+    "hash": "63ac3315a2fb",
+    "text": "You're Oswin's lad, aren't you? Give him my regards."
+  },
+  "villager_man_1/greet_3.mp3": {
+    "hash": "ea673f1255c8",
+    "text": "Fine day for it. Shame about the wolves."
+  },
+  "villager_man_1/greet_4.mp3": {
+    "hash": "bffb8c0a87fb",
+    "text": "Heard there's goblins up past the east fields again. Watch yourself."
+  },
+  "villager_man_1/greet_5.mp3": {
+    "hash": "cd885b51757a",
+    "text": "If you're going out the north gate, be back before dark."
+  },
+  "villager_man_1/greet_6.mp3": {
+    "hash": "c910fcdbbcf7",
+    "text": "Oh! Didn't see you there. Good day to you."
+  },
+  "villager_man_1/startled_1.mp3": {
+    "hash": "7107c3e37114",
+    "text": "Oi! Careful with that!"
+  },
+  "villager_man_1/startled_2.mp3": {
+    "hash": "c652a152e6d1",
+    "text": "Watch where you're swinging!"
+  },
+  "villager_man_1/startled_3.mp3": {
+    "hash": "fde987fb90e6",
+    "text": "Gods above, put that away!"
+  },
+  "villager_man_1/startled_4.mp3": {
+    "hash": "f6cb0d9803c0",
+    "text": "Whoa! Not near me, if you please!"
+  },
+  "villager_man_2/greet_1.mp3": {
+    "hash": "368c53fd6181",
+    "text": "Morning. Mind the mud by the well, it's deeper than it looks."
+  },
+  "villager_man_2/greet_2.mp3": {
+    "hash": "63ac3315a2fb",
+    "text": "You're Oswin's lad, aren't you? Give him my regards."
+  },
+  "villager_man_2/greet_3.mp3": {
+    "hash": "ea673f1255c8",
+    "text": "Fine day for it. Shame about the wolves."
+  },
+  "villager_man_2/greet_4.mp3": {
+    "hash": "bffb8c0a87fb",
+    "text": "Heard there's goblins up past the east fields again. Watch yourself."
+  },
+  "villager_man_2/greet_5.mp3": {
+    "hash": "cd885b51757a",
+    "text": "If you're going out the north gate, be back before dark."
+  },
+  "villager_man_2/greet_6.mp3": {
+    "hash": "c910fcdbbcf7",
+    "text": "Oh! Didn't see you there. Good day to you."
+  },
+  "villager_man_2/startled_1.mp3": {
+    "hash": "7107c3e37114",
+    "text": "Oi! Careful with that!"
+  },
+  "villager_man_2/startled_2.mp3": {
+    "hash": "c652a152e6d1",
+    "text": "Watch where you're swinging!"
+  },
+  "villager_man_2/startled_3.mp3": {
+    "hash": "fde987fb90e6",
+    "text": "Gods above, put that away!"
+  },
+  "villager_man_2/startled_4.mp3": {
+    "hash": "f6cb0d9803c0",
+    "text": "Whoa! Not near me, if you please!"
+  },
+  "villager_man_3/greet_1.mp3": {
+    "hash": "368c53fd6181",
+    "text": "Morning. Mind the mud by the well, it's deeper than it looks."
+  },
+  "villager_man_3/greet_2.mp3": {
+    "hash": "63ac3315a2fb",
+    "text": "You're Oswin's lad, aren't you? Give him my regards."
+  },
+  "villager_man_3/greet_3.mp3": {
+    "hash": "ea673f1255c8",
+    "text": "Fine day for it. Shame about the wolves."
+  },
+  "villager_man_3/greet_4.mp3": {
+    "hash": "bffb8c0a87fb",
+    "text": "Heard there's goblins up past the east fields again. Watch yourself."
+  },
+  "villager_man_3/greet_5.mp3": {
+    "hash": "cd885b51757a",
+    "text": "If you're going out the north gate, be back before dark."
+  },
+  "villager_man_3/greet_6.mp3": {
+    "hash": "c910fcdbbcf7",
+    "text": "Oh! Didn't see you there. Good day to you."
+  },
+  "villager_man_3/startled_1.mp3": {
+    "hash": "7107c3e37114",
+    "text": "Oi! Careful with that!"
+  },
+  "villager_man_3/startled_2.mp3": {
+    "hash": "c652a152e6d1",
+    "text": "Watch where you're swinging!"
+  },
+  "villager_man_3/startled_3.mp3": {
+    "hash": "fde987fb90e6",
+    "text": "Gods above, put that away!"
+  },
+  "villager_man_3/startled_4.mp3": {
+    "hash": "f6cb0d9803c0",
+    "text": "Whoa! Not near me, if you please!"
+  },
+  "villager_woman_1/greet_1.mp3": {
+    "hash": "368c53fd6181",
+    "text": "Morning. Mind the mud by the well, it's deeper than it looks."
+  },
+  "villager_woman_1/greet_2.mp3": {
+    "hash": "63ac3315a2fb",
+    "text": "You're Oswin's lad, aren't you? Give him my regards."
+  },
+  "villager_woman_1/greet_3.mp3": {
+    "hash": "ea673f1255c8",
+    "text": "Fine day for it. Shame about the wolves."
+  },
+  "villager_woman_1/greet_4.mp3": {
+    "hash": "bffb8c0a87fb",
+    "text": "Heard there's goblins up past the east fields again. Watch yourself."
+  },
+  "villager_woman_1/greet_5.mp3": {
+    "hash": "cd885b51757a",
+    "text": "If you're going out the north gate, be back before dark."
+  },
+  "villager_woman_1/greet_6.mp3": {
+    "hash": "c910fcdbbcf7",
+    "text": "Oh! Didn't see you there. Good day to you."
+  },
+  "villager_woman_1/startled_1.mp3": {
+    "hash": "7107c3e37114",
+    "text": "Oi! Careful with that!"
+  },
+  "villager_woman_1/startled_2.mp3": {
+    "hash": "c652a152e6d1",
+    "text": "Watch where you're swinging!"
+  },
+  "villager_woman_1/startled_3.mp3": {
+    "hash": "fde987fb90e6",
+    "text": "Gods above, put that away!"
+  },
+  "villager_woman_1/startled_4.mp3": {
+    "hash": "f6cb0d9803c0",
+    "text": "Whoa! Not near me, if you please!"
+  },
+  "villager_woman_2/greet_1.mp3": {
+    "hash": "368c53fd6181",
+    "text": "Morning. Mind the mud by the well, it's deeper than it looks."
+  },
+  "villager_woman_2/greet_2.mp3": {
+    "hash": "63ac3315a2fb",
+    "text": "You're Oswin's lad, aren't you? Give him my regards."
+  },
+  "villager_woman_2/greet_3.mp3": {
+    "hash": "ea673f1255c8",
+    "text": "Fine day for it. Shame about the wolves."
+  },
+  "villager_woman_2/greet_4.mp3": {
+    "hash": "bffb8c0a87fb",
+    "text": "Heard there's goblins up past the east fields again. Watch yourself."
+  },
+  "villager_woman_2/greet_5.mp3": {
+    "hash": "cd885b51757a",
+    "text": "If you're going out the north gate, be back before dark."
+  },
+  "villager_woman_2/greet_6.mp3": {
+    "hash": "c910fcdbbcf7",
+    "text": "Oh! Didn't see you there. Good day to you."
+  },
+  "villager_woman_2/startled_1.mp3": {
+    "hash": "7107c3e37114",
+    "text": "Oi! Careful with that!"
+  },
+  "villager_woman_2/startled_2.mp3": {
+    "hash": "c652a152e6d1",
+    "text": "Watch where you're swinging!"
+  },
+  "villager_woman_2/startled_3.mp3": {
+    "hash": "fde987fb90e6",
+    "text": "Gods above, put that away!"
+  },
+  "villager_woman_2/startled_4.mp3": {
+    "hash": "f6cb0d9803c0",
+    "text": "Whoa! Not near me, if you please!"
+  },
+  "villager_woman_3/greet_1.mp3": {
+    "hash": "368c53fd6181",
+    "text": "Morning. Mind the mud by the well, it's deeper than it looks."
+  },
+  "villager_woman_3/greet_2.mp3": {
+    "hash": "63ac3315a2fb",
+    "text": "You're Oswin's lad, aren't you? Give him my regards."
+  },
+  "villager_woman_3/greet_3.mp3": {
+    "hash": "ea673f1255c8",
+    "text": "Fine day for it. Shame about the wolves."
+  },
+  "villager_woman_3/greet_4.mp3": {
+    "hash": "bffb8c0a87fb",
+    "text": "Heard there's goblins up past the east fields again. Watch yourself."
+  },
+  "villager_woman_3/greet_5.mp3": {
+    "hash": "cd885b51757a",
+    "text": "If you're going out the north gate, be back before dark."
+  },
+  "villager_woman_3/greet_6.mp3": {
+    "hash": "c910fcdbbcf7",
+    "text": "Oh! Didn't see you there. Good day to you."
+  },
+  "villager_woman_3/startled_1.mp3": {
+    "hash": "7107c3e37114",
+    "text": "Oi! Careful with that!"
+  },
+  "villager_woman_3/startled_2.mp3": {
+    "hash": "c652a152e6d1",
+    "text": "Watch where you're swinging!"
+  },
+  "villager_woman_3/startled_3.mp3": {
+    "hash": "fde987fb90e6",
+    "text": "Gods above, put that away!"
+  },
+  "villager_woman_3/startled_4.mp3": {
+    "hash": "f6cb0d9803c0",
+    "text": "Whoa! Not near me, if you please!"
+  }
+}

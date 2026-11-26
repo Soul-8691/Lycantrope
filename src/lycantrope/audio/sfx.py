@@ -22,6 +22,9 @@ from pathlib import Path
 from lycantrope.core.paths import ASSETS, DATA
 
 SFX_DIR = ASSETS / "audio" / "sfx"
+VO_DIR = ASSETS / "audio" / "vo"                 # NPC voice lines: vo/<voice>/<event>_<n>.mp3
+GREET_M = 3.5                                    # an NPC greets Rowan when he comes this close
+GREET_COOLDOWN_S = 45.0
 CLIP_EVENTS = {"light1": "light", "light2": "light", "light3": "light", "heavy": "heavy",
                "attack1": "attack", "attack2": "attack", "cast": "cast", "hit": "hit", "death": "death"}
 GAITS = ("walk", "run", "sprint")
@@ -68,6 +71,8 @@ class Track:
     idle_in: float = 0.0
     alert_ok_at: float = 0.0
     startle_ok_at: float = 0.0
+    near_rowan: bool = False
+    greet_ok_at: float = 0.0
 
 
 @dataclass
@@ -85,7 +90,8 @@ class SfxDirector:
         return self.cfg.get("kinds", {}).get(k, {})
 
     # ------------------------------------------------------------------ cues
-    def emit(self, kind: str, event: str, pos, out: list[Cue], ground=None, positional=True) -> None:
+    def emit(self, kind: str, event: str, pos, out: list[Cue], ground=None, positional=True,
+             voice: str | None = None) -> None:
         spec = self.kind(kind).get("events", {}).get(event)
         if event == "step" and ground and pos and "wade_step" in self.cfg and ground(pos[0], pos[2]) == "water":
             spec = self.cfg["wade_step"]                # splashing through the shallows
@@ -108,6 +114,10 @@ class SfxDirector:
                     break
         for i in chosen:
             name = i["s"]
+            if "{voice}" in name:
+                if not voice:
+                    continue                            # no voice for this NPC: say nothing
+                name = name.replace("{voice}", voice)
             if "{ground}" in name:
                 name = name.replace("{ground}", ground(pos[0], pos[2]) if ground and pos else "grass")
             cue = Cue(name, pos if positional else None, float(i.get("volume", 1.0)),
@@ -186,6 +196,17 @@ class SfxDirector:
                     t.idle_in = self._idle_wait(spec)
                     if near2 < (0.8 * max_m) ** 2:
                         self.emit(a.kind, "idle", pos, out, ground, positional)
+            # walking up to an NPC: a greeting in its own voice, now and then
+            voice = getattr(c, "voice", None)
+            if voice and rowan is not None and not is_rowan and "greet" in spec.get("events", {}):
+                d2 = (a.x - rowan.x) ** 2 + (a.z - rowan.z) ** 2
+                if not t.near_rowan and d2 < GREET_M ** 2:
+                    t.near_rowan = True
+                    if self.now >= t.greet_ok_at and a.state in ("wander", "idle"):
+                        t.greet_ok_at = self.now + GREET_COOLDOWN_S
+                        self.emit(a.kind, "greet", pos, out, ground, positional, voice)
+                elif t.near_rowan and d2 > (GREET_M + 2.0) ** 2:
+                    t.near_rowan = False
             t.clip, t.time, t.state = clip, time, a.state
         if rowan_moves and rowan is not None:          # villagers and cows flinch at a swing nearby
             for c in chars:
@@ -195,7 +216,8 @@ class SfxDirector:
                 t = self.tracks[id(a)]
                 if (a.x - rowan.x) ** 2 + (a.z - rowan.z) ** 2 < STARTLE_M ** 2 and self.now >= t.startle_ok_at:
                     t.startle_ok_at = self.now + STARTLE_COOLDOWN_S
-                    self.emit(a.kind, "startled", (a.x, a.y + 1.0, a.z), out, ground)
+                    self.emit(a.kind, "startled", (a.x, a.y + 1.0, a.z), out, ground,
+                              voice=getattr(c, "voice", None))
         # delayed parts (a body hitting the ground after the death cry)
         due = [q for q in self.pending if q.at <= self.now]
         if due:
@@ -235,6 +257,7 @@ class MixerSfx:
         self.cfg = cfg
         self.volume = volume
         self.enabled = True
+        self.voices = True                     # debug: NPC voice lines on or off (other sounds unaffected)
         self.sounds: dict[str, list] = {}
         self.last_take: dict[str, int] = {}
         self.loop_channels: dict = {}
@@ -246,14 +269,15 @@ class MixerSfx:
     def _load(self, root: Path) -> None:
         pg = self.pygame
         found: dict[str, list] = {}
-        for f in sorted(root.glob("*/*.mp3")):
-            stem, _, take = f.stem.rpartition("_")
-            if not take.isdigit():
-                continue
-            try:
-                found.setdefault(f"{f.parent.name}/{stem}", []).append(pg.mixer.Sound(str(f)))
-            except (pg.error, OSError) as exc:
-                print(f"sfx: could not load {f.name} ({exc})")
+        for prefix, base in (("", root), ("vo/", VO_DIR)):
+            for f in sorted(base.glob("*/*.mp3")):
+                stem, _, take = f.stem.rpartition("_")
+                if not take.isdigit():
+                    continue
+                try:
+                    found.setdefault(f"{prefix}{f.parent.name}/{stem}", []).append(pg.mixer.Sound(str(f)))
+                except (pg.error, OSError) as exc:
+                    print(f"sfx: could not load {f.name} ({exc})")
         self.sounds = found
 
     def _take(self, name: str):
@@ -277,6 +301,8 @@ class MixerSfx:
         if not self.enabled:
             loops = {}
         for q in cues if self.enabled else ():
+            if not self.voices and q.sound.startswith("vo/"):
+                continue
             l, r = self._levels(q.pos, q.volume, listener, right)
             if l + r < 0.01:
                 continue
@@ -315,6 +341,14 @@ class SfxSystem:
     @enabled.setter
     def enabled(self, on: bool) -> None:
         self.player.enabled = on
+
+    @property
+    def voices(self) -> bool:
+        return self.player.voices
+
+    @voices.setter
+    def voices(self, on: bool) -> None:
+        self.player.voices = on
 
     def update(self, chars, rowan, spells, listener, right, dt: float, ground=None) -> None:
         cues, loops = self.director.update(chars, rowan, spells, listener, dt, ground)

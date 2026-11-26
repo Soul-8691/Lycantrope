@@ -1,0 +1,55 @@
+{
+  "_about": [
+    "Designed ElevenLabs voices (AUD-02), made by tools/voice/design_voices.py."
+  ],
+  "voices": {
+    "guard_2": {
+      "voice_id": "z4aMJTe7WmAaag3mORp0",
+      "for": "WLD-25 Watch guard",
+      "description": "A young man in his early twenties, a new recruit of the village watch. Clear, slightly nasal voice with a broad rural English accent, eager and a little nervous, trying to sound tougher than he is. Quick pace, close-mic, dry studio recording, no background noise.",
+      "kept": "2026-11-25"
+    },
+    "guard_1": {
+      "voice_id": "aWDXdk0OsILHq6CMuzQl",
+      "for": "WLD-25 Watch guard",
+      "description": "A man in his late thirties, a village watchman. Deep, steady, slightly gravelly voice with a rough northern English accent. Clipped, no-nonsense delivery, used to giving orders but not unkind. Speaks at a measured pace, close to the microphone, dry studio recording, no background noise.",
+      "kept": "2026-11-25"
+    },
+    "villager_man_1": {
+      "voice_id": "N9BKdDynQdxXhdGTFqKl",
+      "for": "WLD-23 villager (man)",
+      "description": "A warm, friendly middle-aged farmer, about forty-five. Mellow baritone voice with a soft rural West Country English accent, unhurried and good-humoured, with a smile in the voice. Close-mic, dry studio recording, no background noise.",
+      "kept": "2026-11-25"
+    },
+    "villager_man_2": {
+      "voice_id": "VGOo2zX4TaPjVm6RcFkC",
+      "for": "WLD-23 villager (man)",
+      "description": "An older villager in his sixties, thin and a little reedy, with a dry, grumbling wit and a broad rural English accent. Speaks slowly and sighs a lot, the type who has seen everything twice. Close-mic, dry studio recording, no background noise.",
+      "kept": "2026-11-25"
+    },
+    "villager_man_3": {
+      "voice_id": "0wsgXWarzNxuArawE8wp",
+      "for": "WLD-23 villager (man)",
+      "description": "A big, broad-shouldered man in his early thirties, a gentle giant who works the fields. Deep, booming bass voice with a slow, easy rural English accent, warm and a little simple, quick to laugh. Close-mic, dry studio recording, no background noise.",
+      "kept": "2026-11-25"
+    },
+    "villager_woman_1": {
+      "voice_id": "PwypknrTcN1EXFOC8dqT",
+      "for": "WLD-24 villager (woman)",
+      "description": "A bright, lively young woman in her twenties, a farm worker. Light, warm mezzo voice with a gentle rural English accent, quick and cheerful with a teasing edge. Close-mic, dry studio recording, no background noise.",
+      "kept": "2026-11-25"
+    },
+    "villager_woman_2": {
+      "voice_id": "GFGQP4lpJeY2g4wYUNAE",
+      "for": "WLD-24 villager (woman)",
+      "description": "A capable woman in her fifties who runs a busy household. Firm, rich alto voice with a soft rural West Country English accent, practical and motherly, kind underneath the brisk manner. Close-mic, dry studio recording, no background noise.",
+      "kept": "2026-11-25"
+    },
+    "villager_woman_3": {
+      "voice_id": "GXtv3sQTkVxHHq1ER0Mf",
+      "for": "WLD-24 villager (woman)",
+      "description": "An elderly woman in her seventies, the village's keeper of gossip and old stories. Thin, slightly cracked voice with a soft rural West Country English accent, sharp-witted and knowing, leaning in as if sharing a secret. Slow pace, close-mic, dry studio recording, no background noise.",
+      "kept": "2026-11-25"
+    }
+  }
+}

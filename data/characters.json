@@ -12,7 +12,9 @@
     "Items: 'two_handed': true pulls the other hand onto the haft (second_grip_from_end) with arm IK.",
     "'skirt': {to, amount, min_height_m} moves leg weights onto the hips so long skirts/robes hang instead of splitting.",
     "'mirror': true on a clip swaps left and right (the library cast raises the right hand; Rites are cast with the left).",
-    "'swim': 'procedural' builds swim and tread clips in code (no Meshy swim animation yet). A real 'swim' / 'tread' clip in clips replaces them; then give 'swim_float_m': {clip: water level in rig units above the feet}."
+    "'swim': 'procedural' builds swim and tread clips in code (no Meshy swim animation yet). A real 'swim' / 'tread' clip in clips replaces them; then give 'swim_float_m': {clip: water level in rig units above the feet}.",
+    "'outfits': NPC outfit kit (WLD-26): models made on a grey mannequin, fitted over this body; each NPC wears its own mix of head / top / bottom pieces, each with the chance in 'outfit_chance' (otherwise its own clothes).",
+    "'voices': pool of designed voices (data/voices.json); each NPC is given one."
   ],
   "characters": {
     "rowan": {
@@ -518,7 +520,22 @@
           12
         ],
         "on_paths": true
-      }
+      },
+      "outfits": [
+        "WLD-27/v1/textured/model.glb",
+        "WLD-28/v1/textured/model.glb",
+        "WLD-29/v1/textured/model.glb"
+      ],
+      "outfit_chance": {
+        "head": 0.45,
+        "top": 0.55,
+        "bottom": 0.4
+      },
+      "voices": [
+        "villager_man_1",
+        "villager_man_2",
+        "villager_man_3"
+      ]
     },
     "villager_f": {
       "name": "Villager (woman)",
@@ -577,6 +594,80 @@
         "amount": 0.9,
         "min_height_m": 0.2,
         "cloth_from_m": 0.07
+      },
+      "outfits": [
+        "WLD-30/v1/textured/model.glb",
+        "WLD-31/v1/textured/model.glb",
+        "WLD-32/v1/textured/model.glb"
+      ],
+      "outfit_chance": {
+        "head": 0.45,
+        "top": 0.55,
+        "bottom": 0.4
+      },
+      "voices": [
+        "villager_woman_1",
+        "villager_woman_2",
+        "villager_woman_3"
+      ]
+    },
+    "guard": {
+      "name": "Watch guard",
+      "rig": "WLD-25/v1/rig/rigged.glb",
+      "clips": {
+        "idle": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Idle",
+          "loop": true,
+          "retarget": true
+        },
+        "walk": {
+          "file": "WLD-25/v1/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 1.4
+        },
+        "run": {
+          "file": "WLD-25/v1/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 4.6
+        },
+        "hit": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Hit_Reaction",
+          "retarget": true
+        },
+        "death": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "dying_backwards",
+          "retarget": true
+        }
+      },
+      "speeds": {
+        "walk": 1.35,
+        "run": 4.4
+      },
+      "ai": {
+        "aggro_m": 0,
+        "leash_m": 60,
+        "reach_m": 1.0,
+        "attack_every_s": [
+          9,
+          9
+        ],
+        "wander_m": 2,
+        "pause_s": [
+          8,
+          20
+        ]
+      },
+      "voices": [
+        "guard_1",
+        "guard_2"
+      ],
+      "equipment": {
+        "right_hand": "ONE-07"
       }
     },
     "farmer": {

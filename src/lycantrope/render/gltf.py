@@ -374,6 +374,24 @@ def slot_of(name: str) -> str:
     return SLOT_OF_JOINT.get(name, "legs")
 
 
+# finer body parts for NPC outfits (hands and feet apart, so a coat never hides a villager's hands)
+PARTS = ("head", "arms", "hands", "torso", "legs", "feet")
+
+
+def part_of(name: str) -> str:
+    if name in ("Head", "neck", "head_end", "headfront"):
+        return "head"
+    if name.endswith("Hand"):
+        return "hands"
+    if name.endswith("ForeArm") or name in ("LeftArm", "RightArm"):
+        return "arms"
+    if name.endswith("Foot") or name.endswith("ToeBase"):
+        return "feet"
+    if name.endswith("UpLeg") or name.endswith("Leg"):
+        return "legs"
+    return "torso"
+
+
 def nearest_neighbours(a: np.ndarray, b: np.ndarray, k: int = 4, chunk: int = 1024) -> tuple[np.ndarray, np.ndarray]:
     """For each point in a: indices and distances of its k nearest points in b.
 
@@ -431,6 +449,16 @@ def fit_outfit(body: MeshData, skel: Skeleton, outfit: MeshData) -> MeshData:
     tw /= np.maximum(tw.sum(axis=1, keepdims=True), 1e-8)
     return MeshData(o_mesh.astype(np.float32), outfit.nrm.copy(), outfit.uv, outfit.idx,
                     top.astype(np.int64), tw.astype(np.float32), outfit.texture)
+
+
+def triangle_parts(mesh: MeshData, joint_names: list[str]) -> np.ndarray:
+    """Part index (into PARTS) of every triangle, by the majority of its vertices' main bone."""
+    main = mesh.joints[np.arange(len(mesh.joints)), np.argmax(mesh.weights, axis=1)]
+    vpart = np.array([PARTS.index(part_of(n)) for n in joint_names])[main]
+    tri = vpart[mesh.idx.reshape(-1, 3)]
+    out = tri[:, 0].copy()
+    out[tri[:, 1] == tri[:, 2]] = tri[tri[:, 1] == tri[:, 2], 1]
+    return out
 
 
 def triangle_slots(mesh: MeshData, joint_names: list[str]) -> np.ndarray:

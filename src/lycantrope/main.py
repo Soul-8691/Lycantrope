@@ -7,7 +7,8 @@ WASD             move (camera-relative)     Shift: sprint  ·  Ctrl: walk  ·  w
 Left click       light attack (click again during a swing to chain up to three)
 Right mouse      hold to block              R: heavy attack  ·  Q: cast (off hand)
 H / K            debug: hit reaction / die and get back up
-F4 free-fly camera · F7 helmet on/off · F8 grass on/off · F9 music on/off · F10 sound effects on/off
+F4 free-fly camera · F7 helmet on/off · F8 grass on/off · F9 music on/off · F10 sound effects on/off ·
+F11 NPC voices on/off
 
 Free-fly mode: WASD / QE move, Shift fast, Ctrl slow, wheel base speed.
 Always: T turbo (4x speed, walking and flying) · F1 wireframe · F2 fog · F3 debug overlay ·
@@ -251,8 +252,11 @@ class App:
                     self.chars.helmet = not self.chars.helmet
                 elif k == pygame.K_F8:
                     self.grass.enabled = not self.grass.enabled
-                elif k == pygame.K_F9 and self.music is not None:
-                    self.music.enabled = not self.music.enabled
+                elif k == pygame.K_F9 and self.music is not None and not pygame.key.get_mods() & pygame.KMOD_SHIFT:
+                    on = self.music.layer_on                             # all music (Shift+F9 is kept free)
+                    on["explore"] = on["combat"] = not (on["explore"] or on["combat"])
+                elif k == pygame.K_F11 and self.sfx is not None:
+                    self.sfx.voices = not self.sfx.voices
                 elif k == pygame.K_F10 and self.sfx is not None:
                     self.sfx.enabled = not self.sfx.enabled
                 elif k == pygame.K_F12:
@@ -298,13 +302,29 @@ class App:
             self.fly(dt, keys)
         self.chars.update(inp, self.orbit_yaw, dt)
         if self.music is not None:
-            self.music.update(dt, self.chars.chased(self.music.cfg.get("combat_range_m", 45.0)))
+            self.music.update(dt, self.chars.chased(self.music.cfg.get("combat_range_m", 45.0)), self.music_region())
         if self.sfx is not None:
             cam = self.camera
             p, r = cam.position, cam.right()
             self.sfx.update(self.chars.chars, self.chars.rowan.a if self.chars.rowan else None,
                             self.chars.spells.items, (p.x, p.y, p.z), (r.x, r.y, r.z), dt, self.ground_sound)
         self.time_s += dt
+
+    def music_region(self) -> str:
+        """'town' near Brackenvale (with a margin so the edge doesn't flip back and forth), else 'wilds'."""
+        t = self.music.cfg.get("town")
+        if not t:
+            return "wilds"
+        an = next((p for p in self.world.landmarks + self.world.waystones if p.name == t["anchor"]), None)
+        if an is None:
+            return "wilds"
+        if self.play and self.chars.rowan:
+            x, z = self.chars.rowan.a.x, self.chars.rowan.a.z
+        else:
+            x, z = self.camera.position.x, self.camera.position.z
+        d = math.hypot(x - an.x, z - an.z)
+        in_town = d < (t["leave_m"] if self.music.region == "town" else t["enter_m"])
+        return "town" if in_town else "wilds"
 
     def ground_sound(self, x: float, z: float) -> str:
         """Footstep surface: 'water' in the shallows, 'dirt' on paths and lanes, 'grass' elsewhere."""
@@ -365,7 +385,8 @@ class App:
         st = self.terrain.stats
         counts = self.chars.counts()
         lines = [f"LYCANTROPE   {1000 / max(ms, 1e-3):5.0f} fps  {ms:5.1f} ms"
-                 + (f"   TURBO x{TURBO:g}" if self.turbo else "") + ("" if self.fog else "   fog off")]
+                 + (f"   TURBO x{TURBO:g}" if self.turbo else "") + ("" if self.fog else "   fog off")
+                 + self.sound_flags()]
         if self.play and self.chars.rowan:
             a = self.chars.rowan.a
             lines.append(f"ROWAN  x {a.x:7.1f}  z {a.z:7.1f}   {a.state:<7} {a.anim.clip:<7} {a.speed:4.1f} m/s"
@@ -379,12 +400,23 @@ class App:
         ]
         if self.play:
             lines += ["WASD move  Shift sprint  Ctrl walk  T turbo  LMB attack  RMB block  R heavy  Q cast",
-                      "H hit  K die/revive  F7 helmet  F8 grass  F9 music  F10 sfx  wheel zoom  Esc mouse",
+                      "H hit  K die/revive  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices  Esc mouse",
                       "F2 fog  F3 hide overlay  F4 fly"]
         else:
             lines += ["WASD QE fly  Shift/Ctrl speed  T turbo  wheel base speed  F4 back to Rowan",
-                      "F1 wire  F2 fog  F3 hide overlay  F5 shaders  F6 debug  F9 music  F10 sfx  F12 shot"]
+                      "F1 wire  F2 fog  F3 hide overlay  F5 shaders  F6 debug  F9 music  F10 sfx  F11 voices  F12 shot"]
         return lines
+
+    def sound_flags(self) -> str:
+        """What's switched off, for the overlay's top line."""
+        off = []
+        if self.music is not None:
+            off += [name for layer, name in (("explore", "overworld music"), ("combat", "battle music"))
+                    if not self.music.layer_on[layer]]
+        if self.sfx is not None:
+            off += [] if self.sfx.enabled else ["sfx"]
+            off += [] if self.sfx.voices else ["voices"]
+        return f"   off: {', '.join(off)}" if off else ""
 
     def screenshot(self, path) -> None:
         w, h = pygame.display.get_window_size()

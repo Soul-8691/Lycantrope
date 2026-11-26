@@ -13,6 +13,10 @@ tested without a sound card. `MixerPlayer` is that interface on pygame's mixer: 
 decoded into memory on a background thread (no hitch at load or when a track starts), and
 looping tracks are made seamless (`make_loop`: generated pieces fade in and out).
 Settings live in data/audio/music.json; tracks that don't exist yet are skipped.
+
+Regions: "explore" can be a list, or a dict of region name -> tracks (for example the village
+theme in town and a wilder one outside). When Rowan crosses into another region, the playing
+piece fades out over `region_fade_s` and the new region's piece starts `region_gap_s` later.
 """
 from __future__ import annotations
 
@@ -33,8 +37,17 @@ def load_music_config(path: Path | None = None) -> dict:
     path = path or DATA / "audio" / "music.json"
     cfg = json.loads(path.read_text(encoding="utf-8"))
     for layer in LAYERS:
-        cfg[layer] = [t for t in cfg.get(layer, []) if (ROOT / t).exists()]
+        v = cfg.get(layer, [])
+        if isinstance(v, dict):
+            cfg[layer] = {r: [t for t in ts if (ROOT / t).exists()] for r, ts in v.items()}
+        else:
+            cfg[layer] = [t for t in v if (ROOT / t).exists()]
     return cfg
+
+
+def all_tracks(cfg: dict, layer: str) -> list[str]:
+    v = cfg.get(layer, [])
+    return [t for ts in v.values() for t in ts] if isinstance(v, dict) else list(v)
 
 
 class Player(Protocol):
@@ -51,6 +64,7 @@ class MusicDirector:
         self.player = player
         self.volume = volume
         self.enabled = True
+        self.layer_on = {layer: True for layer in LAYERS}   # debug: overworld / battle music on or off
         self.rng = random.Random(seed)
         self.gap = float(cfg.get("first_delay_s", 4.0))     # seconds until the next exploration piece
         self.playing: dict[str, str | None] = {layer: None for layer in LAYERS}
@@ -58,19 +72,31 @@ class MusicDirector:
         self.combat = False
         self.calm_for = 0.0                                  # seconds since enemies last chased Rowan
         self.last_explore: str | None = None
+        self.region: str | None = None
+        self.leaving = False                                 # fading out a piece from the last region
+
+    def tracks(self, layer: str) -> list[str]:
+        v = self.cfg.get(layer, [])
+        if isinstance(v, dict):
+            return v.get(self.region or "", []) or v.get("default", []) or next(iter(v.values()), [])
+        return v
 
     def _pick(self, layer: str) -> str | None:
-        tracks = self.cfg.get(layer, [])
+        tracks = self.tracks(layer)
         if not tracks:
             return None
         choices = [t for t in tracks if t != self.last_explore] or tracks
         return self.rng.choice(choices)
 
-    def update(self, dt: float, chased: bool) -> None:
+    def update(self, dt: float, chased: bool, region: str | None = None) -> None:
         cfg, p = self.cfg, self.player
+        if region is not None and region != self.region:
+            self.region = region
+            if self.playing["explore"] and self.playing["explore"] not in self.tracks("explore"):
+                self.leaving = True                          # fade out, then the new region's piece
         # combat starts at once and ends a few seconds after the last chaser gives up
         self.calm_for = 0.0 if chased else self.calm_for + dt
-        has_combat = bool(cfg.get("combat"))
+        has_combat = bool(all_tracks(cfg, "combat"))
         self.combat = has_combat and (chased or (self.combat and self.calm_for < cfg.get("combat_hold_s", 6.0)))
 
         # exploration: a piece, then a quiet gap, then another piece
@@ -98,16 +124,23 @@ class MusicDirector:
         fighting = self.combat and self.playing["combat"] is not None
         under = float(cfg.get("explore_under_combat", 0.0))
         self.gain["combat"] = min(1.0, self.gain["combat"] + step) if fighting else max(0.0, self.gain["combat"] - step)
-        want = under if fighting else 1.0
+        want = 0.0 if self.leaving else under if fighting else 1.0
         e = self.gain["explore"]
-        self.gain["explore"] = min(want, e + step) if e < want else max(want, e - step)
+        estep = dt / max(float(cfg.get("region_fade_s", 3.0)), 1e-3) if self.leaving else step
+        self.gain["explore"] = min(want, e + step) if e < want else max(want, e - estep)
+        if self.leaving and self.gain["explore"] <= 0.0:
+            p.stop("explore")
+            self.playing["explore"] = None
+            self.leaving = False
+            self.gap = float(cfg.get("region_gap_s", 1.0))
+            self.gain["explore"] = under if fighting else 1.0
         if not self.combat and self.playing["combat"] and self.gain["combat"] <= 0.0:
             p.stop("combat")
             self.playing["combat"] = None
 
         master = self.volume if self.enabled else 0.0
         for layer in LAYERS:
-            p.set_volume(layer, master * self.gain[layer])
+            p.set_volume(layer, master * self.gain[layer] * (1.0 if self.layer_on[layer] else 0.0))
 
 
 def make_loop(samples: np.ndarray, rate: int, blend_s: float = 1.5, within_db: float = 8.0) -> np.ndarray:
@@ -200,8 +233,8 @@ def start_music(volume: float) -> MusicDirector | None:
         print(f"music off: no audio device ({exc})")
         return None
     cfg = load_music_config()
-    tracks = cfg["explore"] + cfg["combat"]
+    tracks = all_tracks(cfg, "explore") + all_tracks(cfg, "combat")
     if not tracks:
         return None
-    loops = cfg["combat"] + (cfg["explore"] if cfg.get("explore_loop") else [])
+    loops = all_tracks(cfg, "combat") + (all_tracks(cfg, "explore") if cfg.get("explore_loop") else [])
     return MusicDirector(cfg, MixerPlayer(tracks, loops=loops), volume)

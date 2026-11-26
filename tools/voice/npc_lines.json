@@ -1,0 +1,49 @@
+{
+  "_about": [
+    "What NPCs say (AUD-03 for townsfolk), generated in each designed voice by tools/voice/npc_lines.py.",
+    "roles: who says what. Each voice in a role gets every line of that role, saved as",
+    "assets/audio/vo/<voice>/<event>_<n>.mp3. The game plays a random one for the event (data/audio/sfx.json):",
+    "greet when Rowan walks up to them, startled when he swings or casts close by.",
+    "Keep lines short and in the generic-fantasy register; no names from the Dreamlands (see dialogue/bible.md)."
+  ],
+  "model_id": "eleven_multilingual_v2",
+  "voice_settings": {"stability": 0.45, "similarity_boost": 0.8, "style": 0.15},
+  "roles": {
+    "villager": {
+      "voices": ["villager_man_1", "villager_man_2", "villager_man_3", "villager_woman_1", "villager_woman_2", "villager_woman_3"],
+      "lines": {
+        "greet": [
+          "Morning. Mind the mud by the well, it's deeper than it looks.",
+          "You're Oswin's lad, aren't you? Give him my regards.",
+          "Fine day for it. Shame about the wolves.",
+          "Heard there's goblins up past the east fields again. Watch yourself.",
+          "If you're going out the north gate, be back before dark.",
+          "Oh! Didn't see you there. Good day to you."
+        ],
+        "startled": [
+          "Oi! Careful with that!",
+          "Watch where you're swinging!",
+          "Gods above, put that away!",
+          "Whoa! Not near me, if you please!"
+        ]
+      }
+    },
+    "guard": {
+      "voices": ["guard_1", "guard_2"],
+      "lines": {
+        "greet": [
+          "Keep your blade sheathed inside the fence.",
+          "All quiet. For now.",
+          "Wolves on the east road again. Stay on the paths.",
+          "Move along, farmhand.",
+          "If you see goblins, you come and tell the Watch. Don't play the hero."
+        ],
+        "startled": [
+          "Hey! Put that away before someone gets hurt.",
+          "Easy there! That's the Watch you're swinging at.",
+          "Try that again and you'll spend the night in the stocks."
+        ]
+      }
+    }
+  }
+}

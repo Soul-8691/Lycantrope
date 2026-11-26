@@ -5,9 +5,17 @@
     "the next. While enemies chase Rowan the combat track",
     "fades in over fade_s and loops; exploration fades to explore_under_combat underneath and comes",
     "back combat_hold_s after the last enemy gives up. combat_range_m: how close a chasing enemy",
-    "has to be. Paths are from the repo root; missing files are skipped. Volume: settings.json."
+    "has to be. Paths are from the repo root; missing files are skipped. Volume: settings.json.",
+    "explore is per region: 'town' within enter_m of the town anchor (until past leave_m), else",
+    "'wilds'. Crossing over fades the piece out over region_fade_s and starts the other after region_gap_s."
   ],
-  "explore": ["assets/audio/music/brackenvale_explore.mp3"],
+  "explore": {
+    "town": ["assets/audio/music/brackenvale_explore.mp3"],
+    "wilds": ["assets/audio/music/wilds_explore.mp3"]
+  },
+  "town": {"anchor": "Brackenvale Village", "enter_m": 150, "leave_m": 185},
+  "region_fade_s": 3.0,
+  "region_gap_s": 1.5,
   "combat": ["assets/audio/music/brackenvale_combat.mp3"],
   "explore_loop": true,
   "first_delay_s": 4,

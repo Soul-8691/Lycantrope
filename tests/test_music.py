@@ -115,3 +115,43 @@ def test_config_skips_missing_tracks(tmp_path):
     f.write_text('{"explore": ["data/audio/music.json", "assets/audio/music/not_made_yet.mp3"], "combat": []}')
     cfg = load_music_config(f)
     assert cfg["explore"] == ["data/audio/music.json"] and cfg["combat"] == []
+
+
+def test_regions_switch_theme_with_a_fade():
+    p = FakePlayer()
+    cfg = dict(CFG, explore={"town": ["a.mp3"], "wilds": ["w.mp3"]}, explore_loop=True,
+               region_fade_s=1.0, region_gap_s=0.5)
+    d = MusicDirector(cfg, p, volume=1.0, seed=5)
+    for _ in range(30):
+        d.update(0.1, False, "town")
+    assert p.starts[-1] == ("explore", "a.mp3")
+    for _ in range(5):                                    # half way through the fade out
+        d.update(0.1, False, "wilds")
+    assert 0.3 < p.vol["explore"] < 0.7 and p.starts[-1] == ("explore", "a.mp3")
+    for _ in range(20):
+        d.update(0.1, False, "wilds")
+    assert p.starts[-1] == ("explore", "w.mp3") and p.vol["explore"] == pytest.approx(1.0)
+    n = len(p.starts)
+    for _ in range(20):                                   # staying put doesn't restart anything
+        d.update(0.1, False, "wilds")
+    assert len(p.starts) == n
+
+
+def test_real_music_config_has_both_regions():
+    cfg = load_music_config()
+    assert set(cfg["explore"]) >= {"town", "wilds"}
+
+
+def test_overworld_and_battle_music_switch_off_separately():
+    p = FakePlayer()
+    d = MusicDirector(dict(CFG, explore_loop=True), p, volume=1.0, seed=6)
+    run(d, p, 3.0, chased=True)
+    assert p.vol["combat"] == pytest.approx(1.0)
+    d.layer_on["combat"] = False
+    run(d, p, 0.2, chased=True)
+    assert p.vol["combat"] == 0.0
+    run(d, p, 12.0)                                     # fight over: overworld back
+    assert p.vol["explore"] == pytest.approx(1.0)
+    d.layer_on["explore"] = False
+    run(d, p, 0.2)
+    assert p.vol["explore"] == 0.0

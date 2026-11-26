@@ -19,8 +19,8 @@ import numpy as np
 
 from lycantrope.core.paths import ASSETS, ROOT
 from lycantrope.render.camera import frustum_planes
-from lycantrope.render.gltf import (SLOTS, Clip, MeshData, Skeleton, fit_outfit, load_mesh, load_skeleton,
-                                    triangle_slots)
+from lycantrope.render.gltf import (PARTS, SLOTS, Clip, MeshData, Skeleton, fit_outfit, load_mesh, load_skeleton,
+                                    nearest_neighbours, part_of, triangle_parts, triangle_slots)
 from lycantrope.render.shaders import ShaderLibrary, set_uniform
 from lycantrope.world.actors import (Actor, AiParams, ClipInfo, Enemy, Rowan, load_character_data,
                                      load_spawns, separate)
@@ -36,7 +36,7 @@ SWIM_IN, SWIM_OUT = 1.2, 1.0   # Rowan starts swimming deeper than this, wades a
 STATIC_CLIPS = {"idle": ClipInfo(1.0, True), "walk": ClipInfo(1.0, True), "run": ClipInfo(1.0, True),
                 "alert": ClipInfo(1.0, True), "attack1": ClipInfo(0.9, False), "attack2": ClipInfo(0.9, False),
                 "hit": ClipInfo(0.5, False), "death": ClipInfo(1.0, False)}
-RADIUS = {"rowan": 0.4, "goblin": 0.35, "wolf": 0.5, "bear": 0.9, "bruiser": 0.55, "battlemage": 0.4, "cow": 0.8, "villager_m": 0.35, "villager_f": 0.33, "farmer": 0.38}
+RADIUS = {"guard": 0.4, "rowan": 0.4, "goblin": 0.35, "wolf": 0.5, "bear": 0.9, "bruiser": 0.55, "battlemage": 0.4, "cow": 0.8, "villager_m": 0.35, "villager_f": 0.33, "farmer": 0.38}
 
 
 # ---------------------------------------------------------------------------- #
@@ -50,7 +50,7 @@ class GpuMesh:
     triangles: int = 0
 
 
-def upload(ctx: moderngl.Context, m: MeshData, slots: np.ndarray | None = None) -> GpuMesh:
+def upload(ctx: moderngl.Context, m: MeshData, slots: np.ndarray | None = None, n_slots: int = len(SLOTS)) -> GpuMesh:
     V = len(m.pos)
     joints = m.joints.astype(np.float32) if m.joints is not None else np.zeros((V, 4), np.float32)
     weights = m.weights if m.weights is not None else np.tile([1.0, 0, 0, 0], (V, 1)).astype(np.float32)
@@ -62,7 +62,7 @@ def upload(ctx: moderngl.Context, m: MeshData, slots: np.ndarray | None = None) 
         order = np.argsort(slots, kind="stable")
         tri = tri[order]
         start = 0
-        for s in range(len(SLOTS)):
+        for s in range(n_slots):
             n = int((slots == s).sum()) * 3
             ranges.append((start, n))
             start += n
@@ -203,6 +203,19 @@ def two_bone_ik(W: np.ndarray, chain: tuple[int, int, int], target: np.ndarray) 
 
 # ---------------------------------------------------------------------------- #
 @dataclass
+class Outfit:
+    """One NPC outfit (WLD-26) fitted over a villager body, split by PARTS. Its three pieces are
+    worn separately: head (hat/hood), top (torso, arms, hands) and bottom (legs, feet)."""
+    key: str
+    gpu: GpuMesh
+    pieces: dict[str, list[int]]          # piece -> PARTS indices it draws (only pieces it has)
+    covers: dict[str, np.ndarray]         # piece -> mask of the body's triangles it sits over (hidden)
+
+
+PIECE_PARTS = {"head": ("head",), "top": ("torso", "arms", "hands"), "bottom": ("legs", "feet")}
+
+
+@dataclass
 class CharType:
     key: str
     skel: Skeleton | None
@@ -222,6 +235,11 @@ class CharType:
     float_m: dict[str, float] = field(default_factory=dict)   # swim clips: water level, in rig units above the feet
     cast_hand: int = -1           # joint the cast animation raises (where the Rite's light gathers)
     cast_release: float = 0.55    # fraction of the cast clip where that hand is highest
+    outfits: list[Outfit] = field(default_factory=list)       # NPC outfit kit
+    body_tris: np.ndarray | None = None                        # body triangles, for per-outfit body variants
+    body_variants: dict = field(default_factory=dict)          # worn pieces -> body GpuMesh without covered bits
+    outfit_chance: dict[str, float] = field(default_factory=dict)
+    voices: list[str] = field(default_factory=list)          # voice pool (data/voices.json names)
 
 
 def _fit_cached(body: MeshData, skel: Skeleton, outfit_path: Path, rig_path: Path) -> MeshData:
@@ -236,6 +254,113 @@ def _fit_cached(body: MeshData, skel: Skeleton, outfit_path: Path, rig_path: Pat
     CACHE.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(cache, pos=fit.pos, nrm=fit.nrm, joints=fit.joints, weights=fit.weights)
     return fit
+
+
+COVER_M = 0.035              # body is hidden under cloth this close (outfits sit ~2-4 cm out)
+POKE_M = 0.15                # ...and where it pokes out through the cloth, up to this far
+
+
+def _vertex_colors(m: MeshData) -> np.ndarray | None:
+    """Texture colour under each vertex (0..1 RGB), or None without a texture."""
+    if m.texture is None or m.uv is None:
+        return None
+    tex = np.asarray(m.texture.convert("RGB"), np.float32) / 255.0
+    h, w = tex.shape[:2]
+    u = np.clip((m.uv[:, 0] % 1.0) * (w - 1), 0, w - 1).astype(int)
+    v = np.clip((m.uv[:, 1] % 1.0) * (h - 1), 0, h - 1).astype(int)
+    return tex[v, u]
+
+
+def _like(colors: np.ndarray, ref: np.ndarray, chroma: float = 0.03) -> np.ndarray:
+    """Same hue as ref, allowing for baked light and shade (brightness 0.45x to 1.7x)."""
+    b = colors.sum(axis=1) + 1e-4
+    rb = float(ref.sum()) + 1e-4
+    hue = np.abs(colors / b[:, None] - ref / rb).max(axis=1)
+    return (hue < chroma) & (b > 0.45 * rb) & (b < 1.7 * rb)
+
+
+def load_outfit(ctx, body: MeshData, skel: Skeleton, path: Path, rig_path: Path) -> Outfit:
+    """Fit an outfit made on a grey mannequin over this body, drop the mannequin's own skin and face,
+    and work out which of the body's parts each piece can hide.
+
+    The mannequin's skin comes out blue-grey or flat mid-grey (once in a while a human face), and its
+    A-pose arms don't line up with the villager's, so: the outfit's hands always go (the villager's own
+    hands show), so does anything on the front of the face, and so does mannequin-coloured skin on the
+    head, arms and chest."""
+    fit = _fit_cached(body, skel, path, rig_path)
+    m2w = (skel.bind_world() @ skel.ibm)[0]
+    bw = body.pos @ m2w[:3, :3].T + m2w[:3, 3]
+    ow = fit.pos @ m2w[:3, :3].T + m2w[:3, 3]
+    _, dd = nearest_neighbours(ow, bw, k=2)
+    near = dd[:, 0]
+    vpart = np.array([PARTS.index(part_of(n)) for n in skel.names])
+    main = fit.joints[np.arange(len(fit.joints)), np.argmax(fit.weights, axis=1)]
+    part = vpart[main]
+    P = PARTS.index
+    hd = bw[vpart[body.joints[np.arange(len(body.joints)), np.argmax(body.weights, axis=1)]] == P("head")]
+    face_front = (ow[:, 2] > hd[:, 2].mean() + 0.02) & (ow[:, 1] < hd[:, 1].max() - 0.07)
+    drop = (part == P("hands")) | ((part == P("head")) & face_front & (near < 0.04))
+    c = _vertex_colors(fit)
+    if c is not None:
+        spread, bright = c.max(axis=1) - c.min(axis=1), c.mean(axis=1)
+        bluish = (c[:, 2] > c[:, 0] + 0.03) & (spread < 0.22) & (bright > 0.3) & (bright < 0.92)
+        grey = (spread < 0.05) & (bright > 0.3) & (bright < 0.62)
+        upper = np.isin(part, [P("head"), P("arms"), P("torso")])
+        drop |= bluish | (grey & upper)
+    # hats and hoods: everything above the neck moves with the head (a brim near the shoulders
+    # would otherwise borrow the shoulders' weights and flap)
+    if "neck" in skel.names and "Head" in skel.names:
+        above = ow[:, 1] > skel.bind_world()[skel.joint_index("neck")][1, 3] + 0.03
+        fit.joints = fit.joints.copy()
+        fit.weights = fit.weights.copy()
+        fit.joints[above] = [skel.joint_index("Head"), 0, 0, 0]
+        fit.weights[above] = [1.0, 0.0, 0.0, 0.0]
+    tri = fit.idx.reshape(-1, 3)
+    keep_tri = drop[tri].sum(axis=1) < 2
+    tri_part = triangle_parts(fit, skel.names)
+    before = np.bincount(tri_part, minlength=len(PARTS))
+    kept = MeshData(fit.pos, fit.nrm, fit.uv, np.ascontiguousarray(tri[keep_tri].ravel()), fit.joints,
+                    fit.weights, fit.texture)
+    kparts = tri_part[keep_tri]
+    after = np.bincount(kparts, minlength=len(PARTS))
+    gpu = upload(ctx, kept, kparts, len(PARTS))
+    P = PARTS.index
+    pieces, covers = {}, {}
+    if after[P("head")] > 150:
+        pieces["head"] = [P("head")]          # hats and hoods sit on the villager's own head: hide nothing
+    if after[P("torso")] > 300:
+        pieces["top"] = [P("torso"), P("arms"), P("hands")]
+    if after[P("legs")] > 200:
+        pieces["bottom"] = [P("legs"), P("feet")]
+    # hide exactly the bits of the body each piece sits over: a body triangle goes when the piece's
+    # cloth is within COVER_M of all three corners. Short sleeves, necklines and any hole left by the
+    # mannequin's skin keep showing the villager underneath. Head and hands are never hidden.
+    btri = body.idx.reshape(-1, 3)
+    bpart = triangle_parts(body, skel.names)
+    for piece in ("top", "bottom"):
+        if piece not in pieces:
+            continue
+        sel = tri[keep_tri][np.isin(kparts, pieces[piece])]
+        if len(sel) < 10:
+            continue
+        corners = ow[sel]                                          # (T, 3, 3)
+        a0, a1, a2 = corners[:, 0], corners[:, 1], corners[:, 2]   # points across each triangle, not
+        samples = np.concatenate([a0, a1, a2, (a0 + a1 + a2) / 3,  # just its corners: big flat panels
+                                  (a0 + a1) / 2, (a1 + a2) / 2, (a2 + a0) / 2,   # have far-apart vertices
+                                  (4 * a0 + a1 + a2) / 6, (a0 + 4 * a1 + a2) / 6, (a0 + a1 + 4 * a2) / 6])
+        n = (fit.nrm[sel] @ m2w[:3, :3].T).sum(axis=1)             # the cloth's outward direction
+        n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-8)
+        normals = np.tile(n, (10, 1))
+        idx, d = nearest_neighbours(bw, samples, k=2)
+        i0, d0 = idx[:, 0], d[:, 0]
+        # hidden: right under the cloth, or poking out through it (body in front of the cloth, nearby);
+        # a wrist past a short cuff sits beside the cloth, not in front of it, so it stays
+        out = np.einsum("ij,ij->i", bw - samples[i0], normals[i0])
+        bvpart = vpart[body.joints[np.arange(len(body.joints)), np.argmax(body.weights, axis=1)]]
+        trunk = np.isin(bvpart, [P("torso"), P("legs"), P("feet")])   # arms: short sleeves sit right over them
+        close = (d0 < COVER_M) | (trunk & (d0 < POKE_M) & (out > 0.4 * d0))
+        covers[piece] = close[btri].all(axis=1) & ~np.isin(bpart, [P("head"), P("hands")])
+    return Outfit(path.parent.parent.parent.name, gpu, pieces, covers)
 
 
 def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> CharType:
@@ -286,6 +411,15 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
                 hand = max(ys, key=lambda h: float(ys[h].max()))
                 t.cast_hand = skel.joint_index(hand)
                 t.cast_release = float(np.argmax(ys[hand])) / max(1, len(ys[hand]) - 1)
+        t.voices = list(spec.get("voices", []))
+        if spec.get("outfits"):                   # NPC outfit kit: fitted pieces, body split by part
+            for path in spec["outfits"]:
+                f = MODELS / path
+                if f.exists():
+                    t.outfits.append(load_outfit(ctx, body, skel, f, rig))
+            t.outfit_chance = dict(spec.get("outfit_chance", {}))
+            if t.outfits:
+                t.body_tris = body.idx.reshape(-1, 3).astype(np.uint32)
         # armor first: it decides which body parts are drawn
         slots = None
         eq = spec.get("equipment", {})
@@ -437,6 +571,8 @@ class Character:
     grip2: float = 0.0            # two-handed weapons: how much the second hand is on the haft (0..1)
     size: float = 1.0             # per-character height/build variation
     tint: tuple[float, float, float] = (1.0, 1.0, 1.0)   # per-character colour variation
+    wear: dict[str, int] = field(default_factory=dict)   # outfit piece -> index into t.outfits
+    voice: str | None = None                             # which designed voice this NPC speaks with
 
 
 class CharacterSystem:
@@ -527,11 +663,25 @@ class CharacterSystem:
                     plo, phi = vary.get("pace", (1.0, 1.0))
                     pace = rng.uniform(plo, phi)
                     a.speeds = {s: v * pace for s, v in a.speeds.items()}
+                self.dress(ch, random.Random(gi * 1000 + i + 77))     # own seed: spawn spots stay put
+                if not vary:
+                    self.dress(ch, random.Random(gi * 1000 + i + 77))     # own seed: spawn spots stay put
                 if route:
                     brain.set_route(route, start, rng.choice((-1, 1)))
                 elif brain.ai.on_paths:
                     brain.goal_ok = self.path_walk_ok
                 self.chars.append(ch)
+
+    @staticmethod
+    def dress(ch: "Character", rng: random.Random) -> None:
+        """Give an NPC its own mix of outfit pieces (none = its own clothes) and one of its voices."""
+        t = ch.t
+        for piece in PIECE_PARTS:
+            have = [i for i, o in enumerate(t.outfits) if piece in o.pieces]
+            if have and rng.random() < t.outfit_chance.get(piece, 0.5):
+                ch.wear[piece] = rng.choice(have)
+        if t.voices:
+            ch.voice = rng.choice(t.voices)
 
     def nearest_path(self, x: float, z: float, max_m: float = 40.0) -> tuple[float, float]:
         """The closest point on a path (middle of it), searching outward up to max_m."""
@@ -663,6 +813,24 @@ class CharacterSystem:
             self.rite.cancel()
         self._cast_seen = (casting, ra.anim.time)
 
+    def _body_variant(self, t: CharType, c: "Character", prog) -> GpuMesh:
+        """The body without the triangles this NPC's top and bottom cover (built once per mix)."""
+        key = tuple(sorted((p, k) for p, k in c.wear.items() if p in t.outfits[k].covers))
+        g = t.body_variants.get(key)
+        if g is None:
+            hide = np.zeros(len(t.body_tris), bool)
+            for p, k in key:
+                hide |= t.outfits[k].covers[p]
+            tri = np.ascontiguousarray(t.body_tris[~hide])
+            g = GpuMesh(t.body.vbo, self.ctx.buffer(tri.tobytes()), [(0, tri.size)], t.body.texture)
+            t.body_variants[key] = g
+        if g.vao is None or getattr(g, "_ver", None) != self.shaders.version:
+            g.vao = self.ctx.vertex_array(prog, [(g.vbo, "3f 3f 2f 4f 4f 3f", "in_pos", "in_nrm", "in_uv",
+                                                  "in_joints", "in_weights", "in_color")],
+                                          index_buffer=g.ibo, index_element_size=4)
+            g._ver = self.shaders.version
+        return g
+
     # ------------------------------------------------------------------ #
     def _program(self) -> moderngl.Program:
         prog = self.shaders.get("skinned")
@@ -675,6 +843,8 @@ class CharacterSystem:
                 vao(t.body)
                 if t.armor:
                     vao(t.armor)
+                for o in t.outfits:
+                    vao(o.gpu)
                 for at in t.attachments:
                     vao(at.item.gpu)
             self._version = self.shaders.version
@@ -757,7 +927,12 @@ class CharacterSystem:
             set_uniform(prog, "u_model", glm.mat4(*model.T.ravel()))
             set_uniform(prog, "u_skinned", 1)
             set_uniform(prog, "u_tint", glm.vec3(*c.tint))
-            if t.armor is not None:
+            if t.outfits:
+                self._draw(prog, self._body_variant(t, c, prog))
+                for piece, k in c.wear.items():
+                    o = t.outfits[k]
+                    self._draw(prog, o.gpu, o.pieces.get(piece, []))
+            elif t.armor is not None:
                 covered = [SLOTS.index(s) for s in t.armor_slots if s != "head" or self.helmet]
                 bare = [i for i in range(len(SLOTS)) if i not in covered]
                 self._draw(prog, t.body, bare)

@@ -6,12 +6,18 @@ Helpful:
 .venv\Scripts\python.exe tools\props\build.py VIL-10 VIL-04
 
 To-Do:
-Voices
-Wild theme
-NPCs
+Apple trees
+No NPC idles (always busy)
+NPC outfits
+Talk (A press)
+Voice lines
+Mouths
+Dialogue
+Choices
 Colorizing
 Shading
 Performance
+World map
 Character stats
 Armor stats
 Weapon stats
@@ -19,7 +25,6 @@ Magic stats
 Health and damage
 Fall damage
 HUD
+Lock-on
+Sheathe
 Caves
-World map
-Dialogue
-Choices
