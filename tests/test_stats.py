@@ -25,11 +25,11 @@ def test_soft_caps_slow_down_past_20_and_40():
 
 def test_rowan_starts_as_a_fit_farmhand():
     p = Progress()
-    assert p.level == 1 and p.attrs["vigor"] == 10 and p.attrs["endurance"] == 10 and p.attrs["might"] == 8
+    assert p.level == 20 and p.attrs["vigor"] == 35 and p.attrs["endurance"] == 22 and p.attrs["might"] == 22
     d = p.stats()
-    assert d["hp"] == pytest.approx(300) and d["stamina"] == pytest.approx(80)     # STA-27's examples
+    assert d["hp"] == pytest.approx(831.25) and d["stamina"] == pytest.approx(108.75)
     assert derived({**p.attrs, "vigor": 40}, 1)["hp"] == pytest.approx(925)          # "about 1,000"
-    assert d["rite_power"] == pytest.approx(100)
+    assert d["rite_power"] == pytest.approx(118)
 
 
 def test_xp_curve_and_kill_xp():
@@ -43,11 +43,12 @@ def test_xp_curve_and_kill_xp():
 def test_levelling_spends_xp_one_point_per_level_up_to_the_cap():
     p = Progress()
     assert not p.ready()
-    p.gain(100 + xp_to_next(2) - 1)
-    assert p.ready() and p.affordable() == 1                # one short of the second level
+    n = p.level
+    p.gain(xp_to_next(n) + xp_to_next(n + 1) - 1)
+    assert p.ready() and p.affordable() == 1                # one short of the second level-up
     assert not p.apply({"vigor": 2})
-    assert p.apply({"vigor": 1}) and p.level == 2 and p.attrs["vigor"] == 11
-    assert p.xp == xp_to_next(2) - 1 and not p.ready()
+    assert p.apply({"vigor": 1}) and p.level == n + 1 and p.attrs["vigor"] == p.cfg["rowan"]["attributes"]["vigor"] + 1
+    assert p.xp == xp_to_next(n + 1) - 1 and not p.ready()
     p.level = p.cap
     p.gain(10 ** 9)
     assert not p.ready() and p.affordable() == 0
@@ -62,7 +63,7 @@ def test_death_rolls_xp_back_to_the_last_save():
     p.flask = 0
     p.discovered.add("Somewhere")
     p.restore()
-    assert p.xp == 150 and p.level == 1 and p.attrs["might"] == 8 and p.flask == 3
+    assert p.xp == 150 and p.level == 20 and p.attrs["might"] == 22 and p.flask == 3
     assert "Somewhere" not in p.discovered
 
 
@@ -147,8 +148,8 @@ def test_rowan_swing_hits_once_and_costs_stamina():
     combat = Combat(seed=1)
     hits = run_swing(combat, [rc, gc], rc, r, RowanInput(light=True))
     assert len(hits) == 1 and hits[0].target is gc
-    assert gc.fighter.hp == pytest.approx(90 - hits[0].amount) and 30 < hits[0].amount < 45
-    assert rc.fighter.stamina == pytest.approx(80 - 14)
+    assert gc.fighter.hp == pytest.approx(90 - hits[0].amount) and 30 < hits[0].amount < 65
+    assert rc.fighter.stamina == pytest.approx(rc.fighter.max_stamina - 14)
     assert gc.actor.state in ("chase", "hit")               # staggered or angry: either way it's coming
 
 

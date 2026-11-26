@@ -13,8 +13,8 @@
   ],
   "level_cap": 50,
   "rowan": {
-    "level": 1,
-    "attributes": {"might": 8, "dexterity": 8, "vigor": 10, "endurance": 10, "faith": 8, "fortune": 8},
+    "level": 20,
+    "attributes": {"might": 22, "dexterity": 20, "vigor": 35, "endurance": 22, "faith": 14, "fortune": 12},
     "weapon": "dawnblade",
     "shield": null,
     "armor": ["arm_01", "trs_01", "leg_01"],
