@@ -20,7 +20,8 @@
     "'jump': 'procedural' builds a mid-air pose in code (no Meshy jump clip yet); a real 'jump' clip replaces it.",
     "'sheath': equipment slot whose item can be put away on the back (F key for Rowan).",
     "'lines': which set of lines (tools/voice/npc_lines.json role) a character speaks; a spawn group's 'lines' overrides it (travellers, the patrol).",
-    "Items: 'hold': 'shield' straps it to the outside of the forearm (face out, point toward the hand); 'off_arm_m' is how far out."
+    "Items: 'hold': 'shield' straps it to the outside of the forearm (face out, point toward the hand); 'off_arm_m' is how far out.",
+    "Rowan's back / strafe_left / strafe_right play while he's locked on and moving backward or sideways. Both strafes use the side-step clip mirrored (sword low, off-hand up); strafe_left also plays it backwards ('reverse': true) so it steps the other way."
   ],
   "characters": {
     "rowan": {
@@ -91,6 +92,27 @@
         "death": {
           "file": "HER-09/v1/rig/animations_1.glb",
           "clip": "dying_backwards"
+        },
+        "back": {
+          "file": "HER-09/v1/rig/animations_2.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 0.94
+        },
+        "strafe_left": {
+          "file": "HER-09/v1/rig/motion_strafe_left.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 0.89,
+          "mirror": true,
+          "reverse": true
+        },
+        "strafe_right": {
+          "file": "HER-09/v1/rig/motion_strafe_left.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 0.89,
+          "mirror": true
         }
       },
       "speeds": {

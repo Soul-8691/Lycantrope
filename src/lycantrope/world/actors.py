@@ -22,6 +22,8 @@ SWIM_SPEEDS = {"slow": 0.9, "swim": 1.5, "fast": 2.4}   # m/s in deep water (Ctr
 JUMP_V = 5.2               # take-off speed (m/s): about a 0.75 m hop
 GRAVITY = 18.0             # m/s^2, a little heavier than real for a snappy game jump
 AIR_CONTROL = 0.3          # how much Rowan can steer in the air (fraction of his ground acceleration)
+LOCK_SIDE_SPEED = 1.9      # m/s strafing round a locked target (the side-step clip, sped up, matches it)
+LOCK_BACK_SPEED = 1.7      # m/s backing away from it
 
 
 @dataclass
@@ -111,6 +113,12 @@ class Actor:
         """Pick idle / walk / run / sprint for the current speed, synced to the clip's stride."""
         s = self.speed / self.gait_scale
         sp = self.speeds
+        side = self.side_clip()
+        if side and s >= 0.15:                       # locked on: side-step or back away, facing the target
+            info = self.clips.get(side)
+            rate = max(0.6, min(2.2, s / info.move_speed)) if info and info.move_speed > 0 else 1.0
+            self.play(side, rate=rate)
+            return
         if s < 0.15:
             if self.anim.clip not in IDLE_CLIPS:
                 self.play("idle", rate=0.0)          # first frame (a plain stance) until the wait is over
@@ -127,6 +135,17 @@ class Actor:
         if info and info.move_speed > 0:
             rate = max(0.6, min(1.7, s / info.move_speed))
         self.play(name, rate=rate)
+
+    def side_clip(self) -> str | None:
+        """While strafing (travel differs from facing): 'strafe_left', 'strafe_right' or 'back',
+        if this character has that clip; None when moving roughly forward."""
+        if self.travel is None:
+            return None
+        rel = (self.travel - self.heading + math.pi) % math.tau - math.pi   # + = to his left (+x)
+        if abs(rel) < math.radians(50):
+            return None
+        name = "back" if abs(rel) > math.radians(130) else ("strafe_left" if rel > 0 else "strafe_right")
+        return name if name in self.clips else None
 
     def advance(self, dt: float) -> None:
         """Move the animation on; a freshly started idle stays on its first frame for IDLE_DELAY_S."""
@@ -259,6 +278,13 @@ class Rowan:
                     target = SWIM_SPEEDS["slow" if inp.walk else "fast" if inp.sprint else "swim"]
                 else:
                     target = a.speeds["walk"] if inp.walk else a.speeds["sprint"] if inp.sprint else a.speeds["run"]
+                if locked and inp.face is not None:          # slower sideways and backward, like a guarded step
+                    fx, fz = inp.face
+                    rel = (a.travel - heading_to(fx - a.x, fz - a.z) + math.pi) % math.tau - math.pi
+                    if abs(rel) > math.radians(130):
+                        target = min(target, LOCK_BACK_SPEED)
+                    elif abs(rel) > math.radians(50):
+                        target = min(target, LOCK_SIDE_SPEED)
         a.gait_scale = TURBO if inp.turbo else 1.0       # same gait and stride, just covering more ground
         target *= a.gait_scale
         accel = (4.0 if self.swimming else 25.0 if target > a.speed else 30.0) * a.gait_scale

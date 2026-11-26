@@ -1240,6 +1240,29 @@
       ],
       "created": 1795627952.1659827,
       "credits": 6
+    },
+    "HER-09/v1#2": {
+      "task_id": "01a218db-7e8d-7171-b215-f81d8c9be193",
+      "status": "SUCCEEDED",
+      "actions": [
+        548
+      ],
+      "created": 1795713368.0770612,
+      "credits": 3
+    },
+    "HER-09/v1#3": {
+      "task_id": "01a218dc-a0ca-704f-9587-05020d52b984",
+      "status": "SUCCEEDED",
+      "motion": "HER-09/v1:strafe_left",
+      "created": 1795713442.6200736,
+      "credits": 3
+    },
+    "HER-09/v1#4": {
+      "task_id": "01a218e2-ce5d-7066-86a4-4225b1acff8f",
+      "status": "SUCCEEDED",
+      "motion": "HER-09/v1:strafe_left",
+      "created": 1795713847.5135958,
+      "credits": 3
     }
   },
   "motions": {
@@ -1249,6 +1272,22 @@
       "prompt": "a sword and shield fighter raises a small round shield on the left forearm in front of the chest and face, braced guard stance with knees bent and left foot forward, sword hand held low and ready at the right hip, holds the guard steady",
       "created": 1795556559.1979227,
       "credits": 10
+    },
+    "HER-09/v1:strafe_left": {
+      "task_id": "01a218e2-78fd-7508-a215-95b7a8663df5",
+      "status": "SUCCEEDED",
+      "prompt": "side-steps directly to his left without moving forward at all, guarded fighting stance, sword raised in the right hand, feet never crossing, eyes facing straight ahead, a steady repeating side-step cycle",
+      "created": 1795713825.8950477,
+      "credits": 10
     }
-  }
+  },
+  "replaced_motions": [
+    {
+      "task_id": "01a218dc-2207-7256-bbee-93fecbd27d01",
+      "status": "SUCCEEDED",
+      "prompt": "walks sideways to his left in a guarded fighting stance, sword raised in the right hand, side-stepping smoothly without crossing his feet, eyes forward, a steady repeating walk cycle",
+      "created": 1795713410.532489,
+      "credits": 10
+    }
+  ]
 }

@@ -474,6 +474,9 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
             if c.get("mirror"):                   # e.g. a right-handed cast played with the left hand
                 from lycantrope.render.procedural import mirror_clip
                 clip = mirror_clip(skel, clip)
+            if c.get("reverse"):                  # played backwards: a side-step that steps the other way
+                clip = Clip(clip.name + "_reversed", np.ascontiguousarray(clip.world[::-1]), clip.duration,
+                            clip.loop, clip.native_speed, clip.speed)
             clips[name] = clip
             info[name] = ClipInfo(clip.duration, clip.loop, clip.speed, c.get("move_speed", 0.0))
         float_m = {}

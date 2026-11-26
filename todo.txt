@@ -6,44 +6,20 @@ Helpful:
 .venv\Scripts\python.exe tools\props\build.py VIL-10 VIL-04
 
 To-Do:
-Strafe animations
-Talk (A press)
-Dialogue/voice lines
-Choices
-Colorizing
-Shading
+Character stats/Experience
+Armor/Weapon/Magic stats
+Health and damage/Fall damage/HUD
+Player inventory/Equip/Looting
+Upgrade/Forge
+Greetings/Talk (A press)/Dialogue/voice lines/Choices/Quests
+Colorizing/Shading/World map/Caves
 Performance
-World map
-Character stats
-Armor stats
-Weapon stats
-Magic stats
-Health and damage
-Fall damage
-HUD
-Experience
-Looting
-NPC weapons
-NPC fights
-Guard protect AI
-Player inventory
-Equip
-Shop inventory
-Shop
-
-Later:
-Better NPC system
-Add more monsters
-- Lovecraft monsters
-- Goblin spellcasters
-Bandit camps
-Goblin camps
-Controller support
-Remap the starting area/nearby
 NPCs going home at night
+Controller support
+Shop inventory/Shop
+NPC weapons/NPC fights/Guard protect AI
 Beginning plot
-Greetings
-Upgrade
-Forge
-Quests
-Caves
+Better NPC system
+Add more monsters (Lovecraft monsters/Goblin spellcasters)
+Bandit/Goblin camps
+Remap the starting area/nearby

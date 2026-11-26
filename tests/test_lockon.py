@@ -71,7 +71,28 @@ def test_rowan_strafes_facing_the_target():
         r.update(RowanInput(move_x=1.0, face=target), 0.0, 1 / 60)
     at_target = math.atan2(target[0] - a.x, target[1] - a.z)   # where the target is from where he stands
     assert abs((a.heading - at_target + math.pi) % math.tau - math.pi) < 0.1
-    assert a.x > 3.0 and abs(a.z) < 0.5                     # moved east, sideways to his facing
+    assert a.x > 2.0 and abs(a.z) < 0.5                     # moved east (at strafing pace), sideways to his facing
     for _ in range(30):                                    # sprinting breaks the strafe: he turns to run
         r.update(RowanInput(move_x=1.0, sprint=True, face=target), 0.0, 1 / 60)
     assert abs((a.heading - math.atan2(1.0, 0.0) + math.pi) % math.tau - math.pi) < 0.2
+
+
+def test_locked_rowan_side_steps_and_backs_away_with_their_own_clips():
+    from lycantrope.world.actors import LOCK_BACK_SPEED, LOCK_SIDE_SPEED
+    clips = dict(CLIPS, strafe_left=ClipInfo(2.0, True, 1.0, 0.89), strafe_right=ClipInfo(2.0, True, 1.0, 0.89),
+                 back=ClipInfo(1.3, True, 1.0, 0.94))
+    a = Actor("rowan", 0.0, 0.0, math.pi, clips, {"walk": 1.6, "run": 5.0, "sprint": 7.5})
+    r = Rowan(a)
+    target = (0.0, -20.0)                                   # far to the north; the camera looks north too
+
+    def hold(mx, my, n=60):
+        for _ in range(n):
+            r.update(RowanInput(move_x=mx, move_y=my, face=target), 0.0, 1 / 60)
+    hold(-1.0, 0.0)                                         # left
+    assert a.anim.clip == "strafe_left" and a.speed == pytest.approx(LOCK_SIDE_SPEED, abs=0.05)
+    hold(1.0, 0.0)                                          # right
+    assert a.anim.clip == "strafe_right"
+    hold(0.0, -1.0)                                         # back
+    assert a.anim.clip == "back" and a.speed == pytest.approx(LOCK_BACK_SPEED, abs=0.05)
+    hold(0.0, 1.0)                                          # forward: the ordinary run
+    assert a.anim.clip == "run"
