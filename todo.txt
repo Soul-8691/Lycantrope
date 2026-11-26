@@ -7,10 +7,8 @@ Helpful:
 
 To-Do:
 Talk (A press)
-Voice lines
-Dialogue
+Dialogue/voice lines
 Choices
-Plot
 Colorizing
 Shading
 Performance
@@ -23,9 +21,17 @@ Health and damage
 Fall damage
 HUD
 Lock-on
-A few more enemy types
 NPC fights
 Guard protect AI
-Caves
-Inventory
+Player inventory
 Equip
+Shop inventory
+Shop
+
+Later:
+A few more enemy types
+Greetings
+Upgrade
+Forge
+Quests
+Caves
