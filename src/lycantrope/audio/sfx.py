@@ -153,6 +153,10 @@ class SfxDirector:
                       self.now + float(i.get("delay_s", 0.0)), speaker if name.startswith("vo/") else None)
             (self.pending if i.get("delay_s") else out).append(cue)
 
+    def cue(self, kind: str, event: str, pos) -> None:
+        """Play one of a kind's events at the next update (a hit that didn't play a hit animation)."""
+        self.emit(kind, event, pos, self.pending)
+
     # ------------------------------------------------------------------ tick
     def update(self, chars, rowan, spells, listener, dt: float, ground=None) -> tuple[list[Cue], dict]:
         """chars: objects with .actor (and .brain); rowan: Rowan's actor or None; spells: projectiles

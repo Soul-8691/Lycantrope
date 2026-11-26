@@ -127,7 +127,8 @@ A few of the bosses:
 
 ## Growing stronger
 
-- **Experience from kills,** scaled by how dangerous the enemy is for your level. Level up anywhere, any time you're out of combat.
+- **Experience from kills,** scaled by how dangerous the enemy is for your level, and from finding landmarks and Waystones. Level up anywhere, any time you're out of combat: each level is one attribute point, up to level 50.
+- **Death costs nothing you'd saved:** experience is never dropped, but dying loads your last save, so any XP earned since then goes with it.
 - **Six attributes:**
   - **Might:** heavy weapons, breaking poise.
   - **Dexterity:** light, precise weapons, the crossbow, faster recovery.
@@ -209,7 +210,9 @@ All names and characters in the game are original, except the public-domain ones
 
 The current build is an early test of the world and the core feel:
 - **Explore:** walk Rowan around Brackenvale and the country beyond. There are farmsteads, lanes, villagers and travellers on the roads, cows in the fields, and solid houses, fences, walls and trees.
-- **Fight:** take on wolves, bears, goblins, bandits and battlemages, with light and heavy attacks, blocking and a Rite.
+- **Fight:** take on wolves, bears, goblins, bandits and battlemages, with light and heavy attacks, blocking and a Rite. Hits cost health, swings cost stamina, heavy blows stagger, and catching an enemy mid-wind-up hits harder.
+- **Grow:** earn XP from kills and discoveries, and spend it on the level-up screen. Heal with the Lifewater flask or an apple.
+- **Mind the drop:** long falls hurt or kill. Roll as you land to halve it, land in deep water, or plunge onto an enemy below.
 - **Listen:** exploration and combat music that switches as you get into and out of fights.
 
 **Controls:**
@@ -219,10 +222,17 @@ The current build is an early test of the world and the core feel:
 | WASD | Move |
 | Shift | Sprint |
 | Ctrl | Walk |
-| Left mouse | Attack |
+| Left mouse | Attack (while falling: plunge) |
 | Right mouse | Block |
 | R | Heavy attack |
 | Q | Cast a Rite |
+| Space | Jump |
+| C | Landing roll (just before you land) |
+| E | Drink from the Lifewater flask |
+| G | Eat an apple |
+| L | Level-up screen |
+| Tab / middle mouse | Lock on |
+| F | Sheathe or draw the sword |
 | Mouse wheel | Zoom |
 | T | Turbo (4× speed) |
 | F4 | Free-fly camera |

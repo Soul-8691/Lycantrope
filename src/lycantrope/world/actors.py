@@ -1,6 +1,7 @@
 """Characters on the CPU side: animation state, Rowan's controller and simple enemy behaviour.
 
-No combat yet (no hitboxes, stats, health or damage): attacks are animations only.
+Health, damage and who-hits-whom live in world/stats.py and world/combat.py; here Rowan only pays
+stamina for what he does (when he has a Fighter), and enemies react to being staggered or killed.
 Headings: a character's forward is (sin h, 0, cos h) in game coordinates (x east, z south),
 so h = 0 faces south (+z, the way Meshy models face) and h = pi faces north.
 """
@@ -91,6 +92,7 @@ class Actor:
     vy: float = 0.0               # vertical speed (m/s) while airborne
     travel: float | None = None   # direction of movement when it differs from facing (strafing)
     airborne: bool = False        # jumping or falling (the world sets y from the ground otherwise)
+    fall_top: float | None = None  # highest point since leaving the ground (fall damage)
 
     def has(self, clip: str) -> bool:
         return clip in self.clips
@@ -183,6 +185,7 @@ class RowanInput:
     jump: bool = False       # pressed this tick
     sheathe: bool = False    # pressed this tick: put the sword away / draw it
     face: tuple[float, float] | None = None   # lock-on: keep facing this point (x, z) and strafe
+    roll: bool = False       # pressed this tick: dodge (for now only the landing roll, CMB-40)
 
 
 class Rowan:
@@ -193,9 +196,23 @@ class Rowan:
         self.queued = False
         self.swimming = False    # in deep water (set by the world each tick): swim, no fighting
         self.sheathed = True     # sword on his back (he starts in town with it put away)
+        self.fighter = None      # stats.Fighter: HP and stamina (None = unlimited, as in tests)
+        self.costs: dict[str, float] = {}   # stamina per move ("light1", "heavy", "jump", "sprint_per_s")
+        self.attack_rate = 1.0   # Dexterity's attack speed
+        self.sprinting = False
+        self.plunging = False    # light attack pressed while falling: a plunge on landing (CMB-13)
+        self.roll_t = 0.0        # seconds left in which a landing counts as rolled (CMB-40)
+        self.roll_window = 0.35
+
+    def pay(self, what: str) -> bool:
+        cost = self.costs.get(what, 0.0)
+        return self.fighter is None or cost <= 0 or self.fighter.spend(cost)
 
     def update(self, inp: RowanInput, cam_yaw: float, dt: float) -> None:
         a = self.a
+        self.roll_t = self.roll_window if inp.roll else max(0.0, self.roll_t - dt)
+        if not a.airborne:
+            self.plunging = False
         if inp.die:
             if a.state == "dead":
                 a.state = "move"
@@ -222,19 +239,24 @@ class Rowan:
             inp = RowanInput(**{**inp.__dict__, "light": False, "heavy": False, "block": False})
 
         # jumping: from the ground, not mid-swing or in deep water
-        if inp.jump and a.state in ("move", "block") and not a.airborne and not self.swimming:
+        if inp.jump and a.state in ("move", "block") and not a.airborne and not self.swimming and self.pay("jump"):
             a.state, a.vy, a.airborne = "move", JUMP_V * (1.0 if not inp.turbo else 1.2), True
             if a.has("jump"):
                 a.play("jump", restart=True)
+        # a light attack while dropping turns into a plunge (resolved when he lands)
+        if inp.light and a.airborne and a.vy < -1.0 and a.state == "move" and not self.plunging:
+            self.plunging = True
+            if a.has("heavy"):
+                a.play("heavy", restart=True, rate=0.6)
 
         # actions start from free movement (or blocking), on the ground
         if a.state in ("move", "block") and not a.airborne:
-            if inp.light:
+            if inp.light and self.pay("light1"):
                 a.state, self.queued = "attack", False
-                a.play("light1", restart=True)
-            elif inp.heavy:
+                a.play("light1", restart=True, rate=self.attack_rate)
+            elif inp.heavy and self.pay("heavy"):
                 a.state = "attack"
-                a.play("heavy", restart=True)
+                a.play("heavy", restart=True, rate=self.attack_rate)
             elif inp.cast:
                 a.state = "cast"
                 a.play("cast", restart=True)
@@ -248,17 +270,18 @@ class Rowan:
             if inp.light and a.anim.clip in self.LIGHTS[:2] and a.progress() > 0.3:
                 self.queued = True
             if a.clip_done() or (self.queued and a.progress() > 0.8):
-                if self.queued and a.anim.clip in self.LIGHTS[:2]:
-                    nxt = self.LIGHTS[self.LIGHTS.index(a.anim.clip) + 1]
+                nxt = self.LIGHTS[self.LIGHTS.index(a.anim.clip) + 1] if a.anim.clip in self.LIGHTS[:2] else ""
+                if self.queued and nxt and self.pay(nxt):
                     self.queued = False
-                    a.play(nxt, restart=True)
+                    a.play(nxt, restart=True, rate=self.attack_rate)
                 else:
-                    a.state = "move"
-        elif a.state in ("cast", "hit") and a.clip_done():
+                    a.state, self.queued = "move", False
+        elif a.state in ("cast", "hit", "stumble") and a.clip_done():
             a.state = "move"
 
         # movement
         target = 0.0
+        self.sprinting = False
         locked = inp.face is not None and not self.swimming and not inp.sprint   # sprinting breaks the strafe
         travel = a.heading
         if a.state in ("move", "swim"):
@@ -274,10 +297,14 @@ class Rowan:
                 else:
                     a.heading = turn_towards(a.heading, heading_to(dx, dz), (5.0 if self.swimming else 12.0) * dt)
                     a.travel = None
+                sprint = inp.sprint and (self.fighter is None or not self.fighter.exhausted)
                 if self.swimming:
-                    target = SWIM_SPEEDS["slow" if inp.walk else "fast" if inp.sprint else "swim"]
+                    target = SWIM_SPEEDS["slow" if inp.walk else "fast" if sprint else "swim"]
                 else:
-                    target = a.speeds["walk"] if inp.walk else a.speeds["sprint"] if inp.sprint else a.speeds["run"]
+                    target = a.speeds["walk"] if inp.walk else a.speeds["sprint"] if sprint else a.speeds["run"]
+                self.sprinting = sprint and not inp.walk and not a.airborne
+                if self.sprinting and self.fighter is not None:
+                    self.fighter.drain(self.costs.get("sprint_per_s", 0.0) * dt)
                 if locked and inp.face is not None:          # slower sideways and backward, like a guarded step
                     fx, fz = inp.face
                     rel = (a.travel - heading_to(fx - a.x, fz - a.z) + math.pi) % math.tau - math.pi
@@ -406,6 +433,15 @@ class Enemy:
 
     def update(self, rowan: Actor, rowan_alive: bool, dt: float) -> None:
         a, ai = self.a, self.ai
+        if a.state == "dead":
+            a.speed = 0.0
+            return
+        if a.state == "hit":                            # staggered: stand reeling, then back into the fight
+            a.speed = max(0.0, a.speed - 10.0 * dt)
+            a.timer -= dt
+            if a.timer <= 0.0:
+                a.state = "chase" if rowan_alive else "return"
+            return
         turn = {"bear": 3.5, "wolf": 7.0}.get(a.kind, 8.0)
         to_r = math.hypot(rowan.x - a.x, rowan.z - a.z)
         from_home = math.hypot(a.x - self.home[0], a.z - self.home[1])

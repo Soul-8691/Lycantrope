@@ -9,6 +9,7 @@ To-Do:
 Character stats/Experience
 Armor/Weapon/Magic stats
 Health and damage/Fall damage/HUD
+Roll animation (in-game)
 Pause/Player inventory/Equip/Looting
 Upgrade/Forge
 Greetings/Talk (A press)/Dialogue/voice lines/Choices/Quests

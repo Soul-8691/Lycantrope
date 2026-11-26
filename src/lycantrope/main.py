@@ -6,7 +6,9 @@ Click            capture the mouse (Esc releases it; Esc again quits)
 WASD             move (camera-relative)     Shift: sprint  ·  Ctrl: walk  ·  wheel: camera distance
 Left click       light attack (click again during a swing to chain up to three)
 Right mouse      hold to block              R: heavy attack  ·  Q: cast (off hand)
-H / K            debug: hit reaction / die and get back up
+Space            jump (light attack while dropping: plunge)  ·  C: landing roll (press just before landing)
+E / G            drink from the Lifewater flask / eat an apple  ·  L: level-up screen (out of combat)
+H / K            debug: hit reaction / fall dead (the death screen, then the last save loads)
 F4 free-fly camera · F7 helmet on/off · F8 grass on/off · F9 music on/off · F10 sound effects on/off ·
 F11 NPC voices on/off · N noon/midnight · [ ] an hour back/forward · Ctrl + Up/Down zoom in/out (hold)
 
@@ -49,6 +51,7 @@ from lycantrope.render.grass import Grass
 from lycantrope.render.props import PropRenderer
 from lycantrope.render.shaders import ShaderLibrary
 from lycantrope.render.terrain import TerrainRenderer
+from lycantrope.ui.hud import DeathScreen, Hud, LevelPanel
 from lycantrope.ui.overlay import LockReticle, Subtitles, TextOverlay
 from lycantrope.world.lockon import LockOn
 from lycantrope.world.actors import TURBO, RowanInput
@@ -113,12 +116,17 @@ class App:
         self.subtitles = Subtitles(TextOverlay(self.ctx, self.shaders, size=18, mono=False))
         self.lock = LockOn()                              # lock-on targeting (CMB-02)
         self.reticle = LockReticle(self.ctx, self.shaders)
+        self.hud = Hud(self.ctx, self.shaders)              # bars, XP, flask, hit arc (UIX-15..22)
+        self.levels = LevelPanel(self.ctx, self.shaders)    # level-up screen (UIX-06)
+        self.death = DeathScreen(self.ctx, self.shaders)    # UIX-09
         self.load_seconds = time.perf_counter() - t0
         # no music for benchmarks and screenshots (timing and silence)
         quiet = args.bench or args.screenshot or settings.music_volume <= 0
         self.music = None if quiet else start_music(settings.music_volume)
         no_sfx = args.bench or args.screenshot or settings.sfx_volume <= 0
         self.sfx = None if no_sfx else start_sfx(settings.sfx_volume)
+        if self.sfx is not None:                          # impacts for hits that play no hit animation
+            self.chars.cue_sound = self.sfx.director.cue
 
         self.camera = Camera(fov_deg=settings.fov_deg, far=settings.view_distance_m)
         self.play = self.chars.rowan is not None and not args.cam
@@ -239,6 +247,10 @@ class App:
                     self.orbit_dist = min(12.0, max(1.8, self.orbit_dist * (0.9 ** ev.y)))
                 else:
                     self.base_speed = min(400.0, max(2.0, self.base_speed * (1.25 ** ev.y)))
+            elif ev.type == pygame.KEYDOWN and self.levels.open:
+                if self.levels.key(ev.key, self.chars.progress) == "apply":
+                    if self.chars.level_up(self.levels.plan):
+                        self.levels.plan = {}
             elif ev.type == pygame.KEYDOWN:
                 k = ev.key
                 if k == pygame.K_ESCAPE:
@@ -284,9 +296,19 @@ class App:
                 elif k == pygame.K_F12:
                     SCREENSHOTS.mkdir(exist_ok=True)
                     self.screenshot(SCREENSHOTS / f"lycantrope_{datetime.now():%Y%m%d_%H%M%S}.png")
+                elif k == pygame.K_l and self.play:         # level-up screen, out of combat (STA-02)
+                    if self.chars.chased(30.0):
+                        self.hud.state.note("Can't level up while enemies are after you")
+                    elif self.chars.rowan and self.chars.rowan.a.state != "dead":
+                        self.levels.toggle()
+                elif k == pygame.K_e and self.play:
+                    self.chars.drink()
+                elif k == pygame.K_g and self.play:
+                    if not self.chars.eat("apple"):
+                        self.hud.state.note("No apples left")
                 elif self.play:
                     name = {pygame.K_r: "heavy", pygame.K_q: "cast", pygame.K_h: "hit", pygame.K_k: "die",
-                            pygame.K_SPACE: "jump", pygame.K_f: "sheathe"}.get(k)
+                            pygame.K_SPACE: "jump", pygame.K_f: "sheathe", pygame.K_c: "roll"}.get(k)
                     if name:
                         self.pressed.add(name)
         return True
@@ -296,7 +318,9 @@ class App:
         keys = pygame.key.get_pressed()
         self.key_zoom(keys, dt)
         inp = RowanInput()
-        if self.play:
+        if self.play and self.levels.open:
+            self.pressed.clear()                          # the level-up screen has the keys
+        elif self.play:
             inp.move_x = keys[pygame.K_d] - keys[pygame.K_a]
             inp.move_y = keys[pygame.K_w] - keys[pygame.K_s]
             inp.sprint = bool(keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT])
@@ -310,6 +334,7 @@ class App:
                 t = self.lock.target.actor
                 inp.face = (t.x, t.z)
             inp.sheathe = "sheathe" in self.pressed
+            inp.roll = "roll" in self.pressed
             self.pressed.clear()
             act = self.args.act or ""
             if act.startswith("teleport:"):              # teleport:X,Z[:action]
@@ -327,9 +352,35 @@ class App:
                 inp.hit |= act == "hit" and first
                 inp.die |= act == "die" and first
                 inp.jump |= act == "jump" and self.ticks % 50 == 1
-                if act == "lock" and self.ticks == 3 and not self.lock.locked:   # testing: lock onto the nearest
+                if act == "fight" and self.ticks == 1:        # testing: start beside the nearest enemy
+                    ra = self.chars.rowan.a
+                    near = self.lock.candidates(self.chars.chars, ra, range_m=5000.0)
+                    if near:
+                        e = min(near, key=lambda cd: cd[1])[0].actor
+                        ra.x, ra.z = e.x + 2.0, e.z + 2.0
+                        ra.y = self.world.height_at(ra.x, ra.z)
+                        ra.heading = math.atan2(e.x - ra.x, e.z - ra.z)
+                        self.orbit_yaw = math.pi - ra.heading
+                        ra.save_prev()
+                        self.chars.rowan.sheathed = False
+                if act in ("lock", "fight") and self.ticks == 3 and not self.lock.locked:   # testing: lock on
                     near = self.lock.candidates(self.chars.chars, self.chars.rowan.a)
                     self.lock.target = min(near, key=lambda cd: cd[1])[0] if near else None
+                if act == "fight" and self.lock.locked:      # testing: swing at the locked enemy
+                    inp.light |= self.ticks % 40 == 5
+                if act == "hurt" and self.ticks == 3:        # testing: a hit from the front-left, XP and a level
+                    rc = self.chars.rowan_char
+                    ra = rc.actor
+                    src = (ra.x + 3 * math.sin(ra.heading + 0.8), ra.z + 3 * math.cos(ra.heading + 0.8))
+                    rc.fighter.hurt(rc.fighter.max_hp * 0.4, 0.0, src)
+                    rc.fighter.stamina *= 0.5
+                    self.chars.events.append(("hurt", 0.0, src, "melee"))
+                    self.chars.progress.gain(120)
+                    self.chars.events.append(("xp", 120, "Goblin Cutthroat"))
+                if act == "levelup" and self.ticks == 3:
+                    self.chars.progress.gain(400)
+                    self.levels.toggle()
+                    self.levels.plan = {"vigor": 2}
             self.ticks += 1
         else:
             self.fly(dt, keys)
@@ -347,6 +398,17 @@ class App:
                 if text and self.settings.subtitles:
                     self.subtitles.say(self.chars.name_of(speaker), text, len(envelope) / 30.0 + 1.0)
         self.subtitles.update(dt)
+        for ev in self.chars.events:                       # hits, XP, levels for the HUD
+            self.hud.state.event(ev)
+            if ev[0] == "reload":
+                self.lock.target = None
+                self.levels.open = False
+        self.chars.events.clear()
+        rc = self.chars.rowan_char
+        if rc is not None and rc.fighter is not None:
+            f = rc.fighter
+            full = f.hp >= f.max_hp and f.stamina >= f.max_stamina and f.trail <= f.hp
+            self.hud.state.update(dt, full, self.chars.chased(30.0))
         self.time_s += dt
         self.day.update(dt)
         if self.play and self.chars.rowan:
@@ -392,7 +454,11 @@ class App:
             return
         sx = (clip.x / clip.w * 0.5 + 0.5) * w
         sy = (1.0 - (clip.y / clip.w * 0.5 + 0.5)) * h
-        self.reticle.render(w, h, sx, sy, c.t.name)
+        f = c.fighter
+        if f is not None:
+            self.reticle.render(w, h, sx, sy, c.t.name, f.hp / f.max_hp, f.trail / f.max_hp)
+        else:
+            self.reticle.render(w, h, sx, sy, c.t.name)
 
     def music_region(self) -> str:
         """'town' near Brackenvale (with a margin so the edge doesn't flip back and forth), else 'wilds'."""
@@ -471,9 +537,16 @@ class App:
         self.ctx.wireframe = False
         self.water.render(eye, viewproj, env, self.time_s)
         if self.show_overlay:
-            self.overlay.render(w, h)
+            self.overlay.render(w, h, y=10 + (self.hud.height + 10 if self.play else 0))
         self.subtitles.render(w, h)
         self.draw_reticle(viewproj, w, h, alpha)
+        rc = self.chars.rowan_char
+        if self.play and rc is not None:
+            self.hud.render(w, h, rc.fighter, self.chars.progress, self.orbit_yaw, (rc.actor.x, rc.actor.z),
+                            self.time_s)
+            self.levels.render(w, h, self.chars.progress)
+            from lycantrope.render.characters import DEATH_RELOAD_S
+            self.death.render(w, h, self.chars.down_t, DEATH_RELOAD_S)
         self.ctx.wireframe = wire
 
     def overlay_lines(self) -> list[str]:
@@ -490,6 +563,11 @@ class App:
             a = self.chars.rowan.a
             lines.append(f"ROWAN  x {a.x:7.1f}  z {a.z:7.1f}   {a.state:<7} {a.anim.clip:<7} {a.speed:4.1f} m/s"
                          f"   biome {self.world.biome_at(a.x, a.z)}")
+            rc, pr = self.chars.rowan_char, self.chars.progress
+            if rc is not None and rc.fighter is not None:
+                f = rc.fighter
+                lines.append(f"HP {f.hp:4.0f}/{f.max_hp:.0f}  ST {f.stamina:3.0f}/{f.max_stamina:.0f}  "
+                             f"Lv {pr.level}  XP {pr.xp}/{pr.xp_needed()}  flask {pr.flask}")
         else:
             lines.append(f"FLY {self.base_speed:.0f} m/s   x {p.x:7.1f}  z {p.z:7.1f}  y {p.y:6.1f}   (north = -z)")
         lines += [
@@ -498,7 +576,8 @@ class App:
         ]
         if self.play:
             lines += ["WASD move  Shift sprint  Ctrl walk  Space jump  T turbo  Ctrl+Up/Down zoom",
-                      "LMB attack  RMB block  R heavy  Q cast  Tab/MMB lock on  F sheathe  H hit  K die/revive  Esc mouse",
+                      "LMB attack  RMB block  R heavy  Q cast  Tab/MMB lock on  F sheathe  C roll  E flask  G eat  L level",
+                      "H hit  K die  Esc mouse",
                       "F2 fog  F3 overlay  F4 fly  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices  N day/night  [ ] hour"]
         else:
             lines += ["WASD QE fly  Shift/Ctrl speed  T turbo  wheel base speed  Ctrl+Up/Down zoom  F4 back to Rowan",
@@ -593,7 +672,8 @@ def run(argv: list[str] | None = None) -> int:
     ap.add_argument("--time", type=float, help="start at this hour of the day (0-24), e.g. 21.5")
     ap.add_argument("--orbit", help="testing: camera around Rowan as YAW,PITCH,DIST (yaw 0 = behind him)")
     ap.add_argument("--act", help="testing: what Rowan does from the start: run, sprint, walk, light, "
-                                  "combo, heavy, block, cast, hit, die; or 'teleport:X,Z[:action]' to start elsewhere")
+                                  "combo, heavy, block, cast, hit, die, lock, fight, hurt, levelup; "
+                                  "or 'teleport:X,Z[:action]' to start elsewhere")
     args = ap.parse_args(sys.argv[1:] if argv is None else argv)
     return App(Settings.load(), args).run()
 

@@ -55,14 +55,17 @@ class TextOverlay:
         else:
             self.texture.write(data)
 
-    def render(self, screen_w: int, screen_h: int, x: int = 10, y: int = 10) -> None:
-        if self.texture is None:
+    def render(self, screen_w: int, screen_h: int, x: int = 10, y: int = 10, alpha: float = 1.0,
+               size: tuple[int, int] | None = None) -> None:
+        """Draw at (x, y) from the top-left, faded by alpha; size stretches it (the death screen's dark)."""
+        if self.texture is None or alpha <= 0.0:
             return
         prog = self.shaders.get("overlay")
         if self._vao is None or self._version != self.shaders.version:
             self._vao = self.ctx.vertex_array(prog, [])
             self._version = self.shaders.version
-        w, h = self.size
+        w, h = size or self.size
+        set_uniform(prog, "u_alpha", float(alpha))
         x0, x1 = x / screen_w * 2 - 1, (x + w) / screen_w * 2 - 1
         y1, y0 = 1 - y / screen_h * 2, 1 - (y + h) / screen_h * 2
         self.texture.use(0)
@@ -124,8 +127,10 @@ class Subtitles:
 
 
 class LockReticle:
-    """The lock-on marker (UIX-04): a ring with a dot and four ticks on the target, and the target's
-    name in a small plate above it. Health bars come once enemies have health."""
+    """The lock-on marker (UIX-04): a ring with a dot and four ticks on the target, and a small plate
+    above it with the target's name and, for enemies, a thin HP bar with a pale trail (UIX-16/17)."""
+
+    BAR_W = 120
 
     def __init__(self, ctx, shaders) -> None:
         self.ring = TextOverlay(ctx, shaders)
@@ -144,14 +149,32 @@ class LockReticle:
             pygame.draw.line(surf, dark, a, b, 4)
             pygame.draw.line(surf, gold, a, b, 2)
         self.ring.set_surface(surf)
-        self._name = None
+        self._key = None
 
-    def render(self, screen_w: int, screen_h: int, x: float, y: float, name: str) -> None:
+    def plate_surface(self, name: str, hp: float | None, trail: float | None) -> pygame.Surface:
+        font = self.plate.font
+        text = font.render(name, True, (235, 230, 242))
+        bar = hp is not None
+        w = max(text.get_width(), self.BAR_W if bar else 0) + 16
+        h = text.get_height() + (14 if bar else 0) + 8
+        surf = pygame.Surface((w, h), pygame.SRCALPHA)
+        surf.fill((10, 8, 14, 165))
+        surf.blit(text, ((w - text.get_width()) // 2, 4))
+        if bar:
+            x0, y0, bw = (w - self.BAR_W) // 2, text.get_height() + 6, self.BAR_W
+            pygame.draw.rect(surf, (25, 18, 18, 230), (x0 - 1, y0 - 1, bw + 2, 7))
+            pygame.draw.rect(surf, (225, 196, 160, 255), (x0, y0, int(bw * max(0.0, min(1.0, trail))), 5))
+            pygame.draw.rect(surf, (176, 32, 30, 255), (x0, y0, int(bw * max(0.0, min(1.0, hp))), 5))
+        return surf
+
+    def render(self, screen_w: int, screen_h: int, x: float, y: float, name: str,
+               hp: float | None = None, trail: float | None = None) -> None:
         w, h = self.ring.size
         self.ring.render(screen_w, screen_h, x=int(x - w / 2), y=int(y - h / 2))
         if name:
-            if name != self._name:
-                self.plate.set_lines([name])
-                self._name = name
+            key = (name, None if hp is None else int(hp * self.BAR_W), None if trail is None else int(trail * self.BAR_W))
+            if key != self._key:
+                self.plate.set_surface(self.plate_surface(name, hp, trail if trail is not None else hp))
+                self._key = key
             pw, ph = self.plate.size
             self.plate.render(screen_w, screen_h, x=int(x - pw / 2), y=int(y - h / 2 - ph - 4))

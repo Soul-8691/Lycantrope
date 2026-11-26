@@ -1,0 +1,95 @@
+{
+  "_about": [
+    "Numbers for health, damage, stamina, experience and falls (STA-24..28, CMB-37..45). Read by world/stats.py.",
+    "derived: each stat is base + per_level * level + sum(weight * soft(attribute)). soft() counts attribute points at",
+    "full value up to 20, then at 0.75 up to 40, then at 0.35 (STA-05's soft caps).",
+    "Damage per type: attack * attack / (attack + defence), then times (1 - absorb); never below min_fraction of the attack (CMB-37).",
+    "Enemies list their own level, HP, attack, defence, poise and XP. Levels follow STA-10: the Vale is 1-5."
+  ],
+  "level_cap": 50,
+  "rowan": {
+    "level": 1,
+    "attributes": {"might": 8, "dexterity": 8, "vigor": 10, "endurance": 10, "faith": 8, "fortune": 8},
+    "weapon": "dawnblade",
+    "poise": 20,
+    "absorb": {}
+  },
+  "attributes": ["vigor", "endurance", "might", "dexterity", "faith", "fortune"],
+  "soft_caps": [[20, 1.0], [40, 0.75], [999, 0.35]],
+  "derived": {
+    "hp":          {"label": "HP",          "base": 50,   "from": {"vigor": 25}},
+    "stamina":     {"label": "Stamina",     "base": 55,   "from": {"endurance": 2.5}},
+    "equip_load":  {"label": "Equip load",  "base": 30,   "from": {"endurance": 1.0, "might": 0.5}},
+    "defence":     {"label": "Defence",     "base": 10,   "per_level": 1.0, "from": {"endurance": 0.2, "vigor": 0.2}},
+    "rite_power":  {"label": "Rite power",  "base": 76,   "from": {"faith": 3.0}},
+    "recovery":    {"label": "Attack speed %", "base": 95, "from": {"dexterity": 0.6}},
+    "crit_chance": {"label": "Crit chance %",  "base": 2,  "from": {"fortune": 0.4}},
+    "find_rate":   {"label": "Find rate %",    "base": 100, "from": {"fortune": 1.0}}
+  },
+  "scaling_grades": {"S": 1.0, "A": 0.8, "B": 0.6, "C": 0.45, "D": 0.3, "E": 0.15},
+  "scaling_points": 40,
+  "weapons": {
+    "dawnblade": {
+      "name": "Dawnblade",
+      "damage": {"slash": 40, "radiant": 8},
+      "scaling": {"might": "D", "dexterity": "C", "faith": "D"},
+      "poise_damage": 12,
+      "reach_m": 2.1,
+      "arc_deg": 70
+    }
+  },
+  "moves": {
+    "light1": {"damage": 1.0, "poise": 1.0, "stamina": 14, "active": [0.25, 0.55]},
+    "light2": {"damage": 1.0, "poise": 1.0, "stamina": 14, "active": [0.25, 0.55]},
+    "light3": {"damage": 1.2, "poise": 1.3, "stamina": 16, "active": [0.25, 0.55]},
+    "heavy":  {"damage": 1.6, "poise": 2.2, "stamina": 26, "active": [0.35, 0.62]},
+    "plunge": {"damage": 2.2, "poise": 3.0, "stamina": 0},
+    "attack1": {"damage": 1.0, "poise": 1.0, "active": [0.35, 0.65]},
+    "attack2": {"damage": 1.15, "poise": 1.2, "active": [0.35, 0.65]}
+  },
+  "min_fraction": 0.1,
+  "crit_multiplier": 1.5,
+  "counter": {"multiplier": 1.25, "windup_before": 0.35},
+  "block": {"front_deg": 75, "physical": 0.4, "other": 0.7, "stamina_per_damage": 0.9},
+  "stamina": {"jump": 10, "sprint_per_s": 12, "regen_per_s": 45, "regen_delay_s": 0.6, "exhausted_until": 0.25},
+  "poise_regen_s": 2.5,
+  "hp_trail": {"delay_s": 0.8, "drain_frac_per_s": 0.35},
+  "xp": {
+    "curve_base": 100,
+    "curve_power": 1.5,
+    "per_level_difference": 0.15,
+    "min_multiplier": 0.25,
+    "max_multiplier": 2.0,
+    "discover_landmark": 60,
+    "discover_waystone": 40,
+    "discover_extra_m": 10
+  },
+  "fall": {
+    "stumble_m": 2.5,
+    "safe_m": 4.0,
+    "ramp": [[4.0, 0.10], [12.0, 0.80], [15.0, 1.0]],
+    "kill_m": 15.0,
+    "roll_window_s": 0.35,
+    "roll_factor": 0.5,
+    "water_depth_m": 1.5,
+    "plunge_min_m": 1.2,
+    "plunge_reach_m": 1.8
+  },
+  "lifewater": {"charges": 3, "heal_frac": 0.45, "seconds": 1.2, "faith_bonus_per_point": 0.004},
+  "food": {
+    "apple": {"name": "Apple", "heal": 30, "seconds": 6.0},
+    "bread": {"name": "Bread", "heal": 50, "seconds": 8.0},
+    "stew":  {"name": "Stew",  "heal": 90, "seconds": 10.0}
+  },
+  "food_start": {"apple": 3},
+  "enemies": {
+    "goblin":        {"level": 2, "hp": 90,  "attack": {"slash": 40},  "defence": 15, "poise": 10, "poise_damage": 10, "xp": 30,  "weight": 0.8},
+    "wolf":          {"level": 2, "hp": 80,  "attack": {"pierce": 36}, "defence": 12, "poise": 8,  "poise_damage": 8,  "xp": 30,  "weight": 1.0},
+    "bandit_lean":   {"level": 3, "hp": 130, "attack": {"slash": 48},  "defence": 20, "poise": 20, "poise_damage": 12, "xp": 50,  "weight": 1.0},
+    "bandit_stocky": {"level": 3, "hp": 150, "attack": {"slash": 50},  "defence": 22, "poise": 25, "poise_damage": 14, "xp": 55,  "weight": 1.2},
+    "battlemage":    {"level": 4, "hp": 120, "attack": {"slash": 42},  "defence": 18, "absorb": {"fire": 0.3}, "poise": 15, "poise_damage": 10, "xp": 80, "weight": 1.0,
+                      "spell": {"fire": 55}},
+    "bruiser":       {"level": 5, "hp": 260, "attack": {"strike": 80}, "defence": 28, "poise": 50, "poise_damage": 40, "xp": 110, "weight": 2.0},
+    "bear":          {"level": 5, "hp": 320, "attack": {"strike": 90}, "defence": 30, "absorb": {"frost": 0.3}, "poise": 60, "poise_damage": 45, "xp": 120, "weight": 3.0}
+  }
+}

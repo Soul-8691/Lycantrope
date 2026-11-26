@@ -138,18 +138,21 @@ def test_rowan_jumps_about_three_quarters_of_a_metre_and_lands():
     a = r.a
     a.clips["jump"] = ClipInfo(0.6, False)
     world = SimpleNamespace(height_at=lambda x, z: 0.0, water_at=lambda x, z: -10.0)
-    sysm = SimpleNamespace(world=world, colliders=None)
+    drops = []
+    sysm = SimpleNamespace(world=world, colliders=None, _landed=lambda c, d: drops.append(d))
     c = SimpleNamespace(actor=a)
     r.update(RowanInput(jump=True), 0.0, 1 / 60)
     assert a.airborne and a.anim.clip == "jump"
     peak, steps = 0.0, 0
     while a.airborne and steps < 200:
-        r.update(RowanInput(light=True), 0.0, 1 / 60)          # swinging mid-air does nothing yet
+        r.update(RowanInput(light=True), 0.0, 1 / 60)          # swinging mid-air starts no attack
         assert a.state == "move"
         CharacterSystem._fly(sysm, c, 1 / 60, 1000.0)
         peak, steps = max(peak, a.y), steps + 1
     assert 0.6 < peak < 0.9 and not a.airborne and a.y == 0.0
     assert 30 < steps < 45                                       # about 0.6 s in the air
+    assert len(drops) == 1 and drops[0] == pytest.approx(peak, abs=0.01)   # the landing knows the drop
+    assert r.plunging                                            # light while dropping: a plunge (no enemy below)
     r.update(RowanInput(jump=True), 0.0, 1 / 60)                 # and can jump again once down
     assert a.airborne
 

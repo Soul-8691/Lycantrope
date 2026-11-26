@@ -23,6 +23,7 @@ from lycantrope.render.camera import frustum_planes
 from lycantrope.render.gltf import (PARTS, SLOTS, Clip, MeshData, Skeleton, fit_outfit, load_mesh, load_skeleton,
                                     nearest_neighbours, part_of, triangle_parts, triangle_slots)
 from lycantrope.render.shaders import ShaderLibrary, set_uniform
+from lycantrope.world.stats import kill_xp
 from lycantrope.world.actors import (Actor, AiParams, ClipInfo, Enemy, Rowan, load_character_data,
                                      load_spawns, separate)
 from lycantrope.world.collision import Colliders
@@ -33,6 +34,7 @@ CACHE = ROOT / "assets" / "cache"
 MAX_JOINTS = 64
 DRAW_DISTANCE = 300.0
 WADE_DEPTH = 0.9           # meters, for a 1.75 m character (scaled by height)
+DEATH_RELOAD_S = 7.0           # Rowan down: the death screen shows this long, then the last save loads
 SWIM_IN, SWIM_OUT = 1.2, 1.0   # Rowan starts swimming deeper than this, wades again shallower than that
 STATIC_CLIPS = {"idle": ClipInfo(1.0, True), "walk": ClipInfo(1.0, True), "run": ClipInfo(1.0, True),
                 "alert": ClipInfo(1.0, True), "attack1": ClipInfo(0.9, False), "attack2": ClipInfo(0.9, False),
@@ -711,6 +713,7 @@ class Character:
     talk_t: float = 0.0
     jaw_open: float = 0.0                                # 0 shut .. 1 open
     sheathed: bool | None = None                         # Rowan: sword on his back (None for others)
+    fighter: object = None                               # stats.Fighter: enemies and Rowan (HP, poise...)
 
 
 class CharacterSystem:
@@ -738,6 +741,25 @@ class CharacterSystem:
         self.spawn(load_spawns())
         self._version = -1
         self.drawn = 0
+        # health, damage and experience (STA-24..28, CMB-37..45)
+        from lycantrope.world.combat import Combat
+        from lycantrope.world.stats import Progress, config, enemy_fighter
+        self.combat_cfg = config()
+        self.combat = Combat(self.combat_cfg)
+        self.progress = Progress(self.combat_cfg)
+        self.events: list[tuple] = []            # for the HUD: ("hurt", amount, from_xz), ("xp", n, why) ...
+        self.down_t = 0.0                        # seconds since Rowan fell (death screen, then the reload)
+        self.reloads = 0
+        self._discover_t = 0.0
+        for c in self.chars:
+            if c.brain is not None:
+                c.fighter = enemy_fighter(c.actor.kind, c.t.name or c.actor.kind, self.combat_cfg)
+        if self.rowan is not None:
+            ra = self.rowan.a
+            self.spawn_point = (ra.x, ra.z, ra.heading)
+            self.setup_rowan()
+            self.discover(award=False)          # where he starts is already known
+            self.progress.save()                # the "last save" a death rolls back to (until saves exist)
 
     def set_colliders(self, colliders: Colliders) -> None:
         """Make props solid: characters slide around them, wanderers don't aim inside them, and
@@ -881,6 +903,163 @@ class CharacterSystem:
                    and (c.actor.x - r.x) ** 2 + (c.actor.z - r.z) ** 2 < range_m * range_m
                    for c in self.chars)
 
+    # ------------------------------------------------------------------ stats
+    @property
+    def rowan_char(self) -> "Character | None":
+        if self.rowan is None:
+            return None
+        return next((c for c in self.chars if c.actor is self.rowan.a), None)
+
+    def setup_rowan(self) -> None:
+        """Rowan's Fighter from his progress: HP, stamina, attack; stamina costs and attack speed."""
+        rc = self.rowan_char
+        if rc is None:
+            return
+        cfg = self.combat_cfg
+        rc.fighter = self.progress.fighter("Rowan")
+        self.rowan.fighter = rc.fighter
+        self.rowan.costs = {k: float(v["stamina"]) for k, v in cfg["moves"].items() if "stamina" in v}
+        self.rowan.costs["jump"] = float(cfg["stamina"]["jump"])
+        self.rowan.costs["sprint_per_s"] = float(cfg["stamina"]["sprint_per_s"])
+        self.rowan.roll_window = float(cfg["fall"]["roll_window_s"])
+        self.apply_stats()
+
+    def apply_stats(self) -> None:
+        d = self.progress.stats()
+        self.rowan.attack_rate = d["recovery"] / 100.0
+        self.combat.crit_chance = d["crit_chance"]
+
+    def level_up(self, plan: dict[str, int]) -> bool:
+        """Spend XP on attribute points (the level-up screen, STA-02/24)."""
+        rc = self.rowan_char
+        if rc is None or not self.progress.apply(plan):
+            return False
+        self.progress.refresh(rc.fighter)
+        self.apply_stats()
+        self.events.append(("level", self.progress.level))
+        return True
+
+    def drink(self) -> bool:
+        """The Lifewater flask (CMB-22): heals over a moment."""
+        rc = self.rowan_char
+        if rc is None or rc.fighter is None or not rc.fighter.alive or self.progress.flask <= 0:
+            return False
+        if rc.actor.state not in ("move", "block", "swim"):
+            return False
+        self.progress.flask -= 1
+        lw = self.combat_cfg["lifewater"]
+        rc.fighter.heal(self.progress.flask_heal(rc.fighter.max_hp), lw["seconds"])
+        self.events.append(("flask", self.progress.flask))
+        return True
+
+    def eat(self, food: str = "apple") -> bool:
+        """Food heals slowly (CMB-44)."""
+        rc = self.rowan_char
+        spec = self.combat_cfg["food"].get(food)
+        if rc is None or rc.fighter is None or not rc.fighter.alive or spec is None:
+            return False
+        if self.progress.food.get(food, 0) <= 0:
+            return False
+        self.progress.food[food] -= 1
+        rc.fighter.heal(spec["heal"], spec["seconds"])
+        self.events.append(("eat", food))
+        return True
+
+    def discover(self, award: bool = True) -> None:
+        """Finding a landmark or waking a Waystone gives XP once (STA-25)."""
+        if self.rowan is None:
+            return
+        ra = self.rowan.a
+        extra = self.combat_cfg["xp"]["discover_extra_m"]
+        for kind, places in (("landmark", self.world.landmarks), ("waystone", self.world.waystones)):
+            for p in places:
+                if p.name in self.progress.discovered:
+                    continue
+                if math.hypot(ra.x - p.x, ra.z - p.z) <= p.radius + extra:
+                    self.progress.discovered.add(p.name)
+                    if award:
+                        n = self.progress.discover_xp(kind)
+                        self.progress.gain(n)
+                        self.events.append(("xp", n, f"Discovered {p.name}"))
+
+    def reload(self) -> None:
+        """Death loads the last save (STA-28): Rowan's level and XP go back to it, he wakes where it was
+        made, and the enemies are back where they were."""
+        self.progress.restore()
+        self.setup_rowan()
+        ra = self.rowan.a
+        ra.x, ra.z, ra.heading = self.spawn_point
+        ra.y = self.world.height_at(ra.x, ra.z)
+        ra.state, ra.speed, ra.vy, ra.airborne, ra.fall_top, ra.travel = "move", 0.0, 0.0, False, None, None
+        ra.play("idle", restart=True)
+        ra.save_prev()
+        self.rowan.sheathed, self.rowan.plunging = True, False
+        for c in self.chars:
+            b = c.brain
+            if b is None or c.fighter is None:
+                continue
+            a = c.actor
+            c.fighter.reset()
+            a.x, a.z = b.home
+            a.y = self.world.height_at(a.x, a.z)
+            a.state, a.speed, a.vy, a.airborne, a.fall_top = "wander", 0.0, 0.0, False, None
+            a.timer = b.rng.uniform(0.5, 3.0)
+            b.goal = None
+            a.play("idle", restart=True)
+            a.save_prev()
+        self.spells.items.clear()
+        self.combat.swings.clear()
+        self.down_t = 0.0
+        self.reloads += 1
+        self.events.append(("reload",))
+
+    def _hits(self, rc) -> None:
+        """XP for kills and HUD events for this tick's hits."""
+        for h in self.combat.hits:
+            t = h.target
+            if t is rc:
+                self.events.append(("hurt", h.amount, t.fighter.hit_from, h.kind))
+            elif h.killed and t.fighter is not None:
+                n = kill_xp(t.fighter.xp, t.fighter.level, self.progress.level, self.combat_cfg)
+                self.progress.gain(n)
+                self.events.append(("xp", n, t.fighter.name))
+            if not h.staggered and not h.killed and h.kind != "fall":
+                a = t.actor                          # no hit animation: still make the impact heard
+                self.cue_sound(a.kind, "hit", (a.x, a.y + 1.0, a.z))
+
+    def cue_sound(self, kind: str, event: str, pos) -> None:
+        """Set by the game to the sound system's cue (stays silent without sound)."""
+
+    def _landed(self, c: "Character", drop: float) -> None:
+        """Fall damage, stumbles, landing rolls, water and plunges (CMB-38..43)."""
+        from lycantrope.world.stats import landing
+        f = c.fighter
+        if f is None or not f.alive:
+            return
+        a = c.actor
+        fc = self.combat_cfg["fall"]
+        depth = self.world.water_depth(a.x, a.z)
+        rc = self.rowan_char
+        if c is rc:
+            plunged = False
+            if self.rowan.plunging and drop >= fc["plunge_min_m"]:
+                plunged = self.combat.plunge(rc, self.chars)
+                if plunged and a.state != "dead":
+                    a.state = "attack"
+                    a.play("heavy", restart=True)
+                    info = a.clips.get("heavy")
+                    a.anim.time = info.duration * 0.65 if info else 0.0   # the end of the slam
+            self.rowan.plunging = False
+            rolled = self.rowan.roll_t > 0.0
+            dmg, stumble = landing(drop, f.max_hp, rolled, depth, plunged, self.combat_cfg)
+            if rolled and drop >= fc["stumble_m"]:
+                self.events.append(("roll",))
+        else:
+            dmg, stumble = landing(drop, f.max_hp, False, depth, False, self.combat_cfg)
+            dmg *= f.weight                          # heavy beasts take more (CMB-43)
+        if dmg > 0 or stumble:
+            self.combat.fall(c, dmg, stumble, rc)
+
     def counts(self) -> dict[str, int]:
         out: dict[str, int] = {}
         for c in self.chars:
@@ -892,6 +1071,15 @@ class CharacterSystem:
         if self.rowan is None:
             return
         ra = self.rowan.a
+        self.combat.hits = []
+        rcf = self.rowan_char.fighter if self.rowan_char is not None else None
+        if inp.die:                                    # debug K: fall where he stands (a real death)
+            inp = type(inp)(**{**inp.__dict__, "die": False})
+            if rcf is not None and rcf.alive:
+                rcf.hurt(rcf.hp + 1.0)
+                from lycantrope.world.combat import Hit
+                self.combat.react(self.rowan_char, Hit(None, self.rowan_char, 0.0, killed=True, kind="fall"),
+                                  self.rowan_char)
         for c in self.chars:
             c.actor.save_prev()
             want = 1.0 if c.actor.state == "attack" else 0.0      # both hands for the swing only
@@ -923,8 +1111,20 @@ class CharacterSystem:
                     start = (a.x + fwd[0] * 0.6, a.y + c.t.height * 0.72, a.z + fwd[1] * 0.6)
                     target = (ra.x, ra.y + 1.2, ra.z)
                     self.spells.cast(start, target, float(sp.get("speed_m_s", 16)), float(sp.get("radius_m", 0.28)),
-                                     sp.get("color", (1.0, 0.45, 0.12)))
-        separate(near)
+                                     sp.get("color", (1.0, 0.45, 0.12)),
+                                     damage=dict(c.fighter.spell) if c.fighter is not None and c.fighter.spell else None)
+        separate([a for a in near if a.state != "dead"])
+        # swings that land, spells that reach Rowan, and what they cost
+        rc = self.rowan_char
+        self.combat.update(self.chars, rc)
+        self.combat.spell_hits(self.spells.items, rc)
+        if rc is not None and rc.fighter is not None:
+            rc.fighter.update(dt, regen=ra.state not in ("attack", "block") and not self.rowan.sprinting,
+                              cfg=self.combat_cfg)
+        for c in self.chars:
+            f = c.fighter
+            if f is not None and c is not rc and (f.since_hurt < 10.0 or f.heals):   # untouched: nothing to do
+                f.update(dt, cfg=self.combat_cfg)
         for c in self.chars:                                   # jaws follow the loudness of the line
             if c.talk_env is not None:
                 i = int(c.talk_t * 30.0)
@@ -938,6 +1138,10 @@ class CharacterSystem:
             c.jaw_open += (target - c.jaw_open) * min(1.0, dt * 25.0)
         self.spells.update(dt)
         self.rite.update(dt)
+        self._discover_t -= dt
+        if self._discover_t <= 0.0 and ra.state != "dead":
+            self._discover_t = 0.5
+            self.discover()
         lim = self.world.half - 5
         for c in self.chars:
             a = c.actor
@@ -952,7 +1156,7 @@ class CharacterSystem:
                 a.y = max(a.y, self.world.height_at(a.x, a.z))
                 a.advance(dt)
                 continue
-            if a.airborne or (a is ra and a.y - self.world.height_at(a.x, a.z) > 0.35):
+            if a.airborne or ((a is ra or c.fighter is not None) and a.y - self.world.height_at(a.x, a.z) > 0.35):
                 self._fly(c, dt, lim)                          # jumping, or ran off a ledge
                 continue
             if a.x == a.px and a.z == a.pz:                   # didn't move: ground is the same
@@ -974,11 +1178,19 @@ class CharacterSystem:
             a.advance(dt)
             if c.t.skel is None:
                 c.phase += a.speed * dt * 2.2
+        self._hits(rc)
+        if rc is not None and rc.fighter is not None and not rc.fighter.alive:
+            self.down_t += dt                              # the death screen, then back to the last save
+            if self.down_t >= DEATH_RELOAD_S:
+                self.reload()
 
     def _fly(self, c: "Character", dt: float, lim: float) -> None:
-        """Rowan in the air: gravity, solid props and the map edge still apply; he lands on the ground."""
+        """In the air (Rowan jumping, anyone off a ledge): gravity, solid props and the map edge still
+        apply; landing hurts if the drop was high (CMB-38)."""
         from lycantrope.world.actors import GRAVITY
         a = c.actor
+        if not a.airborne or a.fall_top is None:
+            a.fall_top = a.y
         a.airborne = True
         a.x = min(max(a.x, -lim), lim)
         a.z = min(max(a.z, -lim), lim)
@@ -986,12 +1198,15 @@ class CharacterSystem:
             a.x, a.z, _ = self.colliders.push_out(a.x, a.z, a.radius)
         a.y += a.vy * dt
         a.vy -= GRAVITY * dt
+        a.fall_top = max(a.fall_top, a.y)
         ground = self.world.height_at(a.x, a.z)
         surface = max(ground, self.world.water_at(a.x, a.z) - 1.0)   # deep water catches him (then he swims)
         if a.y <= surface and a.vy <= 0.0:
             a.y, a.vy, a.airborne = max(ground, min(a.y, surface)), 0.0, False
+            drop, a.fall_top = a.fall_top - a.y, None
             if a.state == "move":
                 a.locomotion()
+            self._landed(c, drop)
         a.advance(dt)
 
     def _watch_cast(self, ra: Actor, rc: "Character | None") -> None:

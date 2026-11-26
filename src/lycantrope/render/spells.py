@@ -46,6 +46,8 @@ class Spell:
     color: tuple[float, float, float]
     burst: float = -1.0          # >= 0 while bursting (seconds since impact)
     prev: np.ndarray | None = None
+    damage: dict | None = None   # per damage type, if it hurts Rowan when it reaches him
+    origin: tuple[float, float] | None = None   # where it was cast from (x, z): blocking and the hit arc
 
 
 class Spells:
@@ -61,12 +63,12 @@ class Spells:
         self._vao = None
         self._version = -1
 
-    def cast(self, start, target, speed: float, radius: float, color) -> None:
+    def cast(self, start, target, speed: float, radius: float, color, damage: dict | None = None) -> None:
         start, target = np.asarray(start, float), np.asarray(target, float)
         d = target - start
         dist = float(np.linalg.norm(d)) or 1.0
         self.items.append(Spell(start.copy(), d / dist * speed, dist / speed + 0.4, radius, tuple(color),
-                                prev=start.copy()))
+                                prev=start.copy(), damage=damage, origin=(float(start[0]), float(start[2]))))
 
     def update(self, dt: float) -> None:
         keep = []

@@ -1263,6 +1263,13 @@
       "motion": "HER-09/v1:strafe_left",
       "created": 1795713847.5135958,
       "credits": 3
+    },
+    "HER-09/v1#5": {
+      "task_id": "01a21917-3bcf-7230-a59c-176cf6b4bbd2",
+      "status": "SUCCEEDED",
+      "motion": "HER-09/v1:roll",
+      "created": 1795717283.3869712,
+      "credits": 3
     }
   },
   "motions": {
@@ -1278,6 +1285,13 @@
       "status": "SUCCEEDED",
       "prompt": "side-steps directly to his left without moving forward at all, guarded fighting stance, sword raised in the right hand, feet never crossing, eyes facing straight ahead, a steady repeating side-step cycle",
       "created": 1795713825.8950477,
+      "credits": 10
+    },
+    "HER-09/v1:roll": {
+      "task_id": "01a21916-e260-77fc-a073-d4db1049a256",
+      "status": "SUCCEEDED",
+      "prompt": "quick forward combat roll from standing, tuck and roll over the shoulder, back up into a ready stance",
+      "created": 1795717260.8450398,
       "credits": 10
     }
   },
