@@ -184,6 +184,34 @@ def make_swim_clips(skel: Skeleton) -> dict[str, tuple[Clip, float]]:
     return out
 
 
+def jump_pose(rig: Rig, bind: np.ndarray, u: float) -> np.ndarray:
+    """Mid-air: knees drawn up, arms lifted out for balance, a slight lean forward; u 0..1 goes from
+    the spring (legs tucking) to the drop (legs reaching down for the landing)."""
+    W = bind.astype(float).copy()
+    tuck = math.sin(math.pi * min(1.0, u * 1.4))              # tucked most a little before the middle
+    for side, s in (("Left", 1.0), ("Right", -1.0)):
+        if rig.has(f"{side}Arm", f"{side}ForeArm", f"{side}Hand"):
+            rig.aim(W, f"{side}Arm", f"{side}ForeArm", _mirror((0.75, -0.05 + 0.3 * tuck, 0.25), s))
+            rig.aim(W, f"{side}ForeArm", f"{side}Hand", _mirror((0.55, 0.15 + 0.3 * tuck, 0.45), s))
+        if rig.has(f"{side}UpLeg", f"{side}Leg", f"{side}Foot"):
+            lead = 0.25 if s > 0 else -0.05                    # one knee a little higher than the other
+            rig.aim(W, f"{side}UpLeg", f"{side}Leg", _mirror((0.08, -1.0 + 0.45 * tuck, 0.2 + (0.45 + lead) * tuck), s))
+            rig.aim(W, f"{side}Leg", f"{side}Foot", _mirror((0.03, -1.0, -0.15 - 0.55 * tuck), s))
+    if rig.has("Hips"):
+        rig.rotate(W, rig.j("Hips"), _rot_x(8.0 * tuck))
+    return W
+
+
+def make_jump_clip(skel: Skeleton) -> Clip | None:
+    rig = Rig(skel)
+    if not rig.has("Hips", "LeftUpLeg", "RightUpLeg"):
+        return None
+    bind = skel.bind_world()
+    n = 18                                                     # 0.6 s at 30 fps, held at the end
+    frames = np.stack([jump_pose(rig, bind, i / (n - 1)) for i in range(n)]).astype(np.float32)
+    return Clip("jump", frames, (n - 1) / BAKE_FPS, False, 0.0)
+
+
 def mirror_name(name: str) -> str:
     for a, b in (("Left", "Right"), ("Right", "Left")):
         if name.startswith(a):

@@ -19,6 +19,9 @@ IDLE_DELAY_S = 3.0      # after stopping, hold still this long before the idle a
 TURBO = 4.0                                  # turbo hotkey: movement speed multiplier (Rowan and fly camera)
 IDLE_CLIPS = ("idle", "idle2", "idle3")   # standing-still animations; one is picked at random
 SWIM_SPEEDS = {"slow": 0.9, "swim": 1.5, "fast": 2.4}   # m/s in deep water (Ctrl, normal, Shift)
+JUMP_V = 5.2               # take-off speed (m/s): about a 0.75 m hop
+GRAVITY = 18.0             # m/s^2, a little heavier than real for a snappy game jump
+AIR_CONTROL = 0.3          # how much Rowan can steer in the air (fraction of his ground acceleration)
 
 
 @dataclass
@@ -83,6 +86,8 @@ class Actor:
     ph: float = 0.0
     idle_wait: float = 0.0        # seconds spent standing still on the idle's first frame
     gait_scale: float = 1.0       # turbo: speed multiplier the walk/run/sprint choice ignores
+    vy: float = 0.0               # vertical speed (m/s) while airborne
+    airborne: bool = False        # jumping or falling (the world sets y from the ground otherwise)
 
     def has(self, clip: str) -> bool:
         return clip in self.clips
@@ -155,6 +160,7 @@ class RowanInput:
     hit: bool = False        # debug: play the hit reaction
     die: bool = False        # debug: toggle death
     turbo: bool = False      # debug/travel: move TURBO times faster
+    jump: bool = False       # pressed this tick
 
 
 class Rowan:
@@ -185,8 +191,14 @@ class Rowan:
         elif a.state == "swim":
             a.state = "move"
 
-        # actions start from free movement (or blocking)
-        if a.state in ("move", "block"):
+        # jumping: from the ground, not mid-swing or in deep water
+        if inp.jump and a.state in ("move", "block") and not a.airborne and not self.swimming:
+            a.state, a.vy, a.airborne = "move", JUMP_V * (1.0 if not inp.turbo else 1.2), True
+            if a.has("jump"):
+                a.play("jump", restart=True)
+
+        # actions start from free movement (or blocking), on the ground
+        if a.state in ("move", "block") and not a.airborne:
             if inp.light:
                 a.state, self.queued = "attack", False
                 a.play("light1", restart=True)
@@ -233,10 +245,12 @@ class Rowan:
         a.gait_scale = TURBO if inp.turbo else 1.0       # same gait and stride, just covering more ground
         target *= a.gait_scale
         accel = (4.0 if self.swimming else 25.0 if target > a.speed else 30.0) * a.gait_scale
+        if a.airborne:
+            accel *= AIR_CONTROL                          # mostly keeps the speed he jumped with
         a.speed += max(-accel * dt, min(accel * dt, target - a.speed))
         a.x += math.sin(a.heading) * a.speed * dt
         a.z += math.cos(a.heading) * a.speed * dt
-        if a.state == "move":
+        if a.state == "move" and not a.airborne:
             a.locomotion()
         elif a.state == "swim":
             s = a.speed / a.gait_scale

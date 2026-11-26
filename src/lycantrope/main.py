@@ -49,7 +49,7 @@ from lycantrope.render.grass import Grass
 from lycantrope.render.props import PropRenderer
 from lycantrope.render.shaders import ShaderLibrary
 from lycantrope.render.terrain import TerrainRenderer
-from lycantrope.ui.overlay import TextOverlay
+from lycantrope.ui.overlay import Subtitles, TextOverlay
 from lycantrope.world.actors import TURBO, RowanInput
 from lycantrope.world.heightfield import Heightfield
 from lycantrope.world.props import load_placements, paint_ground, paint_paths
@@ -109,6 +109,7 @@ class App:
         self.sky = Sky(self.ctx, self.shaders)
         self.water = Water(self.ctx, self.shaders, self.world, self.terrain.tex_height, self.terrain.tex_water)
         self.overlay = TextOverlay(self.ctx, self.shaders)
+        self.subtitles = Subtitles(TextOverlay(self.ctx, self.shaders, size=22, mono=False))
         self.load_seconds = time.perf_counter() - t0
         # no music for benchmarks and screenshots (timing and silence)
         quiet = args.bench or args.screenshot or settings.music_volume <= 0
@@ -263,7 +264,8 @@ class App:
                     SCREENSHOTS.mkdir(exist_ok=True)
                     self.screenshot(SCREENSHOTS / f"lycantrope_{datetime.now():%Y%m%d_%H%M%S}.png")
                 elif self.play:
-                    name = {pygame.K_r: "heavy", pygame.K_q: "cast", pygame.K_h: "hit", pygame.K_k: "die"}.get(k)
+                    name = {pygame.K_r: "heavy", pygame.K_q: "cast", pygame.K_h: "hit", pygame.K_k: "die",
+                            pygame.K_SPACE: "jump"}.get(k)
                     if name:
                         self.pressed.add(name)
         return True
@@ -282,6 +284,7 @@ class App:
             inp.block = bool(self.captured and pygame.mouse.get_pressed()[2])
             inp.light, inp.heavy = "light" in self.pressed, "heavy" in self.pressed
             inp.cast, inp.hit, inp.die = "cast" in self.pressed, "hit" in self.pressed, "die" in self.pressed
+            inp.jump = "jump" in self.pressed
             self.pressed.clear()
             act = self.args.act or ""
             if act.startswith("teleport:"):              # teleport:X,Z[:action]
@@ -298,6 +301,7 @@ class App:
                 inp.cast |= act == "cast" and first
                 inp.hit |= act == "hit" and first
                 inp.die |= act == "die" and first
+                inp.jump |= act == "jump" and self.ticks % 50 == 1
             self.ticks += 1
         else:
             self.fly(dt, keys)
@@ -310,8 +314,11 @@ class App:
             talking = self.sfx.update(self.chars.chars, self.chars.rowan.a if self.chars.rowan else None,
                                       self.chars.spells.items, (p.x, p.y, p.z), (r.x, r.y, r.z), dt,
                                       self.ground_sound)
-            for speaker, envelope in talking:          # they stop, face Rowan and move their jaw
+            for speaker, envelope, text in talking:    # they stop, face Rowan and move their jaw
                 self.chars.talk(speaker, envelope)
+                if text and self.settings.subtitles:
+                    self.subtitles.say(self.chars.name_of(speaker), text, len(envelope) / 30.0 + 1.0)
+        self.subtitles.update(dt)
         self.time_s += dt
 
     def key_zoom(self, keys, dt: float) -> None:
@@ -394,6 +401,7 @@ class App:
         self.water.render(eye, viewproj, env, self.time_s)
         if self.show_overlay:
             self.overlay.render(w, h)
+        self.subtitles.render(w, h)
         self.ctx.wireframe = wire
 
     def overlay_lines(self) -> list[str]:
@@ -418,7 +426,7 @@ class App:
         ]
         if self.play:
             lines += ["WASD move  Shift sprint  Ctrl walk  T turbo  LMB attack  RMB block  R heavy  Q cast",
-                      "H hit  K die/revive  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices  Ctrl+Up/Down zoom  Esc mouse",
+                      "Space jump  H hit  K die/revive  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices  Ctrl+Up/Down zoom  Esc mouse",
                       "F2 fog  F3 hide overlay  F4 fly"]
         else:
             lines += ["WASD QE fly  Shift/Ctrl speed  T turbo  wheel base speed  Ctrl+Up/Down zoom  F4 back to Rowan",

@@ -129,3 +129,37 @@ def test_jaw_takes_the_chin_and_keeps_weights_whole():
     assert 20 < on_jaw.sum() < len(body.pos) * 0.05            # some of the face, not the whole head
     assert np.allclose(body.weights.sum(axis=1), 1.0, atol=1e-4)
     assert np.allclose(jaw_matrix(t, 0.0), np.eye(4))
+
+
+def test_rowan_jumps_about_three_quarters_of_a_metre_and_lands():
+    from types import SimpleNamespace
+    from lycantrope.render.characters import CharacterSystem
+    r = rowan()
+    a = r.a
+    a.clips["jump"] = ClipInfo(0.6, False)
+    world = SimpleNamespace(height_at=lambda x, z: 0.0, water_at=lambda x, z: -10.0)
+    sysm = SimpleNamespace(world=world, colliders=None)
+    c = SimpleNamespace(actor=a)
+    r.update(RowanInput(jump=True), 0.0, 1 / 60)
+    assert a.airborne and a.anim.clip == "jump"
+    peak, steps = 0.0, 0
+    while a.airborne and steps < 200:
+        r.update(RowanInput(light=True), 0.0, 1 / 60)          # swinging mid-air does nothing yet
+        assert a.state == "move"
+        CharacterSystem._fly(sysm, c, 1 / 60, 1000.0)
+        peak, steps = max(peak, a.y), steps + 1
+    assert 0.6 < peak < 0.9 and not a.airborne and a.y == 0.0
+    assert 30 < steps < 45                                       # about 0.6 s in the air
+    r.update(RowanInput(jump=True), 0.0, 1 / 60)                 # and can jump again once down
+    assert a.airborne
+
+
+def test_subtitles_show_who_said_what_and_fade():
+    from lycantrope.ui.overlay import Subtitles
+    sub = Subtitles(text=None)
+    sub.say("Merchant", "Morning! Fine weather for it.", 1.0)
+    sub.say("Watch guard", "All quiet. For now.", 4.0)
+    sub.say("Weaver", "Sit. Eat something.", 4.0)
+    assert sub.shown() == ["Watch guard: All quiet. For now.", "Weaver: Sit. Eat something."]   # newest two
+    sub.update(5.0)
+    assert sub.shown() == []

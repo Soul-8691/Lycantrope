@@ -221,7 +221,7 @@ def test_mixer_reports_who_started_talking(tmp_path, monkeypatch):
         p.sounds = {"vo/villager_man_1/greet": [snd], "cow/moo": [snd]}
         p.envelopes = {id(snd): env}
         out = p.play([Cue("vo/villager_man_1/greet", None, speaker=42), Cue("cow/moo", None)], {}, (0, 0, 0), (1, 0, 0))
-        assert len(out) == 1 and out[0][0] == 42 and out[0][1] is env
+        assert len(out) == 1 and out[0][0] == 42 and out[0][1] is env and out[0][2] == ""
         p.voices = False                                    # F11: voices off, nobody talks
         assert p.play([Cue("vo/villager_man_1/greet", None, speaker=42)], {}, (0, 0, 0), (1, 0, 0)) == []
     finally:

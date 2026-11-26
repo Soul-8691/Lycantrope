@@ -8,11 +8,12 @@ from lycantrope.render.shaders import ShaderLibrary, set_uniform
 
 
 class TextOverlay:
-    def __init__(self, ctx: moderngl.Context, shaders: ShaderLibrary, size: int = 15) -> None:
+    def __init__(self, ctx: moderngl.Context, shaders: ShaderLibrary, size: int = 15, mono: bool = True) -> None:
         self.ctx = ctx
         self.shaders = shaders
         pygame.font.init()
-        self.font = pygame.font.SysFont("consolas,dejavusansmono,couriernew,monospace", size)
+        faces = "consolas,dejavusansmono,couriernew,monospace" if mono else "segoeui,georgia,dejavusans,arial"
+        self.font = pygame.font.SysFont(faces, size)
         self.texture: moderngl.Texture | None = None
         self.size = (0, 0)
         self._vao = None
@@ -59,3 +60,39 @@ class TextOverlay:
         self._vao.render(moderngl.TRIANGLE_STRIP, vertices=4)
         self.ctx.disable(moderngl.BLEND)
         self.ctx.enable(moderngl.DEPTH_TEST)
+
+
+class Subtitles:
+    """What NPCs say, centred near the bottom of the screen (UIX-10): "Name: line", the newest two
+    lines at once, each for as long as it's being spoken plus a moment to finish reading."""
+
+    def __init__(self, text: TextOverlay, keep: int = 2, wrap: int = 70) -> None:
+        self.text = text
+        self.keep = keep
+        self.wrap = wrap
+        self.lines: list[list] = []           # [label, seconds left]
+
+    def say(self, who: str, line: str, seconds: float) -> None:
+        label = f"{who}: {line}" if who else line
+        self.lines = [entry for entry in self.lines if entry[0] != label] + [[label, max(2.5, seconds)]]
+        self.lines = self.lines[-self.keep:]
+
+    def update(self, dt: float) -> None:
+        for entry in self.lines:
+            entry[1] -= dt
+        self.lines = [entry for entry in self.lines if entry[1] > 0]
+
+    def shown(self) -> list[str]:
+        import textwrap
+        out: list[str] = []
+        for label, _ in self.lines:
+            out += textwrap.wrap(label, self.wrap) or [label]
+        return out
+
+    def render(self, screen_w: int, screen_h: int) -> None:
+        lines = self.shown()
+        if not lines:
+            return
+        self.text.set_lines(lines)
+        w, h = self.text.size
+        self.text.render(screen_w, screen_h, x=max(0, (screen_w - w) // 2), y=max(0, screen_h - h - int(screen_h * 0.08)))

@@ -22,6 +22,7 @@ class Settings:
     view_distance_m: float = 6000.0
     music_volume: float = 0.6         # 0 = off, 1 = full
     sfx_volume: float = 0.8           # sound effects: 0 = off, 1 = full
+    subtitles: bool = True            # show what NPCs say (UIX-10)
 
     @classmethod
     def load(cls) -> "Settings":

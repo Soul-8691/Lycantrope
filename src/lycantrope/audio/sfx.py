@@ -28,7 +28,8 @@ VO_DIR = ASSETS / "audio" / "vo"                 # NPC voice lines: vo/<voice>/<
 GREET_M = 3.5                                    # an NPC greets Rowan when he comes this close
 GREET_COOLDOWN_S = 45.0
 CLIP_EVENTS = {"light1": "light", "light2": "light", "light3": "light", "heavy": "heavy",
-               "attack1": "attack", "attack2": "attack", "cast": "cast", "hit": "hit", "death": "death"}
+               "attack1": "attack", "attack2": "attack", "cast": "cast", "hit": "hit", "death": "death",
+               "jump": "jump"}
 GAITS = ("walk", "run", "sprint")
 ALERT_FROM = ("wander", "idle", "return")
 STARTLE_M = 6.0
@@ -94,6 +95,7 @@ class Track:
     alert_ok_at: float = 0.0
     startle_ok_at: float = 0.0
     near_rowan: bool = False
+    air: bool = False
     greet_ok_at: float = 0.0
 
 
@@ -204,6 +206,11 @@ class SfxDirector:
             cl = spec.get("clip_loops", {}).get(clip)
             if cl and audible:
                 self.loops[("clip", id(a))] = (cl["s"], pos if positional else None, float(cl.get("volume", 1.0)))
+            # landing from a jump or a fall
+            air = bool(getattr(a, "airborne", False))
+            if t.air and not air and audible:
+                self.emit(a.kind, "land", (a.x, a.y, a.z), out, ground, positional)
+            t.air = air
             # spotting Rowan
             if a.state == "chase" and t.state in ALERT_FROM and self.now >= t.alert_ok_at:
                 t.alert_ok_at = self.now + ALERT_COOLDOWN_S
@@ -288,6 +295,7 @@ class MixerSfx:
         self.last_take: dict[str, int] = {}
         self.loop_channels: dict = {}
         self.envelopes: dict[int, np.ndarray] = {}   # id(Sound) -> loudness 0..1 at TALK_FPS (voice lines)
+        self.texts: dict[int, str] = {}              # id(Sound) -> what the line says (subtitles)
         self.loop_names: dict = {}
         if pygame.mixer.get_num_channels() < 32:
             pygame.mixer.set_num_channels(32)
@@ -296,6 +304,10 @@ class MixerSfx:
     def _load(self, root: Path) -> None:
         pg = self.pygame
         found: dict[str, list] = {}
+        try:
+            said = json.loads((VO_DIR / "manifest.json").read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            said = {}
         for prefix, base in (("", root), ("vo/", VO_DIR)):
             for f in sorted(base.glob("*/*.mp3")):
                 stem, _, take = f.stem.rpartition("_")
@@ -306,6 +318,7 @@ class MixerSfx:
                     found.setdefault(f"{prefix}{f.parent.name}/{stem}", []).append(snd)
                     if prefix:
                         self.envelopes[id(snd)] = loudness(pg.sndarray.array(snd), pg.mixer.get_init()[0])
+                        self.texts[id(snd)] = said.get(f"{f.parent.name}/{f.name}", {}).get("text", "")
                 except (pg.error, OSError, ValueError) as exc:
                     print(f"sfx: could not load {f.name} ({exc})")
         self.sounds = found
@@ -327,8 +340,8 @@ class MixerSfx:
         l, r = spatial(listener, right, pos, float(self.cfg.get("ref_m", 4.0)), float(self.cfg.get("max_m", 45.0)))
         return min(1.0, l * v), min(1.0, r * v)
 
-    def play(self, cues: list[Cue], loops: dict, listener, right) -> list[tuple[int, np.ndarray]]:
-        """Play cues and loops; returns (speaker, loudness envelope) for each voice line started."""
+    def play(self, cues: list[Cue], loops: dict, listener, right) -> list[tuple[int, np.ndarray, str]]:
+        """Play cues and loops; returns (speaker, loudness envelope, text) for each voice line started."""
         talking = []
         if not self.enabled:
             loops = {}
@@ -346,7 +359,7 @@ class MixerSfx:
                 ch.play(snd)
                 ch.set_volume(l, r)
                 if q.speaker is not None and id(snd) in self.envelopes:
-                    talking.append((q.speaker, self.envelopes[id(snd)]))
+                    talking.append((q.speaker, self.envelopes[id(snd)], self.texts.get(id(snd), "")))
         for k in [k for k in self.loop_channels if k not in loops or loops[k][0] != self.loop_names.get(k)]:
             self.loop_channels.pop(k).stop()
             self.loop_names.pop(k, None)
@@ -386,7 +399,7 @@ class SfxSystem:
         self.player.voices = on
 
     def update(self, chars, rowan, spells, listener, right, dt: float, ground=None) -> list:
-        """Returns (speaker actor id, loudness envelope) for every voice line that started."""
+        """Returns (speaker actor id, loudness envelope, text) for every voice line that started."""
         cues, loops = self.director.update(chars, rowan, spells, listener, dt, ground)
         return self.player.play(cues, loops, listener, right) or []
 

@@ -6,7 +6,8 @@ Helpful:
 .venv\Scripts\python.exe tools\props\build.py VIL-10 VIL-04
 
 To-Do:
-Jump
+Start out at the well
+Fix guard's dialogue getting cut off
 A few more enemy types
 Talk (A press)
 Voice lines

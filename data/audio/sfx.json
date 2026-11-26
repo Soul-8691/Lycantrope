@@ -15,7 +15,8 @@
     "keeps a looping sound going while that clip plays. wade_step replaces any footstep in water.",
     "greet: an NPC with a voice speaks when Rowan walks up (once per 45 s). {voice} is that NPC's",
     "voice (data/characters.json 'voices'); lines are assets/audio/vo/<voice>/<event>_<n>.mp3.",
-    "'like': another kind's sounds (the unique villagers sound like villager_m / villager_f)."
+    "'like': another kind's sounds (the unique villagers sound like villager_m / villager_f).",
+    "jump / land: Rowan's take-off (a grunt, sometimes) and landing (two footfalls)."
   ],
   "volume": 1.0,
   "ref_m": 4.0,
@@ -113,6 +114,22 @@
           {
             "s": "combat/body_fall",
             "delay_s": 0.9
+          }
+        ],
+        "jump": {
+          "s": "rowan/attack_light",
+          "chance": 0.5,
+          "volume": 0.55
+        },
+        "land": [
+          {
+            "s": "footsteps/boot_{ground}",
+            "volume": 0.6
+          },
+          {
+            "s": "footsteps/boot_{ground}",
+            "volume": 0.45,
+            "delay_s": 0.07
           }
         ]
       }

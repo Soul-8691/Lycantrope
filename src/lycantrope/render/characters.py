@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import hashlib
 import math
+import re
 import random
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -241,6 +242,7 @@ class CharType:
     body_variants: dict = field(default_factory=dict)          # worn pieces -> body GpuMesh without covered bits
     outfit_chance: dict[str, float] = field(default_factory=dict)
     voices: list[str] = field(default_factory=list)          # voice pool (data/voices.json names)
+    name: str = ""                                            # shown in subtitles
     jaw: int = -1                 # extra joint (index after the rig's own) that opens the jaw
     jaw_of: int = -1              # the head joint it hangs from
     jaw_pivot: np.ndarray | None = None   # mesh-space rotation pivot and axis for the jaw
@@ -471,6 +473,12 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
             clips[name] = clip
             info[name] = ClipInfo(clip.duration, clip.loop, clip.speed, c.get("move_speed", 0.0))
         float_m = {}
+        if spec.get("jump") == "procedural" and "jump" not in clips:
+            from lycantrope.render.procedural import make_jump_clip
+            jc = make_jump_clip(skel)
+            if jc is not None:
+                clips["jump"] = jc
+                info["jump"] = ClipInfo(jc.duration, False, 1.0, 0.0)
         if spec.get("swim") == "procedural" and "swim" not in clips:
             from lycantrope.render.procedural import make_swim_clips
             for name, (clip, level) in make_swim_clips(skel).items():
@@ -495,6 +503,7 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
                 t.cast_hand = skel.joint_index(hand)
                 t.cast_release = float(np.argmax(ys[hand])) / max(1, len(ys[hand]) - 1)
         t.voices = list(spec.get("voices", []))
+        t.name = re.sub(r"\s*\(.*\)\s*$", "", spec.get("name", key))
         if spec.get("outfits"):                   # NPC outfit kit: fitted pieces, body split by part
             for path in spec["outfits"]:
                 f = MODELS / path
@@ -802,6 +811,13 @@ class CharacterSystem:
                 return False
         return True
 
+    def name_of(self, speaker: int) -> str:
+        """Display name of the character with this actor id (for subtitles)."""
+        for c in self.chars:
+            if id(c.actor) == speaker:
+                return c.t.name or c.actor.kind
+        return ""
+
     def talk(self, speaker: int, envelope: np.ndarray) -> None:
         """A voice line started: that NPC stops to face Rowan and moves its jaw with the line."""
         for c in self.chars:
@@ -889,6 +905,9 @@ class CharacterSystem:
                 a.y = max(a.y, self.world.height_at(a.x, a.z))
                 a.advance(dt)
                 continue
+            if a.airborne or (a is ra and a.y - self.world.height_at(a.x, a.z) > 0.35):
+                self._fly(c, dt, lim)                          # jumping, or ran off a ledge
+                continue
             if a.x == a.px and a.z == a.pz:                   # didn't move: ground is the same
                 a.advance(dt)
                 continue
@@ -908,6 +927,25 @@ class CharacterSystem:
             a.advance(dt)
             if c.t.skel is None:
                 c.phase += a.speed * dt * 2.2
+
+    def _fly(self, c: "Character", dt: float, lim: float) -> None:
+        """Rowan in the air: gravity, solid props and the map edge still apply; he lands on the ground."""
+        from lycantrope.world.actors import GRAVITY
+        a = c.actor
+        a.airborne = True
+        a.x = min(max(a.x, -lim), lim)
+        a.z = min(max(a.z, -lim), lim)
+        if self.colliders is not None:
+            a.x, a.z, _ = self.colliders.push_out(a.x, a.z, a.radius)
+        a.y += a.vy * dt
+        a.vy -= GRAVITY * dt
+        ground = self.world.height_at(a.x, a.z)
+        surface = max(ground, self.world.water_at(a.x, a.z) - 1.0)   # deep water catches him (then he swims)
+        if a.y <= surface and a.vy <= 0.0:
+            a.y, a.vy, a.airborne = max(ground, min(a.y, surface)), 0.0, False
+            if a.state == "move":
+                a.locomotion()
+        a.advance(dt)
 
     def _watch_cast(self, ra: Actor, rc: "Character | None") -> None:
         """Start Rowan's Rite effect when his cast animation starts; cancel it if he's interrupted."""

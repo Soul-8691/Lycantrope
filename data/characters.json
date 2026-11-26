@@ -16,13 +16,15 @@
     "'outfits': NPC outfit kit (WLD-26): models made on a grey mannequin, fitted over this body; each NPC wears its own mix of head / top / bottom pieces, each with the chance in 'outfit_chance' (otherwise its own clothes).",
     "'voices': pool of designed voices (data/voices.json); each NPC is given one.",
     "NPCs are kept busy: pause_s (standing between walks) is under a second for villagers, the farmer and guards.",
-    "Unique villagers (WLD-33..38: shepherd, smith_hand, merchant, dairymaid, weaver, seller) are whole dressed models with one voice each; the layered outfit kit (WLD-26) is retired."
+    "Unique villagers (WLD-33..38: shepherd, smith_hand, merchant, dairymaid, weaver, seller) are whole dressed models with one voice each; the layered outfit kit (WLD-26) is retired.",
+    "'jump': 'procedural' builds a mid-air pose in code (no Meshy jump clip yet); a real 'jump' clip replaces it."
   ],
   "characters": {
     "rowan": {
       "name": "Rowan Fenhallow",
       "rig": "HER-09/v1/rig/rigged.glb",
       "swim": "procedural",
+      "jump": "procedural",
       "clips": {
         "idle": {
           "file": "HER-09/v1/rig/animations_1.glb",
