@@ -1,0 +1,6 @@
+{
+  "model_id": "music_v1",
+  "music_length_ms": 150000,
+  "force_instrumental": true,
+  "prompt": "Quiet, tender orchestral nocturne for a sleeping farming village under the stars, in D minor, the night-time sibling of a gentle pastoral village theme. A slow solo harp and soft celesta play a lullaby-like melody, answered from far away by a muted French horn; hushed low strings hold long, calm chords, and a lone wooden flute drifts in and out. Peaceful and safe, with the faintest undercurrent of unease, as if something is dreaming just out of sight. Very sparse, lots of silence between phrases, no percussion, soft dynamics, wide gentle reverb. 60 BPM. Ends the way it began so it loops seamlessly."
+}

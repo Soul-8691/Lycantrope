@@ -407,8 +407,20 @@ class App:
         else:
             x, z = self.camera.position.x, self.camera.position.z
         d = math.hypot(x - an.x, z - an.z)
-        in_town = d < (t["leave_m"] if self.music.region == "town" else t["enter_m"])
-        return "town" if in_town else "wilds"
+        in_town = d < (t["leave_m"] if (self.music.region or "").startswith("town") else t["enter_m"])
+        if not in_town:
+            return "wilds"
+        times = self.music.cfg.get("town_times", {})          # the town's theme follows the hour
+
+        def within(span) -> bool:
+            a, b = span
+            h = self.day.hour
+            return a <= h < b if a < b else (h >= a or h < b)
+        if "night" in times and within(times["night"]):
+            return "town_night"
+        if "day" in times and within(times["day"]):
+            return "town_day"
+        return "town"                                          # morning and sunset
 
     def ground_sound(self, x: float, z: float) -> str:
         """Footstep surface: 'water' in the shallows, 'dirt' on paths and lanes, 'grass' elsewhere."""

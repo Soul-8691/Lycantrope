@@ -1,0 +1,6 @@
+{
+  "model_id": "music_v1",
+  "music_length_ms": 150000,
+  "force_instrumental": true,
+  "prompt": "Bright, lively orchestral folk theme for a bustling farming village on a sunny morning, in D major with a Dorian lift, a sibling of a slower pastoral village theme. A confident French horn states the melody, answered by a quick wooden flute and a running fiddle; plucked lute and harp keep a bouncing rhythm, light frame drum and tambourine give a walking pulse, warm full strings swell under the phrases. Cheerful, energetic and wide awake, full of everyday bustle and adventure, but still warm and homely, never epic or martial. Natural acoustic instruments, hall reverb. 104 BPM. Ends the way it began so it loops seamlessly."
+}

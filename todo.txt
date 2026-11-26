@@ -38,7 +38,7 @@ Add more monsters
 - Goblin spellcasters
 Bandit camps
 Goblin camps
-Theme variants
+Controller support
 Remap the starting area/nearby
 NPCs going home at night
 Beginning plot

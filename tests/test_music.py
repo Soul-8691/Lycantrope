@@ -155,3 +155,19 @@ def test_overworld_and_battle_music_switch_off_separately():
     d.layer_on["explore"] = False
     run(d, p, 0.2)
     assert p.vol["explore"] == 0.0
+
+
+def test_town_theme_follows_the_hour_and_falls_back():
+    p = FakePlayer()
+    cfg = dict(CFG, explore={"town": ["calm.mp3"], "town_day": ["lively.mp3"], "town_night": []},
+               explore_loop=True, region_fade_s=0.5, region_gap_s=0.2)
+    d = MusicDirector(cfg, p, volume=1.0, seed=7)
+    for _ in range(30):
+        d.update(0.1, False, "town")
+    assert p.starts[-1] == ("explore", "calm.mp3")
+    for _ in range(20):                                   # midday: the lively theme fades in
+        d.update(0.1, False, "town_day")
+    assert p.starts[-1] == ("explore", "lively.mp3")
+    for _ in range(20):                                   # night track not made yet: back to the calm one
+        d.update(0.1, False, "town_night")
+    assert p.starts[-1] == ("explore", "calm.mp3")

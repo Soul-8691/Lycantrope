@@ -7,21 +7,51 @@
     "back combat_hold_s after the last enemy gives up. combat_range_m: how close a chasing enemy",
     "has to be. Paths are from the repo root; missing files are skipped. Volume: settings.json.",
     "explore is per region: 'town' within enter_m of the town anchor (until past leave_m), else",
-    "'wilds'. Crossing over fades the piece out over region_fade_s and starts the other after region_gap_s."
+    "'wilds'. Crossing over fades the piece out over region_fade_s and starts the other after region_gap_s.",
+    "In town the theme follows the hour (town_times): 'town_day' by day, 'town_night' at night, 'town' in the morning and at sunset. A missing track falls back to 'town'."
   ],
   "explore": {
-    "town": ["assets/audio/music/brackenvale_explore.mp3"],
-    "wilds": ["assets/audio/music/wilds_explore.mp3"]
+    "town": [
+      "assets/audio/music/brackenvale_explore.mp3"
+    ],
+    "town_day": [
+      "assets/audio/music/brackenvale_day.mp3"
+    ],
+    "town_night": [
+      "assets/audio/music/brackenvale_night.mp3"
+    ],
+    "wilds": [
+      "assets/audio/music/wilds_explore.mp3"
+    ]
   },
-  "town": {"anchor": "Brackenvale Village", "enter_m": 150, "leave_m": 185},
+  "town": {
+    "anchor": "Brackenvale Village",
+    "enter_m": 150,
+    "leave_m": 185
+  },
   "region_fade_s": 3.0,
   "region_gap_s": 1.5,
-  "combat": ["assets/audio/music/brackenvale_combat.mp3"],
+  "combat": [
+    "assets/audio/music/brackenvale_combat.mp3"
+  ],
   "explore_loop": true,
   "first_delay_s": 4,
-  "gap_s": [30, 90],
+  "gap_s": [
+    30,
+    90
+  ],
   "fade_s": 2.0,
   "explore_under_combat": 0.0,
   "combat_hold_s": 6,
-  "combat_range_m": 45
+  "combat_range_m": 45,
+  "town_times": {
+    "day": [
+      10,
+      17
+    ],
+    "night": [
+      21,
+      5
+    ]
+  }
 }

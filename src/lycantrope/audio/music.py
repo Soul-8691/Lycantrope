@@ -78,7 +78,9 @@ class MusicDirector:
     def tracks(self, layer: str) -> list[str]:
         v = self.cfg.get(layer, [])
         if isinstance(v, dict):
-            return v.get(self.region or "", []) or v.get("default", []) or next(iter(v.values()), [])
+            region = self.region or ""
+            base = region.split("_")[0]                      # "town_night" falls back to "town"
+            return v.get(region, []) or v.get(base, []) or v.get("default", []) or next(iter(v.values()), [])
         return v
 
     def _pick(self, layer: str) -> str | None:
