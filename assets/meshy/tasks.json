@@ -519,6 +519,38 @@
       "prompt": "tall kite shield, wood and iron, faded heraldic stripes, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795703529.3406818,
       "credits": 5
+    },
+    "PLT-02/v1": {
+      "task_id": "01a2187d-2377-7038-8f69-32c952551faa",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "clump of tall bracken ferns, curling fronds, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795707186.1930919,
+      "credits": 20
+    },
+    "PLT-03/v1": {
+      "task_id": "01a2187d-2d4a-7106-901e-50f9f455aa8e",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "small patch of wildflowers, poppies, cornflowers and daisies, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795707188.275548,
+      "credits": 20
+    },
+    "PLT-04/v1": {
+      "task_id": "01a2187d-356d-7572-9e64-829564f50fa8",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "dense thorny bramble thicket with blackberries, tangled vines, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795707190.4868805,
+      "credits": 20
+    },
+    "PLT-07/v1": {
+      "task_id": "01a2187d-3de5-7595-8bb7-1cdbe121e855",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "clump of tall reeds and cattails, marsh plants, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795707192.8444564,
+      "credits": 20
     }
   },
   "replaced": [

@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-25T23:16:53",
+  "updated": "2026-11-26T10:44:50",
   "counts": {
     "awaiting": 29,
-    "approved": 540,
+    "approved": 545,
     "denied": 120,
-    "total": 689
+    "total": 694
   },
   "ui": {
     "selected": [
-      "TRE-14"
+      "PIL-01"
     ],
     "selected_titles": {
-      "TRE-14": "Petrified Tree"
+      "PIL-01": "Combat first"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-25T23:16:53"
+    "at": "2026-11-26T10:44:50"
   },
   "ideas": {
     "PIL-01": {
@@ -4259,8 +4259,8 @@
     },
     "PLT-02": {
       "status": "approved",
-      "note": "",
-      "changed": "2026-11-24T12:56:52",
+      "note": "Made in code (tools/props/plants.py), no Meshy credits",
+      "changed": "2026-11-26T10:44:47",
       "title": "Bracken Fern Clump",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -4270,8 +4270,8 @@
     },
     "PLT-03": {
       "status": "approved",
-      "note": "",
-      "changed": "2026-11-24T12:56:59",
+      "note": "Made in code (tools/props/plants.py), no Meshy credits",
+      "changed": "2026-11-26T10:44:48",
       "title": "Wildflower Patch",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -4281,8 +4281,8 @@
     },
     "PLT-04": {
       "status": "approved",
-      "note": "",
-      "changed": "2026-11-24T12:57:03",
+      "note": "Made in code (tools/props/plants.py), no Meshy credits",
+      "changed": "2026-11-26T10:44:48",
       "title": "Bramble Thicket",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -4314,8 +4314,8 @@
     },
     "PLT-07": {
       "status": "approved",
-      "note": "",
-      "changed": "2026-11-24T12:57:14",
+      "note": "Made in code (tools/props/plants.py), no Meshy credits",
+      "changed": "2026-11-26T10:44:48",
       "title": "Reeds & Cattails",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
@@ -4394,6 +4394,61 @@
       "note": "",
       "changed": "2026-11-24T12:57:48",
       "title": "Black Thornbush",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-15": {
+      "status": "approved",
+      "note": "Made in code (tools/props/plants.py), no Meshy credits",
+      "changed": "2026-11-26T10:44:48",
+      "title": "Cottage Garden Bed",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-16": {
+      "status": "approved",
+      "note": "Made in code (tools/props/plants.py), no Meshy credits",
+      "changed": "2026-11-26T10:44:48",
+      "title": "Lavender Bush",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-17": {
+      "status": "approved",
+      "note": "Made in code (tools/props/plants.py), no Meshy credits",
+      "changed": "2026-11-26T10:44:49",
+      "title": "Climbing Rose",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-18": {
+      "status": "approved",
+      "note": "Made in code (tools/props/plants.py), no Meshy credits",
+      "changed": "2026-11-26T10:44:49",
+      "title": "Sunflower Row",
+      "category": "Objects · Plants & Ground Cover (PLT)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "PLT-19": {
+      "status": "approved",
+      "note": "Made in code (tools/props/plants.py), no Meshy credits",
+      "changed": "2026-11-26T10:44:49",
+      "title": "Window Flower Box",
       "category": "Objects · Plants & Ground Cover (PLT)",
       "section": "",
       "starred": false,
@@ -7874,36 +7929,6 @@
   },
   "history": [
     {
-      "time": "2026-11-24T10:51:43",
-      "id": "STY-11",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:51:56",
-      "id": "STY-12",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:51:58",
-      "id": "STY-16",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:52:01",
-      "id": "STY-17",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:52:40",
-      "id": "CMB-04",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
       "time": "2026-11-24T10:52:42",
       "id": "CMB-08",
       "from": "awaiting",
@@ -10870,6 +10895,36 @@
     {
       "time": "2026-11-25T23:16:52",
       "id": "NPC-14",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T10:35:33",
+      "id": "PLT-15",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T10:35:36",
+      "id": "PLT-16",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T10:35:39",
+      "id": "PLT-17",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T10:35:39",
+      "id": "PLT-18",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T10:35:46",
+      "id": "PLT-19",
       "from": "awaiting",
       "to": "approved"
     }

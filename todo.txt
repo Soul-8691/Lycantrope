@@ -32,8 +32,7 @@ Shop inventory
 Shop
 
 Later:
-Flowers
-A few more enemy types
+Bandit brigands
 Remap the starting area/nearby
 Greetings
 Upgrade

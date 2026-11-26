@@ -56,7 +56,7 @@ Every prop, building and item in the world that **Meshy** should make. The idea 
 - [PLT-01] **Meadow Bush** — Round green bush for Brackenvale. Prompt: "round leafy green bush, chunky foliage" · 3 variants · 1.5k tris · scatter · collider: none. ⭐ *(Brackenvale)*
 - [PLT-02] **Bracken Fern Clump** — Tall fern clumps the Vale is named after. Prompt: "clump of tall bracken ferns, curling fronds" · 3 variants · 400 tris · scatter · collider: none. ⭐ *(Brackenvale, Wolfwood)*
 - [PLT-03] **Wildflower Patch** — Clusters of small colorful flowers. Prompt: "small patch of wildflowers, poppies, cornflowers and daisies" · 3 variants · 300 tris · scatter · collider: none. *(Brackenvale)*
-- [PLT-04] **Bramble Thicket** — Thorny bushes that block paths and hide secrets. Prompt: "dense thorny bramble thicket with blackberries, tangled vines" · 2 variants · 800 tris · scatter · collider: box. *(Brackenvale, Wolfwood)*
+- [PLT-04] **Bramble Thicket** — Thorny bushes that block paths and hide secrets. Prompt: "low wide mound of arching thorny bramble canes, chunky clumps of dark green leaves, clusters of black blackberries" · 2 variants · 2k tris · scatter · collider: box. *(Brackenvale, Wolfwood)*
 - [PLT-05] **Forest Mushrooms** — Clusters of mushrooms on the forest floor. Prompt: "cluster of forest mushrooms, brown and red caps, different sizes" · 3 variants · 300 tris · scatter · collider: none. ⭐ *(Wolfwood)*
 - [PLT-06] **Giant Toadstool** — Huge toadstools in the deep woods. Prompt: "giant toadstool mushroom taller than a person, spotted cap, thick stem" · 2 variants · 1k tris · scatter · collider: cylinder. *(Wolfwood)*
 - [PLT-07] **Reeds & Cattails** — Tall reeds along every shore. Prompt: "clump of tall reeds and cattails, marsh plants" · 3 variants · 400 tris · scatter · collider: none. ⭐ *(Blackmire, shores)*
@@ -67,6 +67,11 @@ Every prop, building and item in the world that **Meshy** should make. The idea 
 - [PLT-12] **Ice Crystals** — Jagged blue ice crystals jutting from the snow. Prompt: "cluster of jagged blue ice crystals" · 3 variants · 400 tris · scatter · collider: hull. *(Frostfang)*
 - [PLT-13] **Ash Scrub** — Dry, burnt, spiky shrubs. Prompt: "dry burnt spiky shrub, black and grey twigs, volcanic" · 2 variants · 300 tris · scatter · collider: none. ⭐ *(Ashen Reach)*
 - [PLT-14] **Black Thornbush** — Barbed black bushes around Duskhold. Prompt: "black thornbush with long barbed thorns, dark fantasy" · 2 variants · 500 tris · scatter · collider: box. *(Duskhold)*
+- [PLT-15] **Cottage Garden Bed** — A low bed of mixed cottage flowers against a cottage wall. Prompt: "low cottage garden flower bed, hollyhocks, foxgloves and marigolds, small stone edging" · 2 variants · 800 tris · placed by cottages · collider: none. *(Brackenvale)*
+- [PLT-16] **Lavender Bush** — Round bushes of purple lavender by the market and the farms; Granny Maud sells it (NPC-09). Prompt: "round lavender bush with tall purple flower spikes" · 2 variants · 500 tris · scatter · collider: none. *(Brackenvale)*
+- [PLT-17] **Climbing Rose** — Red and pink roses climbing a wooden trellis, for cottage walls and gates. Prompt: "climbing rose bush on a simple wooden trellis, red and pink roses" · 2 variants · 900 tris · placed against walls · collider: none. *(Brackenvale)*
+- [PLT-18] **Sunflower Row** — A short row of tall sunflowers at the edge of a vegetable plot. Prompt: "short row of tall sunflowers, big yellow heads, green leaves" · 2 variants · 700 tris · placed at farm plots · collider: none. *(Brackenvale)*
+- [PLT-19] **Window Flower Box** — A wooden box of red geraniums under a cottage window. Prompt: "wooden window flower box with red geraniums and trailing ivy" · 1 variant · 300 tris · placed under windows · collider: none. *(Brackenvale)*
 
 ## 3. Rocks & Stone (RCK)
 

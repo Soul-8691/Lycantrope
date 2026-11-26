@@ -3,7 +3,8 @@ r"""Build game-ready prop meshes from the chosen Meshy previews (ART-07, first p
     .venv\Scripts\python.exe tools/props/build.py            # every prop in data/props.json
     .venv\Scripts\python.exe tools/props/build.py VIL-01     # just some
 
-For each prop: load its source GLB from assets/meshy/previews/, scale it to height_m,
+For each prop: load its source GLB from assets/meshy/previews/ (or, for "source": "code:<name>",
+make it with tools/props/plants.py), scale it to height_m,
 put the pivot at the bottom center, apply 'stretch', and write
 assets/models/props/<key>.glb (a "/" in the key becomes "_"). Front stays +z.
 """
@@ -27,11 +28,16 @@ def model_path(key: str) -> Path:
 
 
 def build(key: str, spec: dict) -> None:
-    src = PREVIEWS / spec["source"]
-    if not src.exists():
-        print(f"  ! {key}: missing {src.relative_to(ROOT)}")
-        return
-    mesh = trimesh.load(src, force="mesh", process=False)
+    if spec["source"].startswith("code:"):              # made in code (tools/props/plants.py), no Meshy model
+        sys.path.insert(0, str(Path(__file__).parent))
+        import plants
+        mesh = plants.make(spec["source"][5:])
+    else:
+        src = PREVIEWS / spec["source"]
+        if not src.exists():
+            print(f"  ! {key}: missing {src.relative_to(ROOT)}")
+            return
+        mesh = trimesh.load(src, force="mesh", process=False)
     uv = getattr(mesh.visual, "uv", None)
     textured = uv is not None and getattr(mesh.visual, "material", None) is not None
     lo, hi = mesh.bounds
