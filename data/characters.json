@@ -528,9 +528,7 @@
         "on_paths": true
       },
       "voices": [
-        "villager_man_1",
-        "villager_man_2",
-        "villager_man_3"
+        "villager_man_1"
       ]
     },
     "villager_f": {
@@ -592,9 +590,7 @@
         "cloth_from_m": 0.07
       },
       "voices": [
-        "villager_woman_1",
-        "villager_woman_2",
-        "villager_woman_3"
+        "villager_woman_1"
       ]
     },
     "shepherd": {
