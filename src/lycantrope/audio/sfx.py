@@ -164,6 +164,7 @@ class SfxDirector:
         max_m = float(self.cfg.get("max_m", 45.0))
         steps_m = float(self.cfg.get("steps_within_m", 22.0))
         rowan_moves: list[str] = []
+        sword_out = any(getattr(c, "sheathed", None) is False for c in chars if c.actor is rowan)
         for c in chars:
             a = c.actor
             spec = self.kind(a.kind)
@@ -243,7 +244,8 @@ class SfxDirector:
                     t.near_rowan = True
                     if self.now >= t.greet_ok_at and a.state in ("wander", "idle"):
                         t.greet_ok_at = self.now + GREET_COOLDOWN_S
-                        self.emit(a.kind, "greet", pos, out, ground, positional, voice, id(a))
+                        said = "sword_drawn" if sword_out and "sword_drawn" in spec.get("events", {}) else "greet"
+                        self.emit(a.kind, said, pos, out, ground, positional, voice, id(a))
                 elif t.near_rowan and d2 > (GREET_M + 2.0) ** 2:
                     t.near_rowan = False
             t.clip, t.time, t.state = clip, time, a.state

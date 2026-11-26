@@ -226,3 +226,20 @@ def test_mixer_reports_who_started_talking(tmp_path, monkeypatch):
         assert p.play([Cue("vo/villager_man_1/greet", None, speaker=42)], {}, (0, 0, 0), (1, 0, 0)) == []
     finally:
         pygame.mixer.quit()
+
+
+def test_every_speaking_npc_has_lines_in_its_own_voice():
+    import json
+    from lycantrope.core.paths import DATA, ROOT
+    lines = json.loads((ROOT / "tools/voice/npc_lines.json").read_text(encoding="utf-8"))["roles"]
+    chars = json.loads((DATA / "characters.json").read_text(encoding="utf-8"))["characters"]
+    spawns = json.loads((DATA / "world/spawns.json").read_text(encoding="utf-8"))["groups"]
+    for g in spawns:
+        spec = chars.get(g["kind"], {})
+        if not spec.get("voices"):
+            continue
+        role = g.get("lines") or spec.get("lines")
+        assert role in lines, (g["name"], role)
+        for v in spec["voices"]:
+            assert v in lines[role]["voices"], (g["name"], role, v)
+        assert lines[role]["lines"].get("greet"), role

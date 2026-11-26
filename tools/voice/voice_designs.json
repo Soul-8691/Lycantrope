@@ -46,6 +46,11 @@
       "for": "WLD-24 villager (woman)",
       "description": "An elderly woman in her seventies, the village's keeper of gossip and old stories. Thin, slightly cracked voice with a soft rural West Country English accent, sharp-witted and knowing, leaning in as if sharing a secret. Slow pace, close-mic, dry studio recording, no background noise.",
       "text": "Come here, dearie, closer. You didn't hear it from me, but the miller's boy says he saw lights up on the tor last night. Green ones. Now, I'm not saying it's anything. But my old mother always said, when the stones glow, keep your doors barred."
+    },
+    "oswin": {
+      "for": "STY-20 / NPC-04 Farmer Oswin Tull",
+      "description": "A gruff, kind old farmer of about sixty-five who raised the hero. Deep, weathered, slightly hoarse voice with a broad rural West Country English accent. Speaks in short, plain sentences, grumbling on the surface but warm underneath. Close-mic, dry studio recording, no background noise.",
+      "text": "Fence first, breakfast after. Same as every day. And shut that gate behind you, I mean it. Your grandfather never could keep a gate shut either, and look where it got us. Go on, then. The cows won't milk themselves."
     }
   }
 }

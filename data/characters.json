@@ -18,7 +18,8 @@
     "NPCs are kept busy: pause_s (standing between walks) is under a second for villagers, the farmer and guards.",
     "Unique villagers (WLD-33..38: shepherd, smith_hand, merchant, dairymaid, weaver, seller) are whole dressed models with one voice each; the layered outfit kit (WLD-26) is retired.",
     "'jump': 'procedural' builds a mid-air pose in code (no Meshy jump clip yet); a real 'jump' clip replaces it.",
-    "'sheath': equipment slot whose item can be put away on the back (F key for Rowan)."
+    "'sheath': equipment slot whose item can be put away on the back (F key for Rowan).",
+    "'lines': which set of lines (tools/voice/npc_lines.json role) a character speaks; a spawn group's 'lines' overrides it (travellers, the patrol)."
   ],
   "characters": {
     "rowan": {
@@ -529,7 +530,8 @@
       },
       "voices": [
         "villager_man_1"
-      ]
+      ],
+      "lines": "villager_man"
     },
     "villager_f": {
       "name": "Villager (woman)",
@@ -591,7 +593,8 @@
       },
       "voices": [
         "villager_woman_1"
-      ]
+      ],
+      "lines": "villager_woman"
     },
     "shepherd": {
       "name": "Old shepherd (WLD-33)",
@@ -646,7 +649,8 @@
       },
       "voices": [
         "villager_man_2"
-      ]
+      ],
+      "lines": "ebb"
     },
     "smith_hand": {
       "name": "Smith's hand (WLD-34)",
@@ -702,7 +706,8 @@
       },
       "voices": [
         "villager_man_3"
-      ]
+      ],
+      "lines": "tam"
     },
     "merchant": {
       "name": "Merchant (WLD-35)",
@@ -758,7 +763,8 @@
       },
       "voices": [
         "villager_man_1"
-      ]
+      ],
+      "lines": "jory"
     },
     "dairymaid": {
       "name": "Dairymaid (WLD-36)",
@@ -820,7 +826,8 @@
       },
       "voices": [
         "villager_woman_1"
-      ]
+      ],
+      "lines": "nell"
     },
     "weaver": {
       "name": "Weaver (WLD-37)",
@@ -882,7 +889,8 @@
       },
       "voices": [
         "villager_woman_2"
-      ]
+      ],
+      "lines": "hester"
     },
     "seller": {
       "name": "Market seller (WLD-38)",
@@ -944,7 +952,8 @@
       },
       "voices": [
         "villager_woman_3"
-      ]
+      ],
+      "lines": "maud"
     },
     "guard": {
       "name": "Watch guard",
@@ -1004,7 +1013,8 @@
       ],
       "equipment": {
         "right_hand": "ONE-07"
-      }
+      },
+      "lines": "watch_gate"
     },
     "farmer": {
       "name": "Farmer Oswin Tull",
@@ -1057,7 +1067,11 @@
           1.0
         ],
         "on_paths": true
-      }
+      },
+      "lines": "oswin",
+      "voices": [
+        "oswin"
+      ]
     }
   },
   "items": {

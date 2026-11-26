@@ -9,7 +9,8 @@ design_voices.py). Dry run is the default: it lists what's missing and estimates
     .venv\Scripts\python.exe tools/voice/npc_lines.py --send             # generate (asks you to type the total)
     .venv\Scripts\python.exe tools/voice/npc_lines.py --redo --send      # remake even the ones that exist
 
-Files: assets/audio/vo/<voice>/<event>_<n>.mp3 (n counts from 1 in the order of the lines).
+Files: assets/audio/vo/<role>.<voice>/<event>_<n>.mp3 (n counts from 1 in the order of the lines),
+so people sharing a voice (the dairymaid and the villager woman) still say their own lines.
 assets/audio/vo/manifest.json remembers the text each file was made from, so editing a line remakes
 just that line, adding one makes just the new one, and lines you delete have their files removed
 (on a full run with --send). The game picks the lines up the next time it starts. Cost: ElevenLabs charges per character of text; the estimate uses 1 credit per
@@ -57,7 +58,7 @@ def jobs(spec: dict, roles: list[str], only_voice: str | None) -> list[dict]:
                 for n, text in enumerate(lines, 1):
                     h = hashlib.sha1(json.dumps([text, spec["model_id"], spec.get("voice_settings")],
                                                 sort_keys=True).encode()).hexdigest()[:12]
-                    out.append({"voice": voice, "file": f"{voice}/{event}_{n}.mp3", "text": text, "hash": h})
+                    out.append({"voice": voice, "file": f"{role}.{voice}/{event}_{n}.mp3", "text": text, "hash": h})
     return out
 
 
@@ -89,7 +90,7 @@ def speak(job: dict, voice_id: str, spec: dict, key: str) -> bytes:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="NPC voice lines (dry run by default)")
-    ap.add_argument("roles", nargs="*", help="roles to make (default: all), e.g. guard villager")
+    ap.add_argument("roles", nargs="*", help="roles to make (default: all), e.g. oswin watch_gate")
     ap.add_argument("--voice", help="only this voice, e.g. guard_1")
     ap.add_argument("--redo", action="store_true", help="remake lines even if the files exist")
     ap.add_argument("--send", action="store_true", help="actually call ElevenLabs (spends credits)")

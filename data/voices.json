@@ -50,6 +50,12 @@
       "for": "WLD-24 villager (woman)",
       "description": "An elderly woman in her seventies, the village's keeper of gossip and old stories. Thin, slightly cracked voice with a soft rural West Country English accent, sharp-witted and knowing, leaning in as if sharing a secret. Slow pace, close-mic, dry studio recording, no background noise.",
       "kept": "2026-11-25"
+    },
+    "oswin": {
+      "voice_id": "5aoS9BLaQIVvhSSqzOAV",
+      "for": "STY-20 / NPC-04 Farmer Oswin Tull",
+      "description": "A gruff, kind old farmer of about sixty-five who raised the hero. Deep, weathered, slightly hoarse voice with a broad rural West Country English accent. Speaks in short, plain sentences, grumbling on the surface but warm underneath. Close-mic, dry studio recording, no background noise.",
+      "kept": "2026-11-25"
     }
   }
 }

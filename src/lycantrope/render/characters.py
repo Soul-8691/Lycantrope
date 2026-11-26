@@ -244,6 +244,7 @@ class CharType:
     outfit_chance: dict[str, float] = field(default_factory=dict)
     voices: list[str] = field(default_factory=list)          # voice pool (data/voices.json names)
     name: str = ""                                            # shown in subtitles
+    lines: str = ""                                           # which line set it speaks (npc_lines.json role)
     jaw: int = -1                 # extra joint (index after the rig's own) that opens the jaw
     jaw_of: int = -1              # the head joint it hangs from
     jaw_pivot: np.ndarray | None = None   # mesh-space rotation pivot and axis for the jaw
@@ -504,6 +505,7 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
                 t.cast_hand = skel.joint_index(hand)
                 t.cast_release = float(np.argmax(ys[hand])) / max(1, len(ys[hand]) - 1)
         t.voices = list(spec.get("voices", []))
+        t.lines = spec.get("lines", "")
         t.name = re.sub(r"\s*\(.*\)\s*$", "", spec.get("name", key))
         if spec.get("outfits"):                   # NPC outfit kit: fitted pieces, body split by part
             for path in spec["outfits"]:
@@ -782,9 +784,9 @@ class CharacterSystem:
                     plo, phi = vary.get("pace", (1.0, 1.0))
                     pace = rng.uniform(plo, phi)
                     a.speeds = {s: v * pace for s, v in a.speeds.items()}
-                self.dress(ch, random.Random(gi * 1000 + i + 77))     # own seed: spawn spots stay put
+                self.dress(ch, random.Random(gi * 1000 + i + 77), g.get("lines"))     # own seed: spawn spots stay put
                 if not vary:
-                    self.dress(ch, random.Random(gi * 1000 + i + 77))     # own seed: spawn spots stay put
+                    self.dress(ch, random.Random(gi * 1000 + i + 77), g.get("lines"))     # own seed: spawn spots stay put
                 if route:
                     brain.set_route(route, start, rng.choice((-1, 1)))
                 elif brain.ai.on_paths:
@@ -792,8 +794,9 @@ class CharacterSystem:
                 self.chars.append(ch)
 
     @staticmethod
-    def dress(ch: "Character", rng: random.Random) -> None:
-        """Give an NPC its own mix of outfit pieces (none = its own clothes) and one of its voices."""
+    def dress(ch: "Character", rng: random.Random, lines: str | None = None) -> None:
+        """Give an NPC its own mix of outfit pieces (none = its own clothes) and one of its voices,
+        speaking its line set: ch.voice becomes "<lines>.<voice>", the folder its lines are in."""
         t = ch.t
         for piece in PIECE_PARTS:
             have = [i for i, o in enumerate(t.outfits) if piece in o.pieces]
@@ -801,6 +804,9 @@ class CharacterSystem:
                 ch.wear[piece] = rng.choice(have)
         if t.voices:
             ch.voice = rng.choice(t.voices)
+            role = lines or t.lines
+            if role:
+                ch.voice = f"{role}.{ch.voice}"
 
     def nearest_path(self, x: float, z: float, max_m: float = 40.0) -> tuple[float, float]:
         """The closest point on a path (middle of it), searching outward up to max_m."""

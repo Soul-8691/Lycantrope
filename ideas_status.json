@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-25T22:09:22",
+  "updated": "2026-11-25T23:16:53",
   "counts": {
     "awaiting": 29,
-    "approved": 526,
+    "approved": 540,
     "denied": 120,
-    "total": 675
+    "total": 689
   },
   "ui": {
     "selected": [
-      "PIL-01"
+      "TRE-14"
     ],
     "selected_titles": {
-      "PIL-01": "Combat first"
+      "TRE-14": "Petrified Tree"
     },
-    "filter": "all",
+    "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-25T22:09:22"
+    "at": "2026-11-25T23:16:53"
   },
   "ideas": {
     "PIL-01": {
@@ -3894,6 +3894,160 @@
       "file": "IDEAS.md",
       "in_ideas_md": true
     },
+    "NPC-01": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T23:12:13",
+      "title": "Lines by story beat",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "How they talk",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-02": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T23:12:21",
+      "title": "A rumour each, pointing somewhere",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "How they talk",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-03": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T23:12:31",
+      "title": "They notice what Rowan does",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "How they talk",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-04": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T23:12:49",
+      "title": "Oswin Tull, at Fenhallow farm",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The farm",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-05": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T23:13:08",
+      "title": "Nell Ashby, the dairymaid, at Oswin's barn",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The farm",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-06": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T23:13:22",
+      "title": "Old Ebb Harrow, the shepherd, out with the herd",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The farm",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-07": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T23:14:14",
+      "title": "Tam Corley, the smith's hand, by the smithy",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The square",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-08": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T23:15:10",
+      "title": "Jory Matchett, the merchant, at the east stall",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The square",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-09": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T23:15:29",
+      "title": "Granny Maud Pickering, the market seller, at the west stall",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The square",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-10": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T23:15:52",
+      "title": "Hester Lowe, the weaver, about the square",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The square",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-11": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T23:16:03",
+      "title": "Villagers in the square",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The square",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-12": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T23:16:19",
+      "title": "Travellers on the roads",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The roads",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-13": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T23:16:33",
+      "title": "Watchmen at the gates",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The Watch",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-14": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-25T23:16:52",
+      "title": "The patrol round the village",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The Watch",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
     "TRE-01": {
       "status": "approved",
       "note": "",
@@ -7720,90 +7874,6 @@
   },
   "history": [
     {
-      "time": "2026-11-24T10:08:31",
-      "id": "TEC-22",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:08:35",
-      "id": "TEC-23",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:08:41",
-      "id": "TEC-24",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:08:44",
-      "id": "TOL-01",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:08:55",
-      "id": "TOL-03",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:09:13",
-      "id": "TOL-06",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:09:28",
-      "id": "REL-01",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:09:33",
-      "id": "REL-02",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:09:35",
-      "id": "REL-03",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:09:42",
-      "id": "REL-04",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:09:50",
-      "id": "REL-05",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:09:53",
-      "id": "REL-06",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:51:33",
-      "id": "PIL-07",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:51:40",
-      "id": "PIL-08",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
       "time": "2026-11-24T10:51:43",
       "id": "STY-11",
       "from": "awaiting",
@@ -10716,6 +10786,90 @@
     {
       "time": "2026-11-25T22:09:19",
       "id": "WLD-38",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T23:12:13",
+      "id": "NPC-01",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T23:12:21",
+      "id": "NPC-02",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T23:12:31",
+      "id": "NPC-03",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T23:12:49",
+      "id": "NPC-04",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T23:13:08",
+      "id": "NPC-05",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T23:13:22",
+      "id": "NPC-06",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T23:14:14",
+      "id": "NPC-07",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T23:15:10",
+      "id": "NPC-08",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T23:15:29",
+      "id": "NPC-09",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T23:15:52",
+      "id": "NPC-10",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T23:16:03",
+      "id": "NPC-11",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T23:16:19",
+      "id": "NPC-12",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T23:16:33",
+      "id": "NPC-13",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-25T23:16:52",
+      "id": "NPC-14",
       "from": "awaiting",
       "to": "approved"
     }

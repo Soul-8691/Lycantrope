@@ -17,7 +17,8 @@
     "voice (data/characters.json 'voices'); lines are assets/audio/vo/<voice>/<event>_<n>.mp3.",
     "'like': another kind's sounds (the unique villagers sound like villager_m / villager_f).",
     "jump / land: Rowan's take-off (a grunt, sometimes) and landing (two footfalls).",
-    "draw / sheathe: Rowan drawing the Dawnblade and putting it on his back."
+    "draw / sheathe: Rowan drawing the Dawnblade and putting it on his back.",
+    "greet plays the NPC's rumour 30% of the time; sword_drawn replaces greet while Rowan's sword is out."
   ],
   "volume": 1.0,
   "ref_m": 4.0,
@@ -352,10 +353,16 @@
         ],
         "hit": "villager_m/hurt",
         "death": "villager_m/death",
-        "greet": {
-          "s": "vo/{voice}/greet",
-          "volume": 1.0
-        }
+        "greet": [
+          {
+            "s": "vo/{voice}/greet",
+            "chance": 0.7
+          },
+          {
+            "s": "vo/{voice}/rumour",
+            "chance": 0.3
+          }
+        ]
       }
     },
     "villager_f": {
@@ -377,10 +384,16 @@
         ],
         "hit": "villager_f/hurt",
         "death": "villager_f/death",
-        "greet": {
-          "s": "vo/{voice}/greet",
-          "volume": 1.0
-        }
+        "greet": [
+          {
+            "s": "vo/{voice}/greet",
+            "chance": 0.7
+          },
+          {
+            "s": "vo/{voice}/rumour",
+            "chance": 0.3
+          }
+        ]
       }
     },
     "farmer": {
@@ -398,9 +411,28 @@
           "s": "farmer/idle",
           "volume": 0.7
         },
-        "startled": "farmer/startled",
+        "startled": [
+          {
+            "s": "vo/{voice}/startled",
+            "chance": 0.6
+          },
+          {
+            "s": "farmer/startled",
+            "chance": 0.4
+          }
+        ],
         "hit": "farmer/hurt",
-        "death": "farmer/death"
+        "death": "farmer/death",
+        "greet": [
+          {
+            "s": "vo/{voice}/greet",
+            "chance": 0.7
+          },
+          {
+            "s": "vo/{voice}/rumour",
+            "chance": 0.3
+          }
+        ]
       }
     },
     "guard": {
@@ -410,15 +442,24 @@
           "s": "footsteps/boot_{ground}",
           "volume": 0.3
         },
-        "greet": {
-          "s": "vo/{voice}/greet",
-          "volume": 1.0
-        },
+        "greet": [
+          {
+            "s": "vo/{voice}/greet",
+            "chance": 0.7
+          },
+          {
+            "s": "vo/{voice}/rumour",
+            "chance": 0.3
+          }
+        ],
         "startled": {
           "s": "vo/{voice}/startled"
         },
         "hit": "villager_m/hurt",
-        "death": "villager_m/death"
+        "death": "villager_m/death",
+        "sword_drawn": {
+          "s": "vo/{voice}/sword_drawn"
+        }
       }
     },
     "shepherd": {
