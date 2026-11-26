@@ -32,6 +32,7 @@ Shop inventory
 Shop
 
 Later:
+Flowers
 A few more enemy types
 Remap the starting area/nearby
 Greetings
