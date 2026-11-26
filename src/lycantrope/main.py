@@ -8,7 +8,7 @@ Left click       light attack (click again during a swing to chain up to three)
 Right mouse      hold to block              R: heavy attack  ·  Q: cast (off hand)
 H / K            debug: hit reaction / die and get back up
 F4 free-fly camera · F7 helmet on/off · F8 grass on/off · F9 music on/off · F10 sound effects on/off ·
-F11 NPC voices on/off
+F11 NPC voices on/off · Ctrl + Up/Down zoom in/out (hold)
 
 Free-fly mode: WASD / QE move, Shift fast, Ctrl slow, wheel base speed.
 Always: T turbo (4x speed, walking and flying) · F1 wireframe · F2 fog · F3 debug overlay ·
@@ -271,6 +271,7 @@ class App:
     # ------------------------------------------------------------- simulation
     def update(self, dt: float) -> None:
         keys = pygame.key.get_pressed()
+        self.key_zoom(keys, dt)
         inp = RowanInput()
         if self.play:
             inp.move_x = keys[pygame.K_d] - keys[pygame.K_a]
@@ -309,6 +310,20 @@ class App:
             self.sfx.update(self.chars.chars, self.chars.rowan.a if self.chars.rowan else None,
                             self.chars.spells.items, (p.x, p.y, p.z), (r.x, r.y, r.z), dt, self.ground_sound)
         self.time_s += dt
+
+    def key_zoom(self, keys, dt: float) -> None:
+        """Ctrl + Up zooms in, Ctrl + Down zooms out, for as long as they're held:
+        the orbit distance behind Rowan, or the field of view in fly mode."""
+        if not (keys[pygame.K_LCTRL] or keys[pygame.K_RCTRL]):
+            return
+        way = keys[pygame.K_UP] - keys[pygame.K_DOWN]      # Ctrl + Left/Right are kept free
+        if not way:
+            return
+        k = math.exp(-1.1 * dt * way)                    # about 3x per second held
+        if self.play:
+            self.orbit_dist = min(12.0, max(1.8, self.orbit_dist * k))
+        else:
+            self.camera.fov_deg = min(100.0, max(10.0, self.camera.fov_deg * k))
 
     def music_region(self) -> str:
         """'town' near Brackenvale (with a margin so the edge doesn't flip back and forth), else 'wilds'."""
@@ -400,10 +415,10 @@ class App:
         ]
         if self.play:
             lines += ["WASD move  Shift sprint  Ctrl walk  T turbo  LMB attack  RMB block  R heavy  Q cast",
-                      "H hit  K die/revive  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices  Esc mouse",
+                      "H hit  K die/revive  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices  Ctrl+Up/Down zoom  Esc mouse",
                       "F2 fog  F3 hide overlay  F4 fly"]
         else:
-            lines += ["WASD QE fly  Shift/Ctrl speed  T turbo  wheel base speed  F4 back to Rowan",
+            lines += ["WASD QE fly  Shift/Ctrl speed  T turbo  wheel base speed  Ctrl+Up/Down zoom  F4 back to Rowan",
                       "F1 wire  F2 fog  F3 hide overlay  F5 shaders  F6 debug  F9 music  F10 sfx  F11 voices  F12 shot"]
         return lines
 
