@@ -9,7 +9,6 @@ To-Do:
 Character stats/Experience
 Armor/Weapon/Magic stats
 Health and damage/Fall damage/HUD
-Roll animation (in-game)
 Pause/Player inventory/Equip/Looting
 Upgrade/Forge
 Greetings/Talk (A press)/Dialogue/voice lines/Choices/Quests
@@ -21,6 +20,7 @@ Shop inventory/Shop
 NPC weapons/NPC fights/Guard protect AI
 Beginning plot
 New games/Save files
+Roll animation (in-game)
 Better NPC system
 Add more monsters (Lovecraft monsters/Goblin spellcasters)
 Bandit/Goblin camps

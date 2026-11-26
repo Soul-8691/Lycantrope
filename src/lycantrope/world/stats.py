@@ -109,6 +109,47 @@ def flat_defence(value: float) -> dict[str, float]:
     return {t: value for t in TYPES}
 
 
+def armor_stats(piece_ids: list[str], cfg: dict | None = None) -> dict:
+    """ARS-06/08: total defence, absorb, poise, weight and heavy-piece count for the equipped pieces."""
+    cfg = cfg or config()
+    pieces = cfg.get("armor", {})
+    result: dict = {
+        "defence": {t: 0.0 for t in PHYSICAL},
+        "absorb": {t: 0.0 for t in TYPES},
+        "poise": 0.0,
+        "weight": 0.0,
+        "heavy_count": 0,
+    }
+    for pid in piece_ids:
+        p = pieces.get(pid)
+        if p is None:
+            continue
+        for t, v in p.get("defence", {}).items():
+            result["defence"][t] = result["defence"].get(t, 0.0) + v
+        for t, v in p.get("absorb", {}).items():
+            result["absorb"][t] = result["absorb"].get(t, 0.0) + v
+        result["poise"] += float(p.get("poise", 0))
+        result["weight"] += float(p.get("weight", 0))
+        if p.get("weight_class") == "heavy":
+            result["heavy_count"] += 1
+    return result
+
+
+def catalyst_power(weapon: dict, rowan_rite_power: float) -> float:
+    """WPR-10: effective Rite power for a catalyst given Rowan's Faith-derived rite_power."""
+    return weapon.get("rite_power", 100) * rowan_rite_power / 100.0
+
+
+def rite_base_power(rite: dict, cpower: float) -> float:
+    """WPR-11: scale a Rite's base power by the catalyst's effective Rite power."""
+    return rite["power"] * cpower / 100.0
+
+
+def shield_block(shield: dict) -> dict[str, float]:
+    """WPR-09: fraction of each damage type blocked by this shield (0 = none, 1 = all)."""
+    return dict(shield.get("block", {}))
+
+
 def fall_fraction(drop_m: float, cfg: dict | None = None) -> float:
     """CMB-38: the share of max HP a fall of drop_m costs (0 below the safe height, 1+ = deadly)."""
     f = (cfg or config())["fall"]
@@ -152,6 +193,7 @@ class Fighter:
     xp: float = 0.0
     weight: float = 1.0
     max_stamina: float = 0.0
+    heavy_armor: int = 0
     spell: dict = field(default_factory=dict)
     hp: float = -1.0
     trail: float = -1.0
@@ -242,7 +284,9 @@ class Fighter:
         if self.max_stamina > 0:
             st = cfg["stamina"]
             if regen and self.since_spent > st["regen_delay_s"]:
-                self.stamina = min(self.max_stamina, self.stamina + st["regen_per_s"] * dt)
+                penalty = min(4, self.heavy_armor) * cfg.get("heavy_armor_regen_penalty", 0.05)
+                rate = st["regen_per_s"] * (1.0 - penalty)
+                self.stamina = min(self.max_stamina, self.stamina + rate * dt)
             if self.exhausted and self.stamina >= st["exhausted_until"] * self.max_stamina:
                 self.exhausted = False
 
@@ -276,6 +320,8 @@ class Progress:
         self.flask = int(cfg["lifewater"]["charges"])
         self.food: dict[str, int] = dict(cfg.get("food_start", {}))
         self.discovered: set[str] = set()
+        self.armor: list[str] = list(r.get("armor", []))
+        self.shield: str | None = r.get("shield")
         self._saved = self.snapshot()
 
     # levels
@@ -327,7 +373,8 @@ class Progress:
     # saves
     def snapshot(self) -> dict:
         return {"level": self.level, "attrs": dict(self.attrs), "xp": self.xp, "flask": self.flask,
-                "food": dict(self.food), "discovered": set(self.discovered)}
+                "food": dict(self.food), "discovered": set(self.discovered),
+                "armor": list(self.armor), "shield": self.shield}
 
     def save(self) -> None:
         self._saved = self.snapshot()
@@ -336,21 +383,31 @@ class Progress:
         s = copy.deepcopy(snap or self._saved)
         self.level, self.attrs, self.xp = s["level"], s["attrs"], s["xp"]
         self.flask, self.food, self.discovered = s["flask"], s["food"], s["discovered"]
+        self.armor, self.shield = s.get("armor", []), s.get("shield")
 
     # Rowan as a fighter
     def fighter(self, name: str = "Rowan") -> Fighter:
         cfg = self.cfg
         d = self.stats()
         w = cfg["weapons"][cfg["rowan"]["weapon"]]
-        return Fighter(name, self.level, d["hp"], weapon_attack(w, self.attrs, cfg), flat_defence(d["defence"]),
-                       dict(cfg["rowan"].get("absorb", {})), float(cfg["rowan"]["poise"]), float(w["poise_damage"]),
-                       max_stamina=d["stamina"])
+        ar = armor_stats(self.armor, cfg)
+        base_def = flat_defence(d["defence"])
+        for t, v in ar["defence"].items():
+            base_def[t] = base_def.get(t, 0.0) + v
+        base_absorb = dict(cfg["rowan"].get("absorb", {}))
+        for t, v in ar["absorb"].items():
+            base_absorb[t] = base_absorb.get(t, 0.0) + v
+        poise = float(cfg["rowan"]["poise"]) + ar["poise"]
+        return Fighter(name, self.level, d["hp"], weapon_attack(w, self.attrs, cfg), base_def,
+                       base_absorb, poise, float(w["poise_damage"]),
+                       max_stamina=d["stamina"], heavy_armor=ar["heavy_count"])
 
     def refresh(self, f: Fighter) -> None:
         """After a level-up: new maximums and attack, keeping the same share of HP and stamina."""
         new = self.fighter(f.name)
         hp_share = f.hp / f.max_hp if f.max_hp else 1.0
-        f.level, f.attack, f.defence = new.level, new.attack, new.defence
+        f.level, f.attack, f.defence, f.absorb = new.level, new.attack, new.defence, new.absorb
+        f.poise_max, f.heavy_armor = new.poise_max, new.heavy_armor
         gained = new.max_hp - f.max_hp
         f.max_hp, f.max_stamina = new.max_hp, new.max_stamina
         f.hp = min(f.max_hp, max(f.hp + max(0.0, gained), f.max_hp * hp_share))

@@ -19,7 +19,7 @@ import math
 import random
 from dataclasses import dataclass
 
-from lycantrope.world.stats import PHYSICAL, angle_between, config, damage, scaled
+from lycantrope.world.stats import PHYSICAL, angle_between, config, damage, scaled, shield_block
 
 
 NEAR_M = 40.0      # only fighters this close to Rowan can hit or be hit (everything far away is skipped)
@@ -135,11 +135,22 @@ class Combat:
             if math.degrees(angle_between(math.sin(ta.heading), math.cos(ta.heading), dx, dz)) <= bl["front_deg"]:
                 blocked = True
         if blocked:
-            phys = {t: v for t, v in atk.items() if t in PHYSICAL}
-            other = {t: v for t, v in atk.items() if t not in PHYSICAL}
             raw = damage(atk, g.defence, g.absorb)
-            amount = damage(phys, g.defence, g.absorb) * bl["physical"] + damage(other, g.defence, g.absorb) * bl["other"]
-            guard_broken = not g.drain(raw * bl["stamina_per_damage"])
+            sh = getattr(tgt, "shield_data", None)
+            if sh is not None:
+                blk = shield_block(sh)
+                amount = sum(
+                    damage({t: v}, g.defence, g.absorb) * (1.0 - blk.get(t, 0.0))
+                    for t, v in atk.items()
+                )
+                stamina_drain = sh.get("stamina_drain", bl["stamina_per_damage"])
+            else:
+                phys = {t: v for t, v in atk.items() if t in PHYSICAL}
+                other = {t: v for t, v in atk.items() if t not in PHYSICAL}
+                amount = (damage(phys, g.defence, g.absorb) * bl["physical"]
+                          + damage(other, g.defence, g.absorb) * bl["other"])
+                stamina_drain = bl["stamina_per_damage"]
+            guard_broken = not g.drain(raw * stamina_drain)
             poise = 0.0
         else:
             amount = damage(atk, g.defence, g.absorb)

@@ -4,13 +4,20 @@
     "derived: each stat is base + per_level * level + sum(weight * soft(attribute)). soft() counts attribute points at",
     "full value up to 20, then at 0.75 up to 40, then at 0.35 (STA-05's soft caps).",
     "Damage per type: attack * attack / (attack + defence), then times (1 - absorb); never below min_fraction of the attack (CMB-37).",
-    "Enemies list their own level, HP, attack, defence, poise and XP. Levels follow STA-10: the Vale is 1-5."
+    "Enemies list their own level, HP, attack, defence, poise and XP. Levels follow STA-10: the Vale is 1-5.",
+    "Armor pieces list per-type physical defence (slash/strike/pierce) and elemental absorb (ARS-06).",
+    "Weight class 'heavy' costs 5% stamina regen per piece worn, up to 20% (ARS-08).",
+    "Shields list stability (stamina_drain fraction), physical block % and elemental block % (WPR-09).",
+    "Rites list base power, damage type, range, cooldown and Faith requirement (WPR-11).",
+    "Weapons list weight, per-move stamina costs and requirements (WPR-07)."
   ],
   "level_cap": 50,
   "rowan": {
     "level": 1,
     "attributes": {"might": 8, "dexterity": 8, "vigor": 10, "endurance": 10, "faith": 8, "fortune": 8},
     "weapon": "dawnblade",
+    "shield": null,
+    "armor": ["arm_01", "trs_01", "leg_01"],
     "poise": 20,
     "absorb": {}
   },
@@ -35,7 +42,424 @@
       "scaling": {"might": "D", "dexterity": "C", "faith": "D"},
       "poise_damage": 12,
       "reach_m": 2.1,
-      "arc_deg": 70
+      "arc_deg": 70,
+      "weight": 3.0,
+      "stamina": {"light": 14, "heavy": 26},
+      "requirements": {},
+      "crit_multiplier": 1.5
+    },
+    "iron_shortsword": {
+      "name": "Iron Shortsword",
+      "damage": {"slash": 36},
+      "scaling": {"might": "D", "dexterity": "C"},
+      "poise_damage": 9,
+      "reach_m": 1.9,
+      "arc_deg": 65,
+      "weight": 2.0,
+      "stamina": {"light": 12, "heavy": 22},
+      "requirements": {"dexterity": 10},
+      "crit_multiplier": 1.5
+    },
+    "flanged_mace": {
+      "name": "Flanged Mace",
+      "damage": {"strike": 44},
+      "scaling": {"might": "B"},
+      "poise_damage": 16,
+      "reach_m": 1.8,
+      "arc_deg": 60,
+      "weight": 4.0,
+      "stamina": {"light": 17, "heavy": 30},
+      "requirements": {"might": 14},
+      "crit_multiplier": 1.5
+    },
+    "goblin_shiv": {
+      "name": "Goblin Shiv",
+      "damage": {"pierce": 26},
+      "scaling": {"dexterity": "B"},
+      "poise_damage": 6,
+      "reach_m": 1.4,
+      "arc_deg": 55,
+      "weight": 0.8,
+      "stamina": {"light": 9, "heavy": 16},
+      "requirements": {"dexterity": 12},
+      "crit_multiplier": 1.8
+    }
+  },
+  "shields": {
+    "wooden_round_shield": {
+      "name": "Wooden Round Shield",
+      "stability": 42,
+      "stamina_drain": 0.58,
+      "block": {"slash": 0.85, "strike": 0.85, "pierce": 0.85, "fire": 0.0, "frost": 0.0, "radiant": 0.0},
+      "weight": 3.5,
+      "requirements": {"might": 11}
+    },
+    "militia_kite_shield": {
+      "name": "Militia Kite Shield",
+      "stability": 52,
+      "stamina_drain": 0.48,
+      "block": {"slash": 1.0, "strike": 1.0, "pierce": 1.0, "fire": 0.2, "frost": 0.2, "radiant": 0.0},
+      "weight": 5.0,
+      "requirements": {"might": 14, "endurance": 12}
+    },
+    "spiked_bandit_targe": {
+      "name": "Spiked Bandit Targe",
+      "stability": 34,
+      "stamina_drain": 0.66,
+      "block": {"slash": 0.75, "strike": 0.75, "pierce": 0.75, "fire": 0.0, "frost": 0.0, "radiant": 0.0},
+      "weight": 2.2,
+      "requirements": {"dexterity": 12}
+    },
+    "dread_tower_shield": {
+      "name": "Dread Tower Shield",
+      "stability": 75,
+      "stamina_drain": 0.25,
+      "block": {"slash": 1.0, "strike": 1.0, "pierce": 1.0, "fire": 0.4, "frost": 0.4, "radiant": 0.0},
+      "weight": 14.0,
+      "requirements": {"might": 26, "endurance": 20}
+    },
+    "emberforged_shield": {
+      "name": "Emberforged Shield",
+      "stability": 55,
+      "stamina_drain": 0.45,
+      "block": {"slash": 1.0, "strike": 1.0, "pierce": 1.0, "fire": 0.7, "frost": 0.0, "radiant": 0.0},
+      "weight": 6.5,
+      "requirements": {"might": 20, "faith": 12}
+    }
+  },
+  "rites": {
+    "ward": {
+      "name": "Ward",
+      "damage": {},
+      "power": 80,
+      "range_m": 0.0,
+      "cooldown_s": 8.0,
+      "requirements": {"faith": 10},
+      "effect": "shield",
+      "duration_s": 6.0
+    },
+    "fireball": {
+      "name": "Fireball",
+      "damage": {"fire": 55},
+      "power": 100,
+      "range_m": 15.0,
+      "cooldown_s": 5.0,
+      "requirements": {"faith": 12}
+    },
+    "sunburst": {
+      "name": "Sunburst",
+      "damage": {"radiant": 65},
+      "power": 100,
+      "range_m": 5.0,
+      "cooldown_s": 7.0,
+      "requirements": {"faith": 16},
+      "aoe": true
+    },
+    "ice_shard": {
+      "name": "Ice Shard",
+      "damage": {"frost": 50},
+      "power": 100,
+      "range_m": 18.0,
+      "cooldown_s": 4.0,
+      "requirements": {"faith": 14}
+    },
+    "hex_bolt": {
+      "name": "Hex Bolt",
+      "damage": {"fire": 45},
+      "power": 100,
+      "range_m": 20.0,
+      "cooldown_s": 3.5,
+      "requirements": {"faith": 12, "dexterity": 12}
+    },
+    "bone_spear": {
+      "name": "Bone Spear",
+      "damage": {"pierce": 70},
+      "power": 100,
+      "range_m": 20.0,
+      "cooldown_s": 6.0,
+      "requirements": {"faith": 20}
+    },
+    "soul_flare": {
+      "name": "Soul Flare",
+      "damage": {"radiant": 55},
+      "power": 100,
+      "range_m": 6.0,
+      "cooldown_s": 6.0,
+      "requirements": {"faith": 16},
+      "aoe": true,
+      "effect": "phase_cancel"
+    },
+    "bog_cloud": {
+      "name": "Bog Cloud",
+      "damage": {"pierce": 15},
+      "power": 100,
+      "range_m": 8.0,
+      "cooldown_s": 10.0,
+      "requirements": {"faith": 18},
+      "aoe": true,
+      "effect": "poison_cloud",
+      "duration_s": 5.0
+    },
+    "ember_toss": {
+      "name": "Ember Toss",
+      "damage": {"fire": 60},
+      "power": 100,
+      "range_m": 12.0,
+      "cooldown_s": 5.5,
+      "requirements": {"faith": 14, "might": 12},
+      "aoe": true
+    },
+    "molten_wave": {
+      "name": "Molten Wave",
+      "damage": {"fire": 75},
+      "power": 100,
+      "range_m": 7.0,
+      "cooldown_s": 9.0,
+      "requirements": {"faith": 20, "might": 14},
+      "aoe": true
+    }
+  },
+  "armor": {
+    "_slots": ["head", "arms", "torso", "legs"],
+    "_slot_shares": {"torso": 0.40, "legs": 0.25, "head": 0.20, "arms": 0.15},
+
+    "arm_01": {
+      "name": "Work Gloves", "slot": "arms", "set": 1, "weight_class": "light",
+      "defence": {"slash": 1.0, "strike": 1.0, "pierce": 1.0},
+      "absorb": {}, "poise": 0, "weight": 0.6, "requirements": {}
+    },
+    "trs_01": {
+      "name": "Patched Travelling Coat", "slot": "torso", "set": 1, "weight_class": "light",
+      "defence": {"slash": 2.3, "strike": 2.3, "pierce": 2.4},
+      "absorb": {"frost": 0.03}, "poise": 0, "weight": 2.0, "requirements": {}
+    },
+    "leg_01": {
+      "name": "Work Trousers & Boots", "slot": "legs", "set": 1, "weight_class": "light",
+      "defence": {"slash": 1.3, "strike": 1.3, "pierce": 1.4},
+      "absorb": {}, "poise": 0, "weight": 1.0, "requirements": {}
+    },
+
+    "hed_02": {
+      "name": "Kettle Hat", "slot": "head", "set": 2, "weight_class": "light",
+      "defence": {"slash": 2.2, "strike": 2.2, "pierce": 1.6},
+      "absorb": {}, "poise": 2, "weight": 1.4, "requirements": {"endurance": 11}
+    },
+    "arm_02": {
+      "name": "Padded Mittens", "slot": "arms", "set": 2, "weight_class": "light",
+      "defence": {"slash": 1.5, "strike": 1.5, "pierce": 1.0},
+      "absorb": {}, "poise": 1, "weight": 1.0, "requirements": {"endurance": 11}
+    },
+
+    "hed_03": {
+      "name": "Ranger's Hood", "slot": "head", "set": 3, "weight_class": "light",
+      "defence": {"slash": 1.7, "strike": 1.3, "pierce": 2.0},
+      "absorb": {"poison": 0.05}, "poise": 0, "weight": 0.8, "requirements": {"dexterity": 12}
+    },
+    "arm_03": {
+      "name": "Archer's Bracers", "slot": "arms", "set": 3, "weight_class": "light",
+      "defence": {"slash": 1.3, "strike": 1.0, "pierce": 1.7},
+      "absorb": {}, "poise": 0, "weight": 0.8, "requirements": {"dexterity": 14}
+    },
+    "trs_03": {
+      "name": "Ranger's Jerkin", "slot": "torso", "set": 3, "weight_class": "light",
+      "defence": {"slash": 3.0, "strike": 2.3, "pierce": 3.7},
+      "absorb": {"poison": 0.05}, "poise": 1, "weight": 2.6, "requirements": {"dexterity": 14}
+    },
+    "leg_03": {
+      "name": "Ranger's Breeches", "slot": "legs", "set": 3, "weight_class": "light",
+      "defence": {"slash": 2.0, "strike": 1.5, "pierce": 2.5},
+      "absorb": {}, "poise": 1, "weight": 1.8, "requirements": {"dexterity": 12}
+    },
+
+    "hed_04": {
+      "name": "Bandit's Mask & Hood", "slot": "head", "set": 4, "weight_class": "light",
+      "defence": {"slash": 1.7, "strike": 1.3, "pierce": 2.0},
+      "absorb": {}, "poise": 1, "weight": 0.8, "requirements": {"fortune": 12}
+    },
+    "arm_04": {
+      "name": "Studded Bracers", "slot": "arms", "set": 4, "weight_class": "light",
+      "defence": {"slash": 2.0, "strike": 1.5, "pierce": 2.5},
+      "absorb": {}, "poise": 1, "weight": 1.4, "requirements": {"fortune": 12}
+    },
+    "trs_04": {
+      "name": "Stolen Brigandine", "slot": "torso", "set": 4, "weight_class": "medium",
+      "defence": {"slash": 4.0, "strike": 3.0, "pierce": 5.0},
+      "absorb": {}, "poise": 3, "weight": 4.6, "requirements": {"fortune": 12, "endurance": 11}
+    },
+    "leg_04": {
+      "name": "Bandit's Breeches", "slot": "legs", "set": 4, "weight_class": "light",
+      "defence": {"slash": 2.3, "strike": 1.8, "pierce": 2.9},
+      "absorb": {}, "poise": 1, "weight": 2.2, "requirements": {"fortune": 12}
+    },
+
+    "hed_05": {
+      "name": "Mail Coif", "slot": "head", "set": 5, "weight_class": "medium",
+      "defence": {"slash": 3.4, "strike": 2.6, "pierce": 2.0},
+      "absorb": {}, "poise": 3, "weight": 2.6, "requirements": {"endurance": 12}
+    },
+    "arm_05": {
+      "name": "Mail Gloves", "slot": "arms", "set": 5, "weight_class": "medium",
+      "defence": {"slash": 2.9, "strike": 2.3, "pierce": 1.8},
+      "absorb": {}, "poise": 2, "weight": 2.2, "requirements": {"endurance": 12}
+    },
+    "trs_05": {
+      "name": "Hauberk", "slot": "torso", "set": 5, "weight_class": "medium",
+      "defence": {"slash": 6.7, "strike": 5.3, "pierce": 4.0},
+      "absorb": {}, "poise": 5, "weight": 6.0, "requirements": {"endurance": 14, "might": 12}
+    },
+    "leg_05": {
+      "name": "Mail Chausses", "slot": "legs", "set": 5, "weight_class": "medium",
+      "defence": {"slash": 3.8, "strike": 3.0, "pierce": 2.2},
+      "absorb": {}, "poise": 2, "weight": 3.2, "requirements": {"endurance": 12}
+    },
+
+    "hed_06": {
+      "name": "Wolf-Skull Helm", "slot": "head", "set": 6, "weight_class": "medium",
+      "defence": {"slash": 2.8, "strike": 2.8, "pierce": 2.4},
+      "absorb": {"frost": 0.05}, "poise": 3, "weight": 2.0, "requirements": {"vigor": 12}
+    },
+    "arm_06": {
+      "name": "Fur Bracers", "slot": "arms", "set": 6, "weight_class": "medium",
+      "defence": {"slash": 2.1, "strike": 2.1, "pierce": 1.8},
+      "absorb": {"frost": 0.05}, "poise": 2, "weight": 1.8, "requirements": {"vigor": 12}
+    },
+    "trs_06": {
+      "name": "Wolfpelt Mantle", "slot": "torso", "set": 6, "weight_class": "medium",
+      "defence": {"slash": 4.9, "strike": 4.9, "pierce": 4.2},
+      "absorb": {"frost": 0.10}, "poise": 3, "weight": 5.2, "requirements": {"vigor": 14}
+    },
+    "leg_06": {
+      "name": "Fur-Lined Leggings", "slot": "legs", "set": 6, "weight_class": "medium",
+      "defence": {"slash": 2.8, "strike": 2.8, "pierce": 2.4},
+      "absorb": {"frost": 0.05}, "poise": 2, "weight": 3.0, "requirements": {"vigor": 12}
+    },
+
+    "hed_08": {
+      "name": "Fur Hood & Goggles", "slot": "head", "set": 8, "weight_class": "medium",
+      "defence": {"slash": 3.0, "strike": 3.0, "pierce": 3.0},
+      "absorb": {"frost": 0.10}, "poise": 3, "weight": 2.4, "requirements": {"vigor": 16}
+    },
+    "arm_08": {
+      "name": "Yeti-Fur Gauntlets", "slot": "arms", "set": 8, "weight_class": "medium",
+      "defence": {"slash": 2.7, "strike": 2.7, "pierce": 2.6},
+      "absorb": {"frost": 0.10}, "poise": 2, "weight": 2.6, "requirements": {"vigor": 16}
+    },
+    "trs_08": {
+      "name": "Yeti-Fur Coat", "slot": "torso", "set": 8, "weight_class": "medium",
+      "defence": {"slash": 5.7, "strike": 5.7, "pierce": 5.6},
+      "absorb": {"frost": 0.20}, "poise": 5, "weight": 7.0, "requirements": {"vigor": 18, "endurance": 14}
+    },
+    "leg_08": {
+      "name": "Snow Boots & Leggings", "slot": "legs", "set": 8, "weight_class": "medium",
+      "defence": {"slash": 3.3, "strike": 3.3, "pierce": 3.4},
+      "absorb": {"frost": 0.10}, "poise": 2, "weight": 4.0, "requirements": {"vigor": 16}
+    },
+
+    "hed_09": {
+      "name": "Sage's Hood", "slot": "head", "set": 9, "weight_class": "light",
+      "defence": {"slash": 1.0, "strike": 1.0, "pierce": 1.0},
+      "absorb": {"radiant": 0.05}, "poise": 0, "weight": 0.6, "requirements": {"faith": 16}
+    },
+    "arm_09": {
+      "name": "Wrapped Sleeves", "slot": "arms", "set": 9, "weight_class": "light",
+      "defence": {"slash": 1.0, "strike": 1.0, "pierce": 1.0},
+      "absorb": {}, "poise": 0, "weight": 0.6, "requirements": {"faith": 16}
+    },
+    "trs_09": {
+      "name": "Greymantle Robe", "slot": "torso", "set": 9, "weight_class": "light",
+      "defence": {"slash": 2.3, "strike": 2.3, "pierce": 2.4},
+      "absorb": {"radiant": 0.10, "fire": 0.05}, "poise": 0, "weight": 2.4, "requirements": {"faith": 18}
+    },
+    "leg_09": {
+      "name": "Traveller's Sandals", "slot": "legs", "set": 9, "weight_class": "light",
+      "defence": {"slash": 1.7, "strike": 1.7, "pierce": 1.6},
+      "absorb": {}, "poise": 0, "weight": 1.4, "requirements": {"faith": 16}
+    },
+
+    "hed_10": {
+      "name": "Great Helm", "slot": "head", "set": 10, "weight_class": "heavy",
+      "defence": {"slash": 4.3, "strike": 5.5, "pierce": 3.2},
+      "absorb": {}, "poise": 6, "weight": 4.2, "requirements": {"might": 18}
+    },
+    "arm_10": {
+      "name": "Plate Gauntlets", "slot": "arms", "set": 10, "weight_class": "heavy",
+      "defence": {"slash": 4.0, "strike": 5.0, "pierce": 3.0},
+      "absorb": {}, "poise": 5, "weight": 3.8, "requirements": {"might": 18}
+    },
+    "trs_10": {
+      "name": "Steel Cuirass", "slot": "torso", "set": 10, "weight_class": "heavy",
+      "defence": {"slash": 8.3, "strike": 10.5, "pierce": 6.2},
+      "absorb": {}, "poise": 11, "weight": 10.0, "requirements": {"might": 20, "endurance": 18}
+    },
+    "leg_10": {
+      "name": "Plate Greaves", "slot": "legs", "set": 10, "weight_class": "heavy",
+      "defence": {"slash": 4.6, "strike": 5.9, "pierce": 3.5},
+      "absorb": {}, "poise": 6, "weight": 6.0, "requirements": {"might": 18, "endurance": 16}
+    },
+
+    "hed_11": {
+      "name": "Horned Bone Helm", "slot": "head", "set": 11, "weight_class": "heavy",
+      "defence": {"slash": 4.0, "strike": 4.8, "pierce": 3.2},
+      "absorb": {}, "poise": 7, "weight": 4.0, "requirements": {"might": 20}
+    },
+    "arm_11": {
+      "name": "Tusk Bracers", "slot": "arms", "set": 11, "weight_class": "heavy",
+      "defence": {"slash": 3.6, "strike": 4.4, "pierce": 3.0},
+      "absorb": {}, "poise": 5, "weight": 3.6, "requirements": {"might": 20}
+    },
+    "trs_11": {
+      "name": "Bonemail Hauberk", "slot": "torso", "set": 11, "weight_class": "heavy",
+      "defence": {"slash": 8.3, "strike": 10.0, "pierce": 6.7},
+      "absorb": {"fire": 0.10}, "poise": 12, "weight": 11.0, "requirements": {"might": 22, "endurance": 16}
+    },
+    "leg_11": {
+      "name": "Bone Greaves", "slot": "legs", "set": 11, "weight_class": "heavy",
+      "defence": {"slash": 4.6, "strike": 5.6, "pierce": 3.8},
+      "absorb": {}, "poise": 6, "weight": 6.4, "requirements": {"might": 20}
+    },
+
+    "hed_12": {
+      "name": "Emberforged Helm", "slot": "head", "set": 12, "weight_class": "heavy",
+      "defence": {"slash": 4.6, "strike": 5.9, "pierce": 3.5},
+      "absorb": {"fire": 0.15}, "poise": 7, "weight": 4.6, "requirements": {"might": 22, "faith": 14}
+    },
+    "arm_12": {
+      "name": "Emberforged Gauntlets", "slot": "arms", "set": 12, "weight_class": "heavy",
+      "defence": {"slash": 4.3, "strike": 5.5, "pierce": 3.2},
+      "absorb": {"fire": 0.15}, "poise": 6, "weight": 4.2, "requirements": {"might": 22}
+    },
+    "trs_12": {
+      "name": "Emberforged Cuirass", "slot": "torso", "set": 12, "weight_class": "heavy",
+      "defence": {"slash": 9.6, "strike": 12.2, "pierce": 7.2},
+      "absorb": {"fire": 0.25, "frost": -0.10}, "poise": 14, "weight": 12.6,
+      "requirements": {"might": 24, "endurance": 22, "faith": 14}
+    },
+    "leg_12": {
+      "name": "Emberforged Greaves", "slot": "legs", "set": 12, "weight_class": "heavy",
+      "defence": {"slash": 5.3, "strike": 6.7, "pierce": 4.0},
+      "absorb": {"fire": 0.15}, "poise": 7, "weight": 6.6, "requirements": {"might": 22, "endurance": 20}
+    },
+
+    "hed_13": {
+      "name": "Dread Helm", "slot": "head", "set": 13, "weight_class": "heavy",
+      "defence": {"slash": 5.6, "strike": 7.1, "pierce": 4.3},
+      "absorb": {"radiant": -0.10}, "poise": 9, "weight": 5.4, "requirements": {"might": 26}
+    },
+    "arm_13": {
+      "name": "Dread Gauntlets", "slot": "arms", "set": 13, "weight_class": "heavy",
+      "defence": {"slash": 5.0, "strike": 6.3, "pierce": 3.7},
+      "absorb": {"radiant": -0.10}, "poise": 8, "weight": 5.0, "requirements": {"might": 26}
+    },
+    "trs_13": {
+      "name": "Dread Cuirass", "slot": "torso", "set": 13, "weight_class": "heavy",
+      "defence": {"slash": 10.9, "strike": 13.9, "pierce": 8.2},
+      "absorb": {"fire": 0.10, "frost": 0.10, "radiant": -0.15}, "poise": 18, "weight": 14.6,
+      "requirements": {"might": 28, "endurance": 26}
+    },
+    "leg_13": {
+      "name": "Dread Greaves", "slot": "legs", "set": 13, "weight_class": "heavy",
+      "defence": {"slash": 6.3, "strike": 8.0, "pierce": 4.7},
+      "absorb": {"radiant": -0.10}, "poise": 9, "weight": 8.0, "requirements": {"might": 26, "endurance": 24}
     }
   },
   "moves": {
@@ -52,6 +476,7 @@
   "counter": {"multiplier": 1.25, "windup_before": 0.35},
   "block": {"front_deg": 75, "physical": 0.4, "other": 0.7, "stamina_per_damage": 0.9},
   "stamina": {"jump": 10, "sprint_per_s": 12, "regen_per_s": 45, "regen_delay_s": 0.6, "exhausted_until": 0.25},
+  "heavy_armor_regen_penalty": 0.05,
   "poise_regen_s": 2.5,
   "hp_trail": {"delay_s": 0.8, "drain_frac_per_s": 0.35},
   "xp": {
