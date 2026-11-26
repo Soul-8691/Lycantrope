@@ -8,6 +8,7 @@ credit estimate. Sending needs --send, and it also asks you to type the credit t
     python tools/meshy/batch.py preview --set brackenvale-town --send
     python tools/meshy/batch.py status
     python tools/meshy/batch.py animate HER-09 --variant 1          # texture -> rig -> animations
+    python tools/meshy/batch.py texture --in-game                    # texture what the game still shows untextured
 
 Characters (hero and enemies) take their prompts from characters.json.
 
@@ -416,36 +417,98 @@ def do_refine(tasks: dict, key: str, prev: dict, headers: dict, texture_prompt: 
     print(f"  textured -> {folder.relative_to(ROOT)}")
 
 
+def untextured_in_game() -> tuple[list[str], list[str]]:
+    """Meshy models the game uses (data/props.json sources, data/characters.json models) that have
+    no texture yet, as preview keys like VIL-01/v1 or STR-01/gate/v1. Also returns the ones that
+    can't simply be textured (a locally reduced mesh: texturing would use the full-detail preview)."""
+    from pygltflib import GLTF2
+    refs = set()
+
+    def walk(o):
+        if isinstance(o, dict):
+            for v in o.values():
+                walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+        elif isinstance(o, str) and o.endswith(".glb"):
+            refs.add(o)
+    for f in (ROOT / "data" / "props.json", ROOT / "data" / "characters.json"):
+        walk(json.loads(f.read_text(encoding="utf-8")))
+    keys, skipped = [], []
+    for r in sorted(refs):
+        if "/textured/" in r or "/rig/" in r:
+            continue
+        f = next((b / r for b in (ROOT / "assets" / "models" / "meshy", OUT_DIR) if (b / r).exists()), None)
+        if f is None or GLTF2().load(str(f)).images:
+            continue
+        key, _, name = r.rpartition("/")
+        (keys if name == "model.glb" else skipped).append(key)
+    return sorted(set(keys)), sorted(set(skipped))
+
+
 def cmd_texture(args) -> None:
-    if statuses().get(args.id) != "approved":
-        sys.exit(f"{args.id} isn't approved in the tracker.")
-    key = f"{args.id}/v{args.variant}"
+    """Texture (refine) one or more finished previews, with a single confirmation for the total."""
+    targets = list(args.ids)
+    if args.in_game:
+        found, skipped = untextured_in_game()
+        targets += found
+        for k in skipped:
+            print(f"  skipping {k}: the game uses a locally reduced mesh; texturing would texture the "
+                  f"full-detail preview instead (re-make its preview with reduction first)")
+    if not targets:
+        sys.exit("Give IDs (VIL-01, VIL-04/v2, STR-01/gate/v1) or --in-game.")
     tasks = load_tasks()
-    prev = tasks["previews"].get(key)
-    if not prev or prev.get("status") != "SUCCEEDED":
-        sys.exit(f"No finished preview {key}. Make the preview first (batch.py preview {args.id}).")
-    if tasks.get("refines", {}).get(key, {}).get("status") == "SUCCEEDED" and not args.redo:
-        print(f"{key} is already textured (add --redo to texture it again).")
-        return
-    if tasks.get("refines", {}).get(key, {}).get("status") in ("PENDING", "IN_PROGRESS"):
-        print(f"{key}: a texture task is already running on Meshy; waiting for it (no new charge).")
-        do_refine(tasks, key, prev, {"Authorization": f"Bearer {api_key()}"})
-        print(f"\nCredits recorded so far: {credits_spent(tasks)}")
-        return
-    print(f"\nMeshy texture (refine, 2K) for {key}: {REFINE_CREDITS} credits")
+    refines = tasks.setdefault("refines", {})
+    st = statuses()
+    todo, resume = [], []
+    for t in dict.fromkeys(targets):
+        key = t if re.search(r"/v\d+$", t) else f"{t}/v{args.variant}"
+        root = key.split("/")[0]
+        prev = tasks["previews"].get(key)
+        if st.get(root) != "approved":
+            print(f"  {key}: not approved in the tracker, skipped")
+        elif not prev or prev.get("status") != "SUCCEEDED":
+            print(f"  {key}: no finished preview, skipped (make it with batch.py preview {root})")
+        elif refines.get(key, {}).get("status") == "SUCCEEDED" and not args.redo:
+            print(f"  {key}: already textured (add --redo to texture it again)")
+        elif refines.get(key, {}).get("status") in ("PENDING", "IN_PROGRESS"):
+            resume.append(key)
+        else:
+            todo.append(key)
+    total = REFINE_CREDITS * len(todo)
+    print(f"\nMeshy texture (refine, 2K), {REFINE_CREDITS} credits each:")
+    for k in todo:
+        print(f"  {k}")
+    for k in resume:
+        print(f"  {k}  (already running on Meshy: picked up, no new charge)")
+    print(f"\n  {len(todo)} to texture = {total} credits")
     if args.texture_prompt:
         print(f"  Texture prompt: {args.texture_prompt}")
+    if not todo and not resume:
+        return
     if not args.send:
         print("\n  Dry run: nothing was sent. Add --send to run it.")
         return
-    typed = input(f"\nThis spends {REFINE_CREDITS} Meshy credits. Type {REFINE_CREDITS} to go on: ").strip()
-    if typed != str(REFINE_CREDITS):
-        sys.exit("Cancelled. Nothing was sent.")
-    old = tasks.get("refines", {}).get(key)
-    if old:
-        tasks.setdefault("replaced", []).append({"key": key + " (texture)", **old})
-    do_refine(tasks, key, prev, {"Authorization": f"Bearer {api_key()}"}, args.texture_prompt)
-    print(f"\nCredits recorded so far: {credits_spent(tasks)}")
+    if total:
+        typed = input(f"\nThis spends {total} Meshy credits. Type {total} to go on: ").strip()
+        if typed != str(total):
+            sys.exit("Cancelled. Nothing was sent.")
+    headers = {"Authorization": f"Bearer {api_key()}"}
+    failed = []
+    for k in resume + todo:
+        print(f"\n{k}")
+        old = refines.get(k)
+        if old and old.get("status") == "SUCCEEDED":
+            tasks.setdefault("replaced", []).append({"key": k + " (texture)", **old})
+        try:
+            do_refine(tasks, k, tasks["previews"][k], headers, args.texture_prompt)
+        except SystemExit as e:                  # one failure shouldn't stop the batch
+            print(f"  {e}")
+            failed.append(k)
+    print(f"\nDone: {len(resume + todo) - len(failed)} textured, {len(failed)} failed {failed or ''}")
+    print(f"Credits recorded so far: {credits_spent(tasks)}")
+    print("Next: python tools/meshy/keep.py   (copies the textured files into assets/models/meshy)")
 
 
 def cmd_animate(args) -> None:
@@ -653,8 +716,9 @@ def main() -> None:
     p.add_argument("--show-prompts", action="store_true")
     p.add_argument("--send", action="store_true", help="actually call Meshy (spends credits)")
     sub.add_parser("status", help="list recorded preview tasks")
-    tx = sub.add_parser("texture", help="texture (refine) one chosen preview")
-    tx.add_argument("id", help="ID such as TRS-05")
+    tx = sub.add_parser("texture", help="texture (refine) chosen previews")
+    tx.add_argument("ids", nargs="*", help="IDs such as TRS-05, VIL-04/v2 or STR-01/gate/v1")
+    tx.add_argument("--in-game", action="store_true", help="every untextured model the game uses")
     tx.add_argument("--variant", type=int, default=1)
     tx.add_argument("--texture-prompt", help="optional extra guidance for the texture")
     tx.add_argument("--redo", action="store_true", help="texture again even if already textured")

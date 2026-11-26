@@ -19,5 +19,6 @@ Choices
 
 Later:
 Textures
+Bush
 Guards
 NPCs

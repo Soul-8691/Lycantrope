@@ -126,6 +126,8 @@ def load_item(ctx, spec: dict) -> tuple[MeshData, Item]:
         c0 = np.array(spec.get("color", [0.6, 0.6, 0.6]), np.float32)
         c1 = np.array(spec.get("end_color", spec.get("color", [0.6, 0.6, 0.6])), np.float32)
         m.color = np.where((frac < spec.get("end_fraction", 0.0))[:, None], c1, c0).astype(np.float32)
+        if m.texture is not None:              # textured: the texture has the colours
+            m.color = np.ones_like(m.color)
     else:
         lo, hi = p.min(axis=0), p.max(axis=0)
         s = spec.get("height_m", 0.3) / (hi[1] - lo[1])
@@ -255,6 +257,9 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
                 continue
             clip = skel.bake(f, c["clip"], loop=c.get("loop", False), retarget=c.get("retarget", False),
                              speed=c.get("speed", 1.0), name=name)
+            if c.get("mirror"):                   # e.g. a right-handed cast played with the left hand
+                from lycantrope.render.procedural import mirror_clip
+                clip = mirror_clip(skel, clip)
             clips[name] = clip
             info[name] = ClipInfo(clip.duration, clip.loop, clip.speed, c.get("move_speed", 0.0))
         float_m = {}

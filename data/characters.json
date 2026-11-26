@@ -11,6 +11,7 @@
     "Items: 'hold': 'along_arm' points a heavy weapon along the forearm (head past the fingers), tilted forward by 'tilt_deg'; otherwise weapons point forward from the fist.",
     "Items: 'two_handed': true pulls the other hand onto the haft (second_grip_from_end) with arm IK.",
     "'skirt': {to, amount, min_height_m} moves leg weights onto the hips so long skirts/robes hang instead of splitting.",
+    "'mirror': true on a clip swaps left and right (the library cast raises the right hand; Rites are cast with the left).",
     "'swim': 'procedural' builds swim and tread clips in code (no Meshy swim animation yet). A real 'swim' / 'tread' clip in clips replaces them; then give 'swim_float_m': {clip: water level in rig units above the feet}."
   ],
   "characters": {
@@ -70,6 +71,7 @@
         "cast": {
           "file": "HER-09/v1/rig/animations_1.glb",
           "clip": "mage_soell_cast",
+          "mirror": true,
           "speed": 1.2
         },
         "hit": {

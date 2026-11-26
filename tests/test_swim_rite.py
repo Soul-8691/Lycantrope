@@ -69,3 +69,20 @@ def test_rite_effect_gathers_flashes_and_fades():
     fx.cancel()
     fx.update(0.3)
     assert not fx.active
+
+
+@pytest.mark.skipif(not RIG.exists(), reason="Rowan's rig isn't checked out")
+def test_mirrored_cast_uses_the_left_hand():
+    from lycantrope.render.gltf import load_skeleton
+    from lycantrope.render.procedural import mirror_clip
+    skel = load_skeleton(RIG)
+    src = RIG.with_name("animations_1.glb")
+    clip = skel.bake(src, "mage_soell_cast", False)
+    m = mirror_clip(skel, clip)
+    assert np.abs(mirror_clip(skel, m).world - clip.world).max() < 1e-4     # twice = no change
+    j = skel.joint_index
+    assert m.world[:, j("LeftHand"), 1, 3].max() > m.world[:, j("RightHand"), 1, 3].max() + 0.5
+    # the left hand now goes where the right hand went, across the middle
+    i = int(np.argmax(clip.world[:, j("RightHand"), 1, 3]))
+    a, b = m.world[i, j("LeftHand"), :3, 3], clip.world[i, j("RightHand"), :3, 3]
+    assert np.allclose(a, b * [-1, 1, 1], atol=0.02)

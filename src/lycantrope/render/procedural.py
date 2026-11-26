@@ -1,4 +1,5 @@
-"""Animation made in code for humanoid rigs that have no clip for it yet (ART-04): swimming.
+"""Animation made in code for humanoid rigs that have no clip for it yet (ART-04): swimming, and
+mirrored clips (a right-handed move played left-handed).
 
 Poses are built by aiming bones (shoulder->elbow, elbow->wrist, hip->knee, ...) at directions given
 in the character's own upright frame (y up, +z the way it faces, +x its left), each rotation
@@ -181,3 +182,32 @@ def make_swim_clips(skel: Skeleton) -> dict[str, tuple[Clip, float]]:
             level = float(frames[:, rig.j("LeftArm"), 1, 3].mean()) - 0.06
         out[name] = (Clip(name, frames, n / BAKE_FPS, True, 0.0), level)
     return out
+
+
+def mirror_name(name: str) -> str:
+    for a, b in (("Left", "Right"), ("Right", "Left")):
+        if name.startswith(a):
+            return b + name[len(a):]
+    return name
+
+
+def mirror_clip(skel: Skeleton, clip: Clip) -> Clip:
+    """The same clip, left and right swapped (mirrored across the character's x = 0 plane).
+
+    Mirrors each joint's skinning transform rather than its frame, so it's exact for a symmetric
+    mesh whatever way the rig's left and right bone axes happen to point:
+        D'_j = S . D_m . inv(B) . S . B      (D = world @ ibm, m = j's mirror joint, B = mesh->character)
+    """
+    S = np.diag([-1.0, 1.0, 1.0, 1.0])
+    ibm = skel.ibm.astype(float)
+    bind = skel.bind_world()
+    B = bind[0] @ ibm[0]
+    tail = np.linalg.inv(B) @ S @ B
+    mirror = [skel.names.index(mirror_name(n)) if mirror_name(n) in skel.names else j
+              for j, n in enumerate(skel.names)]
+    W = clip.world.astype(float)
+    D = np.einsum("fjab,jbc->fjac", W, ibm)
+    D2 = np.einsum("ab,fjbc,cd->fjad", S, D[:, mirror], tail)
+    world = np.einsum("fjab,jbc->fjac", D2, np.linalg.inv(ibm))
+    return Clip(clip.name + "_mirrored", world.astype(np.float32), clip.duration, clip.loop,
+                clip.native_speed, clip.speed)
