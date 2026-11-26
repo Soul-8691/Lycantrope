@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-26T11:21:50",
+  "updated": "2026-11-26T11:32:25",
   "counts": {
-    "awaiting": 40,
-    "approved": 545,
-    "denied": 120,
+    "awaiting": 29,
+    "approved": 554,
+    "denied": 122,
     "total": 705
   },
   "ui": {
     "selected": [
-      "DRM-83"
+      "DRM-66"
     ],
     "selected_titles": {
-      "DRM-83": "Innsmouth hybrid"
+      "DRM-66": "Grandmother Zoog"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-26T11:21:50"
+    "at": "2026-11-26T11:32:25"
   },
   "ideas": {
     "PIL-01": {
@@ -3587,9 +3587,9 @@
       "in_ideas_md": true
     },
     "DRM-83": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-26T11:31:35",
       "title": "Innsmouth hybrid",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Creatures (from CREATURES.md)",
@@ -3598,9 +3598,9 @@
       "in_ideas_md": true
     },
     "DRM-84": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-26T11:31:47",
       "title": "Mother Hydra",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Creatures (from CREATURES.md)",
@@ -3609,9 +3609,9 @@
       "in_ideas_md": true
     },
     "DRM-85": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-26T11:31:52",
       "title": "Star-spawn",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Creatures (from CREATURES.md)",
@@ -3620,9 +3620,9 @@
       "in_ideas_md": true
     },
     "DRM-86": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-26T11:31:53",
       "title": "Shoggoth",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Creatures (from CREATURES.md)",
@@ -3631,9 +3631,9 @@
       "in_ideas_md": true
     },
     "DRM-87": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-26T11:31:53",
       "title": "Elder Thing",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Creatures (from CREATURES.md)",
@@ -3642,9 +3642,9 @@
       "in_ideas_md": true
     },
     "DRM-88": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-26T11:31:54",
       "title": "Mi-Go",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Creatures (from CREATURES.md)",
@@ -3653,9 +3653,9 @@
       "in_ideas_md": true
     },
     "DRM-89": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-26T11:31:59",
       "title": "Great Race of Yith",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Creatures (from CREATURES.md)",
@@ -3664,9 +3664,9 @@
       "in_ideas_md": true
     },
     "DRM-90": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-26T11:32:00",
       "title": "Flying polyp",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Creatures (from CREATURES.md)",
@@ -3675,9 +3675,9 @@
       "in_ideas_md": true
     },
     "DRM-91": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-26T11:32:08",
       "title": "The Dunwich Horror",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Creatures (from CREATURES.md)",
@@ -3686,9 +3686,9 @@
       "in_ideas_md": true
     },
     "DRM-92": {
-      "status": "awaiting",
+      "status": "denied",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-26T11:32:13",
       "title": "The reanimated",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Creatures (from CREATURES.md)",
@@ -3697,9 +3697,9 @@
       "in_ideas_md": true
     },
     "DRM-93": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-26T11:32:24",
       "title": "Beings of Ib and Bokrug",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Creatures (from CREATURES.md)",
@@ -8050,72 +8050,6 @@
   },
   "history": [
     {
-      "time": "2026-11-24T10:52:42",
-      "id": "CMB-08",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:52:50",
-      "id": "CMB-09",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:52:52",
-      "id": "CMB-11",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:53:34",
-      "id": "CMB-13",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:54:14",
-      "id": "CMB-24",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:54:22",
-      "id": "VAL-01",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:54:26",
-      "id": "VAL-02",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:54:30",
-      "id": "VAL-04",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:54:35",
-      "id": "VAL-08",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:54:38",
-      "id": "VAL-09",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:55:09",
-      "id": "STA-12",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
       "time": "2026-11-24T10:55:18",
       "id": "STA-13",
       "from": "awaiting",
@@ -11046,6 +10980,72 @@
     {
       "time": "2026-11-26T10:35:46",
       "id": "PLT-19",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T11:31:35",
+      "id": "DRM-83",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T11:31:47",
+      "id": "DRM-84",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-26T11:31:52",
+      "id": "DRM-85",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T11:31:53",
+      "id": "DRM-86",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T11:31:53",
+      "id": "DRM-87",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T11:31:54",
+      "id": "DRM-88",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T11:31:59",
+      "id": "DRM-89",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T11:32:00",
+      "id": "DRM-90",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T11:32:08",
+      "id": "DRM-91",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T11:32:13",
+      "id": "DRM-92",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-26T11:32:24",
+      "id": "DRM-93",
       "from": "awaiting",
       "to": "approved"
     }

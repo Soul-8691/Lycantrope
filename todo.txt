@@ -9,6 +9,11 @@ To-Do:
 Better NPC system
 Approve more monster types
 Add more monsters
+- Lovecraft monsters
+- Goblin spellcasters
+Bandit camps
+Goblin camps
+Day/night
 Talk (A press)
 Dialogue/voice lines
 Choices
