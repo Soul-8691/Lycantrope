@@ -1,14 +1,14 @@
-"""Meshy batch generation (ART-01): text-to-3D previews for tracker entries.
+r"""Meshy batch generation (ART-01): text-to-3D previews for tracker entries.
 
 Dry run is the default. It sends nothing and prints the list, the prompts and the
 credit estimate. Sending needs --send, and it also asks you to type the credit total.
 
-    python tools/meshy/batch.py preview --set brackenvale-town
-    python tools/meshy/batch.py preview VIL-01 CLT-01 --variants 1
-    python tools/meshy/batch.py preview --set brackenvale-town --send
-    python tools/meshy/batch.py status
-    python tools/meshy/batch.py animate HER-09 --variant 1          # texture -> rig -> animations
-    python tools/meshy/batch.py texture --in-game                    # texture what the game still shows untextured
+    .venv\Scripts\python.exe tools/meshy/batch.py preview --set brackenvale-town
+    .venv\Scripts\python.exe tools/meshy/batch.py preview VIL-01 CLT-01 --variants 1
+    .venv\Scripts\python.exe tools/meshy/batch.py preview --set brackenvale-town --send
+    .venv\Scripts\python.exe tools/meshy/batch.py status
+    .venv\Scripts\python.exe tools/meshy/batch.py animate HER-09 --variant 1          # texture -> rig -> animations
+    .venv\Scripts\python.exe tools/meshy/batch.py texture --in-game                    # texture what the game still shows untextured
 
 Characters (hero and enemies) take their prompts from characters.json.
 
@@ -508,7 +508,7 @@ def cmd_texture(args) -> None:
             failed.append(k)
     print(f"\nDone: {len(resume + todo) - len(failed)} textured, {len(failed)} failed {failed or ''}")
     print(f"Credits recorded so far: {credits_spent(tasks)}")
-    print("Next: python tools/meshy/keep.py   (copies the textured files into assets/models/meshy)")
+    print("Next: .venv\\Scripts\\python.exe tools/meshy/keep.py   (copies the textured files into assets/models/meshy)")
 
 
 def cmd_animate(args) -> None:

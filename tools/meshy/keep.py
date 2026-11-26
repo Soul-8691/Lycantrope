@@ -1,8 +1,8 @@
-"""Copy generated Meshy files from the git-ignored drafts folder into a tracked one.
+r"""Copy generated Meshy files from the git-ignored drafts folder into a tracked one.
 
-    python tools/meshy/keep.py              # copy new or changed files
-    python tools/meshy/keep.py --dry-run    # just list what would be copied
-    python tools/meshy/keep.py --max-mb 50  # change the size limit
+    .venv\Scripts\python.exe tools/meshy/keep.py              # copy new or changed files
+    .venv\Scripts\python.exe tools/meshy/keep.py --dry-run    # just list what would be copied
+    .venv\Scripts\python.exe tools/meshy/keep.py --max-mb 50  # change the size limit
 
 assets/meshy/previews/<ID>/... -> assets/models/meshy/<ID>/... (same layout). Files over the
 size limit (default 20 MB, e.g. the ~175 MB full-detail haycart and bush meshes) are skipped

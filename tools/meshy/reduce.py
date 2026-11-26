@@ -1,8 +1,8 @@
-"""Reduce Meshy preview meshes to their triangle budget, locally and for free.
+r"""Reduce Meshy preview meshes to their triangle budget, locally and for free.
 
-    python tools/meshy/reduce.py VIL-10 PLT-01          # budget from OBJECTS.md
-    python tools/meshy/reduce.py PLT-01 --tris 3000     # pick a count yourself
-    python tools/meshy/reduce.py --all                  # every downloaded preview
+    .venv\Scripts\python.exe tools/meshy/reduce.py VIL-10 PLT-01          # budget from OBJECTS.md
+    .venv\Scripts\python.exe tools/meshy/reduce.py PLT-01 --tris 3000     # pick a count yourself
+    .venv\Scripts\python.exe tools/meshy/reduce.py --all                  # every downloaded preview
 
 Writes model_<N>.glb and a model_<N>.png thumbnail next to model.glb in
 assets/meshy/previews/<ID>/.../ and leaves the original alone, so you can try several

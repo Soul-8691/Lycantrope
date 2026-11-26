@@ -1,7 +1,7 @@
-"""Generate a music track with the ElevenLabs Music API (AUD-07) from a prompt file in tools/music/.
+r"""Generate a music track with the ElevenLabs Music API (AUD-07) from a prompt file in tools/music/.
 
-    python tools/music/make.py wilds_explore          # dry run: show the prompt and length
-    python tools/music/make.py wilds_explore --send   # generate assets/audio/music/wilds_explore.mp3
+    .venv\Scripts\python.exe tools/music/make.py wilds_explore          # dry run: show the prompt and length
+    .venv\Scripts\python.exe tools/music/make.py wilds_explore --send   # generate assets/audio/music/wilds_explore.mp3
 
 The JSON file is the request body as-is (prompt, music_length_ms, force_instrumental, model_id).
 An existing track is kept as <name>_old.mp3 rather than overwritten. Key: ELEVENLABS_API_KEY in .env.

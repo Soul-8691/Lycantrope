@@ -1,13 +1,13 @@
-"""Speak the NPC lines in their designed voices with ElevenLabs text to speech (AUD-01, AUD-03).
+r"""Speak the NPC lines in their designed voices with ElevenLabs text to speech (AUD-01, AUD-03).
 
 Lines are in tools/voice/npc_lines.json; voice IDs come from data/voices.json (made with
 design_voices.py). Dry run is the default: it lists what's missing and estimates the cost.
 
-    python tools/voice/npc_lines.py                    # dry run: everything that's missing
-    python tools/voice/npc_lines.py guard              # one role
-    python tools/voice/npc_lines.py --voice guard_1    # one voice
-    python tools/voice/npc_lines.py --send             # generate (asks you to type the total)
-    python tools/voice/npc_lines.py --redo --send      # remake even the ones that exist
+    .venv\Scripts\python.exe tools/voice/npc_lines.py                    # dry run: everything that's missing
+    .venv\Scripts\python.exe tools/voice/npc_lines.py guard              # one role
+    .venv\Scripts\python.exe tools/voice/npc_lines.py --voice guard_1    # one voice
+    .venv\Scripts\python.exe tools/voice/npc_lines.py --send             # generate (asks you to type the total)
+    .venv\Scripts\python.exe tools/voice/npc_lines.py --redo --send      # remake even the ones that exist
 
 Files: assets/audio/vo/<voice>/<event>_<n>.mp3 (n counts from 1 in the order of the lines).
 assets/audio/vo/manifest.json remembers the text each file was made from, so editing a line remakes

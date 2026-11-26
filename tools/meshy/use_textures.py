@@ -1,7 +1,7 @@
-"""Point the game at textured models once they exist, and rebuild the props that changed.
+r"""Point the game at textured models once they exist, and rebuild the props that changed.
 
-    python tools/meshy/use_textures.py            # switch and rebuild
-    python tools/meshy/use_textures.py --dry-run  # just list what would change
+    .venv\Scripts\python.exe tools/meshy/use_textures.py            # switch and rebuild
+    .venv\Scripts\python.exe tools/meshy/use_textures.py --dry-run  # just list what would change
 
 After `batch.py texture ... --send` and `keep.py`: every model path in data/props.json ("source")
 and data/characters.json (item "model") written as <key>/model.glb gets <key>/textured/model.glb

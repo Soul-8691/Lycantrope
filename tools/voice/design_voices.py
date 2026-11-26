@@ -1,11 +1,11 @@
-"""Design the NPC voices with ElevenLabs Voice Design (AUD-02: designed voices only, no clones).
+r"""Design the NPC voices with ElevenLabs Voice Design (AUD-02: designed voices only, no clones).
 
 Descriptions and preview lines are in tools/voice/voice_designs.json. Two steps:
 
-    python tools/voice/design_voices.py                      # dry run: list what would be designed
-    python tools/voice/design_voices.py --send               # make previews for every voice
-    python tools/voice/design_voices.py guard_1 --send       # or just some
-    python tools/voice/design_voices.py keep guard_1 2       # save preview 2 of guard_1 as a voice
+    .venv\Scripts\python.exe tools/voice/design_voices.py                      # dry run: list what would be designed
+    .venv\Scripts\python.exe tools/voice/design_voices.py --send               # make previews for every voice
+    .venv\Scripts\python.exe tools/voice/design_voices.py guard_1 --send       # or just some
+    .venv\Scripts\python.exe tools/voice/design_voices.py keep guard_1 2       # save preview 2 of guard_1 as a voice
 
 Previews are saved as assets/voice_design/<voice>/preview_<n>.mp3 (git-ignored) so you can listen
 and pick. 'keep' saves the chosen one to your ElevenLabs account and records its voice ID in
@@ -105,7 +105,7 @@ def design(names: list[str], spec: dict, args) -> None:
         (folder / "previews.json").write_text(json.dumps({"ids": ids, "text": res.get("text"), "model": args.model},
                                                          indent=2), encoding="utf-8")
         print(f"  {n}: {len(ids)} previews in {folder.relative_to(ROOT)}")
-    print("\nListen, then keep one:  python tools/voice/design_voices.py keep <voice> <preview number>")
+    print("\nListen, then keep one:  .venv\\Scripts\\python.exe tools/voice/design_voices.py keep <voice> <preview number>")
 
 
 def keep(name: str, number: str, spec: dict) -> None:

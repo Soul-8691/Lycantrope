@@ -1,6 +1,6 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-25T20:36:55",
+  "updated": "2026-11-25T21:49:38",
   "counts": {
     "awaiting": 29,
     "approved": 520,
@@ -9,17 +9,17 @@
   },
   "ui": {
     "selected": [
-      "DRM-66"
+      "PIL-01"
     ],
     "selected_titles": {
-      "DRM-66": "Grandmother Zoog"
+      "PIL-01": "Combat first"
     },
-    "filter": "awaiting",
+    "filter": "all",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-25T20:36:55"
+    "at": "2026-11-25T21:49:38"
   },
   "ideas": {
     "PIL-01": {
@@ -3852,8 +3852,8 @@
     },
     "TRE-03": {
       "status": "approved",
-      "note": "",
-      "changed": "2026-11-25T16:58:48",
+      "note": "Meshy previews kept coming out spiky (3 rolls); made in code from the oak (TRE-01/v3) scaled to 5 m with apples added by tools/props/build.py",
+      "changed": "2026-11-25T21:49:37",
       "title": "Apple Tree",
       "category": "Objects · Trees (TRE)",
       "section": "",

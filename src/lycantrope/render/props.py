@@ -108,7 +108,7 @@ class PropRenderer:
         for key, spec in self.catalog.items():
             path = MODELS / (key.replace("/", "_") + ".glb")
             if not path.exists():
-                print(f"props: {path.name} not built yet (python tools/props/build.py)")
+                print(f"props: {path.name} not built yet (run tools/props/build.py)")
                 continue
             v, f, uv, tex = load_prop(path)
             spec.extents = tuple(float(e) for e in v.max(axis=0) - v.min(axis=0))

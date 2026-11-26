@@ -1,8 +1,8 @@
-"""Render preview strips of a rigged, animated GLB: a few frames of every clip, textured.
+r"""Render preview strips of a rigged, animated GLB: a few frames of every clip, textured.
 
-    python tools/meshy/animsheet.py assets/meshy/previews/HER-09/v1/rig/animations_1.glb [more.glb]
-    python tools/meshy/animsheet.py HER-09                 # every rig/*.glb of that character's v1
-    python tools/meshy/animsheet.py HER-09 --variant 2 --frames 8 --gif
+    .venv\Scripts\python.exe tools/meshy/animsheet.py assets/meshy/previews/HER-09/v1/rig/animations_1.glb [more.glb]
+    .venv\Scripts\python.exe tools/meshy/animsheet.py HER-09                 # every rig/*.glb of that character's v1
+    .venv\Scripts\python.exe tools/meshy/animsheet.py HER-09 --variant 2 --frames 8 --gif
 
 Writes <folder>/sheets/<clip>.png (one row of frames, time left to right) and an
 overview.png with every clip stacked. --gif also writes an animated <clip>.gif.

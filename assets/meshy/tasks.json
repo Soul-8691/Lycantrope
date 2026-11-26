@@ -431,6 +431,30 @@
       "prompt": "market seller clothing worn by a plain smooth featureless grey mannequin with the build of a young adult woman, standing in A-pose: striped headscarf knotted at the back, sleeveless laced brown bodice over a linen blouse with rolled sleeves, full ankle-length mustard wool skirt, leather belt with a coin purse, leather shoes, empty hands, full body, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795657075.5743685,
       "credits": 20
+    },
+    "TRE-03/v1": {
+      "task_id": "01a215b4-f8fb-704b-b1e7-0c8b55f072d0",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "small orchard apple tree, short crooked trunk, round canopy with red apples, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795660513.780858,
+      "credits": 20
+    },
+    "TRE-03/v2": {
+      "task_id": "01a215b9-3615-713f-afa0-ed8b700d0428",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "small orchard apple tree, short sturdy crooked trunk splitting into a few low branches, wide rounded canopy of chunky green leaf clumps, a scattering of small round red apples among the leaves, no ground, no base, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795660791.068448,
+      "credits": 20
+    },
+    "TRE-03/v3": {
+      "task_id": "01a215bc-8fe5-723c-b18a-1cb617f3cc62",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "broad gnarled apple tree, short thick twisted trunk, wide rounded canopy of large chunky foliage clumps, small red fruit dotted over the foliage, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795661010.8623767,
+      "credits": 20
     }
   },
   "replaced": [
@@ -795,6 +819,12 @@
       "task_id": "01a21588-846d-756b-9212-2db2b74a6b63",
       "status": "SUCCEEDED",
       "created": 1795657598.1568224,
+      "credits": 10
+    },
+    "TRE-03/v1": {
+      "task_id": "01a215b7-0abe-7705-927c-41912009681c",
+      "status": "SUCCEEDED",
+      "created": 1795660647.2012565,
       "credits": 10
     }
   },

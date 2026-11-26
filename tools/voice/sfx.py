@@ -1,14 +1,14 @@
-"""Character and creature sound effects with the ElevenLabs Sound Effects API (AUD-05, AUD-06).
+r"""Character and creature sound effects with the ElevenLabs Sound Effects API (AUD-05, AUD-06).
 
 The sound list is tools/voice/sfx.json. Dry run is the default: it sends nothing and prints what
 would be made and the credit cost (40 credits per second per take, since every sound sets its
 length). Sending needs --send, and it also asks you to type the credit total.
 
-    python tools/voice/sfx.py                       # dry run: everything that's missing
-    python tools/voice/sfx.py wolf bear             # only these groups
-    python tools/voice/sfx.py wolf --sound howl     # one sound
-    python tools/voice/sfx.py --send                # generate (asks for the credit total)
-    python tools/voice/sfx.py wolf --redo --send    # regenerate even if the files exist
+    .venv\Scripts\python.exe tools/voice/sfx.py                       # dry run: everything that's missing
+    .venv\Scripts\python.exe tools/voice/sfx.py wolf bear             # only these groups
+    .venv\Scripts\python.exe tools/voice/sfx.py wolf --sound howl     # one sound
+    .venv\Scripts\python.exe tools/voice/sfx.py --send                # generate (asks for the credit total)
+    .venv\Scripts\python.exe tools/voice/sfx.py wolf --redo --send    # regenerate even if the files exist
 
 Files go to assets/audio/sfx/<group>/<sound>_<n>.mp3. assets/audio/sfx/manifest.json remembers the
 prompt each file was made from, so a sound is only made again when its prompt, length or settings

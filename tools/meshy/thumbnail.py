@@ -1,6 +1,6 @@
-"""Render a grey, shaded thumbnail PNG of a GLB (like Meshy's preview thumbnails).
+r"""Render a grey, shaded thumbnail PNG of a GLB (like Meshy's preview thumbnails).
 
-    python tools/meshy/thumbnail.py path/to/model.glb [more.glb ...] [--size 512]
+    .venv\Scripts\python.exe tools/meshy/thumbnail.py path/to/model.glb [more.glb ...] [--size 512]
 
 Writes <name>.png next to each GLB. Uses an offscreen moderngl context, so no window opens.
 """

@@ -359,16 +359,17 @@ class Enemy:
                 a.timer -= dt
                 a.speed = max(0.0, a.speed - 6 * dt)
                 if a.timer <= 0:
-                    for _ in range(24 if self.goal_ok is not None else 1):
+                    for k in range(48 if self.goal_ok is not None else 1):
                         ang = self.rng.uniform(0, math.tau)
-                        r = self.rng.uniform(0.3, 1.0) * ai.wander_m
+                        near = 0.15 if k >= 24 else 0.3              # later tries look closer to home
+                        r = self.rng.uniform(near, 1.0) * ai.wander_m
                         g = (self.home[0] + r * math.cos(ang), self.home[1] + r * math.sin(ang))
                         if self.goal_ok is None or self.goal_ok(a.x, a.z, *g):
                             self.goal = g
                             self.bumped = 0.0
                             break
                     else:
-                        a.timer = self.rng.uniform(1.0, 3.0)     # nowhere good right now: wait a bit
+                        a.timer = min(self.rng.uniform(1.0, 3.0), ai.pause_s[1])   # nowhere good: try again soon
             else:
                 arrived = self._move_to(*self.goal, sp["walk"], dt, turn) < 0.6
                 if arrived or self.bumped > 1.5:                 # there, or stuck behind something: stop

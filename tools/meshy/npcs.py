@@ -1,16 +1,16 @@
-"""Make the Watch guard (WLD-25) and the villager outfits (WLD-26: WLD-27..32) with Meshy.
+r"""Make the Watch guard (WLD-25) and the villager outfits (WLD-26: WLD-27..32) with Meshy.
 
 Two stages, each a dry run unless you add --send (batch.py then asks you to type the credit total):
 
-    python tools/meshy/npcs.py preview          # 7 previews (20 credits each)
-    python tools/meshy/npcs.py preview --send
-    python tools/meshy/npcs.py finish           # look at the thumbnails first, then: texture the
-    python tools/meshy/npcs.py finish --send    # outfits (10 each) and texture + rig the guard (15)
+    .venv\Scripts\python.exe tools/meshy/npcs.py preview          # 7 previews (20 credits each)
+    .venv\Scripts\python.exe tools/meshy/npcs.py preview --send
+    .venv\Scripts\python.exe tools/meshy/npcs.py finish           # look at the thumbnails first, then: texture the
+    .venv\Scripts\python.exe tools/meshy/npcs.py finish --send    # outfits (10 each) and texture + rig the guard (15)
 
 Prompts live in tools/meshy/characters.json. Only IDs approved in the tracker are sent; the
 script says which ones still need approving. Re-roll a preview you don't like with
-    python tools/meshy/batch.py preview WLD-29 --variants 2 --send
-and finish that one by hand with --variant 2. Afterwards: python tools/meshy/keep.py
+    .venv\Scripts\python.exe tools/meshy/batch.py preview WLD-29 --variants 2 --send
+and finish that one by hand with --variant 2. Afterwards: .venv\Scripts\python.exe tools/meshy/keep.py
 """
 from __future__ import annotations
 
@@ -61,7 +61,7 @@ def main() -> None:
     if GUARD in ok:
         run("animate", GUARD, *send)                     # texture + rig; animations come from Rowan
     if args.send:
-        print("\nNext: python tools/meshy/keep.py")
+        print("\nNext: .venv\\Scripts\\python.exe tools/meshy/keep.py")
 
 
 if __name__ == "__main__":
