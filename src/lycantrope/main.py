@@ -421,18 +421,32 @@ class App:
         else:
             lines.append(f"FLY {self.base_speed:.0f} m/s   x {p.x:7.1f}  z {p.z:7.1f}  y {p.y:6.1f}   (north = -z)")
         lines += [
-            f"characters {self.chars.drawn} drawn of {sum(counts.values())}  "
-            + "  ".join(f"{k} {v}" for k, v in counts.items()),
+            f"characters {self.chars.drawn} drawn of {sum(counts.values())}   " + self.count_summary(counts),
             f"terrain {st.triangles / 1000:.0f}k tris   props {self.props.drawn}/{self.props.count}",
         ]
         if self.play:
-            lines += ["WASD move  Shift sprint  Ctrl walk  T turbo  LMB attack  RMB block  R heavy  Q cast",
-                      "Space jump  F sheathe  H hit  K die/revive  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices  Ctrl+Up/Down zoom  Esc mouse",
-                      "F2 fog  F3 hide overlay  F4 fly"]
+            lines += ["WASD move  Shift sprint  Ctrl walk  Space jump  T turbo  Ctrl+Up/Down zoom",
+                      "LMB attack  RMB block  R heavy  Q cast  F sheathe  H hit  K die/revive  Esc mouse",
+                      "F2 fog  F3 overlay  F4 fly  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices"]
         else:
             lines += ["WASD QE fly  Shift/Ctrl speed  T turbo  wheel base speed  Ctrl+Up/Down zoom  F4 back to Rowan",
                       "F1 wire  F2 fog  F3 hide overlay  F5 shaders  F6 debug  F9 music  F10 sfx  F11 voices  F12 shot"]
         return lines
+
+    def count_summary(self, counts: dict[str, int]) -> str:
+        """Short totals for the overlay: enemies, townsfolk and animals (the full list got too wide)."""
+        groups = {"enemies": 0, "townsfolk": 0, "animals": 0}
+        for kind, n in counts.items():
+            t = self.chars.types.get(kind)
+            if kind == "rowan":
+                continue
+            if t is not None and t.ai is not None and t.ai.aggro_m > 0:
+                groups["enemies"] += n
+            elif t is not None and t.skel is not None and "Hips" in t.skel.names:
+                groups["townsfolk"] += n                     # people (biped rigs) who don't attack
+            else:
+                groups["animals"] += n
+        return "   ".join(f"{k} {v}" for k, v in groups.items())
 
     def sound_flags(self) -> str:
         """What's switched off, for the overlay's top line."""

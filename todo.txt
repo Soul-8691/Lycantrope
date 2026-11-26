@@ -8,7 +8,6 @@ Helpful:
 To-Do:
 Talk (A press)
 Voice lines
-Mouths
 Dialogue
 Choices
 Plot
