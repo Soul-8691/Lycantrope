@@ -7,7 +7,6 @@ Helpful:
 
 To-Do:
 Better NPC system
-Approve more monster types
 Add more monsters
 - Lovecraft monsters
 - Goblin spellcasters
@@ -35,12 +34,12 @@ NPC fights
 Guard protect AI
 Player inventory
 Equip
-Beginning plot
 Shop inventory
 Shop
 
 Later:
 Remap the starting area/nearby
+Beginning plot
 Greetings
 Upgrade
 Forge
