@@ -181,7 +181,7 @@ class SfxDirector:
             started = clip != t.clip or time < t.time - 1e-6
             if started and clip in CLIP_EVENTS and audible:
                 ev = CLIP_EVENTS[clip]
-                self.emit(a.kind, ev, pos, out, ground, positional)
+                self.emit(a.kind, ev, pos, out, ground, positional, getattr(c, "voice", None), id(a))
                 if is_rowan and ev in ("light", "heavy", "cast"):
                     rowan_moves.append(ev)
             # footfalls: crossing each step point of the walk/run cycle
@@ -222,7 +222,7 @@ class SfxDirector:
             if a.state == "chase" and t.state in ALERT_FROM and self.now >= t.alert_ok_at:
                 t.alert_ok_at = self.now + ALERT_COOLDOWN_S
                 if audible:
-                    self.emit(a.kind, "alert", pos, out, ground, positional)
+                    self.emit(a.kind, "alert", pos, out, ground, positional, getattr(c, "voice", None), id(a))
             # a caster's spell leaves the hand
             b = getattr(c, "brain", None)
             if b is not None:
@@ -235,7 +235,7 @@ class SfxDirector:
                 if t.idle_in <= 0:
                     t.idle_in = self._idle_wait(spec)
                     if near2 < (0.8 * max_m) ** 2:
-                        self.emit(a.kind, "idle", pos, out, ground, positional)
+                        self.emit(a.kind, "idle", pos, out, ground, positional, getattr(c, "voice", None), id(a))
             # walking up to an NPC: a greeting in its own voice, now and then
             voice = getattr(c, "voice", None)
             if voice and rowan is not None and not is_rowan and "greet" in spec.get("events", {}):

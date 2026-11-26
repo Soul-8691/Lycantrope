@@ -4,7 +4,8 @@
     "these alongside OBJECTS.md and friends, and still only sends approved IDs.",
     "rig: 'biped' or 'quadruped' (Meshy rigs both). pose: 'a-pose' helps biped rigging.",
     "height_m: rig height. actions: Meshy animation library IDs (GET /openapi/v1/animations/library);",
-    "rigging also returns basic walking and running clips for free."
+    "rigging also returns basic walking and running clips for free.",
+    "variant_prompts: a different prompt for each variant (v1, v2, ...), for looks that differ more than a re-roll."
   ],
   "characters": {
     "HER-09": {
@@ -224,6 +225,18 @@
       "rig": "biped",
       "pose": "a-pose",
       "height_m": 1.64
+    },
+    "ENM-04": {
+      "name": "Bandit Brigand",
+      "prompt": "lean, wiry road bandit in his thirties, scarred unshaven face, dark hood and a ragged brown cloak, patched leather jerkin over a grimy linen shirt, mismatched leather bracers, belt with pouches, torn breeches, worn boots, empty hands, full body, standing in A-pose",
+      "variant_prompts": [
+        "lean, wiry road bandit in his thirties, scarred unshaven face, dark hood and a ragged brown cloak, patched leather jerkin over a grimy linen shirt, mismatched leather bracers, belt with pouches, torn breeches, worn boots, empty hands, full body, standing in A-pose",
+        "stocky road bandit in his forties, shaved head and a thick red beard, a stolen rusty chainmail shirt under a faded red tabard with the badge torn off, fur-trimmed leather pauldron on one shoulder, studded leather gloves, heavy belt, patched trousers, scuffed boots, empty hands, full body, standing in A-pose"
+      ],
+      "tris": 12000,
+      "rig": "biped",
+      "pose": "a-pose",
+      "height_m": 1.78
     }
   }
 }

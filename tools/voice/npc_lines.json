@@ -7,7 +7,8 @@
     "Events: greet (Rowan walks up), rumour (sometimes said instead of a greeting: points at a side",
     "quest), startled (Rowan swings or casts close by), sword_drawn (instead of greet when his sword is out).",
     "These are the 'before' lines (the prologue, NPC-01); the after-the-burying-ground and mending sets come later.",
-    "Townsfolk never name the Dreamlands (dialogue/bible.md). Keep lines short."
+    "Townsfolk never name the Dreamlands (dialogue/bible.md). Keep lines short.",
+    "Enemy barks (AUD-03) use the same file: alert (spots Rowan), idle, attack, hit (pain), death."
   ],
   "model_id": "eleven_multilingual_v2",
   "voice_settings": {
@@ -314,6 +315,67 @@
         ],
         "startled": [
           "Try that again and you'll spend the night in the stocks."
+        ]
+      }
+    },
+    "bandit": {
+      "who": "ENM-04 Bandit Brigands on the roads (both variants)",
+      "voices": [
+        "bandit_1",
+        "bandit_2"
+      ],
+      "lines": {
+        "alert": [
+          "Nice scarf. I'll take it.",
+          "Well, well. Toll's gone up, farm boy.",
+          "That's a fine sword for a farmhand. Hand it over.",
+          "Oi! Fresh one on the road!"
+        ],
+        "idle": [
+          "Quiet road today. Too quiet for my purse.",
+          "If the Watch comes sniffing, we were never here."
+        ],
+        "attack": [
+          "Hah!",
+          "Take that!",
+          "Stand still!",
+          "Come on, then!"
+        ],
+        "hit": [
+          "Argh! You'll pay for that!",
+          "Ugh!",
+          "Lucky blow!"
+        ],
+        "death": [
+          "Should've... stayed off the road...",
+          "Not... like this..."
+        ]
+      }
+    },
+    "bruiser": {
+      "who": "MON-10 Bandit Bruiser, the gang's muscle",
+      "voices": [
+        "bruiser"
+      ],
+      "lines": {
+        "alert": [
+          "I'll flatten you, hero!",
+          "Fresh meat!",
+          "Another little farm boy. I'll snap you in two."
+        ],
+        "attack": [
+          "Smash!",
+          "Hold still!"
+        ],
+        "idle": [
+          "Bored. Somebody come and get flattened."
+        ],
+        "hit": [
+          "That tickled.",
+          "Is that all you've got?"
+        ],
+        "death": [
+          "Too... big... to fall..."
         ]
       }
     }

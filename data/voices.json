@@ -62,6 +62,24 @@
       "for": "NPC-09 / WLD-38 Granny Maud Pickering, the market seller",
       "description": "A lively market woman in her early fifties, quick-witted and warm, who knows everyone's business. Bright, slightly husky mezzo voice with a soft rural West Country English accent, brisk and chatty, dropping to a conspiratorial murmur for gossip. Close-mic, dry studio recording, no background noise.",
       "kept": "2026-11-26"
+    },
+    "bandit_1": {
+      "voice_id": "dyCxbo1sL5FGSyLSlWJ6",
+      "for": "ENM-04 Bandit Brigand v1 (lean, hooded)",
+      "description": "A lean, wiry road bandit in his thirties. Sly, raspy tenor voice with a rough rural English accent, mocking and quick, with a sneer in every word. Close-mic, dry studio recording, no background noise.",
+      "kept": "2026-11-26"
+    },
+    "bandit_2": {
+      "voice_id": "2trvLoEhosKeBHpbMlZF",
+      "for": "ENM-04 Bandit Brigand v2 (stocky, red beard)",
+      "description": "A big, stocky bandit in his forties. Deep, rough, booming voice with a coarse northern English accent, slow and menacing, clearly enjoying himself. Close-mic, dry studio recording, no background noise.",
+      "kept": "2026-11-26"
+    },
+    "bruiser": {
+      "voice_id": "U3K9GXxB6aKPQ3CgrSvH",
+      "for": "MON-10 Bandit Bruiser",
+      "description": "A huge, hulking bandit enforcer in his late thirties. Very deep, slow, gravelly bass voice with a thick northern English accent, dim but menacing, chuckling at his own threats. Close-mic, dry studio recording, no background noise.",
+      "kept": "2026-11-26"
     }
   }
 }

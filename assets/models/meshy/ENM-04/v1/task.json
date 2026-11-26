@@ -1,0 +1,45 @@
+{
+  "id": "01a2188b-c5ea-75d7-baab-9ffcaa31da2d",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 4073355764,
+  "prompt": "lean, wiry road bandit in his thirties, scarred unshaven face, dark hood and a ragged brown cloak, patched leather jerkin over a grimy linen shirt, mismatched leather bracers, belt with pouches, torn breeches, worn boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795708145398,
+  "progress": 100,
+  "started_at": 1795708145416,
+  "finished_at": 1795708210043,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188b-c5ea-75d7-baab-9ffcaa31da2d/output/model.glb?Expires=4949251200&Signature=L6m3PrI-3EyrRnl647lITd6O9VWDH50c1B7QYJRmwpV3yG6IOmmyAa2I5RFByTImtGCqyJpl1UOs0mFCTW8vsJL1TnSn14DhxcMqkJkmMKWqUOcmLggSk-v1yP-5roWx2blRUn9Zm1HiVJErIbZkmQYVy6ABqpJRdLTRCeD1K4Mq89B02zgk8Gu-XuDSzaoP0EIqjXQsiFsvKXehI3RVapsI6RSR-Eo-OP72bSiPU-2YXDDzqmJVKK1MuMT5TS4Wc-3urAWTfdE-2NT18apUvV4a5AHvdcPAHBVEeF49yX9mvv1h7NnMHutSRFWqtfSmAwIrp6Ku2W3bzYXDSrRuuA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188b-c5ea-75d7-baab-9ffcaa31da2d/output/preview.png?Expires=4949251200&Signature=dwSz5cJBl8poRqYZWiY~ZHjuLOmpZihRy0dsqG-glsjLk7VoNXQAdmr7gLQ-TWPf4QJVWx~DsqjBdjmBJ~u5OAMp9~qN4Oh6W6lz1p1Nho1ZbyHSrZ1DmIEF-DaHmA78mlD6qwu3CqUbO~6aXBAMTje06tSb3diV~omJs~WzAsPvXitDv5xlXTZBwh0xggNjB2NPFl-u~heNp~qOjhjWIm0csIvbXoElTO-Ixb-Occ0iXBxQDhgqmghcKdHrQDZ0RZDULQf2IMOCvdS5SgK1X6NQWyOHmhBUoyrxjG~PDXjlf7OMuh3XK~t-jSO7wj-sJaZzpyDLyIkvei5qCIvtzA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "lean, wiry road bandit in his thirties, scarred unshaven face, dark hood and a ragged brown cloak, patched leather jerkin over a grimy linen shirt, mismatched leather bracers, belt with pouches, torn breeches, worn boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 4073355764,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188b-c5ea-75d7-baab-9ffcaa31da2d/output/model.glb?Expires=4949251200&Signature=L6m3PrI-3EyrRnl647lITd6O9VWDH50c1B7QYJRmwpV3yG6IOmmyAa2I5RFByTImtGCqyJpl1UOs0mFCTW8vsJL1TnSn14DhxcMqkJkmMKWqUOcmLggSk-v1yP-5roWx2blRUn9Zm1HiVJErIbZkmQYVy6ABqpJRdLTRCeD1K4Mq89B02zgk8Gu-XuDSzaoP0EIqjXQsiFsvKXehI3RVapsI6RSR-Eo-OP72bSiPU-2YXDDzqmJVKK1MuMT5TS4Wc-3urAWTfdE-2NT18apUvV4a5AHvdcPAHBVEeF49yX9mvv1h7NnMHutSRFWqtfSmAwIrp6Ku2W3bzYXDSrRuuA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188b-c5ea-75d7-baab-9ffcaa31da2d/output/preview.png?Expires=4949251200&Signature=dwSz5cJBl8poRqYZWiY~ZHjuLOmpZihRy0dsqG-glsjLk7VoNXQAdmr7gLQ-TWPf4QJVWx~DsqjBdjmBJ~u5OAMp9~qN4Oh6W6lz1p1Nho1ZbyHSrZ1DmIEF-DaHmA78mlD6qwu3CqUbO~6aXBAMTje06tSb3diV~omJs~WzAsPvXitDv5xlXTZBwh0xggNjB2NPFl-u~heNp~qOjhjWIm0csIvbXoElTO-Ixb-Occ0iXBxQDhgqmghcKdHrQDZ0RZDULQf2IMOCvdS5SgK1X6NQWyOHmhBUoyrxjG~PDXjlf7OMuh3XK~t-jSO7wj-sJaZzpyDLyIkvei5qCIvtzA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

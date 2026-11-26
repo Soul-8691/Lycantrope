@@ -348,7 +348,149 @@
       },
       "equipment": {
         "right_hand": "TWO-08"
-      }
+      },
+      "voices": [
+        "bruiser"
+      ],
+      "lines": "bruiser"
+    },
+    "bandit_lean": {
+      "name": "Bandit Brigand (ENM-04 v1)",
+      "rig": "ENM-04/v1/rig/rigged.glb",
+      "clips": {
+        "idle": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Idle",
+          "loop": true,
+          "retarget": true
+        },
+        "walk": {
+          "file": "ENM-04/v1/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 1.4
+        },
+        "run": {
+          "file": "ENM-04/v1/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 4.4
+        },
+        "attack1": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Right_Hand_Sword_Slash",
+          "speed": 1.15,
+          "retarget": true
+        },
+        "attack2": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Thrust_Slash",
+          "speed": 1.3,
+          "retarget": true
+        },
+        "hit": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Hit_Reaction",
+          "speed": 1.1,
+          "retarget": true
+        },
+        "death": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "dying_backwards",
+          "retarget": true
+        }
+      },
+      "speeds": {
+        "walk": 1.35,
+        "run": 4.6
+      },
+      "ai": {
+        "aggro_m": 16,
+        "leash_m": 40,
+        "reach_m": 1.6,
+        "attack_every_s": [
+          1.3,
+          2.4
+        ],
+        "wander_m": 10
+      },
+      "equipment": {
+        "right_hand": "ONE-05",
+        "left_hand": "SHD-04"
+      },
+      "voices": [
+        "bandit_1"
+      ],
+      "lines": "bandit"
+    },
+    "bandit_stocky": {
+      "name": "Bandit Brigand (ENM-04 v2)",
+      "rig": "ENM-04/v2/rig/rigged.glb",
+      "clips": {
+        "idle": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Idle",
+          "loop": true,
+          "retarget": true
+        },
+        "walk": {
+          "file": "ENM-04/v2/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 1.4
+        },
+        "run": {
+          "file": "ENM-04/v2/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 4.4
+        },
+        "attack1": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Right_Hand_Sword_Slash",
+          "speed": 1.15,
+          "retarget": true
+        },
+        "attack2": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Thrust_Slash",
+          "speed": 1.3,
+          "retarget": true
+        },
+        "hit": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Hit_Reaction",
+          "speed": 1.1,
+          "retarget": true
+        },
+        "death": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "dying_backwards",
+          "retarget": true
+        }
+      },
+      "speeds": {
+        "walk": 1.25,
+        "run": 4.3
+      },
+      "ai": {
+        "aggro_m": 16,
+        "leash_m": 40,
+        "reach_m": 1.6,
+        "attack_every_s": [
+          1.6,
+          2.8
+        ],
+        "wander_m": 10
+      },
+      "equipment": {
+        "right_hand": "ONE-05",
+        "left_hand": "SHD-04"
+      },
+      "voices": [
+        "bandit_2"
+      ],
+      "lines": "bandit"
     },
     "battlemage": {
       "name": "Battlemage",
@@ -1182,6 +1324,31 @@
       "height_m": 0.85,
       "hold": "shield",
       "off_arm_m": 0.07
+    },
+    "ONE-05": {
+      "name": "Bandit's Cutlass",
+      "model": "ONE-05/v1/textured/model.glb",
+      "length_m": 0.82,
+      "tip": "+y",
+      "grip_from_end": 0.13,
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "end_color": [
+        1,
+        1,
+        1
+      ],
+      "end_fraction": 0.0
+    },
+    "SHD-04": {
+      "name": "Spiked Bandit Targe",
+      "model": "SHD-04/v1/textured/model.glb",
+      "height_m": 0.55,
+      "hold": "shield",
+      "off_arm_m": 0.08
     }
   },
   "armor": {

@@ -6,6 +6,9 @@ Helpful:
 .venv\Scripts\python.exe tools\props\build.py VIL-10 VIL-04
 
 To-Do:
+Better NPC system
+Approve more monster types
+Add more monsters
 Talk (A press)
 Dialogue/voice lines
 Choices
@@ -32,7 +35,6 @@ Shop inventory
 Shop
 
 Later:
-Bandit brigands
 Remap the starting area/nearby
 Greetings
 Upgrade

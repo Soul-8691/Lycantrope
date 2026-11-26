@@ -37,7 +37,7 @@ SWIM_IN, SWIM_OUT = 1.2, 1.0   # Rowan starts swimming deeper than this, wades a
 STATIC_CLIPS = {"idle": ClipInfo(1.0, True), "walk": ClipInfo(1.0, True), "run": ClipInfo(1.0, True),
                 "alert": ClipInfo(1.0, True), "attack1": ClipInfo(0.9, False), "attack2": ClipInfo(0.9, False),
                 "hit": ClipInfo(0.5, False), "death": ClipInfo(1.0, False)}
-RADIUS = {"guard": 0.4, "shepherd": 0.38, "smith_hand": 0.42, "merchant": 0.38, "dairymaid": 0.33,
+RADIUS = {"bandit_lean": 0.38, "bandit_stocky": 0.45, "guard": 0.4, "shepherd": 0.38, "smith_hand": 0.42, "merchant": 0.38, "dairymaid": 0.33,
           "weaver": 0.35, "seller": 0.35, "rowan": 0.4, "goblin": 0.35, "wolf": 0.5, "bear": 0.9, "bruiser": 0.55, "battlemage": 0.4, "cow": 0.8, "villager_m": 0.35, "villager_f": 0.33, "farmer": 0.38}
 
 
@@ -293,6 +293,8 @@ def add_jaw(t: "CharType", body: MeshData, skel: Skeleton) -> None:
     top = bind[skel.joint_index("head_end")][:3, 3] if "head_end" in skel.names else head_p + [0, 0.28, 0]
     face = bind[skel.joint_index("headfront")][:3, 3] if "headfront" in skel.names else head_p + [0, 0, 0.1]
     H = float(top[1] - head_p[1])
+    if H < 0.15:                                                   # a misplaced head-top marker: use the mesh
+        H = float(hp[:, 1].max() - head_p[1])
     zc, zf = float(head_p[2]), float(max(face[2], head_p[2] + 0.05))
     mouth = head_p[1] + 0.33 * H                                   # mouth line, a third of the way up
     below = np.clip((mouth - pw[:, 1]) / (0.1 * H), 0.0, 1.0)      # full below the mouth, fading above it

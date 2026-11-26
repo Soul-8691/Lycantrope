@@ -1,0 +1,44 @@
+{
+  "id": "01a2187d-2d4a-7106-901e-50f9f455aa8e",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 3744315629,
+  "prompt": "small patch of wildflowers, poppies, cornflowers and daisies, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795707188196,
+  "progress": 100,
+  "started_at": 1795707188205,
+  "finished_at": 1795707295234,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-2d4a-7106-901e-50f9f455aa8e/output/model.glb?Expires=4949251200&Signature=Osi2zuUYZaUhNJyVce~Z1f8UkZwrK95lY8ersOImWVP3zK8ljsw~NNQ32jWdy~ejAEbm~Ci4zRvXBjzmht0qAYShP9IaeFX2cSccH0YL4sgytEUBKTACb6azrYbvZUv0TkM6yiwXAU59cfwzPl7mXdw3ueTKmhRfFbxqfbTxzMJwdIPYQPVnbRlgdN9ZGo2teyQynNdkAYp3s9H5mLgNF4fcHxwdBFDPvyhk9LwmgLwcmSHruw4JYGakQf1Vo5Wnt1ohvyqbhwca8V7i9bI1oY0YR51v-uQp2fRK03Cvfn0Xm9sfzgejWGdqBPZunHeUqM~trA~Xxxz46uzNB8xs7w__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-2d4a-7106-901e-50f9f455aa8e/output/preview.png?Expires=4949251200&Signature=nK5r8i00xZs4SiXVxmgf9-LtOg060jZ~f4frB1QyX-f5E~xmY735D5iZ~Ub~IhH4KL8Bhc-uPLyZ7ZAGGVXH~1rWgF2HbGD~2UnWQihNMPXOp7QV~1zYqHbwPejgDd9Ic~r4yqNkHktpqexlri2CGMUk5UxGbw665-ZAaOMAuhLMYZ4SYzo2jw5eWdLY7DMGLqEVmWn8rtzLX~J8cStPAoQbDNxXRH~UKOnrY1EU1GeO~NVrMOX8~7D~9P8sv7FhUGJoWoZXRZYCOuEkY8XXBUHZfopP5PYfy9fF0MBUr5bVgf3wS55OjLkCTSEJGJkc7IRVBCzVOitqZfG7Ovb0Gw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "small patch of wildflowers, poppies, cornflowers and daisies, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 3744315629,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-2d4a-7106-901e-50f9f455aa8e/output/model.glb?Expires=4949251200&Signature=Osi2zuUYZaUhNJyVce~Z1f8UkZwrK95lY8ersOImWVP3zK8ljsw~NNQ32jWdy~ejAEbm~Ci4zRvXBjzmht0qAYShP9IaeFX2cSccH0YL4sgytEUBKTACb6azrYbvZUv0TkM6yiwXAU59cfwzPl7mXdw3ueTKmhRfFbxqfbTxzMJwdIPYQPVnbRlgdN9ZGo2teyQynNdkAYp3s9H5mLgNF4fcHxwdBFDPvyhk9LwmgLwcmSHruw4JYGakQf1Vo5Wnt1ohvyqbhwca8V7i9bI1oY0YR51v-uQp2fRK03Cvfn0Xm9sfzgejWGdqBPZunHeUqM~trA~Xxxz46uzNB8xs7w__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-2d4a-7106-901e-50f9f455aa8e/output/preview.png?Expires=4949251200&Signature=nK5r8i00xZs4SiXVxmgf9-LtOg060jZ~f4frB1QyX-f5E~xmY735D5iZ~Ub~IhH4KL8Bhc-uPLyZ7ZAGGVXH~1rWgF2HbGD~2UnWQihNMPXOp7QV~1zYqHbwPejgDd9Ic~r4yqNkHktpqexlri2CGMUk5UxGbw665-ZAaOMAuhLMYZ4SYzo2jw5eWdLY7DMGLqEVmWn8rtzLX~J8cStPAoQbDNxXRH~UKOnrY1EU1GeO~NVrMOX8~7D~9P8sv7FhUGJoWoZXRZYCOuEkY8XXBUHZfopP5PYfy9fF0MBUr5bVgf3wS55OjLkCTSEJGJkc7IRVBCzVOitqZfG7Ovb0Gw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

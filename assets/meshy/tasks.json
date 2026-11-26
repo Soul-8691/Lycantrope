@@ -551,6 +551,38 @@
       "prompt": "clump of tall reeds and cattails, marsh plants, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795707192.8444564,
       "credits": 20
+    },
+    "ENM-04/v1": {
+      "task_id": "01a2188b-c5ea-75d7-baab-9ffcaa31da2d",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "lean, wiry road bandit in his thirties, scarred unshaven face, dark hood and a ragged brown cloak, patched leather jerkin over a grimy linen shirt, mismatched leather bracers, belt with pouches, torn breeches, worn boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795708145.475506,
+      "credits": 20
+    },
+    "ENM-04/v2": {
+      "task_id": "01a2188b-d071-72fd-8d64-0f09ff30f275",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "stocky road bandit in his forties, shaved head and a thick red beard, a stolen rusty chainmail shirt under a faded red tabard with the badge torn off, fur-trimmed leather pauldron on one shoulder, studded leather gloves, heavy belt, patched trousers, scuffed boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795708148.1301072,
+      "credits": 20
+    },
+    "ONE-05/v1": {
+      "task_id": "01a2188e-1797-725b-b036-cb12cea1aabe",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "curved notched cutlass sword, brass knuckle guard, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795708297.0131736,
+      "credits": 5
+    },
+    "SHD-04/v1": {
+      "task_id": "01a2188e-20f4-77dc-b82d-4f0c370e36ea",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "small round leather targe shield with a long central iron spike, studs, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795708299.1756027,
+      "credits": 5
     }
   },
   "replaced": [
@@ -970,6 +1002,30 @@
       "status": "SUCCEEDED",
       "created": 1795703634.1009462,
       "credits": 10
+    },
+    "ENM-04/v1": {
+      "task_id": "01a2188e-ceed-7179-b0de-689adf85d4da",
+      "status": "SUCCEEDED",
+      "created": 1795708342.1711266,
+      "credits": 10
+    },
+    "ENM-04/v2": {
+      "task_id": "01a21890-6740-7228-885e-83d2438a24a5",
+      "status": "SUCCEEDED",
+      "created": 1795708446.6484973,
+      "credits": 10
+    },
+    "ONE-05/v1": {
+      "task_id": "01a21891-fe84-73f0-8946-edcbedab1bbb",
+      "status": "SUCCEEDED",
+      "created": 1795708550.876897,
+      "credits": 10
+    },
+    "SHD-04/v1": {
+      "task_id": "01a21893-316b-7089-8f0a-df6736869503",
+      "status": "SUCCEEDED",
+      "created": 1795708629.4635887,
+      "credits": 10
     }
   },
   "rigs": {
@@ -1079,6 +1135,18 @@
       "task_id": "01a215de-381a-735d-86f0-01b64ce050ad",
       "status": "SUCCEEDED",
       "created": 1795663219.0032954,
+      "credits": 5
+    },
+    "ENM-04/v1": {
+      "task_id": "01a2188f-2d4c-74b0-b920-ff32e5576e33",
+      "status": "SUCCEEDED",
+      "created": 1795708370.0357041,
+      "credits": 5
+    },
+    "ENM-04/v2": {
+      "task_id": "01a21890-eb20-7010-a709-69eaec63508f",
+      "status": "SUCCEEDED",
+      "created": 1795708484.6125598,
       "credits": 5
     }
   },

@@ -242,4 +242,4 @@ def test_every_speaking_npc_has_lines_in_its_own_voice():
         assert role in lines, (g["name"], role)
         for v in spec["voices"]:
             assert v in lines[role]["voices"], (g["name"], role, v)
-        assert lines[role]["lines"].get("greet"), role
+        assert lines[role]["lines"].get("greet") or lines[role]["lines"].get("alert"), role   # townsfolk / enemies

@@ -1,0 +1,44 @@
+{
+  "id": "01a2187d-3de5-7595-8bb7-1cdbe121e855",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 821823128,
+  "prompt": "clump of tall reeds and cattails, marsh plants, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795707192768,
+  "progress": 100,
+  "started_at": 1795707192778,
+  "finished_at": 1795707303649,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-3de5-7595-8bb7-1cdbe121e855/output/model.glb?Expires=4949251200&Signature=iCyWF6Y7bqHGJlCx3pcGGu3nkuHhMhCPdOwQu2AAndbpC9KCArhrnz0fXY8didBa6avZZe9~4UpGgMr93XSRLqmVQxa~kaMUBgNAcKWQSdA8DTQDzUVu179qDZ6vr41dW~6isVVgCoX3JYeCvaP43UW0k7lr-UyprGCZyPHqMC6XfwfOSj5Bb1cNwzssrcnveRzxJPLZ3CEH~ECtasX4oWvDH5TO-d6WUg4yJGoaP1dVsPGTnHW-yD71heDhZu~dgOsYGotPAKkHH1GFWHuLpsjijf4JINMiusiRPSRIHv7-dquIVmRxLMiVsUgA9O-gdp6M8-df1RqifYEkT7FbSg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-3de5-7595-8bb7-1cdbe121e855/output/preview.png?Expires=4949251200&Signature=oMrUSeFXC3lmpdROF4Q19xJt5bBJ05EPjaBpuRG8ybCNSfJ820pFBA7TiFH8g9RBmdCYxJnKvZXb76Acvl2l~IfGLAuGGI6iylK5Y8c9VoPn-~cAE7aXzFmJww435UAQ3jloaQLtxbRriJH-eId~~XwJDyULwIZCYBZoc6q8Raqma0adw2tpymu6rkCY8DsihwmW0O7vxznM0t9KDx0Oe6n9Y4j52oRBsv4pfqdayAIubUm4MV6SLjGGMxfnjCXPUtIN1zySGSHyWGwdLwWPjzbuVsvKMuunF1V2HFpPSRAOFBMFBi9wmQ0bv04UXgpqD0bwBjVad15Q4o~Irgwy7w__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "clump of tall reeds and cattails, marsh plants, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 821823128,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-3de5-7595-8bb7-1cdbe121e855/output/model.glb?Expires=4949251200&Signature=iCyWF6Y7bqHGJlCx3pcGGu3nkuHhMhCPdOwQu2AAndbpC9KCArhrnz0fXY8didBa6avZZe9~4UpGgMr93XSRLqmVQxa~kaMUBgNAcKWQSdA8DTQDzUVu179qDZ6vr41dW~6isVVgCoX3JYeCvaP43UW0k7lr-UyprGCZyPHqMC6XfwfOSj5Bb1cNwzssrcnveRzxJPLZ3CEH~ECtasX4oWvDH5TO-d6WUg4yJGoaP1dVsPGTnHW-yD71heDhZu~dgOsYGotPAKkHH1GFWHuLpsjijf4JINMiusiRPSRIHv7-dquIVmRxLMiVsUgA9O-gdp6M8-df1RqifYEkT7FbSg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-3de5-7595-8bb7-1cdbe121e855/output/preview.png?Expires=4949251200&Signature=oMrUSeFXC3lmpdROF4Q19xJt5bBJ05EPjaBpuRG8ybCNSfJ820pFBA7TiFH8g9RBmdCYxJnKvZXb76Acvl2l~IfGLAuGGI6iylK5Y8c9VoPn-~cAE7aXzFmJww435UAQ3jloaQLtxbRriJH-eId~~XwJDyULwIZCYBZoc6q8Raqma0adw2tpymu6rkCY8DsihwmW0O7vxznM0t9KDx0Oe6n9Y4j52oRBsv4pfqdayAIubUm4MV6SLjGGMxfnjCXPUtIN1zySGSHyWGwdLwWPjzbuVsvKMuunF1V2HFpPSRAOFBMFBi9wmQ0bv04UXgpqD0bwBjVad15Q4o~Irgwy7w__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

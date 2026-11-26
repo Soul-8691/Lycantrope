@@ -65,9 +65,13 @@ class Entry:
     rig: str | None = None              # characters: "biped" / "quadruped"
     height: float | None = None         # rig height in meters
     actions: dict[int, str] | None = None   # animation library ID -> what it's for
+    variant_prompts: list[str] | None = None   # characters: a different prompt for v1, v2, ... (else the same)
 
-    def full_prompt(self, part: str = "") -> str:
-        return f"{self.prompts[part].rstrip('. ')}, {STYLE}"
+    def full_prompt(self, part: str = "", v: int | None = None) -> str:
+        text = self.prompts[part]
+        if not part and v and self.variant_prompts and v <= len(self.variant_prompts):
+            text = self.variant_prompts[v - 1]
+        return f"{text.rstrip('. ')}, {STYLE}"
 
 
 def job_key(e: Entry, part: str, v: int) -> str:
@@ -99,7 +103,8 @@ def parse_entries() -> dict[str, Entry]:
         for cid, c in chars.items():
             entries[cid] = Entry(cid, c["name"], {"": c["prompt"]}, int(c.get("variants", 1)),
                                  c.get("tris"), CHARACTERS_JSON.name, c.get("pose"), c.get("rig"),
-                                 c.get("height_m"), {int(k): v for k, v in c.get("actions", {}).items()})
+                                 c.get("height_m"), {int(k): v for k, v in c.get("actions", {}).items()},
+                                 c.get("variant_prompts"))
     return entries
 
 
@@ -201,8 +206,8 @@ def polycount(e: Entry) -> int:
     return max(PREVIEW_MIN_TRIS, min(e.tris or PREVIEW_MIN_TRIS, 300000))
 
 
-def request_body(e: Entry, part: str, model: str, full_detail: bool = False) -> dict:
-    body = {"mode": "preview", "prompt": e.full_prompt(part), "ai_model": model,
+def request_body(e: Entry, part: str, model: str, full_detail: bool = False, v: int | None = None) -> dict:
+    body = {"mode": "preview", "prompt": e.full_prompt(part, v), "ai_model": model,
             "target_formats": ["glb"]}
     if model.startswith("meshy-t"):
         # Smart Topology models build a clean low-poly mesh directly (t2: up to 15k, t2.5: 30k)
@@ -229,12 +234,12 @@ def send(jobs, model: str, total: int, full_detail: bool = False) -> None:
     pending: dict[str, str] = {}
     for e, part, v in jobs:
         key = job_key(e, part, v)
-        task_id = submit(API, request_body(e, part, model, full_detail), headers)
+        task_id = submit(API, request_body(e, part, model, full_detail, v), headers)
         pending[key] = task_id
         if key in tasks["previews"]:     # a re-roll: keep the old task so its credits still count
             tasks.setdefault("replaced", []).append({"key": key, **tasks["previews"][key]})
         tasks["previews"][key] = {"task_id": task_id, "status": "PENDING", "model": model,
-                                  "prompt": e.full_prompt(part), "created": time.time()}
+                                  "prompt": e.full_prompt(part, v), "created": time.time()}
         save_tasks(tasks)
         print(f"  sent {key} -> {task_id}")
 
@@ -752,9 +757,8 @@ def main() -> None:
     total = print_plan(jobs, args.model)
     if args.show_prompts:
         print()
-        shown = {(e.id, part): e for e, part, _ in jobs}
-        for (i, part), e in shown.items():
-            print(f"  {i}{'/' + part if part else ''}: {e.full_prompt(part)}")
+        for e, part, v in jobs:
+            print(f"  {job_key(e, part, v)}: {e.full_prompt(part, v)}")
     if args.send:
         send(jobs, args.model, total, args.full_detail)
     else:

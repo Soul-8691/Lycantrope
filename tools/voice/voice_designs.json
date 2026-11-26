@@ -56,6 +56,21 @@
       "for": "NPC-09 / WLD-38 Granny Maud Pickering, the market seller",
       "description": "A lively market woman in her early fifties, quick-witted and warm, who knows everyone's business. Bright, slightly husky mezzo voice with a soft rural West Country English accent, brisk and chatty, dropping to a conspiratorial murmur for gossip. Close-mic, dry studio recording, no background noise.",
       "text": "Come here, dearie. Lavender for sleep? Everyone's buying it this month. And between you and me, the Fletcher boy walks in his sleep now, all the way out to the burying ground and back. His mother ties his ankle to the bedpost."
+    },
+    "bandit_1": {
+      "for": "ENM-04 Bandit Brigand v1 (lean, hooded)",
+      "description": "A lean, wiry road bandit in his thirties. Sly, raspy tenor voice with a rough rural English accent, mocking and quick, with a sneer in every word. Close-mic, dry studio recording, no background noise.",
+      "text": "Well, well. Toll's gone up on this road, farm boy. That's a fine scarf you've got there. And a fine sword, for a farmhand. Hand them both over and you can walk home with all your fingers."
+    },
+    "bandit_2": {
+      "for": "ENM-04 Bandit Brigand v2 (stocky, red beard)",
+      "description": "A big, stocky bandit in his forties. Deep, rough, booming voice with a coarse northern English accent, slow and menacing, clearly enjoying himself. Close-mic, dry studio recording, no background noise.",
+      "text": "Oi. You. Stop right there. Nobody walks this road without paying, and you look like you've got something worth taking. Come on, then. Make it quick, or make it interesting. I don't mind which."
+    },
+    "bruiser": {
+      "for": "MON-10 Bandit Bruiser",
+      "description": "A huge, hulking bandit enforcer in his late thirties. Very deep, slow, gravelly bass voice with a thick northern English accent, dim but menacing, chuckling at his own threats. Close-mic, dry studio recording, no background noise.",
+      "text": "Heh. Look at this. Another little farm boy with a big sword. You know what I do with little farm boys? I flatten them. Flat as a barn door. Come here, then. Hold still, it'll only hurt a lot."
     }
   }
 }

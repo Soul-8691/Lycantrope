@@ -1,0 +1,43 @@
+{
+  "id": "01a2188e-20f4-77dc-b82d-4f0c370e36ea",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "smart-topology",
+  "seed": 3513909175,
+  "prompt": "small round leather targe shield with a long central iron spike, studs, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795708299110,
+  "progress": 100,
+  "started_at": 1795708299120,
+  "finished_at": 1795708320245,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188e-20f4-77dc-b82d-4f0c370e36ea/output/model.glb?Expires=4949251200&Signature=jCo61dnQN4hji1AsssPhqS2KmY6nhjpLC0N0bMi2dPQoxbwtCjw4rFoWPMS0ITQhSJTB-kIt5gwHxDxf1jZEhdFiinrap2zr~Y3BLHmAT9ePwPtnBoL0xwPCEHaHhS~UoTnSmxYp3kLOsLKlFQqbZ9RgITe6MXamd6PwfOPFUkHeysnYpurtQhudJB5oFxNOZVogRCWAQwkcJGqWdMt~T2jpTBKaYNDI9jeW3bG8VSfajN1~vxewbpNttrV1KIj4Yykul7X7ZPpLAmxI6do4TeLlRJU5LTieFa9ZhvkwCmaiLCKi9DHzjpQKOs2TJduyPqTOiMS5I0gGXPBWuzkV2Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188e-20f4-77dc-b82d-4f0c370e36ea/output/preview.png?Expires=4949251200&Signature=cK29pY06lnw-3RLmYNW~HzqtHhcL2zvz~YhFucm9jOBx9-iIdsfeHbtXdB9FhRZ1PhuQWtXI7K7qC8K8jrpx4XH5lCumCFR188GU45-bTXxmvD--icJMsIv6sSocLORA0XuHdtGe5cml2zcMjt0omfFiz04PFzT~nRuCLe0J2kSSRwGStEWkpCVZxLq2DtJ2ec0XZS8iZwvjwM-v6ASZwVb8Sb-NVen32zgZFpxKy6bqdM8e7lFgvYD7zDOQRQyhQE3Lu2zYHOy-sHhmz3WtGt6txGZ6CrDDDbuxy7OTpWR9ZlBGMtw0ydI~1MRBicgLAR1O8sNoslf-N7Zb5OYqZw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 5,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "meshy-t2.5",
+    "mode": "preview",
+    "model_type": "smart-topology",
+    "prompt": "small round leather targe shield with a long central iron spike, studs, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750
+  },
+  "output": {
+    "seed": 3513909175,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188e-20f4-77dc-b82d-4f0c370e36ea/output/model.glb?Expires=4949251200&Signature=jCo61dnQN4hji1AsssPhqS2KmY6nhjpLC0N0bMi2dPQoxbwtCjw4rFoWPMS0ITQhSJTB-kIt5gwHxDxf1jZEhdFiinrap2zr~Y3BLHmAT9ePwPtnBoL0xwPCEHaHhS~UoTnSmxYp3kLOsLKlFQqbZ9RgITe6MXamd6PwfOPFUkHeysnYpurtQhudJB5oFxNOZVogRCWAQwkcJGqWdMt~T2jpTBKaYNDI9jeW3bG8VSfajN1~vxewbpNttrV1KIj4Yykul7X7ZPpLAmxI6do4TeLlRJU5LTieFa9ZhvkwCmaiLCKi9DHzjpQKOs2TJduyPqTOiMS5I0gGXPBWuzkV2Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188e-20f4-77dc-b82d-4f0c370e36ea/output/preview.png?Expires=4949251200&Signature=cK29pY06lnw-3RLmYNW~HzqtHhcL2zvz~YhFucm9jOBx9-iIdsfeHbtXdB9FhRZ1PhuQWtXI7K7qC8K8jrpx4XH5lCumCFR188GU45-bTXxmvD--icJMsIv6sSocLORA0XuHdtGe5cml2zcMjt0omfFiz04PFzT~nRuCLe0J2kSSRwGStEWkpCVZxLq2DtJ2ec0XZS8iZwvjwM-v6ASZwVb8Sb-NVen32zgZFpxKy6bqdM8e7lFgvYD7zDOQRQyhQE3Lu2zYHOy-sHhmz3WtGt6txGZ6CrDDDbuxy7OTpWR9ZlBGMtw0ydI~1MRBicgLAR1O8sNoslf-N7Zb5OYqZw__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

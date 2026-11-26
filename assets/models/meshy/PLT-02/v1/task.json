@@ -1,0 +1,44 @@
+{
+  "id": "01a2187d-2377-7038-8f69-32c952551faa",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 362180308,
+  "prompt": "clump of tall bracken ferns, curling fronds, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795707186093,
+  "progress": 100,
+  "started_at": 1795707186122,
+  "finished_at": 1795707306937,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-2377-7038-8f69-32c952551faa/output/model.glb?Expires=4949251200&Signature=Moe77q2FzAZOfk0~9BfoXeKKRUXJHT6~vXs5BMztvZFnLMHwEPS~A2w5iJlz0E2kfyJTTA9ANaRBSo55L1H5CSGzZ2Hjs2~920DkXn9RxefWaeoehJ5IxWI1ig2v3gzlGQhzU7sEPbblCHzwW2uiDNvcvGRLlZgFnQDAiHzs07XNBeOY7dARnxzHTJB9S1ScGmS3hFP8qD3-w-NEvIQKkJZ7ChAONNzVVLJIW7TXvU7Bq~bKf4v2fueCVx9dUgIU-Eq16GSWVAdOt9riR9GOJK36Tw-7H7H2Z99Q3iyY~TWsbcrxFLd0TOfgLj2vwZgywKPEoXer6XDxDf-DNLKTpg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-2377-7038-8f69-32c952551faa/output/preview.png?Expires=4949251200&Signature=h6oOTlhqBLESdiOjpn2BjEP0iFNYywEEqTC7af0VHDDvnQHiffdOv-HMRSYjM92bPPaoy-CFI0nt6uF5Hk1c3L-bXAKeZRkUQLWqmyEI-JTmhXsGVJdeQkmsfsz2ffV5eLTAeCCnZX3qmYLCm-CbidJ3qQDrsboJ9AkOMbhympZnZOuYtsXphwhNjxXu9rW5EuQh5NxSe7iZpiEULeG5JT1juPLTfLUSNaFN5n~etONH0b3GMXpCNL1EmK2ZQdOaYTn-mCNcAJSD4Is2dd3gGhnVdRZiwllSgrUajP7jJp8t68~MFnCRikAwi0IPmxj4jqa9e7yYiV4mIzgaWrNGcQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "clump of tall bracken ferns, curling fronds, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 362180308,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-2377-7038-8f69-32c952551faa/output/model.glb?Expires=4949251200&Signature=Moe77q2FzAZOfk0~9BfoXeKKRUXJHT6~vXs5BMztvZFnLMHwEPS~A2w5iJlz0E2kfyJTTA9ANaRBSo55L1H5CSGzZ2Hjs2~920DkXn9RxefWaeoehJ5IxWI1ig2v3gzlGQhzU7sEPbblCHzwW2uiDNvcvGRLlZgFnQDAiHzs07XNBeOY7dARnxzHTJB9S1ScGmS3hFP8qD3-w-NEvIQKkJZ7ChAONNzVVLJIW7TXvU7Bq~bKf4v2fueCVx9dUgIU-Eq16GSWVAdOt9riR9GOJK36Tw-7H7H2Z99Q3iyY~TWsbcrxFLd0TOfgLj2vwZgywKPEoXer6XDxDf-DNLKTpg__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-2377-7038-8f69-32c952551faa/output/preview.png?Expires=4949251200&Signature=h6oOTlhqBLESdiOjpn2BjEP0iFNYywEEqTC7af0VHDDvnQHiffdOv-HMRSYjM92bPPaoy-CFI0nt6uF5Hk1c3L-bXAKeZRkUQLWqmyEI-JTmhXsGVJdeQkmsfsz2ffV5eLTAeCCnZX3qmYLCm-CbidJ3qQDrsboJ9AkOMbhympZnZOuYtsXphwhNjxXu9rW5EuQh5NxSe7iZpiEULeG5JT1juPLTfLUSNaFN5n~etONH0b3GMXpCNL1EmK2ZQdOaYTn-mCNcAJSD4Is2dd3gGhnVdRZiwllSgrUajP7jJp8t68~MFnCRikAwi0IPmxj4jqa9e7yYiV4mIzgaWrNGcQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

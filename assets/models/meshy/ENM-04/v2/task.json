@@ -1,0 +1,45 @@
+{
+  "id": "01a2188b-d071-72fd-8d64-0f09ff30f275",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 4013964470,
+  "prompt": "stocky road bandit in his forties, shaved head and a thick red beard, a stolen rusty chainmail shirt under a faded red tabard with the badge torn off, fur-trimmed leather pauldron on one shoulder, studded leather gloves, heavy belt, patched trousers, scuffed boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795708148046,
+  "progress": 100,
+  "started_at": 1795708148064,
+  "finished_at": 1795708208550,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188b-d071-72fd-8d64-0f09ff30f275/output/model.glb?Expires=4949251200&Signature=dG0zxBs8-U~bN3FKdR1S5Siv~EjEOXXxJKNZJ-T5eQkKEwIPbVycGW416vb0k8INuoF12b0sDmD47CNdyfJEqX7d0e6BDN1mBAU-PUIu2Y74Zlma3MOCLjQGdfI38bJWxQNLmpEmatdss6Lov3MQTwrAEEs519HCv6bSiyNInATY--wNhkF6nQtenwusg3TcGjVwh7lIE0ui8NBiuEHUgog6g5vf28qItgyQ2~H6QlTFRyMp9jBNdIWyi-NtTGXjwX3wQwJM3ZJqsl2CHo79JDxWI4i77NbVF4rlHJ3P6MDZf4wxLCkB7wKuQEFYc3qMxj-nyjjkVULLE8Pyt-Ri2Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188b-d071-72fd-8d64-0f09ff30f275/output/preview.png?Expires=4949251200&Signature=pIPRHWz9DhfYJhT84x5j-mxQBZMIyaL9i91XmKm1wzkSju7jUnLHGOSBEi--GGyoOoVhoSku63fE~0pSqunCocjS2IK4K6v7M1OCxbhoIfyBgPFMB88CcAgJXD-kRqEsItg7Fk10b5kBw5yADXQP8WcgZeCw7i03rgIpYjlzgcqi5qW~rpX95BkfJ9APmIAl4hnSZb2EB1YpM3LLYZjmtEk5gBOpwzZ8-tY1JxwQLwA5vJOCqa7KKDv1d8ErhJMhc22VHjyhYtr-HKCm59DrxtChzq-ekza9bNIbPtASbz2XuZBTDDqUUBsUX44csTqXt-6RBiiElx8cFUOqdReTBA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "stocky road bandit in his forties, shaved head and a thick red beard, a stolen rusty chainmail shirt under a faded red tabard with the badge torn off, fur-trimmed leather pauldron on one shoulder, studded leather gloves, heavy belt, patched trousers, scuffed boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 4013964470,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188b-d071-72fd-8d64-0f09ff30f275/output/model.glb?Expires=4949251200&Signature=dG0zxBs8-U~bN3FKdR1S5Siv~EjEOXXxJKNZJ-T5eQkKEwIPbVycGW416vb0k8INuoF12b0sDmD47CNdyfJEqX7d0e6BDN1mBAU-PUIu2Y74Zlma3MOCLjQGdfI38bJWxQNLmpEmatdss6Lov3MQTwrAEEs519HCv6bSiyNInATY--wNhkF6nQtenwusg3TcGjVwh7lIE0ui8NBiuEHUgog6g5vf28qItgyQ2~H6QlTFRyMp9jBNdIWyi-NtTGXjwX3wQwJM3ZJqsl2CHo79JDxWI4i77NbVF4rlHJ3P6MDZf4wxLCkB7wKuQEFYc3qMxj-nyjjkVULLE8Pyt-Ri2Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188b-d071-72fd-8d64-0f09ff30f275/output/preview.png?Expires=4949251200&Signature=pIPRHWz9DhfYJhT84x5j-mxQBZMIyaL9i91XmKm1wzkSju7jUnLHGOSBEi--GGyoOoVhoSku63fE~0pSqunCocjS2IK4K6v7M1OCxbhoIfyBgPFMB88CcAgJXD-kRqEsItg7Fk10b5kBw5yADXQP8WcgZeCw7i03rgIpYjlzgcqi5qW~rpX95BkfJ9APmIAl4hnSZb2EB1YpM3LLYZjmtEk5gBOpwzZ8-tY1JxwQLwA5vJOCqa7KKDv1d8ErhJMhc22VHjyhYtr-HKCm59DrxtChzq-ekza9bNIbPtASbz2XuZBTDDqUUBsUX44csTqXt-6RBiiElx8cFUOqdReTBA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

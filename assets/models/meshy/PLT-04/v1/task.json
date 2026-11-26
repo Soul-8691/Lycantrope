@@ -1,0 +1,44 @@
+{
+  "id": "01a2187d-356d-7572-9e64-829564f50fa8",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 1236236306,
+  "prompt": "dense thorny bramble thicket with blackberries, tangled vines, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795707190415,
+  "progress": 100,
+  "started_at": 1795707190423,
+  "finished_at": 1795707338378,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-356d-7572-9e64-829564f50fa8/output/model.glb?Expires=4949251200&Signature=LZxqZRFaXoyVkxN1vQny84PVOfSD-C0yFiMUjtVsM0KWNTIaAOrKTwZZ9BdiiNo8~Ol9JEdgZK1tT8HS~TS2be1atkkpCe9d9KJHF~W725krYbBPoAyqiodjfWEpeMKHTU18b0bLHOpjj~77VVPNDZv6IOznKEc3aJs-1k7OW5e4aOHUUA9QmTSHNE8wL82nFi32lgR9VTo-ojhcHQo8nkoAmwH7djgfDg~14ecRSZRfLQ1JoBl8LwpB4EsG8ubZLdd8cF9vHF8XI03KK8hJTBcEvxjIf40hOR16RvxUFX8GEEl9doECL5WSxdAxRtcS4dJEpv~QUelI5YXRskwXxA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-356d-7572-9e64-829564f50fa8/output/preview.png?Expires=4949251200&Signature=F92BJ0x4teiovJg-irR8kQxZKECnlUkpkNY8Y5bXpF8~0yGwoY4DZc7Fz4loDW6EJXBKHZjOzn106G5Kqy~aou9MhhAcxtBoqn9biMzkAg1ILKAbIMvKfZ~c9lTYiU6AmNUPY8JHl3kY7iPT-7vdEKu81~mnttz2knEsRs-DLhlK6m89hO85ZHsW-n7XTeA6bMtvyBP5m2Bh0aIgUTmKIqvwKcnAqTLGVDEs7gXwTa1weKcYcRg02tv75OrkKfnk1~pO6-zlc4-nVTdPt8pbCa-Uzedjveh-Aw1OzFzpU4wzoSBqpse4shNW75UcvKyU2gyvHfPdkzTc1vZZIlVraQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "dense thorny bramble thicket with blackberries, tangled vines, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 800,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 1236236306,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-356d-7572-9e64-829564f50fa8/output/model.glb?Expires=4949251200&Signature=LZxqZRFaXoyVkxN1vQny84PVOfSD-C0yFiMUjtVsM0KWNTIaAOrKTwZZ9BdiiNo8~Ol9JEdgZK1tT8HS~TS2be1atkkpCe9d9KJHF~W725krYbBPoAyqiodjfWEpeMKHTU18b0bLHOpjj~77VVPNDZv6IOznKEc3aJs-1k7OW5e4aOHUUA9QmTSHNE8wL82nFi32lgR9VTo-ojhcHQo8nkoAmwH7djgfDg~14ecRSZRfLQ1JoBl8LwpB4EsG8ubZLdd8cF9vHF8XI03KK8hJTBcEvxjIf40hOR16RvxUFX8GEEl9doECL5WSxdAxRtcS4dJEpv~QUelI5YXRskwXxA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2187d-356d-7572-9e64-829564f50fa8/output/preview.png?Expires=4949251200&Signature=F92BJ0x4teiovJg-irR8kQxZKECnlUkpkNY8Y5bXpF8~0yGwoY4DZc7Fz4loDW6EJXBKHZjOzn106G5Kqy~aou9MhhAcxtBoqn9biMzkAg1ILKAbIMvKfZ~c9lTYiU6AmNUPY8JHl3kY7iPT-7vdEKu81~mnttz2knEsRs-DLhlK6m89hO85ZHsW-n7XTeA6bMtvyBP5m2Bh0aIgUTmKIqvwKcnAqTLGVDEs7gXwTa1weKcYcRg02tv75OrkKfnk1~pO6-zlc4-nVTdPt8pbCa-Uzedjveh-Aw1OzFzpU4wzoSBqpse4shNW75UcvKyU2gyvHfPdkzTc1vZZIlVraQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-26T10:44:50",
+  "updated": "2026-11-26T11:21:50",
   "counts": {
-    "awaiting": 29,
+    "awaiting": 40,
     "approved": 545,
     "denied": 120,
-    "total": 694
+    "total": 705
   },
   "ui": {
     "selected": [
-      "PIL-01"
+      "DRM-83"
     ],
     "selected_titles": {
-      "PIL-01": "Combat first"
+      "DRM-83": "Innsmouth hybrid"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-26T10:44:50"
+    "at": "2026-11-26T11:21:50"
   },
   "ideas": {
     "PIL-01": {
@@ -3580,6 +3580,127 @@
       "note": "",
       "changed": "2026-11-25T15:43:27",
       "title": "Deep One",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Creatures (from CREATURES.md)",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-83": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Innsmouth hybrid",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Creatures (from CREATURES.md)",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-84": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Mother Hydra",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Creatures (from CREATURES.md)",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-85": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Star-spawn",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Creatures (from CREATURES.md)",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-86": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Shoggoth",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Creatures (from CREATURES.md)",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-87": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Elder Thing",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Creatures (from CREATURES.md)",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-88": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Mi-Go",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Creatures (from CREATURES.md)",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-89": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Great Race of Yith",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Creatures (from CREATURES.md)",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-90": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Flying polyp",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Creatures (from CREATURES.md)",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-91": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The Dunwich Horror",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Creatures (from CREATURES.md)",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-92": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "The reanimated",
+      "category": "Dreamlands Fusion (DRM)",
+      "section": "Creatures (from CREATURES.md)",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "DRM-93": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Beings of Ib and Bokrug",
       "category": "Dreamlands Fusion (DRM)",
       "section": "Creatures (from CREATURES.md)",
       "starred": false,

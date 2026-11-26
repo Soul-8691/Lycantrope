@@ -1,4 +1,124 @@
 {
+  "bandit.bandit_1/alert_1.mp3": {
+    "hash": "8732fb50c709",
+    "text": "Nice scarf. I'll take it."
+  },
+  "bandit.bandit_1/alert_2.mp3": {
+    "hash": "d5320c57cb35",
+    "text": "Well, well. Toll's gone up, farm boy."
+  },
+  "bandit.bandit_1/alert_3.mp3": {
+    "hash": "edab7f11062d",
+    "text": "That's a fine sword for a farmhand. Hand it over."
+  },
+  "bandit.bandit_1/alert_4.mp3": {
+    "hash": "6204fe809b6f",
+    "text": "Oi! Fresh one on the road!"
+  },
+  "bandit.bandit_1/attack_1.mp3": {
+    "hash": "da0e7ed87092",
+    "text": "Hah!"
+  },
+  "bandit.bandit_1/attack_2.mp3": {
+    "hash": "f0be92a6ba3e",
+    "text": "Take that!"
+  },
+  "bandit.bandit_1/attack_3.mp3": {
+    "hash": "4c661507d64a",
+    "text": "Stand still!"
+  },
+  "bandit.bandit_1/attack_4.mp3": {
+    "hash": "6b9dd0a90f1a",
+    "text": "Come on, then!"
+  },
+  "bandit.bandit_1/death_1.mp3": {
+    "hash": "481fd802a513",
+    "text": "Should've... stayed off the road..."
+  },
+  "bandit.bandit_1/death_2.mp3": {
+    "hash": "29500bd707db",
+    "text": "Not... like this..."
+  },
+  "bandit.bandit_1/hit_1.mp3": {
+    "hash": "c68edf57e9e0",
+    "text": "Argh! You'll pay for that!"
+  },
+  "bandit.bandit_1/hit_2.mp3": {
+    "hash": "5158cb41f261",
+    "text": "Ugh!"
+  },
+  "bandit.bandit_1/hit_3.mp3": {
+    "hash": "1f954cf0bf0d",
+    "text": "Lucky blow!"
+  },
+  "bandit.bandit_1/idle_1.mp3": {
+    "hash": "75370746c6a5",
+    "text": "Quiet road today. Too quiet for my purse."
+  },
+  "bandit.bandit_1/idle_2.mp3": {
+    "hash": "6c099f608096",
+    "text": "If the Watch comes sniffing, we were never here."
+  },
+  "bandit.bandit_2/alert_1.mp3": {
+    "hash": "8732fb50c709",
+    "text": "Nice scarf. I'll take it."
+  },
+  "bandit.bandit_2/alert_2.mp3": {
+    "hash": "d5320c57cb35",
+    "text": "Well, well. Toll's gone up, farm boy."
+  },
+  "bandit.bandit_2/alert_3.mp3": {
+    "hash": "edab7f11062d",
+    "text": "That's a fine sword for a farmhand. Hand it over."
+  },
+  "bandit.bandit_2/alert_4.mp3": {
+    "hash": "6204fe809b6f",
+    "text": "Oi! Fresh one on the road!"
+  },
+  "bandit.bandit_2/attack_1.mp3": {
+    "hash": "da0e7ed87092",
+    "text": "Hah!"
+  },
+  "bandit.bandit_2/attack_2.mp3": {
+    "hash": "f0be92a6ba3e",
+    "text": "Take that!"
+  },
+  "bandit.bandit_2/attack_3.mp3": {
+    "hash": "4c661507d64a",
+    "text": "Stand still!"
+  },
+  "bandit.bandit_2/attack_4.mp3": {
+    "hash": "6b9dd0a90f1a",
+    "text": "Come on, then!"
+  },
+  "bandit.bandit_2/death_1.mp3": {
+    "hash": "481fd802a513",
+    "text": "Should've... stayed off the road..."
+  },
+  "bandit.bandit_2/death_2.mp3": {
+    "hash": "29500bd707db",
+    "text": "Not... like this..."
+  },
+  "bandit.bandit_2/hit_1.mp3": {
+    "hash": "c68edf57e9e0",
+    "text": "Argh! You'll pay for that!"
+  },
+  "bandit.bandit_2/hit_2.mp3": {
+    "hash": "5158cb41f261",
+    "text": "Ugh!"
+  },
+  "bandit.bandit_2/hit_3.mp3": {
+    "hash": "1f954cf0bf0d",
+    "text": "Lucky blow!"
+  },
+  "bandit.bandit_2/idle_1.mp3": {
+    "hash": "75370746c6a5",
+    "text": "Quiet road today. Too quiet for my purse."
+  },
+  "bandit.bandit_2/idle_2.mp3": {
+    "hash": "6c099f608096",
+    "text": "If the Watch comes sniffing, we were never here."
+  },
   "bread_carrier.villager_woman_1/greet_1.mp3": {
     "hash": "3ef350f58f83",
     "text": "Bread's still warm, if you're quick."
@@ -14,6 +134,42 @@
   "bread_carrier.villager_woman_1/startled_1.mp3": {
     "hash": "916cd91c0fa2",
     "text": "Mind the basket!"
+  },
+  "bruiser.bruiser/alert_1.mp3": {
+    "hash": "e4260fbb13c6",
+    "text": "I'll flatten you, hero!"
+  },
+  "bruiser.bruiser/alert_2.mp3": {
+    "hash": "76ecf7608e63",
+    "text": "Fresh meat!"
+  },
+  "bruiser.bruiser/alert_3.mp3": {
+    "hash": "a05b049b6fe2",
+    "text": "Another little farm boy. I'll snap you in two."
+  },
+  "bruiser.bruiser/attack_1.mp3": {
+    "hash": "e2bc17b53c68",
+    "text": "Smash!"
+  },
+  "bruiser.bruiser/attack_2.mp3": {
+    "hash": "6d31d7742bfc",
+    "text": "Hold still!"
+  },
+  "bruiser.bruiser/death_1.mp3": {
+    "hash": "02bd3e9a5b1e",
+    "text": "Too... big... to fall..."
+  },
+  "bruiser.bruiser/hit_1.mp3": {
+    "hash": "2f8c3e18f8e3",
+    "text": "That tickled."
+  },
+  "bruiser.bruiser/hit_2.mp3": {
+    "hash": "a452d4403644",
+    "text": "Is that all you've got?"
+  },
+  "bruiser.bruiser/idle_1.mp3": {
+    "hash": "3cb6121bd024",
+    "text": "Bored. Somebody come and get flattened."
   },
   "ebb.villager_man_2/greet_1.mp3": {
     "hash": "7fc5cbed0359",

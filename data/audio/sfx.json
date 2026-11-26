@@ -251,29 +251,64 @@
           "s": "footsteps/boot_{ground}",
           "volume": 0.35
         },
-        "alert": "bruiser/alert",
+        "alert": [
+          {
+            "s": "vo/{voice}/alert",
+            "chance": 0.65
+          },
+          {
+            "s": "bruiser/alert",
+            "chance": 0.35
+          }
+        ],
         "attack": [
           "combat/swing_heavy",
           {
+            "s": "vo/{voice}/attack",
+            "chance": 0.25
+          },
+          {
             "s": "bruiser/attack",
-            "chance": 0.8
+            "chance": 0.55
           }
         ],
         "hit": [
-          "bruiser/hurt",
           {
             "s": "combat/hit_blunt",
             "volume": 0.7
+          },
+          {
+            "s": "vo/{voice}/hit",
+            "chance": 0.4
+          },
+          {
+            "s": "bruiser/hurt",
+            "chance": 0.6
           }
         ],
         "death": [
-          "bruiser/death",
+          {
+            "s": "vo/{voice}/death",
+            "chance": 0.6
+          },
+          {
+            "s": "bruiser/death",
+            "chance": 0.4
+          },
           {
             "s": "combat/body_fall",
             "delay_s": 0.9
           }
-        ]
-      }
+        ],
+        "idle": {
+          "s": "vo/{voice}/idle",
+          "volume": 0.9
+        }
+      },
+      "idle_every_s": [
+        25,
+        60
+      ]
     },
     "battlemage": {
       "steps_per_cycle": 2,
@@ -479,6 +514,53 @@
     },
     "seller": {
       "like": "villager_f"
+    },
+    "bandit_lean": {
+      "steps_per_cycle": 2,
+      "idle_every_s": [
+        30,
+        70
+      ],
+      "events": {
+        "step": {
+          "s": "footsteps/boot_{ground}",
+          "volume": 0.3
+        },
+        "alert": {
+          "s": "vo/{voice}/alert"
+        },
+        "idle": {
+          "s": "vo/{voice}/idle",
+          "volume": 0.9
+        },
+        "attack": [
+          "combat/swing_light",
+          {
+            "s": "vo/{voice}/attack",
+            "chance": 0.45
+          }
+        ],
+        "hit": [
+          {
+            "s": "combat/hit_flesh",
+            "volume": 0.7
+          },
+          {
+            "s": "vo/{voice}/hit",
+            "chance": 0.6
+          }
+        ],
+        "death": [
+          "vo/{voice}/death",
+          {
+            "s": "combat/body_fall",
+            "delay_s": 0.9
+          }
+        ]
+      }
+    },
+    "bandit_stocky": {
+      "like": "bandit_lean"
     }
   }
 }

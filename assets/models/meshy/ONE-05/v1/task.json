@@ -1,0 +1,43 @@
+{
+  "id": "01a2188e-1797-725b-b036-cb12cea1aabe",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "smart-topology",
+  "seed": 1047982561,
+  "prompt": "curved notched cutlass sword, brass knuckle guard, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795708296942,
+  "progress": 100,
+  "started_at": 1795708296951,
+  "finished_at": 1795708308104,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188e-1797-725b-b036-cb12cea1aabe/output/model.glb?Expires=4949251200&Signature=aRkShznfEKJ3toXkT~MJzvnqoR9nhhUMwBjaOSH4hqABYRmvLT6t9fA~hOjYX3tN2wsimWNIyQN9qaclxzTfBdc~oeFPbU0Aq0Wm0p98Hicw2KnH35SPJZpJ3gIpUfm6ZBD8tnMRx~fhfYFyqhXTG4OmgiTmgDNG~75bRWPCC~qd-Q5sQw7SNk9soyl00HmVloumYHYFHgobj-nIjiItFGt8w0l22rvKmCbRUPGwwnyQOIM~aqkiILMYnM-Bg3Ub8GVTJlVuuaX9-v48pEt-fd74g7myWI13RnFxeF7j6kNBYdpVMoBMrOQ-5mMPF8Lh8h4lFyNWSABozacYyEGBvA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188e-1797-725b-b036-cb12cea1aabe/output/preview.png?Expires=4949251200&Signature=A29U5bS~~YECDVmKMcr2wFAfyREM6wR1YFFOFrJfcZdRI5FrL7snDiuY7BppqmEE2Jme3ATVP7T3Emr-MivCdkYGSvOzRcsy9y3awbg6iNhnL2hsZNxDLsIpJMjuoNQShnjpOQSSbvzTbxXWYMetHiohIfzJPkK7IgGvuGoo50QoMfY80JQ~~Xvg~eV478AOMlbxfGOEURMtpXap9JF85uqui~uFDndH8iqydHwNKsPAucLP8J2bX1S7whi5wvuAIDFfl2uwN2eswhK7jvNvtqhqmPJmNN9C6Hxk1YfcsLC2iaNmqRYq3uLsnckLFWc3OR~K7kC9ovdbXo5qohWXSA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 5,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "meshy-t2.5",
+    "mode": "preview",
+    "model_type": "smart-topology",
+    "prompt": "curved notched cutlass sword, brass knuckle guard, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750
+  },
+  "output": {
+    "seed": 1047982561,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188e-1797-725b-b036-cb12cea1aabe/output/model.glb?Expires=4949251200&Signature=aRkShznfEKJ3toXkT~MJzvnqoR9nhhUMwBjaOSH4hqABYRmvLT6t9fA~hOjYX3tN2wsimWNIyQN9qaclxzTfBdc~oeFPbU0Aq0Wm0p98Hicw2KnH35SPJZpJ3gIpUfm6ZBD8tnMRx~fhfYFyqhXTG4OmgiTmgDNG~75bRWPCC~qd-Q5sQw7SNk9soyl00HmVloumYHYFHgobj-nIjiItFGt8w0l22rvKmCbRUPGwwnyQOIM~aqkiILMYnM-Bg3Ub8GVTJlVuuaX9-v48pEt-fd74g7myWI13RnFxeF7j6kNBYdpVMoBMrOQ-5mMPF8Lh8h4lFyNWSABozacYyEGBvA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a2188e-1797-725b-b036-cb12cea1aabe/output/preview.png?Expires=4949251200&Signature=A29U5bS~~YECDVmKMcr2wFAfyREM6wR1YFFOFrJfcZdRI5FrL7snDiuY7BppqmEE2Jme3ATVP7T3Emr-MivCdkYGSvOzRcsy9y3awbg6iNhnL2hsZNxDLsIpJMjuoNQShnjpOQSSbvzTbxXWYMetHiohIfzJPkK7IgGvuGoo50QoMfY80JQ~~Xvg~eV478AOMlbxfGOEURMtpXap9JF85uqui~uFDndH8iqydHwNKsPAucLP8J2bX1S7whi5wvuAIDFfl2uwN2eswhK7jvNvtqhqmPJmNN9C6Hxk1YfcsLC2iaNmqRYq3uLsnckLFWc3OR~K7kC9ovdbXo5qohWXSA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}
