@@ -455,6 +455,54 @@
       "prompt": "broad gnarled apple tree, short thick twisted trunk, wide rounded canopy of large chunky foliage clumps, small red fruit dotted over the foliage, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795661010.8623767,
       "credits": 20
+    },
+    "WLD-33/v1": {
+      "task_id": "01a215d5-a8f7-719e-bf82-b450c773539e",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "old shepherd in his sixties, lean and weathered, long white beard, kind squinting eyes, undyed grey wool hood with a short shoulder cape, sheepskin vest with the fleece turned outward over a long belted brown tunic, wool leg wraps tied with cord, soft leather shoes, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795662657.502037,
+      "credits": 20
+    },
+    "WLD-34/v1": {
+      "task_id": "01a215d5-b921-771d-aa94-80f0e14618ba",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "burly young blacksmith's labourer in his twenties, short dark hair under a close-fitting leather cap, stubble, heavy scorched leather apron from chest to knees over a short-sleeved linen shirt, thick leather work gloves, dark wool trousers, tall heavy work boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795662660.018549,
+      "credits": 20
+    },
+    "WLD-35/v1": {
+      "task_id": "01a215d5-c2d8-7246-94be-1af75fd13283",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "prosperous village merchant in his forties, neat brown beard, brimmed brown felt hat, knee-length dark blue wool coat with red cuffs and a broad leather belt with a coin purse, linen shirt collar, grey wool hose, buckled leather shoes, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795662662.7369719,
+      "credits": 20
+    },
+    "WLD-36/v1": {
+      "task_id": "01a215d5-cd4f-76d3-bdc9-589a9e37b06a",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "cheerful young adult dairymaid, freckles, fair hair tucked under a white linen coif, short-sleeved cream blouse under a laced green vest, calf-length russet wool kirtle with an apron, plain wooden clogs, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795662667.164524,
+      "credits": 20
+    },
+    "WLD-37/v1": {
+      "task_id": "01a215d5-debc-76f3-ba06-57c63e103919",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "village weaver in her forties, calm face, thick knitted plum wool shawl drawn over her head and shoulders, long-sleeved ankle-length grey-green wool dress, apron woven with a simple diamond pattern, soft leather shoes, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795662670.053581,
+      "credits": 20
+    },
+    "WLD-38/v1": {
+      "task_id": "01a215d5-ea37-7607-93d3-4ce9e93ffbf2",
+      "status": "SUCCEEDED",
+      "model": "latest",
+      "prompt": "lively market seller in her fifties, grey-streaked hair under a striped red and white headscarf knotted at the back, sleeveless laced brown bodice over a linen blouse with rolled sleeves, full ankle-length mustard wool skirt, leather belt with a coin purse, leather shoes, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795662672.7280524,
+      "credits": 20
     }
   },
   "replaced": [
@@ -826,6 +874,42 @@
       "status": "SUCCEEDED",
       "created": 1795660647.2012565,
       "credits": 10
+    },
+    "WLD-33/v1": {
+      "task_id": "01a215d8-99a7-77a8-aa01-d9763d97b155",
+      "status": "SUCCEEDED",
+      "created": 1795662846.4712338,
+      "credits": 10
+    },
+    "WLD-34/v1": {
+      "task_id": "01a215d9-a2aa-7241-86c3-1fae0611e9b3",
+      "status": "SUCCEEDED",
+      "created": 1795662914.3100638,
+      "credits": 10
+    },
+    "WLD-35/v1": {
+      "task_id": "01a215da-d74c-71de-8ecb-82758d573ce7",
+      "status": "SUCCEEDED",
+      "created": 1795662993.3029041,
+      "credits": 10
+    },
+    "WLD-36/v1": {
+      "task_id": "01a215db-e8fb-7290-be34-7046d87d6125",
+      "status": "SUCCEEDED",
+      "created": 1795663063.3697395,
+      "credits": 10
+    },
+    "WLD-37/v1": {
+      "task_id": "01a215dc-fff2-74e1-8ee0-aa1bfc42605b",
+      "status": "SUCCEEDED",
+      "created": 1795663134.7850661,
+      "credits": 10
+    },
+    "WLD-38/v1": {
+      "task_id": "01a215dd-df3d-706b-9516-92f77ec661d3",
+      "status": "SUCCEEDED",
+      "created": 1795663191.9661791,
+      "credits": 10
     }
   },
   "rigs": {
@@ -899,6 +983,42 @@
       "task_id": "01a21586-b3a2-76e9-a017-4c75c3505d9f",
       "status": "SUCCEEDED",
       "created": 1795657483.4815383,
+      "credits": 5
+    },
+    "WLD-33/v1": {
+      "task_id": "01a215d8-f5a1-7442-9372-34245d886af6",
+      "status": "SUCCEEDED",
+      "created": 1795662873.1159186,
+      "credits": 5
+    },
+    "WLD-34/v1": {
+      "task_id": "01a215da-55b4-7171-b39a-f9a2d07d2d22",
+      "status": "SUCCEEDED",
+      "created": 1795662963.5857246,
+      "credits": 5
+    },
+    "WLD-35/v1": {
+      "task_id": "01a215db-5774-744d-87fb-9675e78cbfc9",
+      "status": "SUCCEEDED",
+      "created": 1795663030.659693,
+      "credits": 5
+    },
+    "WLD-36/v1": {
+      "task_id": "01a215dc-68fd-731c-a90d-8be6ab45ba07",
+      "status": "SUCCEEDED",
+      "created": 1795663099.158358,
+      "credits": 5
+    },
+    "WLD-37/v1": {
+      "task_id": "01a215dd-811a-7066-a000-3ae87a3c841f",
+      "status": "SUCCEEDED",
+      "created": 1795663172.287617,
+      "credits": 5
+    },
+    "WLD-38/v1": {
+      "task_id": "01a215de-381a-735d-86f0-01b64ce050ad",
+      "status": "SUCCEEDED",
+      "created": 1795663219.0032954,
       "credits": 5
     }
   },

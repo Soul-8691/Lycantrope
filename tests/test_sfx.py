@@ -130,6 +130,9 @@ def test_every_sound_in_the_data_file_exists():
     cfg = load_sfx_config()
     names = set()
     for k in cfg["kinds"].values():
+        if "like" in k:
+            assert k["like"] in cfg["kinds"]
+            continue
         for spec in k["events"].values():
             for i in spec if isinstance(spec, list) else [spec]:
                 names.add(i if isinstance(i, str) else i["s"])

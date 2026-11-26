@@ -282,6 +282,7 @@ class Enemy:
         self.route_dir = 1
         self.route_loop = False      # True: the route is a circuit; False: walk it back and forth
         self.fired = True
+        self.talk_s = 0.0            # seconds left of a line being said to Rowan: stand and face him
         self.circle = self.rng.choice((-1.0, 1.0))
         self.a.state = "wander"
         self.a.timer = self.rng.uniform(0.5, 4.0)
@@ -345,6 +346,13 @@ class Enemy:
         self.cooldown -= dt
         self.cast_cooldown -= dt
         sp = a.speeds
+        if self.talk_s > 0.0 and a.state in ("wander", "idle"):
+            # saying something to Rowan: stop where they are and turn to him until the line is done
+            self.talk_s -= dt
+            a.speed = max(0.0, a.speed - 8.0 * dt)
+            a.heading = turn_towards(a.heading, heading_to(rowan.x - a.x, rowan.z - a.z), 5.0 * dt)
+            a.locomotion()
+            return
 
         if a.state in ("wander", "idle") and rowan_alive and to_r < ai.aggro_m:
             a.state = "chase"

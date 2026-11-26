@@ -1,0 +1,44 @@
+{
+  "id": "01a215b9-3615-713f-afa0-ed8b700d0428",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 139463307,
+  "prompt": "small orchard apple tree, short sturdy crooked trunk splitting into a few low branches, wide rounded canopy of chunky green leaf clumps, a scattering of small round red apples among the leaves, no ground, no base, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795660790987,
+  "progress": 100,
+  "started_at": 1795660791000,
+  "finished_at": 1795660926015,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215b9-3615-713f-afa0-ed8b700d0428/output/model.glb?Expires=4949251200&Signature=KVD6yMisxxqV6ZAthBS~jwPA2V9s~BkIPFnkroGs8chbfJE-Z1ir9cKuYMPA9jdL91~2YXJmHy2j-Rg1bRIk8zN9NvirouWpL6OfTJsHORL38GczmPJXohVfqSy56JbuY1i4ZWSsZ9wEcRZG1R7EvwE7rMGcS~dZIYzPS9N-b~wt6qu1HlLTHi5Ta-MsnkopRs8-ERE2WXe9ob4MUTttdhSfBLhVVlX3AoY0GlkWAxjkbUxw531ayIdPMHQ3v8AcbHxboj-mi0NO2VkfR2F35TqelDrdVgrZzJ47Ky4Ov2if4KxXdKaBg04cPkdezZh0QiVeY-6X0z9kQxjT7dG0kQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215b9-3615-713f-afa0-ed8b700d0428/output/preview.png?Expires=4949251200&Signature=Ga9FQ~Nd7UDBklCgKcgNvXD3p7X1oKMIL8aUinhnInLcHICbL0HrHC5rS9ig2pEsxiss5h1cJXhvZ6GU46Zi5RSMpH1G2ZuODxzMycjMPbSpwPaRnC5lPtTUI9xXzrLYMJqj55X86r~Fe4vtltB6TPxRIAegifw9xVv~8MSoD~FlGiEkkNixddgsG3BafZHK7ult0eqIziD1Da5GJ3EaVaMSliLPB9wQ~T9IsaUZF1ou8VnsmCHXrn9AYeKYH4fCN9vef8JP~9D4V93~ThJCeArgT06Am2itg4krXa4iirJC6SaQ0Sb-vzzOypFbJkcGRggqtpLFg0Il8Up~a1Aw-w__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "small orchard apple tree, short sturdy crooked trunk splitting into a few low branches, wide rounded canopy of chunky green leaf clumps, a scattering of small round red apples among the leaves, no ground, no base, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 3000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 139463307,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215b9-3615-713f-afa0-ed8b700d0428/output/model.glb?Expires=4949251200&Signature=KVD6yMisxxqV6ZAthBS~jwPA2V9s~BkIPFnkroGs8chbfJE-Z1ir9cKuYMPA9jdL91~2YXJmHy2j-Rg1bRIk8zN9NvirouWpL6OfTJsHORL38GczmPJXohVfqSy56JbuY1i4ZWSsZ9wEcRZG1R7EvwE7rMGcS~dZIYzPS9N-b~wt6qu1HlLTHi5Ta-MsnkopRs8-ERE2WXe9ob4MUTttdhSfBLhVVlX3AoY0GlkWAxjkbUxw531ayIdPMHQ3v8AcbHxboj-mi0NO2VkfR2F35TqelDrdVgrZzJ47Ky4Ov2if4KxXdKaBg04cPkdezZh0QiVeY-6X0z9kQxjT7dG0kQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215b9-3615-713f-afa0-ed8b700d0428/output/preview.png?Expires=4949251200&Signature=Ga9FQ~Nd7UDBklCgKcgNvXD3p7X1oKMIL8aUinhnInLcHICbL0HrHC5rS9ig2pEsxiss5h1cJXhvZ6GU46Zi5RSMpH1G2ZuODxzMycjMPbSpwPaRnC5lPtTUI9xXzrLYMJqj55X86r~Fe4vtltB6TPxRIAegifw9xVv~8MSoD~FlGiEkkNixddgsG3BafZHK7ult0eqIziD1Da5GJ3EaVaMSliLPB9wQ~T9IsaUZF1ou8VnsmCHXrn9AYeKYH4fCN9vef8JP~9D4V93~ThJCeArgT06Am2itg4krXa4iirJC6SaQ0Sb-vzzOypFbJkcGRggqtpLFg0Il8Up~a1Aw-w__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

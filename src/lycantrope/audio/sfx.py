@@ -16,6 +16,8 @@ import json
 import math
 import random
 import threading
+
+import numpy as np
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -32,6 +34,25 @@ ALERT_FROM = ("wander", "idle", "return")
 STARTLE_M = 6.0
 ALERT_COOLDOWN_S = 6.0
 STARTLE_COOLDOWN_S = 5.0
+
+
+TALK_FPS = 30                                    # loudness envelope rate for jaw movement
+
+
+def loudness(samples: np.ndarray, rate: int) -> np.ndarray:
+    """Loudness of a voice line, 0..1 at TALK_FPS, for the speaker's jaw (silence = closed)."""
+    x = samples.astype(np.float32)
+    if x.ndim > 1:
+        x = x.mean(axis=1)
+    hop = max(1, rate // TALK_FPS)
+    n = len(x) // hop
+    if n == 0:
+        return np.zeros(1, np.float32)
+    rms = np.sqrt((x[:n * hop].reshape(n, hop) ** 2).mean(axis=1))
+    top = float(np.percentile(rms, 95)) or 1.0
+    env = np.clip(rms / top, 0.0, 1.0)
+    env[env < 0.12] = 0.0                           # breaths and room tone: mouth shut
+    return env.astype(np.float32)
 
 
 def load_sfx_config(path: Path | None = None) -> dict:
@@ -60,6 +81,7 @@ class Cue:
     pos: tuple[float, float, float] | None      # None: not positional (Rowan's own sounds)
     volume: float = 1.0
     at: float = 0.0                             # play when the director's clock reaches this
+    speaker: int | None = None                  # voice lines: id() of the actor saying it
 
 
 @dataclass
@@ -87,11 +109,15 @@ class SfxDirector:
     loops: dict = field(default_factory=dict)                     # this tick's clip loops
 
     def kind(self, k: str) -> dict:
-        return self.cfg.get("kinds", {}).get(k, {})
+        kinds = self.cfg.get("kinds", {})
+        spec = kinds.get(k, {})
+        if "like" in spec:                              # sounds borrowed from another kind
+            spec = {**kinds.get(spec["like"], {}), **{key: v for key, v in spec.items() if key != "like"}}
+        return spec
 
     # ------------------------------------------------------------------ cues
     def emit(self, kind: str, event: str, pos, out: list[Cue], ground=None, positional=True,
-             voice: str | None = None) -> None:
+             voice: str | None = None, speaker: int | None = None) -> None:
         spec = self.kind(kind).get("events", {}).get(event)
         if event == "step" and ground and pos and "wade_step" in self.cfg and ground(pos[0], pos[2]) == "water":
             spec = self.cfg["wade_step"]                # splashing through the shallows
@@ -121,7 +147,7 @@ class SfxDirector:
             if "{ground}" in name:
                 name = name.replace("{ground}", ground(pos[0], pos[2]) if ground and pos else "grass")
             cue = Cue(name, pos if positional else None, float(i.get("volume", 1.0)),
-                      self.now + float(i.get("delay_s", 0.0)))
+                      self.now + float(i.get("delay_s", 0.0)), speaker if name.startswith("vo/") else None)
             (self.pending if i.get("delay_s") else out).append(cue)
 
     # ------------------------------------------------------------------ tick
@@ -204,7 +230,7 @@ class SfxDirector:
                     t.near_rowan = True
                     if self.now >= t.greet_ok_at and a.state in ("wander", "idle"):
                         t.greet_ok_at = self.now + GREET_COOLDOWN_S
-                        self.emit(a.kind, "greet", pos, out, ground, positional, voice)
+                        self.emit(a.kind, "greet", pos, out, ground, positional, voice, id(a))
                 elif t.near_rowan and d2 > (GREET_M + 2.0) ** 2:
                     t.near_rowan = False
             t.clip, t.time, t.state = clip, time, a.state
@@ -217,7 +243,7 @@ class SfxDirector:
                 if (a.x - rowan.x) ** 2 + (a.z - rowan.z) ** 2 < STARTLE_M ** 2 and self.now >= t.startle_ok_at:
                     t.startle_ok_at = self.now + STARTLE_COOLDOWN_S
                     self.emit(a.kind, "startled", (a.x, a.y + 1.0, a.z), out, ground,
-                              voice=getattr(c, "voice", None))
+                              voice=getattr(c, "voice", None), speaker=id(a))
         # delayed parts (a body hitting the ground after the death cry)
         due = [q for q in self.pending if q.at <= self.now]
         if due:
@@ -261,6 +287,7 @@ class MixerSfx:
         self.sounds: dict[str, list] = {}
         self.last_take: dict[str, int] = {}
         self.loop_channels: dict = {}
+        self.envelopes: dict[int, np.ndarray] = {}   # id(Sound) -> loudness 0..1 at TALK_FPS (voice lines)
         self.loop_names: dict = {}
         if pygame.mixer.get_num_channels() < 32:
             pygame.mixer.set_num_channels(32)
@@ -275,8 +302,11 @@ class MixerSfx:
                 if not take.isdigit():
                     continue
                 try:
-                    found.setdefault(f"{prefix}{f.parent.name}/{stem}", []).append(pg.mixer.Sound(str(f)))
-                except (pg.error, OSError) as exc:
+                    snd = pg.mixer.Sound(str(f))
+                    found.setdefault(f"{prefix}{f.parent.name}/{stem}", []).append(snd)
+                    if prefix:
+                        self.envelopes[id(snd)] = loudness(pg.sndarray.array(snd), pg.mixer.get_init()[0])
+                except (pg.error, OSError, ValueError) as exc:
                     print(f"sfx: could not load {f.name} ({exc})")
         self.sounds = found
 
@@ -297,7 +327,9 @@ class MixerSfx:
         l, r = spatial(listener, right, pos, float(self.cfg.get("ref_m", 4.0)), float(self.cfg.get("max_m", 45.0)))
         return min(1.0, l * v), min(1.0, r * v)
 
-    def play(self, cues: list[Cue], loops: dict, listener, right) -> None:
+    def play(self, cues: list[Cue], loops: dict, listener, right) -> list[tuple[int, np.ndarray]]:
+        """Play cues and loops; returns (speaker, loudness envelope) for each voice line started."""
+        talking = []
         if not self.enabled:
             loops = {}
         for q in cues if self.enabled else ():
@@ -313,6 +345,8 @@ class MixerSfx:
             if ch is not None:
                 ch.play(snd)
                 ch.set_volume(l, r)
+                if q.speaker is not None and id(snd) in self.envelopes:
+                    talking.append((q.speaker, self.envelopes[id(snd)]))
         for k in [k for k in self.loop_channels if k not in loops or loops[k][0] != self.loop_names.get(k)]:
             self.loop_channels.pop(k).stop()
             self.loop_names.pop(k, None)
@@ -350,9 +384,10 @@ class SfxSystem:
     def voices(self, on: bool) -> None:
         self.player.voices = on
 
-    def update(self, chars, rowan, spells, listener, right, dt: float, ground=None) -> None:
+    def update(self, chars, rowan, spells, listener, right, dt: float, ground=None) -> list:
+        """Returns (speaker actor id, loudness envelope) for every voice line that started."""
         cues, loops = self.director.update(chars, rowan, spells, listener, dt, ground)
-        self.player.play(cues, loops, listener, right)
+        return self.player.play(cues, loops, listener, right) or []
 
 
 def start_sfx(volume: float) -> SfxSystem | None:

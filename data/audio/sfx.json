@@ -14,7 +14,8 @@
     "state_events {state: {enter, leave}} fires on entering/leaving a state; clip_loops {clip: sound}",
     "keeps a looping sound going while that clip plays. wade_step replaces any footstep in water.",
     "greet: an NPC with a voice speaks when Rowan walks up (once per 45 s). {voice} is that NPC's",
-    "voice (data/characters.json 'voices'); lines are assets/audio/vo/<voice>/<event>_<n>.mp3."
+    "voice (data/characters.json 'voices'); lines are assets/audio/vo/<voice>/<event>_<n>.mp3.",
+    "'like': another kind's sounds (the unique villagers sound like villager_m / villager_f)."
   ],
   "volume": 1.0,
   "ref_m": 4.0,
@@ -387,6 +388,24 @@
         "hit": "villager_m/hurt",
         "death": "villager_m/death"
       }
+    },
+    "shepherd": {
+      "like": "villager_m"
+    },
+    "smith_hand": {
+      "like": "villager_m"
+    },
+    "merchant": {
+      "like": "villager_m"
+    },
+    "dairymaid": {
+      "like": "villager_f"
+    },
+    "weaver": {
+      "like": "villager_f"
+    },
+    "seller": {
+      "like": "villager_f"
     }
   }
 }

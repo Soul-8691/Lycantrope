@@ -1,0 +1,45 @@
+{
+  "id": "01a215d5-ea37-7607-93d3-4ce9e93ffbf2",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 3332102583,
+  "prompt": "lively market seller in her fifties, grey-streaked hair under a striped red and white headscarf knotted at the back, sleeveless laced brown bodice over a linen blouse with rolled sleeves, full ankle-length mustard wool skirt, leather belt with a coin purse, leather shoes, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795662672663,
+  "progress": 100,
+  "started_at": 1795662672672,
+  "finished_at": 1795662725712,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-ea37-7607-93d3-4ce9e93ffbf2/output/model.glb?Expires=4949251200&Signature=nIJsZphuU0q-9RsR-mLZp~8Qil4SYY8RnaAb1UIEOJfbuaN07p5mffs2Lq0omHMQ8v2ZECagLb3695gKFYAa7WgVaETuCG4~yzoIZIE1z309C00bNYCT~BD~gNmuRgjnLYiyX7Xmmcb40cOqMZTC25d5HzAwORRyiLr2S-BqrgT1KEqxm9vi9h1tnQcIBOLaUM3aNqVis98ryQn3HgFFMFZmOqO~hbsxRvsWbtDcXEE3DknAFw8yTmDqzCxKAGvLHEcIYjQ~DrdVhfTuTjCFEaI5XEPiLqh~tLmq03COAlIMGZpQiyivfR96LQJAIBQw5wy12hrsS6wKnt~JdT9qsA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-ea37-7607-93d3-4ce9e93ffbf2/output/preview.png?Expires=4949251200&Signature=YkjNpsPOKSqU6QCxUMK6sgE5~UOIEGTtYelYAVFEwlKplmVMwTiDOwlG~IF8hxq~2NX5jBMTjJz0FbFPit0Ro-XoWC8~L2K5-a8vWmXcz15YApNKYq2IKfohOREYDhgoSQQFXSQ3YnnZhIoRRSqr1Kegqcg~2UJJFIRDCP6GuhjC-WYblII1zMm-a8gY671PYI-xGbE4zgqFfpsm7MF45YPYzpmTG4OpWal6OgGz-V0Hst7Kzl9ExYVuMuqkHPMSXHEbVpuJKMh6Rpfr1C6b-fFpX5kJh22nJAFEOR~7w4lO~fWvaloNezm1Yqz~hDaGLfcuts~h~Hm7U8qagSfShg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "lively market seller in her fifties, grey-streaked hair under a striped red and white headscarf knotted at the back, sleeveless laced brown bodice over a linen blouse with rolled sleeves, full ankle-length mustard wool skirt, leather belt with a coin purse, leather shoes, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 3332102583,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-ea37-7607-93d3-4ce9e93ffbf2/output/model.glb?Expires=4949251200&Signature=nIJsZphuU0q-9RsR-mLZp~8Qil4SYY8RnaAb1UIEOJfbuaN07p5mffs2Lq0omHMQ8v2ZECagLb3695gKFYAa7WgVaETuCG4~yzoIZIE1z309C00bNYCT~BD~gNmuRgjnLYiyX7Xmmcb40cOqMZTC25d5HzAwORRyiLr2S-BqrgT1KEqxm9vi9h1tnQcIBOLaUM3aNqVis98ryQn3HgFFMFZmOqO~hbsxRvsWbtDcXEE3DknAFw8yTmDqzCxKAGvLHEcIYjQ~DrdVhfTuTjCFEaI5XEPiLqh~tLmq03COAlIMGZpQiyivfR96LQJAIBQw5wy12hrsS6wKnt~JdT9qsA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-ea37-7607-93d3-4ce9e93ffbf2/output/preview.png?Expires=4949251200&Signature=YkjNpsPOKSqU6QCxUMK6sgE5~UOIEGTtYelYAVFEwlKplmVMwTiDOwlG~IF8hxq~2NX5jBMTjJz0FbFPit0Ro-XoWC8~L2K5-a8vWmXcz15YApNKYq2IKfohOREYDhgoSQQFXSQ3YnnZhIoRRSqr1Kegqcg~2UJJFIRDCP6GuhjC-WYblII1zMm-a8gY671PYI-xGbE4zgqFfpsm7MF45YPYzpmTG4OpWal6OgGz-V0Hst7Kzl9ExYVuMuqkHPMSXHEbVpuJKMh6Rpfr1C6b-fFpX5kJh22nJAFEOR~7w4lO~fWvaloNezm1Yqz~hDaGLfcuts~h~Hm7U8qagSfShg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

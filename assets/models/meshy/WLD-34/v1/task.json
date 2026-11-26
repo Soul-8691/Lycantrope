@@ -1,0 +1,45 @@
+{
+  "id": "01a215d5-b921-771d-aa94-80f0e14618ba",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 2363614242,
+  "prompt": "burly young blacksmith's labourer in his twenties, short dark hair under a close-fitting leather cap, stubble, heavy scorched leather apron from chest to knees over a short-sleeved linen shirt, thick leather work gloves, dark wool trousers, tall heavy work boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795662659946,
+  "progress": 100,
+  "started_at": 1795662659957,
+  "finished_at": 1795662700567,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-b921-771d-aa94-80f0e14618ba/output/model.glb?Expires=4949251200&Signature=Sj-BfXGYCqUuPFKLBT9qKsVDoSaFrIVl5IeDKBCtJkf65bBW5RrqmAWpZtBsSaATy98WZ-XmlUtTaLPovHOE0~7b~gNF995RHWDaZ9kNm-HDRGvdwWihdw6tAj6bisAeC5c91fnYyfYDtavabApbJv1gA18XSaR2rKmQinRJlirugYNoYCOu56uLXac~OstlRYXY~Yb5whIA5Xh3~3il6hvQc~-mHJDwsT1oayQLje1C2thjw6CdruPqC9m2alKmQgZeLaW0A0IxYNPPakiu2YTjNu7I0vHwO6q9-BQhpoYOTCllqUtB2ULTXSprxckw6nzw8ysL4TKletDrGcWWuQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-b921-771d-aa94-80f0e14618ba/output/preview.png?Expires=4949251200&Signature=qhpgEJjZP0w-ofxZXmOaCeIdHC6R4m1XWH278rU3OJZ3t0verc1vzE4F1p3tLZvzCdiMT96RaEnE0gum8ivmAkxqOaW2rZDCwH~8pqZXcpuxcEiBkjIjoKRdkcTh~EHdWhNHUrFQT7AOjtdScoO-G9xECteX-tvf2udo6r47DoX07Yj6z2AOTtIqj2MySVYWRDmcxvTXlQa2nOUJR~TnEWAox3x6lb~xDKiu-qIoV9MULtACkkADv6pxwpkO86XbtR44vse7kDPzTTRc8vkdUU4-MqKo9pgJE6pgWntNMItLkFCSFNyOt1cH8cZi03n99ckTcccMpmkJOTsSCUkzLQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "burly young blacksmith's labourer in his twenties, short dark hair under a close-fitting leather cap, stubble, heavy scorched leather apron from chest to knees over a short-sleeved linen shirt, thick leather work gloves, dark wool trousers, tall heavy work boots, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 2363614242,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-b921-771d-aa94-80f0e14618ba/output/model.glb?Expires=4949251200&Signature=Sj-BfXGYCqUuPFKLBT9qKsVDoSaFrIVl5IeDKBCtJkf65bBW5RrqmAWpZtBsSaATy98WZ-XmlUtTaLPovHOE0~7b~gNF995RHWDaZ9kNm-HDRGvdwWihdw6tAj6bisAeC5c91fnYyfYDtavabApbJv1gA18XSaR2rKmQinRJlirugYNoYCOu56uLXac~OstlRYXY~Yb5whIA5Xh3~3il6hvQc~-mHJDwsT1oayQLje1C2thjw6CdruPqC9m2alKmQgZeLaW0A0IxYNPPakiu2YTjNu7I0vHwO6q9-BQhpoYOTCllqUtB2ULTXSprxckw6nzw8ysL4TKletDrGcWWuQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-b921-771d-aa94-80f0e14618ba/output/preview.png?Expires=4949251200&Signature=qhpgEJjZP0w-ofxZXmOaCeIdHC6R4m1XWH278rU3OJZ3t0verc1vzE4F1p3tLZvzCdiMT96RaEnE0gum8ivmAkxqOaW2rZDCwH~8pqZXcpuxcEiBkjIjoKRdkcTh~EHdWhNHUrFQT7AOjtdScoO-G9xECteX-tvf2udo6r47DoX07Yj6z2AOTtIqj2MySVYWRDmcxvTXlQa2nOUJR~TnEWAox3x6lb~xDKiu-qIoV9MULtACkkADv6pxwpkO86XbtR44vse7kDPzTTRc8vkdUU4-MqKo9pgJE6pgWntNMItLkFCSFNyOt1cH8cZi03n99ckTcccMpmkJOTsSCUkzLQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

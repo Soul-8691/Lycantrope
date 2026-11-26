@@ -176,6 +176,54 @@
       "prompt": "market seller clothing worn by a plain smooth featureless grey mannequin with the build of a young adult woman, standing in A-pose: striped headscarf knotted at the back, sleeveless laced brown bodice over a linen blouse with rolled sleeves, full ankle-length mustard wool skirt, leather belt with a coin purse, leather shoes, empty hands, full body",
       "tris": 12000,
       "pose": "a-pose"
+    },
+    "WLD-33": {
+      "name": "Villager: old shepherd (man)",
+      "prompt": "old shepherd in his sixties, lean and weathered, long white beard, kind squinting eyes, undyed grey wool hood with a short shoulder cape, sheepskin vest with the fleece turned outward over a long belted brown tunic, wool leg wraps tied with cord, soft leather shoes, empty hands, full body, standing in A-pose",
+      "tris": 12000,
+      "rig": "biped",
+      "pose": "a-pose",
+      "height_m": 1.72
+    },
+    "WLD-34": {
+      "name": "Villager: smith's hand (man)",
+      "prompt": "burly young blacksmith's labourer in his twenties, short dark hair under a close-fitting leather cap, stubble, heavy scorched leather apron from chest to knees over a short-sleeved linen shirt, thick leather work gloves, dark wool trousers, tall heavy work boots, empty hands, full body, standing in A-pose",
+      "tris": 12000,
+      "rig": "biped",
+      "pose": "a-pose",
+      "height_m": 1.82
+    },
+    "WLD-35": {
+      "name": "Villager: merchant (man)",
+      "prompt": "prosperous village merchant in his forties, neat brown beard, brimmed brown felt hat, knee-length dark blue wool coat with red cuffs and a broad leather belt with a coin purse, linen shirt collar, grey wool hose, buckled leather shoes, empty hands, full body, standing in A-pose",
+      "tris": 12000,
+      "rig": "biped",
+      "pose": "a-pose",
+      "height_m": 1.76
+    },
+    "WLD-36": {
+      "name": "Villager: dairymaid (woman)",
+      "prompt": "cheerful young adult dairymaid, freckles, fair hair tucked under a white linen coif, short-sleeved cream blouse under a laced green vest, calf-length russet wool kirtle with an apron, plain wooden clogs, empty hands, full body, standing in A-pose",
+      "tris": 12000,
+      "rig": "biped",
+      "pose": "a-pose",
+      "height_m": 1.62
+    },
+    "WLD-37": {
+      "name": "Villager: weaver (woman)",
+      "prompt": "village weaver in her forties, calm face, thick knitted plum wool shawl drawn over her head and shoulders, long-sleeved ankle-length grey-green wool dress, apron woven with a simple diamond pattern, soft leather shoes, empty hands, full body, standing in A-pose",
+      "tris": 12000,
+      "rig": "biped",
+      "pose": "a-pose",
+      "height_m": 1.65
+    },
+    "WLD-38": {
+      "name": "Villager: market seller (woman)",
+      "prompt": "lively market seller in her fifties, grey-streaked hair under a striped red and white headscarf knotted at the back, sleeveless laced brown bodice over a linen blouse with rolled sleeves, full ankle-length mustard wool skirt, leather belt with a coin purse, leather shoes, empty hands, full body, standing in A-pose",
+      "tris": 12000,
+      "rig": "biped",
+      "pose": "a-pose",
+      "height_m": 1.64
     }
   }
 }

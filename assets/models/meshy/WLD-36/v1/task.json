@@ -1,0 +1,45 @@
+{
+  "id": "01a215d5-cd4f-76d3-bdc9-589a9e37b06a",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 3043760550,
+  "prompt": "cheerful young adult dairymaid, freckles, fair hair tucked under a white linen coif, short-sleeved cream blouse under a laced green vest, calf-length russet wool kirtle with an apron, plain wooden clogs, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795662667097,
+  "progress": 100,
+  "started_at": 1795662667105,
+  "finished_at": 1795662711251,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-cd4f-76d3-bdc9-589a9e37b06a/output/model.glb?Expires=4949251200&Signature=i3bF0hLQM-T91NvpMCPCNdBC9FoQzApVKQkNwn0MfOO2ESf4brp8JI0Bm--dgjQDtFde28HeUmC14JbvH5hhv4HdIv5fES-oz~fTlcRaEdZkqkDeCtjd0z2pMTDUqITQ9NGzY8lmUcOhIheUzPJkDPXMGwqYhKx6NHP8hHRLD5dNyikNgWMafP8739i2OupOJtbHYSm2v5Vdt-3zotX0Hw2Cj2kxLpJzlGrgs6Vw09nl84GzHN7Fj86M9BtllzgORGJwoLuAw29x5DApx1CX7~IyGDwmPPBfXO41I~ci~rWA0NmQsOYtyeisbYhY5O5Z9GzDevQeeTokKC6tWLQDBQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-cd4f-76d3-bdc9-589a9e37b06a/output/preview.png?Expires=4949251200&Signature=JoEfiTMa5q0LABL3A9MV1rcacDHY8S75~k3MO9vTVvaCT~B7TMmymIxTJCARAHVBcKw1hJ4GZsVUp0luHvr2pcWgO~h4sTPuq-E0MNBbwriOoLcwIUuuHQvOmsX1Yo2CyTkKLMBJznFx610o7be1C3a45JdnsGOpuz4ntaTwYmHgi1cff9L~gMsaZLY-Nf0FMTklZfvIu-xC5CFW8htIrMl2tSPr1UBsPD-80IZJtg8WKjUOvmS4tbYbKhu7EbkIUNmdgz~SObnLQCooqz5pCQP2gUHbApF~tUOTdGRJHKSSbydCfyKwh4V8vyoRegeVXxp23LGZmE0zGmdhDzTVPg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "cheerful young adult dairymaid, freckles, fair hair tucked under a white linen coif, short-sleeved cream blouse under a laced green vest, calf-length russet wool kirtle with an apron, plain wooden clogs, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 3043760550,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-cd4f-76d3-bdc9-589a9e37b06a/output/model.glb?Expires=4949251200&Signature=i3bF0hLQM-T91NvpMCPCNdBC9FoQzApVKQkNwn0MfOO2ESf4brp8JI0Bm--dgjQDtFde28HeUmC14JbvH5hhv4HdIv5fES-oz~fTlcRaEdZkqkDeCtjd0z2pMTDUqITQ9NGzY8lmUcOhIheUzPJkDPXMGwqYhKx6NHP8hHRLD5dNyikNgWMafP8739i2OupOJtbHYSm2v5Vdt-3zotX0Hw2Cj2kxLpJzlGrgs6Vw09nl84GzHN7Fj86M9BtllzgORGJwoLuAw29x5DApx1CX7~IyGDwmPPBfXO41I~ci~rWA0NmQsOYtyeisbYhY5O5Z9GzDevQeeTokKC6tWLQDBQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-cd4f-76d3-bdc9-589a9e37b06a/output/preview.png?Expires=4949251200&Signature=JoEfiTMa5q0LABL3A9MV1rcacDHY8S75~k3MO9vTVvaCT~B7TMmymIxTJCARAHVBcKw1hJ4GZsVUp0luHvr2pcWgO~h4sTPuq-E0MNBbwriOoLcwIUuuHQvOmsX1Yo2CyTkKLMBJznFx610o7be1C3a45JdnsGOpuz4ntaTwYmHgi1cff9L~gMsaZLY-Nf0FMTklZfvIu-xC5CFW8htIrMl2tSPr1UBsPD-80IZJtg8WKjUOvmS4tbYbKhu7EbkIUNmdgz~SObnLQCooqz5pCQP2gUHbApF~tUOTdGRJHKSSbydCfyKwh4V8vyoRegeVXxp23LGZmE0zGmdhDzTVPg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

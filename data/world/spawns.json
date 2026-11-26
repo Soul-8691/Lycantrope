@@ -13,8 +13,14 @@
     "facing": 40
   },
   "groups": [
-    {"name": "villagers (men)", "kind": "villager_m", "count": 3, "anchor": "Brackenvale Village", "at": [6, 6], "radius": 14, "vary": {"height": [0.93, 1.06], "tint": 0.12, "pace": [0.85, 1.15]}},
-    {"name": "villagers (women)", "kind": "villager_f", "count": 3, "anchor": "Brackenvale Village", "at": [-6, 2], "radius": 14, "vary": {"height": [0.93, 1.06], "tint": 0.12, "pace": [0.85, 1.15]}},
+    {"name": "villagers (men)", "kind": "villager_m", "count": 1, "anchor": "Brackenvale Village", "at": [6, 6], "radius": 14, "vary": {"height": [0.93, 1.06], "tint": 0.12, "pace": [0.85, 1.15]}},
+    {"name": "villagers (women)", "kind": "villager_f", "count": 1, "anchor": "Brackenvale Village", "at": [-6, 2], "radius": 14, "vary": {"height": [0.93, 1.06], "tint": 0.12, "pace": [0.85, 1.15]}},
+    {"name": "the old shepherd, with the cows", "kind": "shepherd", "count": 1, "anchor": "Brackenvale Village", "at": [-5, -140], "radius": 6, "vary": {"height": [0.97, 1.03], "tint": 0.05, "pace": [0.9, 1.1]}},
+    {"name": "the smith's hand, by the smithy", "kind": "smith_hand", "count": 1, "anchor": "Brackenvale Village", "at": [14, 22], "radius": 3, "vary": {"height": [0.97, 1.03], "tint": 0.05, "pace": [0.9, 1.1]}},
+    {"name": "the merchant, at the east stall", "kind": "merchant", "count": 1, "anchor": "Brackenvale Village", "at": [9, -5], "radius": 2, "vary": {"height": [0.97, 1.03], "tint": 0.05, "pace": [0.9, 1.1]}},
+    {"name": "the dairymaid, at Oswin's barn", "kind": "dairymaid", "count": 1, "anchor": "Brackenvale Village", "at": [-50, -26], "radius": 3, "vary": {"height": [0.97, 1.03], "tint": 0.05, "pace": [0.9, 1.1]}},
+    {"name": "the weaver, about the square", "kind": "weaver", "count": 1, "anchor": "Brackenvale Village", "at": [-4, -9], "radius": 4, "vary": {"height": [0.97, 1.03], "tint": 0.05, "pace": [0.9, 1.1]}},
+    {"name": "the market seller, at the west stall", "kind": "seller", "count": 1, "anchor": "Brackenvale Village", "at": [-9, 10], "radius": 2, "vary": {"height": [0.97, 1.03], "tint": 0.05, "pace": [0.9, 1.1]}},
     {"name": "Farmer Oswin Tull", "kind": "farmer", "count": 1, "anchor": "Brackenvale Village", "at": [-34, -38], "radius": 0},
     {"name": "Watch guard, west road", "kind": "guard", "count": 1, "anchor": "Brackenvale Village", "at": [-28, 7], "radius": 0, "vary": {"height": [0.95, 1.05], "tint": 0.08, "pace": [0.9, 1.1]}},
     {"name": "Watch guard, east road", "kind": "guard", "count": 1, "anchor": "Brackenvale Village", "at": [28, 2], "radius": 0, "vary": {"height": [0.95, 1.05], "tint": 0.08, "pace": [0.9, 1.1]}},

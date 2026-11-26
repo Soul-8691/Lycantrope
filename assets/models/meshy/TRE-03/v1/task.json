@@ -1,0 +1,44 @@
+{
+  "id": "01a215b4-f8fb-704b-b1e7-0c8b55f072d0",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 2110706762,
+  "prompt": "small orchard apple tree, short crooked trunk, round canopy with red apples, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795660513708,
+  "progress": 100,
+  "started_at": 1795660513719,
+  "finished_at": 1795660593318,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215b4-f8fb-704b-b1e7-0c8b55f072d0/output/model.glb?Expires=4949251200&Signature=nziw51grtxXXDzF6uuPnS2r5-k-a-X5FuSuW5-JKiMCsIYfclXJxisCR6CzsJnI8ULpwMebODxvVioVgoO2NZgF39JF7jvPT0sqxuSou65Es8un7GJPB7rJ2PB9ashFBOGDrAchbbjvPKIVsC9fpBbmAPRiE0GSCy8LRTLFbj1aDUFoovK84Y2zwQBLETrxNKFdMISH4NQfON3HcocJm0Ix6Zs4spSRhnu0Ne7SAXa-Jd2699hmVC6YNch3JP4mvSx2i~-OSJnibyqmK7KXIyi12kTjxw5pMnyYp88vMIvU-iUzg6le1P1F0hvRJhFisSTF8p8jHaR~Jjt-~iWw3yQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215b4-f8fb-704b-b1e7-0c8b55f072d0/output/preview.png?Expires=4949251200&Signature=WeNEw8ut~hYF0jaIuj4Lo2wd1yAeWv8QquqmpMTsA~t56T1NRVrjGUJ~s3Kk-BDZjWoPBqvBnHIcxZeaKXI0HOHKcEDbzGpbpgGmomVsYZ2tVisVZVrULW8hqLszt4SbAZ6vNugS1fJUMxa7kYQR3T1U~qzQhM5Q23vEkhCu6Lmq6Jlr-HyQ0rHc7bTWcEkTY9HhLHP1lVJNUzsTJ0k460ETtCEU5sNeRO6KDQKCQn8~qrIWGL6Q2BgT1VKLnk2duRxlgiA9LCUYpTq4GUbyTqBncHE9TLiHhUHtagjV3MSSlIVajgjp6153EdaO7BSDSyaNQHzhL6KSuFqgWzIi3g__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "small orchard apple tree, short crooked trunk, round canopy with red apples, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 2000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 2110706762,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215b4-f8fb-704b-b1e7-0c8b55f072d0/output/model.glb?Expires=4949251200&Signature=nziw51grtxXXDzF6uuPnS2r5-k-a-X5FuSuW5-JKiMCsIYfclXJxisCR6CzsJnI8ULpwMebODxvVioVgoO2NZgF39JF7jvPT0sqxuSou65Es8un7GJPB7rJ2PB9ashFBOGDrAchbbjvPKIVsC9fpBbmAPRiE0GSCy8LRTLFbj1aDUFoovK84Y2zwQBLETrxNKFdMISH4NQfON3HcocJm0Ix6Zs4spSRhnu0Ne7SAXa-Jd2699hmVC6YNch3JP4mvSx2i~-OSJnibyqmK7KXIyi12kTjxw5pMnyYp88vMIvU-iUzg6le1P1F0hvRJhFisSTF8p8jHaR~Jjt-~iWw3yQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215b4-f8fb-704b-b1e7-0c8b55f072d0/output/preview.png?Expires=4949251200&Signature=WeNEw8ut~hYF0jaIuj4Lo2wd1yAeWv8QquqmpMTsA~t56T1NRVrjGUJ~s3Kk-BDZjWoPBqvBnHIcxZeaKXI0HOHKcEDbzGpbpgGmomVsYZ2tVisVZVrULW8hqLszt4SbAZ6vNugS1fJUMxa7kYQR3T1U~qzQhM5Q23vEkhCu6Lmq6Jlr-HyQ0rHc7bTWcEkTY9HhLHP1lVJNUzsTJ0k460ETtCEU5sNeRO6KDQKCQn8~qrIWGL6Q2BgT1VKLnk2duRxlgiA9LCUYpTq4GUbyTqBncHE9TLiHhUHtagjV3MSSlIVajgjp6153EdaO7BSDSyaNQHzhL6KSuFqgWzIi3g__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

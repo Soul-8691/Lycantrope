@@ -36,7 +36,8 @@ SWIM_IN, SWIM_OUT = 1.2, 1.0   # Rowan starts swimming deeper than this, wades a
 STATIC_CLIPS = {"idle": ClipInfo(1.0, True), "walk": ClipInfo(1.0, True), "run": ClipInfo(1.0, True),
                 "alert": ClipInfo(1.0, True), "attack1": ClipInfo(0.9, False), "attack2": ClipInfo(0.9, False),
                 "hit": ClipInfo(0.5, False), "death": ClipInfo(1.0, False)}
-RADIUS = {"guard": 0.4, "rowan": 0.4, "goblin": 0.35, "wolf": 0.5, "bear": 0.9, "bruiser": 0.55, "battlemage": 0.4, "cow": 0.8, "villager_m": 0.35, "villager_f": 0.33, "farmer": 0.38}
+RADIUS = {"guard": 0.4, "shepherd": 0.38, "smith_hand": 0.42, "merchant": 0.38, "dairymaid": 0.33,
+          "weaver": 0.35, "seller": 0.35, "rowan": 0.4, "goblin": 0.35, "wolf": 0.5, "bear": 0.9, "bruiser": 0.55, "battlemage": 0.4, "cow": 0.8, "villager_m": 0.35, "villager_f": 0.33, "farmer": 0.38}
 
 
 # ---------------------------------------------------------------------------- #
@@ -240,6 +241,10 @@ class CharType:
     body_variants: dict = field(default_factory=dict)          # worn pieces -> body GpuMesh without covered bits
     outfit_chance: dict[str, float] = field(default_factory=dict)
     voices: list[str] = field(default_factory=list)          # voice pool (data/voices.json names)
+    jaw: int = -1                 # extra joint (index after the rig's own) that opens the jaw
+    jaw_of: int = -1              # the head joint it hangs from
+    jaw_pivot: np.ndarray | None = None   # mesh-space rotation pivot and axis for the jaw
+    jaw_axis: np.ndarray | None = None
 
 
 def _fit_cached(body: MeshData, skel: Skeleton, outfit_path: Path, rig_path: Path) -> MeshData:
@@ -259,6 +264,70 @@ def _fit_cached(body: MeshData, skel: Skeleton, outfit_path: Path, rig_path: Pat
 COVER_M = 0.035              # body is hidden under cloth this close (outfits sit ~2-4 cm out)
 HAT_CLEAR_M = 0.03           # hats and hoods are lifted at least this far off the head (clear of the hair)
 POKE_M = 0.15                # ...and where it pokes out through the cloth, up to this far
+
+
+JAW_DEG = 12.0               # how far the jaw drops at full loudness
+
+
+def add_jaw(t: "CharType", body: MeshData, skel: Skeleton) -> None:
+    """Give a talking NPC a jaw: an extra joint after the rig's own, hinged below the ears, carrying
+    the chin and lower face (weights fade out toward the mouth line and the back of the head).
+    Must run before the body is uploaded."""
+    if "Head" not in skel.names or len(skel.names) + 1 > MAX_JOINTS:
+        return
+    head = skel.joint_index("Head")
+    m2w = (skel.bind_world() @ skel.ibm)[0]
+    pw = body.pos @ m2w[:3, :3].T + m2w[:3, 3]
+    hw = (body.joints == head) * body.weights
+    on_head = hw.sum(axis=1) > 0.5
+    if on_head.sum() < 50:
+        return
+    hp = pw[on_head]
+    bind = skel.bind_world()
+    head_p = bind[head][:3, 3]
+    # landmarks from the rig's own joints, not the head's outline (hats, hoods and beards stretch that)
+    top = bind[skel.joint_index("head_end")][:3, 3] if "head_end" in skel.names else head_p + [0, 0.28, 0]
+    face = bind[skel.joint_index("headfront")][:3, 3] if "headfront" in skel.names else head_p + [0, 0, 0.1]
+    H = float(top[1] - head_p[1])
+    zc, zf = float(head_p[2]), float(max(face[2], head_p[2] + 0.05))
+    mouth = head_p[1] + 0.33 * H                                   # mouth line, a third of the way up
+    below = np.clip((mouth - pw[:, 1]) / (0.1 * H), 0.0, 1.0)      # full below the mouth, fading above it
+    front = np.clip((pw[:, 2] - zc) / (zf - zc) * 1.2, 0.0, 1.0)
+    wj = below * front * hw.sum(axis=1) * (pw[:, 1] > head_p[1] - 0.25 * H)   # chin and beard, not the chest
+    if (wj > 0.3).sum() < 10:
+        return
+    jaw = len(skel.names)
+    j, w = body.joints.copy(), body.weights.copy()
+    rows = np.nonzero(wj > 0.01)[0]
+    hslot = np.argmax(np.where(j[rows] == head, w[rows], -1.0), axis=1)        # the vertex's head slot
+    other = np.where(np.arange(4)[None, :] == hslot[:, None], np.inf, w[rows])
+    free = np.argmin(other, axis=1)                                           # its lightest other slot
+    w[rows, hslot] += w[rows, free]               # fold that slot's weight into the head...
+    amount = w[rows, hslot] * wj[rows]            # ...then hand the jaw its share of the head
+    w[rows, hslot] -= amount
+    j[rows, free] = jaw
+    w[rows, free] = amount
+    body.joints, body.weights = j, w.astype(np.float32)
+    w2m = np.linalg.inv(m2w)
+    pivot_w = np.array([float(head_p[0]), mouth + 0.05 * H, zc - 0.01])   # hinge just below the ears
+    t.jaw, t.jaw_of = jaw, head
+    t.jaw_pivot = pivot_w @ w2m[:3, :3].T + w2m[:3, 3]
+    ax = w2m[:3, :3] @ np.array([1.0, 0.0, 0.0])
+    t.jaw_axis = ax / np.linalg.norm(ax)
+
+
+def jaw_matrix(t: "CharType", open01: float) -> np.ndarray:
+    """Mesh-space rotation of the jaw about its hinge, applied before the head's own skinning."""
+    a = math.radians(JAW_DEG) * open01
+    x, y, z = t.jaw_axis
+    c, s, C = math.cos(a), math.sin(a), 1 - math.cos(a)
+    R = np.array([[c + x * x * C, x * y * C - z * s, x * z * C + y * s],
+                  [y * x * C + z * s, c + y * y * C, y * z * C - x * s],
+                  [z * x * C - y * s, z * y * C + x * s, c + z * z * C]])
+    M = np.eye(4)
+    M[:3, :3] = R
+    M[:3, 3] = t.jaw_pivot - R @ t.jaw_pivot
+    return M
 
 
 def _vertex_colors(m: MeshData) -> np.ndarray | None:
@@ -434,6 +503,8 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
             t.outfit_chance = dict(spec.get("outfit_chance", {}))
             if t.outfits:
                 t.body_tris = body.idx.reshape(-1, 3).astype(np.uint32)
+        if t.voices:                              # a jaw for talking (Meshy rigs have no face bones);
+            add_jaw(t, body, skel)                # after the outfits, which read the rig's own joints
         # armor first: it decides which body parts are drawn
         slots = None
         eq = spec.get("equipment", {})
@@ -587,6 +658,9 @@ class Character:
     tint: tuple[float, float, float] = (1.0, 1.0, 1.0)   # per-character colour variation
     wear: dict[str, int] = field(default_factory=dict)   # outfit piece -> index into t.outfits
     voice: str | None = None                             # which designed voice this NPC speaks with
+    talk_env: np.ndarray | None = None                   # loudness of the line being said (jaw)
+    talk_t: float = 0.0
+    jaw_open: float = 0.0                                # 0 shut .. 1 open
 
 
 class CharacterSystem:
@@ -728,6 +802,15 @@ class CharacterSystem:
                 return False
         return True
 
+    def talk(self, speaker: int, envelope: np.ndarray) -> None:
+        """A voice line started: that NPC stops to face Rowan and moves its jaw with the line."""
+        for c in self.chars:
+            if id(c.actor) == speaker:
+                c.talk_env, c.talk_t = envelope, 0.0
+                if c.brain is not None:
+                    c.brain.talk_s = len(envelope) / 30.0 + 0.5
+                return
+
     def chased(self, range_m: float) -> bool:
         """Is any enemy within range_m actively after Rowan (for the combat music)?"""
         if self.rowan is None or self.rowan.a.state == "dead":
@@ -779,6 +862,17 @@ class CharacterSystem:
                     self.spells.cast(start, target, float(sp.get("speed_m_s", 16)), float(sp.get("radius_m", 0.28)),
                                      sp.get("color", (1.0, 0.45, 0.12)))
         separate(near)
+        for c in self.chars:                                   # jaws follow the loudness of the line
+            if c.talk_env is not None:
+                i = int(c.talk_t * 30.0)
+                if i >= len(c.talk_env):
+                    c.talk_env, target = None, 0.0
+                else:
+                    target = float(c.talk_env[i])
+                c.talk_t += dt
+            else:
+                target = 0.0
+            c.jaw_open += (target - c.jaw_open) * min(1.0, dt * 25.0)
         self.spells.update(dt)
         self.rite.update(dt)
         lim = self.world.half - 5
@@ -937,6 +1031,8 @@ class CharacterSystem:
             palette = np.einsum("jab,jbc->jac", W, t.skel.ibm)
             buf = np.zeros((MAX_JOINTS, 4, 4), np.float32)
             buf[:len(palette)] = palette
+            if t.jaw >= 0:                                     # the jaw hangs off the head
+                buf[t.jaw] = palette[t.jaw_of] @ jaw_matrix(t, c.jaw_open)
             prog["u_joints"].write(np.ascontiguousarray(buf.transpose(0, 2, 1)).tobytes())
             set_uniform(prog, "u_model", glm.mat4(*model.T.ravel()))
             set_uniform(prog, "u_skinned", 1)

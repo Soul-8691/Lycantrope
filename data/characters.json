@@ -15,7 +15,8 @@
     "'swim': 'procedural' builds swim and tread clips in code (no Meshy swim animation yet). A real 'swim' / 'tread' clip in clips replaces them; then give 'swim_float_m': {clip: water level in rig units above the feet}.",
     "'outfits': NPC outfit kit (WLD-26): models made on a grey mannequin, fitted over this body; each NPC wears its own mix of head / top / bottom pieces, each with the chance in 'outfit_chance' (otherwise its own clothes).",
     "'voices': pool of designed voices (data/voices.json); each NPC is given one.",
-    "NPCs are kept busy: pause_s (standing between walks) is under a second for villagers, the farmer and guards."
+    "NPCs are kept busy: pause_s (standing between walks) is under a second for villagers, the farmer and guards.",
+    "Unique villagers (WLD-33..38: shepherd, smith_hand, merchant, dairymaid, weaver, seller) are whole dressed models with one voice each; the layered outfit kit (WLD-26) is retired."
   ],
   "characters": {
     "rowan": {
@@ -522,16 +523,6 @@
         ],
         "on_paths": true
       },
-      "outfits": [
-        "WLD-27/v1/textured/model.glb",
-        "WLD-28/v1/textured/model.glb",
-        "WLD-29/v1/textured/model.glb"
-      ],
-      "outfit_chance": {
-        "head": 0.45,
-        "top": 0.55,
-        "bottom": 0.4
-      },
       "voices": [
         "villager_man_1",
         "villager_man_2",
@@ -596,19 +587,362 @@
         "min_height_m": 0.2,
         "cloth_from_m": 0.07
       },
-      "outfits": [
-        "WLD-30/v1/textured/model.glb",
-        "WLD-31/v1/textured/model.glb",
-        "WLD-32/v1/textured/model.glb"
-      ],
-      "outfit_chance": {
-        "head": 0.45,
-        "top": 0.55,
-        "bottom": 0.4
-      },
       "voices": [
         "villager_woman_1",
         "villager_woman_2",
+        "villager_woman_3"
+      ]
+    },
+    "shepherd": {
+      "name": "Old shepherd (WLD-33)",
+      "rig": "WLD-33/v1/rig/rigged.glb",
+      "clips": {
+        "idle": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Idle",
+          "loop": true,
+          "retarget": true
+        },
+        "walk": {
+          "file": "WLD-33/v1/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 1.4
+        },
+        "run": {
+          "file": "WLD-33/v1/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 4.6
+        },
+        "hit": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Hit_Reaction",
+          "retarget": true
+        },
+        "death": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "dying_backwards",
+          "retarget": true
+        }
+      },
+      "speeds": {
+        "walk": 1.3,
+        "run": 4.2
+      },
+      "ai": {
+        "aggro_m": 0,
+        "leash_m": 120,
+        "reach_m": 1.0,
+        "attack_every_s": [
+          9,
+          9
+        ],
+        "wander_m": 30,
+        "pause_s": [
+          0.3,
+          1.0
+        ]
+      },
+      "voices": [
+        "villager_man_2"
+      ]
+    },
+    "smith_hand": {
+      "name": "Smith's hand (WLD-34)",
+      "rig": "WLD-34/v1/rig/rigged.glb",
+      "clips": {
+        "idle": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Idle",
+          "loop": true,
+          "retarget": true
+        },
+        "walk": {
+          "file": "WLD-34/v1/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 1.4
+        },
+        "run": {
+          "file": "WLD-34/v1/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 4.6
+        },
+        "hit": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Hit_Reaction",
+          "retarget": true
+        },
+        "death": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "dying_backwards",
+          "retarget": true
+        }
+      },
+      "speeds": {
+        "walk": 1.3,
+        "run": 4.2
+      },
+      "ai": {
+        "aggro_m": 0,
+        "leash_m": 120,
+        "reach_m": 1.0,
+        "attack_every_s": [
+          9,
+          9
+        ],
+        "wander_m": 12,
+        "pause_s": [
+          0.3,
+          1.0
+        ],
+        "on_paths": true
+      },
+      "voices": [
+        "villager_man_3"
+      ]
+    },
+    "merchant": {
+      "name": "Merchant (WLD-35)",
+      "rig": "WLD-35/v1/rig/rigged.glb",
+      "clips": {
+        "idle": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Idle",
+          "loop": true,
+          "retarget": true
+        },
+        "walk": {
+          "file": "WLD-35/v1/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 1.4
+        },
+        "run": {
+          "file": "WLD-35/v1/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 4.6
+        },
+        "hit": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Hit_Reaction",
+          "retarget": true
+        },
+        "death": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "dying_backwards",
+          "retarget": true
+        }
+      },
+      "speeds": {
+        "walk": 1.3,
+        "run": 4.2
+      },
+      "ai": {
+        "aggro_m": 0,
+        "leash_m": 120,
+        "reach_m": 1.0,
+        "attack_every_s": [
+          9,
+          9
+        ],
+        "wander_m": 10,
+        "pause_s": [
+          0.3,
+          1.0
+        ],
+        "on_paths": true
+      },
+      "voices": [
+        "villager_man_1"
+      ]
+    },
+    "dairymaid": {
+      "name": "Dairymaid (WLD-36)",
+      "rig": "WLD-36/v1/rig/rigged.glb",
+      "clips": {
+        "idle": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Idle",
+          "loop": true,
+          "retarget": true
+        },
+        "walk": {
+          "file": "WLD-36/v1/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 1.4
+        },
+        "run": {
+          "file": "WLD-36/v1/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 4.6
+        },
+        "hit": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Hit_Reaction",
+          "retarget": true
+        },
+        "death": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "dying_backwards",
+          "retarget": true
+        }
+      },
+      "speeds": {
+        "walk": 1.25,
+        "run": 4.2
+      },
+      "ai": {
+        "aggro_m": 0,
+        "leash_m": 120,
+        "reach_m": 1.0,
+        "attack_every_s": [
+          9,
+          9
+        ],
+        "wander_m": 18,
+        "pause_s": [
+          0.3,
+          1.0
+        ],
+        "on_paths": true
+      },
+      "skirt": {
+        "to": "Hips",
+        "amount": 0.9,
+        "min_height_m": 0.2,
+        "cloth_from_m": 0.07
+      },
+      "voices": [
+        "villager_woman_1"
+      ]
+    },
+    "weaver": {
+      "name": "Weaver (WLD-37)",
+      "rig": "WLD-37/v1/rig/rigged.glb",
+      "clips": {
+        "idle": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Idle",
+          "loop": true,
+          "retarget": true
+        },
+        "walk": {
+          "file": "WLD-37/v1/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 1.4
+        },
+        "run": {
+          "file": "WLD-37/v1/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 4.6
+        },
+        "hit": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Hit_Reaction",
+          "retarget": true
+        },
+        "death": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "dying_backwards",
+          "retarget": true
+        }
+      },
+      "speeds": {
+        "walk": 1.25,
+        "run": 4.2
+      },
+      "ai": {
+        "aggro_m": 0,
+        "leash_m": 120,
+        "reach_m": 1.0,
+        "attack_every_s": [
+          9,
+          9
+        ],
+        "wander_m": 20,
+        "pause_s": [
+          0.3,
+          1.0
+        ],
+        "on_paths": true
+      },
+      "skirt": {
+        "to": "Hips",
+        "amount": 0.9,
+        "min_height_m": 0.2,
+        "cloth_from_m": 0.07
+      },
+      "voices": [
+        "villager_woman_2"
+      ]
+    },
+    "seller": {
+      "name": "Market seller (WLD-38)",
+      "rig": "WLD-38/v1/rig/rigged.glb",
+      "clips": {
+        "idle": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Idle",
+          "loop": true,
+          "retarget": true
+        },
+        "walk": {
+          "file": "WLD-38/v1/rig/walking.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 1.4
+        },
+        "run": {
+          "file": "WLD-38/v1/rig/running.glb",
+          "clip": 0,
+          "loop": true,
+          "move_speed": 4.6
+        },
+        "hit": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "Hit_Reaction",
+          "retarget": true
+        },
+        "death": {
+          "file": "HER-09/v1/rig/animations_1.glb",
+          "clip": "dying_backwards",
+          "retarget": true
+        }
+      },
+      "speeds": {
+        "walk": 1.25,
+        "run": 4.2
+      },
+      "ai": {
+        "aggro_m": 0,
+        "leash_m": 120,
+        "reach_m": 1.0,
+        "attack_every_s": [
+          9,
+          9
+        ],
+        "wander_m": 10,
+        "pause_s": [
+          0.3,
+          1.0
+        ],
+        "on_paths": true
+      },
+      "skirt": {
+        "to": "Hips",
+        "amount": 0.9,
+        "min_height_m": 0.2,
+        "cloth_from_m": 0.07
+      },
+      "voices": [
         "villager_woman_3"
       ]
     },

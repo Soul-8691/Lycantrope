@@ -6,7 +6,10 @@ Helpful:
 .venv\Scripts\python.exe tools\props\build.py VIL-10 VIL-04
 
 To-Do:
-NPC outfits
+NPCs face player
+NPC jaws
+Jump
+A few more enemy types
 Talk (A press)
 Voice lines
 Mouths

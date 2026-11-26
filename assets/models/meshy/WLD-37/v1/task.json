@@ -1,0 +1,45 @@
+{
+  "id": "01a215d5-debc-76f3-ba06-57c63e103919",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 1372368507,
+  "prompt": "village weaver in her forties, calm face, thick knitted plum wool shawl drawn over her head and shoulders, long-sleeved ankle-length grey-green wool dress, apron woven with a simple diamond pattern, soft leather shoes, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795662669984,
+  "progress": 100,
+  "started_at": 1795662669995,
+  "finished_at": 1795662736007,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-debc-76f3-ba06-57c63e103919/output/model.glb?Expires=4949251200&Signature=IIv~Lyjnagbe~BU5axH-pDSDI0MLqP51Pp9WThEId9rI2HFXVR1Ah8C6aJvK4f8xwVzhNCKuY9fe5letzORm5ekli-DFsN8zC5YG-eTtnZqJKr9dm4j~CzZ44-XSaPTq4bmg7yLZHAwhxa54q8EKp17hhk6~O1cAK59nuRx0AWuCYpGgmPzprpNbsbylHiHxJAwhr6a81wLcQm0LmKapBUnLdQdwLkYsVTTyFStQU-5P3jqpv~kg2AxQ53CdN9uqwDJtrEQh2Hdk5bb4oEZr4kCm-fPFq-otbwgv6KPeZa2ODcWftENi6iK0LT-wBbCnA1Q8BKBAVT87pGuDFUkEqA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-debc-76f3-ba06-57c63e103919/output/preview.png?Expires=4949251200&Signature=jBUt3Oi0Ax7Onz2QmQyEliVvgy3iwXhhsSv38texgKpxFWgmCOhuVR8OSRASGoP7bh-YuMDcx5mwZ6k92sAQ3zFW2rYf3Eiuh2kkBwRnpIdGNC-BxrrhxISUv43WB3r2DRurB6qF4MO3bu8RM~7stbXVjy1Z7XRJXFwsmSjkT1QVQbgBY2k0eRY7JXIliUODFGEp9Gmq2nFjmOgfy6piLm7eBIurK51uAaUxHgjjOqog9L94YfEhhmKOkqULEH9u3NoYTNlXKWRk0AJ01DqRy3wIoRv2zNznO2twie2V4klh-0EIiMBKi7MWxDFs8-wFvNX2vOuyMOB5L-XuSVRssg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "village weaver in her forties, calm face, thick knitted plum wool shawl drawn over her head and shoulders, long-sleeved ankle-length grey-green wool dress, apron woven with a simple diamond pattern, soft leather shoes, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 1372368507,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-debc-76f3-ba06-57c63e103919/output/model.glb?Expires=4949251200&Signature=IIv~Lyjnagbe~BU5axH-pDSDI0MLqP51Pp9WThEId9rI2HFXVR1Ah8C6aJvK4f8xwVzhNCKuY9fe5letzORm5ekli-DFsN8zC5YG-eTtnZqJKr9dm4j~CzZ44-XSaPTq4bmg7yLZHAwhxa54q8EKp17hhk6~O1cAK59nuRx0AWuCYpGgmPzprpNbsbylHiHxJAwhr6a81wLcQm0LmKapBUnLdQdwLkYsVTTyFStQU-5P3jqpv~kg2AxQ53CdN9uqwDJtrEQh2Hdk5bb4oEZr4kCm-fPFq-otbwgv6KPeZa2ODcWftENi6iK0LT-wBbCnA1Q8BKBAVT87pGuDFUkEqA__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-debc-76f3-ba06-57c63e103919/output/preview.png?Expires=4949251200&Signature=jBUt3Oi0Ax7Onz2QmQyEliVvgy3iwXhhsSv38texgKpxFWgmCOhuVR8OSRASGoP7bh-YuMDcx5mwZ6k92sAQ3zFW2rYf3Eiuh2kkBwRnpIdGNC-BxrrhxISUv43WB3r2DRurB6qF4MO3bu8RM~7stbXVjy1Z7XRJXFwsmSjkT1QVQbgBY2k0eRY7JXIliUODFGEp9Gmq2nFjmOgfy6piLm7eBIurK51uAaUxHgjjOqog9L94YfEhhmKOkqULEH9u3NoYTNlXKWRk0AJ01DqRy3wIoRv2zNznO2twie2V4klh-0EIiMBKi7MWxDFs8-wFvNX2vOuyMOB5L-XuSVRssg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

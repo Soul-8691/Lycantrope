@@ -1,0 +1,45 @@
+{
+  "id": "01a215d5-c2d8-7246-94be-1af75fd13283",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 3108592467,
+  "prompt": "prosperous village merchant in his forties, neat brown beard, brimmed brown felt hat, knee-length dark blue wool coat with red cuffs and a broad leather belt with a coin purse, linen shirt collar, grey wool hose, buckled leather shoes, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795662662662,
+  "progress": 100,
+  "started_at": 1795662662673,
+  "finished_at": 1795662706138,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-c2d8-7246-94be-1af75fd13283/output/model.glb?Expires=4949251200&Signature=L~J6XUcMYGcSUaJjN8PcDJMVa83lnnpSX1Hkn8XOR-PcnnZlYQOawBCn9QbMofWwnxMgGFZkQ~7B7HtG6RYF3ib0vubtdSTkNNQxjvClUl6YQ4p-4043nUnsgddUsFj1IOy6Qd-xQ-GmfKaME6E-2ju4PBrzffprcxrgYp1HRcEq9Vpfel4Y5K5510E14s5iYnv9FXnfaMsyTSLb17STNH5vsuhrZ4-I2rn~Kte0-u-BeYGvJpmWtPqsOtcL7RBgiM2hjrXe69lAb~ALVToTWBH9ZhOICQkmFXELDfG2Y-ddBb4HoPdQPQk7bCy~PyGAm44lNGp1mw7gobeh584S6Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-c2d8-7246-94be-1af75fd13283/output/preview.png?Expires=4949251200&Signature=Z0C9ax0qVBHCLhl5170Hg-6x9bqfrcsFnkKkvOccseQVAgWnNxNZtezgCZkikN6ekPhPbnxQQq9MUVrUJwljLcuG36RuLMR9A3zEOg4m4-unZAkvSnRT3M3gtPw-AkvN5jY2oholp7cdJNMZBOibYDB~qqVcH-cdvSMO0Rl2q7fjA~G~ekgYYVgOfeSZ7IJI-sWrrNQ-UD5tvV-N5~Ed6~2EHTT8YBbxTd1cf9s9cvO71Ak2b9kbsn0-ZyTzx1gWfN8ofHPaYOB7sB3JN6eeHAJYKFwPxoy6-JDFidhgOdfLzeXPnYO9vGy7QJmUYQ5r3HJ-3Ia99CK0m4RRVvocGg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "pose_mode": "a-pose",
+    "prompt": "prosperous village merchant in his forties, neat brown beard, brimmed brown felt hat, knee-length dark blue wool coat with red cuffs and a broad leather belt with a coin purse, linen shirt collar, grey wool hose, buckled leather shoes, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 12000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 3108592467,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-c2d8-7246-94be-1af75fd13283/output/model.glb?Expires=4949251200&Signature=L~J6XUcMYGcSUaJjN8PcDJMVa83lnnpSX1Hkn8XOR-PcnnZlYQOawBCn9QbMofWwnxMgGFZkQ~7B7HtG6RYF3ib0vubtdSTkNNQxjvClUl6YQ4p-4043nUnsgddUsFj1IOy6Qd-xQ-GmfKaME6E-2ju4PBrzffprcxrgYp1HRcEq9Vpfel4Y5K5510E14s5iYnv9FXnfaMsyTSLb17STNH5vsuhrZ4-I2rn~Kte0-u-BeYGvJpmWtPqsOtcL7RBgiM2hjrXe69lAb~ALVToTWBH9ZhOICQkmFXELDfG2Y-ddBb4HoPdQPQk7bCy~PyGAm44lNGp1mw7gobeh584S6Q__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215d5-c2d8-7246-94be-1af75fd13283/output/preview.png?Expires=4949251200&Signature=Z0C9ax0qVBHCLhl5170Hg-6x9bqfrcsFnkKkvOccseQVAgWnNxNZtezgCZkikN6ekPhPbnxQQq9MUVrUJwljLcuG36RuLMR9A3zEOg4m4-unZAkvSnRT3M3gtPw-AkvN5jY2oholp7cdJNMZBOibYDB~qqVcH-cdvSMO0Rl2q7fjA~G~ekgYYVgOfeSZ7IJI-sWrrNQ-UD5tvV-N5~Ed6~2EHTT8YBbxTd1cf9s9cvO71Ak2b9kbsn0-ZyTzx1gWfN8ofHPaYOB7sB3JN6eeHAJYKFwPxoy6-JDFidhgOdfLzeXPnYO9vGy7QJmUYQ5r3HJ-3Ia99CK0m4RRVvocGg__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

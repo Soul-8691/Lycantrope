@@ -1,0 +1,44 @@
+{
+  "id": "01a215bc-8fe5-723c-b18a-1cb617f3cc62",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "standard",
+  "seed": 3735180116,
+  "prompt": "broad gnarled apple tree, short thick twisted trunk, wide rounded canopy of large chunky foliage clumps, small red fruit dotted over the foliage, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795661010793,
+  "progress": 100,
+  "started_at": 1795661010802,
+  "finished_at": 1795661196486,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215bc-8fe5-723c-b18a-1cb617f3cc62/output/model.glb?Expires=4949251200&Signature=n1SEhuzdV7eRddLE45~xGAJ2glG8PFrrXoUz-jgy3R7RKoJD4xzPAU4VQnWI0ClfcL-Ga73NLZ5-b39Jo7Lp2LP7XgXha-yA5Tl~VCAScxXnxLI68cyhR97wu3vE64oTY49ghitFlV5912V7Duz2k8JlGk911pzDOQnXgpw381yJiUb0POJN0n~MOcle79xI9BkksVo-x6RqciRpfZ8bDsM50Dxpe6MTCc603xLVrWMNIwln4QgodC2b6i24XNrS2p3yv6MpAvGB1u9q0oHEv7dMHY10osqYw~8fFzJrsJHWKVLUSeifsB3FRAuAfFoKmqr4rHrKDl9IPYQG5s4Lkw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215bc-8fe5-723c-b18a-1cb617f3cc62/output/preview.png?Expires=4949251200&Signature=KQzP5bP44THVp0PZowKNytUlataKZ-6N6nXu0KO0PCf~soxO9sX~LSlrnJ2TosGYY~XXfcIpsKIZpagukO12wn~yiDUXeckmA-Z0uC1yq43yUURrzjf-X4sEx-C43sxzwmOVpxL3piAoB3aNaDIB8wi~nqeWGBJbKamxDtfesDLH1AKFWGmzgoWe3YvxPrF4vd7XZbdORuLLh66TXjNDwWmMP6Lc1BYAFD9Uv6pFTcb8eCJchbUoBz8HrQ2qs0tu-CZugmjFFAbXJ~w~LAQSDGbnhBCwrZQWsIQgaVY7~d-9QFBne2UpAzhLcVdfmFVSBGLS5mVYk~aMxmpttVkUBQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 20,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "latest",
+    "mode": "preview",
+    "prompt": "broad gnarled apple tree, short thick twisted trunk, wide rounded canopy of large chunky foliage clumps, small red fruit dotted over the foliage, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "should_remesh": true,
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 3000,
+    "topology": "triangle"
+  },
+  "output": {
+    "seed": 3735180116,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215bc-8fe5-723c-b18a-1cb617f3cc62/output/model.glb?Expires=4949251200&Signature=n1SEhuzdV7eRddLE45~xGAJ2glG8PFrrXoUz-jgy3R7RKoJD4xzPAU4VQnWI0ClfcL-Ga73NLZ5-b39Jo7Lp2LP7XgXha-yA5Tl~VCAScxXnxLI68cyhR97wu3vE64oTY49ghitFlV5912V7Duz2k8JlGk911pzDOQnXgpw381yJiUb0POJN0n~MOcle79xI9BkksVo-x6RqciRpfZ8bDsM50Dxpe6MTCc603xLVrWMNIwln4QgodC2b6i24XNrS2p3yv6MpAvGB1u9q0oHEv7dMHY10osqYw~8fFzJrsJHWKVLUSeifsB3FRAuAfFoKmqr4rHrKDl9IPYQG5s4Lkw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a215bc-8fe5-723c-b18a-1cb617f3cc62/output/preview.png?Expires=4949251200&Signature=KQzP5bP44THVp0PZowKNytUlataKZ-6N6nXu0KO0PCf~soxO9sX~LSlrnJ2TosGYY~XXfcIpsKIZpagukO12wn~yiDUXeckmA-Z0uC1yq43yUURrzjf-X4sEx-C43sxzwmOVpxL3piAoB3aNaDIB8wi~nqeWGBJbKamxDtfesDLH1AKFWGmzgoWe3YvxPrF4vd7XZbdORuLLh66TXjNDwWmMP6Lc1BYAFD9Uv6pFTcb8eCJchbUoBz8HrQ2qs0tu-CZugmjFFAbXJ~w~LAQSDGbnhBCwrZQWsIQgaVY7~d-9QFBne2UpAzhLcVdfmFVSBGLS5mVYk~aMxmpttVkUBQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

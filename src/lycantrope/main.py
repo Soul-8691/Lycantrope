@@ -307,8 +307,11 @@ class App:
         if self.sfx is not None:
             cam = self.camera
             p, r = cam.position, cam.right()
-            self.sfx.update(self.chars.chars, self.chars.rowan.a if self.chars.rowan else None,
-                            self.chars.spells.items, (p.x, p.y, p.z), (r.x, r.y, r.z), dt, self.ground_sound)
+            talking = self.sfx.update(self.chars.chars, self.chars.rowan.a if self.chars.rowan else None,
+                                      self.chars.spells.items, (p.x, p.y, p.z), (r.x, r.y, r.z), dt,
+                                      self.ground_sound)
+            for speaker, envelope in talking:          # they stop, face Rowan and move their jaw
+                self.chars.talk(speaker, envelope)
         self.time_s += dt
 
     def key_zoom(self, keys, dt: float) -> None:

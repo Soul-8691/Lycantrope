@@ -86,3 +86,46 @@ def test_mirrored_cast_uses_the_left_hand():
     i = int(np.argmax(clip.world[:, j("RightHand"), 1, 3]))
     a, b = m.world[i, j("LeftHand"), :3, 3], clip.world[i, j("RightHand"), :3, 3]
     assert np.allclose(a, b * [-1, 1, 1], atol=0.02)
+
+
+def test_npc_stops_and_faces_rowan_while_talking():
+    import math
+    from lycantrope.world.actors import AiParams, Enemy
+    clips = {"idle": ClipInfo(2.0, True), "walk": ClipInfo(1.0, True, 1.0, 1.4)}
+    a = Actor("villager_m", 0.0, 0.0, 0.0, clips, {"walk": 1.4, "run": 4.0})
+    rowan_a = Actor("rowan", 3.0, 0.0, 0.0, clips, {"walk": 1.6, "run": 5.0})
+    e = Enemy(a, (0.0, 0.0), AiParams(aggro_m=0, wander_m=20, pause_s=(0.3, 1.0)), seed=2)
+    e.goal, a.timer, a.speed = (0.0, -20.0), 0.0, 1.4       # walking away from Rowan
+    e.talk_s = 2.0
+    for _ in range(90):
+        e.update(rowan_a, True, 1 / 60)
+    assert a.speed < 0.05
+    assert abs((a.heading - math.atan2(3.0, 0.0) + math.pi) % math.tau - math.pi) < 0.1   # facing Rowan
+    for _ in range(120):                                     # line over: back to their errand
+        e.update(rowan_a, True, 1 / 60)
+    assert e.talk_s <= 0 and a.speed > 0.3
+
+
+def test_loudness_envelope_follows_the_line():
+    from lycantrope.audio.sfx import TALK_FPS, loudness
+    rate = 44100
+    t = np.arange(rate) / rate
+    tone = (np.sin(2 * np.pi * 220 * t) * 8000 * (t > 0.5)).astype(np.int16)   # silent, then speech
+    env = loudness(np.stack([tone, tone], axis=1), rate)
+    assert len(env) == TALK_FPS
+    assert env[: TALK_FPS // 2 - 1].max() == 0.0 and env[TALK_FPS // 2 + 1:].min() > 0.9
+
+
+@pytest.mark.skipif(not RIG.exists(), reason="Rowan's rig isn't checked out")
+def test_jaw_takes_the_chin_and_keeps_weights_whole():
+    from types import SimpleNamespace
+    from lycantrope.render.characters import add_jaw, jaw_matrix
+    from lycantrope.render.gltf import load_mesh, load_skeleton
+    skel, body = load_skeleton(RIG), load_mesh(RIG)
+    t = SimpleNamespace(jaw=-1, jaw_of=-1, jaw_pivot=None, jaw_axis=None)
+    add_jaw(t, body, skel)
+    assert t.jaw == len(skel.names)
+    on_jaw = (body.joints == t.jaw).any(axis=1)
+    assert 20 < on_jaw.sum() < len(body.pos) * 0.05            # some of the face, not the whole head
+    assert np.allclose(body.weights.sum(axis=1), 1.0, atol=1e-4)
+    assert np.allclose(jaw_matrix(t, 0.0), np.eye(4))

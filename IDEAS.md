@@ -230,6 +230,12 @@
 - [WLD-30] **Outfit: dairymaid (woman)** — Linen coif, laced vest over a short-sleeved blouse, kirtle, clogs. Part of WLD-26. *(NEW)*
 - [WLD-31] **Outfit: weaver (woman)** — Knitted shawl over the head, long-sleeved wool dress, patterned apron. Part of WLD-26. *(NEW)*
 - [WLD-32] **Outfit: market seller (woman)** — Headscarf, sleeveless bodice, full skirt with a belt purse, rolled sleeves. Part of WLD-26. *(NEW)*
+- [WLD-33] **Villager: old shepherd (man)** — A whole, already-dressed villager (replaces layering the WLD-26 outfits: nothing pokes through). Rigged on the shared skeleton and borrows Rowan's animations; tint, height and pace still vary per NPC. *(OB, SK)*
+- [WLD-34] **Villager: smith's hand (man)** — A whole, already-dressed villager (replaces layering the WLD-26 outfits: nothing pokes through). Rigged on the shared skeleton and borrows Rowan's animations; tint, height and pace still vary per NPC. *(OB, SK)*
+- [WLD-35] **Villager: merchant (man)** — A whole, already-dressed villager (replaces layering the WLD-26 outfits: nothing pokes through). Rigged on the shared skeleton and borrows Rowan's animations; tint, height and pace still vary per NPC. *(OB, SK)*
+- [WLD-36] **Villager: dairymaid (woman)** — A whole, already-dressed villager (replaces layering the WLD-26 outfits: nothing pokes through). Rigged on the shared skeleton and borrows Rowan's animations; tint, height and pace still vary per NPC. *(OB, SK)*
+- [WLD-37] **Villager: weaver (woman)** — A whole, already-dressed villager (replaces layering the WLD-26 outfits: nothing pokes through). Rigged on the shared skeleton and borrows Rowan's animations; tint, height and pace still vary per NPC. *(OB, SK)*
+- [WLD-38] **Villager: market seller (woman)** — A whole, already-dressed villager (replaces layering the WLD-26 outfits: nothing pokes through). Rigged on the shared skeleton and borrows Rowan's animations; tint, height and pace still vary per NPC. *(OB, SK)*
 
 ## 10. HUD & UI (UIX)
 
