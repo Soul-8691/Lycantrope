@@ -196,3 +196,33 @@ def test_npcs_greet_rowan_in_their_own_voice_once_in_a_while():
     run(d, chars, rowan=r.actor)
     v.actor.x = 3.0
     assert run(d, chars, rowan=r.actor)[0] == ["vo/villager_man_2/greet"]
+
+
+def test_mixer_reports_who_started_talking(tmp_path, monkeypatch):
+    """The player must hand back (speaker, loudness) for voice lines: that's what makes NPCs stop,
+    face Rowan and move their jaw. Runs on SDL's silent 'dummy' audio driver."""
+    import numpy as np
+    monkeypatch.setenv("SDL_AUDIODRIVER", "dummy")
+    pygame = pytest.importorskip("pygame")
+    try:
+        pygame.mixer.init(44100, -16, 2, 512)
+    except pygame.error:
+        pytest.skip("no audio driver")
+    try:
+        from lycantrope.audio import sfx as sfx_module
+        from lycantrope.audio.sfx import Cue, MixerSfx
+        monkeypatch.setattr(sfx_module, "VO_DIR", tmp_path)   # the background loader finds nothing to load
+        p = MixerSfx({"ref_m": 4.0, "max_m": 45.0}, 1.0, root=tmp_path)
+        import time
+        time.sleep(0.2)
+        tone = (np.sin(np.arange(4410) * 0.06) * 8000).astype(np.int16)
+        snd = pygame.sndarray.make_sound(np.ascontiguousarray(np.stack([tone, tone], axis=1)))
+        env = np.ones(3, np.float32)
+        p.sounds = {"vo/villager_man_1/greet": [snd], "cow/moo": [snd]}
+        p.envelopes = {id(snd): env}
+        out = p.play([Cue("vo/villager_man_1/greet", None, speaker=42), Cue("cow/moo", None)], {}, (0, 0, 0), (1, 0, 0))
+        assert len(out) == 1 and out[0][0] == 42 and out[0][1] is env
+        p.voices = False                                    # F11: voices off, nobody talks
+        assert p.play([Cue("vo/villager_man_1/greet", None, speaker=42)], {}, (0, 0, 0), (1, 0, 0)) == []
+    finally:
+        pygame.mixer.quit()

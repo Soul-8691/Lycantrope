@@ -361,6 +361,7 @@ class MixerSfx:
                 self.loop_channels[k] = ch
                 self.loop_names[k] = name
             ch.set_volume(*self._levels(pos, vol, listener, right))
+        return talking
 
 
 class SfxSystem:
