@@ -19,19 +19,30 @@ def sky_config() -> dict:
     return json.loads((DATA / "world" / "sky.json").read_text(encoding="utf-8"))
 
 
-def default_environment(fog: bool = True) -> dict:
-    """Lighting/fog uniforms shared by sky, terrain and water (from data/world/sky.json)."""
+def default_environment(fog: bool = True, hour: float | None = None, clock=None) -> dict:
+    """Lighting/fog uniforms shared by sky, terrain and water (from data/world/sky.json).
+    With an hour (0..24), the sun, sky and light follow the time of day (world/daytime.py);
+    without one, it's the fixed daytime look in sky.json (scripts and tests)."""
     cfg = sky_config()
-    elevation, azimuth = math.radians(cfg["sun"]["elevation_deg"]), math.radians(cfg["sun"]["azimuth_deg"])
-    sun = glm.normalize(glm.vec3(math.sin(azimuth) * math.cos(elevation), math.sin(elevation),
-                                 -math.cos(azimuth) * math.cos(elevation)))
+    night = 0.0
+    if hour is None:
+        elevation, azimuth = math.radians(cfg["sun"]["elevation_deg"]), math.radians(cfg["sun"]["azimuth_deg"])
+        sun = glm.normalize(glm.vec3(math.sin(azimuth) * math.cos(elevation), math.sin(elevation),
+                                     -math.cos(azimuth) * math.cos(elevation)))
+        look = {k: cfg["sun"]["color"] if k == "sun_color" else cfg[k]
+                for k in ("sun_color", "zenith_color", "horizon_color", "ambient_sky", "ambient_ground")}
+    else:
+        from lycantrope.world.daytime import sky_at
+        at = sky_at(hour, cfg, clock)
+        sun, night, look = glm.normalize(glm.vec3(*at["sun_dir"])), at["night"], at
     return {
         "u_sun_dir": sun,
-        "u_sun_color": glm.vec3(*cfg["sun"]["color"]),
-        "u_zenith_color": glm.vec3(*cfg["zenith_color"]),
-        "u_horizon_color": glm.vec3(*cfg["horizon_color"]),
-        "u_ambient_sky": glm.vec3(*cfg["ambient_sky"]),
-        "u_ambient_ground": glm.vec3(*cfg["ambient_ground"]),
+        "u_sun_color": glm.vec3(*look["sun_color"]),
+        "u_zenith_color": glm.vec3(*look["zenith_color"]),
+        "u_horizon_color": glm.vec3(*look["horizon_color"]),
+        "u_ambient_sky": glm.vec3(*look["ambient_sky"]),
+        "u_ambient_ground": glm.vec3(*look["ambient_ground"]),
+        "u_night": float(night),
         "u_fog_density": 0.00055,
         "u_fog_falloff": 0.006,
         "u_fog_enabled": 1 if fog else 0,

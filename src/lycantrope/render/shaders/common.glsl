@@ -8,6 +8,13 @@ uniform vec3 u_ambient_ground;
 uniform float u_fog_density;   // per meter at height 0
 uniform float u_fog_falloff;   // per meter of altitude
 uniform int u_fog_enabled;
+uniform float u_night;         // 0 day .. 1 full night (stars, moon)
+
+float star_hash(vec3 p) {
+    p = fract(p * 0.3183099 + 0.1);
+    p *= 17.0;
+    return fract(p.x * p.y * p.z * (p.x + p.y + p.z));
+}
 
 vec3 sky_color(vec3 dir) {
     float h = clamp(dir.y, -1.0, 1.0);
@@ -15,7 +22,12 @@ vec3 sky_color(vec3 dir) {
     col = mix(col, u_horizon_color * 0.55, clamp(-h * 4.0, 0.0, 1.0));
     float s = max(dot(dir, u_sun_dir), 0.0);
     col += u_sun_color * (pow(s, 6.0) * 0.12 + pow(s, 64.0) * 0.35);
-    col += u_sun_color * smoothstep(0.9993, 0.9997, s) * 6.0;   // sun disc
+    col += u_sun_color * smoothstep(0.9993, 0.9997, s) * mix(6.0, 9.0, u_night);   // sun (or moon) disc
+    if (u_night > 0.0) {                                                           // stars, high in the sky
+        vec3 cell = floor(dir * 260.0);
+        float star = step(0.9965, star_hash(cell));
+        col += vec3(0.9, 0.92, 1.0) * star * u_night * smoothstep(0.08, 0.35, h) * 0.9;
+    }
     return col;
 }
 

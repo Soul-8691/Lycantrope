@@ -6,13 +6,6 @@ Helpful:
 .venv\Scripts\python.exe tools\props\build.py VIL-10 VIL-04
 
 To-Do:
-Better NPC system
-Add more monsters
-- Lovecraft monsters
-- Goblin spellcasters
-Bandit camps
-Goblin camps
-Day/night
 Talk (A press)
 Dialogue/voice lines
 Choices
@@ -38,7 +31,15 @@ Shop inventory
 Shop
 
 Later:
+Better NPC system
+Add more monsters
+- Lovecraft monsters
+- Goblin spellcasters
+Bandit camps
+Goblin camps
+Theme variants
 Remap the starting area/nearby
+NPCs going home at night
 Beginning plot
 Greetings
 Upgrade

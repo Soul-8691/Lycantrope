@@ -1,8 +1,39 @@
 {
   "_about": "Procedural sky (ART-09) and sunlight. All colors are linear light; the sky shader draws the gradient and sun from these, and the terrain and water use the same sun.",
-  "sun": { "azimuth_deg": 215, "elevation_deg": 38, "color": [2.7, 2.5, 2.2] },
-  "zenith_color": [0.20, 0.36, 0.72],
-  "horizon_color": [0.66, 0.74, 0.84],
-  "ambient_sky": [0.36, 0.44, 0.58],
-  "ambient_ground": [0.16, 0.14, 0.11]
+  "sun": {
+    "azimuth_deg": 215,
+    "elevation_deg": 38,
+    "color": [
+      2.7,
+      2.5,
+      2.2
+    ]
+  },
+  "zenith_color": [
+    0.2,
+    0.36,
+    0.72
+  ],
+  "horizon_color": [
+    0.66,
+    0.74,
+    0.84
+  ],
+  "ambient_sky": [
+    0.36,
+    0.44,
+    0.58
+  ],
+  "ambient_ground": [
+    0.16,
+    0.14,
+    0.11
+  ],
+  "day": {
+    "start_hour": 8.0,
+    "minutes_per_day": 48,
+    "sunrise": 6.0,
+    "sunset": 20.0,
+    "_about": "Day and night (WLD-11): minutes_per_day real minutes of play make one game day (48 = an hour of game time every 2 minutes). The game starts at start_hour; the sun is up from sunrise to sunset. The colours above are full daylight; dawn, dusk and night are blended in code (src/lycantrope/world/daytime.py)."
+  }
 }

@@ -8,7 +8,7 @@ Left click       light attack (click again during a swing to chain up to three)
 Right mouse      hold to block              R: heavy attack  ·  Q: cast (off hand)
 H / K            debug: hit reaction / die and get back up
 F4 free-fly camera · F7 helmet on/off · F8 grass on/off · F9 music on/off · F10 sound effects on/off ·
-F11 NPC voices on/off · Ctrl + Up/Down zoom in/out (hold)
+F11 NPC voices on/off · N noon/midnight · [ ] an hour back/forward · Ctrl + Up/Down zoom in/out (hold)
 
 Free-fly mode: WASD / QE move, Shift fast, Ctrl slow, wheel base speed.
 Always: T turbo (4x speed, walking and flying) · F1 wireframe · F2 fog · F3 debug overlay ·
@@ -126,6 +126,11 @@ class App:
         self.clock = FixedStep(60)
         self.base_speed = 25.0
         self.fog = True
+        from lycantrope.render.environment import sky_config
+        from lycantrope.world.daytime import DayClock
+        self.day = DayClock(sky_config().get("day"))               # day and night, on play time (WLD-11)
+        if args.time is not None:
+            self.day.set(float(args.time))
         self.turbo = False
         self.show_overlay = not args.clean            # --clean: screenshots without the debug text
         self.captured = False
@@ -260,6 +265,10 @@ class App:
                     self.sfx.voices = not self.sfx.voices
                 elif k == pygame.K_F10 and self.sfx is not None:
                     self.sfx.enabled = not self.sfx.enabled
+                elif k == pygame.K_n:                      # debug: jump between noon and midnight
+                    self.day.set(0.0 if 6.0 <= self.day.hour < 18.0 else 12.0)
+                elif k in (pygame.K_LEFTBRACKET, pygame.K_RIGHTBRACKET):   # debug: an hour back / forward
+                    self.day.set(self.day.hour + (1.0 if k == pygame.K_RIGHTBRACKET else -1.0))
                 elif k == pygame.K_F12:
                     SCREENSHOTS.mkdir(exist_ok=True)
                     self.screenshot(SCREENSHOTS / f"lycantrope_{datetime.now():%Y%m%d_%H%M%S}.png")
@@ -321,6 +330,7 @@ class App:
                     self.subtitles.say(self.chars.name_of(speaker), text, len(envelope) / 30.0 + 1.0)
         self.subtitles.update(dt)
         self.time_s += dt
+        self.day.update(dt)
 
     def key_zoom(self, keys, dt: float) -> None:
         """Ctrl + Up zooms in, Ctrl + Down zooms out, for as long as they're held:
@@ -389,7 +399,7 @@ class App:
         if self.play:
             self.follow_camera(alpha)
         eye, _view, _proj, viewproj = self.camera.matrices(w / max(h, 1), alpha)
-        env = default_environment(self.fog)
+        env = default_environment(self.fog, self.day.hour, self.day)
         wire = self.ctx.wireframe
         self.ctx.wireframe = False
         self.sky.render(eye, viewproj, env)
@@ -412,6 +422,7 @@ class App:
         st = self.terrain.stats
         counts = self.chars.counts()
         lines = [f"LYCANTROPE   {1000 / max(ms, 1e-3):5.0f} fps  {ms:5.1f} ms"
+                 + f"   {self.day.label()}{' night' if self.day.is_night() else ''}"
                  + (f"   TURBO x{TURBO:g}" if self.turbo else "") + ("" if self.fog else "   fog off")
                  + self.sound_flags()]
         if self.play and self.chars.rowan:
@@ -427,10 +438,11 @@ class App:
         if self.play:
             lines += ["WASD move  Shift sprint  Ctrl walk  Space jump  T turbo  Ctrl+Up/Down zoom",
                       "LMB attack  RMB block  R heavy  Q cast  F sheathe  H hit  K die/revive  Esc mouse",
-                      "F2 fog  F3 overlay  F4 fly  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices"]
+                      "F2 fog  F3 overlay  F4 fly  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices  N day/night  [ ] hour"]
         else:
             lines += ["WASD QE fly  Shift/Ctrl speed  T turbo  wheel base speed  Ctrl+Up/Down zoom  F4 back to Rowan",
-                      "F1 wire  F2 fog  F3 hide overlay  F5 shaders  F6 debug  F9 music  F10 sfx  F11 voices  F12 shot"]
+                      "F1 wire  F2 fog  F3 hide overlay  F5 shaders  F6 debug  F9 music  F10 sfx  F11 voices  F12 shot",
+                      "N day/night  [ ] hour"]
         return lines
 
     def count_summary(self, counts: dict[str, int]) -> str:
@@ -517,6 +529,7 @@ def run(argv: list[str] | None = None) -> int:
     ap.add_argument("--bench", type=int, default=0, help="render N frames, print timing, quit")
     ap.add_argument("--size", help="window size WxH")
     ap.add_argument("--clean", action="store_true", help="hide the debug overlay (for screenshots)")
+    ap.add_argument("--time", type=float, help="start at this hour of the day (0-24), e.g. 21.5")
     ap.add_argument("--orbit", help="testing: camera around Rowan as YAW,PITCH,DIST (yaw 0 = behind him)")
     ap.add_argument("--act", help="testing: what Rowan does from the start: run, sprint, walk, light, "
                                   "combo, heavy, block, cast, hit, die; or 'teleport:X,Z[:action]' to start elsewhere")
