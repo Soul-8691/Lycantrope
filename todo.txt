@@ -6,6 +6,7 @@ Helpful:
 .venv\Scripts\python.exe tools\props\build.py VIL-10 VIL-04
 
 To-Do:
+Woman in brown skirt needs younger voice
 Talk (A press)
 Voice lines
 Dialogue

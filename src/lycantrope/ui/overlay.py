@@ -64,12 +64,13 @@ class TextOverlay:
 
 class Subtitles:
     """What NPCs say, centred near the bottom of the screen (UIX-10): "Name: line", the newest two
-    lines at once, each for as long as it's being spoken plus a moment to finish reading."""
+    lines at once, each for as long as it's being spoken plus a moment to finish reading. Lines wrap
+    at width_frac of the screen width (measured in pixels with the subtitle font)."""
 
-    def __init__(self, text: TextOverlay, keep: int = 2, wrap: int = 70) -> None:
+    def __init__(self, text: TextOverlay | None, keep: int = 2, width_frac: float = 0.66) -> None:
         self.text = text
         self.keep = keep
-        self.wrap = wrap
+        self.width_frac = width_frac
         self.lines: list[list] = []           # [label, seconds left]
 
     def say(self, who: str, line: str, seconds: float) -> None:
@@ -82,17 +83,27 @@ class Subtitles:
             entry[1] -= dt
         self.lines = [entry for entry in self.lines if entry[1] > 0]
 
-    def shown(self) -> list[str]:
-        import textwrap
+    def shown(self, max_px: int | None = None) -> list[str]:
         out: list[str] = []
         for label, _ in self.lines:
-            out += textwrap.wrap(label, self.wrap) or [label]
+            out += self._wrap(label, max_px) if max_px else [label]
         return out
 
+    def _wrap(self, label: str, max_px: int) -> list[str]:
+        font = self.text.font
+        lines, cur = [], ""
+        for word in label.split():
+            trial = f"{cur} {word}".strip()
+            if cur and font.size(trial)[0] > max_px:
+                lines.append(cur)
+                cur = word
+            else:
+                cur = trial
+        return lines + ([cur] if cur else [])
+
     def render(self, screen_w: int, screen_h: int) -> None:
-        lines = self.shown()
-        if not lines:
+        if not self.lines:
             return
-        self.text.set_lines(lines)
+        self.text.set_lines(self.shown(int(screen_w * self.width_frac)))
         w, h = self.text.size
-        self.text.render(screen_w, screen_h, x=max(0, (screen_w - w) // 2), y=max(0, screen_h - h - int(screen_h * 0.08)))
+        self.text.render(screen_w, screen_h, x=max(0, (screen_w - w) // 2), y=max(0, screen_h - h - int(screen_h * 0.07)))

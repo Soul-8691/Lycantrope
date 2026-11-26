@@ -109,7 +109,7 @@ class App:
         self.sky = Sky(self.ctx, self.shaders)
         self.water = Water(self.ctx, self.shaders, self.world, self.terrain.tex_height, self.terrain.tex_water)
         self.overlay = TextOverlay(self.ctx, self.shaders)
-        self.subtitles = Subtitles(TextOverlay(self.ctx, self.shaders, size=22, mono=False))
+        self.subtitles = Subtitles(TextOverlay(self.ctx, self.shaders, size=18, mono=False))
         self.load_seconds = time.perf_counter() - t0
         # no music for benchmarks and screenshots (timing and silence)
         quiet = args.bench or args.screenshot or settings.music_volume <= 0
