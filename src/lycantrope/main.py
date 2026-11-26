@@ -127,7 +127,7 @@ class App:
         self.base_speed = 25.0
         self.fog = True
         self.turbo = False
-        self.show_overlay = True
+        self.show_overlay = not args.clean            # --clean: screenshots without the debug text
         self.captured = False
         self.time_s = 0.0
         self.frame_times: list[float] = []
@@ -516,6 +516,7 @@ def run(argv: list[str] | None = None) -> int:
     ap.add_argument("--frames", default="5", help="frames to run before --screenshot (default 5)")
     ap.add_argument("--bench", type=int, default=0, help="render N frames, print timing, quit")
     ap.add_argument("--size", help="window size WxH")
+    ap.add_argument("--clean", action="store_true", help="hide the debug overlay (for screenshots)")
     ap.add_argument("--orbit", help="testing: camera around Rowan as YAW,PITCH,DIST (yaw 0 = behind him)")
     ap.add_argument("--act", help="testing: what Rowan does from the start: run, sprint, walk, light, "
                                   "combo, heavy, block, cast, hit, die; or 'teleport:X,Z[:action]' to start elsewhere")
