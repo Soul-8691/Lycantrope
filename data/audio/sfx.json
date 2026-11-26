@@ -16,7 +16,8 @@
     "greet: an NPC with a voice speaks when Rowan walks up (once per 45 s). {voice} is that NPC's",
     "voice (data/characters.json 'voices'); lines are assets/audio/vo/<voice>/<event>_<n>.mp3.",
     "'like': another kind's sounds (the unique villagers sound like villager_m / villager_f).",
-    "jump / land: Rowan's take-off (a grunt, sometimes) and landing (two footfalls)."
+    "jump / land: Rowan's take-off (a grunt, sometimes) and landing (two footfalls).",
+    "draw / sheathe: Rowan drawing the Dawnblade and putting it on his back."
   ],
   "volume": 1.0,
   "ref_m": 4.0,
@@ -130,6 +131,20 @@
             "s": "footsteps/boot_{ground}",
             "volume": 0.45,
             "delay_s": 0.07
+          }
+        ],
+        "draw": {
+          "s": "combat/swing_light",
+          "volume": 0.45
+        },
+        "sheathe": [
+          {
+            "s": "combat/block_metal",
+            "volume": 0.18
+          },
+          {
+            "s": "combat/swing_light",
+            "volume": 0.25
           }
         ]
       }

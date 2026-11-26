@@ -72,6 +72,7 @@ def test_turbo_is_four_times_faster_with_the_same_gait():
 
 def test_light_attack_chain():
     r = Rowan(actor())
+    r.sheathed = False                                   # sword already drawn
     tick = lambda inp: (r.update(inp, 0.0, 1 / 60), r.a.anim.update(1 / 60))
     tick(RowanInput(light=True))
     assert r.a.state == "attack" and r.a.anim.clip == "light1"
@@ -94,6 +95,7 @@ def test_light_attack_chain():
 
 def test_block_hold_and_death_toggle():
     r = Rowan(actor())
+    r.sheathed = False
     r.update(RowanInput(block=True), 0.0, 1 / 60)
     assert r.a.state == "block" and r.a.anim.clip == "block"
     r.update(RowanInput(), 0.0, 1 / 60)
@@ -200,3 +202,19 @@ def test_idle_waits_a_few_seconds_after_stopping():
         r.update(RowanInput(), 0.0, 1 / 60)
         r.a.advance(1 / 60)
     assert r.a.anim.clip == "idle" and r.a.anim.time == 0.0   # ...restarts the wait
+
+
+def test_sheathe_toggle_and_swinging_draws_the_sword():
+    r = Rowan(actor())
+    assert r.sheathed                                    # starts in town with it put away
+    r.update(RowanInput(light=True), 0.0, 1 / 60)
+    assert not r.sheathed and r.a.state == "move"        # the first press only draws it
+    r.update(RowanInput(light=True), 0.0, 1 / 60)
+    assert r.a.state == "attack"
+    while r.a.state == "attack":
+        r.update(RowanInput(), 0.0, 1 / 60)
+        r.a.anim.update(1 / 60)
+    r.update(RowanInput(sheathe=True), 0.0, 1 / 60)
+    assert r.sheathed
+    r.update(RowanInput(cast=True), 0.0, 1 / 60)         # Rites need no sword
+    assert r.a.state == "cast" and r.sheathed

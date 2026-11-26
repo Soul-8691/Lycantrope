@@ -161,6 +161,7 @@ class RowanInput:
     die: bool = False        # debug: toggle death
     turbo: bool = False      # debug/travel: move TURBO times faster
     jump: bool = False       # pressed this tick
+    sheathe: bool = False    # pressed this tick: put the sword away / draw it
 
 
 class Rowan:
@@ -170,6 +171,7 @@ class Rowan:
         self.a = actor
         self.queued = False
         self.swimming = False    # in deep water (set by the world each tick): swim, no fighting
+        self.sheathed = True     # sword on his back (he starts in town with it put away)
 
     def update(self, inp: RowanInput, cam_yaw: float, dt: float) -> None:
         a = self.a
@@ -190,6 +192,13 @@ class Rowan:
             a.state = "swim"                       # no swinging or casting while swimming
         elif a.state == "swim":
             a.state = "move"
+
+        # sheathe / draw: the key toggles; swinging or blocking with it put away draws it first
+        if inp.sheathe and a.state in ("move", "block", "swim"):
+            self.sheathed = not self.sheathed
+        if self.sheathed and (inp.light or inp.heavy or inp.block) and a.state == "move" and not a.airborne:
+            self.sheathed = False
+            inp = RowanInput(**{**inp.__dict__, "light": False, "heavy": False, "block": False})
 
         # jumping: from the ground, not mid-swing or in deep water
         if inp.jump and a.state in ("move", "block") and not a.airborne and not self.swimming:

@@ -265,7 +265,7 @@ class App:
                     self.screenshot(SCREENSHOTS / f"lycantrope_{datetime.now():%Y%m%d_%H%M%S}.png")
                 elif self.play:
                     name = {pygame.K_r: "heavy", pygame.K_q: "cast", pygame.K_h: "hit", pygame.K_k: "die",
-                            pygame.K_SPACE: "jump"}.get(k)
+                            pygame.K_SPACE: "jump", pygame.K_f: "sheathe"}.get(k)
                     if name:
                         self.pressed.add(name)
         return True
@@ -285,6 +285,7 @@ class App:
             inp.light, inp.heavy = "light" in self.pressed, "heavy" in self.pressed
             inp.cast, inp.hit, inp.die = "cast" in self.pressed, "hit" in self.pressed, "die" in self.pressed
             inp.jump = "jump" in self.pressed
+            inp.sheathe = "sheathe" in self.pressed
             self.pressed.clear()
             act = self.args.act or ""
             if act.startswith("teleport:"):              # teleport:X,Z[:action]
@@ -426,7 +427,7 @@ class App:
         ]
         if self.play:
             lines += ["WASD move  Shift sprint  Ctrl walk  T turbo  LMB attack  RMB block  R heavy  Q cast",
-                      "Space jump  H hit  K die/revive  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices  Ctrl+Up/Down zoom  Esc mouse",
+                      "Space jump  F sheathe  H hit  K die/revive  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices  Ctrl+Up/Down zoom  Esc mouse",
                       "F2 fog  F3 hide overlay  F4 fly"]
         else:
             lines += ["WASD QE fly  Shift/Ctrl speed  T turbo  wheel base speed  Ctrl+Up/Down zoom  F4 back to Rowan",

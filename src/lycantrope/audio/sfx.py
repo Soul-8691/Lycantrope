@@ -96,6 +96,7 @@ class Track:
     startle_ok_at: float = 0.0
     near_rowan: bool = False
     air: bool = False
+    sheathed: bool | None = None
     greet_ok_at: float = 0.0
 
 
@@ -211,6 +212,11 @@ class SfxDirector:
             if t.air and not air and audible:
                 self.emit(a.kind, "land", (a.x, a.y, a.z), out, ground, positional)
             t.air = air
+            # Rowan putting the sword away or drawing it
+            sh = getattr(c, "sheathed", None)
+            if sh is not None and t.sheathed is not None and sh != t.sheathed and audible:
+                self.emit(a.kind, "sheathe" if sh else "draw", pos, out, ground, positional)
+            t.sheathed = sh
             # spotting Rowan
             if a.state == "chase" and t.state in ALERT_FROM and self.now >= t.alert_ok_at:
                 t.alert_ok_at = self.now + ALERT_COOLDOWN_S

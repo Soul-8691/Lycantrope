@@ -17,7 +17,8 @@
     "'voices': pool of designed voices (data/voices.json); each NPC is given one.",
     "NPCs are kept busy: pause_s (standing between walks) is under a second for villagers, the farmer and guards.",
     "Unique villagers (WLD-33..38: shepherd, smith_hand, merchant, dairymaid, weaver, seller) are whole dressed models with one voice each; the layered outfit kit (WLD-26) is retired.",
-    "'jump': 'procedural' builds a mid-air pose in code (no Meshy jump clip yet); a real 'jump' clip replaces it."
+    "'jump': 'procedural' builds a mid-air pose in code (no Meshy jump clip yet); a real 'jump' clip replaces it.",
+    "'sheath': equipment slot whose item can be put away on the back (F key for Rowan)."
   ],
   "characters": {
     "rowan": {
@@ -99,7 +100,8 @@
         "right_hand": "ITM-01",
         "hip_left": "MAG-11",
         "armor": "TRS-05"
-      }
+      },
+      "sheath": "right_hand"
     },
     "goblin": {
       "name": "Goblin Cutthroat",

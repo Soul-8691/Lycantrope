@@ -9,8 +9,8 @@
   ],
   "rowan": {
     "anchor": "Brackenvale Village",
-    "at": [-27, -36],
-    "facing": 40
+    "at": [0, -3.2],
+    "facing": 0
   },
   "groups": [
     {"name": "villagers (men)", "kind": "villager_m", "count": 1, "anchor": "Brackenvale Village", "at": [6, 6], "radius": 14, "vary": {"height": [0.93, 1.06], "tint": 0.12, "pace": [0.85, 1.15]}},

@@ -6,9 +6,6 @@ Helpful:
 .venv\Scripts\python.exe tools\props\build.py VIL-10 VIL-04
 
 To-Do:
-Start out at the well
-Fix guard's dialogue getting cut off
-A few more enemy types
 Talk (A press)
 Voice lines
 Mouths
@@ -27,5 +24,9 @@ Health and damage
 Fall damage
 HUD
 Lock-on
-Sheathe
+A few more enemy types
+NPC fights
 Caves
+
+Bugs:
+Sometimes the guard's dialogue gets cut off

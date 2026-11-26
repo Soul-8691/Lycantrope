@@ -158,7 +158,8 @@ class Attachment:
     # +Y toward the head), and that hand's joints (upper arm, forearm, hand)
     second_grip: np.ndarray | None = None
     second_chain: tuple[int, int, int] | None = None
-    in_hand: bool = False         # put away while swimming
+    in_hand: bool = False         # put away while swimming (or sheathed)
+    sheathed: bool = False        # the same item worn on the back: drawn only while it's put away
 
 
 def _rotation_between(a: np.ndarray, b: np.ndarray) -> np.ndarray:
@@ -543,6 +544,10 @@ def load_type(ctx, key: str, spec: dict, items: dict, armor_specs: dict) -> Char
                 att.second_grip = np.array([0.0, -gap, 0.0, 1.0])
                 att.second_chain = tuple(skel.joint_index(f"{other}{j}") for j in ("Arm", "ForeArm", "Hand"))
             t.attachments.append(att)
+            if spec.get("sheath") == slot:                # a second place for it: across the back
+                back = place_on_back(skel, bind, item, ispec)
+                if back is not None:
+                    t.attachments.append(back)
         return t
     # not rigged yet: a static mesh moved by code
     m = normalized_static(load_mesh(MODELS / spec["static"], skinned=False), spec.get("height_m", 1.0))
@@ -613,6 +618,22 @@ def soften_skirt(body: MeshData, skel: Skeleton, cfg: dict) -> None:
     body.idx = np.ascontiguousarray(tri[~web].ravel())
 
 
+def place_on_back(skel: Skeleton, bind: np.ndarray, item: Item, spec: dict) -> Attachment | None:
+    """A sheathed blade across the back: grip up behind the right shoulder, point down toward the
+    left hip, edge facing out. Rides on the upper spine."""
+    name = next((n for n in ("Spine", "Spine01", "Spine02") if n in skel.names), None)
+    if name is None:
+        return None
+    joint = skel.joint_index(name)
+    sp = bind[joint][:3, 3]
+    lo = bind[skel.joint_index("Hips")][:3, 3] if "Hips" in skel.names else sp - [0, 0.3, 0]
+    back_z = sp[2] - 0.17                                   # a hand's width behind the spine
+    grip = np.array([sp[0] - 0.16, sp[1] + 0.14, back_z])   # behind the right shoulder (+x is his left)
+    tip_dir = np.array([0.42, -(sp[1] - lo[1] + 0.35), 0.0])
+    world = look_basis(grip, tip_dir, [0.0, 0.0, -1.0])
+    return Attachment(item, joint, np.linalg.inv(bind[joint]) @ world, sheathed=True)
+
+
 def place_item(skel: Skeleton, bind: np.ndarray, slot: str, item: Item, body: MeshData | None = None,
                spec: dict | None = None) -> Attachment:
     def pos(name):
@@ -670,6 +691,7 @@ class Character:
     talk_env: np.ndarray | None = None                   # loudness of the line being said (jaw)
     talk_t: float = 0.0
     jaw_open: float = 0.0                                # 0 shut .. 1 open
+    sheathed: bool | None = None                         # Rowan: sword on his back (None for others)
 
 
 class CharacterSystem:
@@ -859,6 +881,8 @@ class CharacterSystem:
         else:
             self.rowan.swimming = False
         self.rowan.update(inp, cam_yaw, dt)
+        if rc is not None:
+            rc.sheathed = self.rowan.sheathed
         self._watch_cast(ra, rc)
         alive = ra.state != "dead"
         near = [c.actor for c in self.chars                    # only these can bump into each other
@@ -1088,9 +1112,10 @@ class CharacterSystem:
             else:
                 self._draw(prog, t.body)
             set_uniform(prog, "u_skinned", 0)
-            swimming = a.anim.clip in ("swim", "tread")
+            put_away = a.anim.clip in ("swim", "tread") or (self.rowan is not None and a is self.rowan.a
+                                                               and self.rowan.sheathed)
             for at in t.attachments:
-                if swimming and at.in_hand:
+                if (put_away and at.in_hand) or (at.sheathed and not put_away):
                     continue
                 m = model @ W[at.joint].astype(float) @ at.offset
                 set_uniform(prog, "u_model", glm.mat4(*m.T.ravel()))
