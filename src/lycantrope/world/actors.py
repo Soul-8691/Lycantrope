@@ -87,6 +87,7 @@ class Actor:
     idle_wait: float = 0.0        # seconds spent standing still on the idle's first frame
     gait_scale: float = 1.0       # turbo: speed multiplier the walk/run/sprint choice ignores
     vy: float = 0.0               # vertical speed (m/s) while airborne
+    travel: float | None = None   # direction of movement when it differs from facing (strafing)
     airborne: bool = False        # jumping or falling (the world sets y from the ground otherwise)
 
     def has(self, clip: str) -> bool:
@@ -162,6 +163,7 @@ class RowanInput:
     turbo: bool = False      # debug/travel: move TURBO times faster
     jump: bool = False       # pressed this tick
     sheathe: bool = False    # pressed this tick: put the sword away / draw it
+    face: tuple[float, float] | None = None   # lock-on: keep facing this point (x, z) and strafe
 
 
 class Rowan:
@@ -238,6 +240,8 @@ class Rowan:
 
         # movement
         target = 0.0
+        locked = inp.face is not None and not self.swimming and not inp.sprint   # sprinting breaks the strafe
+        travel = a.heading
         if a.state in ("move", "swim"):
             mx, my = inp.move_x, inp.move_y
             m = math.hypot(mx, my)
@@ -246,7 +250,11 @@ class Rowan:
                 fx, fz = math.sin(cam_yaw), -math.cos(cam_yaw)       # camera forward (flat)
                 rx, rz = math.cos(cam_yaw), math.sin(cam_yaw)        # camera right
                 dx, dz = fx * my + rx * mx, fz * my + rz * mx
-                a.heading = turn_towards(a.heading, heading_to(dx, dz), (5.0 if self.swimming else 12.0) * dt)
+                if locked:
+                    a.travel = heading_to(dx, dz)                # move that way, keep facing the target
+                else:
+                    a.heading = turn_towards(a.heading, heading_to(dx, dz), (5.0 if self.swimming else 12.0) * dt)
+                    a.travel = None
                 if self.swimming:
                     target = SWIM_SPEEDS["slow" if inp.walk else "fast" if inp.sprint else "swim"]
                 else:
@@ -257,8 +265,17 @@ class Rowan:
         if a.airborne:
             accel *= AIR_CONTROL                          # mostly keeps the speed he jumped with
         a.speed += max(-accel * dt, min(accel * dt, target - a.speed))
-        a.x += math.sin(a.heading) * a.speed * dt
-        a.z += math.cos(a.heading) * a.speed * dt
+        if locked:
+            fx, fz = inp.face
+            turn = 20.0 if a.state in ("attack", "cast") and a.progress() < 0.35 else 10.0   # swings snap on
+            if a.state in ("move", "block", "attack", "cast"):
+                a.heading = turn_towards(a.heading, heading_to(fx - a.x, fz - a.z), turn * dt)
+            if a.travel is not None and a.speed > 0.05:
+                travel = a.travel
+        else:
+            a.travel = None
+        a.x += math.sin(travel) * a.speed * dt
+        a.z += math.cos(travel) * a.speed * dt
         if a.state == "move" and not a.airborne:
             a.locomotion()
         elif a.state == "swim":

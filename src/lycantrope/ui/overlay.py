@@ -41,6 +41,20 @@ class TextOverlay:
         else:
             self.texture.write(data)
 
+    def set_surface(self, surf: pygame.Surface) -> None:
+        """Show an image instead of text (the lock-on reticle)."""
+        self._lines = []
+        width, height = surf.get_size()
+        data = pygame.image.tobytes(surf, "RGBA", True)
+        if self.texture is None or self.size != (width, height):
+            if self.texture is not None:
+                self.texture.release()
+            self.texture = self.ctx.texture((width, height), 4, data)
+            self.texture.filter = (moderngl.LINEAR, moderngl.LINEAR)
+            self.size = (width, height)
+        else:
+            self.texture.write(data)
+
     def render(self, screen_w: int, screen_h: int, x: int = 10, y: int = 10) -> None:
         if self.texture is None:
             return
@@ -107,3 +121,37 @@ class Subtitles:
         self.text.set_lines(self.shown(int(screen_w * self.width_frac)))
         w, h = self.text.size
         self.text.render(screen_w, screen_h, x=max(0, (screen_w - w) // 2), y=max(0, screen_h - h - int(screen_h * 0.07)))
+
+
+class LockReticle:
+    """The lock-on marker (UIX-04): a ring with a dot and four ticks on the target, and the target's
+    name in a small plate above it. Health bars come once enemies have health."""
+
+    def __init__(self, ctx, shaders) -> None:
+        self.ring = TextOverlay(ctx, shaders)
+        self.plate = TextOverlay(ctx, shaders, size=14, mono=False)
+        size = 48
+        surf = pygame.Surface((size, size), pygame.SRCALPHA)
+        c = size // 2
+        gold, dark = (255, 214, 120, 235), (20, 14, 8, 170)
+        pygame.draw.circle(surf, dark, (c, c), 15, 4)
+        pygame.draw.circle(surf, gold, (c, c), 15, 2)
+        pygame.draw.circle(surf, dark, (c, c), 4)
+        pygame.draw.circle(surf, gold, (c, c), 3)
+        for dx, dy in ((0, -1), (0, 1), (-1, 0), (1, 0)):
+            a = (c + dx * 18, c + dy * 18)
+            b = (c + dx * 23, c + dy * 23)
+            pygame.draw.line(surf, dark, a, b, 4)
+            pygame.draw.line(surf, gold, a, b, 2)
+        self.ring.set_surface(surf)
+        self._name = None
+
+    def render(self, screen_w: int, screen_h: int, x: float, y: float, name: str) -> None:
+        w, h = self.ring.size
+        self.ring.render(screen_w, screen_h, x=int(x - w / 2), y=int(y - h / 2))
+        if name:
+            if name != self._name:
+                self.plate.set_lines([name])
+                self._name = name
+            pw, ph = self.plate.size
+            self.plate.render(screen_w, screen_h, x=int(x - pw / 2), y=int(y - h / 2 - ph - 4))

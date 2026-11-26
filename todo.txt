@@ -6,6 +6,7 @@ Helpful:
 .venv\Scripts\python.exe tools\props\build.py VIL-10 VIL-04
 
 To-Do:
+Strafe animations
 Talk (A press)
 Dialogue/voice lines
 Choices
@@ -20,9 +21,9 @@ Magic stats
 Health and damage
 Fall damage
 HUD
-Lock-on
 Experience
 Looting
+NPC weapons
 NPC fights
 Guard protect AI
 Player inventory

@@ -49,7 +49,8 @@ from lycantrope.render.grass import Grass
 from lycantrope.render.props import PropRenderer
 from lycantrope.render.shaders import ShaderLibrary
 from lycantrope.render.terrain import TerrainRenderer
-from lycantrope.ui.overlay import Subtitles, TextOverlay
+from lycantrope.ui.overlay import LockReticle, Subtitles, TextOverlay
+from lycantrope.world.lockon import LockOn
 from lycantrope.world.actors import TURBO, RowanInput
 from lycantrope.world.heightfield import Heightfield
 from lycantrope.world.props import load_placements, paint_ground, paint_paths
@@ -110,6 +111,8 @@ class App:
         self.water = Water(self.ctx, self.shaders, self.world, self.terrain.tex_height, self.terrain.tex_water)
         self.overlay = TextOverlay(self.ctx, self.shaders)
         self.subtitles = Subtitles(TextOverlay(self.ctx, self.shaders, size=18, mono=False))
+        self.lock = LockOn()                              # lock-on targeting (CMB-02)
+        self.reticle = LockReticle(self.ctx, self.shaders)
         self.load_seconds = time.perf_counter() - t0
         # no music for benchmarks and screenshots (timing and silence)
         quiet = args.bench or args.screenshot or settings.music_volume <= 0
@@ -202,7 +205,12 @@ class App:
     def mouse_look(self, rel) -> None:
         s = self.settings.mouse_sensitivity
         dy = rel[1] * s * (1 if self.settings.invert_y else -1)
-        if self.play:
+        if self.play and self.lock.locked and self.chars.rowan:
+            # locked on: the camera follows the target; a sideways flick switches target
+            p = self.camera.position
+            self.lock.mouse(rel[0], self.chars.chars, self.chars.rowan.a, p.x, p.z)
+            self.orbit_pitch = max(-1.2, min(0.6, self.orbit_pitch + dy))
+        elif self.play:
             self.orbit_yaw = (self.orbit_yaw + rel[0] * s) % math.tau
             self.orbit_pitch = max(-1.2, min(0.6, self.orbit_pitch + dy))
         else:
@@ -222,6 +230,8 @@ class App:
                 self.set_capture(True)
             elif ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1 and self.play:
                 self.pressed.add("light")
+            elif ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 2 and self.play:
+                self.toggle_lock()
             elif ev.type == pygame.MOUSEMOTION and self.captured:
                 self.mouse_look(ev.rel)
             elif ev.type == pygame.MOUSEWHEEL:
@@ -265,6 +275,8 @@ class App:
                     self.sfx.voices = not self.sfx.voices
                 elif k == pygame.K_F10 and self.sfx is not None:
                     self.sfx.enabled = not self.sfx.enabled
+                elif k == pygame.K_TAB and self.play:      # lock on / let go
+                    self.toggle_lock()
                 elif k == pygame.K_n:                      # debug: jump between noon and midnight
                     self.day.set(0.0 if 6.0 <= self.day.hour < 18.0 else 12.0)
                 elif k in (pygame.K_LEFTBRACKET, pygame.K_RIGHTBRACKET):   # debug: an hour back / forward
@@ -294,6 +306,9 @@ class App:
             inp.light, inp.heavy = "light" in self.pressed, "heavy" in self.pressed
             inp.cast, inp.hit, inp.die = "cast" in self.pressed, "hit" in self.pressed, "die" in self.pressed
             inp.jump = "jump" in self.pressed
+            if self.lock.locked:
+                t = self.lock.target.actor
+                inp.face = (t.x, t.z)
             inp.sheathe = "sheathe" in self.pressed
             self.pressed.clear()
             act = self.args.act or ""
@@ -312,6 +327,9 @@ class App:
                 inp.hit |= act == "hit" and first
                 inp.die |= act == "die" and first
                 inp.jump |= act == "jump" and self.ticks % 50 == 1
+                if act == "lock" and self.ticks == 3 and not self.lock.locked:   # testing: lock onto the nearest
+                    near = self.lock.candidates(self.chars.chars, self.chars.rowan.a)
+                    self.lock.target = min(near, key=lambda cd: cd[1])[0] if near else None
             self.ticks += 1
         else:
             self.fly(dt, keys)
@@ -331,6 +349,13 @@ class App:
         self.subtitles.update(dt)
         self.time_s += dt
         self.day.update(dt)
+        if self.play and self.chars.rowan:
+            ra = self.chars.rowan.a
+            self.lock.update(dt, ra)
+            yaw = self.lock.yaw_to_target(ra)
+            if yaw is not None:                           # swing the camera round to keep the target in view
+                d = (yaw - self.orbit_yaw + math.pi) % math.tau - math.pi
+                self.orbit_yaw = (self.orbit_yaw + d * min(1.0, dt * 7.0)) % math.tau
 
     def key_zoom(self, keys, dt: float) -> None:
         """Ctrl + Up zooms in, Ctrl + Down zooms out, for as long as they're held:
@@ -345,6 +370,29 @@ class App:
             self.orbit_dist = min(12.0, max(1.8, self.orbit_dist * k))
         else:
             self.camera.fov_deg = min(100.0, max(10.0, self.camera.fov_deg * k))
+
+    def toggle_lock(self) -> None:
+        if not self.chars.rowan:
+            return
+        cam = self.camera
+        f = cam.forward()
+        self.lock.toggle(self.chars.chars, self.chars.rowan.a, cam.position.x, cam.position.z, f.x, f.z)
+
+    def draw_reticle(self, viewproj, w: int, h: int, alpha: float) -> None:
+        """The lock-on ring on the target's chest, and its name above it."""
+        c = self.lock.target if self.play else None
+        if c is None:
+            return
+        a = c.actor
+        x = a.px + (a.x - a.px) * alpha
+        y = a.py + (a.y - a.py) * alpha + c.t.height * c.size * 0.62
+        z = a.pz + (a.z - a.pz) * alpha
+        clip = viewproj * glm.vec4(x, y, z, 1.0)
+        if clip.w <= 0.05:
+            return
+        sx = (clip.x / clip.w * 0.5 + 0.5) * w
+        sy = (1.0 - (clip.y / clip.w * 0.5 + 0.5)) * h
+        self.reticle.render(w, h, sx, sy, c.t.name)
 
     def music_region(self) -> str:
         """'town' near Brackenvale (with a margin so the edge doesn't flip back and forth), else 'wilds'."""
@@ -413,6 +461,7 @@ class App:
         if self.show_overlay:
             self.overlay.render(w, h)
         self.subtitles.render(w, h)
+        self.draw_reticle(viewproj, w, h, alpha)
         self.ctx.wireframe = wire
 
     def overlay_lines(self) -> list[str]:
@@ -437,7 +486,7 @@ class App:
         ]
         if self.play:
             lines += ["WASD move  Shift sprint  Ctrl walk  Space jump  T turbo  Ctrl+Up/Down zoom",
-                      "LMB attack  RMB block  R heavy  Q cast  F sheathe  H hit  K die/revive  Esc mouse",
+                      "LMB attack  RMB block  R heavy  Q cast  Tab/MMB lock on  F sheathe  H hit  K die/revive  Esc mouse",
                       "F2 fog  F3 overlay  F4 fly  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices  N day/night  [ ] hour"]
         else:
             lines += ["WASD QE fly  Shift/Ctrl speed  T turbo  wheel base speed  Ctrl+Up/Down zoom  F4 back to Rowan",
