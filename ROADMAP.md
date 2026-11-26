@@ -320,7 +320,7 @@ bandit_pain_01,bandit,"[grunts] Argh — lucky shot!",,2
 | Kind | Count | Source |
 |---|---|---|
 | Rowan + the Dawnblade (4 stages) | 1 rigged character + 4 sword models | Meshy image-to-3D or text-to-3D, plus rigging and animation |
-| Enemies | 20 (+ Grimtooth) | Meshy. Humanoids rigged by Meshy; animals and creatures animated in code (ART-04). Until 2026-12-23 (no Meshy credits): variants of the rigs on hand only |
+| Enemies | 20 (+ Grimtooth) | Meshy. Humanoids rigged by Meshy; animals and creatures animated in code (ART-04). Until 2026-12-23 there are 1,000 extra Meshy credits: see §9.1 |
 | Props | ~45 ⭐ objects from [OBJECTS.md](OBJECTS.md) (145 listed in total) | Meshy |
 | Terrain textures, sky, color-grading LUTs | all | Python scripts and shaders (ART-08, ART-09, ART-12) |
 | Effects (Rites, flames) | ~8 ⭐ meshes from OBJECTS.md §13 | Meshy (ART-19) |
@@ -330,13 +330,25 @@ bandit_pain_01,bandit,"[grunts] Argh — lucky shot!",,2
 
 Check your Meshy and ElevenLabs credit balances against this list on Day 1. Generate **previews** first and refine only the ones you keep.
 
+### 9.1 Meshy budget until 2026-12-23: 1,000 credits
+
+The monthly credits ran out on 2026-11-25; these 1,000 extra credits cover the gap. Meshy prices (from `tools/meshy/batch.py`): preview 20, texture 10, rig 5, each animation 3. A new rigged, animated humanoid costs about **55** (preview, texture, rig and 6 animations), or about **80** with one re-roll.
+
+| Priority | What | Credits |
+|---|---|---|
+| 1 | **Rowan's missing animations** from Meshy's library, where it has them: swim and tread water (to replace the code-made ones), an off-hand cast, a dodge roll, a kick, a plunge attack | ~30 |
+| 2 | **Seven new enemy types** for the First Playable's 12 (five exist: goblin, wolf, bear, bruiser, battlemage): Skeleton Warrior, Bandit Brigand, Bandit Crossbowman, Goblin Hexer, Orc Berserker, Werewolf (also Grimtooth, BOS-01), Giant Rat | ~560 |
+| 3 | **Reserve** for re-rolls, extra animations, and the Wolfwood props for M2 | ~400 |
+
+Not on Meshy this month: the Bog Ooze, the Wraith and the Mimic Chest can be static meshes or code-driven, and the rest of the 20 can wait for the monthly credits or reuse existing rigs.
+
 ---
 
 ## 10. After Week 1
 
 | Phase | Focus | Key ideas |
 |---|---|---|
-| **Week 2: Finish M1** | All 20 approved enemies plus approved MON- enemies, every bark, settings, accessibility, bug fixes. **Meshy credits are used up until 2026-12-23**, so new enemies reuse the rigs on hand (goblin, wolf, bear, bruiser, battlemage, villagers) with new colours, scale, stats and attacks, or are animated in code (ART-04). Queue the rest for after Dec 23 | ENM list, ENEMIES.md, UIX-12, ART-04 |
+| **Week 2: Finish M1** | All 20 approved enemies plus approved MON- enemies, every bark, settings, accessibility, bug fixes. New Meshy models come from the 1,000-credit budget in §9.1; the rest of the roster reuses the rigs on hand (new colours, scale, stats and attacks) or is animated in code (ART-04) until the monthly credits return on 2026-12-23 | ENM list, ENEMIES.md, UIX-12, ART-04 |
 | **Weeks 3–5: M2 Vertical slice** | The boss framework first: bosses as data with scripted moves, two phases changing at 50% HP with a beat between, one idea per boss, non-kill wins, retry at the arena door, and a debug teleport to any boss. Then Act I opening: Rowan's dream of Serannian, farm chores with the Thing in the Cellar as the tutorial boss, Aldric arrives (the horror in the jar), Mindspeak, training with Captain Thorne. Rift sealing and incursions as data. The first incursion at the burying ground, fused with the village prologue (zoogs, Men of Leng, Oswin wounded on his doorstep), and its fight, the Unwritten Gate. Then the Wolfwood Crown Shard dungeon (kit + grappling chain), Brood Queen, compass, bestiary, music layers | DRM-03, DRM-10, DRM-11, BOS-18, BOS-16, BOS-17, BOS-12, BOS-13, BOS-14, BOS-15, TOL-08, DRM-06, DRM-16, DRM-18, DRM-19, DRM-12, DRM-54, DRM-35, DRM-36, STY-14, STY-15, WLD-14, WLD-15, BOS-02, UIX-02, UIX-08, AUD-07 |
 | **Weeks 6–8: M3 Demo** | Second incursion at the stone circle (ghasts and light, cultists, the Apprentice at the Stones). Third incursion, the galley from the clouds (moon-beasts), ending on the rift that can't be closed from this side, and the Shantak Rider. The Blackmire Crown Shard + Old Mother Mire. Brackenvale sidequests from the public-domain tales, with their creatures. Found documents with clues. Relic powers, Seer's Lens, perks, armor sets | DRM-13, DRM-55, DRM-37, DRM-38, DRM-14, DRM-39, DRM-15, DRM-40, BOS-03, DRM-17, DRM-48, DRM-49, DRM-50, DRM-51, DRM-52, DRM-64, DRM-26, VAL-03, VAL-06, STA-08, ARMOR.md |
 | **Later: M4, Part II** | The descent through sleep (the seventy steps, the Cavern of Flame, the Gate of Deeper Slumber). Then the Enchanted Wood (the Hostage-Keeper), Ulthar and its cats, Dylath-Leen (the Factor chase), Celephaïs (Carter, Kuranes and the Silver Key), Ngranek (the night-gaunts), the Underworld (ghouls, gugs, the Gug Warlord, dholes), Leng (the High Priest, the spider). Then Serannian restored (the Wound over Serannian). The two Dreamlands Crown Shards replace two of the original dungeons: Frostfang becomes the ghouls' vault of fallen things (boss: the Vault-Wyrm), and Ashen Reach becomes Serannian (boss: the Black Marble Colossus). Optional: the Quarry of Inganok, Kuranes' Dream. | DRM-27, DRM-56, DRM-44, DRM-57, DRM-30, DRM-24, DRM-58, DRM-41, DRM-42, DRM-43, DRM-59, DRM-46, DRM-60, DRM-45, DRM-31, DRM-61, DRM-28, BOS-20, BOS-23, DRM-29, DRM-74, DRM-75 |
@@ -366,7 +378,7 @@ Check your Meshy and ElevenLabs credit balances against this list on Day 1. Gene
 | Meshy rigs or animations don't import cleanly | Normalize every GLB in `normalize.py`. Test the import on Day 2 with Rowan before batching the rest. Fall back to procedural animation (ART-04). |
 | AI models don't look like they belong together | One style suffix, shared fog and color grading (ART-02, ART-12). Re-roll the outliers. |
 | Combat doesn't feel good | Tune hitstop, wind-ups and the input buffer *before* adding content. Playtest every day. |
-| Meshy credits used up until 2026-12-23 | No new models, rigs or animations until then. Build with the rigs on hand, procedural animation and the props already generated; keep a list of what to generate on Dec 23, previews first. |
+| Only 1,000 Meshy credits until 2026-12-23 | Spend them in the order of §9.1 and check the running total after each batch. Previews first, re-roll only what's clearly wrong, and reuse rigs wherever a recolour will do. |
 | Credit burn | Previews first, caching by hash, never re-generate a line whose text hasn't changed. |
 | Asset terms change | Log plan and date per asset; re-read both services' terms before each public release (REL-04). |
 | The Dreamlands roughly double the game | Part II is M4 work. Ship the waking-world half (M3) as a complete demo first, and reuse rigs wherever possible: rats for the rats in the walls, the goblin rig for the Lurking Fear, the Brood Queen for the Spider of Leng, one cat model for allies, Ulthar and Saturn. |
