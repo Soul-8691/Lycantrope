@@ -503,6 +503,22 @@
       "prompt": "lively market seller in her fifties, grey-streaked hair under a striped red and white headscarf knotted at the back, sleeveless laced brown bodice over a linen blouse with rolled sleeves, full ankle-length mustard wool skirt, leather belt with a coin purse, leather shoes, empty hands, full body, standing in A-pose, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
       "created": 1795662672.7280524,
       "credits": 20
+    },
+    "ONE-03/v1": {
+      "task_id": "01a21845-4e1e-7334-bd0a-fc9b3cdc1a29",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "plain iron shortsword, simple crossguard, leather grip, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795703526.7451007,
+      "credits": 5
+    },
+    "SHD-03/v1": {
+      "task_id": "01a21845-5687-74f5-9222-b53b378e8975",
+      "status": "SUCCEEDED",
+      "model": "meshy-t2.5",
+      "prompt": "tall kite shield, wood and iron, faded heraldic stripes, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+      "created": 1795703529.3406818,
+      "credits": 5
     }
   },
   "replaced": [
@@ -909,6 +925,18 @@
       "task_id": "01a215dd-df3d-706b-9516-92f77ec661d3",
       "status": "SUCCEEDED",
       "created": 1795663191.9661791,
+      "credits": 10
+    },
+    "ONE-03/v1": {
+      "task_id": "01a21846-3718-7367-9fc9-e7d1628b3707",
+      "status": "SUCCEEDED",
+      "created": 1795703584.6122608,
+      "credits": 10
+    },
+    "SHD-03/v1": {
+      "task_id": "01a21846-e253-775a-8514-5c7010588711",
+      "status": "SUCCEEDED",
+      "created": 1795703634.1009462,
       "credits": 10
     }
   },

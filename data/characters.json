@@ -19,7 +19,8 @@
     "Unique villagers (WLD-33..38: shepherd, smith_hand, merchant, dairymaid, weaver, seller) are whole dressed models with one voice each; the layered outfit kit (WLD-26) is retired.",
     "'jump': 'procedural' builds a mid-air pose in code (no Meshy jump clip yet); a real 'jump' clip replaces it.",
     "'sheath': equipment slot whose item can be put away on the back (F key for Rowan).",
-    "'lines': which set of lines (tools/voice/npc_lines.json role) a character speaks; a spawn group's 'lines' overrides it (travellers, the patrol)."
+    "'lines': which set of lines (tools/voice/npc_lines.json role) a character speaks; a spawn group's 'lines' overrides it (travellers, the patrol).",
+    "Items: 'hold': 'shield' straps it to the outside of the forearm (face out, point toward the hand); 'off_arm_m' is how far out."
   ],
   "characters": {
     "rowan": {
@@ -1012,7 +1013,8 @@
         "guard_2"
       ],
       "equipment": {
-        "right_hand": "ONE-07"
+        "right_hand": "ONE-03",
+        "left_hand": "SHD-03"
       },
       "lines": "watch_gate"
     },
@@ -1155,6 +1157,31 @@
         0.11
       ],
       "end_fraction": 0.4
+    },
+    "ONE-03": {
+      "name": "Iron Shortsword",
+      "model": "ONE-03/v1/textured/model.glb",
+      "length_m": 0.8,
+      "tip": "+y",
+      "grip_from_end": 0.16,
+      "color": [
+        1,
+        1,
+        1
+      ],
+      "end_color": [
+        1,
+        1,
+        1
+      ],
+      "end_fraction": 0.0
+    },
+    "SHD-03": {
+      "name": "Militia Kite Shield",
+      "model": "SHD-03/v1/textured/model.glb",
+      "height_m": 0.85,
+      "hold": "shield",
+      "off_arm_m": 0.07
     }
   },
   "armor": {

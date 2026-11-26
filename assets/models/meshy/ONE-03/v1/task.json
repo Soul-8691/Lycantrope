@@ -1,0 +1,43 @@
+{
+  "id": "01a21845-4e1e-7334-bd0a-fc9b3cdc1a29",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "smart-topology",
+  "seed": 2012067864,
+  "prompt": "plain iron shortsword, simple crossguard, leather grip, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795703526673,
+  "progress": 100,
+  "started_at": 1795703526687,
+  "finished_at": 1795703551912,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21845-4e1e-7334-bd0a-fc9b3cdc1a29/output/model.glb?Expires=4949251200&Signature=hjgSeCEy1c-KjbtKl1Mrl5D96xOkn1U6FNaUkSxVGS7Oft69-TYuxQORyJYeEE~HAePJoVCAZ8ip52H4b9dkjAglnpaKYKKGLGtuYyFN~buHa73kAD7Z4Ph1zZxehFFLoPY6W19UxFa9wwXNEEQzAk-sgdXfhsbXvQPmXi89frYikVDs-NSPSYEfTmQ7X2CakeqvuqTPBzYhycP1H29ByYWbExIGe8a2TSTXZNSBeT9PDiHSsDzNI5pc94W6RKp6g881Oucakii5wX-sjXnPEgUF~xPuxBG1wCmz3yEF64HupgNbWcLS1h79RsCxa1EHtwhkNmKaAQaInoWNeTmcVQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21845-4e1e-7334-bd0a-fc9b3cdc1a29/output/preview.png?Expires=4949251200&Signature=cPXnW~JMiaIdUoAV~BaE~ERn7A9KNT5Bmg6AR4oZidz-1qFrT5J-qTUcdnCwFV~gFawpwWOjr1axf8cDTOAxJ7H6-6Js8JcsO9eps7X0WWDqJ9CeZYGCYT5VS5lGRwd8pYEVS0lZ~qOvlFn79O~UC8sF-qjf9-SXmt-Ee4P2Z-4muN8h11T1UJFkbVnJCCmhcxHFpO3WDv3Pjg8HLxWcH4XGPc3v2tZhhk0BY~I3ZthjRTk4z4R~D22RTuN6kp4VXwQoLPXwbJnjfUOcwPg~iiXq2ay3FFr4s0RyU1D318pRRkLGcth-v02URfQ9fCjGl4lfocNY4mGRbyXjWvJKMQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 5,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "meshy-t2.5",
+    "mode": "preview",
+    "model_type": "smart-topology",
+    "prompt": "plain iron shortsword, simple crossguard, leather grip, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750
+  },
+  "output": {
+    "seed": 2012067864,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21845-4e1e-7334-bd0a-fc9b3cdc1a29/output/model.glb?Expires=4949251200&Signature=hjgSeCEy1c-KjbtKl1Mrl5D96xOkn1U6FNaUkSxVGS7Oft69-TYuxQORyJYeEE~HAePJoVCAZ8ip52H4b9dkjAglnpaKYKKGLGtuYyFN~buHa73kAD7Z4Ph1zZxehFFLoPY6W19UxFa9wwXNEEQzAk-sgdXfhsbXvQPmXi89frYikVDs-NSPSYEfTmQ7X2CakeqvuqTPBzYhycP1H29ByYWbExIGe8a2TSTXZNSBeT9PDiHSsDzNI5pc94W6RKp6g881Oucakii5wX-sjXnPEgUF~xPuxBG1wCmz3yEF64HupgNbWcLS1h79RsCxa1EHtwhkNmKaAQaInoWNeTmcVQ__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21845-4e1e-7334-bd0a-fc9b3cdc1a29/output/preview.png?Expires=4949251200&Signature=cPXnW~JMiaIdUoAV~BaE~ERn7A9KNT5Bmg6AR4oZidz-1qFrT5J-qTUcdnCwFV~gFawpwWOjr1axf8cDTOAxJ7H6-6Js8JcsO9eps7X0WWDqJ9CeZYGCYT5VS5lGRwd8pYEVS0lZ~qOvlFn79O~UC8sF-qjf9-SXmt-Ee4P2Z-4muN8h11T1UJFkbVnJCCmhcxHFpO3WDv3Pjg8HLxWcH4XGPc3v2tZhhk0BY~I3ZthjRTk4z4R~D22RTuN6kp4VXwQoLPXwbJnjfUOcwPg~iiXq2ay3FFr4s0RyU1D318pRRkLGcth-v02URfQ9fCjGl4lfocNY4mGRbyXjWvJKMQ__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}

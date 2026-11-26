@@ -6,8 +6,6 @@ Helpful:
 .venv\Scripts\python.exe tools\props\build.py VIL-10 VIL-04
 
 To-Do:
-Guard shields
-Guard swords
 Talk (A press)
 Voice lines
 Dialogue
@@ -28,3 +26,5 @@ Lock-on
 A few more enemy types
 NPC fights
 Caves
+Inventory
+Equip

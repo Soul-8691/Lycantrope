@@ -641,6 +641,18 @@ def place_item(skel: Skeleton, bind: np.ndarray, slot: str, item: Item, body: Me
     def pos(name):
         return bind[skel.joint_index(name)][:3, 3]
     spec = spec or {}
+    if slot in ("right_hand", "left_hand") and spec.get("hold") == "shield":
+        # strapped to the outside of the forearm: face out, top toward the elbow, point toward the hand
+        side = "Right" if slot == "right_hand" else "Left"
+        joint = skel.joint_index(f"{side}ForeArm")
+        elbow, hand = pos(f"{side}ForeArm"), pos(f"{side}Hand")
+        up = (elbow - hand) / np.linalg.norm(elbow - hand)
+        out = np.array([1.0 if side == "Left" else -1.0, 0.0, 0.25])     # +x is the character's left
+        out = out - up * np.dot(out, up)
+        out /= np.linalg.norm(out)
+        centre = (elbow + hand) / 2 + out * float(spec.get("off_arm_m", 0.07))
+        world = look_basis(centre, up, out)
+        return Attachment(item, joint, np.linalg.inv(bind[joint]) @ world, in_hand=True)
     if slot in ("right_hand", "left_hand"):
         side = "Right" if slot == "right_hand" else "Left"
         joint = skel.joint_index(f"{side}Hand")

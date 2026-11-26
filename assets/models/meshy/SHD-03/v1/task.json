@@ -1,0 +1,43 @@
+{
+  "id": "01a21845-5687-74f5-9222-b53b378e8975",
+  "type": "text-to-3d-preview",
+  "mode": "preview",
+  "name": "",
+  "model_type": "smart-topology",
+  "seed": 3373642392,
+  "prompt": "tall kite shield, wood and iron, faded heraldic stripes, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+  "texture_prompt": "",
+  "texture_image_url": "",
+  "status": "SUCCEEDED",
+  "created_at": 1795703529262,
+  "progress": 100,
+  "started_at": 1795703529271,
+  "finished_at": 1795703543518,
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21845-5687-74f5-9222-b53b378e8975/output/model.glb?Expires=4949251200&Signature=kRW0b-hTjIT7ToBmONr7w6eokfpMPYHdw1Hb8cfL80G9IRqGkEREKz7X5aFDdgg~QzbXNCTnRVDxF9b6Isv3rjZfcHz4oeOdPq3W3W87xS5qsrOVnHc6oYMHiVauJgIA8137pcv1azeV7-lH14u6-x-nGdkKo1mVRrPE~y~b8nGlHPJCbqG2xf7SayQYsfzFDVm9S29yo1HbWvjcHoqR3lhLRbLMLpNpeBMh0hiC~~oXLly9nsStR1vP-jb7EMkhtPmUcYBX9xUlW9J~2dDk0vK7CZ0PY0LfReT0MH-UeA1ke-uegu72phO0~OHwGv0yh5VMjTRI5pFZvRrpojrNpw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21845-5687-74f5-9222-b53b378e8975/output/preview.png?Expires=4949251200&Signature=BCAZmL9yk7ZwuxeBZBiZ8e3idXMhPXI2s86jeItdFuG6e5uIRkuVUrZGoe4IySOKFDhjckAJrTzkF1-oFtEbBdZV~nPrt0-TrfkU~bQLB1EGvxWrzzSiXkHkj78-TzYdBN-d5pxsKIQse~lJXVgLFXUi3ZsyOxzNoUKtI9RMX-Rv~5Li13ZN5V~jFH7Bzha2o3Br~bYTSk~dImUkTvhaweIfXm3Y9~Ahet8NhE4YK4QW6qA99iCX31nwXDTs5qPLZ4B96QMuS6uHEbqUw-1lkbc0nEhJ8iMMx6VZqi9Bt6I8gS4U6Xmx4LRR69c0Y3hmz3HkyP2obpbPN2AYeOodgA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+  "texture_urls": [],
+  "consumed_credits": 5,
+  "task_error": null,
+  "expires_at": null,
+  "input": {
+    "ai_model": "meshy-t2.5",
+    "mode": "preview",
+    "model_type": "smart-topology",
+    "prompt": "tall kite shield, wood and iron, faded heraldic stripes, stylized dark-fantasy, hand-painted textures, chunky readable silhouette, muted earthy palette, game-ready low-poly, single object, centered, no ground plane, no background",
+    "target_formats": [
+      "glb"
+    ],
+    "target_polycount": 750
+  },
+  "output": {
+    "seed": 3373642392,
+    "model_urls": {
+      "glb": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21845-5687-74f5-9222-b53b378e8975/output/model.glb?Expires=4949251200&Signature=kRW0b-hTjIT7ToBmONr7w6eokfpMPYHdw1Hb8cfL80G9IRqGkEREKz7X5aFDdgg~QzbXNCTnRVDxF9b6Isv3rjZfcHz4oeOdPq3W3W87xS5qsrOVnHc6oYMHiVauJgIA8137pcv1azeV7-lH14u6-x-nGdkKo1mVRrPE~y~b8nGlHPJCbqG2xf7SayQYsfzFDVm9S29yo1HbWvjcHoqR3lhLRbLMLpNpeBMh0hiC~~oXLly9nsStR1vP-jb7EMkhtPmUcYBX9xUlW9J~2dDk0vK7CZ0PY0LfReT0MH-UeA1ke-uegu72phO0~OHwGv0yh5VMjTRI5pFZvRrpojrNpw__&Key-Pair-Id=K1VGYTHIYLM9UM"
+    },
+    "thumbnail_url": "https://assets.meshy.ai/04a623cd-00ab-45c4-8791-aa2416367cb8/tasks/01a21845-5687-74f5-9222-b53b378e8975/output/preview.png?Expires=4949251200&Signature=BCAZmL9yk7ZwuxeBZBiZ8e3idXMhPXI2s86jeItdFuG6e5uIRkuVUrZGoe4IySOKFDhjckAJrTzkF1-oFtEbBdZV~nPrt0-TrfkU~bQLB1EGvxWrzzSiXkHkj78-TzYdBN-d5pxsKIQse~lJXVgLFXUi3ZsyOxzNoUKtI9RMX-Rv~5Li13ZN5V~jFH7Bzha2o3Br~bYTSk~dImUkTvhaweIfXm3Y9~Ahet8NhE4YK4QW6qA99iCX31nwXDTs5qPLZ4B96QMuS6uHEbqUw-1lkbc0nEhJ8iMMx6VZqi9Bt6I8gS4U6Xmx4LRR69c0Y3hmz3HkyP2obpbPN2AYeOodgA__&Key-Pair-Id=K1VGYTHIYLM9UM",
+    "alpha_thumbnail_url": null,
+    "texture_urls": []
+  }
+}
