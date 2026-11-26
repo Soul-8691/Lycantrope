@@ -33,6 +33,10 @@ Armor Rowan can find and wear (HER-07: visible armor swaps). There are **14 sets
 - [ARS-03] **Armor upgrades at the smith** — Armor goes from +1 to +5 using the same ores as weapons, and like weapons (CMB-24, per your note) it needs a smith NPC. Each level gives +8% Def and Poise. Requirements don't change. *(DS)*
 - [ARS-04] **One rune socket on torso pieces** — Medium and heavy torso pieces have a single rune socket (CMB-25) for a resistance or stat rune. *(SK, MW)*
 - [ARS-05] **Generate sets whole, split by bone** — For each set, Meshy generates the complete outfit on a male mannequin in A-pose (image-to-3D or text-to-3D), auto-rigged on Rowan's skeleton. `normalize.py` then splits it into the four slot meshes by which bone each vertex follows: head and neck → Head; forearms and hands → Arms; spine, chest and upper arms → Torso; hips, legs and feet → Legs. Every piece then fits Rowan, and any mix of sets still lines up at the seams. *(DOC, NEW)*
+- [ARS-06] **Defence per damage type** — Each piece lists physical Def (slash, strike, pierce) and absorption for fire, frost and radiant. Plate is strong against blows, robes against Rites and fire. *(DS)*
+- [ARS-07] **Slot shares** — A set's total Def, Poise and weight split torso 40%, legs 25%, head 20%, arms 15%, so every set is balanced the same way. *(NEW)*
+- [ARS-08] **Weight classes** — Each piece is light, medium or heavy. Heavy pieces slow stamina regeneration by 5% each (up to 20%), on top of equip load. *(DS, OB)*
+- [ARS-09] **No durability** — Armor and weapons never wear out or need repair, which keeps the smith about upgrades only. *(DS, TP)*
 
 ---
 

@@ -6,7 +6,6 @@ Helpful:
 .venv\Scripts\python.exe tools\props\build.py VIL-10 VIL-04
 
 To-Do:
-New games/Save files
 Character stats/Experience
 Armor/Weapon/Magic stats
 Health and damage/Fall damage/HUD
@@ -20,6 +19,7 @@ Controller support
 Shop inventory/Shop
 NPC weapons/NPC fights/Guard protect AI
 Beginning plot
+New games/Save files
 Better NPC system
 Add more monsters (Lovecraft monsters/Goblin spellcasters)
 Bandit/Goblin camps

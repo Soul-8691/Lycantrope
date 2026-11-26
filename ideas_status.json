@@ -1,11 +1,11 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-26T11:32:25",
+  "updated": "2026-11-26T12:57:32",
   "counts": {
-    "awaiting": 29,
-    "approved": 554,
-    "denied": 122,
-    "total": 705
+    "awaiting": 38,
+    "approved": 575,
+    "denied": 124,
+    "total": 737
   },
   "ui": {
     "selected": [
@@ -19,7 +19,7 @@
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-26T11:32:25"
+    "at": "2026-11-26T12:57:32"
   },
   "ideas": {
     "PIL-01": {
@@ -748,6 +748,105 @@
       "file": "IDEAS.md",
       "in_ideas_md": true
     },
+    "CMB-37": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:51:07",
+      "title": "Damage formula",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "CMB-38": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:51:11",
+      "title": "Fall damage by height",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "CMB-39": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:51:19",
+      "title": "Stumble on a hard landing",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "CMB-40": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:51:28",
+      "title": "Landing roll",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "CMB-41": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:51:34",
+      "title": "Water breaks a fall",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "CMB-42": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:51:38",
+      "title": "Plunge cushions the fall",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "CMB-43": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:51:45",
+      "title": "Enemies take fall damage too",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "CMB-44": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:51:50",
+      "title": "Food heals slowly",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "CMB-45": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:52:00",
+      "title": "Counter hits",
+      "category": "Combat (CMB)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
     "VAL-01": {
       "status": "denied",
       "note": "",
@@ -1094,6 +1193,72 @@
       "note": "",
       "changed": "2026-11-24T12:52:59",
       "title": "Attunement slots",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STA-24": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:52:05",
+      "title": "Level cap 50, one point per level",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STA-25": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:52:08",
+      "title": "XP from quests and discoveries",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STA-26": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:52:36",
+      "title": "Rowan's starting stats",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STA-27": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:52:45",
+      "title": "Derived-stat table",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STA-28": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:52:50",
+      "title": "XP stays until death, then rolls back",
+      "category": "Stats, Skills & Leveling (STA)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STA-29": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-26T12:52:54",
+      "title": "Respec at a shrine",
       "category": "Stats, Skills & Leveling (STA)",
       "section": "",
       "starred": false,
@@ -2199,6 +2364,94 @@
       "starred": false,
       "in_ideas_md": true,
       "file": "IDEAS.md"
+    },
+    "UIX-15": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:52:58",
+      "title": "Bars that grow with the stat",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "UIX-16": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:53:10",
+      "title": "Damage trail on the HP bar",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "UIX-17": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:53:13",
+      "title": "Enemy HP on the lock-on plate",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "UIX-18": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:53:27",
+      "title": "Hit direction flash",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "UIX-19": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-26T12:57:31",
+      "title": "Low-health warning",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "UIX-20": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:54:44",
+      "title": "XP and level-ready mark",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "UIX-21": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:57:27",
+      "title": "HUD fades when calm",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "UIX-22": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T12:55:06",
+      "title": "Flask and quick-slot counts",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
     },
     "AUD-01": {
       "status": "approved",
@@ -6567,6 +6820,50 @@
       "file": "ARMOR.md",
       "in_ideas_md": true
     },
+    "ARS-06": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Defence per damage type",
+      "category": "Armor · Rules (ARS)",
+      "section": "",
+      "starred": false,
+      "file": "ARMOR.md",
+      "in_ideas_md": true
+    },
+    "ARS-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Slot shares",
+      "category": "Armor · Rules (ARS)",
+      "section": "",
+      "starred": false,
+      "file": "ARMOR.md",
+      "in_ideas_md": true
+    },
+    "ARS-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Weight classes",
+      "category": "Armor · Rules (ARS)",
+      "section": "",
+      "starred": false,
+      "file": "ARMOR.md",
+      "in_ideas_md": true
+    },
+    "ARS-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "No durability",
+      "category": "Armor · Rules (ARS)",
+      "section": "",
+      "starred": false,
+      "file": "ARMOR.md",
+      "in_ideas_md": true
+    },
     "HED-01": {
       "status": "denied",
       "note": "",
@@ -7243,6 +7540,61 @@
       "note": "",
       "changed": "2026-11-24T16:41:17",
       "title": "Meshy pipeline for weapons",
+      "category": "Weapons · Rules (WPR)",
+      "section": "",
+      "starred": false,
+      "file": "WEAPONS.md",
+      "in_ideas_md": true
+    },
+    "WPR-07": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Weapon stat sheet",
+      "category": "Weapons · Rules (WPR)",
+      "section": "",
+      "starred": false,
+      "file": "WEAPONS.md",
+      "in_ideas_md": true
+    },
+    "WPR-08": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Split damage",
+      "category": "Weapons · Rules (WPR)",
+      "section": "",
+      "starred": false,
+      "file": "WEAPONS.md",
+      "in_ideas_md": true
+    },
+    "WPR-09": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Shield stats",
+      "category": "Weapons · Rules (WPR)",
+      "section": "",
+      "starred": false,
+      "file": "WEAPONS.md",
+      "in_ideas_md": true
+    },
+    "WPR-10": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Rite power",
+      "category": "Weapons · Rules (WPR)",
+      "section": "",
+      "starred": false,
+      "file": "WEAPONS.md",
+      "in_ideas_md": true
+    },
+    "WPR-11": {
+      "status": "awaiting",
+      "note": "",
+      "changed": null,
+      "title": "Rite stat sheet",
       "category": "Weapons · Rules (WPR)",
       "section": "",
       "starred": false,
@@ -8049,144 +8401,6 @@
     }
   },
   "history": [
-    {
-      "time": "2026-11-24T10:55:18",
-      "id": "STA-13",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:55:26",
-      "id": "STA-14",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:55:36",
-      "id": "ENM-23",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:55:53",
-      "id": "BOS-10",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:55:58",
-      "id": "WLD-18",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:56:12",
-      "id": "WLD-20",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:56:32",
-      "id": "WLD-22",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:56:37",
-      "id": "UIX-14",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:56:40",
-      "id": "AUD-13",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:57:35",
-      "id": "ART-05",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:57:40",
-      "id": "ART-06",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T10:57:46",
-      "id": "ART-09",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:57:53",
-      "id": "ART-10",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:58:09",
-      "id": "ART-13",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:58:28",
-      "id": "ART-15",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:58:36",
-      "id": "ART-16",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T10:59:01",
-      "id": "TEC-09",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T11:00:56",
-      "id": "TOL-02",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T11:00:59",
-      "id": "TOL-04",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T11:01:06",
-      "id": "TOL-05",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T11:01:16",
-      "id": "TOL-07",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T11:01:23",
-      "id": "REL-07",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T11:01:25",
-      "id": "REL-08",
-      "from": "awaiting",
-      "to": "approved"
-    },
     {
       "time": "2026-11-24T11:01:43",
       "id": "REL-09",
@@ -11048,6 +11262,144 @@
       "id": "DRM-93",
       "from": "awaiting",
       "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:51:07",
+      "id": "CMB-37",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:51:11",
+      "id": "CMB-38",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:51:19",
+      "id": "CMB-39",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:51:28",
+      "id": "CMB-40",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:51:34",
+      "id": "CMB-41",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:51:38",
+      "id": "CMB-42",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:51:45",
+      "id": "CMB-43",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:51:50",
+      "id": "CMB-44",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:52:00",
+      "id": "CMB-45",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:52:05",
+      "id": "STA-24",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:52:08",
+      "id": "STA-25",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:52:36",
+      "id": "STA-26",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:52:45",
+      "id": "STA-27",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:52:50",
+      "id": "STA-28",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:52:54",
+      "id": "STA-29",
+      "from": "awaiting",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-26T12:52:58",
+      "id": "UIX-15",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:53:10",
+      "id": "UIX-16",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:53:13",
+      "id": "UIX-17",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:53:27",
+      "id": "UIX-18",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:54:44",
+      "id": "UIX-20",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:55:06",
+      "id": "UIX-22",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:57:27",
+      "id": "UIX-21",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T12:57:31",
+      "id": "UIX-19",
+      "from": "awaiting",
+      "to": "denied"
     }
   ]
 }

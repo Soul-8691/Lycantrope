@@ -98,6 +98,15 @@
 - [CMB-34] **Rite cooldowns** — Each Rite recharges over time (8–30 s), like the relic powers (VAL-03), and Faith shortens cooldowns. No resource to manage, so casting is part of the rhythm of every fight. *(SK, NEW)*
 - [CMB-35] **Stamina casting** — Rites cost stamina, the same pool as attacks and dodges. One resource for everything; casting competes with defending, which keeps it tense. *(DS, NEW)*
 - [CMB-36] **Lifeblood casting** — Rites cost a slice of HP, which slowly returns out of combat. Strong spells at a real price; pairs well with high Vigor builds. *(MW, NEW)*
+- [CMB-37] **Damage formula** — For each damage type, damage = attack × attack / (attack + defence), then reduced by the target's absorption %. Every hit deals at least 10%, so weak hits still count but armor matters. *(DS)*
+- [CMB-38] **Fall damage by height** — Falls under 4 m are safe. From 4 to 12 m, damage rises from 10% to 80% of max HP, and more than 15 m kills. Armor doesn't reduce it. *(DS, SK)*
+- [CMB-39] **Stumble on a hard landing** — Drops of 2.5–4 m cause no damage but a short stumble, so jumping off ledges mid-fight has a cost. *(TP)*
+- [CMB-40] **Landing roll** — Press dodge just before landing to roll out of it: fall damage is halved and there's no stumble. *(OoT, TP)*
+- [CMB-41] **Water breaks a fall** — Landing in water at least 1.5 m deep cancels fall damage at any height. *(OoT, SK)*
+- [CMB-42] **Plunge cushions the fall** — Landing on an enemy with a plunge attack (CMB-13) takes no fall damage. *(DS)*
+- [CMB-43] **Enemies take fall damage too** — Knock bandits off bridges or let a troll chase you off a ledge. Heavy enemies take more. *(DS, SK)*
+- [CMB-44] **Food heals slowly** — Apples, bread and stew heal a little over a few seconds. No passive regeneration in the wild, so the Lifewater flask (CMB-22) stays the main heal. *(SK, OB)*
+- [CMB-45] **Counter hits** — Hitting an enemy during its wind-up deals +25% damage and poise damage. It rewards reading attacks without being a parry. *(DS)*
 
 ## 5. Valor & the Dawnblade (VAL)
 
@@ -139,6 +148,12 @@
 - [STA-21] **Willpower (replaces Spirit)** — Mental toughness: keeps your guard and casts from being interrupted, adds Rite charges or shortens cooldowns (whichever casting system wins), and resists status buildup. Less magical than Arcana, broader than Faith. *(MW, OB)*
 - [STA-22] **Five attributes (drop Spirit, no replacement)** — Remove the stat entirely: Rites scale with Vigor and relic powers with Fortune. A simpler level-up screen, but magic stops being a build of its own. *(NEW)*
 - [STA-23] **Attunement slots** — However Spirit is replaced, its successor also sets how many Rites and relic powers you can equip at once (1 slot at start, +1 at 15, 25 and 40), so investing changes your toolkit, not just your numbers. *(DS1)*
+- [STA-24] **Level cap 50, one point per level** — Each level gives one attribute point. A full story run ends around level 35–40, so the last levels are for side content. *(DS, SK)*
+- [STA-25] **XP from quests and discoveries** — Finishing quests, waking a Waystone and finding a landmark also give XP, so a careful explorer keeps pace without grinding. *(SK, OB)*
+- [STA-26] **Rowan's starting stats** — Level 1 with every attribute at 8, except Vigor and Endurance at 10: a farmhand who's fit but untrained. *(NEW)*
+- [STA-27] **Derived-stat table** — Vigor sets HP (10 gives 300, 40 gives about 1,000). Endurance sets stamina (80 to 160) and, with Might, equip load. Dexterity speeds attack recovery, Faith sets Rite power and Fortune sets crit chance and find rate. All follow STA-05's soft caps, kept in one JSON table. *(DS)*
+- [STA-28] **XP stays until death, then rolls back** — XP is never dropped. Dying loads the last save, so XP and level go back to what they were then (your rule). *(NEW)*
+- [STA-29] **Respec at a shrine** — A rare consumable (a few in the whole game) lets you reassign all attribute points at a Waystone. *(DS)*
 
 ## 7. Enemies (ENM)
 
@@ -253,6 +268,14 @@
 - [UIX-12] **Comfort and accessibility** — FOV slider, camera shake and head-bob scaling, high-contrast telegraphs, a hold-or-toggle option for every hold input, and an optional assist mode. *(DOC)*
 - [UIX-13] **UI drawn with pygame, shown through GL** — HUD and menus are drawn on a pygame Surface and uploaded as a texture each frame, so there's no extra UI library. ⭐ *(DOC)*
 - [UIX-14] **Ember's subtitles look different** — Ember's lines appear in warm gold with a soft glow, so you always know when it's the sword talking. *(NEW)*
+- [UIX-15] **Bars that grow with the stat** — The HP and stamina bars (top-left) get longer as max HP and stamina rise, so leveling Vigor shows on screen. *(DS, OoT)*
+- [UIX-16] **Damage trail on the HP bar** — A pale segment shows what the last hit took, then drains after a short delay, so you see how big a hit was without numbers. *(DS)*
+- [UIX-17] **Enemy HP on the lock-on plate** — The locked target's name plate gets a thin HP bar with the same trail. Unlocked enemies show nothing. *(DS, OoT)*
+- [UIX-18] **Hit direction flash** — A short red arc on the screen edge toward whoever hit you, useful when you're struck from off-screen. *(SK)*
+- [UIX-19] **Low-health warning** — Under 25% HP, the screen edges darken and a soft heartbeat plays. It can be turned off. *(OoT, TP)*
+- [UIX-20] **XP and level-ready mark** — A thin XP line under the stamina bar, and a small glowing pip when you have enough for a level. *(SK, NEW)*
+- [UIX-21] **HUD fades when calm** — Full bars fade out after a few seconds out of combat and return when anything changes. An option keeps them on. *(SK, TP)*
+- [UIX-22] **Flask and quick-slot counts** — The bottom-left quick slot shows the flask's charges and greys out when it's empty. *(DS)*
 
 ## 11. Audio & Voice (AUD)
 

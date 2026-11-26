@@ -35,6 +35,11 @@ Weapons Rowan can find, earn or take from the monsters he kills. The idea tracke
 - [WPR-04] **Smith upgrades** — Weapons and shields go from +1 to +10 at the smith, using ore (CMB-24, per your note). Each level adds +6% base damage (or stability for shields, or Rite power for magic weapons), and the scaling grades rise at +5 and +10. The Dawnblade is the exception: it only grows with Crown Shards (HER-10). ⭐ *(DS)*
 - [WPR-05] **Rune socket** — Every non-starter weapon has one rune socket (CMB-25) for added elemental damage or an on-hit effect. *(SK, MW)*
 - [WPR-06] **Meshy pipeline for weapons** — Each weapon is generated on its own, lying flat, with no hand. `normalize.py` puts the pivot at the grip, aligns the blade along one axis, attaches it to Rowan's hand bone, and builds the hitbox capsule from the blade's length (CMB-17). Shields attach to the forearm. *(DOC)*
+- [WPR-07] **Weapon stat sheet** — Each weapon lists base damage per type, scaling grades (STA-09), requirements, weight, stamina per swing, poise damage and crit multiplier, all in one JSON entry. *(DS)*
+- [WPR-08] **Split damage** — A weapon can deal two types at once (the Dawnblade: slash plus radiant), and each part is reduced by the target's own defence for that type. *(DS)*
+- [WPR-09] **Shield stats** — Stability (stamina lost per blocked hit), physical block %, and elemental block % for fire, frost and radiant. *(DS)*
+- [WPR-10] **Rite power** — Magic weapons have a Rite power value (100 at base) that rises with Faith and upgrades. A Rite's effect is its base value × Rite power / 100. *(DS)*
+- [WPR-11] **Rite stat sheet** — Each Rite lists its base power, damage type, range, cooldown (CMB-34) and Faith requirement, in the same JSON style as weapons. *(DS, NEW)*
 
 ---
 
