@@ -257,6 +257,7 @@ def _fit_cached(body: MeshData, skel: Skeleton, outfit_path: Path, rig_path: Pat
 
 
 COVER_M = 0.035              # body is hidden under cloth this close (outfits sit ~2-4 cm out)
+HAT_CLEAR_M = 0.03           # hats and hoods are lifted at least this far off the head (clear of the hair)
 POKE_M = 0.15                # ...and where it pokes out through the cloth, up to this far
 
 
@@ -315,6 +316,18 @@ def load_outfit(ctx, body: MeshData, skel: Skeleton, path: Path, rig_path: Path)
         fit.weights = fit.weights.copy()
         fit.joints[above] = [skel.joint_index("Head"), 0, 0, 0]
         fit.weights[above] = [1.0, 0.0, 0.0, 0.0]
+        # lift hats, hoods and scarves clear of the hair: anything closer to the head than
+        # HAT_CLEAR_M moves straight out from the middle of the head, so it sits over the hair
+        # instead of the hair poking through it in patches
+        hc = skel.bind_world()[skel.joint_index("Head")][:3, 3] + [0.0, 0.07, 0.0]
+        lift = (part == P("head")) & (near < HAT_CLEAR_M)
+        if lift.any():
+            d = ow[lift] - hc
+            d /= np.maximum(np.linalg.norm(d, axis=1, keepdims=True), 1e-6)
+            ow = ow.copy()
+            ow[lift] += d * (HAT_CLEAR_M - near[lift])[:, None]
+            w2m = np.linalg.inv(m2w)
+            fit.pos = (ow @ w2m[:3, :3].T + w2m[:3, 3]).astype(np.float32)
     tri = fit.idx.reshape(-1, 3)
     keep_tri = drop[tri].sum(axis=1) < 2
     tri_part = triangle_parts(fit, skel.names)
@@ -326,7 +339,8 @@ def load_outfit(ctx, body: MeshData, skel: Skeleton, path: Path, rig_path: Path)
     gpu = upload(ctx, kept, kparts, len(PARTS))
     P = PARTS.index
     pieces, covers = {}, {}
-    if after[P("head")] > 150:
+    if after[P("head")] > 150 and after[P("head")] >= 0.6 * before[P("head")]:
+        # a hat that lost much of itself with the mannequin's skin is only scraps: not worn
         pieces["head"] = [P("head")]          # hats and hoods sit on the villager's own head: hide nothing
     if after[P("torso")] > 300:
         pieces["top"] = [P("torso"), P("arms"), P("hands")]
