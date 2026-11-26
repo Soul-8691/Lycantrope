@@ -30,6 +30,7 @@ Shop
 
 Later:
 A few more enemy types
+Remap the starting area/nearby
 Greetings
 Upgrade
 Forge
