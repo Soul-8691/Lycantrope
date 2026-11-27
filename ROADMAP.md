@@ -182,10 +182,14 @@ These are the gaps that make the game feel incomplete to any tester.
 
 ### 5.2 World, NPC and AI (todo.txt — second priority)
 
-**Better NPC system / NPCs going home at night** *(NPC-16, NPC-15 through NPC-19)*
+**Better NPC system: dynamic faces and outfits** *(ART-20, WLD-26, WLD-33–38)*
+- Generate 3–4 alternate head meshes per body type with Meshy (different jaw, nose, brow); character system picks one by NPC seed — same mesh-swap approach as armor pieces (ART-20)
+- Each NPC draws its own mix of outfit pieces (hat, coat, trousers) from the WLD-26 kit on top of a tint and height variation, so a few generated parts give dozens of distinct looks
+- Alternative: whole pre-dressed villager models (WLD-33–38) for the named NPCs where layering causes clipping
+
+**NPCs going home at night** *(NPC-16)*
 - Daily schedule: each NPC has 2–4 waypoints with time-of-day windows; they walk to them and idle
 - NPCs return home after sunset
-- Greeting lines vary by weather, Rowan's state, time, and prior conversation flag (NPC-15)
 
 **NPC weapons / NPC fights / Guard AI** *(NPC-17)*
 - Guards and named combat NPCs carry weapons and use the melee-basic FSM
@@ -242,7 +246,6 @@ These are the new ideas added 2026-11-26. Work through them once the todo.txt it
 
 | Idea | What |
 |---|---|
-| ART-20 | Per-NPC face variants (Meshy head swap) |
 | ART-21 | Silhouette quality pass on key assets |
 | WLD-42 | More house types in Brackenvale |
 | NPC-15 | Context-aware greeting selection (also feeds §5.2 above) |
