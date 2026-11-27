@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-26T19:20:42",
+  "updated": "2026-11-26T19:30:56",
   "counts": {
     "awaiting": 29,
-    "approved": 594,
+    "approved": 605,
     "denied": 125,
-    "total": 748
+    "total": 759
   },
   "ui": {
     "selected": [
-      "PIL-01"
+      "WPR-03"
     ],
     "selected_titles": {
-      "PIL-01": "Combat first"
+      "WPR-03": "Under-requirement penalty"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-26T19:20:42"
+    "at": "2026-11-26T19:30:56"
   },
   "ideas": {
     "PIL-01": {
@@ -269,6 +269,17 @@
       "note": "Added and approved 2026-11-25 at the user's request: the farmer who looks after Rowan (name is a placeholder).",
       "changed": "2026-11-25T10:24:34",
       "title": "Farmer Oswin Tull, who took Rowan in",
+      "category": "Story & Setting (STY)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "STY-21": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:28:09",
+      "title": "Cold open: the morning before the raid",
       "category": "Story & Setting (STY)",
       "section": "",
       "starred": false,
@@ -2266,6 +2277,28 @@
       "file": "IDEAS.md",
       "in_ideas_md": true
     },
+    "WLD-44": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:28:21",
+      "title": "Enemy camps as overworld POIs",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-45": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:28:30",
+      "title": "Brackenvale surroundings layout pass",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
     "UIX-01": {
       "status": "approved",
       "note": "",
@@ -2535,6 +2568,39 @@
       "note": "",
       "changed": "2026-11-26T19:18:22",
       "title": "Compact, non-intrusive debug overlay",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "UIX-26": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:28:41",
+      "title": "Item highlight and loot pickup",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "UIX-27": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:29:05",
+      "title": "Main menu and save slots",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "UIX-28": {
+      "status": "approved",
+      "note": "You can pin where to go, as in Skyrim",
+      "changed": "2026-11-26T19:29:40",
+      "title": "Quest log in the pause menu",
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": false,
@@ -2898,6 +2964,17 @@
       "note": "",
       "changed": "2026-11-26T19:20:35",
       "title": "Mesh silhouette and shape quality pass",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "ART-22": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:29:46",
+      "title": "Biome color palette pass",
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": false,
@@ -4537,6 +4614,50 @@
       "note": "",
       "changed": "2026-11-26T19:19:02",
       "title": "Context-aware greeting selection",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The Watch",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-16": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:30:02",
+      "title": "NPC daily schedules",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The Watch",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-17": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:30:07",
+      "title": "Guard response AI",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The Watch",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-18": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:30:21",
+      "title": "Talk interaction trigger",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The Watch",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-19": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:30:30",
+      "title": "Merchant trading",
       "category": "Townsfolk & Dialogue (NPC)",
       "section": "The Watch",
       "starred": false,
@@ -8523,72 +8644,6 @@
   },
   "history": [
     {
-      "time": "2026-11-24T12:30:43",
-      "id": "CMB-35",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T12:30:43",
-      "id": "CMB-36",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T12:38:07",
-      "id": "ART-18",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:38:07",
-      "id": "ART-19",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:42:25",
-      "id": "ART-09",
-      "from": "denied",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:42:25",
-      "id": "ART-18",
-      "from": "approved",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T12:52:59",
-      "id": "STA-23",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:53:07",
-      "id": "TRE-01",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:53:11",
-      "id": "TRE-02",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:53:21",
-      "id": "TRE-04",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:53:24",
-      "id": "TRE-05",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
       "time": "2026-11-24T12:53:27",
       "id": "TRE-06",
       "from": "awaiting",
@@ -11521,6 +11576,72 @@
       "id": "ART-21",
       "from": "awaiting",
       "to": "denied"
+    },
+    {
+      "time": "2026-11-26T19:28:09",
+      "id": "STY-21",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:28:21",
+      "id": "WLD-44",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:28:30",
+      "id": "WLD-45",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:28:41",
+      "id": "UIX-26",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:29:05",
+      "id": "UIX-27",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:29:40",
+      "id": "UIX-28",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:29:46",
+      "id": "ART-22",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:30:02",
+      "id": "NPC-16",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:30:07",
+      "id": "NPC-17",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:30:21",
+      "id": "NPC-18",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:30:30",
+      "id": "NPC-19",
+      "from": "awaiting",
+      "to": "approved"
     }
   ]
 }

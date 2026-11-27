@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(.venv\\\\Scripts\\\\python.exe -m pytest tests/ -q)"
+      "Bash(.venv\\\\Scripts\\\\python.exe -m pytest tests/ -q)",
+      "Bash(sed -n '33,60p' IDEAS.md)",
+      "Bash(sed -n '123,160p' IDEAS.md)",
+      "Bash(sed -n '344,370p' IDEAS.md)"
     ]
   }
 }
