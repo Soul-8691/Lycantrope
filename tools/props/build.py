@@ -10,12 +10,15 @@ assets/models/props/<key>.glb (a "/" in the key becomes "_"). Front stays +z.
 """
 from __future__ import annotations
 
+import io
 import json
+import struct
 import sys
 from pathlib import Path
 
 import numpy as np
 import trimesh
+from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 CATALOG = ROOT / "data" / "props.json"
@@ -25,6 +28,55 @@ OUT = ROOT / "assets" / "models" / "props"
 
 def model_path(key: str) -> Path:
     return OUT / (key.replace("/", "_") + ".glb")
+
+
+def _read_glb(path: Path) -> tuple[dict, bytes]:
+    b = path.read_bytes()
+    jlen = struct.unpack_from("<I", b, 12)[0]
+    blen = struct.unpack_from("<I", b, 20 + jlen)[0]
+    return json.loads(b[20:20 + jlen]), b[28 + jlen:28 + jlen + blen]
+
+
+def source_jpeg(path: Path) -> bytes | None:
+    """The texture of a one-texture GLB, if it is a JPEG (Tripo's are), byte for byte."""
+    j, blob = _read_glb(path)
+    imgs = j.get("images", [])
+    if len(imgs) != 1 or imgs[0].get("mimeType") != "image/jpeg":
+        return None
+    v = j["bufferViews"][imgs[0]["bufferView"]]
+    return blob[v.get("byteOffset", 0): v.get("byteOffset", 0) + v["byteLength"]]
+
+
+def jpeg_textures(path: Path, original: bytes | None = None) -> None:
+    """Store a built GLB's textures as JPEG: the source's own bytes when the texture is unchanged,
+    otherwise re-encoded at high quality. trimesh writes PNG, about 5x larger in Git LFS."""
+    j, blob = _read_glb(path)
+    imgs = j.get("images", [])
+    if not imgs:
+        return
+    by_view = {img["bufferView"]: i for i, img in enumerate(imgs)}
+    out = bytearray()
+    for vi, v in enumerate(j["bufferViews"]):
+        start = v.get("byteOffset", 0)
+        data = blob[start:start + v["byteLength"]]
+        if vi in by_view:
+            if original is not None and len(imgs) == 1:
+                data = original
+            elif imgs[by_view[vi]].get("mimeType") != "image/jpeg":
+                buf = io.BytesIO()
+                Image.open(io.BytesIO(data)).convert("RGB").save(buf, format="JPEG", quality=92)
+                data = buf.getvalue()
+            imgs[by_view[vi]]["mimeType"] = "image/jpeg"
+        out += b"\0" * (-len(out) % 4)
+        v["byteOffset"], v["byteLength"] = len(out), len(data)
+        out += data
+    out += b"\0" * (-len(out) % 4)
+    j["buffers"] = [{"byteLength": len(out)}]
+    js = json.dumps(j, separators=(",", ":")).encode()
+    js += b" " * (-len(js) % 4)
+    path.write_bytes(struct.pack("<III", 0x46546C67, 2, 28 + len(js) + len(out))
+                     + struct.pack("<II", len(js), 0x4E4F534A) + js
+                     + struct.pack("<II", len(out), 0x004E4942) + bytes(out))
 
 
 def build(key: str, spec: dict) -> None:
@@ -53,6 +105,9 @@ def build(key: str, spec: dict) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     out = model_path(key)
     out_mesh.export(out)
+    if textured:
+        same_texture = not spec.get("fruit") and not spec["source"].startswith("code:")
+        jpeg_textures(out, source_jpeg(PREVIEWS / spec["source"]) if same_texture else None)
     e = out_mesh.extents
     print(f"  {key:<12} {len(out_mesh.faces):>6} tris   {e[0]:5.1f} x {e[1]:4.1f} x {e[2]:5.1f} m   "
           f"{out.relative_to(ROOT)}{'   (textured)' if textured else ''}")
@@ -67,11 +122,12 @@ def build(key: str, spec: dict) -> None:
                                                   np.asarray(welded.faces), target_count=target, agg=5)
             if textured:
                 # the simplifier drops texture coordinates: borrow each new vertex's from the
-                # nearest original vertex (fine for something drawn 90 m+ away)
+                # nearest original vertex (fine for something drawn 90 m+ away). The game draws the
+                # distant version with the main model's texture, so it only carries a placeholder.
                 from scipy.spatial import cKDTree
                 near = cKDTree(np.asarray(out_mesh.vertices)).query(v2)[1]
-                vis = trimesh.visual.TextureVisuals(uv=np.asarray(out_mesh.visual.uv)[near],
-                                                    material=out_mesh.visual.material)
+                stub = trimesh.visual.material.PBRMaterial(baseColorTexture=Image.new("RGB", (4, 4), (128, 128, 128)))
+                vis = trimesh.visual.TextureVisuals(uv=np.asarray(out_mesh.visual.uv)[near], material=stub)
                 trimesh.Trimesh(v2, f2, visual=vis, process=False).export(lod)
             else:
                 trimesh.Trimesh(v2, f2, process=True).export(lod)

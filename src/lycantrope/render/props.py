@@ -59,22 +59,29 @@ def read_glb(path: Path) -> tuple[np.ndarray, np.ndarray]:
     return np.concatenate(verts), np.concatenate(faces)
 
 
-def flat_mesh(verts: np.ndarray, faces: np.ndarray, uv: np.ndarray | None = None) -> np.ndarray:
-    """Unindexed (position, face normal, uv) rows for the faceted low-poly look."""
+def flat_mesh(verts: np.ndarray, faces: np.ndarray, uv: np.ndarray | None = None,
+              normals: np.ndarray | None = None) -> np.ndarray:
+    """Unindexed (position, normal, uv) rows. With per-vertex normals the model shades smoothly
+    (u_flat_shade can still facet it in the shader); without them each face gets its own normal."""
     tri = verts[faces]                                        # (M, 3, 3)
-    n = np.cross(tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0])
-    n /= np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-12)
+    if normals is not None:
+        n = normals[faces]
+        n = n / np.maximum(np.linalg.norm(n, axis=2, keepdims=True), 1e-12)
+    else:
+        fn = np.cross(tri[:, 1] - tri[:, 0], tri[:, 2] - tri[:, 0])
+        fn /= np.maximum(np.linalg.norm(fn, axis=1, keepdims=True), 1e-12)
+        n = np.repeat(fn[:, None, :], 3, axis=1)
     t = uv[faces] if uv is not None else np.zeros((len(faces), 3, 2), np.float32)
-    data = np.concatenate([tri, np.repeat(n[:, None, :], 3, axis=1), t], axis=2)
+    data = np.concatenate([tri, n, t], axis=2)
     return np.ascontiguousarray(data.reshape(-1, 8), dtype=np.float32)
 
 
 def load_prop(path: Path):
-    """Positions, faces, uv (or None) and texture image (or None) of a built prop GLB."""
+    """Positions, faces, uv (or None), texture image (or None) and vertex normals of a built prop GLB."""
     from lycantrope.render.gltf import load_mesh
     m = load_mesh(path, skinned=False)
     has_uv = m.texture is not None and np.any(m.uv)
-    return m.pos, m.idx.reshape(-1, 3), (m.uv if has_uv else None), m.texture
+    return m.pos, m.idx.reshape(-1, 3), (m.uv if has_uv else None), m.texture, m.nrm
 
 
 @dataclass
@@ -119,25 +126,25 @@ class PropRenderer:
             if not path.exists():
                 print(f"props: {path.name} not built yet (run tools/props/build.py)")
                 continue
-            v, f, uv, tex = load_prop(path)
+            v, f, uv, tex, nrm = load_prop(path)
             spec.extents = tuple(float(e) for e in v.max(axis=0) - v.min(axis=0))
-            meshes[key] = (v, f, uv, tex)
+            meshes[key] = (v, f, uv, tex, nrm)
         self.catalog = {k: s for k, s in self.catalog.items() if k in meshes}
         instances = place_props(world, self.catalog, placements).arrays()
         self.colliders = Colliders.from_instances(instances, self.catalog)   # what characters can't walk through
 
         self.models: list[PropModel] = []
         for key, rows in instances.items():
-            v, f, uv, tex = meshes[key]
+            v, f, uv, tex, nrm = meshes[key]
             spec = self.catalog[key]
             ex, ey, ez = spec.extents
             radius = 0.5 * float(np.sqrt(ex * ex + ey * ey + ez * ez))
-            pm = PropModel(spec, ctx.buffer(flat_mesh(v, f, uv).tobytes()), ctx.buffer(rows.tobytes(), dynamic=True),
+            pm = PropModel(spec, ctx.buffer(flat_mesh(v, f, uv, nrm).tobytes()), ctx.buffer(rows.tobytes(), dynamic=True),
                            rows, radius, len(f), draw_m=min(900.0, max(250.0, spec.height * 110.0)))
             lod = MODELS / (key.replace("/", "_") + "_lod1.glb")
             if lod.exists():
-                lv, lf, luv, _lt = load_prop(lod)
-                pm.lod_vbo = ctx.buffer(flat_mesh(lv, lf, luv if uv is not None else None).tobytes())
+                lv, lf, luv, _lt, lnrm = load_prop(lod)
+                pm.lod_vbo = ctx.buffer(flat_mesh(lv, lf, luv if uv is not None else None, lnrm).tobytes())
                 pm.lod_inst = ctx.buffer(rows.tobytes(), dynamic=True)
                 pm.lod_tris = len(lf)
             pm.centers = rows[:, :3] + np.outer(rows[:, 4] * rows[:, 6], [0.0, spec.height * 0.5, 0.0])

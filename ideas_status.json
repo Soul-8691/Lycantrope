@@ -1,6 +1,6 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-27T12:35:07",
+  "updated": "2026-11-27T12:55:55",
   "counts": {
     "awaiting": 29,
     "approved": 609,
@@ -9,17 +9,17 @@
   },
   "ui": {
     "selected": [
-      "RCK-04"
+      "PIL-01"
     ],
     "selected_titles": {
-      "RCK-04": "Standing Stone"
+      "PIL-01": "Combat first"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-27T12:35:07"
+    "at": "2026-11-27T12:55:55"
   },
   "ideas": {
     "PIL-01": {

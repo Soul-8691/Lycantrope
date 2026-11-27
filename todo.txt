@@ -6,6 +6,11 @@ Helpful:
 .venv\Scripts\python.exe tools\props\build.py VIL-10 VIL-04
 
 To-Do:
+Better flower models/Leaves on the ground
+Beginning plot
+Remap the starting area/nearby/Fast travel/Caves
+Add more monsters (Lovecraft monsters/Goblin spellcasters)/Bandit/Goblin camps
+Better NPC system/NPC weapons/NPC fights/Guard protect AI/NPCs going home at night
 Character stats/Experience
 Armor/Weapon/Magic stats
 Health and damage/Fall damage/HUD
@@ -14,8 +19,3 @@ Upgrade/Forge
 Greetings/Talk (A press)/Dialogue/Voice lines/Choices/Quests
 Controller support
 Shop inventory/Shop
-Better NPC system/Get rid of jaw movement/NPC weapons/NPC fights/Guard protect AI/NPCs going home at night
-Beginning plot
-More tree types/Better tree/flower models
-Add more monsters (Lovecraft monsters/Goblin spellcasters)/Bandit/Goblin camps
-Remap the starting area/nearby/Fast travel/Caves

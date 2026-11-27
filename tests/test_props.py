@@ -96,3 +96,6 @@ def test_read_glb_roundtrip(tmp_path):
     assert np.allclose(np.linalg.norm(rows[:, 3:6], axis=1), 1.0)
     assert np.all(rows[:, 6:] == 0.0)                         # untextured: uv left at zero
     assert math.isfinite(float(rows.sum()))
+    up = np.tile([0.0, 2.0, 0.0], (len(v), 1))                # given vertex normals win, normalised
+    smooth = flat_mesh(v, f, normals=up)
+    assert np.allclose(smooth[:, 3:6], [0.0, 1.0, 0.0])
