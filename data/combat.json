@@ -477,7 +477,7 @@
   "block": {"front_deg": 75, "physical": 0.4, "other": 0.7, "stamina_per_damage": 0.9},
   "stamina": {"jump": 10, "sprint_per_s": 12, "regen_per_s": 45, "regen_delay_s": 0.6, "exhausted_until": 0.25},
   "heavy_armor_regen_penalty": 0.05,
-  "poise_regen_s": 2.5,
+  "poise": {"_about": "CMB-10. Poise refills gradually from regen_delay_s after the last hit, at regen_frac_per_s of the maximum each second. After a stagger Rowan can't be staggered again for stagger_grace_s, and hits during his own swing do attacking_mult of their poise damage.", "regen_delay_s": 1.0, "regen_frac_per_s": 0.5, "stagger_grace_s": 1.5, "attacking_mult": 0.5},
   "hp_trail": {"delay_s": 0.8, "drain_frac_per_s": 0.35},
   "xp": {
     "curve_base": 100,
@@ -509,7 +509,7 @@
   "food_start": {"apple": 3},
   "enemies": {
     "goblin":        {"level": 2, "hp": 90,  "attack": {"slash": 40},  "defence": 15, "poise": 10, "poise_damage": 10, "xp": 30,  "weight": 0.8},
-    "wolf":          {"level": 2, "hp": 80,  "attack": {"pierce": 36}, "defence": 12, "poise": 8,  "poise_damage": 8,  "xp": 30,  "weight": 1.0},
+    "wolf":          {"level": 2, "hp": 80,  "attack": {"pierce": 36}, "defence": 12, "poise": 8,  "poise_damage": 6,  "xp": 30,  "weight": 1.0},
     "bandit_lean":   {"level": 3, "hp": 130, "attack": {"slash": 48},  "defence": 20, "poise": 20, "poise_damage": 12, "xp": 50,  "weight": 1.0},
     "bandit_stocky": {"level": 3, "hp": 150, "attack": {"slash": 50},  "defence": 22, "poise": 25, "poise_damage": 14, "xp": 55,  "weight": 1.2},
     "battlemage":    {"level": 4, "hp": 120, "attack": {"slash": 42},  "defence": 18, "absorb": {"fire": 0.3}, "poise": 15, "poise_damage": 10, "xp": 80, "weight": 1.0,

@@ -128,6 +128,8 @@ class Combat:
             mult *= cfg["crit_multiplier"]
         atk = scaled(attack, mult)
         poise = (att.fighter.poise_damage if att is not None and att.fighter else 10.0) * poise_mult
+        if tgt is rowan_c and ta.state == "attack":     # a committed swing shrugs off part of it (CMB-10)
+            poise *= cfg["poise"]["attacking_mult"]
         src = source or ((att.actor.x, att.actor.z) if att is not None else None)
         blocked = guard_broken = False
         bl = cfg["block"]

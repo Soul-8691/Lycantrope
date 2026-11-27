@@ -1028,13 +1028,32 @@ class CharacterSystem:
         made, and the enemies are back where they were."""
         self.progress.restore()
         self.setup_rowan()
+        self.teleport(*self.spawn_point)
+        self.respawn_enemies()
+        self.down_t = 0.0
+        self.reloads += 1
+        self.events.append(("reload",))
+
+    def teleport(self, x: float, z: float, heading: float) -> None:
+        """Put Rowan somewhere new, standing still (death reloads, fast travel)."""
         ra = self.rowan.a
-        ra.x, ra.z, ra.heading = self.spawn_point
+        ra.x, ra.z, ra.heading = x, z, heading
         ra.y = self.world.height_at(ra.x, ra.z)
         ra.state, ra.speed, ra.vy, ra.airborne, ra.fall_top, ra.travel = "move", 0.0, 0.0, False, None, None
         ra.play("idle", restart=True)
         ra.save_prev()
         self.rowan.sheathed, self.rowan.plunging = True, False
+
+    def rest(self) -> None:
+        """WLD-09: resting at a Waystone heals Rowan fully, refills the flask and brings the enemies back."""
+        f = self.rowan_char.fighter
+        f.hp = f.trail = f.max_hp
+        f.stamina, f.poise, f.heals, f.exhausted = f.max_stamina, f.poise_max, [], False
+        self.progress.flask = int(self.combat_cfg["lifewater"]["charges"])
+        self.respawn_enemies()
+
+    def respawn_enemies(self) -> None:
+        """Every enemy back at full health where it started."""
         for c in self.chars:
             b = c.brain
             if b is None or c.fighter is None:
@@ -1050,9 +1069,6 @@ class CharacterSystem:
             a.save_prev()
         self.spells.items.clear()
         self.combat.swings.clear()
-        self.down_t = 0.0
-        self.reloads += 1
-        self.events.append(("reload",))
 
     def _hits(self, rc) -> None:
         """XP for kills and HUD events for this tick's hits."""

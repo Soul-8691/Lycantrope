@@ -7,7 +7,8 @@ WASD             move (camera-relative)     Shift: sprint  ·  Ctrl: walk  ·  w
 Left click       light attack (click again during a swing to chain up to three)
 Right mouse      hold to block              R: heavy attack  ·  Q: cast (off hand)
 Space            jump (light attack while dropping: plunge)  ·  C: landing roll (press just before landing)
-E / G            pick up loot in reach, otherwise drink from the Lifewater flask / eat an apple
+E / G            pick up loot in reach, rest at a lit Waystone (then fast travel), otherwise drink from the
+                 Lifewater flask  ·  G: eat an apple
 I                inventory (pause menu: equip, use, drop)  ·  L: level-up screen (out of combat)
 M                world map (wheel or +/- zoom, WASD pan, C centre on Rowan, M or Esc close)
 H / K            debug: hit reaction / fall dead (the death screen, then the last save loads)
@@ -63,6 +64,7 @@ from lycantrope.ui.loading import LoadingScreen
 from lycantrope.ui.navigation import Compass, RegionBanner, WorldMap
 from lycantrope.ui.loot import LootView
 from lycantrope.ui.pause import PauseMenu
+from lycantrope.ui.waystone import WaystoneMenu, travel_spot
 from lycantrope.world.inventory import Drop, GroundLoot, LootTables, load_items_file
 from lycantrope.ui.overlay import LockReticle, Subtitles, TextOverlay
 from lycantrope.world.lockon import LockOn
@@ -154,6 +156,8 @@ class App:
         self.loot_rng = random.Random()
         self.loot_view = LootView(self.ctx, self.shaders, self.chars.progress.inv.catalog, self.rarity_colors)
         self.pause = PauseMenu(self.ctx, self.shaders, self)   # UIX-07
+        self.waystones = WaystoneMenu(self.ctx, self.shaders, self)   # rest and fast travel (WLD-09)
+        self.fade = 0.0                                     # seconds of fade-in from black left (after travel)
         self.quit_requested = False
         loading.draw(1.0)
         loading.release()
@@ -213,6 +217,9 @@ class App:
             return
         self.chars.update_spawn()
         sp = self.chars.spawn_point
+        if self.args.bench or self.args.screenshot:      # test runs never touch the player's save slots
+            self.chars.progress.save()
+            return
         save_sys.save(
             self.save_slot,
             self.chars.progress.snapshot(),
@@ -303,6 +310,14 @@ class App:
                 if not self.pause.open:
                     self.set_capture(True)
                 continue
+            if self.waystones.open:                      # the Waystone travel list
+                if ev.type == pygame.KEYDOWN:
+                    self.waystones.key(ev.key)
+                elif ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1:
+                    self.waystones.click(ev.pos)
+                if not self.waystones.open:
+                    self.set_capture(True)
+                continue
             if ev.type == pygame.MOUSEBUTTONDOWN and ev.button in (1, 3) and not self.captured:
                 self.set_capture(True)
             elif ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1 and self.play:
@@ -384,7 +399,7 @@ class App:
                         x, z, _ = self.nav_position()
                         self.map.toggle((x, z))
                 elif k == pygame.K_e and self.play:
-                    if not self.take_loot():               # E picks up what's in reach (UIX-26), else drinks
+                    if not self.take_loot() and not self.use_waystone():   # loot, then a Waystone, else drink
                         self.chars.drink()
                 elif k == pygame.K_g and self.play:
                     if not self.chars.eat("apple"):
@@ -398,8 +413,9 @@ class App:
 
     # ------------------------------------------------------------- simulation
     def update(self, dt: float) -> None:
-        if self.pause.open:                               # the world waits while the pause menu is up
+        if self.pause.open or self.waystones.open:        # the world waits while a menu is up
             return
+        self.fade = max(0.0, self.fade - dt)
         keys = pygame.key.get_pressed()
         self.key_zoom(keys, dt)
         inp = RowanInput()
@@ -477,6 +493,11 @@ class App:
                         x, z = ra.x + math.sin(ra.heading) * 1.4, ra.z + math.cos(ra.heading) * 1.4
                         self.ground.spawn(x, self.world.height_at(x, z) + 0.1, z,
                                           [["hed_05", 1], ["copper", 9]], "Bandit")
+                if act == "waystone" and self.ticks == 3:        # testing: light them all, rest at the crossroads
+                    self.chars.progress.discovered.update(p.name for p in self.world.waystones)
+                    stone = next(p for p in self.world.waystones if p.name == "Brackenvale Crossroads")
+                    self.chars.teleport(*travel_spot(self.world, stone))
+                    self.use_waystone()
                 if act == "map" and self.ticks == 3:
                     x, z, _ = self.nav_position()
                     self.map.toggle((x, z))
@@ -619,6 +640,40 @@ class App:
             self.hud.state.note("Backpack full")
         return True
 
+    def waystone_in_reach(self):
+        if not (self.play and self.chars.rowan) or self.pause.open or self.waystones.open:
+            return None
+        a = self.chars.rowan.a
+        return self.waystones.in_reach(a.x, a.z)
+
+    def use_waystone(self) -> bool:
+        """WLD-09: E at a lit Waystone rests and saves, then offers travel. False if none is in reach."""
+        stone = self.waystone_in_reach()
+        if stone is None:
+            return False
+        if self.chars.chased(30.0):
+            self.hud.state.note("Can't rest with enemies nearby")
+            return True
+        self.chars.rest()
+        self.save()
+        self.hud.state.note(f"Rested at {stone.name}")
+        self.waystones.show(stone)
+        self.set_capture(False)
+        return True
+
+    def fast_travel(self, dest) -> None:
+        """Arrive beside another lit Waystone, facing it, and save there."""
+        x, z, heading = travel_spot(self.world, dest)
+        self.chars.teleport(x, z, heading)
+        self.lock.target = None
+        self.map.open = False
+        self.orbit_yaw = math.pi - heading
+        self.follow_camera(1.0)
+        self.camera.prev_position = glm.vec3(self.camera.position)
+        self.save()
+        self.hud.state.note(f"Travelled to {dest.name}")
+        self.fade = 0.9
+
     def drop_item(self, iid: str, n: int) -> None:
         """Put something from the backpack on the ground at Rowan's feet (the pause menu's X)."""
         x, z, heading = self.nav_position()
@@ -759,10 +814,19 @@ class App:
         if not self.map.open:
             self.compass.render(w, h, self.camera.yaw, (x, z), found)
             self.region.render(w, h)
-        if not self.map.open and not self.pause.open:
-            self.loot_view.render(w, h, viewproj, self.ground.drops, self.loot_in_reach(), eye, self.time_s)
+        if not self.map.open and not self.pause.open and not self.waystones.open:
+            near = self.loot_in_reach()
+            self.loot_view.render(w, h, viewproj, self.ground.drops, near, eye, self.time_s)
+            stone = self.waystone_in_reach() if near is None else None
+            if stone is not None:
+                self.waystones.render_prompt(w, h, stone)
         self.map.render(w, h, (x, z), heading, found, self.region.tracker.current or "")
+        if self.waystones.open:
+            self.pause.dim.render(w, h, 0, 0, alpha=0.5, size=(w, h))
+        self.waystones.render(w, h)
         self.pause.render(w, h)
+        if self.fade > 0:
+            self.pause.dim.render(w, h, 0, 0, alpha=min(1.0, self.fade / 0.6), size=(w, h))
         self.ctx.wireframe = wire
 
     def controls_lines(self) -> list[str]:
@@ -775,7 +839,7 @@ class App:
             "Q                cast",
             "Space            jump  (attack mid-air = plunge)",
             "C                roll  (press just before landing)",
-            "E                pick up loot  /  flask",
+            "E                pick up loot  /  rest & travel at a Waystone  /  flask",
             "G                apple",
             "I                inventory  (Esc: pause menu)",
             "L                level-up  (out of combat)",

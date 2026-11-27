@@ -201,6 +201,7 @@ class Fighter:
     weight: float = 1.0
     max_stamina: float = 0.0
     heavy_armor: int = 0
+    stagger_grace: float = 0.0                        # after a stagger, this long without poise damage (Rowan)
     spell: dict = field(default_factory=dict)
     hp: float = -1.0
     trail: float = -1.0
@@ -209,6 +210,7 @@ class Fighter:
     since_hurt: float = 99.0
     since_spent: float = 99.0
     exhausted: bool = False
+    grace: float = 0.0                                # seconds of stagger grace left
     heals: list = field(default_factory=list)         # [hp per second, seconds left]
     hit_from: tuple[float, float] | None = None       # where the last hit came from (x, z)
 
@@ -221,6 +223,7 @@ class Fighter:
         self.poise = self.poise_max
         self.since_hurt = self.since_spent = 99.0
         self.exhausted = False
+        self.grace = 0.0
         self.heals = []
         self.hit_from = None
 
@@ -236,9 +239,12 @@ class Fighter:
         self.hp = max(0.0, self.hp - amount)
         self.since_hurt = 0.0
         self.hit_from = source
+        if self.grace > 0.0:                          # just staggered: no stun-lock (CMB-10)
+            return False
         self.poise -= poise_damage
         if self.poise <= 0.0:
             self.poise = self.poise_max
+            self.grace = self.stagger_grace
             return True
         return False
 
@@ -286,8 +292,10 @@ class Fighter:
             self.trail = self.hp
         elif self.since_hurt > tr["delay_s"]:
             self.trail = max(self.hp, self.trail - tr["drain_frac_per_s"] * self.max_hp * dt)
-        if self.since_hurt > cfg["poise_regen_s"]:
-            self.poise = self.poise_max
+        po = cfg["poise"]
+        self.grace = max(0.0, self.grace - dt)
+        if self.since_hurt > po["regen_delay_s"]:
+            self.poise = min(self.poise_max, self.poise + po["regen_frac_per_s"] * self.poise_max * dt)
         if self.max_stamina > 0:
             st = cfg["stamina"]
             if regen and self.since_spent > st["regen_delay_s"]:
@@ -465,7 +473,8 @@ class Progress:
         poise = float(cfg["rowan"]["poise"]) + ar["poise"]
         return Fighter(name, self.level, d["hp"], weapon_attack(w, self.attrs, cfg), base_def,
                        base_absorb, poise, float(w["poise_damage"]),
-                       max_stamina=d["stamina"], heavy_armor=ar["heavy_count"])
+                       max_stamina=d["stamina"], heavy_armor=ar["heavy_count"],
+                       stagger_grace=float(cfg["poise"]["stagger_grace_s"]))
 
     def refresh(self, f: Fighter) -> None:
         """After a level-up: new maximums and attack, keeping the same share of HP and stamina."""

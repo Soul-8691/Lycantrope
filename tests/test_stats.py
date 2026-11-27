@@ -245,3 +245,21 @@ def test_hud_fades_when_calm_and_points_at_the_attacker():
     assert HudState.arc_direction((5.0, 0.0), (0.0, 0.0), 0.0) == pytest.approx(m.pi / 2)
     s.event(("xp", 34, "Grey Wolf"))
     assert s.notes[-1][0] == "+34 XP   Grey Wolf"
+
+
+def test_poise_refills_gradually_and_grace_stops_a_stun_lock():
+    po = CFG["poise"]
+    f = Fighter("Rowan", 1, 500.0, {"slash": 10}, {}, poise_max=20.0, max_stamina=80.0,
+                stagger_grace=po["stagger_grace_s"])
+    assert not f.hurt(1, 15) and f.poise == 5
+    f.update(po["regen_delay_s"] * 0.9)
+    assert f.poise == 5                                     # waits after a hit...
+    f.update(0.2)
+    assert 5 < f.poise < 20                                 # ...then refills bit by bit, not all at once
+    assert f.hurt(1, 30)                                    # broken: a stagger
+    assert not f.hurt(1, 30) and not f.hurt(1, 30)          # grace: no second stagger straight away
+    for _ in range(int(po["stagger_grace_s"] * 60) + 2):
+        f.update(1 / 60)
+    assert f.hurt(1, 30)                                    # grace over
+    e = Fighter("Wolf", 1, 80.0, {"pierce": 10}, {}, poise_max=8.0)
+    assert e.hurt(1, 9) and e.hurt(1, 9)                    # enemies get no grace: combos still stagger them
