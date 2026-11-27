@@ -19,7 +19,7 @@ import trimesh
 
 ROOT = Path(__file__).resolve().parents[2]
 CATALOG = ROOT / "data" / "props.json"
-PREVIEWS = ROOT / "assets" / "meshy" / "previews"
+PREVIEWS = ROOT / "assets" / "models" / "meshy"
 OUT = ROOT / "assets" / "models" / "props"
 
 
