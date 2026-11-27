@@ -30,6 +30,7 @@
     "TRE-01":     {"name": "Brackenvale Oak",     "source": "TRE-01/v2/textured/model.glb",      "height_m": 11.0, "color": [0.40, 0.32, 0.24], "top_color": [0.30, 0.42, 0.20], "top_from": 0.35, "collide": {"circle": 1.0, "top": 0.35}},
     "TRE-01/v3":  {"name": "Brackenvale Oak (second shape)", "source": "TRE-01/v3/textured/model.glb", "height_m": 10.0, "color": [0.40, 0.32, 0.24], "top_color": [0.33, 0.45, 0.21], "top_from": 0.35, "collide": {"circle": 1.6, "top": 0.35}},
     "TRE-01/tripo2": {"name": "Brackenvale Oak (Tripo, spreading)", "source": "TRE-01/tripo/v2/model.glb", "height_m": 11.0, "color": [0.40, 0.32, 0.24], "top_color": [0.30, 0.42, 0.20], "top_from": 0.35, "collide": {"circle": 1.2, "top": 0.3}},
+    "TRE-01/tripo3": {"name": "Brackenvale Oak (Tripo HD)", "source": "TRE-01/tripo/v3/model.glb", "height_m": 11.0, "color": [0.40, 0.32, 0.24], "top_color": [0.30, 0.42, 0.20], "top_from": 0.35, "collide": {"circle": 0.85, "top": 0.3}},
     "TRE-03":     {"name": "Apple Tree (from the oak)", "source": "TRE-01/v3/textured/model.glb", "height_m": 5.0, "color": [0.40, 0.32, 0.24], "top_color": [0.36, 0.48, 0.22], "top_from": 0.35, "collide": {"circle": 1.6, "top": 0.35}, "fruit": {"count": 55, "radius_m": 0.09, "color": [0.72, 0.09, 0.06], "from": 0.4, "seed": 3}},
     "PLT-02":     {"name": "Bracken Fern Clump", "source": "code:fern", "height_m": 0.8, "color": [0.34, 0.52, 0.20]},
     "PLT-03":     {"name": "Wildflower Patch", "source": "code:wildflowers", "height_m": 0.68, "color": [0.40, 0.55, 0.25]},
