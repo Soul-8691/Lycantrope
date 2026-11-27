@@ -2,7 +2,7 @@
 
 **A 3D action-adventure fantasy RPG about a farmhand, a rusty sword, and every monster you've ever read about.**
 
-Rowan Fenhallow was never meant to be a hero. He mucks out the barn on Oswin Tull's farm, dreams strange dreams of a city in the clouds, and walks past the old sword above the hearth every morning without a second look. Then the sky tears open over Brackenvale's burying ground, and the sword wakes in his hand.
+Rowan Fenhallow carries grandfather's old sword because nobody else wanted it and it felt wrong to leave it behind. He mucks out the barn on Oswin Tull's farm, dreams strange dreams of a city in the clouds, and watches Aldmoor get a little worse each month — another cart that doesn't come back up the south road, another farm found empty. Then the sky tears open over Brackenvale's burying ground, and the sword wakes in his hand.
 
 Lycantrope plays fantasy straight, with a wink. There's a prophecy, a wise mentor, a Dark Lord and four shards of a broken crown. There are rats in the cellar, goblins in the woods, a troll under the bridge, a wyrm in the deep. The title is the joke: it's not about werewolves (though there are some). It's a *Lycantrope*, a field guide to every fantasy trope with teeth.
 
@@ -16,7 +16,7 @@ The game will be **free on itch.io**, and its code is open source under the MIT 
 
 - **Deliberate, fair combat.** Enemies show their wind-ups, attacks commit you, and every death teaches you something. Difficulty comes from timing, not from enemies with huge health bars.
 - **An open world you navigate by sight.** If you can see it, you can go there. The Dark Lord's citadel stands under its storm cloud in the middle of the map, visible from everywhere.
-- **From nobody to legend.** You start as a farmhand with a sword that won't hold an edge. Early areas feel dangerous; coming back to them later feels heroic.
+- **The one who didn't run.** Aldmoor is a world already failing when the game opens — not a peaceful place that the raid destroys. Early areas feel dangerous because Rowan is a farmhand. Coming back to them later feels like a reckoning.
 - **A monster for every trope.** You'll recognise every enemy at a glance, then learn something new about how it fights.
 - **A two-sided story.** Half the journey is in the waking world; the other half is on the far side of sleep, in the Dreamlands.
 
@@ -152,7 +152,7 @@ The shards also grant **relic powers** on a cooldown, such as a gale that blasts
   - **Classes:** swords, axes, maces, spears and greatswords, each with its own moveset and scaling.
   - **One-handed and two-handed:** a main hand, an off hand and a sidearm, and any weapon can be held two-handed.
   - **Magic implements:** staffs, talismans, censers and tomes.
-  - **Upgrades and runes:** improve them at the smith with ore you find, and socket runes for elemental effects.
+  - **Upgrades and sigil slots:** restore them at the smith with material found in the world, and socket carved sigils for elemental effects.
 - **Armour** comes in sets, from farmhand's patched coat to chainmail, wolfhide, ranger's leathers, watch plate, orcish bonemail and the Dark Lord's own dread plate. Pieces show on Rowan as you wear them, and full sets give bonuses.
 
 ---
@@ -208,12 +208,14 @@ All names and characters in the game are original, except the public-domain ones
 
 ## What you can play today
 
-The current build is an early test of the world and the core feel:
-- **Explore:** walk Rowan around Brackenvale and the country beyond. There are farmsteads, lanes, villagers and travellers on the roads, cows in the fields, and solid houses, fences, walls and trees.
-- **Fight:** take on wolves, bears, goblins, bandits and battlemages, with light and heavy attacks, blocking and a Rite. Hits cost health, swings cost stamina, heavy blows stagger, and catching an enemy mid-wind-up hits harder.
-- **Grow:** earn XP from kills and discoveries, and spend it on the level-up screen. Heal with the Lifewater flask or an apple.
-- **Mind the drop:** long falls hurt or kill. Roll as you land to halve it, land in deep water, or plunge onto an enemy below.
-- **Listen:** exploration and combat music that switches as you get into and out of fights.
+The current build has the world, the full combat foundation and the core progression loop:
+
+- **Explore:** Brackenvale and the country beyond. Farmsteads, lanes, villagers and travellers on the roads, cows in the fields, solid houses, fences, walls, trees and grass.
+- **Fight:** wolves, bears, goblins, bandits and battlemages. Light and heavy attacks, blocking, strafing while locked on, and a Rite. Catching an enemy mid-wind-up hits 25% harder.
+- **Feel the numbers:** every hit is calculated from the full stat model. Stamina costs, poise breaks, per-type armour defence, elemental absorb and status buildup are all live.
+- **Grow:** earn XP from kills and discoveries; spend it on the level-up screen. Heal with the Lifewater flask or an apple.
+- **Mind the drop:** falls under 4 m are free; beyond that, damage ramps to lethal. Roll out of the landing (press C just before you hit), splash into deep water, or plunge onto an enemy below and take nothing.
+- **Listen:** the town music changes as day becomes night. Combat music rises when something is hunting you.
 
 **Controls:**
 
@@ -242,6 +244,44 @@ The current build is an early test of the world and the core feel:
 | Esc | Release the mouse |
 
 On Windows, run `run_game.bat`.
+
+---
+
+## Coming next
+
+Roughly in priority order. All of these have approved design entries in the idea tracker.
+
+**Core loops that are missing:**
+- Save files and main menu — three save slots, saves at Waystones and on quit.
+- Pause menu, inventory and equipment — open inventory, swap armour pieces and weapons, quick-slot items.
+- Item pickup — press [E] near a chest or dropped item; a brief pop-in shows what you got.
+- NPC talk trigger — press [E] to speak; first-approach lines for key characters trigger automatically.
+- Quest log — a one-page list in the pause menu, populated by NPC rumours. No map pins; remember where to go.
+
+**Brackenvale:**
+- Jory's merchant stall — buy consumables, sell found gear. Closes when Jory goes home.
+- NPC daily schedules — named villagers go home after dark and return to their posts in the morning.
+- Guard response AI — Watch guards engage enemies that cross the village fence.
+- Beginning plot / cold open — the morning before the first raid (tutorial movement and interaction, then the sky tears).
+
+**World and feel:**
+- Enemy camps as overworld POIs — goblin and bandit camps with a captain, a chest and a reason to exist.
+- Brackenvale surroundings layout pass — deliberate placement of the first goblin camp, wolf den, burying ground and Brack Tor within 400 m of the village so the opening reads as a world, not a test bench.
+- More tree variety and denser forest canopy — enemies in the Wolfwood shouldn't be visible from open meadow.
+- Terrain relief pass — more pronounced hills and ridges outside Brackenvale.
+- Biome colour palette pass — each region gets a distinct warm/cool cast so the sky, ground and fog all agree.
+
+---
+
+## Design direction
+
+A periodic review of the approved ideas against comparable games flagged two risks. The full analysis is in [RPG_CLONES.md](RPG_CLONES.md). Short version:
+
+**Fable** (2003): the original story structure — peaceful village, morning chore, raid, sword grabbed from the hearth, wise mentor who falls mid-game, "from nobody to legend" arc — is Fable 1's plot beat for beat. The fix is making Aldmoor feel *already in decline* before Rowan is involved, which costs nothing in code and is already reflected in the revised opening paragraph and "at a glance" framing above. A dialogue pass over the Brackenvale NPC lines (making their worry show *under* their small talk rather than through comedic whimsy) is the other half.
+
+**RuneScape**: the weapon modification system was labelled "rune sockets" — renamed to "sigil slots" above. Use-based skill growth should stay invisible while happening; only perk milestones surface. Weapon upgrades are framed as *restoring* a sword, not crafting a new tier, and the upgrade material will have a name specific to Aldmoor rather than generic "ore."
+
+None of these changes affect the systems already built. They're wording, tone and naming corrections.
 
 ---
 
