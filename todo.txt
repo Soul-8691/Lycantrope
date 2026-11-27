@@ -18,4 +18,4 @@ Upgrade/Forge
 Greetings/Talk (A press)/Dialogue/Voice lines/Choices/Quests
 Controller support
 Shop inventory/Shop
-Better flower models/Leaves on the ground
+Better flower/bramble models/Leaves on the ground
