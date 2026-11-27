@@ -36,7 +36,7 @@
     "TRE-22":     {"name": "Field Maple",         "source": "TRE-22/tripo/v1/model.glb",         "height_m": 10.0, "color": [0.42, 0.36, 0.28], "top_color": [0.36, 0.50, 0.22], "top_from": 0.35, "collide": {"circle": 0.4, "top": 0.3}},
     "TRE-22/tripo2": {"name": "Field Maple (tall)", "source": "TRE-22/tripo/v2/model.glb", "height_m": 12.0, "color": [0.42, 0.36, 0.28], "top_color": [0.40, 0.50, 0.22], "top_from": 0.35, "collide": {"circle": 0.35, "top": 0.3}},
     "TRE-21":     {"name": "Hawthorn",            "source": "TRE-21/tripo/v1/model.glb",         "height_m": 5.0,  "color": [0.45, 0.42, 0.38], "top_color": [0.32, 0.44, 0.22], "top_from": 0.35, "collide": {"circle": 0.3, "top": 0.4}},
-    "TRE-03":     {"name": "Apple Tree (from the oak)", "source": "TRE-01/v3/textured/model.glb", "height_m": 5.0, "color": [0.40, 0.32, 0.24], "top_color": [0.36, 0.48, 0.22], "top_from": 0.35, "collide": {"circle": 1.6, "top": 0.35}, "fruit": {"count": 55, "radius_m": 0.09, "color": [0.72, 0.09, 0.06], "from": 0.4, "seed": 3}},
+    "TRE-03":     {"name": "Apple Tree",          "source": "TRE-03/tripo/v1/model.glb",         "height_m": 5.0,  "color": [0.42, 0.34, 0.26], "top_color": [0.36, 0.48, 0.22], "top_from": 0.35, "collide": {"circle": 0.3, "top": 0.4}},
     "PLT-02":     {"name": "Bracken Fern Clump", "source": "code:fern", "height_m": 0.8, "color": [0.34, 0.52, 0.20]},
     "PLT-03":     {"name": "Wildflower Patch", "source": "code:wildflowers", "height_m": 0.68, "color": [0.40, 0.55, 0.25]},
     "PLT-04":     {"name": "Bramble Thicket", "source": "code:bramble", "height_m": 0.92, "color": [0.22, 0.36, 0.15], "collide": {"circle": 0.6}},
