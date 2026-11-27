@@ -682,7 +682,8 @@ class App:
             lines.append(f"FLY {self.base_speed:.0f} m/s   x {p.x:7.1f}  z {p.z:7.1f}  y {p.y:6.1f}   (north = -z)")
         lines += [
             f"characters {self.chars.drawn} drawn of {sum(counts.values())}   " + self.count_summary(counts),
-            f"terrain {st.triangles / 1000:.0f}k tris   props {self.props.drawn}/{self.props.count}",
+            f"terrain {st.triangles / 1000:.0f}k tris   props {self.props.drawn}/{self.props.count} "
+            f"({self.props.triangles / 1000:.0f}k tris)",
         ]
         return lines
 

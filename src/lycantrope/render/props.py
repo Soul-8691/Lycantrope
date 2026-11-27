@@ -22,6 +22,10 @@ from lycantrope.world.props import PropSpec, load_catalog, place_props
 
 MODELS = ASSETS / "models" / "props"
 LOD_M = 90.0                    # beyond this, props with a distant version draw it instead
+IMPOSTOR_M = 150.0              # beyond this, trees draw as a flat camera-facing cut-out
+TREE_DRAW_M = 400.0             # trees dither away over the last 15% of this
+IMPOSTOR_VIEWS = 8              # side views captured per tree
+IMPOSTOR_PX = 256               # height of each captured view in pixels
 _COMPONENTS = {"SCALAR": 1, "VEC2": 2, "VEC3": 3, "VEC4": 4}
 _DTYPES = {5120: np.int8, 5121: np.uint8, 5122: np.int16, 5123: np.uint16, 5125: np.uint32, 5126: np.float32}
 
@@ -92,6 +96,11 @@ class PropModel:
     rad: np.ndarray | None = None               # per instance: bounding sphere radius
     box_lo: np.ndarray | None = None            # all instances: bounds, to skip far-off groups fast
     box_hi: np.ndarray | None = None
+    imp_albedo: moderngl.Texture | None = None  # distant cut-out (trees only)
+    imp_normal: moderngl.Texture | None = None
+    imp_inst: moderngl.Buffer | None = None
+    imp_vao: moderngl.VertexArray | None = None
+    imp_size: tuple[float, float] = (1.0, 1.0)  # half-width, height at scale 1
 
     def all_far(self, eye: np.ndarray) -> bool:
         nearest = np.clip(eye, self.box_lo, self.box_hi)
@@ -140,23 +149,76 @@ class PropRenderer:
                 pm.texture.build_mipmaps()
                 pm.texture.filter = (moderngl.LINEAR_MIPMAP_LINEAR, moderngl.LINEAR)
                 pm.texture.anisotropy = 4.0
+            if key.startswith("TRE"):
+                pm.draw_m = min(pm.draw_m, TREE_DRAW_M)
+                self._bake_impostor(pm, v)
             self.models.append(pm)
+        self._quad = ctx.buffer(np.array([(-1, 0), (1, 0), (1, 1), (-1, 0), (1, 1), (-1, 1)], np.float32).tobytes())
         self.count = sum(len(m.rows) for m in self.models)
         self.drawn = 0
         self.triangles = 0
         self._version = -1
 
+    def _bake_impostor(self, pm: PropModel, v: np.ndarray) -> None:
+        """Capture the prop from IMPOSTOR_VIEWS sides into a row of pictures (colour + normals)."""
+        ctx = self.ctx
+        half_w = float(np.sqrt((v[:, 0] ** 2 + v[:, 2] ** 2).max())) * 1.04
+        height = float(v[:, 1].max()) * 1.02
+        ch = IMPOSTOR_PX
+        cw = int(np.clip(round(ch * 2 * half_w / height), 32, 256))
+        n = IMPOSTOR_VIEWS
+        albedo, normal = ctx.texture((cw * n, ch), 4), ctx.texture((cw * n, ch), 4)
+        depth = ctx.depth_renderbuffer((cw * n, ch))
+        fb = ctx.framebuffer([albedo, normal], depth)
+        prog = self.shaders.get("impostor_bake")
+        vao = ctx.vertex_array(prog, [(pm.vbo, "3f 3f 2f", "in_pos", "in_nrm", "in_uv")])
+        fb.use()
+        fb.clear(0.0, 0.0, 0.0, 0.0, depth=1.0)
+        s = pm.spec
+        set_uniform(prog, "u_height", s.height)
+        set_uniform(prog, "u_color", tuple(c ** 2.2 for c in s.color))
+        set_uniform(prog, "u_top_color", tuple(c ** 2.2 for c in s.top_color))
+        set_uniform(prog, "u_top_from", s.top_from)
+        set_uniform(prog, "u_has_tex", 1 if pm.texture is not None else 0)
+        if pm.texture is not None:
+            pm.texture.use(0)
+            set_uniform(prog, "u_tex", 0)
+        proj = glm.ortho(-half_w, half_w, 0.0, height, 0.0, 2.0 * half_w + 4.0)
+        for k in range(n):
+            a = k * 2.0 * np.pi / n
+            fwd = glm.vec3(np.sin(a), 0.0, np.cos(a))
+            view = glm.lookAt(fwd * (half_w + 2.0), glm.vec3(0.0), glm.vec3(0.0, 1.0, 0.0))
+            ctx.viewport = (k * cw, 0, cw, ch)
+            set_uniform(prog, "u_mvp", proj * view)
+            set_uniform(prog, "u_right", glm.vec3(np.cos(a), 0.0, -np.sin(a)))
+            set_uniform(prog, "u_fwd", fwd)
+            vao.render(moderngl.TRIANGLES)
+        vao.release()
+        fb.release()
+        depth.release()
+        ctx.screen.use()
+        for tex in (albedo, normal):
+            tex.build_mipmaps()
+            tex.filter = (moderngl.LINEAR_MIPMAP_LINEAR, moderngl.LINEAR)
+        pm.imp_albedo, pm.imp_normal = albedo, normal
+        pm.imp_size = (half_w, height)
+        pm.imp_inst = ctx.buffer(pm.rows.tobytes(), dynamic=True)
+
     def _program(self) -> moderngl.Program:
         prog = self.shaders.get("props")
         if self._version != self.shaders.version:
+            imp = self.shaders.get("impostor")
+            inst_fmt = ("3f 1f 1f 1f 1f/i", "in_offset", "in_rot", "in_scale", "in_shade", "in_stretch")
+
             def vao(vbo, inst):
                 return self.ctx.vertex_array(prog, [(vbo, "3f 3f 2f", "in_pos", "in_nrm", "in_uv"),
-                                                    (inst, "3f 1f 1f 1f 1f/i", "in_offset", "in_rot",
-                                                     "in_scale", "in_shade", "in_stretch")])
+                                                    (inst, *inst_fmt)])
             for m in self.models:
                 m.vao = vao(m.vbo, m.inst)
                 if m.lod_vbo is not None:
                     m.lod_vao = vao(m.lod_vbo, m.lod_inst)
+                if m.imp_inst is not None:
+                    m.imp_vao = self.ctx.vertex_array(imp, [(self._quad, "2f", "in_q"), (m.imp_inst, *inst_fmt)])
             self._version = self.shaders.version
         return prog
 
@@ -171,6 +233,7 @@ class PropRenderer:
         planes = frustum_planes(viewproj)
         e = np.array([eye.x, eye.y, eye.z], dtype=np.float32)
         drawn = tris = 0
+        cutouts: list[tuple[PropModel, np.ndarray]] = []
         for m in self.models:
             s = m.spec
             r = m.rows
@@ -192,6 +255,11 @@ class PropRenderer:
                 m.texture.use(0)
                 set_uniform(prog, "u_tex", 0)
             set_uniform(prog, "u_has_tex", 1 if m.texture is not None else 0)
+            if m.imp_vao is not None:
+                far = vis & (dist >= IMPOSTOR_M)
+                if far.any():
+                    cutouts.append((m, far))
+                vis = vis & ~far
             near = vis & (dist < LOD_M + rad) if m.lod_vao is not None else vis
             for mask, inst, vao, t in ((near, m.inst, m.vao, m.triangles),
                                        (vis & ~near, m.lod_inst, m.lod_vao, m.lod_tris)):
@@ -202,4 +270,24 @@ class PropRenderer:
                 vao.render(moderngl.TRIANGLES, instances=n)
                 drawn += n
                 tris += n * t
+        if cutouts:
+            imp = self.shaders.get("impostor")
+            set_uniform(imp, "u_viewproj", viewproj)
+            set_uniform(imp, "u_cam", eye)
+            for k, v in env.items():
+                set_uniform(imp, k, v)
+            set_uniform(imp, "u_views", float(IMPOSTOR_VIEWS))
+            set_uniform(imp, "u_albedo", 0)
+            set_uniform(imp, "u_normal", 1)
+            for m, mask in cutouts:
+                n = int(mask.sum())
+                m.imp_albedo.use(0)
+                m.imp_normal.use(1)
+                set_uniform(imp, "u_size", m.imp_size)
+                set_uniform(imp, "u_fade_from", m.draw_m * 0.85)
+                set_uniform(imp, "u_fade_to", m.draw_m)
+                m.imp_inst.write(np.ascontiguousarray(m.rows[mask]).tobytes())
+                m.imp_vao.render(moderngl.TRIANGLES, instances=n)
+                drawn += n
+                tris += n * 2
         self.drawn, self.triangles = drawn, tris
