@@ -24,8 +24,8 @@ from lycantrope.render.gltf import (PARTS, SLOTS, Clip, MeshData, Skeleton, fit_
                                     nearest_neighbours, part_of, triangle_parts, triangle_slots)
 from lycantrope.render.shaders import ShaderLibrary, set_uniform
 from lycantrope.world.stats import kill_xp
-from lycantrope.world.actors import (Actor, AiParams, ClipInfo, Enemy, Rowan, load_character_data,
-                                     load_spawns, separate)
+from lycantrope.world.actors import (Actor, AiParams, AttackTokens, ClipInfo, Enemy, Rowan,
+                                     load_character_data, load_spawns, separate)
 from lycantrope.world.collision import Colliders
 from lycantrope.world.heightfield import Heightfield
 
@@ -749,6 +749,7 @@ class CharacterSystem:
         self._joint_buf = np.zeros((MAX_JOINTS, 4, 4), np.float32)   # reused per character per frame
         self._cull_rad: np.ndarray | None = None   # cached culling radii; rebuilt only on roster change
         self._cull_rad_n = 0
+        self.attack_tokens = AttackTokens(limit=2)  # CMB-27: max 2 enemies attacking at once
         # health, damage and experience (STA-24..28, CMB-37..45)
         from lycantrope.world.combat import Combat
         from lycantrope.world.stats import Progress, config, enemy_fighter
@@ -1137,7 +1138,7 @@ class CharacterSystem:
                         and c.actor.state == "wander" and c.brain.goal is None):
                     c.actor.timer -= dt                     # sleeping: just count down
                     continue
-                c.brain.update(ra, alive, dt)
+                c.brain.update(ra, alive, dt, tokens=self.attack_tokens)
                 if c.brain.should_release():                   # a caster lets its spell go
                     a, sp = c.actor, c.t.spell or {}
                     fwd = (math.sin(a.heading), math.cos(a.heading))

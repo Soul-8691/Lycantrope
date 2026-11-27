@@ -11,7 +11,11 @@
       "Bash(.venv/Scripts/python.exe tools/idea_tracker.py summary)",
       "Bash(.venv/Scripts/python.exe -c \"import json; d=json.load\\(open\\('ideas_status.json'\\)\\); print\\('ART-21:', d['ideas'].get\\('ART-21',{}\\)\\)\")",
       "Bash(.venv/Scripts/python.exe -c \"import json; d=json.load\\(open\\('ideas_status.json'\\)\\); [print\\(k, d['ideas'][k]['status']\\) for k in ['UIX-23','UIX-24','UIX-25']]\")",
-      "Bash(.venv\\\\Scripts\\\\python.exe -m pytest tests/ -q --tb=short)"
+      "Bash(.venv\\\\Scripts\\\\python.exe -m pytest tests/ -q --tb=short)",
+      "Bash(.venv\\\\Scripts\\\\python.exe tools/idea_tracker.py summary)",
+      "Bash(python tools/idea_tracker.py summary)",
+      "Bash(python -c \"import json; d=json.load\\(open\\('ideas_status.json'\\)\\); print\\(d['ideas'].get\\('CMB-27'\\)\\)\")",
+      "Bash(python -c \"import os; [print\\(f\\) for f in os.listdir\\('src/lycantrope/world'\\)]\")"
     ]
   }
 }

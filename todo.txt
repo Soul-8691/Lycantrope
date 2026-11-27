@@ -17,7 +17,7 @@ Controller support
 Shop inventory/Shop
 Better NPC system/NPC weapons/NPC fights/Guard protect AI/NPCs going home at night
 Beginning plot
-More tree types/Better flower models
+More tree types/Better tree/flower models
 Add more monsters (Lovecraft monsters/Goblin spellcasters)/Bandit/Goblin camps
 Remap the starting area/nearby
 Fast travel

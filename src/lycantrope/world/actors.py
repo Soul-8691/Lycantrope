@@ -358,6 +358,30 @@ class AiParams:
     release_at: float = 0.55           # fraction of the cast clip where the spell leaves the hand
 
 
+class AttackTokens:
+    """Limits how many enemies can melee-attack simultaneously (CMB-27).
+
+    Each Brain holds at most one token. `acquire` returns False when the pool is full.
+    Tokens auto-release at the top of Enemy.update() whenever the holder is no longer
+    in 'attack' state, so every exit path (hit reaction, death, leash, etc.) is covered
+    without extra wiring."""
+
+    def __init__(self, limit: int = 2) -> None:
+        self.limit = limit
+        self._holders: set[int] = set()
+
+    def acquire(self, key: int) -> bool:
+        if key in self._holders:
+            return True                 # already holds one — don't double-count
+        if len(self._holders) >= self.limit:
+            return False
+        self._holders.add(key)
+        return True
+
+    def release(self, key: int) -> None:
+        self._holders.discard(key)
+
+
 class Enemy:
     """Wander near home; chase Rowan when he comes close; swing at him; give up past the leash.
     Casters (cast_range_m > 0) stop at range and throw spells, and only use melee up close."""
@@ -433,8 +457,11 @@ class Enemy:
                 self.goal = r[i]
         a.locomotion()
 
-    def update(self, rowan: Actor, rowan_alive: bool, dt: float) -> None:
+    def update(self, rowan: Actor, rowan_alive: bool, dt: float,
+               tokens: "AttackTokens | None" = None) -> None:
         a, ai = self.a, self.ai
+        if tokens is not None and a.state != "attack":
+            tokens.release(id(self))        # release on any exit from attack state
         if a.state == "dead":
             a.speed = 0.0
             return
@@ -502,7 +529,7 @@ class Enemy:
             caster = ai.cast_range_m > 0
             if to_r > (ai.cast_range_m if caster else ai.reach_m * 1.6):
                 a.state = "chase"
-            elif self.cooldown <= 0 and to_r <= ai.reach_m * 1.15:
+            elif self.cooldown <= 0 and to_r <= ai.reach_m * 1.15 and (tokens is None or tokens.acquire(id(self))):
                 a.state = "attack"                      # in reach: melee (casters use their blade)
                 a.speed = 0.0
                 melee = ["attack1"] if caster else [c for c in ("attack1", "attack2") if a.has(c)]
@@ -537,6 +564,8 @@ class Enemy:
         elif a.state == "attack":
             a.speed = 0.0
             if a.clip_done() or (not a.has(a.anim.clip) and a.anim.time > 0.9):
+                if tokens is not None:
+                    tokens.release(id(self))
                 a.state = "engage"
                 self.cooldown = self.rng.uniform(*ai.attack_every_s)
                 if a.kind == "wolf" and self.rng.random() < 0.4:
