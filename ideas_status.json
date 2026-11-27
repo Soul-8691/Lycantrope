@@ -1,25 +1,25 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-27T11:42:04",
+  "updated": "2026-11-27T12:35:07",
   "counts": {
     "awaiting": 29,
-    "approved": 605,
+    "approved": 609,
     "denied": 125,
-    "total": 759
+    "total": 763
   },
   "ui": {
     "selected": [
-      "WPR-03"
+      "RCK-04"
     ],
     "selected_titles": {
-      "WPR-03": "Under-requirement penalty"
+      "RCK-04": "Standing Stone"
     },
     "filter": "awaiting",
     "category": "All categories",
     "search": "",
     "starred_only": false,
-    "window_open": false,
-    "at": "2026-11-26T19:35:09"
+    "window_open": true,
+    "at": "2026-11-27T12:35:07"
   },
   "ideas": {
     "PIL-01": {
@@ -4862,6 +4862,50 @@
       "file": "OBJECTS.md",
       "in_ideas_md": true
     },
+    "TRE-19": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-27T12:35:00",
+      "title": "Ancient Yew",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-20": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-27T12:35:02",
+      "title": "Riverside Willow",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-21": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-27T12:35:05",
+      "title": "Hawthorn",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
+    "TRE-22": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-27T12:35:06",
+      "title": "Field Maple",
+      "category": "Objects · Trees (TRE)",
+      "section": "",
+      "starred": false,
+      "file": "OBJECTS.md",
+      "in_ideas_md": true
+    },
     "PLT-01": {
       "status": "approved",
       "note": "",
@@ -8644,30 +8688,6 @@
   },
   "history": [
     {
-      "time": "2026-11-24T12:53:27",
-      "id": "TRE-06",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:53:31",
-      "id": "TRE-07",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:53:33",
-      "id": "TRE-08",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:53:39",
-      "id": "TRE-09",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
       "time": "2026-11-24T12:53:42",
       "id": "TRE-10",
       "from": "awaiting",
@@ -11640,6 +11660,30 @@
     {
       "time": "2026-11-26T19:30:30",
       "id": "NPC-19",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-27T12:35:00",
+      "id": "TRE-19",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-27T12:35:02",
+      "id": "TRE-20",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-27T12:35:05",
+      "id": "TRE-21",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-27T12:35:06",
+      "id": "TRE-22",
       "from": "awaiting",
       "to": "approved"
     }
