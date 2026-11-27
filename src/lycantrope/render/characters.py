@@ -927,16 +927,27 @@ class CharacterSystem:
         cfg = self.combat_cfg
         rc.fighter = self.progress.fighter("Rowan")
         self.rowan.fighter = rc.fighter
-        self.rowan.costs = {k: float(v["stamina"]) for k, v in cfg["moves"].items() if "stamina" in v}
-        self.rowan.costs["jump"] = float(cfg["stamina"]["jump"])
-        self.rowan.costs["sprint_per_s"] = float(cfg["stamina"]["sprint_per_s"])
         self.rowan.roll_window = float(cfg["fall"]["roll_window_s"])
         self.apply_stats()
 
     def apply_stats(self) -> None:
+        cfg = self.combat_cfg
         d = self.progress.stats()
         self.rowan.attack_rate = d["recovery"] / 100.0
         self.combat.crit_chance = d["crit_chance"]
+        self.combat.rowan_weapon = self.progress.weapon()
+        k = self.progress.stamina_multiplier()           # WPR-03: attacks cost more below the requirements
+        self.rowan.costs = {m: float(v["stamina"]) * k for m, v in cfg["moves"].items() if "stamina" in v}
+        self.rowan.costs["jump"] = float(cfg["stamina"]["jump"])
+        self.rowan.costs["sprint_per_s"] = float(cfg["stamina"]["sprint_per_s"])
+
+    def equipment_changed(self) -> None:
+        """Rowan put something on or took it off: new attack, defence, poise and costs, same share of HP."""
+        rc = self.rowan_char
+        if rc is None or rc.fighter is None:
+            return
+        self.progress.refresh(rc.fighter)
+        self.apply_stats()
 
     def update_spawn(self) -> None:
         """Lock in Rowan's current position as the death-respawn point."""
@@ -989,9 +1000,8 @@ class CharacterSystem:
         spec = self.combat_cfg["food"].get(food)
         if rc is None or rc.fighter is None or not rc.fighter.alive or spec is None:
             return False
-        if self.progress.food.get(food, 0) <= 0:
+        if not self.progress.inv.remove(food):
             return False
-        self.progress.food[food] -= 1
         rc.fighter.heal(spec["heal"], spec["seconds"])
         self.events.append(("eat", food))
         return True
@@ -1054,6 +1064,8 @@ class CharacterSystem:
                 n = kill_xp(t.fighter.xp, t.fighter.level, self.progress.level, self.combat_cfg)
                 self.progress.gain(n)
                 self.events.append(("xp", n, t.fighter.name))
+                a = t.actor
+                self.events.append(("killed", a.kind, (a.x, a.y, a.z), t.fighter.name))   # loot (WLD-17)
             if not h.staggered and not h.killed and h.kind != "fall":
                 a = t.actor                          # no hit animation: still make the impact heard
                 self.cue_sound(a.kind, "hit", (a.x, a.y + 1.0, a.z))

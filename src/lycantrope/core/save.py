@@ -44,10 +44,9 @@ def list_slots() -> list[dict | None]:
 
 def save(slot: int, progress_snap: dict, spawn: dict, play_time_s: float) -> None:
     SAVES_DIR.mkdir(parents=True, exist_ok=True)
-    disc = progress_snap.get("discovered", set())
     serialisable = {
         **progress_snap,
-        "discovered": sorted(disc) if isinstance(disc, (set, frozenset)) else list(disc),
+        **{k: sorted(progress_snap.get(k, ())) for k in ("discovered", "opened")},
     }
     _path(slot).write_text(
         json.dumps({
@@ -63,7 +62,7 @@ def save(slot: int, progress_snap: dict, spawn: dict, play_time_s: float) -> Non
 
 def load(slot: int) -> dict | None:
     """Return the save dict, or None if the slot is empty or unreadable.
-    `progress["discovered"]` is converted back to a set."""
+    `progress["discovered"]` and `progress["opened"]` are converted back to sets."""
     p = _path(slot)
     if not p.exists():
         return None
@@ -71,6 +70,7 @@ def load(slot: int) -> dict | None:
         d = json.loads(p.read_text(encoding="utf-8"))
         prog = d.get("progress", {})
         prog["discovered"] = set(prog.get("discovered", []))
+        prog["opened"] = set(prog.get("opened", []))
         return d
     except Exception:
         return None

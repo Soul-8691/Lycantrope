@@ -109,8 +109,13 @@ def flat_defence(value: float) -> dict[str, float]:
     return {t: value for t in TYPES}
 
 
-def armor_stats(piece_ids: list[str], cfg: dict | None = None) -> dict:
-    """ARS-06/08: total defence, absorb, poise, weight and heavy-piece count for the equipped pieces."""
+def meets(requirements: dict, attrs: dict | None) -> bool:
+    return attrs is None or all(attrs.get(a, 0) >= n for a, n in requirements.items())
+
+
+def armor_stats(piece_ids: list[str], cfg: dict | None = None, attrs: dict | None = None) -> dict:
+    """ARS-06/08: total defence, absorb, poise, weight and heavy-piece count for the equipped pieces.
+    With attrs, ARS-01: a piece whose requirements aren't met gives half its defence and poise and weighs 50% more."""
     cfg = cfg or config()
     pieces = cfg.get("armor", {})
     result: dict = {
@@ -124,12 +129,14 @@ def armor_stats(piece_ids: list[str], cfg: dict | None = None) -> dict:
         p = pieces.get(pid)
         if p is None:
             continue
+        ok = meets(p.get("requirements", {}), attrs)
+        k, wk = (1.0, 1.0) if ok else (0.5, 1.5)
         for t, v in p.get("defence", {}).items():
-            result["defence"][t] = result["defence"].get(t, 0.0) + v
+            result["defence"][t] = result["defence"].get(t, 0.0) + v * k
         for t, v in p.get("absorb", {}).items():
             result["absorb"][t] = result["absorb"].get(t, 0.0) + v
-        result["poise"] += float(p.get("poise", 0))
-        result["weight"] += float(p.get("weight", 0))
+        result["poise"] += float(p.get("poise", 0)) * k
+        result["weight"] += float(p.get("weight", 0)) * wk
         if p.get("weight_class") == "heavy":
             result["heavy_count"] += 1
     return result
@@ -311,18 +318,67 @@ class Progress:
     `snapshot()` is taken whenever the game saves; dying calls `restore()`, so XP is never dropped but
     goes back to what it was at the last save (STA-28)."""
 
-    def __init__(self, cfg: dict | None = None) -> None:
+    def __init__(self, cfg: dict | None = None, catalog: dict | None = None) -> None:
+        from lycantrope.world.inventory import Inventory, item_catalog
         self.cfg = cfg = cfg or config()
         r = cfg["rowan"]
         self.level = int(r["level"])
         self.attrs: dict[str, int] = dict(r["attributes"])
         self.xp = 0
         self.flask = int(cfg["lifewater"]["charges"])
-        self.food: dict[str, int] = dict(cfg.get("food_start", {}))
         self.discovered: set[str] = set()
-        self.armor: list[str] = list(r.get("armor", []))
-        self.shield: str | None = r.get("shield")
+        self.opened: set[str] = set()            # chests already looted (WLD-17)
+        self.inv = Inventory(catalog if catalog is not None else item_catalog(cfg))
+        self._starting_kit(r.get("armor", []), r.get("shield"), r.get("weapon"), cfg.get("food_start", {}))
         self._saved = self.snapshot()
+
+    def _starting_kit(self, armor, shield, weapon, food) -> None:
+        for iid in list(armor) + [shield, weapon]:
+            if iid:
+                self.inv.put_on(iid)
+        for iid, n in food.items():
+            self.inv.add(iid, int(n))
+
+    # what he carries (views on the inventory)
+    @property
+    def food(self) -> dict[str, int]:
+        return {i: self.inv.count(i) for i, it in self.inv.catalog.items() if it["kind"] == "food" and self.inv.count(i)}
+
+    @property
+    def armor(self) -> list[str]:
+        return [i for s, i in self.inv.equipped.items() if s in ("head", "torso", "arms", "legs") and i]
+
+    @property
+    def shield(self) -> str | None:
+        i = self.inv.equipped["offhand"]
+        return i if i and self.inv.catalog[i]["kind"] == "shield" else None
+
+    def weapon(self) -> dict:
+        """The main-hand weapon's numbers (bare fists when the hand is empty)."""
+        from lycantrope.world.inventory import FISTS
+        i = self.inv.equipped["mainhand"]
+        return self.cfg["weapons"][i] if i in self.cfg["weapons"] else FISTS
+
+    def weapon_ok(self) -> bool:
+        """WPR-03: does Rowan meet his main-hand weapon's requirements?"""
+        return meets(self.weapon().get("requirements", {}), self.attrs)
+
+    def stamina_multiplier(self) -> float:
+        """WPR-03: every attack costs 25% more below the weapon's requirements."""
+        return 1.0 if self.weapon_ok() else 1.25
+
+    def equip_load(self) -> tuple[float, float]:
+        """(weight carried in equipment, equip load capacity). ARS-01's heavier unmet armor included."""
+        ar = armor_stats(self.armor, self.cfg, self.attrs)
+        held = sum(self.inv.catalog[i]["weight"] for s, i in self.inv.equipped.items()
+                   if i and s in ("mainhand", "offhand"))
+        return ar["weight"] + held, self.stats()["equip_load"]
+
+    def roll_class(self) -> str:
+        """CMB-26: under 30% of the equip load a fast roll, under 70% medium, otherwise slow."""
+        used, cap = self.equip_load()
+        r = used / max(cap, 1e-6)
+        return "fast" if r < 0.3 else "medium" if r < 0.7 else "slow"
 
     # levels
     @property
@@ -373,8 +429,8 @@ class Progress:
     # saves
     def snapshot(self) -> dict:
         return {"level": self.level, "attrs": dict(self.attrs), "xp": self.xp, "flask": self.flask,
-                "food": dict(self.food), "discovered": set(self.discovered),
-                "armor": list(self.armor), "shield": self.shield}
+                "discovered": set(self.discovered), "opened": set(self.opened),
+                "inventory": copy.deepcopy(self.inv.to_dict())}
 
     def save(self) -> None:
         self._saved = self.snapshot()
@@ -382,15 +438,24 @@ class Progress:
     def restore(self, snap: dict | None = None) -> None:
         s = copy.deepcopy(snap or self._saved)
         self.level, self.attrs, self.xp = s["level"], s["attrs"], s["xp"]
-        self.flask, self.food, self.discovered = s["flask"], s["food"], s["discovered"]
-        self.armor, self.shield = s.get("armor", []), s.get("shield")
+        self.flask, self.discovered = s["flask"], set(s["discovered"])
+        self.opened = set(s.get("opened", []))
+        if "inventory" in s:
+            self.inv.from_dict(s["inventory"])
+        else:                                      # a save from before the inventory: rebuild from its kit
+            self.inv.from_dict({})
+            r = self.cfg["rowan"]
+            self._starting_kit(s.get("armor", r.get("armor", [])), s.get("shield", r.get("shield")),
+                               r.get("weapon"), s.get("food", {}))
 
     # Rowan as a fighter
     def fighter(self, name: str = "Rowan") -> Fighter:
         cfg = self.cfg
         d = self.stats()
-        w = cfg["weapons"][cfg["rowan"]["weapon"]]
-        ar = armor_stats(self.armor, cfg)
+        w = self.weapon()
+        if not self.weapon_ok():                   # WPR-03: no scaling bonuses below the requirements
+            w = {**w, "scaling": {}}
+        ar = armor_stats(self.armor, cfg, self.attrs)
         base_def = flat_defence(d["defence"])
         for t, v in ar["defence"].items():
             base_def[t] = base_def.get(t, 0.0) + v

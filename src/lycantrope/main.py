@@ -2,12 +2,13 @@
 
 Controls (play mode)
 --------------------
-Click            capture the mouse (Esc releases it; Esc again quits)
+Click            capture the mouse  ·  Esc: pause menu (Resume, Save, Quit; the world waits)
 WASD             move (camera-relative)     Shift: sprint  ·  Ctrl: walk  ·  wheel: camera distance
 Left click       light attack (click again during a swing to chain up to three)
 Right mouse      hold to block              R: heavy attack  ·  Q: cast (off hand)
 Space            jump (light attack while dropping: plunge)  ·  C: landing roll (press just before landing)
-E / G            drink from the Lifewater flask / eat an apple  ·  L: level-up screen (out of combat)
+E / G            pick up loot in reach, otherwise drink from the Lifewater flask / eat an apple
+I                inventory (pause menu: equip, use, drop)  ·  L: level-up screen (out of combat)
 M                world map (wheel or +/- zoom, WASD pan, C centre on Rowan, M or Esc close)
 H / K            debug: hit reaction / fall dead (the death screen, then the last save loads)
 F4 free-fly camera · F7 helmet on/off · F8 grass on/off · F9 music on/off · F10 sound effects on/off ·
@@ -30,6 +31,7 @@ from __future__ import annotations
 import argparse
 import math
 import os
+import random
 import sys
 import time
 from datetime import datetime
@@ -59,6 +61,9 @@ from lycantrope.render.pixelbuffer import PixelBuffer
 from lycantrope.render.hiz import HiZBuffer
 from lycantrope.ui.loading import LoadingScreen
 from lycantrope.ui.navigation import Compass, RegionBanner, WorldMap
+from lycantrope.ui.loot import LootView
+from lycantrope.ui.pause import PauseMenu
+from lycantrope.world.inventory import Drop, GroundLoot, LootTables, load_items_file
 from lycantrope.ui.overlay import LockReticle, Subtitles, TextOverlay
 from lycantrope.world.lockon import LockOn
 from lycantrope.world.actors import TURBO, RowanInput
@@ -143,6 +148,13 @@ class App:
         self.compass = Compass(self.ctx, self.shaders, self.world)      # UIX-02
         self.region = RegionBanner(self.ctx, self.shaders)
         self.map = WorldMap(self.ctx, self.shaders, self.world)
+        self.rarity_colors = load_items_file()["rarity_colors"]
+        self.loot_tables = LootTables()                     # WLD-17
+        self.ground = GroundLoot()                          # drops and chests in the world (UIX-26)
+        self.loot_rng = random.Random()
+        self.loot_view = LootView(self.ctx, self.shaders, self.chars.progress.inv.catalog, self.rarity_colors)
+        self.pause = PauseMenu(self.ctx, self.shaders, self)   # UIX-07
+        self.quit_requested = False
         loading.draw(1.0)
         loading.release()
         self.pixel_buf = PixelBuffer(self.ctx, settings.pixel_scale, settings.pixel_smooth) if settings.pixel_scale >= 2 else None
@@ -158,6 +170,7 @@ class App:
 
         if save_data is not None:
             self.chars.apply_save(save_data)
+        self.place_chests(placements)
         self.play_time_s_offset = float((save_data or {}).get("play_time_s", 0.0))
 
         self.camera = Camera(fov_deg=settings.fov_deg, far=settings.view_distance_m)
@@ -282,6 +295,14 @@ class App:
         for ev in pygame.event.get():
             if ev.type == pygame.QUIT:
                 return False
+            if self.pause.open:                          # the pause menu has the keys and the mouse
+                if ev.type == pygame.KEYDOWN:
+                    self.pause.key(ev.key)
+                elif ev.type == pygame.MOUSEBUTTONDOWN and ev.button in (1, 3):
+                    self.pause.click(ev.pos, ev.button)
+                if not self.pause.open:
+                    self.set_capture(True)
+                continue
             if ev.type == pygame.MOUSEBUTTONDOWN and ev.button in (1, 3) and not self.captured:
                 self.set_capture(True)
             elif ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1 and self.play:
@@ -306,11 +327,9 @@ class App:
                         self.levels.plan = {}
             elif ev.type == pygame.KEYDOWN:
                 k = ev.key
-                if k == pygame.K_ESCAPE:
-                    if self.captured:
-                        self.set_capture(False)
-                    else:
-                        return False
+                if k in (pygame.K_ESCAPE, pygame.K_i):        # pause menu (UIX-07); I opens the inventory
+                    self.pause.show(0 if k == pygame.K_i else 3)
+                    self.set_capture(False)
                 elif k == pygame.K_t:
                     self.turbo = not self.turbo
                     self.overlay_timer = 0.0                 # show the change straight away
@@ -365,7 +384,8 @@ class App:
                         x, z, _ = self.nav_position()
                         self.map.toggle((x, z))
                 elif k == pygame.K_e and self.play:
-                    self.chars.drink()
+                    if not self.take_loot():               # E picks up what's in reach (UIX-26), else drinks
+                        self.chars.drink()
                 elif k == pygame.K_g and self.play:
                     if not self.chars.eat("apple"):
                         self.hud.state.note("No apples left")
@@ -374,10 +394,12 @@ class App:
                             pygame.K_SPACE: "jump", pygame.K_f: "sheathe", pygame.K_c: "roll"}.get(k)
                     if name:
                         self.pressed.add(name)
-        return True
+        return not self.quit_requested
 
     # ------------------------------------------------------------- simulation
     def update(self, dt: float) -> None:
+        if self.pause.open:                               # the world waits while the pause menu is up
+            return
         keys = pygame.key.get_pressed()
         self.key_zoom(keys, dt)
         inp = RowanInput()
@@ -442,6 +464,19 @@ class App:
                     self.chars.events.append(("hurt", 0.0, src, "melee"))
                     self.chars.progress.gain(120)
                     self.chars.events.append(("xp", 120, "Goblin Cutthroat"))
+                if act in ("inventory", "loot") and self.ticks == 3:   # testing: some things to carry
+                    inv = self.chars.progress.inv
+                    for iid, n in (("iron_shortsword", 1), ("flanged_mace", 1), ("trs_04", 1), ("hed_13", 1),
+                                   ("wooden_round_shield", 1), ("bread", 2), ("wolf_pelt", 3), ("copper", 42)):
+                        inv.add(iid, n)
+                    if act == "inventory":
+                        self.pause.show(0)
+                        self.pause.sel_bag = 2
+                    else:
+                        ra = self.chars.rowan.a
+                        x, z = ra.x + math.sin(ra.heading) * 1.4, ra.z + math.cos(ra.heading) * 1.4
+                        self.ground.spawn(x, self.world.height_at(x, z) + 0.1, z,
+                                          [["hed_05", 1], ["copper", 9]], "Bandit")
                 if act == "map" and self.ticks == 3:
                     x, z, _ = self.nav_position()
                     self.map.toggle((x, z))
@@ -468,10 +503,15 @@ class App:
         self.subtitles.update(dt)
         for ev in self.chars.events:                       # hits, XP, levels for the HUD
             self.hud.state.event(ev)
+            if ev[0] == "killed":                       # WLD-17: the dead drop their table's loot
+                _, kind, (x, y, z), name = ev
+                self.ground.spawn(x, y + 0.1, z, self.loot_tables.roll(kind, self.loot_rng), name)
             if ev[0] == "reload":
                 self.lock.target = None
                 self.levels.open = False
                 self.map.open = False
+                self.ground.clear_dropped()
+                self.reset_chests()
         self.chars.events.clear()
         x, z, _ = self.nav_position()
         self.region.update(dt, self.world.biome_at(x, z))
@@ -530,6 +570,75 @@ class App:
             self.reticle.render(w, h, sx, sy, c.t.name, f.hp / f.max_hp, f.trail / f.max_hp)
         else:
             self.reticle.render(w, h, sx, sy, c.t.name)
+
+    # ------------------------------------------------------------------ loot and equipment
+    def place_chests(self, placements: dict) -> None:
+        """Chests are placed props with a "chest": {"id", "table", "name"} entry (WLD-17). One whose model
+        isn't built yet is left out, like any other missing prop."""
+        anchors = {p.name: p for p in self.world.landmarks + self.world.waystones}
+        for group in placements.get("groups", []):
+            a = anchors.get(group.get("anchor"))
+            for it in group.get("items", []):
+                c = it.get("chest")
+                if a is None or c is None or it.get("id") not in self.props.catalog:
+                    continue
+                x, z = a.x + it["at"][0], a.z - it["at"][1]
+                self.ground.drops.append(Drop(x, self.world.height_at(x, z), z, [], c.get("name", "Chest"),
+                                              chest_id=c["id"], table=c["table"]))
+        self.reset_chests()
+
+    def reset_chests(self) -> None:
+        """Chests opened in the current save stay open and empty; the rest are closed again."""
+        for d in self.ground.drops:
+            if d.is_chest:
+                d.opened = d.chest_id in self.chars.progress.opened
+                d.items = []
+
+    def loot_in_reach(self) -> Drop | None:
+        if not (self.play and self.chars.rowan) or self.pause.open:
+            return None
+        a = self.chars.rowan.a
+        return self.ground.nearest(a.x, a.z)
+
+    def take_loot(self) -> bool:
+        """UIX-26: E takes everything from the drop or chest in reach. False if there's nothing in reach."""
+        d = self.loot_in_reach()
+        if d is None:
+            return False
+        prog = self.chars.progress
+        was_closed = d.is_chest and not d.opened
+        taken = self.ground.take(d, prog.inv, self.loot_tables, self.loot_rng)
+        if was_closed:
+            prog.opened.add(d.chest_id)
+            if not taken and not d.items:
+                self.hud.state.note(f"{d.name}: empty")
+        for iid, n in taken:
+            name = prog.inv.catalog[iid]["name"]
+            self.hud.state.note(f"+{n} {name}")
+        if d.items:
+            self.hud.state.note("Backpack full")
+        return True
+
+    def drop_item(self, iid: str, n: int) -> None:
+        """Put something from the backpack on the ground at Rowan's feet (the pause menu's X)."""
+        x, z, heading = self.nav_position()
+        x, z = x + math.sin(heading) * 0.8, z + math.cos(heading) * 0.8
+        self.ground.spawn(x, self.world.height_at(x, z) + 0.1, z, [[iid, n]])
+        self.hud.state.note(f"Dropped {self.chars.progress.inv.catalog[iid]['name']}")
+
+    def apply_settings(self, field: str) -> None:
+        """A setting changed in the pause menu: use it now and save it."""
+        s = self.settings
+        if field == "music_volume" and self.music is not None:
+            self.music.volume = s.music_volume
+        elif field == "sfx_volume" and self.sfx is not None:
+            self.sfx.player.volume = s.sfx_volume
+        elif field == "fov_deg":
+            self.camera.fov_deg = s.fov_deg
+        elif field in ("pixel_scale", "pixel_smooth"):
+            self.pixel_buf = PixelBuffer(self.ctx, s.pixel_scale, s.pixel_smooth) if s.pixel_scale >= 2 else None
+            self.hiz = HiZBuffer(self.ctx) if self.pixel_buf is not None else None
+        s.save()
 
     def nav_position(self) -> tuple[float, float, float]:
         """Where the compass and map put you (x, z) and which way you face (heading, actor convention)."""
@@ -650,7 +759,10 @@ class App:
         if not self.map.open:
             self.compass.render(w, h, self.camera.yaw, (x, z), found)
             self.region.render(w, h)
+        if not self.map.open and not self.pause.open:
+            self.loot_view.render(w, h, viewproj, self.ground.drops, self.loot_in_reach(), eye, self.time_s)
         self.map.render(w, h, (x, z), heading, found, self.region.tracker.current or "")
+        self.pause.render(w, h)
         self.ctx.wireframe = wire
 
     def controls_lines(self) -> list[str]:
@@ -663,7 +775,9 @@ class App:
             "Q                cast",
             "Space            jump  (attack mid-air = plunge)",
             "C                roll  (press just before landing)",
-            "E / G            flask  /  apple",
+            "E                pick up loot  /  flask",
+            "G                apple",
+            "I                inventory  (Esc: pause menu)",
             "L                level-up  (out of combat)",
             "M                world map  (wheel zoom · WASD pan · C centre)",
             "Tab / mid btn    lock-on  /  release",
@@ -686,7 +800,7 @@ class App:
             "F10              sound effects on/off",
             "F11              NPC voices on/off",
             "F12              screenshot",
-            "Esc              release mouse  /  quit",
+            "Esc              pause menu  (resume, save, quit)",
         ]
 
     def overlay_lines(self) -> list[str]:

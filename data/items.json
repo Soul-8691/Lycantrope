@@ -1,0 +1,41 @@
+{
+  "_about": [
+    "Everything Rowan can carry (UIX-07). Weapons, shields, armor and food are listed in combat.json with their",
+    "numbers; this file adds what combat.json doesn't have (currency and materials), plus extra fields for any item:",
+    "'rarity' (common, uncommon, rare, legendary: the colour of its name and frame), 'text' (its description,",
+    "STY-09), 'bound': true (can't be dropped). Weapons, shields and armor are 'uncommon' unless a rarity is given.",
+    "'stack' is how many fit in one backpack slot. Currency doesn't take a slot."
+  ],
+  "rarity_colors": {
+    "common": [222, 216, 228],
+    "uncommon": [126, 206, 120],
+    "rare": [112, 166, 240],
+    "legendary": [236, 190, 96]
+  },
+  "items": {
+    "copper": {"name": "Copper Shard", "kind": "currency", "rarity": "common",
+               "text": "Clipped bits of old coin. Every stall in Aldmoor takes them, and nobody asks where they came from."},
+    "wolf_pelt": {"name": "Wolf Pelt", "kind": "material", "stack": 20, "weight": 0.5, "rarity": "common",
+                  "text": "Thick grey fur, still smelling of the woods. A tanner or a merchant will pay for it."},
+    "bear_pelt": {"name": "Bear Pelt", "kind": "material", "stack": 10, "weight": 1.5, "rarity": "uncommon",
+                  "text": "Heavy brown fur from a bear of the vale. Worth a good deal to the right buyer."}
+  },
+  "extra": {
+    "dawnblade": {"rarity": "legendary", "bound": true,
+                  "text": "Grandfather's old longsword. Nobody else wanted it, and it felt wrong to leave it behind. It hums, sometimes, when the sky turns strange."},
+    "iron_shortsword": {"text": "A plain iron blade of the Watch's issue. Light, honest and easy to swing."},
+    "flanged_mace": {"text": "An iron head of ridged flanges on an ash haft. Made for denting helmets, and the heads inside them."},
+    "goblin_shiv": {"rarity": "common", "text": "A sharpened strip of scrap bound to a bone grip. Goblins favour it for stabbing in the back."},
+    "wooden_round_shield": {"rarity": "common", "text": "Planks, an iron boss and a painted rim. It has stopped more arrows than it should have."},
+    "dread_tower_shield": {"rarity": "rare"},
+    "emberforged_shield": {"rarity": "rare"},
+    "arm_01": {"rarity": "common", "text": "Rowan's own work gloves, stiff with barn muck and worn through at one thumb."},
+    "trs_01": {"rarity": "common", "text": "A travelling coat patched so often that little of the original cloth remains."},
+    "leg_01": {"rarity": "common", "text": "Work trousers and boots. Comfortable, and caked in the mud of Oswin's fields."},
+    "hed_12": {"rarity": "rare"}, "arm_12": {"rarity": "rare"}, "trs_12": {"rarity": "rare"}, "leg_12": {"rarity": "rare"},
+    "hed_13": {"rarity": "rare"}, "arm_13": {"rarity": "rare"}, "trs_13": {"rarity": "rare"}, "leg_13": {"rarity": "rare"},
+    "apple": {"text": "A red apple from the Brackenvale orchards. Heals a little over a few seconds."},
+    "bread": {"text": "A heel of brown bread. Heals over a few seconds."},
+    "stew": {"text": "A pot of thick stew, still warm somehow. Heals a great deal over a few seconds."}
+  }
+}

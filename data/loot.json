@@ -1,0 +1,75 @@
+{
+  "_about": [
+    "Loot tables (WLD-17). Enemies use the table named after their character type when they die; chests name theirs",
+    "in placements.json. Each entry rolls on its own: 'chance' (0-1) that it drops, 'count' [min, max] how many",
+    "(default 1). Item ids come from combat.json (weapons, shields, armor, food) and items.json."
+  ],
+  "tables": {
+    "goblin": [
+      {"item": "copper", "chance": 0.8, "count": [2, 6]},
+      {"item": "apple", "chance": 0.2},
+      {"item": "goblin_shiv", "chance": 0.08}
+    ],
+    "wolf": [
+      {"item": "wolf_pelt", "chance": 0.6}
+    ],
+    "bear": [
+      {"item": "bear_pelt", "chance": 0.75}
+    ],
+    "bandit_lean": [
+      {"item": "copper", "chance": 0.9, "count": [5, 14]},
+      {"item": "bread", "chance": 0.25},
+      {"item": "iron_shortsword", "chance": 0.06},
+      {"item": "hed_04", "chance": 0.04},
+      {"item": "arm_04", "chance": 0.04},
+      {"item": "leg_04", "chance": 0.04}
+    ],
+    "bandit_stocky": [
+      {"item": "copper", "chance": 0.9, "count": [6, 16]},
+      {"item": "stew", "chance": 0.15},
+      {"item": "flanged_mace", "chance": 0.06},
+      {"item": "trs_04", "chance": 0.04},
+      {"item": "spiked_bandit_targe", "chance": 0.05}
+    ],
+    "battlemage": [
+      {"item": "copper", "chance": 0.9, "count": [8, 20]},
+      {"item": "bread", "chance": 0.2},
+      {"item": "hed_09", "chance": 0.04},
+      {"item": "arm_09", "chance": 0.04},
+      {"item": "trs_09", "chance": 0.04},
+      {"item": "leg_09", "chance": 0.04}
+    ],
+    "bruiser": [
+      {"item": "copper", "chance": 0.9, "count": [6, 18]},
+      {"item": "stew", "chance": 0.2},
+      {"item": "militia_kite_shield", "chance": 0.05},
+      {"item": "hed_05", "chance": 0.04}
+    ],
+    "chest_wooden": [
+      {"item": "copper", "chance": 1.0, "count": [10, 30]},
+      {"item": "apple", "chance": 0.6, "count": [1, 3]},
+      {"item": "bread", "chance": 0.4, "count": [1, 2]},
+      {"item": "wooden_round_shield", "chance": 0.15},
+      {"item": "hed_02", "chance": 0.15},
+      {"item": "arm_02", "chance": 0.15}
+    ],
+    "chest_iron": [
+      {"item": "copper", "chance": 1.0, "count": [30, 70]},
+      {"item": "stew", "chance": 0.5},
+      {"item": "iron_shortsword", "chance": 0.25},
+      {"item": "militia_kite_shield", "chance": 0.2},
+      {"item": "hed_05", "chance": 0.15},
+      {"item": "arm_05", "chance": 0.15},
+      {"item": "trs_05", "chance": 0.15},
+      {"item": "leg_05", "chance": 0.15}
+    ],
+    "chest_ornate": [
+      {"item": "copper", "chance": 1.0, "count": [80, 160]},
+      {"item": "stew", "chance": 1.0, "count": [1, 2]},
+      {"item": "hed_10", "chance": 0.25},
+      {"item": "arm_10", "chance": 0.25},
+      {"item": "trs_10", "chance": 0.25},
+      {"item": "leg_10", "chance": 0.25}
+    ]
+  }
+}

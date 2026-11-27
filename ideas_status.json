@@ -1,9 +1,9 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-27T12:55:55",
+  "updated": "2026-11-27T16:03:20",
   "counts": {
-    "awaiting": 29,
-    "approved": 609,
+    "awaiting": 28,
+    "approved": 610,
     "denied": 125,
     "total": 763
   },
@@ -19,7 +19,7 @@
     "search": "",
     "starred_only": false,
     "window_open": true,
-    "at": "2026-11-27T12:55:55"
+    "at": "2026-11-27T16:03:20"
   },
   "ideas": {
     "PIL-01": {
@@ -7789,9 +7789,9 @@
       "in_ideas_md": true
     },
     "WPR-03": {
-      "status": "awaiting",
+      "status": "approved",
       "note": "",
-      "changed": null,
+      "changed": "2026-11-27T16:02:28",
       "title": "Under-requirement penalty",
       "category": "Weapons · Rules (WPR)",
       "section": "",
@@ -8687,12 +8687,6 @@
     }
   },
   "history": [
-    {
-      "time": "2026-11-24T12:53:42",
-      "id": "TRE-10",
-      "from": "awaiting",
-      "to": "approved"
-    },
     {
       "time": "2026-11-24T12:53:44",
       "id": "TRE-11",
@@ -11684,6 +11678,12 @@
     {
       "time": "2026-11-27T12:35:06",
       "id": "TRE-22",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-27T16:02:28",
+      "id": "WPR-03",
       "from": "awaiting",
       "to": "approved"
     }

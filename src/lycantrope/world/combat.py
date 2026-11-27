@@ -65,6 +65,7 @@ class Combat:
         self.swings: dict[int, list] = {}       # id(actor) -> [clip, last time, ids already hit]
         self.hits: list[Hit] = []               # this tick's hits (read by the world, the HUD and sounds)
         self.crit_chance = 0.0                  # Rowan's, in % (from Fortune)
+        self.rowan_weapon: dict | None = None   # his equipped weapon (reach and arc); None: the config's
 
     # ------------------------------------------------------------------ swings
     def _active(self, a):
@@ -89,7 +90,7 @@ class Combat:
         live = [c for c in chars if c.fighter is not None and c.fighter.alive and c.actor.state != "dead"
                 and (r is None or (abs(c.actor.x - r.x) < NEAR_M and abs(c.actor.z - r.z) < NEAR_M))]
         rowan_ok = rowan_c is not None and rowan_c in live
-        weapon = self.cfg["weapons"][self.cfg["rowan"]["weapon"]]
+        weapon = self.rowan_weapon or self.cfg["weapons"][self.cfg["rowan"]["weapon"]]
         for c in live:
             act = self._active(c.actor)
             if act is None:
