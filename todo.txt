@@ -9,7 +9,7 @@ To-Do:
 Beginning plot
 Remap the starting area/nearby/Fast travel/Caves
 Add more monsters (Lovecraft monsters/Goblin spellcasters)/Bandit/Goblin camps
-Better NPC system/NPC weapons/NPC fights/Guard protect AI/NPCs going home at night
+Better NPC system/Better mouth movement system/NPC weapons/NPC fights/Guard protect AI/NPCs going home at night
 Character stats/Experience
 Armor/Weapon/Magic stats
 Health and damage/Fall damage/HUD
