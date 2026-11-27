@@ -1125,8 +1125,8 @@ class CharacterSystem:
                 if abs(c.actor.x - ra.x) < 150 and abs(c.actor.z - ra.z) < 150]
         for c in self.chars:
             if c.brain is not None:
-                far = math.hypot(c.actor.x - ra.x, c.actor.z - ra.z) > 300
-                if far and c.actor.state == "wander" and c.brain.goal is None:
+                if (math.hypot(c.actor.x - ra.x, c.actor.z - ra.z) > 60.0
+                        and c.actor.state == "wander" and c.brain.goal is None):
                     c.actor.timer -= dt                     # sleeping: just count down
                     continue
                 c.brain.update(ra, alive, dt)

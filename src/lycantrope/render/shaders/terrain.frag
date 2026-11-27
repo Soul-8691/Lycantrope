@@ -28,6 +28,7 @@ uniform int u_hay_layer;
 uniform sampler2D u_paint;              // painted patches: r = loose hay
 uniform sampler2D u_bank;               // river banks (pebbles), computed at load
 uniform int u_debug_view;            // 0 normal, 1 normals, 2 rock/road/snow weights
+uniform vec3 u_biome_tint[7];       // per-biome colour multiplier (ART-22); order = splat channels
 
 float H(vec2 uv) { return texture(u_height, uv).r; }
 
@@ -73,7 +74,7 @@ void main() {
     }
     float macro = texture(u_ground, vec3(v_world.xz / 157.0, float(u_rock_layer))).g;
     float snow = smoothstep(u_snowline, u_snowline + 40.0, v_world.y + macro * 30.0) * smoothstep(0.70, 0.85, n.y);
-    float rock = smoothstep(0.86, 0.72, n.y);
+    float rock = smoothstep(0.88, 0.65, n.y);  // WLD-41: wider range → softer seam
     float road = texture(u_road, uv).r * (1.0 - rock * 0.6);
     float wl = texture(u_water_tex, uv).r;
     float wet = smoothstep(wl + 0.6, wl - 0.4, v_world.y);
@@ -124,6 +125,14 @@ void main() {
     float grassy = (1.0 - rock) * (1.0 - road) * (1.0 - snow) * (1.0 - wet) * (1.0 - bare) * (1.0 - bank) * (1.0 - hay);
     albedo *= mix(vec3(1.0), pa.rgb * 2.0, grassy);
     albedo *= mix(vec3(1.0), pb.rgb * 2.0, bare * (1.0 - wet) * (1.0 - bank) * (1.0 - hay));
+    // per-biome colour tint (ART-22): blend splat weights into a colour multiplier
+    vec3 biome_tint = vec3(0.0);
+    float btot = 0.0;
+    for (int i = 0; i < 7; i++) { biome_tint += sp[i] * u_biome_tint[i]; btot += sp[i]; }
+    biome_tint = btot > 0.001 ? biome_tint / btot : vec3(1.0);
+    // 0.55 on flat biome ground; 0.18 on rocky slopes so the seam colour-matches (WLD-41)
+    albedo *= mix(vec3(1.0), biome_tint, (1.0 - snow) * (1.0 - road) * 0.55
+                                       + rock * 0.18);
     // raised pebbles on river banks: bend the lighting with the texture's height (A) so each
     // stone has a lit top and shaded sides, and darken the gaps between them
     if (bank > 0.01 && length(u_cam - v_world) < 120.0) {

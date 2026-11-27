@@ -99,6 +99,12 @@ class TerrainRenderer:
         chans = world.meta["splat"]["channels"]
         bl = self.materials["biome_layers"]
         self.splat_layer = tuple(self.layer_index[bl[c]] if c in bl else -1 for c in chans)
+        # biome colour tints (ART-22): 7 entries ordered by splat channel
+        bt = self.materials.get("biome_tints", {})
+        tints = [tuple(bt.get(c, [1.0, 1.0, 1.0])) for c in chans if c is not None]
+        while len(tints) < 7:
+            tints.append((1.0, 1.0, 1.0))
+        self.biome_tints_flat = np.array([v for t in tints[:7] for v in t], dtype=np.float32)
 
         # --- chunks and meshes ------------------------------------------------
         self.origins, hmin, hmax = world.chunk_bounds(CHUNK_M)
@@ -197,6 +203,10 @@ class TerrainRenderer:
         set_uniform(prog, "u_hay_layer", self.layer_index.get(self.materials.get("paint_layers", {}).get("hay", ""), -1))
         set_uniform(prog, "u_bank_layer", self.layer_index[self.materials.get("bank_layer", self.materials["underwater_layer"])])
         set_uniform(prog, "u_debug_view", self.debug_view)
+        try:
+            prog["u_biome_tint"].write(self.biome_tints_flat.tobytes())
+        except KeyError:
+            pass
         for k, v in env.items():
             set_uniform(prog, k, v)
 

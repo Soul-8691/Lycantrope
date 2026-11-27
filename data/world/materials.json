@@ -52,6 +52,16 @@
       "tile_m": 2.0
     }
   ],
+  "_tint_note": "Biome colour multipliers (ART-22). Applied at 0.55 strength on flat ground, 0.18 on rocky slopes (WLD-41). Values > 1 brighten/warm, < 1 darken/cool. Order matches splat channels in meta.json.",
+  "biome_tints": {
+    "brackenvale": [1.06, 1.02, 0.84],
+    "wolfwood":    [0.68, 0.86, 0.72],
+    "blackmire":   [0.76, 0.74, 0.65],
+    "frostfang":   [0.82, 0.86, 1.04],
+    "ashen":       [1.12, 0.76, 0.50],
+    "duskhold":    [0.55, 0.55, 0.65],
+    "boundary":    [1.00, 1.00, 1.00]
+  },
   "biome_layers": {
     "brackenvale": "grass",
     "wolfwood": "forest",
