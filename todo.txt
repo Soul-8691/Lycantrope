@@ -11,7 +11,7 @@ Armor/Weapon/Magic stats
 Health and damage/Fall damage/HUD
 Pause/Player inventory/Equip/Looting
 Upgrade/Forge
-Greetings/Talk (A press)/Dialogue/voice lines/Choices/Quests
+Greetings/Talk (A press)/Dialogue/Voice lines/Choices/Quests
 Colorizing/Shading/World map/Directions/Caves
 Performance
 NPCs going home at night

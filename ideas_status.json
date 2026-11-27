@@ -1,11 +1,11 @@
 {
   "_about": "Lycantrope idea tracker state. Source of truth for idea decisions. IDs come from IDEAS.md, OBJECTS.md, ENEMIES.md, ARMOR.md and WEAPONS.md ('file' says which; 'in_ideas_md' means the ID still exists in its source file). status is one of: awaiting, approved, denied. 'ui' records what the user had selected/filtered in the tracker window. Edit via tools/idea_tracker.py (GUI or CLI); the GUI hot-reloads this file.",
-  "updated": "2026-11-26T17:54:31",
+  "updated": "2026-11-26T19:20:42",
   "counts": {
     "awaiting": 29,
-    "approved": 584,
-    "denied": 124,
-    "total": 737
+    "approved": 594,
+    "denied": 125,
+    "total": 748
   },
   "ui": {
     "selected": [
@@ -18,8 +18,8 @@
     "category": "All categories",
     "search": "",
     "starred_only": false,
-    "window_open": false,
-    "at": "2026-11-26T13:22:43"
+    "window_open": true,
+    "at": "2026-11-26T19:20:42"
   },
   "ideas": {
     "PIL-01": {
@@ -2211,6 +2211,61 @@
       "file": "IDEAS.md",
       "in_ideas_md": true
     },
+    "WLD-39": {
+      "status": "approved",
+      "note": "We need more tree types to support this",
+      "changed": "2026-11-26T19:20:22",
+      "title": "Thicker forest canopy and undergrowth",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-40": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:20:24",
+      "title": "Terrain relief pass",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-41": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:17:43",
+      "title": "Slope texture blend fix",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-42": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:17:48",
+      "title": "More Brackenvale house types",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "WLD-43": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:17:56",
+      "title": "Enemy species variety by zone",
+      "category": "World & Biomes (WLD)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
     "UIX-01": {
       "status": "approved",
       "note": "",
@@ -2447,6 +2502,39 @@
       "note": "",
       "changed": "2026-11-26T12:55:06",
       "title": "Flask and quick-slot counts",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "UIX-23": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:18:03",
+      "title": "Closer default camera orbit",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "UIX-24": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:18:08",
+      "title": "Hard cap on camera zoom-out",
+      "category": "HUD & UI (UIX)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "UIX-25": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:18:22",
+      "title": "Compact, non-intrusive debug overlay",
       "category": "HUD & UI (UIX)",
       "section": "",
       "starred": false,
@@ -2791,6 +2879,28 @@
       "category": "Art Pipeline (ART)",
       "section": "",
       "starred": true,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "ART-20": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:18:29",
+      "title": "Per-NPC face variation",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "ART-21": {
+      "status": "denied",
+      "note": "",
+      "changed": "2026-11-26T19:20:35",
+      "title": "Mesh silhouette and shape quality pass",
+      "category": "Art Pipeline (ART)",
+      "section": "",
+      "starred": false,
       "file": "IDEAS.md",
       "in_ideas_md": true
     },
@@ -4416,6 +4526,17 @@
       "note": "",
       "changed": "2026-11-25T23:16:52",
       "title": "The patrol round the village",
+      "category": "Townsfolk & Dialogue (NPC)",
+      "section": "The Watch",
+      "starred": false,
+      "file": "IDEAS.md",
+      "in_ideas_md": true
+    },
+    "NPC-15": {
+      "status": "approved",
+      "note": "",
+      "changed": "2026-11-26T19:19:02",
+      "title": "Context-aware greeting selection",
       "category": "Townsfolk & Dialogue (NPC)",
       "section": "The Watch",
       "starred": false,
@@ -8402,96 +8523,6 @@
   },
   "history": [
     {
-      "time": "2026-11-24T11:35:52",
-      "id": "ART-14",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T11:36:47",
-      "id": "TEC-12",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T11:37:54",
-      "id": "TEC-05",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T11:37:55",
-      "id": "TEC-06",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T11:37:55",
-      "id": "TEC-10",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:30:42",
-      "id": "STA-16",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:30:42",
-      "id": "STA-20",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:30:42",
-      "id": "CMB-34",
-      "from": "awaiting",
-      "to": "approved"
-    },
-    {
-      "time": "2026-11-24T12:30:43",
-      "id": "STA-15",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T12:30:43",
-      "id": "STA-17",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T12:30:43",
-      "id": "STA-18",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T12:30:43",
-      "id": "STA-19",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T12:30:43",
-      "id": "STA-21",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T12:30:43",
-      "id": "STA-22",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
-      "time": "2026-11-24T12:30:43",
-      "id": "CMB-33",
-      "from": "awaiting",
-      "to": "denied"
-    },
-    {
       "time": "2026-11-24T12:30:43",
       "id": "CMB-35",
       "from": "awaiting",
@@ -11400,6 +11431,96 @@
       "id": "WPR-11",
       "from": "awaiting",
       "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:17:36",
+      "id": "WLD-40",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:17:43",
+      "id": "WLD-41",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:17:48",
+      "id": "WLD-42",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:17:56",
+      "id": "WLD-43",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:18:03",
+      "id": "UIX-23",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:18:08",
+      "id": "UIX-24",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:18:22",
+      "id": "UIX-25",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:18:29",
+      "id": "ART-20",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:19:02",
+      "id": "NPC-15",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:19:18",
+      "id": "WLD-39",
+      "from": "awaiting",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:19:59",
+      "id": "WLD-40",
+      "from": "approved",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-26T19:20:02",
+      "id": "WLD-39",
+      "from": "approved",
+      "to": "denied"
+    },
+    {
+      "time": "2026-11-26T19:20:22",
+      "id": "WLD-39",
+      "from": "denied",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:20:24",
+      "id": "WLD-40",
+      "from": "denied",
+      "to": "approved"
+    },
+    {
+      "time": "2026-11-26T19:20:35",
+      "id": "ART-21",
+      "from": "awaiting",
+      "to": "denied"
     }
   ]
 }
