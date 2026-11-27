@@ -1,9 +1,9 @@
-r"""Build game-ready prop meshes from the chosen Meshy previews (ART-07, first part).
+r"""Build game-ready prop meshes from the chosen Meshy or Tripo3D previews (ART-07, first part).
 
     .venv\Scripts\python.exe tools/props/build.py            # every prop in data/props.json
     .venv\Scripts\python.exe tools/props/build.py VIL-01     # just some
 
-For each prop: load its source GLB from assets/meshy/previews/ (or, for "source": "code:<name>",
+For each prop: load its source GLB from assets/models/meshy/ (or, for "source": "code:<name>",
 make it with tools/props/plants.py), scale it to height_m,
 put the pivot at the bottom center, apply 'stretch', and write
 assets/models/props/<key>.glb (a "/" in the key becomes "_"). Front stays +z.

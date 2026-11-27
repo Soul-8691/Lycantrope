@@ -1,6 +1,6 @@
 # LYCANTROPE — Implementation Roadmap
 
-> Python 3.11+ · pygame-ce + moderngl · Meshy (models) · ElevenLabs (voice, SFX, music) · MIT · free on itch.io
+> Python 3.11+ · pygame-ce + moderngl · Meshy / Tripo3D (models) · ElevenLabs (voice, SFX, music) · MIT · free on itch.io
 
 The roadmap refers to ideas by their ID in [IDEAS.md](IDEAS.md) (for example **CMB-04**). When you **deny** an idea in the tracker, the matching tasks are dropped or replaced when the roadmap is next updated. **Awaiting** ideas marked ⭐ are assumed *in* until you say otherwise, because the week can't wait for every decision.
 
@@ -34,7 +34,7 @@ You also need:
 | **M3 Public Demo** | ~Week 8 | The rest of Part I (the waking world): the stone circle and the galley incursions, the Shantak Rider, the second waking-world Crown Shard (Blackmire), the Brackenvale sidequests, relic powers, polish pass, settings and accessibility, devlog push |
 | **M4 Full Game** | Later | Part II (the Dreamlands): the descent through sleep, the two Dreamlands Crown Shards, fallen Serannian restored; then the return, the Crypts, Duskhold, Malgrath, the ending that hints at the unseen hand, NG+ |
 
-**Week 1 is about proving the core.** By Sunday you should have a downloadable build in which Rowan explores four biomes, fights about 12 enemy types, levels up, casts a Rite and kills a boss. **Week 2** finishes the roster to all 20, adds the rest of the voice lines, and tunes balance. With the Meshy and ElevenLabs batches running in the background all week, that is ambitious but achievable. The cut list (§6) says what to drop first if a day overruns.
+**Week 1 is about proving the core.** By Sunday you should have a downloadable build in which Rowan explores four biomes, fights about 12 enemy types, levels up, casts a Rite and kills a boss. **Week 2** finishes the roster to all 20, adds the rest of the voice lines, and tunes balance. With the Meshy/Tripo3D and ElevenLabs batches running in the background all week, that is ambitious but achievable. The cut list (§6) says what to drop first if a day overruns.
 
 ---
 
@@ -47,7 +47,7 @@ You also need:
 | Math | `PyGLM`, `numpy` | glm for per-object math, numpy for bulk work |
 | Models | `pygltflib` (+ `trimesh` for offline tools) | GLB meshes, skins, animations |
 | Images | `Pillow` | Textures, icons, the biome mask |
-| HTTP | `requests` | Meshy and ElevenLabs batch tools (offline only, not shipped) |
+| HTTP | `requests` | Meshy, Tripo3D and ElevenLabs batch tools (offline only, not shipped) |
 | Noise | `numpy` (own implementation) or `opensimplex` | Offline terrain generation |
 | Tests | `pytest` (+ `hypothesis` later) | Formulas, data validation, saves |
 | Build | `pyinstaller`, `butler` | Windows onedir build → itch.io |
@@ -76,7 +76,7 @@ You also need:
      │ subtitles            │  │ hot-reload in dev                │
      └──────────────────────┘  └──────────────────────────────────┘
 
- OFFLINE (tools/, never shipped): Meshy batch → normalize GLB → assets/models
+ OFFLINE (tools/, never shipped): Meshy / Tripo3D → normalize GLB → assets/models
                                   ElevenLabs batch → ffmpeg → assets/audio
                                   worldgen → height.png + biome.png + road.png + meta.json (+ scatter.json)
 ```
@@ -142,7 +142,7 @@ Lycantrope/
 | Waystones: rest, refill flask, partial save, respawn enemies | Done |
 | Day/night cycle with biome music | Done |
 | Goblin, wolf, bear enemies with wander/chase/attack AI | Done |
-| Meshy batch tools, voice design tools, props pipeline | Done |
+| Meshy / Tripo3D batch tools, voice design tools, props pipeline | Done |
 
 ---
 
@@ -183,7 +183,7 @@ These are the gaps that make the game feel incomplete to any tester.
 ### 5.2 World, NPC and AI (todo.txt — second priority)
 
 **Better NPC system: dynamic faces and outfits** *(ART-20, WLD-26, WLD-33–38)*
-- Generate 3–4 alternate head meshes per body type with Meshy (different jaw, nose, brow); character system picks one by NPC seed — same mesh-swap approach as armor pieces (ART-20)
+- Generate 3–4 alternate head meshes per body type with Meshy or Tripo3D (different jaw, nose, brow); character system picks one by NPC seed — same mesh-swap approach as armor pieces (ART-20)
 - Each NPC draws its own mix of outfit pieces (hat, coat, trousers) from the WLD-26 kit on top of a tint and height variation, so a few generated parts give dozens of distinct looks
 - Alternative: whole pre-dressed villager models (WLD-33–38) for the named NPCs where layering causes clipping
 
@@ -230,13 +230,13 @@ These are the gaps that make the game feel incomplete to any tester.
 - Rumble on hit via `pygame.joystick.set_rumble`
 
 **More tree types** *(WLD-39)*
-- 2–3 new Meshy tree variants for Wolfwood (gnarled, dead-but-standing, mossy)
+- 2–3 new Meshy or Tripo3D tree variants for Wolfwood (gnarled, dead-but-standing, mossy)
 - Dense canopy placement to obscure enemy sightlines (addresses ART-21 silhouette goal)
 
 **More monsters** *(ENM roster, MON-\* enemies)*
 - Use the 1,000-credit Meshy reload (§9.1) to build out the enemy roster toward M1's 20
 - Prioritize biome variety: at least 3 distinct enemy types per biome
-- Goblin spellcaster (ENM-07) already approved; queue with the next Meshy batch
+- Goblin spellcaster (ENM-07) already approved; queue with the next Meshy or Tripo3D batch
 
 ---
 
@@ -352,16 +352,16 @@ bandit_pain_01,bandit,"[grunts] Argh — lucky shot!",,2
 
 | Kind | Count | Source |
 |---|---|---|
-| Rowan + the Dawnblade (4 stages) | 1 rigged character + 4 sword models | Meshy image-to-3D or text-to-3D, plus rigging and animation |
-| Enemies | 20 (+ Grimtooth) | Meshy. Humanoids rigged by Meshy; animals and creatures animated in code (ART-04). Until 2026-12-23 there are 1,000 extra Meshy credits: see §9.1 |
-| Props | ~45 ⭐ objects from [OBJECTS.md](OBJECTS.md) (145 listed in total) | Meshy |
+| Rowan + the Dawnblade (4 stages) | 1 rigged character + 4 sword models | Meshy or Tripo3D (image-to-3D or text-to-3D), plus rigging and animation |
+| Enemies | 20 (+ Grimtooth) | Meshy or Tripo3D. Humanoids rigged by Meshy; animals and creatures animated in code (ART-04). Until 2026-12-23 there are 1,000 extra Meshy credits: see §9.1 |
+| Props | ~45 ⭐ objects from [OBJECTS.md](OBJECTS.md) (145 listed in total) | Meshy or Tripo3D |
 | Terrain textures, sky, color-grading LUTs | all | Python scripts and shaders (ART-08, ART-09, ART-12) |
-| Effects (Rites, flames) | ~8 ⭐ meshes from OBJECTS.md §13 | Meshy (ART-19) |
+| Effects (Rites, flames) | ~8 ⭐ meshes from OBJECTS.md §13 | Meshy or Tripo3D (ART-19) |
 | Voice lines | Rowan ~40, enemy barks ~14 × 12 voiced types ≈ 170, ×2–3 takes | ElevenLabs TTS |
 | SFX | ~80 | ElevenLabs Sound Effects |
 | Music | 4 biome tracks + 1 combat layer + 1 boss | ElevenLabs Music (or ambience only) |
 
-Check your Meshy and ElevenLabs credit balances against this list on Day 1. Generate **previews** first and refine only the ones you keep.
+Check your Meshy, Tripo3D and ElevenLabs credit balances against this list on Day 1. Generate **previews** first and refine only the ones you keep.
 
 ### 9.1 Meshy budget until 2026-12-23: 1,000 credits
 
@@ -375,7 +375,7 @@ Credits ran out again on 2026-11-26; 1,000 extra credits are being added now to 
 | 4 | **Per-NPC face variants** (ART-20): 3–4 head variants × existing body types (previews only; texture and swap by script) | ~80 |
 | 5 | **Reserve** for re-rolls, extra animations, Wolfwood props for M2 | ~370 |
 
-Not on Meshy this month: the Bog Ooze, the Wraith and the Mimic Chest can be static meshes or code-driven. Check the running total after each batch — previews first, re-roll only what's clearly wrong.
+Not on Meshy or Tripo3D this month: the Bog Ooze, the Wraith and the Mimic Chest can be static meshes or code-driven. Check the running total after each batch — previews first, re-roll only what's clearly wrong.
 
 ---
 

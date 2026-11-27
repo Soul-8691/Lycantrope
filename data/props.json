@@ -1,7 +1,7 @@
 {
   "_about": [
-    "Prop catalog: which Meshy preview each prop is built from, and how big it is in the world.",
-    "tools/props/build.py turns each 'source' (under assets/meshy/previews/) into assets/models/props/<key>.glb:",
+    "Prop catalog: which Meshy or Tripo3D model each prop is built from, and how big it is in the world.",
+    "tools/props/build.py turns each 'source' (under assets/models/meshy/) into assets/models/props/<key>.glb:",
     "scaled to height_m, pivot at the bottom center, front facing +z. 'stretch' scales x/y/z after that.",
     "A textured source (…/textured/model.glb) keeps its texture. Otherwise the game paints props with 'color' (sRGB 0-1), switching to 'top_color'",
     "above 'top_from' (fraction of the height) for roofs, canopies, hay loads and so on.",

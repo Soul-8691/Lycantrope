@@ -1,6 +1,6 @@
-# LYCANTROPE — Objects to Generate with Meshy
+# LYCANTROPE — Objects to Generate with Meshy or Tripo3D
 
-Every prop, building and item in the world that **Meshy** should make. The idea tracker reads this file too, so you can approve or deny each object the same way as ideas, and the approved ones become the batch list for `tools/meshy/batch.py` (ART-01).
+Every prop, building and item in the world that **Meshy** or **Tripo3D** should make. The idea tracker reads this file too, so you can approve or deny each object the same way as ideas, and the approved ones become the batch list for `tools/meshy/batch.py` (ART-01) or the equivalent Tripo3D web-app / CLI queue.
 
 ---
 
@@ -20,13 +20,13 @@ Every prop, building and item in the world that **Meshy** should make. The idea 
 - **Collider** is the simple shape the game uses for collisions, made by `normalize.py` (ART-07). The Meshy mesh itself is never used for collision.
 - ⭐ = needed for the First Playable (about 45 objects).
 
-**Meshy tips that apply to everything here:**
-- **Trees:** ask for *"chunky clumps of foliage"*, not individual leaves. Meshy makes solid meshes, and clumps read well and stay cheap.
+**Tips for Meshy and Tripo3D:**
+- **Trees:** ask for *"chunky clumps of foliage"*, not individual leaves. Both tools make solid meshes, and clumps read well and stay cheap.
 - **Pose:** one object per prompt, upright, with no base or ground plane unless the object needs one (a statue plinth, for example).
 - **Text and symbols:** avoid writing, logos and readable symbols. Use "carved runes" or "abstract sigils" instead.
 - **Previews:** generate the cheap preview first, refine only the ones you keep, and re-roll anything that clashes with the rest (ART-16 previewer).
 
-**Not made with Meshy** (code makes these, so they're not in this list): terrain, water surfaces, the procedural sky (ART-09), roads and fog. There's no grass and there are no particles (ART-10 and ART-13 were denied); fire and spell effects are Meshy meshes instead (section 13, VFX). Also not Meshy: the dungeon wall/floor kit (ART-11, scripted geometry that Meshy can retexture), and the glow on the Dawnblade (a shader).
+**Not made with Meshy or Tripo3D** (code makes these, so they're not in this list): terrain, water surfaces, the procedural sky (ART-09), roads and fog. There's no grass and there are no particles (ART-10 and ART-13 were denied); fire and spell effects are Meshy meshes instead (section 13, VFX). Also not Meshy: the dungeon wall/floor kit (ART-11, scripted geometry that Meshy can retexture), and the glow on the Dawnblade (a shader).
 
 ---
 
