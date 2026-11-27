@@ -11,11 +11,14 @@ uniform vec3 u_cam;
 uniform sampler2D u_tex;
 uniform int u_has_tex;
 uniform vec3 u_tint;           // per-character colour variation (1 = as modelled)
+uniform int u_flat_shade;      // 1: face normals (low-poly look); 0: smooth vertex normals
 
 void main() {
-    vec3 n = normalize(v_nrm);
     vec3 v = normalize(u_cam - v_world);
-    if (dot(n, v) < 0.0) n = -n;                       // Meshy meshes aren't always closed
+    vec3 n = u_flat_shade == 1
+        ? normalize(cross(dFdx(v_world), dFdy(v_world)))
+        : normalize(v_nrm);
+    if (dot(n, v) < 0.0) n = -n;
 
     vec3 albedo = v_color;
     if (u_has_tex == 1) albedo *= texture(u_tex, v_uv).rgb;

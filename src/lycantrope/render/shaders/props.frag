@@ -14,11 +14,14 @@ uniform vec3 u_cam;
 uniform vec3 u_color;        // linear
 uniform vec3 u_top_color;    // linear, used above u_top_from
 uniform float u_top_from;    // fraction of the model height
+uniform int u_flat_shade;    // 1: face normals (low-poly look); 0: smooth vertex normals
 
 void main() {
-    vec3 n = normalize(v_nrm);
     vec3 v = normalize(u_cam - v_world);
-    if (dot(n, v) < 0.0) n = -n;                       // Meshy meshes can have flipped faces
+    vec3 n = u_flat_shade == 1
+        ? normalize(cross(dFdx(v_world), dFdy(v_world)))
+        : normalize(v_nrm);
+    if (dot(n, v) < 0.0) n = -n;
 
     float top = smoothstep(u_top_from - 0.04, u_top_from + 0.04, v_rel_h);
     vec3 albedo = mix(u_color, u_top_color, top) * v_shade;

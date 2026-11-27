@@ -569,6 +569,7 @@ class App:
             self.follow_camera(alpha)
         eye, _view, _proj, viewproj = self.camera.matrices(w / max(h, 1), alpha)
         env = default_environment(self.fog, self.day.hour, self.day)
+        env["u_flat_shade"] = int(self.settings.flat_shade)
         wire = self.ctx.wireframe
 
         if self.pixel_buf is not None:
