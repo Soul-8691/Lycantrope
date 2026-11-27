@@ -54,6 +54,7 @@ from lycantrope.render.props import PropRenderer
 from lycantrope.render.shaders import ShaderLibrary
 from lycantrope.render.terrain import TerrainRenderer
 from lycantrope.ui.hud import DeathScreen, Hud, LevelPanel
+from lycantrope.render.pixelbuffer import PixelBuffer
 from lycantrope.ui.loading import LoadingScreen
 from lycantrope.ui.overlay import LockReticle, Subtitles, TextOverlay
 from lycantrope.world.lockon import LockOn
@@ -138,6 +139,7 @@ class App:
         self.death = DeathScreen(self.ctx, self.shaders)    # UIX-09
         loading.draw(1.0)
         loading.release()
+        self.pixel_buf = PixelBuffer(self.ctx, settings.pixel_scale) if settings.pixel_scale >= 2 else None
         self.load_seconds = time.perf_counter() - t0
         # no music for benchmarks and screenshots (timing and silence)
         quiet = args.bench or args.screenshot or settings.music_volume <= 0
@@ -562,13 +564,21 @@ class App:
     # ---------------------------------------------------------------- render
     def render(self, alpha: float) -> None:
         w, h = pygame.display.get_window_size()
-        self.ctx.viewport = (0, 0, w, h)
-        self.ctx.clear(0.0, 0.0, 0.0, 1.0, depth=1.0)
         if self.play:
             self.follow_camera(alpha)
         eye, _view, _proj, viewproj = self.camera.matrices(w / max(h, 1), alpha)
         env = default_environment(self.fog, self.day.hour, self.day)
         wire = self.ctx.wireframe
+
+        if self.pixel_buf is not None:
+            self.ctx.screen.use()
+            self.ctx.viewport = (0, 0, w, h)
+            self.ctx.clear(0.0, 0.0, 0.0, 1.0, depth=1.0)
+            self.pixel_buf.use(w, h)
+        else:
+            self.ctx.viewport = (0, 0, w, h)
+            self.ctx.clear(0.0, 0.0, 0.0, 1.0, depth=1.0)
+
         self.ctx.wireframe = False
         self.sky.render(eye, viewproj, env)
         self.ctx.wireframe = wire
@@ -578,6 +588,10 @@ class App:
         self.chars.render(eye, viewproj, env, alpha)
         self.ctx.wireframe = False
         self.water.render(eye, viewproj, env, self.time_s)
+
+        if self.pixel_buf is not None:
+            self.pixel_buf.blit(w, h)
+
         if self.overlay_mode < 2:
             ow, oh = self.overlay.size
             self.overlay.render(w, h, x=w - ow - 10, y=h - oh - 10)
