@@ -307,7 +307,8 @@ class App:
                 elif k == pygame.K_F2:
                     self.fog = not self.fog
                 elif k == pygame.K_F3:
-                    self.overlay_mode = (self.overlay_mode + 1) % 3
+                    self.overlay_mode = (self.overlay_mode + 1) % 4
+                    self.overlay_timer = 0.0
                 elif k == pygame.K_F4 and self.chars.rowan is not None:
                     self.play = not self.play
                     if not self.play:
@@ -595,6 +596,8 @@ class App:
         if self.overlay_mode < 2:
             ow, oh = self.overlay.size
             self.overlay.render(w, h, x=w - ow - 10, y=h - oh - 10)
+        elif self.overlay_mode == 3:
+            self.overlay.render(w, h, x=10, y=10)
         self.subtitles.render(w, h)
         self.draw_reticle(viewproj, w, h, alpha)
         rc = self.chars.rowan_char
@@ -606,7 +609,44 @@ class App:
             self.death.render(w, h, self.chars.down_t, DEATH_RELOAD_S)
         self.ctx.wireframe = wire
 
+    def controls_lines(self) -> list[str]:
+        return [
+            "─── Play ───────────────────────────────────────",
+            "WASD             move  (Shift sprint  ·  Ctrl walk)",
+            "Left click       light attack  (chain ×3)",
+            "Right mouse      block",
+            "R                heavy attack",
+            "Q                cast",
+            "Space            jump  (attack mid-air = plunge)",
+            "C                roll  (press just before landing)",
+            "E / G            flask  /  apple",
+            "L                level-up  (out of combat)",
+            "Tab / mid btn    lock-on  /  release",
+            "Scroll wheel     camera distance",
+            "─── Debug ──────────────────────────────────────",
+            "H / K            hit reaction  /  fall dead",
+            "T                turbo  ×4",
+            "N                noon  ↔  midnight",
+            "[ / ]            −1 / +1 hour",
+            "Ctrl + ↑/↓       zoom in / out  (hold)",
+            "F1               wireframe",
+            "F2               fog toggle",
+            "F3               overlay: full / minimal / off / controls",
+            "F4               free-fly  /  back to Rowan",
+            "F5               save  (play)  ·  reload shaders  (fly)",
+            "F6               terrain debug view",
+            "F7               helmet on/off",
+            "F8               grass on/off",
+            "F9               music on/off",
+            "F10              sound effects on/off",
+            "F11              NPC voices on/off",
+            "F12              screenshot",
+            "Esc              release mouse  /  quit",
+        ]
+
     def overlay_lines(self) -> list[str]:
+        if self.overlay_mode == 3:
+            return self.controls_lines()
         ft = self.frame_times[-60:] or [0.0]
         ms = 1000 * sum(ft) / len(ft)
         p = self.camera.position
