@@ -6,7 +6,6 @@ Helpful:
 .venv\Scripts\python.exe tools\props\build.py VIL-10 VIL-04
 
 To-Do:
-Better flower models/Leaves on the ground
 Beginning plot
 Remap the starting area/nearby/Fast travel/Caves
 Add more monsters (Lovecraft monsters/Goblin spellcasters)/Bandit/Goblin camps
@@ -19,3 +18,4 @@ Upgrade/Forge
 Greetings/Talk (A press)/Dialogue/Voice lines/Choices/Quests
 Controller support
 Shop inventory/Shop
+Better flower models/Leaves on the ground
