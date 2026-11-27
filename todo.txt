@@ -12,12 +12,10 @@ Health and damage/Fall damage/HUD
 Pause/Player inventory/Equip/Looting
 Upgrade/Forge
 Greetings/Talk (A press)/Dialogue/Voice lines/Choices/Quests
-World map/Directions/Caves
 Controller support
 Shop inventory/Shop
 Better NPC system/Get rid of jaw movement/NPC weapons/NPC fights/Guard protect AI/NPCs going home at night
 Beginning plot
 More tree types/Better tree/flower models
 Add more monsters (Lovecraft monsters/Goblin spellcasters)/Bandit/Goblin camps
-Remap the starting area/nearby
-Fast travel
+Remap the starting area/nearby/Fast travel/Caves

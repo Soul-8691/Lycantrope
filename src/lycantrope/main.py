@@ -8,6 +8,7 @@ Left click       light attack (click again during a swing to chain up to three)
 Right mouse      hold to block              R: heavy attack  ·  Q: cast (off hand)
 Space            jump (light attack while dropping: plunge)  ·  C: landing roll (press just before landing)
 E / G            drink from the Lifewater flask / eat an apple  ·  L: level-up screen (out of combat)
+M                world map (wheel or +/- zoom, WASD pan, C centre on Rowan, M or Esc close)
 H / K            debug: hit reaction / fall dead (the death screen, then the last save loads)
 F4 free-fly camera · F7 helmet on/off · F8 grass on/off · F9 music on/off · F10 sound effects on/off ·
 F11 NPC voices on/off · N noon/midnight · [ ] an hour back/forward · Ctrl + Up/Down zoom in/out (hold)
@@ -57,6 +58,7 @@ from lycantrope.ui.hud import DeathScreen, Hud, LevelPanel
 from lycantrope.render.pixelbuffer import PixelBuffer
 from lycantrope.render.hiz import HiZBuffer
 from lycantrope.ui.loading import LoadingScreen
+from lycantrope.ui.navigation import Compass, RegionBanner, WorldMap
 from lycantrope.ui.overlay import LockReticle, Subtitles, TextOverlay
 from lycantrope.world.lockon import LockOn
 from lycantrope.world.actors import TURBO, RowanInput
@@ -138,6 +140,9 @@ class App:
         self.hud = Hud(self.ctx, self.shaders)              # bars, XP, flask, hit arc (UIX-15..22)
         self.levels = LevelPanel(self.ctx, self.shaders)    # level-up screen (UIX-06)
         self.death = DeathScreen(self.ctx, self.shaders)    # UIX-09
+        self.compass = Compass(self.ctx, self.shaders, self.world)      # UIX-02
+        self.region = RegionBanner(self.ctx, self.shaders)
+        self.map = WorldMap(self.ctx, self.shaders, self.world)
         loading.draw(1.0)
         loading.release()
         self.pixel_buf = PixelBuffer(self.ctx, settings.pixel_scale, settings.pixel_smooth) if settings.pixel_scale >= 2 else None
@@ -170,7 +175,7 @@ class App:
         if args.time is not None:
             self.day.set(float(args.time))
         self.turbo = False
-        self.overlay_mode = 2 if args.clean else 0     # 0 full  1 minimal  2 off  (F3 cycles)
+        self.overlay_mode = 2                          # 0 full  1 minimal  2 off  3 controls  (F3 cycles)
         self.captured = False
         self.time_s = 0.0
         self.frame_times: list[float] = []
@@ -286,10 +291,15 @@ class App:
             elif ev.type == pygame.MOUSEMOTION and self.captured:
                 self.mouse_look(ev.rel)
             elif ev.type == pygame.MOUSEWHEEL:
-                if self.play:
+                if self.map.open:
+                    self.map.zoom(ev.y)
+                elif self.play:
                     self.orbit_dist = min(7.0, max(1.8, self.orbit_dist * (0.9 ** ev.y)))
                 else:
                     self.base_speed = min(400.0, max(2.0, self.base_speed * (1.25 ** ev.y)))
+            elif ev.type == pygame.KEYDOWN and self.map.open:
+                x, z, _ = self.nav_position()
+                self.map.key(ev.key, (x, z))
             elif ev.type == pygame.KEYDOWN and self.levels.open:
                 if self.levels.key(ev.key, self.chars.progress) == "apply":
                     if self.chars.level_up(self.levels.plan):
@@ -348,6 +358,12 @@ class App:
                         self.hud.state.note("Can't level up while enemies are after you")
                     elif self.chars.rowan and self.chars.rowan.a.state != "dead":
                         self.levels.toggle()
+                elif k == pygame.K_m:                       # world map (UIX-07)
+                    if self.play and self.chars.chased(30.0):
+                        self.hud.state.note("Can't read the map while enemies are after you")
+                    else:
+                        x, z, _ = self.nav_position()
+                        self.map.toggle((x, z))
                 elif k == pygame.K_e and self.play:
                     self.chars.drink()
                 elif k == pygame.K_g and self.play:
@@ -365,8 +381,10 @@ class App:
         keys = pygame.key.get_pressed()
         self.key_zoom(keys, dt)
         inp = RowanInput()
-        if self.play and self.levels.open:
-            self.pressed.clear()                          # the level-up screen has the keys
+        if self.map.open:
+            self.map.update(dt, keys)
+        if self.play and (self.levels.open or self.map.open):
+            self.pressed.clear()                          # the level-up screen or the map has the keys
         elif self.play:
             inp.move_x = keys[pygame.K_d] - keys[pygame.K_a]
             inp.move_y = keys[pygame.K_w] - keys[pygame.K_s]
@@ -424,12 +442,15 @@ class App:
                     self.chars.events.append(("hurt", 0.0, src, "melee"))
                     self.chars.progress.gain(120)
                     self.chars.events.append(("xp", 120, "Goblin Cutthroat"))
+                if act == "map" and self.ticks == 3:
+                    x, z, _ = self.nav_position()
+                    self.map.toggle((x, z))
                 if act == "levelup" and self.ticks == 3:
                     self.chars.progress.gain(400)
                     self.levels.toggle()
                     self.levels.plan = {"vigor": 2}
             self.ticks += 1
-        else:
+        elif not self.map.open:
             self.fly(dt, keys)
         self.chars.update(inp, self.orbit_yaw, dt)
         if self.music is not None:
@@ -450,7 +471,10 @@ class App:
             if ev[0] == "reload":
                 self.lock.target = None
                 self.levels.open = False
+                self.map.open = False
         self.chars.events.clear()
+        x, z, _ = self.nav_position()
+        self.region.update(dt, self.world.biome_at(x, z))
         rc = self.chars.rowan_char
         if rc is not None and rc.fighter is not None:
             f = rc.fighter
@@ -506,6 +530,14 @@ class App:
             self.reticle.render(w, h, sx, sy, c.t.name, f.hp / f.max_hp, f.trail / f.max_hp)
         else:
             self.reticle.render(w, h, sx, sy, c.t.name)
+
+    def nav_position(self) -> tuple[float, float, float]:
+        """Where the compass and map put you (x, z) and which way you face (heading, actor convention)."""
+        if self.play and self.chars.rowan:
+            a = self.chars.rowan.a
+            return a.x, a.z, a.heading
+        p = self.camera.position
+        return p.x, p.z, math.pi - self.camera.yaw
 
     def music_region(self) -> str:
         """'town' near Brackenvale (with a margin so the edge doesn't flip back and forth), else 'wilds'."""
@@ -613,6 +645,12 @@ class App:
             self.levels.render(w, h, self.chars.progress)
             from lycantrope.render.characters import DEATH_RELOAD_S
             self.death.render(w, h, self.chars.down_t, DEATH_RELOAD_S)
+        x, z, heading = self.nav_position()
+        found = self.chars.progress.discovered
+        if not self.map.open:
+            self.compass.render(w, h, self.camera.yaw, (x, z), found)
+            self.region.render(w, h)
+        self.map.render(w, h, (x, z), heading, found, self.region.tracker.current or "")
         self.ctx.wireframe = wire
 
     def controls_lines(self) -> list[str]:
@@ -627,6 +665,7 @@ class App:
             "C                roll  (press just before landing)",
             "E / G            flask  /  apple",
             "L                level-up  (out of combat)",
+            "M                world map  (wheel zoom · WASD pan · C centre)",
             "Tab / mid btn    lock-on  /  release",
             "Scroll wheel     camera distance",
             "─── Debug ──────────────────────────────────────",
