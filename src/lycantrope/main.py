@@ -43,6 +43,8 @@ from lycantrope.audio.music import start_music
 from lycantrope.audio.sfx import start_sfx
 from lycantrope.core.config import Settings
 from lycantrope.core.paths import SCREENSHOTS
+import lycantrope.core.save as save_sys
+from lycantrope.ui import title as title_screen
 from lycantrope.core.timing import FixedStep
 from lycantrope.render.camera import Camera
 from lycantrope.render.characters import CharacterSystem
@@ -77,9 +79,11 @@ def fit_to_desktop(size: tuple[int, int], margin: float = 0.9) -> tuple[int, int
 
 
 class App:
-    def __init__(self, settings: Settings, args: argparse.Namespace) -> None:
+    def __init__(self, settings: Settings, args: argparse.Namespace,
+                 save_slot: int = 0, save_data: dict | None = None) -> None:
         self.settings = settings
         self.args = args
+        self.save_slot = save_slot
         pygame.mixer.pre_init(44100, -16, 2, 2048)       # a roomy buffer: music without crackles
         pygame.init()
         for attr, val in ((pygame.GL_CONTEXT_MAJOR_VERSION, 3), (pygame.GL_CONTEXT_MINOR_VERSION, 3),
@@ -128,6 +132,10 @@ class App:
         if self.sfx is not None:                          # impacts for hits that play no hit animation
             self.chars.cue_sound = self.sfx.director.cue
 
+        if save_data is not None:
+            self.chars.apply_save(save_data)
+        self.play_time_s_offset = float((save_data or {}).get("play_time_s", 0.0))
+
         self.camera = Camera(fov_deg=settings.fov_deg, far=settings.view_distance_m)
         self.play = self.chars.rowan is not None and not args.cam
         self.orbit_dist = 4.2
@@ -160,6 +168,22 @@ class App:
             a.x, a.z = x, z
             a.y = self.world.height_at(x, z)
             a.save_prev()
+
+    # ------------------------------------------------------------------ save
+    def save(self) -> None:
+        """Write the current slot to disk and sync the in-memory death-rollback."""
+        if not self.chars.rowan:
+            return
+        self.chars.update_spawn()
+        sp = self.chars.spawn_point
+        save_sys.save(
+            self.save_slot,
+            self.chars.progress.snapshot(),
+            {"x": sp[0], "z": sp[1], "heading": sp[2]},
+            self.play_time_s_offset + self.time_s,
+        )
+        self.chars.progress.save()          # keep _saved in sync with the disk
+        self.hud.state.note("Game saved")
 
     # ------------------------------------------------------------------ setup
     def place_camera(self) -> None:
@@ -272,8 +296,11 @@ class App:
                     if not self.play:
                         self.camera.prev_position = glm.vec3(self.camera.position)
                 elif k == pygame.K_F5:
-                    errors = self.shaders.reload()
-                    print("shaders reloaded" if not errors else "shader errors:\n" + "\n".join(errors))
+                    if self.play:
+                        self.save()
+                    else:
+                        errors = self.shaders.reload()
+                        print("shaders reloaded" if not errors else "shader errors:\n" + "\n".join(errors))
                 elif k == pygame.K_F6:
                     self.terrain.debug_view = (self.terrain.debug_view + 1) % 3
                 elif k == pygame.K_F7:
@@ -578,7 +605,7 @@ class App:
             lines += ["WASD move  Shift sprint  Ctrl walk  Space jump  T turbo  Ctrl+Up/Down zoom",
                       "LMB attack  RMB block  R heavy  Q cast  Tab/MMB lock on  F sheathe  C roll  E flask  G eat  L level",
                       "H hit  K die  Esc mouse",
-                      "F2 fog  F3 overlay  F4 fly  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices  N day/night  [ ] hour"]
+                      "F2 fog  F3 overlay  F4 fly  F5 save  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices  N day/night  [ ] hour"]
         else:
             lines += ["WASD QE fly  Shift/Ctrl speed  T turbo  wheel base speed  Ctrl+Up/Down zoom  F4 back to Rowan",
                       "F1 wire  F2 fog  F3 hide overlay  F5 shaders  F6 debug  F9 music  F10 sfx  F11 voices  F12 shot",
@@ -674,8 +701,29 @@ def run(argv: list[str] | None = None) -> int:
     ap.add_argument("--act", help="testing: what Rowan does from the start: run, sprint, walk, light, "
                                   "combo, heavy, block, cast, hit, die, lock, fight, hurt, levelup; "
                                   "or 'teleport:X,Z[:action]' to start elsewhere")
+    ap.add_argument("--slot", type=int, default=None, help="bypass title screen and load slot N (0-2)")
     args = ap.parse_args(sys.argv[1:] if argv is None else argv)
-    return App(Settings.load(), args).run()
+    settings = Settings.load()
+
+    save_slot = 0
+    save_data = None
+
+    # bypass the title screen for headless modes and explicit --slot
+    headless = bool(args.bench or args.screenshot)
+    if args.slot is not None:
+        save_slot = args.slot
+        save_data = save_sys.load(save_slot)
+    elif not headless:
+        pygame.display.init()
+        pygame.font.init()
+        action, save_slot = title_screen.run()
+        if action == "quit":
+            pygame.display.quit()
+            return 0
+        if action == "load":
+            save_data = save_sys.load(save_slot)
+
+    return App(settings, args, save_slot=save_slot, save_data=save_data).run()
 
 
 if __name__ == "__main__":

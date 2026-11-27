@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "timestamp": "2026-11-26T20:55:58",
+  "play_time_s": 20.550000000000114,
+  "progress": {
+    "level": 20,
+    "attrs": {
+      "might": 22,
+      "dexterity": 20,
+      "vigor": 35,
+      "endurance": 22,
+      "faith": 14,
+      "fortune": 12
+    },
+    "xp": 0,
+    "flask": 3,
+    "food": {
+      "apple": 3
+    },
+    "discovered": [
+      "Brackenvale Village"
+    ],
+    "armor": [
+      "arm_01",
+      "trs_01",
+      "leg_01"
+    ],
+    "shield": null
+  },
+  "spawn": {
+    "x": 10.237496999505462,
+    "z": 1465.740950468666,
+    "heading": 3.141592653589793
+  }
+}

@@ -929,6 +929,28 @@ class CharacterSystem:
         self.rowan.attack_rate = d["recovery"] / 100.0
         self.combat.crit_chance = d["crit_chance"]
 
+    def update_spawn(self) -> None:
+        """Lock in Rowan's current position as the death-respawn point."""
+        if self.rowan is not None:
+            ra = self.rowan.a
+            self.spawn_point = (ra.x, ra.z, ra.heading)
+
+    def apply_save(self, data: dict) -> None:
+        """Restore progress and position from a loaded save dict (TEC-16)."""
+        prog = data.get("progress")
+        if prog:
+            self.progress.restore(prog)
+        sp = data.get("spawn")
+        if sp:
+            self.spawn_point = (float(sp["x"]), float(sp["z"]), float(sp.get("heading", 0.0)))
+        self.setup_rowan()
+        if self.rowan is not None:
+            ra = self.rowan.a
+            ra.x, ra.z, ra.heading = self.spawn_point
+            ra.y = self.world.height_at(ra.x, ra.z)
+            ra.save_prev()
+        self.progress.save()   # keep in-memory _saved in sync with what we just loaded
+
     def level_up(self, plan: dict[str, int]) -> bool:
         """Spend XP on attribute points (the level-up screen, STA-02/24)."""
         rc = self.rowan_char

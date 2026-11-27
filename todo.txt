@@ -19,7 +19,6 @@ Controller support
 Shop inventory/Shop
 NPC weapons/NPC fights/Guard protect AI
 Beginning plot
-New games/Save files
 Better NPC system
 More tree types
 Add more monsters (Lovecraft monsters/Goblin spellcasters)
