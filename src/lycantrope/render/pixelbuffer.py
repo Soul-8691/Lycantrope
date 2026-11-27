@@ -28,9 +28,10 @@ void main() { out_color = texture(u_scene, v_uv); }
 
 
 class PixelBuffer:
-    def __init__(self, ctx: moderngl.Context, scale: int) -> None:
+    def __init__(self, ctx: moderngl.Context, scale: int, smooth: bool = False) -> None:
         self.ctx = ctx
         self.scale = max(2, scale)
+        self._smooth = smooth
         self._sw = self._sh = 0
         self._color: moderngl.Texture | None = None
         self._depth: moderngl.Renderbuffer | None = None
@@ -47,7 +48,8 @@ class PixelBuffer:
             self._depth.release()
         pw, ph = max(1, sw // self.scale), max(1, sh // self.scale)
         self._color = self.ctx.texture((pw, ph), 4)
-        self._color.filter = (moderngl.NEAREST, moderngl.NEAREST)
+        f = moderngl.LINEAR if self._smooth else moderngl.NEAREST
+        self._color.filter = (f, f)
         self._depth = self.ctx.depth_renderbuffer((pw, ph))
         self._fb = self.ctx.framebuffer([self._color], self._depth)
         self._sw, self._sh = sw, sh

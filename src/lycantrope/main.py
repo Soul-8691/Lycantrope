@@ -139,7 +139,7 @@ class App:
         self.death = DeathScreen(self.ctx, self.shaders)    # UIX-09
         loading.draw(1.0)
         loading.release()
-        self.pixel_buf = PixelBuffer(self.ctx, settings.pixel_scale) if settings.pixel_scale >= 2 else None
+        self.pixel_buf = PixelBuffer(self.ctx, settings.pixel_scale, settings.pixel_smooth) if settings.pixel_scale >= 2 else None
         self.load_seconds = time.perf_counter() - t0
         # no music for benchmarks and screenshots (timing and silence)
         quiet = args.bench or args.screenshot or settings.music_volume <= 0

@@ -16,6 +16,7 @@ class Settings:
     low_latency: bool = False         # glFinish after swap: less mouse lag, but prevents CPU-GPU overlap
     fov_deg: float = 70.0
     pixel_scale: int = 1            # 1 = native; 2+ = pixelated (render at 1/N, upscale nearest)
+    pixel_smooth: bool = False      # True: bilinear upscale (smooth); False: nearest (hard pixels)
     flat_shade: bool = False        # flat-shaded facets on characters and props (low-poly look)
     mouse_sensitivity: float = 0.003
     invert_y: bool = False
