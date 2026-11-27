@@ -1054,6 +1054,9 @@ class CharacterSystem:
             dmg, stumble = landing(drop, f.max_hp, rolled, depth, plunged, self.combat_cfg)
             if rolled and drop >= fc["stumble_m"]:
                 self.events.append(("roll",))
+                if a.has("roll"):
+                    a.state = "roll"
+                    a.play("roll", restart=True)
         else:
             dmg, stumble = landing(drop, f.max_hp, False, depth, False, self.combat_cfg)
             dmg *= f.weight                          # heavy beasts take more (CMB-43)

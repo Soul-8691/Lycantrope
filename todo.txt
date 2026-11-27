@@ -20,7 +20,6 @@ Shop inventory/Shop
 NPC weapons/NPC fights/Guard protect AI
 Beginning plot
 New games/Save files
-Roll animation (in-game)
 Better NPC system
 Add more monsters (Lovecraft monsters/Goblin spellcasters)
 Bandit/Goblin camps

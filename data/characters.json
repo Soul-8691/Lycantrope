@@ -113,6 +113,10 @@
           "loop": true,
           "move_speed": 0.89,
           "mirror": true
+        },
+        "roll": {
+          "file": "HER-09/v1/rig/motion_roll.glb",
+          "clip": 0
         }
       },
       "speeds": {

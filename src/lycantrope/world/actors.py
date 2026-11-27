@@ -276,7 +276,7 @@ class Rowan:
                     a.play(nxt, restart=True, rate=self.attack_rate)
                 else:
                     a.state, self.queued = "move", False
-        elif a.state in ("cast", "hit", "stumble") and a.clip_done():
+        elif a.state in ("cast", "hit", "stumble", "roll") and a.clip_done():
             a.state = "move"
 
         # movement
@@ -284,7 +284,9 @@ class Rowan:
         self.sprinting = False
         locked = inp.face is not None and not self.swimming and not inp.sprint   # sprinting breaks the strafe
         travel = a.heading
-        if a.state in ("move", "swim"):
+        if a.state == "roll":
+            target = a.speed                            # carry through landing speed; decelerate naturally
+        elif a.state in ("move", "swim"):
             mx, my = inp.move_x, inp.move_y
             m = math.hypot(mx, my)
             if m > 1e-3:
