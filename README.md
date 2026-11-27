@@ -256,7 +256,7 @@ Roughly in priority order. All of these have approved design entries in the idea
 - Pause menu, inventory and equipment — open inventory, swap armour pieces and weapons, quick-slot items.
 - Item pickup — press [E] near a chest or dropped item; a brief pop-in shows what you got.
 - NPC talk trigger — press [E] to speak; first-approach lines for key characters trigger automatically.
-- Quest log — a one-page list in the pause menu, populated by NPC rumours. No map pins; remember where to go.
+- Quest log — a one-page list in the pause menu, populated by NPC rumours. Pin one entry at a time to show a compass marker on the HUD, Skyrim-style.
 
 **Brackenvale:**
 - Jory's merchant stall — buy consumables, sell found gear. Closes when Jory goes home.
