@@ -741,6 +741,9 @@ class CharacterSystem:
         self.spawn(load_spawns())
         self._version = -1
         self.drawn = 0
+        self._joint_buf = np.zeros((MAX_JOINTS, 4, 4), np.float32)   # reused per character per frame
+        self._cull_rad: np.ndarray | None = None   # cached culling radii; rebuilt only on roster change
+        self._cull_rad_n = 0
         # health, damage and experience (STA-24..28, CMB-37..45)
         from lycantrope.world.combat import Combat
         from lycantrope.world.stats import Progress, config, enemy_fighter
@@ -1146,21 +1149,6 @@ class CharacterSystem:
         if rc is not None and rc.fighter is not None:
             rc.fighter.update(dt, regen=ra.state not in ("attack", "block") and not self.rowan.sprinting,
                               cfg=self.combat_cfg)
-        for c in self.chars:
-            f = c.fighter
-            if f is not None and c is not rc and (f.since_hurt < 10.0 or f.heals):   # untouched: nothing to do
-                f.update(dt, cfg=self.combat_cfg)
-        for c in self.chars:                                   # jaws follow the loudness of the line
-            if c.talk_env is not None:
-                i = int(c.talk_t * 30.0)
-                if i >= len(c.talk_env):
-                    c.talk_env, target = None, 0.0
-                else:
-                    target = float(c.talk_env[i])
-                c.talk_t += dt
-            else:
-                target = 0.0
-            c.jaw_open += (target - c.jaw_open) * min(1.0, dt * 25.0)
         self.spells.update(dt)
         self.rite.update(dt)
         self._discover_t -= dt
@@ -1170,14 +1158,30 @@ class CharacterSystem:
         lim = self.world.half - 5
         for c in self.chars:
             a = c.actor
+            # enemy fighter regen (Rowan's already handled above, skip him here)
+            f = c.fighter
+            if f is not None and c is not rc and (f.since_hurt < 10.0 or f.heals):
+                f.update(dt, cfg=self.combat_cfg)
+            # jaw follows NPC voice line loudness
+            if c.talk_env is not None:
+                ji = int(c.talk_t * 30.0)
+                if ji >= len(c.talk_env):
+                    c.talk_env, jaw_target = None, 0.0
+                else:
+                    jaw_target = float(c.talk_env[ji])
+                c.talk_t += dt
+            else:
+                jaw_target = 0.0
+            c.jaw_open += (jaw_target - c.jaw_open) * min(1.0, dt * 25.0)
+            # physics: swim, fly, ground snap, collision
             if a is ra and self.rowan.swimming:                # float with the water at his back
                 if self.colliders is not None:
                     a.x, a.z, _ = self.colliders.push_out(a.x, a.z, a.radius)
                 a.x = min(max(a.x, -lim), lim)
                 a.z = min(max(a.z, -lim), lim)
                 level = c.t.float_m.get(a.anim.clip, c.t.float_m.get("swim", 1.1)) * c.t.scale * c.size
-                target = self.world.water_at(a.x, a.z) - level
-                a.y += (target - a.y) * min(1.0, dt * 5.0)
+                wl_target = self.world.water_at(a.x, a.z) - level
+                a.y += (wl_target - a.y) * min(1.0, dt * 5.0)
                 a.y = max(a.y, self.world.height_at(a.x, a.z))
                 a.advance(dt)
                 continue
@@ -1194,7 +1198,9 @@ class CharacterSystem:
                 if hit and c.brain is not None:
                     c.brain.bumped += dt
             # only Rowan swims: everyone else wades, and deeper water stops them at the edge
-            if a is not ra and self.world.water_depth(a.x, a.z) > WADE_DEPTH * (c.t.height / 1.75) and                     self.world.water_depth(a.x, a.z) > self.world.water_depth(a.px, a.pz):
+            wd = self.world.water_depth(a.x, a.z)
+            if a is not ra and wd > WADE_DEPTH * (c.t.height / 1.75) and \
+                    wd > self.world.water_depth(a.px, a.pz):
                 a.x, a.z = a.px, a.pz
                 a.speed = 0.0
                 if c.brain is not None:
@@ -1322,7 +1328,11 @@ class CharacterSystem:
         e = np.array([eye.x, eye.y, eye.z])
         # cull everyone at once (one numpy pass), then only loop over who's on screen
         pos = np.array([(c.actor.x, c.actor.y + c.t.height * 0.5, c.actor.z) for c in self.chars])
-        rad = np.array([max(c.t.height, 1.0) * 1.2 for c in self.chars])
+        n = len(self.chars)
+        if self._cull_rad_n != n:
+            self._cull_rad = np.array([max(c.t.height, 1.0) * 1.2 for c in self.chars])
+            self._cull_rad_n = n
+        rad = self._cull_rad
         vis = np.linalg.norm(pos - e, axis=1) <= DRAW_DISTANCE
         vis &= ((pos @ planes[:, :3].T + planes[:, 3]) >= -rad[:, None] - 1.0).all(axis=1)
         drawn = 0
@@ -1354,7 +1364,8 @@ class CharacterSystem:
                 if t.cast_hand >= 0:
                     self.rite.hand = tuple((model @ W[t.cast_hand].astype(float))[:3, 3])
             palette = np.einsum("jab,jbc->jac", W, t.skel.ibm)
-            buf = np.zeros((MAX_JOINTS, 4, 4), np.float32)
+            buf = self._joint_buf
+            buf[:] = 0.0
             buf[:len(palette)] = palette
             if t.jaw >= 0:                                     # the jaw hangs off the head
                 buf[t.jaw] = palette[t.jaw_of] @ jaw_matrix(t, c.jaw_open)

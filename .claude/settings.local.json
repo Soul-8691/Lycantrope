@@ -7,7 +7,11 @@
       "Bash(sed -n '344,370p' IDEAS.md)",
       "Bash(python -c \"import json; d=json.load\\(open\\('c:/Users/pswan/Downloads/Other/Lycantrope/data/world/materials.json'\\)\\); print\\(json.dumps\\({k:v for k,v in d.items\\(\\) if k not in ['layers']}, indent=2\\)\\); print\\('layers:', [l['name'] for l in d['layers']]\\)\")",
       "Bash(python -c \"import json; d=json.load\\(open\\('c:/Users/pswan/Downloads/Other/Lycantrope/data/world/meta.json'\\)\\); sp=d.get\\('splat',{}\\); print\\('channels:', sp.get\\('channels'\\)\\); print\\('keys:', list\\(d.keys\\(\\)\\)\\)\")",
-      "Bash(.venv/Scripts/python.exe -c ' *)"
+      "Bash(.venv/Scripts/python.exe -c ' *)",
+      "Bash(.venv/Scripts/python.exe tools/idea_tracker.py summary)",
+      "Bash(.venv/Scripts/python.exe -c \"import json; d=json.load\\(open\\('ideas_status.json'\\)\\); print\\('ART-21:', d['ideas'].get\\('ART-21',{}\\)\\)\")",
+      "Bash(.venv/Scripts/python.exe -c \"import json; d=json.load\\(open\\('ideas_status.json'\\)\\); [print\\(k, d['ideas'][k]['status']\\) for k in ['UIX-23','UIX-24','UIX-25']]\")",
+      "Bash(.venv\\\\Scripts\\\\python.exe -m pytest tests/ -q --tb=short)"
     ]
   }
 }

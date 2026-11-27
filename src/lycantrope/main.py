@@ -138,7 +138,7 @@ class App:
 
         self.camera = Camera(fov_deg=settings.fov_deg, far=settings.view_distance_m)
         self.play = self.chars.rowan is not None and not args.cam
-        self.orbit_dist = 4.2
+        self.orbit_dist = 2.8
         self.orbit_pitch = -0.22
         self.orbit_yaw = math.pi - self.chars.rowan.a.heading if self.chars.rowan else 0.0
         self.place_camera()
@@ -151,7 +151,7 @@ class App:
         if args.time is not None:
             self.day.set(float(args.time))
         self.turbo = False
-        self.show_overlay = not args.clean            # --clean: screenshots without the debug text
+        self.overlay_mode = 2 if args.clean else 0     # 0 full  1 minimal  2 off  (F3 cycles)
         self.captured = False
         self.time_s = 0.0
         self.frame_times: list[float] = []
@@ -268,7 +268,7 @@ class App:
                 self.mouse_look(ev.rel)
             elif ev.type == pygame.MOUSEWHEEL:
                 if self.play:
-                    self.orbit_dist = min(12.0, max(1.8, self.orbit_dist * (0.9 ** ev.y)))
+                    self.orbit_dist = min(7.0, max(1.8, self.orbit_dist * (0.9 ** ev.y)))
                 else:
                     self.base_speed = min(400.0, max(2.0, self.base_speed * (1.25 ** ev.y)))
             elif ev.type == pygame.KEYDOWN and self.levels.open:
@@ -290,7 +290,7 @@ class App:
                 elif k == pygame.K_F2:
                     self.fog = not self.fog
                 elif k == pygame.K_F3:
-                    self.show_overlay = not self.show_overlay
+                    self.overlay_mode = (self.overlay_mode + 1) % 3
                 elif k == pygame.K_F4 and self.chars.rowan is not None:
                     self.play = not self.play
                     if not self.play:
@@ -456,7 +456,7 @@ class App:
             return
         k = math.exp(-1.1 * dt * way)                    # about 3x per second held
         if self.play:
-            self.orbit_dist = min(12.0, max(1.8, self.orbit_dist * k))
+            self.orbit_dist = min(7.0, max(1.8, self.orbit_dist * k))
         else:
             self.camera.fov_deg = min(100.0, max(10.0, self.camera.fov_deg * k))
 
@@ -563,8 +563,9 @@ class App:
         self.chars.render(eye, viewproj, env, alpha)
         self.ctx.wireframe = False
         self.water.render(eye, viewproj, env, self.time_s)
-        if self.show_overlay:
-            self.overlay.render(w, h, y=10 + (self.hud.height + 10 if self.play else 0))
+        if self.overlay_mode < 2:
+            ow, oh = self.overlay.size
+            self.overlay.render(w, h, x=w - ow - 10, y=h - oh - 10)
         self.subtitles.render(w, h)
         self.draw_reticle(viewproj, w, h, alpha)
         rc = self.chars.rowan_char
@@ -580,9 +581,16 @@ class App:
         ft = self.frame_times[-60:] or [0.0]
         ms = 1000 * sum(ft) / len(ft)
         p = self.camera.position
+        fps_str = f"{1000 / max(ms, 1e-3):5.0f} fps  {ms:4.1f} ms"
+        if self.overlay_mode == 1:                    # minimal: fps + position only
+            if self.play and self.chars.rowan:
+                a = self.chars.rowan.a
+                return [fps_str, f"x {a.x:7.1f}  z {a.z:7.1f}"]
+            return [fps_str, f"x {p.x:7.1f}  z {p.z:7.1f}  y {p.y:5.1f}"]
+        # full mode
         st = self.terrain.stats
         counts = self.chars.counts()
-        lines = [f"LYCANTROPE   {1000 / max(ms, 1e-3):5.0f} fps  {ms:5.1f} ms"
+        lines = [f"LYCANTROPE   {fps_str}"
                  + f"   {self.day.label()}{' night' if self.day.is_night() else ''}"
                  + (f"   TURBO x{TURBO:g}" if self.turbo else "") + ("" if self.fog else "   fog off")
                  + self.sound_flags()]
@@ -601,15 +609,6 @@ class App:
             f"characters {self.chars.drawn} drawn of {sum(counts.values())}   " + self.count_summary(counts),
             f"terrain {st.triangles / 1000:.0f}k tris   props {self.props.drawn}/{self.props.count}",
         ]
-        if self.play:
-            lines += ["WASD move  Shift sprint  Ctrl walk  Space jump  T turbo  Ctrl+Up/Down zoom",
-                      "LMB attack  RMB block  R heavy  Q cast  Tab/MMB lock on  F sheathe  C roll  E flask  G eat  L level",
-                      "H hit  K die  Esc mouse",
-                      "F2 fog  F3 overlay  F4 fly  F5 save  F7 helmet  F8 grass  F9 music  F10 sfx  F11 voices  N day/night  [ ] hour"]
-        else:
-            lines += ["WASD QE fly  Shift/Ctrl speed  T turbo  wheel base speed  Ctrl+Up/Down zoom  F4 back to Rowan",
-                      "F1 wire  F2 fog  F3 hide overlay  F5 shaders  F6 debug  F9 music  F10 sfx  F11 voices  F12 shot",
-                      "N day/night  [ ] hour"]
         return lines
 
     def count_summary(self, counts: dict[str, int]) -> str:

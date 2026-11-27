@@ -24,3 +24,4 @@ More tree types
 Add more monsters (Lovecraft monsters/Goblin spellcasters)
 Bandit/Goblin camps
 Remap the starting area/nearby
+Fast travel

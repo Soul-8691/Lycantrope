@@ -246,7 +246,6 @@ These are the new ideas added 2026-11-26. Work through them once the todo.txt it
 
 | Idea | What |
 |---|---|
-| ART-21 | Silhouette quality pass on key assets |
 | WLD-42 | More house types in Brackenvale |
 | NPC-15 | Context-aware greeting selection (also feeds §5.2 above) |
 | UIX-23 | Closer default camera orbit distance |
