@@ -125,101 +125,132 @@ Lycantrope/
 
 ---
 
-## 5. Week 1, day by day
+## 5. Current state and next steps
 
-Each day has a **code track** and an **asset kitchen** track (batch jobs that run in the background while you code). Day 1 is Monday 23 November. Day 4 falls on US Thanksgiving, so the plan counts days rather than dates and you can shift it.
+### 5.0 What's built (as of 2026-11-26)
 
-### Day 1: Foundations, and start the kitchen
-**Code**
-- [ ] `git init`, `.gitignore` (venv, `.env`, `__pycache__`, `*.tmp`), `git lfs track "*.glb" "*.png" "*.ogg" "*.wav" "*.npy"`, MIT `LICENSE`, README stub. *(REL-01, REL-05, REL-06)*
-- [ ] venv + `pip install pygame-ce moderngl PyGLM numpy pygltflib Pillow pytest`. *(TEC-01 to TEC-03)*
-- [ ] `main.py`: pygame window with an OpenGL 3.3 core context, a moderngl context, a fixed 60 Hz loop with an accumulator and interpolation alpha, and a debug text overlay. *(TEC-04, TEC-17)*
-- [x] `tools/worldgen/terrain.py` + `data/world/layout.json`: 4 × 4 km world (4096², 1 m/px) with no concept art, built from a layout file. It covers six biomes plus the World's Edge, per-biome noise recipes, the cliff-walled Duskhold crag (about 520 m across), erosion, five graded roads, and flat pads for 11 Waystones and 14 landmarks. Outputs `assets/world/height.png` (16-bit), `biome.png`, `road.png`, `meta.json`, `preview.png`. Tested in `tests/test_worldgen.py`. *(WLD-01, WLD-13)*
-- [x] `render/terrain.py`: 64 m chunks drawn as 4 instanced LOD levels with skirts and frustum culling. Splat, slope, snowline, road and shoreline blending of 8 procedural ground textures (`tools/worldgen/textures.py`), plus sky, height fog and water. Free-fly and walk camera, debug overlay, shader hot-reload, `--screenshot`/`--bench`. About 5 ms per frame at 1600×900 on Iris Xe. *(TEC-10, ART-08, TEC-02, TEC-04, TEC-17)*
+| System | Status |
+|---|---|
+| Terrain: 4-biome map, LOD, splat textures, sky, fog, water | Done |
+| Brackenvale village: 19 untextured props, fences, roads, day/night | Done |
+| Third-person orbit camera, lock-on, strafing | Done |
+| Rowan movement: walk/run/sprint, jump, fall damage (4 m safe, 15 m lethal), stumble, landing roll | Done |
+| GPU skinning with 0.15 s crossfades; Rowan's full animation set including roll | Done |
+| Stat model: 6 attributes → HP, Stamina, EquipLoad, Crit, RecoverySpeed, RadiantMult, RiteCooldown | Done |
+| Per-type armor (slash/strike/pierce/fire/frost/radiant) and damage formula | Done |
+| Use-based skills skeleton with perk milestones | Done |
+| Waystones: rest, refill flask, partial save, respawn enemies | Done |
+| Day/night cycle with biome music | Done |
+| Goblin, wolf, bear enemies with wander/chase/attack AI | Done |
+| Meshy batch tools, voice design tools, props pipeline | Done |
 
-**Asset kitchen**
-- [x] `tools/meshy/batch.py`: text-to-3D **previews** for approved IDs (dry run by default, typed credit confirmation, named sets in `sets.json`, task log in `assets/meshy/tasks.json`, `--model meshy-t2.5` smart topology for hard-edged props, `--full-detail` for foliage). Plus `reduce.py` (local triangle reduction in steps) and `thumbnail.py`. *(ART-01, ART-02, ART-06)*
-- [ ] Texturing step: check whether Meshy Retexture accepts our own reduced meshes (10 credits each), else refine the kept previews. Only for previews the user picks.
-- [x] Static props in the game: `tools/props/build.py` (scale, pivot, `data/props.json` catalog), `render/props.py` (GLB loading, one instanced draw per prop, culling), `world/props.py` + `data/world/placements.json` (hand-placed items, fence/wall lines with gates, ring scatter). Brackenvale Village and its crossroads are placed with 19 untextured Meshy previews. *(WLD-12, ART-07)*
-- [ ] Queue batch 1: **Rowan**, **the Dawnblade** (4 stages, ART-17), Bandit, Goblin, Skeleton, Orc, plus ~12 props (3 tree types per biome, rocks, Waystone, chest, ruined wall).
-- [ ] `tools/voice/design_voices.py`: create Rowan and 6 enemy voices with Voice Design. Save `data/voices.json`. *(AUD-02)*
+---
 
-**Done when:** you can fly over a four-biome landscape at 60 fps, and the first Meshy jobs are running.
+### 5.1 Core loops (todo.txt — first priority)
 
-### Day 2: Rowan moves
-**Code**
-- [ ] Capsule character controller: ground snapping on the heightfield, slope limit, gravity, jump and auto-jump at ledges, run and sprint. *(TEC-09, WLD-19)*
-- [ ] Third-person orbit camera with terrain collision, and lock-on with target switching. *(CMB-01, CMB-02)*
-- [ ] Stamina and a dodge roll with i-frames, plus the input buffer. *(CMB-03, CMB-06, CMB-15)*
-- [x] `render/gltf.py`: GLB meshes, textures, skins and clips (baked to 30 fps, played in place, retargeted between Meshy biped rigs by joint name). Armor fitting per ARS-05 (Rowan's skin weights copied to the outfit, split into head/arms/torso/legs). *(ART-07, TEC-08)*
-- [x] First pass of play mode: third-person orbit camera, camera-relative movement with walk/run/sprint, light ×3 chain, heavy, held block, cast; Rowan wears chainmail set 05 with the Rusty Dawnblade and the Tome of Wards. 10 goblins, 20 wolves and 5 bears around Brackenvale wander, chase, circle and swing (no hitboxes, stats or damage yet). Still to do from this day: capsule controller (slopes, jump), camera collision with props, lock-on, stamina.
-- [ ] Controller support through `pygame.joystick`. *(UIX-11)*
+These are the gaps that make the game feel incomplete to any tester.
 
-**Asset kitchen**
-- [ ] Meshy **rigging + animation** for Rowan: idle, walk, run, sprint, roll, light ×3, heavy ×2, block, cast (off hand), hit, death, crossbow aim and shoot. Also queue the Werewolf enemy's rig (shared with Grimtooth). Check the action names in Meshy's current animation library. *(ART-03)*
-- [ ] Batch 2 models: Wolf, Rat, Spider, Ooze, Lizardfolk, Troll, Wraith, Yeti, Ogre, Werewolf, Dread Knight, Mimic, Necromancer, Grimtooth.
-- [ ] `tools/voice/generate.py` + `data/lines.csv`: Rowan's ~40 lines and the first enemy barks. *(AUD-01, AUD-03, AUD-04)*
+**New games / Save files** *(UIX-27, TEC-16)*
+- Full save/load JSON: slot system (up to 3 slots), version number, all player state
+- Title screen: New Game, Continue, Load, Quit
+- In-game: Save at Waystones, quit-to-menu, load on death
 
-**Done when:** Rowan runs, rolls and locks onto a training dummy, and it feels good on both keyboard and mouse and on a gamepad.
+**Pause / Inventory / Equip / Loot** *(UIX-07, UIX-26)*
+- Pause menu: Resume, Save, Settings, Quit
+- Inventory grid: 20-slot backpack + equipped slots (head, chest, arms, legs, mainhand, offhand)
+- Item highlight on E-press, loot from downed enemies, chest interaction
+- Equip/unequip with live stat delta preview
 
-### Day 3: Skinning and the combat core
-**Code**
-- [x] GPU skinning: up to 4 weights per vertex, a 64-joint palette uniform, baked clips with linear interpolation and 0.15 s crossfades. In-place animations, so movement comes from code. *(TEC-08)*
-- [ ] `data/attacks/*.json` frame data and `combat/attacks.py` running light and heavy strings with cancel windows. *(CMB-04, CMB-16)*
-- [ ] Swept-capsule hitboxes against hurtboxes, and damage resolution. *(CMB-17, CMB-18)*
-- [ ] Hit feel: hitstop, camera shake, FOV punch and impact SFX hooks on the event bus (no sparks). *(CMB-14, TEC-06)*
-- [ ] Block, guard break, poise and stagger. *(CMB-07, CMB-10)* Rowan's block uses `motion_shield_guard.glb` (custom Meshy motion), with a code-side pose override that raises the left upper arm and forearm so the buckler sits level in front of the face. Meshy's library has no shield guard, and the generated one holds the arm at waist height. Keep the raise angle in data so it can be tuned against the block hit check.
-- [ ] The first real enemy: **Bandit Brigand** running the `melee-basic` FSM (idle → alert → approach → strafe → attack → recover, plus stagger and dead). *(ENM-04, TEC-13)*
+**Greetings / Talk / Dialogue / Choices / Quests** *(NPC-18, UIX-28, NPC-15, NPC-02)*
+- A-press talk trigger with camera pull-in
+- Branching dialogue with 1–4 choice prompts; trees in `data/dialogue/*.json`
+- Quest log: add entry, track active, mark resolved; pin one entry to show compass marker on HUD (UIX-28)
+- Context-aware greeting selection based on time, weather, prior interaction (NPC-15)
+- Revise Brackenvale NPC lines for Aldmoor's anxious-but-holding-together tone (RPG_CLONES.md §1.2)
 
-**If skinning takes more than half a day:** park it and keep going with a rigid "bind pose plus procedural lean and bob" placeholder so combat work isn't blocked. Come back to skinning on Day 5.
+**Upgrade / Forge** *(CMB-24, NPC-07)*
+- Smith NPC Gerda Vane in Brackenvale; talk trigger, then forge UI
+- Weapon upgrade: spend brightstone to restore the weapon's edge (framing per RPG_CLONES.md §2.4; not "craft a better one")
+- 3-tier upgrade path per weapon; show damage delta before confirming
 
-**Done when:** you can duel a bandit that blocks, punishes greedy attacks, and staggers under heavy hits.
+**Shop / Shop inventory** *(NPC-19)*
+- Merchant NPC with 8-slot rotating stock
+- Currency: copper shards from enemy loot, gold from quest rewards
+- Buy/sell interface from inventory grid
 
-### Day 4: Stats, XP, leveling and the roster engine
-**Code**
-- [ ] `rpg/stats.py`: attributes → derived stats with soft caps (§7.2), and `rpg/skills.py`: skills that improve with use, with perks every 10 levels. *(STA-04 to STA-08)*
-- [ ] `rpg/leveling.py`: XP curve, level-difference multiplier, and the level-up screen with live stat previews. *(STA-01, STA-02/03, UIX-06)*
-- [ ] pytest: formulas, XP curve monotonic, damage never negative, every enemy JSON valid against its schema. *(TEC-18)*
-- [ ] Behaviour **archetypes**: melee-basic, pack-circler, ranged-kiter, caster-support, flyer, ambusher, brute, regenerator, phaser, armored-weakpoint. Add attack tokens so only one or two enemies attack at once. *(ENM-24, CMB-27)*
-- [ ] Enemy JSONs for **all 20 approved enemies** (archetype + stats + resistances + attacks + barks + loot), plus any `MON-` enemies approved in ENEMIES.md. Get at least 8 working in-game. *(ENM-01 to ENM-22 except the denied ENM-11 and ENM-20)*
-- [ ] Barks wired to events (spot, attack, pain, death), with subtitles. *(AUD-03, UIX-10)*
+---
 
-**Asset kitchen:** the remaining enemy barks, then the SFX batch (swings, impacts per material, footsteps per biome, creature noises). *(AUD-05, AUD-06)*
+### 5.2 World, NPC and AI (todo.txt — second priority)
 
-**Done when:** killing rats, wolves, goblins and bandits gives XP, you level up, put a point in Might and see your damage go up.
+**Better NPC system / NPCs going home at night** *(NPC-16, NPC-15 through NPC-19)*
+- Daily schedule: each NPC has 2–4 waypoints with time-of-day windows; they walk to them and idle
+- NPCs return home after sunset
+- Greeting lines vary by weather, Rowan's state, time, and prior conversation flag (NPC-15)
 
-### Day 5: The world
-**Code**
-- [ ] `tools/worldgen/scatter.py`: Poisson-disk placement per biome rule (slope, height, density, clearings) → `scatter.json`. Draw it with instancing, culling and two LOD levels. *(WLD-12, TEC-11)*
-- [ ] One landmark per biome placed by hand in `data/landmarks.json`, and Duskhold, the Dark Lord's citadel, visible from everywhere. *(WLD-13, WLD-08)*
-- [x] Procedural sky: gradient and sun from `data/world/sky.json`, the same sun as the lighting; moon, stars and Duskhold's storm cloud still to come. *(ART-09)*
-- [ ] One shadow cascade and per-biome color grading. *(TEC-12, ART-12)*
-- [ ] Waystones: rest, heal, refill flasks, respawn enemies, save, fast travel. *(WLD-09, CMB-22, TEC-16)*
-- [ ] Spawn tables per biome with fixed level ranges, plus the activation radius. *(STA-10, TEC-14)*
-- [ ] Death loop: the "AND SO THE LEGEND ENDED… or did it?" screen, then load the previous save, so XP and everything else go back to what they were then. No XP is dropped at death. *(UIX-09, CMB-30 as changed in its note)*
+**NPC weapons / NPC fights / Guard AI** *(NPC-17)*
+- Guards and named combat NPCs carry weapons and use the melee-basic FSM
+- Guards move to assist if they hear combat within 20 m
+- Loot drops weapon if killed
 
-**Done when:** you can run from Brackenvale to the Frostfang foothills, meet enemies of the right level along the way, die, and get your XP back.
+**Beginning plot** *(STY-21)*
+- Cold open: Brackenvale already under strain — feed shortage, overdue merchant, Watch captain on no sleep
+- Rowan has the sword at the start (dull, carried because it was grandfather's); it wakes when Rowan decides not to run
+- The goblin raid arrives as confirmation of a fear, not a shock from nowhere (RPG_CLONES.md §1.1)
 
-### Day 6: Rites, HUD and sound
-**Code**
-- [ ] Rites cast from the off hand, each on its own cooldown with a HUD timer: 2–3 starter Rites (for example a short ward and a marking sigil). Faith scales radiant damage and shortens cooldowns. Their visuals are Meshy effect meshes (VFX-02 to VFX-04) drawn with a glowing, see-through shader and animated in code. *(CMB-29, CMB-34, STA-20, ART-19)*
-- [ ] HUD: bars, quick slots, lock reticle, enemy plates, boss bar. Draw it with pygame and upload it as a texture. *(UIX-01, UIX-04, UIX-05, UIX-13)*
-- [ ] Hand crossbow (aim mode, bolts) to bring down fliers. *(CMB-20)*
-- [ ] Positional audio, per-biome ambience, and music if it's generated. *(AUD-08, AUD-07)*
-- [ ] Remaining enemies from the roster in-game (aim for 12+ total by tonight).
+**Bandit / Goblin camps** *(WLD-44)*
+- 3–5 POI camps placed in the starting region
+- Simple patrol routes, lootable chest at center, respawn after 3 Waystone rests
 
-**Asset kitchen:** ElevenLabs Music: one exploration track per biome + one combat layer + the boss theme. Finish batch voice takes and run `master.py`. *(AUD-07, AUD-10)*
+**Remap starting area** *(WLD-45)*
+- Adjust terrain around Brackenvale: visible watchtower ruin on the ridge, road narrowing toward the Wolfwood, one clear sightline to Duskhold
 
-**Done when:** you can clear a goblin camp mixing sword combos, the crossbow and a Rite, and time your next fight around its cooldown.
+---
 
-### Day 7: Boss, save, build, ship
-**Code**
-- [ ] **Grimtooth** boss in a Wolfwood clearing: two phases (duel, then howl-summon + tree leaps). *(BOS-01)*
-- [ ] Save/load (JSON with a version number), a title screen, pause menu, and a minimal settings screen. *(TEC-16, TEC-23, UIX-07)*
-- [ ] PyInstaller onedir build. Test it on a machine without Python, then `butler push` to itch (set to restricted or draft if you're not ready to make it public). *(TEC-21, REL-08)*
-- [ ] Push to GitHub: README with controls, CREDITS.md generated from the logs, AI disclosure. *(TOL-06, REL-02, REL-03)*
+### 5.3 Feel, content and performance (todo.txt — third priority)
 
-**Done when:** a friend can download the zip and play for 20–40 minutes.
+**Colorizing / Shading** *(ART-22, WLD-41)*
+- One color palette pass per biome: vale (muted green-gold), Wolfwood (deep blue-green), Frostfang (grey-white), Ashen Reach (ash and amber)
+- Fix slope blend seam colors (WLD-41)
+
+**World map / Directions / Caves** *(UIX-02, WLD-07)*
+- Compass strip on the HUD with cardinal labels and quest pin
+- Region name on-screen when entering a new biome
+- One hand-placed cave entrance near Brackenvale as proof-of-concept for interior lighting
+
+**Performance** *(TEC-19)*
+- Profile skinned mesh count, terrain draw calls, and shadows at the worst-case scene
+- Activation radius: enemies beyond 60 m run no AI tick; cap at 25 active skinned characters
+
+**Controller support** *(UIX-11)*
+- `pygame.joystick`: deadzone, stick-to-movement, face buttons for attack/dodge/interact
+- Rumble on hit via `pygame.joystick.set_rumble`
+
+**More tree types** *(WLD-39)*
+- 2–3 new Meshy tree variants for Wolfwood (gnarled, dead-but-standing, mossy)
+- Dense canopy placement to obscure enemy sightlines (addresses ART-21 silhouette goal)
+
+**More monsters** *(ENM roster, MON-\* enemies)*
+- Use the 1,000-credit Meshy reload (§9.1) to build out the enemy roster toward M1's 20
+- Prioritize biome variety: at least 3 distinct enemy types per biome
+- Goblin spellcaster (ENM-07) already approved; queue with the next Meshy batch
+
+---
+
+### 5.4 Improvements queued after todo.txt
+
+These are the new ideas added 2026-11-26. Work through them once the todo.txt items above are done.
+
+| Idea | What |
+|---|---|
+| ART-20 | Per-NPC face variants (Meshy head swap) |
+| ART-21 | Silhouette quality pass on key assets |
+| WLD-42 | More house types in Brackenvale |
+| NPC-15 | Context-aware greeting selection (also feeds §5.2 above) |
+| UIX-23 | Closer default camera orbit distance |
+| UIX-24 | Zoom cap to prevent overworld cheating |
+| UIX-25 | Compact debug overlay |
+| WLD-43 | Enemy species vary by zone |
+| RPG_CLONES.md fixes | Brackenvale tone pass (§5.2), sigil slots rename (done), cold open STY-21 (§5.2) |
 
 ---
 
@@ -332,15 +363,17 @@ Check your Meshy and ElevenLabs credit balances against this list on Day 1. Gene
 
 ### 9.1 Meshy budget until 2026-12-23: 1,000 credits
 
-The monthly credits ran out on 2026-11-25; these 1,000 extra credits cover the gap. Meshy prices (from `tools/meshy/batch.py`): preview 20, texture 10, rig 5, each animation 3. A new rigged, animated humanoid costs about **55** (preview, texture, rig and 6 animations), or about **80** with one re-roll.
+Credits ran out again on 2026-11-26; 1,000 extra credits are being added now to cover the gap until the monthly refill on 2026-12-23. Meshy prices (from `tools/meshy/batch.py`): preview 20, texture 10, rig 5, each animation 3. A new rigged, animated humanoid costs about **55** (preview, texture, rig and 6 animations), or about **80** with one re-roll. A new prop is about **25–30** (preview + texture, no rig).
 
 | Priority | What | Credits |
 |---|---|---|
-| 1 | **Rowan's missing animations** from Meshy's library, where it has them: swim and tread water (to replace the code-made ones), an off-hand cast, a dodge roll, a kick, a plunge attack | ~30 |
-| 2 | **Seven new enemy types** for the First Playable's 12 (five exist: goblin, wolf, bear, bruiser, battlemage): Skeleton Warrior, Bandit Brigand, Bandit Crossbowman, Goblin Hexer, Orc Berserker, Werewolf (also Grimtooth, BOS-01), Giant Rat | ~560 |
-| 3 | **Reserve** for re-rolls, extra animations, and the Wolfwood props for M2 | ~400 |
+| 1 | **Enemy roster** toward M1's 20: Skeleton Warrior, Bandit Brigand, Bandit Crossbowman, Goblin Hexer (ENM-07), Orc Berserker, Werewolf / Grimtooth (BOS-01), Giant Rat — prioritize biome variety; reuse rigs where a recolour + new stats will do | ~400 |
+| 2 | **More tree types** (WLD-39): 2–3 Wolfwood variants (gnarled pine, dead-standing, mossy oak) | ~60 |
+| 3 | **More house types** (WLD-42): 3–4 Brackenvale building variants to break up the village | ~90 |
+| 4 | **Per-NPC face variants** (ART-20): 3–4 head variants × existing body types (previews only; texture and swap by script) | ~80 |
+| 5 | **Reserve** for re-rolls, extra animations, Wolfwood props for M2 | ~370 |
 
-Not on Meshy this month: the Bog Ooze, the Wraith and the Mimic Chest can be static meshes or code-driven, and the rest of the 20 can wait for the monthly credits or reuse existing rigs.
+Not on Meshy this month: the Bog Ooze, the Wraith and the Mimic Chest can be static meshes or code-driven. Check the running total after each batch — previews first, re-roll only what's clearly wrong.
 
 ---
 
