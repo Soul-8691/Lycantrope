@@ -55,6 +55,7 @@ from lycantrope.render.shaders import ShaderLibrary
 from lycantrope.render.terrain import TerrainRenderer
 from lycantrope.ui.hud import DeathScreen, Hud, LevelPanel
 from lycantrope.render.pixelbuffer import PixelBuffer
+from lycantrope.render.hiz import HiZBuffer
 from lycantrope.ui.loading import LoadingScreen
 from lycantrope.ui.overlay import LockReticle, Subtitles, TextOverlay
 from lycantrope.world.lockon import LockOn
@@ -88,7 +89,7 @@ class App:
         self.save_slot = save_slot
         pygame.mixer.pre_init(44100, -16, 2, 2048)       # a roomy buffer: music without crackles
         pygame.init()
-        for attr, val in ((pygame.GL_CONTEXT_MAJOR_VERSION, 3), (pygame.GL_CONTEXT_MINOR_VERSION, 3),
+        for attr, val in ((pygame.GL_CONTEXT_MAJOR_VERSION, 4), (pygame.GL_CONTEXT_MINOR_VERSION, 3),
                           (pygame.GL_CONTEXT_PROFILE_MASK, pygame.GL_CONTEXT_PROFILE_CORE),
                           (pygame.GL_DEPTH_SIZE, 24), (pygame.GL_DOUBLEBUFFER, 1)):
             pygame.display.gl_set_attribute(attr, val)
@@ -140,6 +141,7 @@ class App:
         loading.draw(1.0)
         loading.release()
         self.pixel_buf = PixelBuffer(self.ctx, settings.pixel_scale, settings.pixel_smooth) if settings.pixel_scale >= 2 else None
+        self.hiz = HiZBuffer(self.ctx) if self.pixel_buf is not None else None
         self.load_seconds = time.perf_counter() - t0
         # no music for benchmarks and screenshots (timing and silence)
         quiet = args.bench or args.screenshot or settings.music_volume <= 0
@@ -585,13 +587,16 @@ class App:
         self.sky.render(eye, viewproj, env)
         self.ctx.wireframe = wire
         self.terrain.render(eye, viewproj, env, self.settings.lod_distances_m)
-        self.props.render(eye, viewproj, env)
+        self.props.render(eye, viewproj, env, hiz=self.hiz)
         self.grass.render(eye, viewproj, env, self.time_s)
         self.chars.render(eye, viewproj, env, alpha)
         self.ctx.wireframe = False
         self.water.render(eye, viewproj, env, self.time_s)
 
         if self.pixel_buf is not None:
+            if self.hiz is not None:
+                pw, ph = self.pixel_buf.size
+                self.hiz.build(self.pixel_buf._depth, pw, ph)
             self.pixel_buf.blit(w, h)
 
         if self.overlay_mode < 2:

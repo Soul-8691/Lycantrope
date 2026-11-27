@@ -160,7 +160,7 @@ class PropRenderer:
             self._version = self.shaders.version
         return prog
 
-    def render(self, eye: glm.vec3, viewproj: glm.mat4, env: dict) -> None:
+    def render(self, eye: glm.vec3, viewproj: glm.mat4, env: dict, hiz=None) -> None:
         if not self.models:
             return
         prog = self._program()
@@ -180,6 +180,8 @@ class PropRenderer:
             dist = np.linalg.norm(centers - e, axis=1)
             vis = dist < m.draw_m + rad
             vis &= ((centers @ planes[:, :3].T + planes[:, 3]) >= -rad[:, None]).all(axis=1)
+            if hiz is not None and vis.any():
+                vis &= hiz.cull(centers, rad, viewproj, e)
             if not vis.any():
                 continue
             set_uniform(prog, "u_height", s.height)

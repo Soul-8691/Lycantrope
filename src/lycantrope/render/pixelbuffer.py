@@ -34,7 +34,7 @@ class PixelBuffer:
         self._smooth = smooth
         self._sw = self._sh = 0
         self._color: moderngl.Texture | None = None
-        self._depth: moderngl.Renderbuffer | None = None
+        self._depth: moderngl.Texture | None = None   # texture (not renderbuffer) so Hi-Z can sample it
         self._fb: moderngl.Framebuffer | None = None
         prog = ctx.program(vertex_shader=_VERT, fragment_shader=_FRAG)
         prog["u_scene"] = 0
@@ -45,12 +45,12 @@ class PixelBuffer:
         if self._fb is not None:
             self._fb.release()
             self._color.release()
-            self._depth.release()
+            self._depth.release()   # depth texture
         pw, ph = max(1, sw // self.scale), max(1, sh // self.scale)
         self._color = self.ctx.texture((pw, ph), 4)
         f = moderngl.LINEAR if self._smooth else moderngl.NEAREST
         self._color.filter = (f, f)
-        self._depth = self.ctx.depth_renderbuffer((pw, ph))
+        self._depth = self.ctx.depth_texture((pw, ph))   # texture so Hi-Z can read it
         self._fb = self.ctx.framebuffer([self._color], self._depth)
         self._sw, self._sh = sw, sh
 
