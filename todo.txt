@@ -13,15 +13,11 @@ Pause/Player inventory/Equip/Looting
 Upgrade/Forge
 Greetings/Talk (A press)/Dialogue/Voice lines/Choices/Quests
 World map/Directions/Caves
-Performance
-NPCs going home at night
 Controller support
 Shop inventory/Shop
-NPC weapons/NPC fights/Guard protect AI
+Better NPC system/NPC weapons/NPC fights/Guard protect AI/NPCs going home at night
 Beginning plot
-Better NPC system
-More tree types
-Add more monsters (Lovecraft monsters/Goblin spellcasters)
-Bandit/Goblin camps
+More tree types/Better flower models
+Add more monsters (Lovecraft monsters/Goblin spellcasters)/Bandit/Goblin camps
 Remap the starting area/nearby
 Fast travel

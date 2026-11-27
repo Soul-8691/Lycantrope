@@ -13,7 +13,7 @@ class Settings:
     height: int = 900
     fullscreen: bool = False
     vsync: bool = True
-    low_latency: bool = True          # wait for each frame to finish: less mouse lag, slightly lower fps
+    low_latency: bool = False         # glFinish after swap: less mouse lag, but prevents CPU-GPU overlap
     fov_deg: float = 70.0
     mouse_sensitivity: float = 0.003
     invert_y: bool = False

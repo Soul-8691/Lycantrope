@@ -39,9 +39,8 @@ void main() {
     vec4 sa = textureLod(u_splat_a, uv, 0.0), sb = textureLod(u_splat_b, uv, 0.0);
     float grow = dot(sa, vec4(u_biome_grass[0], u_biome_grass[1], u_biome_grass[2], u_biome_grass[3]))
                + dot(sb, vec4(u_biome_grass[4], u_biome_grass[5], u_biome_grass[6], u_biome_grass[7]));
-    float hx = textureLod(u_height, uv + vec2(t, 0.0), 0.0).r - textureLod(u_height, uv - vec2(t, 0.0), 0.0).r;
-    float hz = textureLod(u_height, uv + vec2(0.0, t), 0.0).r - textureLod(u_height, uv - vec2(0.0, t), 0.0).r;
-    float slope = length(vec2(hx, hz)) * 0.5;                    // rise per meter (1 m per texel)
+    float hd = textureLod(u_height, uv + vec2(t, t), 0.0).r - textureLod(u_height, uv - vec2(t, t), 0.0).r;
+    float slope = abs(hd) * 0.35;                    // rise per meter (1 m per texel)
     grow *= smoothstep(0.9, 0.45, slope);
     grow *= 1.0 - smoothstep(0.08, 0.3, textureLod(u_road, uv, 0.0).r);
     grow *= smoothstep(0.1, 0.5, h - textureLod(u_water_tex, uv, 0.0).r);

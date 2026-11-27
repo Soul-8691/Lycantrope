@@ -717,18 +717,23 @@ class Character:
 
 
 class CharacterSystem:
-    def __init__(self, ctx: moderngl.Context, shaders: ShaderLibrary, world: Heightfield) -> None:
+    def __init__(self, ctx: moderngl.Context, shaders: ShaderLibrary, world: Heightfield,
+                 on_progress=None) -> None:
         self.ctx = ctx
         self.shaders = shaders
         self.world = world
         data = load_character_data()
         self.types: dict[str, CharType] = {}
-        for key, spec in data["characters"].items():
+        char_items = list(data["characters"].items())
+        n_types = len(char_items)
+        for i, (key, spec) in enumerate(char_items):
             try:
                 self.types[key] = load_type(ctx, key, spec, data["items"], data.get("armor", {}))
                 self.types[key].spell = spec.get("spell")
             except (FileNotFoundError, KeyError, ValueError) as exc:
                 print(f"characters: can't load {key}: {exc}")
+            if on_progress is not None:
+                on_progress(i + 1, n_types, key)
         self.helmet = True
         from lycantrope.render.spells import Spells
         self.spells = Spells(ctx, shaders, world)

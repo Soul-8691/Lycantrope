@@ -8,6 +8,7 @@ offsets. Root motion is removed so clips play in place; the code moves the chara
 """
 from __future__ import annotations
 
+import hashlib
 import io
 from dataclasses import dataclass, field
 from functools import lru_cache
@@ -17,10 +18,19 @@ import numpy as np
 import pygltflib
 from PIL import Image
 
+from lycantrope.core.paths import ASSETS
+
+_CACHE = ASSETS / "cache"
+
 _COMPONENTS = {"SCALAR": 1, "VEC2": 2, "VEC3": 3, "VEC4": 4, "MAT4": 16}
 _DTYPES = {5120: np.int8, 5121: np.uint8, 5122: np.int16, 5123: np.uint16, 5125: np.uint32, 5126: np.float32}
 _NORM = {5120: 127.0, 5121: 255.0, 5122: 32767.0, 5123: 65535.0}
 BAKE_FPS = 30.0
+
+
+def _glb_hash(path: Path) -> str:
+    s = path.stat()
+    return hashlib.sha1(f"{s.st_size}:{s.st_mtime_ns}".encode()).hexdigest()[:16]
 
 
 class Gltf:
@@ -83,6 +93,17 @@ def _smooth_normals(pos: np.ndarray, idx: np.ndarray) -> np.ndarray:
 
 def load_mesh(path: Path, skinned: bool | None = None) -> MeshData:
     """All primitives of the first mesh merged. Static meshes get their node transforms baked in."""
+    _ch = _CACHE / f"mesh_{path.stem}_{_glb_hash(path)}_{skinned}.npz"
+    if _ch.exists():
+        try:
+            _d = np.load(_ch, allow_pickle=False)
+            _tex = Image.open(io.BytesIO(bytes(_d["tex_jpg"]))) if "tex_jpg" in _d else None
+            return MeshData(_d["pos"], _d["nrm"], _d["uv"], _d["idx"],
+                            _d["joints"] if "joints" in _d else None,
+                            _d["weights"] if "weights" in _d else None,
+                            texture=_tex)
+        except Exception:
+            pass
     f = open_gltf(path)
     g = f.g
     node_i = next((i for i, n in enumerate(g.nodes) if n.mesh is not None and
@@ -119,6 +140,19 @@ def load_mesh(path: Path, skinned: bool | None = None) -> MeshData:
         m.pos = (m.pos @ world[:3, :3].T + world[:3, 3]).astype(np.float32)
         n = m.nrm @ np.linalg.inv(world[:3, :3])
         m.nrm = (n / np.maximum(np.linalg.norm(n, axis=1, keepdims=True), 1e-12)).astype(np.float32)
+    try:
+        _CACHE.mkdir(parents=True, exist_ok=True)
+        _kw: dict = {"pos": m.pos, "nrm": m.nrm, "uv": m.uv, "idx": m.idx}
+        if m.joints is not None:
+            _kw["joints"] = m.joints
+            _kw["weights"] = m.weights
+        if m.texture is not None:
+            _buf = io.BytesIO()
+            m.texture.save(_buf, format="JPEG", quality=90)
+            _kw["tex_jpg"] = np.frombuffer(_buf.getvalue(), np.uint8)
+        np.savez_compressed(_ch, **_kw)
+    except Exception:
+        pass
     return m
 
 
@@ -188,6 +222,16 @@ class Clip:
         return self.world[i] * (1 - u) + self.world[j] * u
 
 
+def _save_clip(cache: Path, clip: "Clip") -> None:
+    try:
+        _CACHE.mkdir(parents=True, exist_ok=True)
+        np.savez_compressed(cache, world=clip.world, duration=np.float64(clip.duration),
+                            loop_flag=np.bool_(clip.loop), native_speed=np.float64(clip.native_speed),
+                            clip_name=np.array(clip.name))
+    except Exception:
+        pass
+
+
 @dataclass
 class Skeleton:
     """A skinned character: joint names, hierarchy, rest pose and inverse bind matrices."""
@@ -202,6 +246,19 @@ class Skeleton:
 
     @classmethod
     def load(cls, path: Path) -> "Skeleton":
+        _ch = _CACHE / f"skel_{path.stem}_{_glb_hash(path)}.npz"
+        if _ch.exists():
+            try:
+                _d = np.load(_ch, allow_pickle=True)
+                _N = int(_d["n_nodes"])
+                _rest = [(np.array(_d["rest_t"][i]), np.array(_d["rest_q"][i]), np.array(_d["rest_s"][i]),
+                          np.array(_d["rest_mat"][i]) if bool(_d["rest_has_mat"][i]) else None)
+                         for i in range(_N)]
+                _par = dict(zip(_d["par_k"].tolist(), _d["par_v"].tolist()))
+                return cls(path, _d["joint_nodes"].tolist(), _d["names"].tolist(),
+                           _d["ibm"], _rest, _par, _d["node_names"].tolist(), _d["order"].tolist())
+            except Exception:
+                pass
         f = open_gltf(path)
         g = f.g
         node = next(n for n in g.nodes if n.mesh is not None and n.skin is not None)
@@ -223,9 +280,35 @@ class Skeleton:
             order.append(i)
         for i in range(len(g.nodes)):
             visit(i)
-        return cls(path, list(skin.joints), [g.nodes[j].name for j in skin.joints],
+        _obj = cls(path, list(skin.joints), [g.nodes[j].name for j in skin.joints],
                    f.acc(skin.inverseBindMatrices).reshape(-1, 4, 4).transpose(0, 2, 1).copy(),
                    rest, par, [n.name or "" for n in g.nodes], order)
+        try:
+            _CACHE.mkdir(parents=True, exist_ok=True)
+            _N = len(_obj.rest)
+            _rmat = np.zeros((_N, 4, 4))
+            _rhas = np.zeros(_N, bool)
+            for _i, (_t, _q, _s, _m) in enumerate(_obj.rest):
+                if _m is not None:
+                    _rmat[_i] = _m
+                    _rhas[_i] = True
+            _pk = np.array(list(_obj.parent.keys()), np.int64) if _obj.parent else np.empty(0, np.int64)
+            _pv = np.array(list(_obj.parent.values()), np.int64) if _obj.parent else np.empty(0, np.int64)
+            np.savez_compressed(_ch,
+                n_nodes=np.int64(_N),
+                joint_nodes=np.array(_obj.joint_nodes, np.int64),
+                names=np.array(_obj.names, dtype=object),
+                ibm=_obj.ibm,
+                rest_t=np.stack([r[0] for r in _obj.rest]),
+                rest_q=np.stack([r[1] for r in _obj.rest]),
+                rest_s=np.stack([r[2] for r in _obj.rest]),
+                rest_mat=_rmat, rest_has_mat=_rhas,
+                par_k=_pk, par_v=_pv,
+                node_names=np.array(_obj.node_names, dtype=object),
+                order=np.array(_obj.order, np.int64))
+        except Exception:
+            pass
+        return _obj
 
     def node_index(self, name: str) -> int:
         return self.node_names.index(name)
@@ -250,7 +333,19 @@ class Skeleton:
     def bake(self, source: Path, clip_ref: str | int, loop: bool, retarget: bool = False,
              speed: float = 1.0, name: str = "") -> Clip:
         """Sample a clip from `source` onto this skeleton at BAKE_FPS."""
-        if not retarget and Path(source) != Path(self.path):
+        _src = Path(source)
+        _ck = hashlib.sha1(
+            f"{_glb_hash(_src)}:{_glb_hash(self.path)}:{clip_ref}:{loop}:{retarget}:{speed}".encode()
+        ).hexdigest()[:16]
+        _ch = _CACHE / f"clip_{_src.stem}_{_ck}.npz"
+        if _ch.exists():
+            try:
+                _d = np.load(_ch, allow_pickle=False)
+                return Clip(str(_d["clip_name"]), _d["world"], float(_d["duration"]),
+                            bool(_d["loop_flag"]), float(_d["native_speed"]), speed)
+            except Exception:
+                pass
+        if not retarget and _src != Path(self.path):
             # Same character, different file: Meshy's animation files can order the joints
             # differently and rotate the armature, so bake on the file's own skeleton and
             # carry the skinning matrices over by joint name (the mesh space is the same).
@@ -262,7 +357,9 @@ class Skeleton:
             for j, n in enumerate(self.names):
                 pal[:, j] = pal_src[:, src.names.index(n)] if n in src.names else bind_pal[j]
             world = np.einsum("fjab,jbc->fjac", pal, np.linalg.inv(self.ibm))
-            return Clip(raw.name, world.astype(np.float32), raw.duration, loop, raw.native_speed, speed)
+            _result = Clip(raw.name, world.astype(np.float32), raw.duration, loop, raw.native_speed, speed)
+            _save_clip(_ch, _result)
+            return _result
         f = open_gltf(source)
         g = f.g
         if isinstance(clip_ref, int):
@@ -348,8 +445,10 @@ class Skeleton:
             drift = hip_xz - hip_xz[0]                  # play in place: code moves the character
             worlds[:, :, 0, 3] -= drift[:, None, 0]
             worlds[:, :, 2, 3] -= drift[:, None, 1]
-        return Clip(name or str(clip_ref), worlds.astype(np.float32), max(duration, 1 / BAKE_FPS),
-                    loop, native, speed)
+        _result = Clip(name or str(clip_ref), worlds.astype(np.float32), max(duration, 1 / BAKE_FPS),
+                       loop, native, speed)
+        _save_clip(_ch, _result)
+        return _result
 
 
 @lru_cache(maxsize=None)

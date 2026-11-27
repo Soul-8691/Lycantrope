@@ -54,6 +54,7 @@ from lycantrope.render.props import PropRenderer
 from lycantrope.render.shaders import ShaderLibrary
 from lycantrope.render.terrain import TerrainRenderer
 from lycantrope.ui.hud import DeathScreen, Hud, LevelPanel
+from lycantrope.ui.loading import LoadingScreen
 from lycantrope.ui.overlay import LockReticle, Subtitles, TextOverlay
 from lycantrope.world.lockon import LockOn
 from lycantrope.world.actors import TURBO, RowanInput
@@ -104,18 +105,30 @@ class App:
         self.ctx.enable(moderngl.DEPTH_TEST)
 
         t0 = time.perf_counter()
+        w, h = pygame.display.get_window_size()
+        loading = LoadingScreen(self.ctx, w, h)
+        loading.draw(0.0)
         self.shaders = ShaderLibrary(self.ctx)
+        loading.draw(0.03, "Shaders")
         self.world = Heightfield()
         placements = load_placements()
         paint_paths(self.world, placements)          # before the terrain uploads the road map
         paint_ground(self.world, placements)         # loose hay and other painted patches
+        loading.draw(0.07, "World")
         self.terrain = TerrainRenderer(self.ctx, self.shaders, self.world)
         self.props = PropRenderer(self.ctx, self.shaders, self.world, placements)
         self.grass = Grass(self.ctx, self.shaders, self.world, self.terrain)
-        self.chars = CharacterSystem(self.ctx, self.shaders, self.world)
+        loading.draw(0.10, "Terrain")
+
+        def _char_prog(done: int, total: int, key: str) -> None:
+            loading.draw(0.10 + done / total * 0.82, key.replace("_", " ").title())
+
+        self.chars = CharacterSystem(self.ctx, self.shaders, self.world, on_progress=_char_prog)
         self.chars.set_colliders(self.props.colliders)   # houses, trunks, fences and rocks are solid
+        loading.draw(0.95, "Sky & water")
         self.sky = Sky(self.ctx, self.shaders)
         self.water = Water(self.ctx, self.shaders, self.world, self.terrain.tex_height, self.terrain.tex_water)
+        loading.draw(0.98, "UI")
         self.overlay = TextOverlay(self.ctx, self.shaders)
         self.subtitles = Subtitles(TextOverlay(self.ctx, self.shaders, size=18, mono=False))
         self.lock = LockOn()                              # lock-on targeting (CMB-02)
@@ -123,6 +136,8 @@ class App:
         self.hud = Hud(self.ctx, self.shaders)              # bars, XP, flask, hit arc (UIX-15..22)
         self.levels = LevelPanel(self.ctx, self.shaders)    # level-up screen (UIX-06)
         self.death = DeathScreen(self.ctx, self.shaders)    # UIX-09
+        loading.draw(1.0)
+        loading.release()
         self.load_seconds = time.perf_counter() - t0
         # no music for benchmarks and screenshots (timing and silence)
         quiet = args.bench or args.screenshot or settings.music_volume <= 0

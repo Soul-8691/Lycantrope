@@ -16,9 +16,9 @@ import numpy as np
 
 from lycantrope.render.shaders import ShaderLibrary, set_uniform
 
-CELL_M = 1.2            # one tuft per cell
-RADIUS_M = 50.0         # grass is drawn this far from the camera
-NEAR_M = 24.0           # full clumps inside this; simpler, wider ones beyond
+CELL_M = 1.5            # one tuft per cell
+RADIUS_M = 36.0         # grass is drawn this far from the camera
+NEAR_M = 18.0           # full clumps inside this; simpler, wider ones beyond
 # how much each biome grows (splat channel order from meta.json; unknown names get 0)
 BIOME_GRASS = {"brackenvale": 1.0, "wolfwood": 0.75, "blackmire": 0.55, "frostfang": 0.12,
                "ashen": 0.0, "duskhold": 0.08, "boundary": 0.0}
@@ -55,7 +55,7 @@ class Grass:
         self.shaders = shaders
         self.world = world
         self.terrain = terrain
-        near_mesh, far_mesh = tuft_mesh(), tuft_mesh(blades=6, segments=2, seed=5)
+        near_mesh, far_mesh = tuft_mesh(blades=10, segments=3), tuft_mesh(blades=4, segments=1, seed=5)
         self.parts = []
         n = int(RADIUS_M / CELL_M)
         i = np.arange(-n, n + 1)
