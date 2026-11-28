@@ -7,3 +7,7 @@ NPCs say "mind" too much
 Red-bearded man runs into well during path
 Bucket hovers over well
 Name towns yourself
+Barley dialogue NPC ends with extra utterance
+Corbin dialogue NPC sounds confused
+Loot font is too big/shouldn't mention key
+Painting dialogue NPC is too random
