@@ -7,17 +7,13 @@ Helpful:
 
 To-Do:
 Beginning plot
-Remap the starting area/nearby/Caves/Ocean
+Remap the starting area/nearby/Caves/Ocean/Map maker
 Add more monsters (Lovecraft monsters/Goblin spellcasters)/Bandit/Goblin camps/Chickens
-Attacks
 Better NPC system/Better mouth movement system/NPC weapons/NPC fights/Guard protect AI/NPCs going home at night
 Greetings/Talk (A press)/Dialogue/Voice lines (one of the bandit voices is really badly done)/Choices/Quests
-Equipping/Combat
+Equipping/Combat/Attacks
 Upgrade/Forge
 Shop inventory/Shop
 Controller support
-Character stats/Experience
-Armor/Weapon/Magic stats
-Health and damage/Fall damage/HUD
+Character stats/Experience/Armor/Weapon/Magic stats/Health and damage/Fall damage/HUD
 Better flower/bramble models/Leaves on the ground
-Map maker
