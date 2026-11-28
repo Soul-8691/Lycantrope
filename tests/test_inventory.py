@@ -54,7 +54,7 @@ def test_equip_swaps_with_whats_worn_and_unequip_needs_room(catalog):
 def test_progress_starts_with_his_kit_and_saves_the_inventory():
     p = Progress()
     assert p.inv.equipped["mainhand"] == "dawnblade" and p.shield is None
-    assert set(p.armor) == {"arm_01", "trs_01", "leg_01"} and p.food == {"apple": 3}
+    assert set(p.armor) == set(p.cfg["rowan"]["armor"]) and p.food == p.cfg["food_start"]
     p.save()
     p.inv.add("iron_shortsword")
     p.inv.equip(len(p.inv.bag) - 1)
@@ -70,7 +70,7 @@ def test_an_old_save_without_an_inventory_still_loads():
            "discovered": {"Mill"}, "armor": ["hed_02"], "shield": "wooden_round_shield"}
     p.restore(old)
     assert p.level == 21 and p.food == {"apple": 1, "bread": 2}
-    assert p.armor == ["hed_02"] and p.shield == "wooden_round_shield" and p.inv.equipped["mainhand"] == "dawnblade"
+    assert set(p.armor) == set(p.cfg["rowan"]["armor"]) and p.inv.equipped["mainhand"] == "dawnblade"
 
 
 def test_wpr03_a_weapon_below_its_requirements_loses_scaling_and_costs_more_stamina():

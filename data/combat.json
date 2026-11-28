@@ -17,7 +17,7 @@
     "attributes": {"might": 22, "dexterity": 20, "vigor": 35, "endurance": 22, "faith": 14, "fortune": 12},
     "weapon": "dawnblade",
     "shield": null,
-    "armor": ["arm_01", "trs_01", "leg_01"],
+    "armor": ["hed_05", "arm_05", "trs_05", "leg_05"],
     "poise": 20,
     "absorb": {}
   },

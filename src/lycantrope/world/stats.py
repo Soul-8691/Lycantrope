@@ -450,11 +450,10 @@ class Progress:
         self.opened = set(s.get("opened", []))
         if "inventory" in s:
             self.inv.from_dict(s["inventory"])
-        else:                                      # a save from before the inventory: rebuild from its kit
-            self.inv.from_dict({})
+        else:                                      # a save from before the inventory: the starting kit, its food
+            self.inv.from_dict({})                 # (armor couldn't be changed then, so its list was the default)
             r = self.cfg["rowan"]
-            self._starting_kit(s.get("armor", r.get("armor", [])), s.get("shield", r.get("shield")),
-                               r.get("weapon"), s.get("food", {}))
+            self._starting_kit(r.get("armor", []), r.get("shield"), r.get("weapon"), s.get("food", {}))
 
     # Rowan as a fighter
     def fighter(self, name: str = "Rowan") -> Fighter:
