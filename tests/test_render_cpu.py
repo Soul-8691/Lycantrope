@@ -58,3 +58,22 @@ def test_chunk_bounds_cover_map(world):
     assert len(origins) == (world.size // 64) ** 2
     assert (hmax > hmin).all()
     assert origins[:, 0].min() == -world.half
+
+
+def test_joint_names_from_other_riggers_map_to_the_meshy_names():
+    from lycantrope.render.gltf import canon_joint
+    assert canon_joint("mixamorig:LeftHand") == "LeftHand"
+    assert canon_joint("mixamorig:Neck") == "neck" and canon_joint("Spine1") == "Spine01"
+    for meshy in ("Hips", "Spine02", "neck", "Head", "head_end", "LeftForeArm", "RightToeBase"):
+        assert canon_joint(meshy) == meshy                    # Meshy rigs are untouched
+    assert canon_joint(None) == ""
+
+
+def test_finger_bones_fold_into_the_hand():
+    from lycantrope.render.gltf import joint_remap
+    names = ["Hips", "LeftHand", "LeftHandIndex1", "LeftHandThumb2", "RightHand", "RightHandPinky4", "Head"]
+    keep, remap = joint_remap(names)
+    assert [names[i] for i in keep] == ["Hips", "LeftHand", "RightHand", "Head"]
+    assert list(remap) == [0, 1, 1, 1, 2, 2, 3]
+    meshy = ["Hips", "Spine02", "LeftHand", "RightHand"]
+    assert joint_remap(meshy)[0] == [0, 1, 2, 3]               # no fingers: nothing changes

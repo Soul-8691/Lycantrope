@@ -133,7 +133,8 @@ def load_mesh(path: Path, skinned: bool | None = None) -> MeshData:
     m = MeshData(np.concatenate(pos), np.concatenate(nrm), np.concatenate(uv), np.concatenate(idx), texture=tex)
     if use_skin:
         w = np.concatenate(weights)
-        m.joints = np.concatenate(joints)
+        _keep, remap = joint_remap([canon_joint(g.nodes[j].name) for j in g.skins[node.skin].joints])
+        m.joints = remap[np.concatenate(joints)]              # finger weights go to the hand (Skeleton.load)
         m.weights = w / np.maximum(w.sum(axis=1, keepdims=True), 1e-8)
     else:                                   # bake the node's world transform into the vertices
         world = _node_world(f, node_i)
@@ -232,6 +233,39 @@ def _save_clip(cache: Path, clip: "Clip") -> None:
         pass
 
 
+# Joint names from other riggers, as the Meshy names the code looks up (hands for held items and casting,
+# head and neck for armor and the jaw, legs for wading). Tripo's Mixamo-style rigs say "mixamorig:LeftHand",
+# "Neck", "Spine1". Only lookups use this; clips still play only on the rig they were made for.
+JOINT_ALIASES = {"Neck": "neck", "Spine1": "Spine01", "Spine2": "Spine02", "HeadTop_End": "head_end"}
+
+
+def canon_joint(name: str | None) -> str:
+    n = (name or "").rsplit(":", 1)[-1].rsplit("|", 1)[-1]
+    return JOINT_ALIASES.get(n, n)
+
+
+_FINGERS = ("Thumb", "Index", "Middle", "Ring", "Pinky")
+
+
+def finger_hand(name: str) -> str | None:
+    """'LeftHandIndex2' -> 'LeftHand'; None for anything that isn't a finger bone."""
+    for side in ("Left", "Right"):
+        rest = name[len(side) + 4:] if name.startswith(side + "Hand") else ""
+        if rest.startswith(_FINGERS):
+            return side + "Hand"
+    return None
+
+
+def joint_remap(names: list[str]) -> tuple[list[int], np.ndarray]:
+    """Finger bones fold into their hand, so detailed rigs (Tripo's have 65 joints) fit the shader's 64:
+    (skin joints to keep, old joint index -> new joint index)."""
+    keep = [i for i, n in enumerate(names) if finger_hand(n) is None]
+    new = {old: k for k, old in enumerate(keep)}
+    remap = np.array([new[i] if i in new else new.get(names.index(finger_hand(n)), 0) if finger_hand(n) in names else 0
+                      for i, n in enumerate(names)], np.int64)
+    return keep, remap
+
+
 @dataclass
 class Skeleton:
     """A skinned character: joint names, hierarchy, rest pose and inverse bind matrices."""
@@ -280,9 +314,11 @@ class Skeleton:
             order.append(i)
         for i in range(len(g.nodes)):
             visit(i)
-        _obj = cls(path, list(skin.joints), [g.nodes[j].name for j in skin.joints],
-                   f.acc(skin.inverseBindMatrices).reshape(-1, 4, 4).transpose(0, 2, 1).copy(),
-                   rest, par, [n.name or "" for n in g.nodes], order)
+        names = [canon_joint(g.nodes[j].name) for j in skin.joints]
+        keep, _remap = joint_remap(names)                  # finger bones fold into the hands
+        ibm = f.acc(skin.inverseBindMatrices).reshape(-1, 4, 4).transpose(0, 2, 1).copy()
+        _obj = cls(path, [skin.joints[i] for i in keep], [names[i] for i in keep], ibm[keep].copy(),
+                   rest, par, [canon_joint(n.name) for n in g.nodes], order)
         try:
             _CACHE.mkdir(parents=True, exist_ok=True)
             _N = len(_obj.rest)
@@ -366,7 +402,7 @@ class Skeleton:
             anim = g.animations[clip_ref]
         else:
             anim = next(a for a in g.animations if a.name == clip_ref)
-        src_names = [n.name or "" for n in g.nodes]
+        src_names = [canon_joint(n.name) for n in g.nodes]
         hips = next((n for n in self.node_names if n.lower() == "hips"), "Hips")
         scale_hips = 1.0
         if retarget and hips in src_names and hips in self.node_names:
