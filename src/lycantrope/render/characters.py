@@ -740,6 +740,8 @@ class CharacterSystem:
         from lycantrope.render.rites import RiteEffect
         self.rite = RiteEffect(ctx, shaders, world, self.spells.vbo, self.spells.count)
         self._cast_seen = (False, 0.0)            # Rowan: (casting last tick, cast clip time)
+        self._rite_pending = False                # a cast is under way; its Rite lands at the flash
+        self.rite_cooldown = 0.0                  # seconds until Rowan can cast again (CMB-34)
         self.chars: list[Character] = []
         self.rowan: Rowan | None = None
         self.colliders: Colliders | None = None     # solid props, set by set_colliders()
@@ -1050,6 +1052,7 @@ class CharacterSystem:
         f.hp = f.trail = f.max_hp
         f.stamina, f.poise, f.heals, f.exhausted = f.max_stamina, f.poise_max, [], False
         self.progress.flask = int(self.combat_cfg["lifewater"]["charges"])
+        self.rite_cooldown = 0.0
         self.respawn_enemies()
 
     def respawn_enemies(self) -> None:
@@ -1185,6 +1188,7 @@ class CharacterSystem:
                               cfg=self.combat_cfg)
         self.spells.update(dt)
         self.rite.update(dt)
+        self._land_rite(rc, dt)
         self._discover_t -= dt
         if self._discover_t <= 0.0 and ra.state != "dead":
             self._discover_t = 0.5
@@ -1282,9 +1286,25 @@ class CharacterSystem:
             info = ra.clips.get("cast")
             length = info.duration if info else 1.5
             self.rite.begin(rc.t.cast_release * length / max(ra.anim.rate, 1e-3))
+            self._rite_pending = True
         elif not casting and was:
             self.rite.cancel()
         self._cast_seen = (casting, ra.anim.time)
+
+    def _land_rite(self, rc, dt: float) -> None:
+        """The Ward forms at the cast's flash (an interrupted cast gives nothing and costs no cooldown)."""
+        self.rite_cooldown = max(0.0, self.rite_cooldown - dt)
+        f = rc.fighter if rc is not None else None
+        if self._rite_pending and (not self.rite.active or self.rite.cancelled_at >= 0):
+            self._rite_pending = False
+        elif self._rite_pending and self.rite.t >= self.rite.release_s and f is not None:
+            self._rite_pending = False
+            absorb, seconds = self.progress.ward()
+            f.ward_hp = f.ward_max = absorb
+            f.ward_t = seconds
+            self.rite_cooldown = self.progress.rite_cooldown()
+            self.events.append(("ward", absorb, seconds))
+        self.rite.ward_level = f.ward_hp / f.ward_max if f is not None and f.ward_t > 0 and f.ward_max > 0 else 0.0
 
     def _body_variant(self, t: CharType, c: "Character", prog) -> GpuMesh:
         """The body without the triangles this NPC's top and bottom cover (built once per mix)."""

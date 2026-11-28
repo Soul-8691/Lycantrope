@@ -342,7 +342,12 @@ class PauseMenu:
         self._text(surf, self.f_small, sub, DIM, (x, y))
         y += 24
         rows: list[tuple[str, tuple]] = []
-        if item["kind"] in ("weapon", "catalyst"):
+        if item["kind"] == "catalyst":
+            rows.append((f"Rite power {spec['rite_power']}   Scaling " +
+                         "  ".join(f"{a.title()} {g}" for a, g in spec.get("scaling", {}).items()), INK))
+            cd = round((spec.get("cooldown_mult", 1.0) - 1.0) * 100)
+            rows.append((f"Rite cooldowns {cd:+d}%" if cd else "Rite cooldowns ±0%", INK))
+        elif item["kind"] == "weapon":
             rows.append(("Damage  " + "  ".join(f"{t} {v:g}" for t, v in spec["damage"].items()), INK))
             if spec.get("scaling"):
                 rows.append(("Scaling  " + "  ".join(f"{a.title()} {g}" for a, g in spec["scaling"].items()), INK))
@@ -372,7 +377,8 @@ class PauseMenu:
                 self._text(surf, self.f, text, col, (x, y))
             y += 21
         if item["requirements"] and shortfalls(item, prog.attrs):
-            why = ("No scaling, and attacks cost 25% more stamina." if item["kind"] in ("weapon", "catalyst")
+            why = ("No scaling, and attacks cost 25% more stamina." if item["kind"] == "weapon"
+                   else "Casts at half Rite power." if item["kind"] == "catalyst"
                    else "Half defence and poise, 50% more weight." if item["kind"] == "armor" else "")
             if why:
                 self._text(surf, self.f_small, why, RED, (x, y))
@@ -408,7 +414,7 @@ class PauseMenu:
             f = prog.fighter()
             used, cap = prog.equip_load()
             phys = sum(f.defence.get(t, 0) for t in ("slash", "strike", "pierce")) / 3
-            return (sum(f.attack.values()), phys, f.poise_max, 100 * used / max(cap, 1e-6))
+            return (sum(f.attack.values()), phys, f.poise_max, 100 * used / max(cap, 1e-6), prog.rite_power())
 
         before = numbers()
         saved = self.inv.to_dict()
@@ -418,7 +424,8 @@ class PauseMenu:
         return [("Attack", before[0], after[0], lambda v: f"{v:.0f}", True),
                 ("Defence", before[1], after[1], lambda v: f"{v:.0f}", True),
                 ("Poise", before[2], after[2], lambda v: f"{v:.0f}", True),
-                ("Equip load", before[3], after[3], lambda v: f"{v:.0f}%", False)]
+                ("Equip load", before[3], after[3], lambda v: f"{v:.0f}%", False),
+                ("Rite power", before[4], after[4], lambda v: f"{v:.0f}", True)]
 
     def _tab_character(self, surf) -> None:
         prog = self.app.chars.progress
@@ -443,12 +450,29 @@ class PauseMenu:
                 ("Attack", "  ".join(f"{t} {v:.0f}" for t, v in f.attack.items())),
                 ("Defence", "  ".join(f"{t} {f.defence.get(t, 0):.0f}" for t in ("slash", "strike", "pierce"))),
                 ("Poise", f"{f.poise_max:.0f}"), ("Critical chance", f"{d['crit_chance']:.1f}%"),
-                ("Rite power", f"{d['rite_power']:.0f}"),
+                ("Rite power", self._rite_line(prog)),
+                ("Ward (Q)", self._ward_line(prog)),
                 ("Weapon", prog.weapon()["name"] + ("" if prog.weapon_ok() else "  (requirements not met)"))]
         for label, val in rows:
             self._text(surf, self.f, label, DIM, (x, y))
             self._text(surf, self.f, val, INK if "not met" not in val else RED, (x + 150, y))
             y += 24
+
+    @staticmethod
+    def _rite_line(prog) -> str:
+        cat = prog.catalyst()
+        if cat is None:
+            return "no Rites (needs a magic weapon in the off hand)"
+        ok = not shortfalls(prog.inv.catalog[prog.inv.equipped["offhand"]], prog.attrs)
+        return f"{prog.rite_power():.0f}  ({cat['name']}{'' if ok else ', requirements not met'})"
+
+    @staticmethod
+    def _ward_line(prog) -> str:
+        problem = prog.cast_problem()
+        if problem:
+            return problem
+        absorb, secs = prog.ward()
+        return f"absorbs {absorb:.0f} damage for {secs:.0f} s, every {prog.rite_cooldown():.1f} s"
 
     def _tab_settings(self, surf) -> None:
         s = self.app.settings

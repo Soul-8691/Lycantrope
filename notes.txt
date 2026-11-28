@@ -4,3 +4,6 @@ Lifewater flask icon looks weird
 "see the sea" is corny
 Goblin dialogue NPC clears his throat at the end of his sentence really loud
 NPCs say "mind" too much
+Red-bearded man runs into well during path
+Bucket hovers over well
+Name towns yourself

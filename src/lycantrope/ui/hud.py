@@ -75,6 +75,9 @@ class HudState:
             self.note(f"Level {ev[1]}")
         elif kind == "roll":
             self.note("Landing roll")
+        elif kind == "ward":
+            self.calm = 0.0
+            self.note(f"Ward: absorbs {ev[1]:.0f} for {ev[2]:.0f} s")
         elif kind == "reload":
             self.notes.clear()
             self.arc_t = 0.0
@@ -130,6 +133,9 @@ class Hud:
         pygame.draw.rect(surf, (12, 8, 8, 200), (x0 - 2, y - 2, hw + 4, 16), border_radius=3)
         pygame.draw.rect(surf, (225, 196, 160), (x0, y, int(hw * f.trail / f.max_hp), 12), border_radius=2)
         pygame.draw.rect(surf, (172, 30, 28), (x0, y, int(hw * f.hp / f.max_hp), 12), border_radius=2)
+        if f.ward_t > 0 and f.ward_hp > 0:       # the Ward: a pale gold band over the HP it guards
+            ww = max(3, int(hw * min(1.0, f.ward_hp / f.max_hp)))
+            pygame.draw.rect(surf, (250, 218, 140), (x0, y + 1, ww, 4), border_radius=2)
         pygame.draw.rect(surf, (90, 70, 40), (x0 - 2, y - 2, hw + 4, 16), 1, border_radius=3)
         # stamina
         y = 22
@@ -158,8 +164,8 @@ class Hud:
             surf.blit(t, (x0, y))
         return surf
 
-    def _slot_surface(self, flask: int, flask_max: int, food: dict) -> pygame.Surface:
-        surf = pygame.Surface((170, 78), pygame.SRCALPHA)
+    def _slot_surface(self, flask: int, flask_max: int, food: dict, rite: str = "", rite_cd: float = 0.0) -> pygame.Surface:
+        surf = pygame.Surface((170, 100), pygame.SRCALPHA)
         empty = flask <= 0
         pygame.draw.rect(surf, (10, 8, 14, 175), (2, 2, 64, 64), border_radius=6)
         pygame.draw.rect(surf, (110, 90, 56) if not empty else (70, 66, 70), (2, 2, 64, 64), 2, border_radius=6)
@@ -180,10 +186,16 @@ class Hud:
             y += t.get_height() + 1
         g = shadowed(self.slot.font, "G eat", DIM)
         surf.blit(g, (74, y))
+        y += g.get_height() + 1
+        if rite:
+            ready = rite_cd <= 0
+            r = shadowed(self.slot.font, f"Q {rite}" + ("" if ready else f"  {math.ceil(rite_cd)} s"), INK if ready else DIM)
+            surf.blit(r, (74, y))
         return surf
 
     # ------------------------------------------------------------------ draw
-    def render(self, w: int, h: int, fighter, progress, cam_yaw: float, me: tuple[float, float], t: float) -> None:
+    def render(self, w: int, h: int, fighter, progress, cam_yaw: float, me: tuple[float, float], t: float,
+               rite_cd: float = 0.0) -> None:
         if fighter is None:
             return
         s = self.state
@@ -193,15 +205,18 @@ class Hud:
                int(st_bar_px(fighter.max_stamina) * fighter.stamina / max(fighter.max_stamina, 1e-6)),
                fighter.exhausted, int(fighter.max_hp), int(fighter.max_stamina), progress.level,
                int(200 * progress.xp / max(progress.xp_needed(), 1)), progress.ready(), int(pulse * 6),
+               int(hp_bar_px(fighter.max_hp) * fighter.ward_hp / fighter.max_hp) if fighter.ward_t > 0 else -1,
                tuple(n[0] for n in s.notes[-1:]))
         if key != self._bars_key:
             self.bars.set_surface(self._bars_surface(fighter, progress, pulse))
             self._bars_key = key
         self.bars.render(w, h, x=16, y=16, alpha=s.alpha)
-        skey = (progress.flask, tuple(sorted(progress.food.items())))
+        rite = progress.rite()
+        rite_name = rite["name"] if rite and not progress.cast_problem() else ""
+        skey = (progress.flask, tuple(sorted(progress.food.items())), rite_name, math.ceil(rite_cd))
         if skey != self._slot_key:
             self.slot.set_surface(self._slot_surface(progress.flask, int(progress.cfg["lifewater"]["charges"]),
-                                                     progress.food))
+                                                     progress.food, rite_name, rite_cd))
             self._slot_key = skey
         self.slot.render(w, h, x=16, y=h - 16 - self.slot.size[1], alpha=0.95)
         if s.arc_t > 0 and s.arc_from is not None:

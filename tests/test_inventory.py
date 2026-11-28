@@ -99,13 +99,14 @@ def test_ars01_unmet_armor_gives_half_and_weighs_more():
 
 def test_roll_class_follows_equip_load():
     p = Progress()
-    assert p.roll_class() == "fast"
+    for slot in ("head", "torso", "arms", "legs", "offhand"):
+        p.inv.equipped[slot] = None
+    assert p.roll_class() == "fast"                           # under 30%
     for iid in ("hed_13", "arm_13", "trs_13", "leg_13"):
         p.inv.put_on(iid)
     p.inv.put_on("dread_tower_shield")
-    assert p.roll_class() in ("medium", "slow")
     used, cap = p.equip_load()
-    assert used > 0.3 * cap
+    assert p.roll_class() == ("slow" if used >= 0.7 * cap else "medium") and used > 0.3 * cap
 
 
 def test_loot_tables_and_picking_up(catalog):
@@ -133,3 +134,48 @@ def test_a_chest_rolls_when_opened_and_keeps_what_doesnt_fit(catalog):
     ground.spawn(1.0, 0.0, 1.0, [["apple", 1]])
     ground.clear_dropped()
     assert ground.drops == [chest]
+
+
+def test_tome_of_wards_starts_in_the_off_hand_and_sets_rite_power():
+    p = Progress()
+    assert p.inv.equipped["offhand"] == "tome_of_wards" and p.catalyst()["name"] == "Tome of Wards"
+    assert p.inv.catalog["tome_of_wards"]["kind"] == "catalyst"
+    full = p.catalyst()["rite_power"] * p.stats()["rite_power"] / 100
+    p.attrs["faith"] = 13                                     # below its Faith 16: half power (WPR-03)
+    assert p.rite_power() == pytest.approx(p.catalyst()["rite_power"] * p.stats()["rite_power"] / 100 * 0.5)
+    p.attrs["faith"] = 16
+    assert p.rite_power() > full
+    p.inv.add("wooden_round_shield")                          # a shield takes the off hand: no Rites (WPR-01)
+    p.inv.equip(len(p.inv.bag) - 1)
+    assert p.shield == "wooden_round_shield" and p.catalyst() is None and p.rite_power() == 0
+    assert ["tome_of_wards", 1] in p.inv.bag
+
+
+def test_the_ward_absorbs_first_and_a_soaked_hit_cant_stagger():
+    from lycantrope.world.stats import Fighter
+    f = Fighter("Rowan", 1, 500.0, {"slash": 10}, {}, poise_max=20.0, max_stamina=80.0)
+    f.ward_hp, f.ward_max, f.ward_t = 100.0, 100.0, 5.0
+    assert not f.hurt(30, 99) and f.hp == 500 and f.ward_hp == 70 and f.poise == 20   # soaked: no stagger
+    assert f.hurt(90, 99) and f.hp == 480 and f.ward_hp == 0 and f.ward_t == 0        # broken: the rest gets through
+    f.ward_hp, f.ward_max, f.ward_t = 100.0, 100.0, 1.0
+    for _ in range(70):
+        f.update(1 / 60)
+    assert f.ward_t == 0 and f.ward_hp == 0                    # faded after its time
+
+
+def test_ward_numbers_cooldown_and_casting_rules():
+    p = Progress()
+    cfg, ward = p.cfg, p.cfg["rites"]["ward"]
+    tome = cfg["catalysts"]["tome_of_wards"]
+    absorb, secs = p.ward()
+    assert absorb == pytest.approx(ward["power"] * p.rite_power() / 100 * ward["absorb_per_power"] * tome["ward_mult"])
+    assert secs == pytest.approx(ward["duration_s"] * tome["ward_duration_mult"])
+    assert p.cast_problem() is None
+    cd = p.rite_cooldown()
+    p.attrs["faith"] += 10
+    assert p.rite_cooldown() < cd                              # Faith shortens it (CMB-34)
+    p.inv.unequip("offhand")
+    assert p.cast_problem() == "Rites need a magic weapon in the off hand"
+    p.inv.put_on("tome_of_wards")
+    p.attrs["faith"] = 5
+    assert "Faith" in p.cast_problem()                         # the Ward itself needs Faith 10

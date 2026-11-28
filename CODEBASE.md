@@ -182,6 +182,11 @@ keyed on file size and modified time, so rebuilt models are picked up automatica
 
   This was tuned with a scripted fight against a 5-wolf pack in the real game. Before, 60–75% of Rowan's
   swings were cut short; after, none were, while standing still in a pack still gets him staggered.
+- **Rites (the Ward).** Q starts the cast; the Ward forms at the flash (when the cast hand is highest), so an
+  interrupted cast gives nothing and costs no cooldown. It absorbs `power × Rite power / 100 × absorb_per_power`
+  damage before HP, scaled by the catalyst (`ward_mult`, `ward_duration_mult`), and a hit it soaks whole can't
+  stagger. Rite power is the off-hand catalyst's power scaled by Faith, halved below its requirements;
+  no catalyst, no Rites (WPR-01). Cooldowns shrink with the catalyst and with Faith (`rite_cooldown`).
 - **Requirements never block equipping.** Below a weapon's requirements it loses all scaling and every
   attack costs 25% more stamina (WPR-03). Under-requirement armor gives half defence and poise and weighs
   50% more (ARS-01). Equip load sets the roll class (fast / medium / slow).

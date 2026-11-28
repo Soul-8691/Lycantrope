@@ -211,6 +211,9 @@ class Fighter:
     since_spent: float = 99.0
     exhausted: bool = False
     grace: float = 0.0                                # seconds of stagger grace left
+    ward_hp: float = 0.0                              # the Ward (CMB-29): damage it can still absorb
+    ward_max: float = 0.0
+    ward_t: float = 0.0                               # seconds it lasts
     heals: list = field(default_factory=list)         # [hp per second, seconds left]
     hit_from: tuple[float, float] | None = None       # where the last hit came from (x, z)
 
@@ -224,6 +227,7 @@ class Fighter:
         self.since_hurt = self.since_spent = 99.0
         self.exhausted = False
         self.grace = 0.0
+        self.ward_hp = self.ward_max = self.ward_t = 0.0
         self.heals = []
         self.hit_from = None
 
@@ -235,10 +239,18 @@ class Fighter:
         """Take damage; True if this broke the poise (a stagger)."""
         if not self.alive:
             return False
-        self.trail = max(self.trail, self.hp)
-        self.hp = max(0.0, self.hp - amount)
         self.since_hurt = 0.0
         self.hit_from = source
+        if self.ward_hp > 0.0:                        # the Ward takes it first; a hit it soaks whole can't stagger
+            soaked = min(self.ward_hp, amount)
+            self.ward_hp -= soaked
+            amount -= soaked
+            if self.ward_hp <= 0.0:
+                self.ward_t = 0.0
+            if amount <= 0.0:
+                return False
+        self.trail = max(self.trail, self.hp)
+        self.hp = max(0.0, self.hp - amount)
         if self.grace > 0.0:                          # just staggered: no stun-lock (CMB-10)
             return False
         self.poise -= poise_damage
@@ -294,6 +306,10 @@ class Fighter:
             self.trail = max(self.hp, self.trail - tr["drain_frac_per_s"] * self.max_hp * dt)
         po = cfg["poise"]
         self.grace = max(0.0, self.grace - dt)
+        if self.ward_t > 0.0:
+            self.ward_t -= dt
+            if self.ward_t <= 0.0:
+                self.ward_t = self.ward_hp = 0.0
         if self.since_hurt > po["regen_delay_s"]:
             self.poise = min(self.poise_max, self.poise + po["regen_frac_per_s"] * self.poise_max * dt)
         if self.max_stamina > 0:
@@ -337,11 +353,12 @@ class Progress:
         self.discovered: set[str] = set()
         self.opened: set[str] = set()            # chests already looted (WLD-17)
         self.inv = Inventory(catalog if catalog is not None else item_catalog(cfg))
-        self._starting_kit(r.get("armor", []), r.get("shield"), r.get("weapon"), cfg.get("food_start", {}))
+        self._starting_kit(r.get("armor", []), r.get("shield"), r.get("weapon"), cfg.get("food_start", {}),
+                           r.get("catalyst"))
         self._saved = self.snapshot()
 
-    def _starting_kit(self, armor, shield, weapon, food) -> None:
-        for iid in list(armor) + [shield, weapon]:
+    def _starting_kit(self, armor, shield, weapon, food, catalyst=None) -> None:
+        for iid in list(armor) + [shield, catalyst, weapon]:
             if iid:
                 self.inv.put_on(iid)
         for iid, n in food.items():
@@ -370,6 +387,53 @@ class Progress:
     def weapon_ok(self) -> bool:
         """WPR-03: does Rowan meet his main-hand weapon's requirements?"""
         return meets(self.weapon().get("requirements", {}), self.attrs)
+
+    def catalyst(self) -> dict | None:
+        """The magic weapon in the off hand (WPR-01), or None: no Rites without one."""
+        i = self.inv.equipped["offhand"]
+        return self.cfg.get("catalysts", {}).get(i) if i else None
+
+    def rite_power(self) -> float:
+        """WPR-10: the catalyst's Rite power scaled by Rowan's Faith-based Rite power; half below its
+        requirements (WPR-03); 0 without a catalyst."""
+        cat = self.catalyst()
+        if cat is None:
+            return 0.0
+        power = catalyst_power(cat, self.stats()["rite_power"])
+        return power if meets(cat.get("requirements", {}), self.attrs) else power * 0.5
+
+    def rite(self) -> dict | None:
+        """The Rite Rowan casts with Q (one attunement slot for now, STA-23)."""
+        return self.cfg["rites"].get(self.cfg["rowan"].get("rite", ""))
+
+    def rite_cooldown(self) -> float:
+        """CMB-34: the Rite's cooldown, shortened by the catalyst and by Faith."""
+        r = self.rite()
+        if r is None:
+            return 0.0
+        rc = self.cfg["rite_cooldown"]
+        faith = max(0, self.attrs.get("faith", 0) - rc["faith_from"])
+        k = max(rc["min_mult"], 1.0 - rc["per_point"] * faith)
+        cat = self.catalyst() or {}
+        return float(r["cooldown_s"]) * k * float(cat.get("cooldown_mult", 1.0))
+
+    def cast_problem(self) -> str | None:
+        """Why Rowan can't cast his Rite right now (None: he can)."""
+        r = self.rite()
+        if r is None:
+            return "No Rite attuned"
+        if self.catalyst() is None:
+            return "Rites need a magic weapon in the off hand"
+        if not meets(r.get("requirements", {}), self.attrs):
+            return f"{r['name']} needs more Faith"
+        return None
+
+    def ward(self) -> tuple[float, float]:
+        """(damage the Ward absorbs, seconds it lasts) at Rowan's Rite power, with the catalyst's bonuses."""
+        r = self.cfg["rites"]["ward"]
+        cat = self.catalyst() or {}
+        absorb = rite_base_power(r, self.rite_power()) * float(r.get("absorb_per_power", 1.0))
+        return absorb * float(cat.get("ward_mult", 1.0)), float(r["duration_s"]) * float(cat.get("ward_duration_mult", 1.0))
 
     def stamina_multiplier(self) -> float:
         """WPR-03: every attack costs 25% more below the weapon's requirements."""
@@ -453,7 +517,8 @@ class Progress:
         else:                                      # a save from before the inventory: the starting kit, its food
             self.inv.from_dict({})                 # (armor couldn't be changed then, so its list was the default)
             r = self.cfg["rowan"]
-            self._starting_kit(r.get("armor", []), r.get("shield"), r.get("weapon"), s.get("food", {}))
+            self._starting_kit(r.get("armor", []), r.get("shield"), r.get("weapon"), s.get("food", {}),
+                               r.get("catalyst"))
 
     # Rowan as a fighter
     def fighter(self, name: str = "Rowan") -> Fighter:

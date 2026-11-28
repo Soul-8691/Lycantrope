@@ -5,7 +5,7 @@ Controls (play mode)
 Click            capture the mouse  ·  Esc: pause menu (Resume, Save, Quit; the world waits)
 WASD             move (camera-relative)     Shift: sprint  ·  Ctrl: walk  ·  wheel: camera distance
 Left click       light attack (click again during a swing to chain up to three)
-Right mouse      hold to block              R: heavy attack  ·  Q: cast (off hand)
+Right mouse      hold to block              R: heavy attack  ·  Q: cast the Ward (needs a magic weapon)
 Space            jump (light attack while dropping: plunge)  ·  C: landing roll (press just before landing)
 E / G            pick up loot in reach, rest at a lit Waystone (then fast travel), otherwise drink from the
                  Lifewater flask  ·  G: eat an apple
@@ -407,7 +407,13 @@ class App:
                 elif self.play:
                     name = {pygame.K_r: "heavy", pygame.K_q: "cast", pygame.K_h: "hit", pygame.K_k: "die",
                             pygame.K_SPACE: "jump", pygame.K_f: "sheathe", pygame.K_c: "roll"}.get(k)
-                    if name:
+                    problem = self.chars.progress.cast_problem() if name == "cast" else None
+                    if problem:                                        # WPR-01: needs a catalyst
+                        self.hud.state.note(problem)
+                    elif name == "cast" and self.chars.rite_cooldown > 0:   # CMB-34
+                        self.hud.state.note(f"{self.chars.progress.rite()['name']} ready in "
+                                            f"{math.ceil(self.chars.rite_cooldown)} s")
+                    elif name:
                         self.pressed.add(name)
         return not self.quit_requested
 
@@ -451,7 +457,7 @@ class App:
                 first = self.ticks == 1
                 inp.light |= (act == "light" and first) or (act == "combo" and self.ticks % 20 == 1)
                 inp.heavy |= act == "heavy" and first
-                inp.cast |= act == "cast" and first
+                inp.cast |= act in ("cast", "ward") and first
                 inp.hit |= act == "hit" and first
                 inp.die |= act == "die" and first
                 inp.jump |= act == "jump" and self.ticks % 50 == 1
@@ -539,7 +545,7 @@ class App:
         rc = self.chars.rowan_char
         if rc is not None and rc.fighter is not None:
             f = rc.fighter
-            full = f.hp >= f.max_hp and f.stamina >= f.max_stamina and f.trail <= f.hp
+            full = f.hp >= f.max_hp and f.stamina >= f.max_stamina and f.trail <= f.hp and f.ward_t <= 0
             self.hud.state.update(dt, full, self.chars.chased(30.0))
         self.time_s += dt
         self.day.update(dt)
@@ -805,7 +811,7 @@ class App:
         rc = self.chars.rowan_char
         if self.play and rc is not None:
             self.hud.render(w, h, rc.fighter, self.chars.progress, self.orbit_yaw, (rc.actor.x, rc.actor.z),
-                            self.time_s)
+                            self.time_s, self.chars.rite_cooldown)
             self.levels.render(w, h, self.chars.progress)
             from lycantrope.render.characters import DEATH_RELOAD_S
             self.death.render(w, h, self.chars.down_t, DEATH_RELOAD_S)
@@ -836,7 +842,7 @@ class App:
             "Left click       light attack  (chain ×3)",
             "Right mouse      block",
             "R                heavy attack",
-            "Q                cast",
+            "Q                cast the Ward  (absorbs damage)",
             "Space            jump  (attack mid-air = plunge)",
             "C                roll  (press just before landing)",
             "E                pick up loot  /  rest & travel at a Waystone  /  flask",

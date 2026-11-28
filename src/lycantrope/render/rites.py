@@ -25,6 +25,9 @@ def smooth(x: float) -> float:
 
 
 class RiteEffect:
+    ward_level = 0.0
+    world_time = 0.0
+
     def __init__(self, ctx: moderngl.Context, shaders: ShaderLibrary, world, orb_vbo: moderngl.Buffer,
                  orb_count: int) -> None:
         self.ctx, self.shaders, self.world = ctx, shaders, world
@@ -45,6 +48,8 @@ class RiteEffect:
         self.vbo = ctx.buffer(reserve=len(self.uv) * 5 * 4)
         self.hand = None              # last hand / feet positions, set by the character renderer
         self.feet = None
+        self.ward_level = 0.0         # an active Ward's strength (0..1): a faint shell around Rowan
+        self.world_time = 0.0
 
     @property
     def active(self) -> bool:
@@ -59,6 +64,7 @@ class RiteEffect:
             self.cancelled_at = self.t
 
     def update(self, dt: float) -> None:
+        self.world_time += dt
         if not self.active:
             return
         self.t += dt
@@ -106,9 +112,13 @@ class RiteEffect:
         self.vbo.write(data.tobytes())
 
     def render(self, eye: glm.vec3, viewproj: glm.mat4, env: dict) -> None:
-        if not self.active or self.hand is None or self.feet is None:
+        if (not self.active and self.ward_level <= 0.0) or self.hand is None or self.feet is None:
             return
-        L = self.levels()
+        L = self.levels() if self.active else {k: 0.0 for k in ("orb_r", "orb_s", "flash_r", "flash_s", "ward_r",
+                                                              "ward_s", "ring_r", "ring_s", "rot")}
+        if self.ward_level > 0.0 and L["ward_s"] < 0.3:     # the lasting Ward, after the cast's pulse has passed
+            pulse = 0.85 + 0.15 * math.sin(self.world_time * 5.0)
+            L["ward_r"], L["ward_s"] = 1.05, (0.18 + 0.32 * self.ward_level) * pulse
         orb = self.shaders.get("spell")
         ring = self.shaders.get("rite")
         if self._version != self.shaders.version or self._orb_vao is None:

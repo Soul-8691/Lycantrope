@@ -17,6 +17,8 @@
     "attributes": {"might": 22, "dexterity": 20, "vigor": 35, "endurance": 22, "faith": 14, "fortune": 12},
     "weapon": "dawnblade",
     "shield": null,
+    "catalyst": "tome_of_wards",
+    "rite": "ward",
     "armor": ["hed_05", "arm_05", "trs_05", "leg_05"],
     "poise": 20,
     "absorb": {}
@@ -85,6 +87,10 @@
       "crit_multiplier": 1.8
     }
   },
+  "catalysts": {
+    "_about": "Magic weapons for the off hand (WPR-01, MAG-). Effective Rite power = rite_power x Rowan's Faith-based Rite power / 100 (WPR-10); below the requirements it is halved (WPR-03). cooldown_mult scales Rite cooldowns; ward_mult the Ward's strength, ward_duration_mult how long it lasts.",
+    "tome_of_wards": {"name": "Tome of Wards", "kind": "tome", "rite_power": 100, "scaling": {"faith": "C"}, "cooldown_mult": 0.95, "ward_mult": 1.5, "ward_duration_mult": 1.5, "requirements": {"faith": 16}, "weight": 1.8}
+  },
   "shields": {
     "wooden_round_shield": {
       "name": "Wooden Round Shield",
@@ -127,6 +133,7 @@
       "requirements": {"might": 20, "faith": 12}
     }
   },
+  "rite_cooldown": {"_about": "CMB-34: each Faith point over faith_from shortens Rite cooldowns by per_point, down to min_mult.", "faith_from": 10, "per_point": 0.01, "min_mult": 0.6},
   "rites": {
     "ward": {
       "name": "Ward",
@@ -136,7 +143,8 @@
       "cooldown_s": 8.0,
       "requirements": {"faith": 10},
       "effect": "shield",
-      "duration_s": 6.0
+      "duration_s": 6.0,
+      "absorb_per_power": 2.0
     },
     "fireball": {
       "name": "Fireball",

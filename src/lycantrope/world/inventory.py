@@ -41,8 +41,10 @@ def item_catalog(cfg: dict, extra: dict | None = None) -> dict[str, dict]:
                     "requirements": dict(spec.get("requirements", {})), "spec": spec}
 
     for iid, w in cfg.get("weapons", {}).items():
-        magic = "rite_power" in w
-        add(iid, w["name"], "catalyst" if magic else "weapon", "offhand" if magic else "mainhand", 1, w, "uncommon")
+        add(iid, w["name"], "weapon", "mainhand", 1, w, "uncommon")
+    for iid, m in cfg.get("catalysts", {}).items():
+        if not iid.startswith("_"):
+            add(iid, m["name"], "catalyst", "offhand", 1, m, "uncommon")
     for iid, s in cfg.get("shields", {}).items():
         add(iid, s["name"], "shield", "offhand", 1, s, "uncommon")
     for iid, a in cfg.get("armor", {}).items():
